@@ -19,8 +19,6 @@ namespace SSL_Core
             Console.WriteLine($"{player3} joined the game");
             Console.WriteLine($"{player4} joined the game");
             
-            
-            
         }
     }
 }
