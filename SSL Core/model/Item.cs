@@ -1,34 +1,17 @@
 ﻿using System;
-using SSL_Core.exception;
 
 namespace SSL_Core.model
 {
-    public class Item
+    public abstract class Item
     {
-        public ItemData Data { get; }
-        public int Amount { get; private set; }
-
-        public Item(ItemData data, int amount = 0)
+        public String Id { get; } // APPLE
+        public String Name { get; } // Apple
+        public int MaxStack { get;  }
+        public Item(String id, String name, int maxStack = 1)
         {
-            Data = data;
-            Amount = amount;
-        }
-
-        public Item Remove(int number)
-        {
-            if (number > Amount)
-            {
-                throw new NegativeItemSlotException();
-            }
-
-            Amount -= number;
-            
-            return new Item(Data, number);
-        }
-
-        public void Add(int number)
-        {
-            Amount += number;
+            Id = id;
+            Name = name;
+            MaxStack = maxStack;
         }
     }
 }
