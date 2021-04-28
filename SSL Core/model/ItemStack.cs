@@ -1,5 +1,6 @@
 ﻿using System;
 using SSL_Core.exception;
+using SSL_Core.model.items;
 
 namespace SSL_Core.model
 {
