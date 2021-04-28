@@ -19,7 +19,7 @@ namespace SSL_Core.model
         {
             if (number > Amount)
             {
-                throw new NegativeStackItemException();
+                throw new NegativeItemStackException();
             }
         
             Amount -= number;
