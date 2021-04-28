@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSL Core", "SSL Core\SSL Core.csproj", "{0C72A8B7-CA29-4AF0-A367-7046BAEF4EF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSL Core Tests", "SSL Core Tests\SSL Core Tests.csproj", "{1834BCD6-8F85-47BC-9151-E7EB48C18E68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{0C72A8B7-CA29-4AF0-A367-7046BAEF4EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C72A8B7-CA29-4AF0-A367-7046BAEF4EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C72A8B7-CA29-4AF0-A367-7046BAEF4EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1834BCD6-8F85-47BC-9151-E7EB48C18E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1834BCD6-8F85-47BC-9151-E7EB48C18E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1834BCD6-8F85-47BC-9151-E7EB48C18E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1834BCD6-8F85-47BC-9151-E7EB48C18E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
