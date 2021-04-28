@@ -6,6 +6,7 @@ namespace SSL_Core.model.items
     {
         public string Id { get; } // APPLE
         public string Name { get; } // Apple
+
         public int MaxStack { get; } // 100 ?
         
         public Item(string id, string name, int maxStack = 1)
