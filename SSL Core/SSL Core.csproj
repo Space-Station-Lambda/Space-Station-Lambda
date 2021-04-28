@@ -6,4 +6,8 @@
         <RootNamespace>SSL_Core</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
+    </ItemGroup>
+
 </Project>
