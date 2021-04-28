@@ -1,4 +1,6 @@
-﻿namespace SSL_Core.model
+﻿using SSL_Core.model.roles;
+
+namespace SSL_Core.model
 {
     public class Player
     {
