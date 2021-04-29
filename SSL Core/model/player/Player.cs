@@ -5,7 +5,9 @@ namespace SSL_Core.model
     public class Player
     {
 
-        public Role Role;   
+        public Role Role;
+
+        public FeedingJauge FeedingJauge { get; set; }
         
         public Inventory Inventory { get; }
 
@@ -13,8 +15,10 @@ namespace SSL_Core.model
         
         public Player()
         {
-            Inventory = new Inventory(InitialCapacity);
+            Inventory = new(InitialCapacity);
+            FeedingJauge = new();
         }
+        
 
     }
 }
