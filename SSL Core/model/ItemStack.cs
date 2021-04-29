@@ -21,7 +21,11 @@ namespace SSL_Core.model
             {
                 throw new NegativeItemStackException();
             }
-        
+            if (number == Amount)
+            {
+                return this;
+            }
+            
             Amount -= number;
             
             return new ItemStack(Item, number);
