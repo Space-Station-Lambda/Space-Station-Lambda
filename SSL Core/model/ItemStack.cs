@@ -9,7 +9,7 @@ namespace SSL_Core.model
         public Item Item { get; }
         public int Amount { get; private set; }
 
-        public ItemStack(Item item, int amount = 0)
+        public ItemStack(Item item, int amount = 1)
         {
             Item = item;
             Amount = amount;
