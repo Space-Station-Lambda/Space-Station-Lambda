@@ -2,6 +2,6 @@
 {
     public class Weapon
     {
-        
+        //TODO NotImplementedYet
     }
 }

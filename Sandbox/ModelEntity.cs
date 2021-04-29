@@ -11,7 +11,7 @@ namespace Sandbox
     {
         void CopyFrom(ModelEntity me)
         {
-            //From Sandbox
+            //TODO NotImplementedYet
         }
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace Sandbox
         /// </summary>
         void ApplyForceToBone(Vector3 force, Vector3 forceBone)
         {
-            //From Sandbox
+            //TODO NotImplementedYet
         }
     }
 }
