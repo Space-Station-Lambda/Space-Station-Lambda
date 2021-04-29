@@ -1,4 +1,5 @@
-﻿using SSL_Core.model.player.health;
+﻿using System.Collections.Generic;
+using SSL_Core.model.player.gauges;
 using SSL_Core.model.roles;
 
 namespace SSL_Core.model.player
@@ -8,18 +9,22 @@ namespace SSL_Core.model.player
         private const int InitialCapacity = 100;
 
         public Role Role;
-
-        public Health Health { get; }
+        
+        private Dictionary<string, Gauge> gaugeValue;
         
         public Inventory Inventory { get; }
-
         
         public Player()
         {
             Inventory = new Inventory(InitialCapacity);
-            Health = new Health();
+            gaugeValue = new Dictionary<string, Gauge>();
         }
-        
+
+        public Gauge GetGauge(string gaugeId)
+        {
+            gaugeValue.TryGetValue(gaugeId, out Gauge gauge);
+            return gauge;
+        }
 
     }
 }

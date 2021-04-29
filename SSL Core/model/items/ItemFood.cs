@@ -1,4 +1,5 @@
 using SSL_Core.model.player;
+using SSL_Core.model.player.gauges;
 
 namespace SSL_Core.model.items
 {
@@ -17,7 +18,11 @@ namespace SSL_Core.model.items
         /// </summary>
         public override void Use(Player player)
         {
-            player.Health.AddFeed(FeedingValue);
+            Gauge gauge = player.GetGauge("hunger");
+            if (gauge.ValueLeft > FeedingValue)
+            {
+                gauge.AddValue(FeedingValue);  
+            }
         }
     }
 }
