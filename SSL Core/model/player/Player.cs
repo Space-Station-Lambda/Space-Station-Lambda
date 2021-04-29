@@ -1,13 +1,14 @@
-﻿using SSL_Core.model.roles;
+﻿using SSL_Core.model.player.health;
+using SSL_Core.model.roles;
 
-namespace SSL_Core.model
+namespace SSL_Core.model.player
 {
-    public class Player
+    public partial class Player
     {
 
         public Role Role;
 
-        public FeedingJauge FeedingJauge { get; set; }
+        public Health Health { get; }
         
         public Inventory Inventory { get; }
 
@@ -15,8 +16,8 @@ namespace SSL_Core.model
         
         public Player()
         {
-            Inventory = new(InitialCapacity);
-            FeedingJauge = new();
+            Inventory = new Inventory(InitialCapacity);
+            Health = new Health();
         }
         
 

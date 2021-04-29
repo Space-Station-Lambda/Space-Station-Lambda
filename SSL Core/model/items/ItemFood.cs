@@ -1,3 +1,5 @@
+using SSL_Core.model.player;
+
 namespace SSL_Core.model.items
 {
     public class ItemFood : Item
@@ -15,7 +17,7 @@ namespace SSL_Core.model.items
         /// </summary>
         public override void Use(Player player)
         {
-            player.FeedingJauge.AddFeed(FeedingIndice);
+            player.Health.AddFeed(FeedingIndice);
         }
     }
 }
