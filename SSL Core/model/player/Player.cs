@@ -5,6 +5,7 @@ namespace SSL_Core.model.player
 {
     public partial class Player
     {
+        private const int InitialCapacity = 100;
 
         public Role Role;
 
@@ -12,7 +13,6 @@ namespace SSL_Core.model.player
         
         public Inventory Inventory { get; }
 
-        private const int InitialCapacity = 100;
         
         public Player()
         {
