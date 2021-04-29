@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SSL_Core.model.items
+﻿namespace SSL_Core.model.items
 {
     public abstract class Item
     {
