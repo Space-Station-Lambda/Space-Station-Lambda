@@ -1,8 +1,9 @@
-﻿using SSL_Core.model.roles;
+﻿using Sandbox;
+using SSL_Core.model.roles;
 
 namespace SSL_Core.model
 {
-    public class Player
+    public class Player : BasePlayer
     {
 
         public Role Role;   

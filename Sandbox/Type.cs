@@ -1,6 +1,6 @@
 ﻿namespace Sandbox
 {
-    public interface Type
+    public class Type
     {
         
     }

@@ -1,6 +1,6 @@
 ﻿namespace Sandbox
 {
-    public interface Weapon
+    public class Weapon
     {
         
     }

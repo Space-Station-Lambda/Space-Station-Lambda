@@ -1,6 +1,6 @@
 ﻿namespace Sandbox
 {
-    public interface NetworkDirty
+    public class NetworkDirty
     {
         
     }
