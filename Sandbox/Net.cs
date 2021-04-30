@@ -1,7 +1,7 @@
 ﻿namespace Sandbox
 {
-    public interface Net
+    public class Net
     {
-        
+        //TODO NotImplementedYet
     }
 }

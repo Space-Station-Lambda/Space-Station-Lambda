@@ -1,6 +1,6 @@
-﻿namespace Sandbox
+namespace Sandbox
 {
-    public class Weapon
+    public class BasePlayer
     {
         //TODO NotImplementedYet
     }
