@@ -26,5 +26,10 @@ namespace SSL_Core.model.items
         /// TODO : implementer la déscruction à l'utilisation 
         /// </summary>
         public abstract void Use(Player player);
+
+        public override string ToString()
+        {
+            return $"[{Id}]{Name}";
+        }
     }
 }
