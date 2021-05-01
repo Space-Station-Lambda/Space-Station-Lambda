@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using SSL_Core.model.player.gauges;
+using SSL_Core.model.gauges;
 using SSL_Core.model.roles;
 
 namespace SSL_Core.model.player

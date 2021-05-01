@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-namespace SSL_Core.model.player.gauges
+namespace SSL_Core.model.gauges
 {
     public class GaugeData
     {

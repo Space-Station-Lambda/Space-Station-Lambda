@@ -1,5 +1,5 @@
+using SSL_Core.model.gauges;
 using SSL_Core.model.player;
-using SSL_Core.model.player.gauges;
 
 namespace SSL_Core.model.items
 {
