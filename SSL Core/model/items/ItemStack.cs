@@ -1,8 +1,6 @@
-﻿using System;
-using SSL_Core.exception;
-using SSL_Core.model.items;
+﻿using SSL_Core.exception;
 
-namespace SSL_Core.model
+namespace SSL_Core.model.items
 {
     public class ItemStack
     {
@@ -39,6 +37,11 @@ namespace SSL_Core.model
             }
             
             Amount += number;
+        }
+
+        public override string ToString()
+        {
+            return $"{Item} ({Amount})";
         }
     }
 }

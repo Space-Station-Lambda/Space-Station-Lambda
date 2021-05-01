@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using SSL_Core.model.items;
 
 namespace SSL_Core.model
 {
