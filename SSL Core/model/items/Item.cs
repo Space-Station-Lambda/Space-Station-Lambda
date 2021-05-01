@@ -29,7 +29,7 @@ namespace SSL_Core.model.items
 
         public override string ToString()
         {
-            return $"[{Id}]{Name}";
+            return $"[{Id}] {Name}";
         }
     }
 }
