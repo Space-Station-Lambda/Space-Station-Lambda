@@ -41,7 +41,7 @@ namespace SSL_Core.model.items
 
         public override string ToString()
         {
-            return $"{Item}({Amount})";
+            return $"{Item} ({Amount})";
         }
     }
 }
