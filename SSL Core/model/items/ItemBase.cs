@@ -1,3 +1,5 @@
+using SSL_Core.model.player;
+
 namespace SSL_Core.model.items
 {
     public class ItemBase : Item
@@ -6,7 +8,7 @@ namespace SSL_Core.model.items
         {
         }
 
-        public override void Use()
+        public override void Use(Player player)
         {
             throw new System.NotImplementedException();
         }

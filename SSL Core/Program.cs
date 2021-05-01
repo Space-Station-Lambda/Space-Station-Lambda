@@ -1,5 +1,4 @@
 ﻿using System;
-using SSL_Core.model;
 using SSL_Core.model.player;
 
 namespace SSL_Core
