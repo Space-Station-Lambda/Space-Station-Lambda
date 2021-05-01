@@ -5,6 +5,6 @@ namespace SSL_Core.model.interfaces
     /// </summary>
     public interface ITickable
     {
-        void Update(float delta = 0);
+        void Update();
     }
 }
