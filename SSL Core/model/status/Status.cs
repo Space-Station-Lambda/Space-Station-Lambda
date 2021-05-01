@@ -1,39 +1,49 @@
-﻿using SSL_Core.model.interfaces;
+﻿using System;
+using SSL_Core.model.interfaces;
 using SSL_Core.model.player;
 
 namespace SSL_Core.model.status
 {
     public abstract class Status<T> where T : IEffectable
     {
-        public uint TicksLeft { get; protected set; }
-
-        public Status(uint totalTicks)
+        public event EventHandler StatusStarted; 
+        public event EventHandler<StatusFinishedEventArgs> StatusFinished;
+        
+        
+        public float SecondsLeft { get; protected set; }
+        public float SecondsElapsed { get; private set; }
+        
+        public Status(float seconds)
         {
-            TicksLeft = totalTicks;
+            SecondsLeft = seconds;
         }
 
         /// <summary>
-        /// Mets à jour les ticks restants pour le status
+        /// Met à jour le temps restant pour le status
         /// </summary>
-        /// <param name="amount"></param>
-        public bool UpdateTick(uint amount = 1)
+        public void UpdateTime(float elapsedTime = 1)
         {
-            if (amount >= TicksLeft)
+            if (SecondsLeft <= 0)
             {
-                TicksLeft = 0;
-                return true;
+                StatusFinishedEventArgs eventArgs = new StatusFinishedEventArgs(SecondsElapsed);
+                
+                StatusFinished?.Invoke(this, eventArgs);
             }
             else
             {
-                TicksLeft -= amount;
-                return false;
+                if (SecondsElapsed == 0)
+                {
+                    StatusStarted?.Invoke(this, EventArgs.Empty);
+                }
+                
+                SecondsLeft -= elapsedTime;
+                SecondsElapsed += elapsedTime;
             }
         }
         
         /// <summary>
         /// Applique les effets sur l'entité cible
         /// </summary>
-        /// <param name="affected"></param>
         public abstract void Update(T affected);
     }
     

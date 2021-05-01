@@ -12,17 +12,17 @@ namespace SSL_Core.model.player
 
         public Role Role;
         
-        private Dictionary<string, Gauge> gaugeValues;
+        public StatusHandler<Player> StatusHandler { get; }
 
-        private StatusHandler<Player> statusHandler;
-        
         public Inventory Inventory { get; }
+
+        private Dictionary<string, Gauge> gaugeValues;
         
         public Player()
         {
             Inventory = new Inventory(InitialCapacity);
             gaugeValues = new Dictionary<string, Gauge>();
-            statusHandler = new StatusHandler<Player>();
+            StatusHandler = new StatusHandler<Player>();
         }
 
         public Gauge GetGauge(string gaugeId)
@@ -30,6 +30,5 @@ namespace SSL_Core.model.player
             gaugeValues.TryGetValue(gaugeId, out Gauge gauge);
             return gauge;
         }
-
     }
 }
