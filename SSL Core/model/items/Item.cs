@@ -1,4 +1,4 @@
-﻿        using SSL_Core.model.player;
+﻿using SSL_Core.model.player;
 
 namespace SSL_Core.model.items
 {

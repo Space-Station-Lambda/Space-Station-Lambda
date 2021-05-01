@@ -1,7 +1,7 @@
 ﻿namespace Sandbox
 {
-    public interface PlayerCorpse
+    public class PlayerCorpse
     {
-        
+        //TODO NotImplementedYet
     }
 }
