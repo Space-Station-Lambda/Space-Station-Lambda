@@ -20,9 +20,9 @@ namespace SSL_Core.model.player
         
         public Player()
         {
+            StatusHandler = new StatusHandler<Player>();
             Inventory = new Inventory(InitialCapacity);
             gaugeValues = new Dictionary<string, Gauge>();
-            StatusHandler = new StatusHandler<Player>();
         }
 
         public Gauge GetGauge(string gaugeId)

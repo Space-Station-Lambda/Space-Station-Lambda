@@ -21,7 +21,7 @@ namespace SSL_Core.model.status
         /// <summary>
         /// Met à jour le temps restant pour le status
         /// </summary>
-        public void UpdateTime(float elapsedTime = 1)
+        public void UpdateTime(float elapsedTime = 1.0f)
         {
             if (SecondsLeft <= 0)
             {
