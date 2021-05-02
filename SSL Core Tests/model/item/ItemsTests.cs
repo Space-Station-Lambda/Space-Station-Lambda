@@ -7,7 +7,7 @@ namespace SSL_Core_Tests.model.item
 {
     public class ItemsTests
     {
-        private readonly IItems items;
+        private readonly Items items;
 
         public ItemsTests()
         {
@@ -15,7 +15,7 @@ namespace SSL_Core_Tests.model.item
         }
 
         [Fact]
-        private void ShouldAddItem()
+        private void Should_Add_Item()
         {
             Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
@@ -24,7 +24,7 @@ namespace SSL_Core_Tests.model.item
         }
         
         [Fact]
-        private void ShouldAddItemExistThrowError()
+        private void Should_Add_Item_Exist_Throw_Error()
         {
             Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
@@ -32,6 +32,15 @@ namespace SSL_Core_Tests.model.item
             {
                 items.Add(item);
             });
+        }
+        
+        [Fact]
+        private void Should_Get_Item()
+        {
+            Item item = new ItemBase("test_food", "Test food");
+            items.Add(item);
+            Item getItem = items.Get("test_food");
+            Assert.Equal(item, getItem);
         }
     }
 }

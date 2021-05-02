@@ -8,7 +8,7 @@ namespace SSL_Core.model.item
     public class Items : IItems
     {
 
-        private Dictionary<string, Item> items;
+        private readonly Dictionary<string, Item> items;
 
         public Items()
         {
@@ -34,6 +34,11 @@ namespace SSL_Core.model.item
         {
             items.TryGetValue(id, out Item item);
             return item;
+        }
+
+        public Item[] GetByType(string type)
+        {
+            return items.Values.Where(item => item.Type.Equals(type)).ToArray();
         }
         
         public void Add(Item item)
