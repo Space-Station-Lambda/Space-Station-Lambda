@@ -7,11 +7,11 @@ namespace SSL_Core_Tests.model.item
 {
     public class ItemsTests
     {
-        private readonly Items items;
+        private readonly IItems items;
 
         public ItemsTests()
         {
-            items = Items.Instance;
+            items = new Items();
         }
 
         [Fact]

@@ -5,14 +5,12 @@ using SSL_Core.model.item.items;
 
 namespace SSL_Core.model.item
 {
-    public class Items
+    public class Items : IItems
     {
-        public static Items Instance => instance ??= new Items();
-        private static Items instance;
-        
+
         private Dictionary<string, Item> items;
 
-        private Items()
+        public Items()
         {
             items = new Dictionary<string, Item>();
         }

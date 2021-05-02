@@ -8,10 +8,10 @@
 
         private ItemAuthorizer authorizer;
 
-        public Inventory(int size)
+        public Inventory(IItems items, int size)
         {
             Items = new Slot[size];
-            authorizer = new ItemAuthorizer();
+            authorizer = new ItemAuthorizer(items);
         }
 
         public void AddItem(ItemStack itemStack)

@@ -7,10 +7,10 @@ namespace SSL_Core.model.item
     {
         public Dictionary<Item, bool> authorizations;
 
-        public ItemAuthorizer(bool authorized = true)
+        public ItemAuthorizer(IItems items, bool authorized = true)
         {
             authorizations = new Dictionary<Item, bool>();
-            foreach (Item item in Items.Instance.GetItems())
+            foreach (Item item in items.GetItems())
             {
                 authorizations.Add(item, true);
             }
