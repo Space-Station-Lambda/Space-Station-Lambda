@@ -30,37 +30,45 @@ namespace SSL_Core.model.status
         
         public void AddStatus(Status<T> status)
         {
-            status.StatusFinished += OnStatusFinished;
+            SubscribeEvent(status);
             
             statuses.Add(status);
         }
 
         public void RemoveStatus(Status<T> status)
         {
+            UnSubscribeEvent(status);
+            
             statuses.Remove(status);
+        }
+
+        private void SubscribeEvent(Status<T> status)
+        {
+            status.StatusStarted += OnStatusStart;
+            status.StatusFinished += OnStatusFinished;
+        }
+        
+        private void UnSubscribeEvent(Status<T> status)
+        {
+            status.StatusStarted -= OnStatusStart;
+            status.StatusFinished -= OnStatusFinished;
         }
 
         /// <summary>
         /// Lorsqu'un status du Handler exécute sa première Update
         /// </summary>
-        private void OnStatusStart(object sender, EventArgs e)
+        private void OnStatusStart(Status<T> status)
         {
-            // NotImplemented
+            throw new NotImplementedException();
         }
         
         /// <summary>
         /// Lorsqu'un status du Handler a atteint sa fin, il est détruit
         /// </summary>
 
-        private void OnStatusFinished(object sender, StatusFinishedEventArgs e)
+        private void OnStatusFinished(Status<T> status, StatusFinishedEventArgs e)
         {
-            if (sender is Status<T>)
-            {
-                Status<T> status = sender as Status<T>;
-                
-                status.StatusFinished -= OnStatusFinished;
-                RemoveStatus(status);
-            }
+            RemoveStatus(status);
         }
     }
 }

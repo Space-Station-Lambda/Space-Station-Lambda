@@ -6,16 +6,19 @@ namespace SSL_Core.model.status
 {
     public abstract class Status<T> where T : IEffectable
     {
-        public event EventHandler StatusStarted; 
-        public event EventHandler<StatusFinishedEventArgs> StatusFinished;
+        public delegate void StatusStartedEventHandler(Status<T> status);
+        public delegate void StatusFinishedEventHandler(Status<T> status, StatusFinishedEventArgs statusFinishedEventArgs);
         
+        public event StatusStartedEventHandler StatusStarted; 
+        public event StatusFinishedEventHandler StatusFinished;
         
-        public float SecondsLeft { get; protected set; }
+        public float SecondsLeft => TotalSeconds - SecondsElapsed;
         public float SecondsElapsed { get; private set; }
+        public float TotalSeconds { get; protected set; }
         
         public Status(float seconds)
         {
-            SecondsLeft = seconds;
+            TotalSeconds = seconds;
         }
 
         /// <summary>
@@ -33,10 +36,9 @@ namespace SSL_Core.model.status
             {
                 if (SecondsElapsed == 0)
                 {
-                    StatusStarted?.Invoke(this, EventArgs.Empty);
+                    StatusStarted?.Invoke(this);
                 }
                 
-                SecondsLeft -= elapsedTime;
                 SecondsElapsed += elapsedTime;
             }
         }
