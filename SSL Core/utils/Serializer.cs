@@ -7,7 +7,7 @@ namespace SSL_Core.utils
 {
     public class Serializer
     {
-        public T Deserialize<T>(string xml, string encoding) where T : class
+        public T Deserialize<T>(string xml, string encoding = "utf-8") where T : class
         {
             using MemoryStream memoryStream = new(Encoding.GetEncoding(encoding).GetBytes(xml));
             using XmlTextReader xmlr = new(memoryStream);

@@ -6,13 +6,16 @@ namespace SSL_Core.model.gauges
     public class GaugeData
     {
         [DataMember]
-        public string Id { get; }
+        public string Id { get; private set;  }
         [DataMember]
-        public int MinValue { get; } = 0;
+        public int MinValue { get; private set; } = 0;
         [DataMember]
-        public int MaxValue { get; } = 100;
-       
+        public int MaxValue { get; private set; } = 100;
 
+        private GaugeData()
+        {
+            
+        }
         public GaugeData(string id, int minValue, int maxValue)
         {
             Id = id;
