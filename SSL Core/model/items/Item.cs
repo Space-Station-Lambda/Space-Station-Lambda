@@ -1,14 +1,24 @@
-﻿using SSL_Core.model.player;
+﻿using System.Runtime.Serialization;
+using SSL_Core.model.player;
 
 namespace SSL_Core.model.items
 {
+    [DataContract(Name = "Item")]
     public abstract class Item
     {
-        public string Id { get; } // APPLE
-        public string Name { get; } // Apple
-        public int MaxStack { get; } // 100 ?
-        
-        public bool DestroyOnUse { get; }
+        [DataMember]
+        public string Id { get; private set; } // APPLE
+        [DataMember]
+        public string Name { get; private set; } // Apple
+        [DataMember]
+        public int MaxStack { get; private set; } // 100 ?
+        [DataMember]
+        public bool DestroyOnUse { get; private set; }
+
+        protected Item()
+        {
+            
+        }
         
         public Item(string id, string name, int maxStack = 1, bool destroyOnUse = false)
         {
