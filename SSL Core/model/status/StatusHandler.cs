@@ -23,7 +23,6 @@ namespace SSL_Core.model.status
         {
             foreach (Status<T> status in statuses)
             {
-                status.UpdateTime();
                 status.Update(affected);
             }
         }

@@ -28,7 +28,7 @@ namespace SSL_Core.model.status
         /// <summary>
         /// Met à jour le temps restant pour le status
         /// </summary>
-        public void UpdateTime(float elapsedTime = 1.0f)
+        protected void UpdateTime(float elapsedTime = 1.0f)
         {
             if (SecondsLeft <= 0)
             {
@@ -50,7 +50,13 @@ namespace SSL_Core.model.status
         /// <summary>
         /// Applique les effets sur l'entité cible
         /// </summary>
-        public abstract void Update(T affected);
+        protected abstract void UpdateEffect(T affected);
+
+        public void Update(T affected, float elapsedTime = 1.0f)
+        {
+            UpdateTime(elapsedTime);
+            UpdateEffect(affected);
+        }
     }
     
 }
