@@ -1,4 +1,6 @@
-﻿namespace SSL_Core.model.item
+﻿using System;
+
+namespace SSL_Core.model.item
 {
     public class Inventory
     {
@@ -16,7 +18,7 @@
 
         public void AddItem(ItemStack itemStack)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
