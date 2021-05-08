@@ -6,9 +6,11 @@ namespace SSL_Core.model.status
 {
     public abstract class Status<T> where T : IEffectable
     {
+        public delegate void StatusAwakeEventHandler(Status<T> status);
         public delegate void StatusStartedEventHandler(Status<T> status);
         public delegate void StatusFinishedEventHandler(Status<T> status, StatusFinishedEventArgs statusFinishedEventArgs);
-        
+
+        public event StatusAwakeEventHandler StatusAwake;
         public event StatusStartedEventHandler StatusStarted; 
         public event StatusFinishedEventHandler StatusFinished;
         
@@ -19,6 +21,8 @@ namespace SSL_Core.model.status
         public Status(float seconds)
         {
             TotalSeconds = seconds;
+            
+            StatusAwake?.Invoke(this);
         }
 
         /// <summary>
