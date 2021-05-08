@@ -1,5 +1,5 @@
 ﻿using System;
-using SSL_Core.model.items;
+using SSL_Core.model.item.items;
 using SSL_Core.model.player;
 using SSL_Core.utils;
 

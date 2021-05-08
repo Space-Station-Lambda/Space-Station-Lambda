@@ -11,12 +11,10 @@ namespace SSL_Core.model.player
         public Role Role;
         
         private Dictionary<string, Gauge> gaugeValues;
-        
-        public Inventory Inventory { get; }
-        
+
         public Player()
         {
-            Inventory = new Inventory(InitialCapacity);
+            //Inventory = new Inventory(InitialCapacity);
             gaugeValues = new Dictionary<string, Gauge>();
         }
 

@@ -1,7 +1,6 @@
 using SSL_Core.exception;
 using SSL_Core.model;
 using SSL_Core.model.gauges;
-using SSL_Core.model.items;
 using Xunit;
 
 namespace SSL_Core_Tests.model.gauges

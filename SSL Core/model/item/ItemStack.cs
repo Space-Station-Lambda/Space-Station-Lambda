@@ -1,6 +1,7 @@
 ﻿using SSL_Core.exception;
+using SSL_Core.model.item.items;
 
-namespace SSL_Core.model.items
+namespace SSL_Core.model.item
 {
     public class ItemStack
     {
@@ -12,7 +13,7 @@ namespace SSL_Core.model.items
             Item = item;
             Amount = amount;
         }
-        
+
         public ItemStack Remove(int number)
         {
             if (number > Amount)
