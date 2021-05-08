@@ -16,10 +16,10 @@ namespace SSL_Core.model.item
             {
                 authorizations.Add(item, true);
             }
-            if(!authorized) UnothorizeAll();
+            if(!authorized) UnauthorizeAll();
         }
 
-        public void UnothorizeAll()
+        public void UnauthorizeAll()
         {
             foreach (KeyValuePair<Item, bool> pair in authorizations)
             {

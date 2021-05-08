@@ -27,7 +27,7 @@ namespace SSL_Core_Tests.model.item
         [Fact]
         public void Should_All_Unauthorized()
         {
-            itemAuthorizer.UnothorizeAll();
+            itemAuthorizer.UnauthorizeAll();
             Assert.False(itemAuthorizer.IsAuthorized("test_bag"));
             Assert.False(itemAuthorizer.IsAuthorized("test_base"));
         }
@@ -43,7 +43,7 @@ namespace SSL_Core_Tests.model.item
         [Fact]
         public void Should_All_Authorized()
         {
-            itemAuthorizer.UnothorizeAll();
+            itemAuthorizer.UnauthorizeAll();
             itemAuthorizer.AuthorizeAll();
             Assert.True(itemAuthorizer.IsAuthorized("test_bag"));
             Assert.True(itemAuthorizer.IsAuthorized("test_base"));
