@@ -5,7 +5,7 @@ using SSL_Core.model.player;
 
 namespace SSL_Core.model.status
 {
-    public class StatusHandler<T> where T : IEffectable
+    public class StatusHandler<T> where T : IEffectable<T>
     {
         
         private List<Status<T>> statuses;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SSL_Core.model.gauges;
 using SSL_Core.model.interfaces;
 using SSL_Core.model.roles;
@@ -6,7 +7,7 @@ using SSL_Core.model.status;
 
 namespace SSL_Core.model.player
 {
-    public partial class Player : IEffectable
+    public partial class Player : IEffectable<Player>
     {
         private const int InitialCapacity = 100;
 
@@ -29,6 +30,11 @@ namespace SSL_Core.model.player
         {
             gaugeValues.TryGetValue(gaugeId, out Gauge gauge);
             return gauge;
+        }
+
+        public void Apply(IEffect<Player> effect)
+        {
+            effect.Apply(this);
         }
     }
 }
