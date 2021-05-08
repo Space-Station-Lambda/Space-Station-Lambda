@@ -22,7 +22,6 @@ namespace SSL_Core.model.status
         {
             TotalSeconds = seconds;
             
-            StatusAwake?.Invoke(this);
         }
 
         /// <summary>
