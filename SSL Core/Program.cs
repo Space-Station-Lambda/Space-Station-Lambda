@@ -22,8 +22,8 @@ namespace SSL_Core
             Console.WriteLine($"{player4} joined the game");
 
             ItemFood snack = new ItemFood("test", "TEST", 4);
-            Serializer s = new Serializer();
-            Console.Write(s.Serialize(snack));
+            Serializer serializer = new Serializer();
+            Console.Write(serializer.Serialize(snack));
         }
     }
 }
