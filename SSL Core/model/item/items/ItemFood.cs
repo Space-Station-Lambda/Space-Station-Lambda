@@ -1,12 +1,19 @@
+using System.Runtime.Serialization;
 using SSL_Core.model.gauges;
 using SSL_Core.model.player;
 
 namespace SSL_Core.model.item.items
 {
+    [DataContract(Name = "ItemFood", Namespace = "items")]
     public class ItemFood : Item
     {
-        
-        public int FeedingValue { get; }
+        [DataMember]
+        public int FeedingValue { get; private set; }
+
+        private ItemFood() : base()
+        {
+            
+        }
         
         public ItemFood(string id, string name, int feedingValue) : base(id, name, "food", 100)
         {
