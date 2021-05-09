@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SSL_Core.model.item.items;
 using SSL_Core.model.player;
 using SSL_Core.utils;
@@ -24,6 +25,7 @@ namespace SSL_Core
             ItemFood snack = new ItemFood("test", "TEST", 4);
             Serializer serializer = new Serializer();
             Console.Write(serializer.Serialize(snack));
+            
         }
     }
 }

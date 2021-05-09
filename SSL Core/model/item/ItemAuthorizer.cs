@@ -37,12 +37,7 @@ namespace SSL_Core.model.item
 
         public bool IsAuthorized(Item item)
         {
-            if (!authorizations.TryGetValue(item, out bool res))
-            {
-                throw new ItemNotFoundException();
-            }
-
-            return res;
+            return authorizations[item];
         }
         
         public bool IsAuthorized(string id)
@@ -52,11 +47,6 @@ namespace SSL_Core.model.item
 
         public void SetAuthorization(Item item, bool newValue)
         {
-            if (!authorizations.ContainsKey(item))
-            {
-                throw new ItemNotFoundException();
-            }
-
             authorizations[item] = newValue;
         }
         
