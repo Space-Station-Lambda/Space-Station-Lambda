@@ -2,6 +2,6 @@
 {
     public interface IEffect<T>
     {
-        void Apply(T affected);
+        void Trigger(T affected);
     }
 }

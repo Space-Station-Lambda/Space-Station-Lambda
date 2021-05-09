@@ -34,7 +34,7 @@ namespace SSL_Core.model.player
 
         public void Apply(IEffect<Player> effect)
         {
-            effect.Apply(this);
+            effect.Trigger(this);
         }
     }
 }
