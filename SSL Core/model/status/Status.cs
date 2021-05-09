@@ -23,11 +23,8 @@ namespace SSL_Core.model.status
             TotalSeconds = seconds;
             this.effects = effects;
         }
-
-        /// <summary>
-        /// Met à jour le temps restant pour le status
-        /// </summary>
-        protected void UpdateTime(float elapsedTime = 1.0f)
+        
+        public void Update(T affected, float elapsedTime = 1.0f)
         {
             if (SecondsLeft <= 0)
             {
@@ -39,19 +36,11 @@ namespace SSL_Core.model.status
             {
                 SecondsElapsed += elapsedTime;
             }
-        }
 
-        private void ApplyEffects(T affected)
-        {
             foreach (var effect in effects)
             {
                 affected.Apply(effect);
             }
-        }
-        public void Update(T affected, float elapsedTime = 1.0f)
-        {
-            ApplyEffects(affected);
-            UpdateTime(elapsedTime);
         }
     }
     
