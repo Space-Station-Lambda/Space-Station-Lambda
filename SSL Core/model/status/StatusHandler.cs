@@ -43,34 +43,14 @@ namespace SSL_Core.model.status
 
         private void SubscribeEvent(Status<T> status)
         {
-            status.StatusAwake += OnStatusAwake;
-            status.StatusStarted += OnStatusStart;
             status.StatusFinished += OnStatusFinished;
         }
         
         private void UnSubscribeEvent(Status<T> status)
         {
-            status.StatusAwake -= OnStatusAwake;
-            status.StatusStarted -= OnStatusStart;
             status.StatusFinished -= OnStatusFinished;
         }
 
-        /// <summary>
-        /// Lorsqu'un status du Handler est créé
-        /// </summary>
-        private void OnStatusAwake(Status<T> status)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Lorsqu'un status du Handler exécute sa première Update
-        /// </summary>
-        private void OnStatusStart(Status<T> status)
-        {
-            throw new NotImplementedException();
-        }
-        
         /// <summary>
         /// Lorsqu'un status du Handler a atteint sa fin, il est détruit
         /// </summary>
