@@ -8,7 +8,7 @@ namespace SSL_Core.model.status
     public class Status<T> where T : IEffectable<T>
     {
 
-        public delegate void StatusFinishedEventHandler(Status<T> status, StatusFinishedEventArgs statusFinishedEventArgs);
+        public delegate void StatusFinishedEventHandler(Status<T> status, float secondsElapsed);
         
         public event StatusFinishedEventHandler StatusFinished;
         
@@ -28,9 +28,7 @@ namespace SSL_Core.model.status
         {
             if (SecondsLeft <= 0)
             {
-                StatusFinishedEventArgs eventArgs = new StatusFinishedEventArgs(SecondsElapsed);
-                
-                StatusFinished?.Invoke(this, eventArgs);
+                StatusFinished?.Invoke(this, SecondsElapsed);
             }
             else
             {

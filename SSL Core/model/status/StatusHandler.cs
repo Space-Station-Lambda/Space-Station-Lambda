@@ -54,8 +54,7 @@ namespace SSL_Core.model.status
         /// <summary>
         /// Lorsqu'un status du Handler a atteint sa fin, il est détruit
         /// </summary>
-
-        private void OnStatusFinished(Status<T> status, StatusFinishedEventArgs e)
+        private void OnStatusFinished(Status<T> status, float elapsedTime)
         {
             RemoveStatus(status);
         }
