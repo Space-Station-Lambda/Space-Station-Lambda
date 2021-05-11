@@ -1,7 +1,5 @@
 using SSL_Core.exception;
-using SSL_Core.model;
 using SSL_Core.model.gauges;
-using SSL_Core.model.items;
 using Xunit;
 
 namespace SSL_Core_Tests.model.gauges
@@ -41,5 +39,13 @@ namespace SSL_Core_Tests.model.gauges
             gauge.AddValue(value);
             Assert.Equal(gauge.GaugeData.MaxValue - value, gauge.ValueLeft);
         }
+
+        [Fact]
+          private void Test_toString()
+        { 
+            gauge.AddValue(10);
+            Assert.Equal("[TEST_GAUGE] 10/100", gauge.ToString());
+        }
+      
     }
 }
