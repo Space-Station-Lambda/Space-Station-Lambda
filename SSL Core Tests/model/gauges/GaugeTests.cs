@@ -41,7 +41,7 @@ namespace SSL_Core_Tests.model.gauges
         }
 
         [Fact]
-          private void Test_toString()
+         private void Test_toString()
         { 
             gauge.AddValue(10);
             Assert.Equal("[TEST_GAUGE] 10/100", gauge.ToString());
