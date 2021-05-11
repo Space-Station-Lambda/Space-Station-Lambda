@@ -1,19 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SSL_Core.model.gauges;
+using SSL_Core.model.interfaces;
 using SSL_Core.model.roles;
+using SSL_Core.model.status;
 
 namespace SSL_Core.model.player
 {
-    public partial class Player
+    public partial class Player : IEffectable<Player>
     {
         private const int InitialCapacity = 100;
 
         public Role Role;
         
-        private Dictionary<string, Gauge> gaugeValues;
+        public StatusHandler<Player> StatusHandler { get; }
 
+        public Inventory Inventory { get; }
+
+        private Dictionary<string, Gauge> gaugeValues;
+        
         public Player()
         {
+            StatusHandler = new StatusHandler<Player>();
             //Inventory = new Inventory(InitialCapacity);
             gaugeValues = new Dictionary<string, Gauge>();
         }
@@ -24,5 +32,9 @@ namespace SSL_Core.model.player
             return gauge;
         }
 
+        public void Apply(IEffect<Player> effect)
+        {
+            effect.Trigger(this);
+        }
     }
 }
