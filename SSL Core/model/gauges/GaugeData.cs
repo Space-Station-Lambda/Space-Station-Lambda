@@ -14,7 +14,7 @@ namespace SSL_Core.model.gauges
             MaxValue = maxValue;
         }
         
-         public override string ToString() 
+        public override string ToString() 
         {
             return $"{Id}";
         }
