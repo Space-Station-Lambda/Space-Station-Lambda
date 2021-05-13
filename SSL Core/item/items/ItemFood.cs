@@ -5,6 +5,7 @@ using SSL_Core.player;
 namespace SSL_Core.item.items
 {
     [DataContract(Name = "ItemFood", Namespace = "items")]
+    [KnownType(typeof(ItemFood))]
     public class ItemFood : Item
     {
         [DataMember]

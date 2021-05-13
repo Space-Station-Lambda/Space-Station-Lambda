@@ -4,7 +4,7 @@ using SSL_Core.player;
 
 namespace SSL_Core.item.items
 {
-    [DataContract(Name = "Item")]
+    [DataContract(Name = "Item",  Namespace = "items")]
     public abstract class Item
     {
         [DataMember]
