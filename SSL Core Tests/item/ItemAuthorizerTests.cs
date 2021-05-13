@@ -25,6 +25,14 @@ namespace SSL_Core_Tests.item
         }
         
         [Fact]
+        public void Should_All_Unauthorised_By_Default_When_Selected()
+        {
+            itemAuthorizer = new ItemAuthorizer(items, false);
+            Assert.False(itemAuthorizer.IsAuthorized("test_bag"));
+            Assert.False(itemAuthorizer.IsAuthorized("test_base"));
+        }
+        
+        [Fact]
         public void Should_All_Unauthorized()
         {
             itemAuthorizer.UnauthorizeAll();
