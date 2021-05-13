@@ -1,4 +1,4 @@
-﻿using SSL_Core.model.roles;
+﻿using SSL_Core.roles;
 using Xunit;
 
 namespace SSL_Core_Tests.roles
@@ -7,7 +7,7 @@ namespace SSL_Core_Tests.roles
     {
         
         
-[Fact]
+        [Fact]
         private void Test_ToString()
         {
             Role role = new RoleAssistant() ;
