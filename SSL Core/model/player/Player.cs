@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SSL_Core.model.gauges;
 using SSL_Core.model.interfaces;
+using SSL_Core.model.item;
 using SSL_Core.model.roles;
 using SSL_Core.model.status;
 
