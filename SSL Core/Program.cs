@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using SSL_Core.model.item.items;
-using SSL_Core.model.player;
+using SSL_Core.item.items;
+using SSL_Core.player;
 using SSL_Core.utils;
 
 namespace SSL_Core
