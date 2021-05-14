@@ -5,6 +5,7 @@ namespace SSL_Core.status
 {
     public class StatusHandler<T> where T : IEffectable<T>
     {
+        public int StatusCount => statuses.Count;
         
         private List<Status<T>> statuses;
 
