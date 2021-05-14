@@ -21,7 +21,7 @@ namespace SSL_Core.item.items
         }
 
         /// <summary>
-        /// Première version, la nourriture rassasie l'utilisateur d'un certain nombre
+        /// First version, food feeds up the player on use
         /// </summary>
         public override void Use(Player player)
         {

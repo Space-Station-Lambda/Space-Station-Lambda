@@ -1,7 +1,7 @@
 namespace SSL_Core.interfaces
 {
     /// <summary>
-    /// Element updatable a chaque tick de jeu
+    /// Updatable element at each tick of the game
     /// </summary>
     public interface ITickable
     {

@@ -14,9 +14,9 @@ namespace SSL_Core.status
         }
         
         /// <summary>
-        /// Actualise tous les status
+        /// Updates all the statuses
         /// </summary>
-        /// <param name="affected">Entité affectée par les status</param>
+        /// <param name="affected">Affected entity by the statuses</param>
         public void Update(T affected)
         {
             foreach (Status<T> status in statuses)
@@ -50,7 +50,7 @@ namespace SSL_Core.status
         }
 
         /// <summary>
-        /// Lorsqu'un status du Handler a atteint sa fin, il est détruit
+        /// When a status comes to its end, it is removed
         /// </summary>
         private void OnStatusFinished(Status<T> status, float elapsedTime)
         {
