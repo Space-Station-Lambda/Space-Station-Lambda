@@ -18,11 +18,11 @@ namespace SSL_Core.status
         /// Actualise tous les status
         /// </summary>
         /// <param name="affected">Entité affectée par les status</param>
-        public void Update(T affected)
+        public void Update(T affected, float elapsed = 1f)
         {
             foreach (Status<T> status in statuses)
             {
-                status.Update(affected);
+                status.Update(affected, elapsed);
             }
         }
         
