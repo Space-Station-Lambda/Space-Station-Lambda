@@ -24,13 +24,11 @@ namespace SSL_Core.status
         
         public void Update(T affected, float elapsedTime = 1.0f)
         {
+            SecondsElapsed += elapsedTime;
+            
             if (SecondsLeft <= 0)
             {
                 StatusFinished?.Invoke(this, SecondsElapsed);
-            }
-            else
-            {
-                SecondsElapsed += elapsedTime;
             }
 
             foreach (var effect in effects)
