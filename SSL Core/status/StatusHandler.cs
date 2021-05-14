@@ -20,8 +20,9 @@ namespace SSL_Core.status
         /// <param name="affected">Entité affectée par les status</param>
         public void Update(T affected, float elapsed = 1f)
         {
-            foreach (Status<T> status in statuses)
+            for (int i=0;i<StatusCount;++i)
             {
+                Status<T> status = statuses[i];
                 status.Update(affected, elapsed);
             }
         }
