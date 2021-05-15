@@ -71,16 +71,13 @@ namespace SSL_Core_Tests.status
         [Fact]
         private void Effects_Should_Apply()
         {
-
             TestEffect test = new TestEffect();
             
             List<IEffect<Player>> effects = new List<IEffect<Player>>();
             effects.Add(test);
             
             Status<Player> status = new Status<Player>(10f, effects);
-            
             Player player = new Player();
-            
             
             status.Update(player);
             

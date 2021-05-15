@@ -12,7 +12,6 @@ namespace SSL_Core_Tests.status
         private void Should_Add_Status()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-
             Status<Player> status = new Status<Player>(1f, new List<IEffect<Player>>());
             
             statusHandler.AddStatus(status);
@@ -24,7 +23,6 @@ namespace SSL_Core_Tests.status
         private void Should_Remove_Status()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-
             Status<Player> status = new Status<Player>(1f, new List<IEffect<Player>>());
             
             statusHandler.AddStatus(status);
@@ -36,12 +34,10 @@ namespace SSL_Core_Tests.status
         [Fact]
         private void Should_Remove_On_Finished()
         {
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-
             Status<Player> status = new Status<Player>(5f, new List<IEffect<Player>>());
-
             Player player = new Player();
             
+            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
             statusHandler.AddStatus(status);
 
             while (status.SecondsLeft > 0)
@@ -55,13 +51,12 @@ namespace SSL_Core_Tests.status
         [Fact]
         private void Should_Update_Status()
         {
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-
             Status<Player> status = new Status<Player>(5f, new List<IEffect<Player>>());
             Status<Player> status1 = new Status<Player>(10f, new List<IEffect<Player>>());
-
             Player player = new Player();
             
+            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
+
             statusHandler.AddStatus(status);
             statusHandler.AddStatus(status1);
 
@@ -78,8 +73,6 @@ namespace SSL_Core_Tests.status
             }
             
             Assert.Equal(0, statusHandler.StatusCount);
-
         }
-        
     }
 }
