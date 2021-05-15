@@ -16,7 +16,7 @@ namespace SSL_Core_Tests.model.gauges
         [Fact]
         private void Test_ToString()
         { 
-            Assert.Equal("TEST_GAUGEDATA", gaugeData.ToString());
+            Assert.Equal("[TEST_GAUGEDATA] 0|100", gaugeData.ToString());
         }
       
     }

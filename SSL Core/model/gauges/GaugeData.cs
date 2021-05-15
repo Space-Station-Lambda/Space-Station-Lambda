@@ -16,7 +16,7 @@ namespace SSL_Core.model.gauges
         
         public override string ToString() 
         {
-            return $"{Id}";
+            return $"[{Id}] {MinValue}|{MaxValue}";
         }
 
     }

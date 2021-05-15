@@ -25,7 +25,7 @@ namespace SSL_Core.model.gauges
         
         public override string ToString() 
         {
-            return $"[{GaugeData}] {Value}/{GaugeData.MaxValue}";
+            return $"[{GaugeData.Id}] {Value}/{GaugeData.MaxValue}";
         }
         
     }
