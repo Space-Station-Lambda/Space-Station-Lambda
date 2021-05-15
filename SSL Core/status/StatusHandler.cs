@@ -5,6 +5,7 @@ namespace SSL_Core.status
 {
     public class StatusHandler<T> where T : IEffectable<T>
     {
+        public int StatusCount => statuses.Count;
         
         private List<Status<T>> statuses;
 
@@ -18,10 +19,12 @@ namespace SSL_Core.status
         /// </summary>
         /// <param name="affected">Affected entity by the statuses</param>
         public void Update(T affected)
+
         {
-            foreach (Status<T> status in statuses)
+            for (int i=0;i<StatusCount;++i)
             {
-                status.Update(affected);
+                Status<T> status = statuses[i];
+                status.Update(affected, elapsed);
             }
         }
         
