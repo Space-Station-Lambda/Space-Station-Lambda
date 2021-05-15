@@ -8,6 +8,16 @@ namespace SSL_Core_Tests.status
 {
     public class StatusTests
     {
+        private class TestEffect : IEffect<Player>
+        {
+            public int Counter = 0;
+            
+            public void Trigger(Player affected)
+            {
+                Counter++;
+            }
+        }
+
         [Theory]
         [InlineData(1000f, 100f)]
         [InlineData(985.4894f, 1894.14f)]
@@ -55,6 +65,26 @@ namespace SSL_Core_Tests.status
             }
             
             Assert.True(finished);
+        }
+
+
+        [Fact]
+        private void Test_Effects_Should_Apply()
+        {
+
+            TestEffect test = new TestEffect();
+            
+            List<IEffect<Player>> effects = new List<IEffect<Player>>();
+            effects.Add(test);
+            
+            Status<Player> status = new Status<Player>(10f, effects);
+            
+            Player player = new Player();
+            
+            
+            status.Update(player);
+            
+            Assert.Equal(1, test.Counter);
         }
         
     }
