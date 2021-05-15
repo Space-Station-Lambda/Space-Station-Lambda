@@ -40,7 +40,7 @@ namespace SSL_Core_Tests.status
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
             statusHandler.AddStatus(status);
 
-            while (status.SecondsLeft > 0)
+            while (status.MillisLeft > 0)
             {
                 status.Update(player, 1f);
             }
@@ -60,14 +60,14 @@ namespace SSL_Core_Tests.status
             statusHandler.AddStatus(status);
             statusHandler.AddStatus(status1);
 
-            while (status.SecondsLeft > 0)
+            while (status.MillisLeft > 0)
             {
                 statusHandler.Update(player);
             }
             
             Assert.Equal(1, statusHandler.StatusCount);
             
-            while (status1.SecondsLeft > 0)
+            while (status1.MillisLeft > 0)
             {
                 statusHandler.Update(player);
             }

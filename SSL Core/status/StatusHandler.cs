@@ -18,8 +18,7 @@ namespace SSL_Core.status
         /// Updates all the statuses
         /// </summary>
         /// <param name="affected">Affected entity by the statuses</param>
-        public void Update(T affected)
-
+        public void Update(T affected, float elapsed = 1.0f)
         {
             for (int i=0;i<StatusCount;++i)
             {
