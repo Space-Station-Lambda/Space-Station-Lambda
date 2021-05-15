@@ -9,7 +9,7 @@ namespace SSL_Core_Tests.status
     public class StatusHandlerTests
     {
         [Fact]
-        private void Test_Should_Add_Status()
+        private void Should_Add_Status()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
 
@@ -21,7 +21,7 @@ namespace SSL_Core_Tests.status
         }
 
         [Fact]
-        private void Test_Should_Remove_Status()
+        private void Should_Remove_Status()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
 
@@ -34,7 +34,7 @@ namespace SSL_Core_Tests.status
         }
 
         [Fact]
-        private void Test_Should_Remove_On_Finished()
+        private void Should_Remove_On_Finished()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
 
@@ -53,7 +53,7 @@ namespace SSL_Core_Tests.status
         }
 
         [Fact]
-        private void Test_Should_Update_Status()
+        private void Should_Update_Status()
         {
             StatusHandler<Player> statusHandler = new StatusHandler<Player>();
 

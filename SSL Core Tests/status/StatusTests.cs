@@ -21,7 +21,7 @@ namespace SSL_Core_Tests.status
         [Theory]
         [InlineData(1000f, 100f)]
         [InlineData(985.4894f, 1894.14f)]
-        private void Test_Update_Correct_Time(float total, float step)
+        private void Update_Correct_Time(float total, float step)
         {
             Player player = new Player();
             Status<Player> status = new Status<Player>(total, new List<IEffect<Player>>());
@@ -50,7 +50,7 @@ namespace SSL_Core_Tests.status
         [Theory]
         [InlineData(1000f, 100f)]
         [InlineData(985.4894f, 1894.14f)]
-        private void Test_Finish_Event_Should_Trigger(float total, float step)
+        private void Finish_Event_Should_Trigger(float total, float step)
         {
             bool finished = false;
             
@@ -69,7 +69,7 @@ namespace SSL_Core_Tests.status
 
 
         [Fact]
-        private void Test_Effects_Should_Apply()
+        private void Effects_Should_Apply()
         {
 
             TestEffect test = new TestEffect();
