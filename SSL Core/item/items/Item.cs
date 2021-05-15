@@ -36,8 +36,8 @@ namespace SSL_Core.item.items
         { }
 
         /// <summary>
-        /// Utilise l'objet
-        /// TODO : implementer la déscruction à l'utilisation 
+        /// Uses the object
+        /// TODO : implement the destroy on use
         /// </summary>
         public abstract void Use(Player player);
 

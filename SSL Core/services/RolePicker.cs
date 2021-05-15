@@ -25,7 +25,7 @@ namespace SSL_Core.services
         }
 
         /// <summary>
-        /// Permet de set un rôle existant
+        /// Modifies an existing role
         /// </summary>
         public void SetRole(string roleName, RolePickerChoice choice)
         {
@@ -33,7 +33,7 @@ namespace SSL_Core.services
         }
         
         /// <summary>
-        /// Permet de get un choice
+        /// Returns a role choice
         /// </summary>
         public RolePickerChoice GetRole(string roleName)
         {

@@ -3,7 +3,7 @@
 namespace SSL_Core.exception
 {
     /// <summary>
-    /// Deux identifiants uniques sont égaux; i.e utilisation d'un Id d'Item déjà utilisé
+    /// Two identical IDs are equals; i.e use of an item ID already used
     /// </summary>
     public class DuplicateIdException : Exception
     {

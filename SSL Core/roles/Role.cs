@@ -1,7 +1,7 @@
 ﻿namespace SSL_Core.roles
 {
     /// <summary>
-    /// Role du joueur
+    /// Player's role
     /// </summary>
     public abstract class Role
     {
