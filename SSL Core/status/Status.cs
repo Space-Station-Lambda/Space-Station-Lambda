@@ -10,25 +10,25 @@ namespace SSL_Core.status
         
         public event StatusFinishedEventHandler StatusFinished;
         
-        public float SecondsLeft => TotalSeconds - SecondsElapsed;
-        public float SecondsElapsed { get; private set; }
-        public float TotalSeconds { get; protected set; }
+        public float MillisLeft => TotalMillis - MillisElapsed;
+        public float MillisElapsed { get; private set; }
+        public float TotalMillis { get; protected set; }
 
         private List<IEffect<T>> effects;
         
-        public Status(float seconds, List<IEffect<T>> effects)
+        public Status(float millis, List<IEffect<T>> effects)
         {
-            TotalSeconds = seconds;
+            TotalMillis = millis;
             this.effects = effects;
         }
         
-        public void Update(T affected, float elapsedTime = 1.0f)
+        public void Update(T affected, float elapsedTime = 1000.0f)
         {
-            SecondsElapsed += elapsedTime;
+            MillisElapsed += elapsedTime;
             
-            if (SecondsLeft <= 0)
+            if (MillisLeft <= 0)
             {
-                StatusFinished?.Invoke(this, SecondsElapsed);
+                StatusFinished?.Invoke(this, MillisElapsed);
             }
 
             foreach (var effect in effects)
