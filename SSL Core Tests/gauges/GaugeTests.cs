@@ -39,5 +39,13 @@ namespace SSL_Core_Tests.gauges
             gauge.AddValue(value);
             Assert.Equal(gauge.GaugeData.MaxValue - value, gauge.ValueLeft);
         }
+
+        [Fact]
+        private void Test_ToString()
+        { 
+            gauge.AddValue(10);
+            Assert.Equal("[TEST_GAUGE] 10/100", gauge.ToString());
+        }
+      
     }
 }

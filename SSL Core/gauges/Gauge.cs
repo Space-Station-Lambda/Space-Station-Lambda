@@ -7,7 +7,7 @@ namespace SSL_Core.gauges
         public GaugeData GaugeData { get; }
         public int Value { get; private set;  }
         public int ValueLeft => GaugeData.MaxValue - Value;
-        
+       
         public Gauge(GaugeData gaugeData)
         {
             GaugeData = gaugeData;
@@ -22,5 +22,11 @@ namespace SSL_Core.gauges
                 throw new OutOfGaugeException();
             }
         }
+        
+        public override string ToString() 
+        {
+            return $"[{GaugeData.Id}] {Value}/{GaugeData.MaxValue}";
+        }
+        
     }
 }

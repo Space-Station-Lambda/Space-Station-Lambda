@@ -22,5 +22,9 @@ namespace SSL_Core.gauges
             MinValue = minValue;
             MaxValue = maxValue;
         }
+        public override string ToString() 
+        {
+            return $"[{Id}] {MinValue}|{MaxValue}";
+        }
     }
 }
