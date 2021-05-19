@@ -26,15 +26,15 @@ namespace SSL_Core_Tests.status
             Player player = new Player();
             Status<Player> status = new Status<Player>(total, new List<IEffect<Player>>());
             
-            Assert.Equal(total, status.TotalSeconds);
-            Assert.Equal(total, status.SecondsLeft);
-            Assert.Equal(0f, status.SecondsElapsed);
+            Assert.Equal(total, status.TotalMillis);
+            Assert.Equal(total, status.MillisLeft);
+            Assert.Equal(0f, status.MillisElapsed);
 
             status.Update(player, step);
             
-            Assert.Equal(total, status.TotalSeconds);
-            Assert.Equal(total - step, status.SecondsLeft);
-            Assert.Equal(step, status.SecondsElapsed);
+            Assert.Equal(total, status.TotalMillis);
+            Assert.Equal(total - step, status.MillisLeft);
+            Assert.Equal(step, status.MillisElapsed);
             
             int i;
             for (i=0;i<(total-step)/step;i++)
@@ -42,9 +42,9 @@ namespace SSL_Core_Tests.status
                 status.Update(player, step);
             }
             
-            Assert.Equal(total, status.TotalSeconds);
-            Assert.True(status.SecondsLeft <= 0f);
-            Assert.Equal((i+1) * step, status.SecondsElapsed);
+            Assert.Equal(total, status.TotalMillis);
+            Assert.True(status.MillisLeft <= 0f);
+            Assert.Equal((i+1) * step, status.MillisElapsed);
         }
 
         [Theory]
@@ -59,7 +59,7 @@ namespace SSL_Core_Tests.status
 
             status.StatusFinished += (s, elapsed) => finished = true;
             
-            while (status.SecondsLeft > 0)
+            while (status.MillisLeft > 0)
             {
                 status.Update(player, step);
             }
