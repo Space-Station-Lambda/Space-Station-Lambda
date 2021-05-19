@@ -1,5 +1,8 @@
 ﻿using System;
-using SSL_Core.model.player;
+using System.Collections.Generic;
+using SSL_Core.item.items;
+using SSL_Core.player;
+using SSL_Core.utils;
 
 namespace SSL_Core
 {
@@ -18,6 +21,10 @@ namespace SSL_Core
             Console.WriteLine($"{player2} joined the game");
             Console.WriteLine($"{player3} joined the game");
             Console.WriteLine($"{player4} joined the game");
+
+            ItemFood snack = new ItemFood("test", "TEST", 4);
+            Serializer serializer = new Serializer();
+            Console.Write(serializer.Serialize(snack));
             
         }
     }

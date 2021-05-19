@@ -1,9 +1,9 @@
 using SSL_Core.exception;
-using SSL_Core.model;
-using SSL_Core.model.items;
+using SSL_Core.item;
+using SSL_Core.item.items;
 using Xunit;
 
-namespace SSL_Core_Tests.model
+namespace SSL_Core_Tests.item
 {
     public class ItemStackTests
     {

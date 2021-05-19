@@ -3,7 +3,7 @@
 namespace SSL_Core.exception
 {
     /// <summary>
-    /// Stack d'item dépassé
+    /// Overflow of a stack item
     /// </summary>
     public class OutOfStackItemStackException : Exception
     {

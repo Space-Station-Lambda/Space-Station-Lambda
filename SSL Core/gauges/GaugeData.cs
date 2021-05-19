@@ -1,23 +1,30 @@
+using System.Runtime.Serialization;
+
 namespace SSL_Core.gauges
 {
+    [DataContract(Name = "Gauge")]
     public class GaugeData
     {
-        public string Id { get; }
-        public int MinValue { get; } = 0;
-        public int MaxValue { get; } = 100;
-       
+        [DataMember]
+        public string Id { get; private set;  }
+        [DataMember]
+        public int MinValue { get; private set; } = 0;
+        [DataMember]
+        public int MaxValue { get; private set; } = 100;
 
+        private GaugeData()
+        {
+            
+        }
         public GaugeData(string id, int minValue, int maxValue)
         {
             Id = id;
             MinValue = minValue;
             MaxValue = maxValue;
         }
-        
         public override string ToString() 
         {
             return $"[{Id}] {MinValue}|{MaxValue}";
         }
-
     }
 }

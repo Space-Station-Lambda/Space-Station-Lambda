@@ -3,7 +3,7 @@
 namespace SSL_Core.exception
 {
     /// <summary>
-    /// Stack d'item négatif
+    /// Negative item stack
     /// </summary>
     public class NegativeItemStackException : Exception
     {

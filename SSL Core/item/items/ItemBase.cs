@@ -1,10 +1,10 @@
-using SSL_Core.model.player;
+using SSL_Core.player;
 
-namespace SSL_Core.model.items
+namespace SSL_Core.item.items
 {
     public class ItemBase : Item
     {
-        public ItemBase(string id, string name, int maxStack = 1) : base(id, name, maxStack)
+        public ItemBase(string id, string name, int maxStack = 1) : base(id, name, "base", maxStack)
         {
         }
 

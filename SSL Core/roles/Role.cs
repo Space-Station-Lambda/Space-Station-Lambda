@@ -1,7 +1,7 @@
-﻿namespace SSL_Core.model.roles
+﻿namespace SSL_Core.roles
 {
     /// <summary>
-    /// Role du joueur
+    /// Player's role
     /// </summary>
     public abstract class Role
     {
@@ -10,6 +10,11 @@
         public Role(string name)
         {
             Name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}";
         }
     }
 }

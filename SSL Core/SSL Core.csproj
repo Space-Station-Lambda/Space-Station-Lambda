@@ -10,4 +10,8 @@
       <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="data" />
+    </ItemGroup>
+
 </Project>
