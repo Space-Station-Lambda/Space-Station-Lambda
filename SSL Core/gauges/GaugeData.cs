@@ -1,4 +1,4 @@
-namespace SSL_Core.model.gauges
+namespace SSL_Core.gauges
 {
     public class GaugeData
     {

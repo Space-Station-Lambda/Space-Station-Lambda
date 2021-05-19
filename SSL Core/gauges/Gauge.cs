@@ -1,6 +1,6 @@
 using SSL_Core.exception;
 
-namespace SSL_Core.model.gauges
+namespace SSL_Core.gauges
 {
     public class Gauge
     {
