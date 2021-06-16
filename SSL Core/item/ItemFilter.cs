@@ -3,11 +3,11 @@ using SSL_Core.item.items;
 
 namespace SSL_Core.item
 {
-    public class ItemAuthorizer
+    public class ItemFilter
     {
         public Dictionary<Item, bool> authorizations;
         private IItems Items;
-        public ItemAuthorizer(IItems items, bool authorized = true)
+        public ItemFilter(IItems items, bool authorized = true)
         {
             Items = items;
             authorizations = new Dictionary<Item, bool>();

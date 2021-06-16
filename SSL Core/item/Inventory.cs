@@ -8,12 +8,12 @@ namespace SSL_Core.item
 
         public int Capacity;
 
-        private ItemAuthorizer authorizer;
+        private ItemFilter filter;
 
         public Inventory(IItems items, int size)
         {
             Items = new Slot[size];
-            authorizer = new ItemAuthorizer(items);
+            filter = new ItemFilter(items);
         }
 
         public void AddItem(ItemStack itemStack)
