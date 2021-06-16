@@ -1,3 +1,4 @@
+using Moq;
 using SSL_Core.exception;
 using SSL_Core.item;
 using SSL_Core.item.items;
@@ -55,6 +56,18 @@ namespace SSL_Core_Tests.item
             {
                 itemStack.Remove(amount);
             });
+        }
+
+        [Fact]
+        private void ToString_Should_Return_Item_And_Amount()
+        {
+            Mock<Item> mockItem = new Mock<Item>("test", "Test Item", false)
+            {
+                CallBase = true
+            };
+            ItemStack itemStack = new ItemStack(mockItem.Object);
+            
+            Assert.Equal($"{mockItem.Object} (1)", itemStack.ToString());
         }
     }
 }
