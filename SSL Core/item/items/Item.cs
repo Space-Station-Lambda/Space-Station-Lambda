@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using SSL_Core.player;
 
@@ -18,6 +19,7 @@ namespace SSL_Core.item.items
         
         public String Type { get; private set; }
 
+        [ExcludeFromCodeCoverage]
         protected Item()
         {
             

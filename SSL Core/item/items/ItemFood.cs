@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using SSL_Core.gauges;
 using SSL_Core.player;
@@ -11,6 +12,7 @@ namespace SSL_Core.item.items
         [DataMember]
         public int FeedingValue { get; private set; }
 
+        [ExcludeFromCodeCoverage]
         private ItemFood() : base()
         {
             
