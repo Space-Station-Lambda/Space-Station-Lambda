@@ -1,8 +1,8 @@
 using System;
 
-namespace SSL_Core.pressure
+namespace SSL_Core.system.gas
 {
-    public class AtmosUnit
+    public class GasUnit
     {
         public int Value = 0;
 
