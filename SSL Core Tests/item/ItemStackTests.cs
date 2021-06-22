@@ -8,11 +8,20 @@ namespace SSL_Core_Tests.item
 {
     public class ItemStackTests
     {
+        private Mock<Item> item;
+
+        public ItemStackTests()
+        {
+            item = new Mock<Item>("test", "Test Item", false)
+            {
+                CallBase = true
+            };
+        }
+        
         [Fact]
         void Should_Returns_New_ItemStack()
         {
-            Item item = new ItemBase("ITEM_BASE_TEST", "Test");
-            ItemStack itemStack = new(item, 10);
+            ItemStack itemStack = new(item.Object, 10);
             ItemStack newItemStack = itemStack.Remove(6);
             Assert.Equal(6, newItemStack.Amount);
             Assert.Equal(4, itemStack.Amount);
@@ -21,8 +30,7 @@ namespace SSL_Core_Tests.item
         [Fact]
         void Should_Returns_Same_ItemStack()
         {
-            Item item = new ItemBase("ITEM_BASE_TEST", "Test");
-            ItemStack itemStack = new(item, 10);
+            ItemStack itemStack = new(item.Object, 10);
             ItemStack newItemStack = itemStack.Remove(10);
             Assert.Equal(itemStack, newItemStack);
             Assert.Equal(10, newItemStack.Amount);
@@ -35,8 +43,7 @@ namespace SSL_Core_Tests.item
         [InlineData(500)]
         void Should_Throws_An_Exception_After_Stack_Reach(int amount)
         {
-            Item item = new ItemBase("ITEM_BASE_TEST", "Test");
-            ItemStack itemStack = new(item, 10);
+            ItemStack itemStack = new(item.Object, 10);
 
             Assert.Throws<OutOfStackItemStackException>(() =>
             {
@@ -50,8 +57,7 @@ namespace SSL_Core_Tests.item
         void Should_Throws_An_Exception_After_Stack_Negative(int amount)
         {
             //Arrange
-            Item item = new ItemBase("ITEM_BASE_TEST", "Test", 100);
-            ItemStack itemStack = new(item, 10);
+            ItemStack itemStack = new(item.Object, 10);
             Assert.Throws<NegativeItemStackException>(() =>
             {
                 itemStack.Remove(amount);
@@ -61,13 +67,9 @@ namespace SSL_Core_Tests.item
         [Fact]
         private void ToString_Should_Return_Item_And_Amount()
         {
-            Mock<Item> mockItem = new Mock<Item>("test", "Test Item", false)
-            {
-                CallBase = true
-            };
-            ItemStack itemStack = new ItemStack(mockItem.Object);
+            ItemStack itemStack = new ItemStack(item.Object);
             
-            Assert.Equal($"{mockItem.Object} (1)", itemStack.ToString());
+            Assert.Equal($"{item.Object} (1)", itemStack.ToString());
         }
     }
 }
