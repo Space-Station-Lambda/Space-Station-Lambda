@@ -14,24 +14,14 @@ namespace SSL_Core.player
         public Role Role;
         
         public StatusHandler<Player> StatusHandler { get; }
+        public GaugeHandler GaugeHandler { get;  }
 
-        public Inventory Inventory { get; }
-
-        private Dictionary<string, Gauge> gaugeValues;
-        
         public Player()
         {
             StatusHandler = new StatusHandler<Player>();
-            //Inventory = new Inventory(InitialCapacity);
-            gaugeValues = new Dictionary<string, Gauge>();
+            GaugeHandler = new GaugeHandler();
         }
-
-        public Gauge GetGauge(string gaugeId)
-        {
-            gaugeValues.TryGetValue(gaugeId, out Gauge gauge);
-            return gauge;
-        }
-
+        
         public void Apply(IEffect<Player> effect)
         {
             effect.Trigger(this);

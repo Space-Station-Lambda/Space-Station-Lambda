@@ -26,7 +26,7 @@ namespace SSL_Core.item.items
         /// </summary>
         public override void Use(Player player)
         {
-            Gauge gauge = player.GetGauge("hunger");
+            Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)
             {
                 gauge.AddValue(FeedingValue);  

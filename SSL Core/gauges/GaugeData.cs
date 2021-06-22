@@ -16,7 +16,7 @@ namespace SSL_Core.gauges
         {
             
         }
-        public GaugeData(string id, int minValue, int maxValue)
+        public GaugeData(string id, int minValue = 0, int maxValue = 100)
         {
             Id = id;
             MinValue = minValue;
