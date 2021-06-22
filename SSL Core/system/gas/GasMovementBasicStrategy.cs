@@ -4,10 +4,10 @@ namespace SSL_Core.system.gas
 {
     public class GasMovementBasicStrategy : IGasMovementStrategy
     {
-        public GasMovement GenerateGasMovement(GasUnit source, List<GasUnit> neighbours)
+        public GasMovement GenerateGasMovement(GasUnit source, List<GasUnit> neighbors)
         {
             GasUnit target = source;
-            foreach (GasUnit gasUnit in neighbours)
+            foreach (GasUnit gasUnit in neighbors)
             {
                 if (gasUnit.Value < target.Value)
                 {
