@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Numerics;
 
-namespace SSL_Core.system.gas
+namespace SSL_Core.systems.gas
 {
     public class GasSimulation
     {

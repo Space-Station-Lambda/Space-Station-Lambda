@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SSL_Core.system.gas
+namespace SSL_Core.systems.gas
 {
     public class GasMovementBasicStrategy : IGasMovementStrategy
     {
