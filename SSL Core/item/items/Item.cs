@@ -36,7 +36,7 @@ namespace SSL_Core.item.items
         { }
 
         /// <summary>
-        /// Uses the object
+        /// Apply the object's effects when the user is a Player
         /// TODO : implement the destroy on use
         /// </summary>
         public abstract void UsedBy(Player player);
