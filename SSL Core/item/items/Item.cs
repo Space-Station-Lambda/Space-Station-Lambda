@@ -39,8 +39,8 @@ namespace SSL_Core.item.items
         /// Uses the object
         /// TODO : implement the destroy on use
         /// </summary>
-        public abstract void Use(Player player);
-
+        public abstract void UsedBy(Player player);
+        
         public override string ToString()
         {
             return $"[{Id}] {Name}";

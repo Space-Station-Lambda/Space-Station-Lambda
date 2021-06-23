@@ -15,7 +15,7 @@ namespace SSL_Core_Tests.item.items
             ItemFood itemFood = new("test_food", "Food", 10);
             player.GaugeHandler.AddGauge(gauge);
             Assert.Equal(0, player.GaugeHandler.GetGaugeValue("feeding"));
-            itemFood.Use(player);
+            itemFood.UsedBy(player);
             Assert.Equal(10, player.GaugeHandler.GetGaugeValue("feeding"));
         }
     }
