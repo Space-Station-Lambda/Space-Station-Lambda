@@ -90,6 +90,30 @@ namespace SSL_Core.item
         }
 
         /// <summary>
+        /// Removes an item stack from the specified position.
+        /// </summary>
+        /// <param name="position">The position to remove the stack from.</param>
+        /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
+        /// <returns>The removed item stack if there was any, null if not</returns>
+        public ItemStack RemoveItem(int position)
+        {
+            if (position < 0 || position >= SlotsCount)
+            {
+                throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
+            }
+            
+            ItemStack removedItem = null;
+            
+            if (!IsSlotEmpty(position))
+            {
+                removedItem = Items[position];
+                Items[position] = null;
+            }
+
+            return removedItem;
+        }
+
+        /// <summary>
         /// Checks if a specific slot is empty.
         /// </summary>
         /// <param name="position">Index of the slot</param>
