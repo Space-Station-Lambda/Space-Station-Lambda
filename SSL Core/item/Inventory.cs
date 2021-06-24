@@ -7,7 +7,6 @@ namespace SSL_Core.item
         public ItemStack[] Items { get; }
 
         public int SlotsCount => Items.Length;
-
         public int SlotsLeft
         {
             get
@@ -26,6 +25,7 @@ namespace SSL_Core.item
                 return slotsLeft;
             }
         }
+        public int SlotsFull => SlotsCount - SlotsLeft;
         
         private ItemAuthorizer authorizer;
 
