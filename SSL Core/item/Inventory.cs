@@ -42,9 +42,15 @@ namespace SSL_Core.item
         /// If the preferred position is not the same Item, it will add the stack to the next available slot.
         /// <param name="itemStack">Item stack to add</param>
         /// <param name="position">The preferred position</param>
+        /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         /// <exception cref="FullInventoryException">When the item stack can't be added because the inventory is full</exception>
         public void AddItem(ItemStack itemStack, int position = 0)
         {
+            if (position < 0 || position >= SlotsCount)
+            {
+                throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
+            }
+            
             if (authorizer.IsAuthorized(itemStack.Item))
             {
                 var slotsCount = SlotsCount;
@@ -88,7 +94,7 @@ namespace SSL_Core.item
         /// </summary>
         /// <param name="position">Index of the slot</param>
         /// <returns>True if empty, false otherwise</returns>
-        /// <exception cref="IndexOutOfRangeException">If the specified index is not inbound.</exception>
+        /// <exception cref="IndexOutOfRangeException">If the specified index is out of bounds.</exception>
         public bool IsSlotEmpty(int position)
         {
             if (position < 0 || position >= SlotsCount)
