@@ -91,8 +91,10 @@ namespace SSL_Core.item
         /// <exception cref="IndexOutOfRangeException">If the specified index is not inbound.</exception>
         public bool IsSlotEmpty(int position)
         {
-            if (position < 0 || position >= SlotsCount) 
+            if (position < 0 || position >= SlotsCount)
+            {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
+            }
 
             return Items[position] == null;
         }
