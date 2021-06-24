@@ -4,7 +4,7 @@ namespace SSL_Core.item
 {
     public class Inventory
     {
-        public Slot[] Items { get; }
+        public ItemStack[] Items { get; }
 
         public int SlotsCount => Items.Length;
 
