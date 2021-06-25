@@ -53,34 +53,38 @@ namespace SSL_Core.item
             
             if (authorizer.IsAuthorized(itemStack.Item))
             {
-                var slotsCount = SlotsCount;
-                var itemAdded = false;
+                if (!IsPresent(itemStack))
+                {
+                    var slotsCount = SlotsCount;
+                    var itemAdded = false;
                 
-                if (IsSlotEmpty(position))
-                {
-                    Items[position] = itemStack;
-                    itemAdded = true;
-                } 
-                else if (Items[position].Item.Equals(itemStack.Item))
-                {
-                    Items[position].Add(itemStack.Amount);
-                    itemAdded = true;
-                }
-                else
-                {
-                    for (var i = 0; i < slotsCount && !itemAdded; i++)
+                    if (IsSlotEmpty(position))
                     {
-                        if (IsSlotEmpty(i))
+                        Items[position] = itemStack;
+                        itemAdded = true;
+                    } 
+                    else if (Items[position].Item.Equals(itemStack.Item))
+                    {
+                        Items[position].Add(itemStack.Amount);
+                        itemAdded = true;
+                    }
+                    else
+                    {
+                        for (var i = 0; i < slotsCount && !itemAdded; i++)
                         {
-                            Items[i] = itemStack;
-                            itemAdded = true;
+                            if (IsSlotEmpty(i))
+                            {
+                                Items[i] = itemStack;
+                                itemAdded = true;
+                            }
                         }
                     }
-                }
 
-                if (!itemAdded)
-                {
-                    throw new FullInventoryException($"{itemStack} could not be added into the inventory.");
+                    if (!itemAdded)
+                    {
+                        throw new FullInventoryException($"{itemStack} could not be added into the inventory.");
+                    }
+   
                 }
             }
             else
