@@ -1,4 +1,5 @@
 ﻿using System;
+using SSL_Core.exception;
 
 namespace SSL_Core.item
 {
@@ -58,24 +59,24 @@ namespace SSL_Core.item
                     var slotsCount = SlotsCount;
                     var itemAdded = false;
                 
-                    if (IsSlotEmpty(position))
+                    for (var i = 0; i < slotsCount && !itemAdded; i++)
                     {
-                        Items[position] = itemStack;
-                        itemAdded = true;
-                    } 
-                    else if (Items[position].Item.Equals(itemStack.Item))
-                    {
-                        Items[position].Add(itemStack.Amount);
-                        itemAdded = true;
-                    }
-                    else
-                    {
-                        for (var i = 0; i < slotsCount && !itemAdded; i++)
+                        var j = (i + position) % SlotsCount;
+                        if (IsSlotEmpty(j))
                         {
-                            if (IsSlotEmpty(i))
+                            Items[j] = itemStack;
+                            itemAdded = true;
+                        }                    
+                        else
+                        {
+                            if (Items[position].Item.Equals(itemStack.Item))
                             {
-                                Items[i] = itemStack;
-                                itemAdded = true;
+                                try
+                                {
+                                    Items[position].Add(itemStack.Amount);
+                                    itemAdded = true;
+                                }
+                                catch (OutOfStackItemStackException) { }
                             }
                         }
                     }
@@ -84,7 +85,6 @@ namespace SSL_Core.item
                     {
                         throw new FullInventoryException($"{itemStack} could not be added into the inventory.");
                     }
-   
                 }
             }
             else
