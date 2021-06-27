@@ -139,14 +139,7 @@ namespace SSL_Core.item
         /// It checks for the same reference and not only the same item.
         public bool IsPresent(ItemStack itemStack)
         {
-            foreach (var item in Items)
-            {
-                if (item == itemStack)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Items.indexOf(item) > -1
         }
     }
 }
