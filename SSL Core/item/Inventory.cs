@@ -139,7 +139,7 @@ namespace SSL_Core.item
         /// It checks for the same reference and not only the same item.
         public bool IsPresent(ItemStack itemStack)
         {
-            return Items.indexOf(item) > -1
+            return Items.indexOf(item) > -1;
         }
     }
 }
