@@ -13,10 +13,9 @@ namespace SSL_Core.item
         {
             get
             {
-                int slotsCount = SlotsCount;
-                int slotsLeft = 0;
+                var slotsLeft = 0;
 
-                for (var i = 0; i < slotsCount; i++)
+                for (var i = 0; i < SlotsCount; i++)
                 {
                     if (Items[i] == null)
                     {
