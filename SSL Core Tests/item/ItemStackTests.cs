@@ -67,7 +67,7 @@ namespace SSL_Core_Tests.item
         [Fact]
         private void ToString_Should_Return_Item_And_Amount()
         {
-            ItemStack itemStack = new ItemStack(item.Object);
+            ItemStack itemStack = new(item.Object);
             
             Assert.Equal($"{item.Object} (1)", itemStack.ToString());
         }

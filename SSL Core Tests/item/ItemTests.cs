@@ -9,7 +9,7 @@ namespace SSL_Core_Tests.item
         [Fact]
         private void ToString_Should_Returns_Id_And_Name()
         {
-            Mock<Item> mock = new Mock<Item>("test", "Test Item", false)
+            Mock<Item> mock = new("test", "Test Item", false)
             {
                 CallBase = true
             };
