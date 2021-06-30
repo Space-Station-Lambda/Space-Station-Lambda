@@ -12,8 +12,7 @@ namespace SSL_Core.item.items
         [DataMember]
         public int FeedingValue { get; private set; }
 
-        [ExcludeFromCodeCoverage]
-        private ItemFood() : base()
+        private ItemFood()
         {
             
         }
