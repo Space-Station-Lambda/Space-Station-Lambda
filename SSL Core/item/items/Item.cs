@@ -19,7 +19,6 @@ namespace SSL_Core.item.items
         
         public String Type { get; private set; }
 
-        [ExcludeFromCodeCoverage]
         protected Item()
         {
             
