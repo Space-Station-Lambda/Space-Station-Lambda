@@ -6,16 +6,16 @@ using System.Xml;
 namespace SSL_Core.utils
 {
     /// <summary>
-    /// A serializer provide a basic serializer and materializer methods.
+    /// A serializer provides basic serializer and materializer methods.
     /// </summary>
     public class Serializer
     {
         /// <summary>
-        /// Deserialize an XML string to a new object
+        /// Deserializes an XML string to a new object.
         /// </summary>
-        /// <param name="xml">The xml object to materialize</param>
+        /// <param name="xml">The XML object to materialize.</param>
         /// <param name="encoding">Encoding of the deserialization, UTF-8 by default.</param>
-        /// <typeparam name="T">Type of the object generated.</typeparam>
+        /// <typeparam name="T">Type of the generated object.</typeparam>
         /// <returns>Generated Object.</returns>
         public T Deserialize<T>(string xml, string encoding = "utf-8") where T : class
         {
@@ -26,7 +26,7 @@ namespace SSL_Core.utils
         }
 
         /// <summary>
-        /// Serialize the object to a string XML.
+        /// Serializes the object to an XML string.
         /// </summary>
         /// <param name="objectToSerialize">The object to serialize.</param>
         /// <param name="encoding">Encoding of the serialization, UTF-8 by default.</param>
