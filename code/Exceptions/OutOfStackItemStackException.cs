@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SSL.exception
+namespace Ssl.Exceptions
 {
     /// <summary>
     /// Overflow of a stack item

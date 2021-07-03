@@ -1,17 +1,16 @@
 using System.Collections.Generic;
-using SSL.item.items;
 
-namespace SSL.item
+namespace Ssl.Item
 {
     public class ItemFilter
     {
-        public Dictionary<Item, bool> authorizations;
+        public Dictionary<items.Item, bool> authorizations;
         private IItems Items;
         public ItemFilter(IItems items, bool authorized = true)
         {
             Items = items;
-            authorizations = new Dictionary<Item, bool>();
-            foreach (Item item in Items.GetItems())
+            authorizations = new Dictionary<items.Item, bool>();
+            foreach (items.Item item in Items.GetItems())
             {
                 authorizations.Add(item, true);
             }
@@ -20,7 +19,7 @@ namespace SSL.item
 
         public void UnauthorizeAll()
         {
-            foreach (KeyValuePair<Item, bool> pair in authorizations)
+            foreach (KeyValuePair<items.Item, bool> pair in authorizations)
             {
                 authorizations[pair.Key] = false;
             }
@@ -28,13 +27,13 @@ namespace SSL.item
         
         public void AuthorizeAll()
         {
-            foreach (KeyValuePair<Item, bool> pair in authorizations)
+            foreach (KeyValuePair<items.Item, bool> pair in authorizations)
             {
                 authorizations[pair.Key] = true;
             }
         }
 
-        public bool IsAuthorized(Item item)
+        public bool IsAuthorized(items.Item item)
         {
             return authorizations[item];
         }
@@ -44,7 +43,7 @@ namespace SSL.item
             return IsAuthorized(Items.Get(id));
         }
 
-        public void SetAuthorization(Item item, bool newValue)
+        public void SetAuthorization(items.Item item, bool newValue)
         {
             authorizations[item] = newValue;
         }
@@ -56,7 +55,7 @@ namespace SSL.item
         
         public void SetAuthorizationByType(string type, bool newValue)
         {
-            foreach (Item item in Items.GetByType(type))
+            foreach (items.Item item in Items.GetByType(type))
             {
                 SetAuthorization(item, newValue);
             }

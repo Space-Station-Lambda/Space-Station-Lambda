@@ -1,14 +1,13 @@
-﻿using SSL.exception;
-using SSL.item.items;
+﻿using Ssl.Exceptions;
 
-namespace SSL.item
+namespace Ssl.Item
 {
     public class ItemStack
     {
-        public Item Item { get; }
+        public items.Item Item { get; }
         public int Amount { get; private set; }
 
-        public ItemStack(Item item, int amount = 1)
+        public ItemStack(items.Item item, int amount = 1)
         {
             Item = item;
             Amount = amount;

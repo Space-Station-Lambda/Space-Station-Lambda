@@ -1,15 +1,14 @@
-﻿using SSL.gauges;
-using SSL.interfaces;
-using SSL.roles;
-using SSL.status;
+﻿using Ssl.Gauge;
+using Ssl.Interfaces;
+using Ssl.Status;
 
-namespace SSL.player
+namespace Ssl.Player
 {
     public partial class Player : IEffectable<Player>
     {
         private const int InitialCapacity = 100;
 
-        public Role Role;
+        public Role.Role Role;
         
         public StatusHandler<Player> StatusHandler { get; }
         public GaugeHandler GaugeHandler { get;  }

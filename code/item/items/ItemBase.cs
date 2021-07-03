@@ -1,6 +1,4 @@
-using SSL.player;
-
-namespace SSL.item.items
+namespace Ssl.Item.items
 {
     public class ItemBase : Item
     {
@@ -8,7 +6,7 @@ namespace SSL.item.items
         {
         }
 
-        public override void Use(Player player)
+        public override void Use(Player.Player player)
         {
             throw new System.NotImplementedException();
         }

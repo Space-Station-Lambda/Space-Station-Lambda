@@ -1,5 +1,5 @@
 using Moq;
-using SSL.item.items;
+using Ssl.Item.items;
 using Xunit;
 
 namespace SSL_Tests.item

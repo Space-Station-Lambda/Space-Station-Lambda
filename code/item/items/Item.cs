@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using SSL.player;
 
-namespace SSL.item.items
+namespace Ssl.Item.items
 {
     [DataContract(Name = "Item",  Namespace = "items")]
     public abstract class Item
@@ -38,7 +37,7 @@ namespace SSL.item.items
         /// Uses the object
         /// TODO : implement the destroy on use
         /// </summary>
-        public abstract void Use(Player player);
+        public abstract void Use(Player.Player player);
 
         public override string ToString()
         {

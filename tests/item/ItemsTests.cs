@@ -1,6 +1,6 @@
-using SSL.exception;
-using SSL.item;
-using SSL.item.items;
+using Ssl.Exceptions;
+using Ssl.Item;
+using Ssl.Item.items;
 using Xunit;
 
 namespace SSL_Tests.item
