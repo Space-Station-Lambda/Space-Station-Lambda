@@ -1,9 +1,9 @@
-using Ssl.Exceptions;
-using Ssl.Item;
-using Ssl.Item.items;
+using SSL.Exceptions;
+using SSL.Item;
+using SSL.Item.items;
 using Xunit;
 
-namespace SSL_Tests.item
+namespace SSL.Tests.Item
 {
     public class ItemsTests
     {
@@ -17,7 +17,7 @@ namespace SSL_Tests.item
         [Fact]
         private void Should_Add_Item()
         {
-            Item item = new ItemBase("test_food", "Test food");
+            SSL.Item.items.Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
             Assert.True(items.Contains(item.Id));
             Assert.True(items.Contains(item));
@@ -26,7 +26,7 @@ namespace SSL_Tests.item
         [Fact]
         private void Should_Add_Item_Exist_Throw_Error()
         {
-            Item item = new ItemBase("test_food", "Test food");
+            SSL.Item.items.Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
             Assert.Throws<ItemAlreadyExistsException>(() =>
             {
@@ -37,9 +37,9 @@ namespace SSL_Tests.item
         [Fact]
         private void Should_Get_Item()
         {
-            Item item = new ItemBase("test_food", "Test food");
+            SSL.Item.items.Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
-            Item getItem = items.Get("test_food");
+            SSL.Item.items.Item getItem = items.Get("test_food");
             Assert.Equal(item, getItem);
         }
     }

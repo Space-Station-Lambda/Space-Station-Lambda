@@ -1,18 +1,17 @@
 using System.Collections.Generic;
-using Ssl.Interfaces;
-using Ssl.Player;
-using Ssl.Status;
+using SSL.Interfaces;
+using SSL.Status;
 using Xunit;
 
-namespace SSL_Tests.status
+namespace SSL.Tests.Status
 {
     public class StatusHandlerTests
     {
         [Fact]
         private void Should_Add_Status()
         {
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-            Status<Player> status = new Status<Player>(1f, new List<IEffect<Player>>());
+            StatusHandler<Player.Player> statusHandler = new StatusHandler<Player.Player>();
+            Status<Player.Player> status = new Status<Player.Player>(1f, new List<IEffect<Player.Player>>());
             
             statusHandler.AddStatus(status);
 
@@ -22,8 +21,8 @@ namespace SSL_Tests.status
         [Fact]
         private void Should_Remove_Status()
         {
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
-            Status<Player> status = new Status<Player>(1f, new List<IEffect<Player>>());
+            StatusHandler<Player.Player> statusHandler = new StatusHandler<Player.Player>();
+            Status<Player.Player> status = new Status<Player.Player>(1f, new List<IEffect<Player.Player>>());
             
             statusHandler.AddStatus(status);
             
@@ -34,10 +33,10 @@ namespace SSL_Tests.status
         [Fact]
         private void Should_Remove_On_Finished()
         {
-            Status<Player> status = new Status<Player>(5f, new List<IEffect<Player>>());
-            Player player = new Player();
+            Status<Player.Player> status = new Status<Player.Player>(5f, new List<IEffect<Player.Player>>());
+            Player.Player player = new Player.Player();
             
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
+            StatusHandler<Player.Player> statusHandler = new StatusHandler<Player.Player>();
             statusHandler.AddStatus(status);
 
             while (status.MillisLeft > 0)
@@ -51,11 +50,11 @@ namespace SSL_Tests.status
         [Fact]
         private void Should_Update_Status()
         {
-            Status<Player> status = new Status<Player>(5f, new List<IEffect<Player>>());
-            Status<Player> status1 = new Status<Player>(10f, new List<IEffect<Player>>());
-            Player player = new Player();
+            Status<Player.Player> status = new Status<Player.Player>(5f, new List<IEffect<Player.Player>>());
+            Status<Player.Player> status1 = new Status<Player.Player>(10f, new List<IEffect<Player.Player>>());
+            Player.Player player = new Player.Player();
             
-            StatusHandler<Player> statusHandler = new StatusHandler<Player>();
+            StatusHandler<Player.Player> statusHandler = new StatusHandler<Player.Player>();
 
             statusHandler.AddStatus(status);
             statusHandler.AddStatus(status1);

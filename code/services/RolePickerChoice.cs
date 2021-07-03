@@ -1,4 +1,4 @@
-namespace Ssl.Services
+namespace SSL.Services
 {
     public enum RolePickerChoice
     {

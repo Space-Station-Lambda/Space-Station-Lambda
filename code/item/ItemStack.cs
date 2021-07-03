@@ -1,6 +1,6 @@
-﻿using Ssl.Exceptions;
+﻿using SSL.Exceptions;
 
-namespace Ssl.Item
+namespace SSL.Item
 {
     public class ItemStack
     {

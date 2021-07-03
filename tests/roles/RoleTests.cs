@@ -1,7 +1,7 @@
-﻿using Ssl.Role;
+﻿using SSL.Role;
 using Xunit;
 
-namespace SSL_Tests.roles
+namespace SSL.Tests.Roles
 {
     public class RoleTests
     {
@@ -9,7 +9,7 @@ namespace SSL_Tests.roles
         [Fact]
         private void Test_ToString()
         {
-            Role role = new RoleAssistant() ;
+            Role.Role role = new RoleAssistant() ;
             Assert.Equal("assistant", role.ToString());
         }
     }

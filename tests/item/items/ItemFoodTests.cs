@@ -1,17 +1,16 @@
-using Ssl.Gauge;
-using Ssl.Item.items;
-using Ssl.Player;
+using SSL.Gauge;
+using SSL.Item.items;
 using Xunit;
 
-namespace SSL_Tests.item.items
+namespace SSL.Tests.Item.items
 {
     public class ItemFoodTests
     {
         [Fact]
         private void Should_Add_Feeding_To_Player()
         {
-            Player player = new();
-            Gauge gauge = new(new GaugeData("feeding"));
+            Player.Player player = new();
+            Gauge.Gauge gauge = new(new GaugeData("feeding"));
             ItemFood itemFood = new("test_food", "Food", 10);
             player.GaugeHandler.AddGauge(gauge);
             Assert.Equal(0, player.GaugeHandler.GetGaugeValue("feeding"));

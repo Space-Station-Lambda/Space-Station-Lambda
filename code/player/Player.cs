@@ -1,8 +1,8 @@
-﻿using Ssl.Gauge;
-using Ssl.Interfaces;
-using Ssl.Status;
+﻿using SSL.Gauge;
+using SSL.Interfaces;
+using SSL.Status;
 
-namespace Ssl.Player
+namespace SSL.Player
 {
     public partial class Player : IEffectable<Player>
     {

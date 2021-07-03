@@ -1,4 +1,4 @@
-﻿namespace Ssl.Role
+﻿namespace SSL.Role
 {
     /// <summary>
     /// Player's role

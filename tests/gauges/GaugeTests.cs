@@ -1,16 +1,16 @@
-using Ssl.Exceptions;
-using Ssl.Gauge;
+using SSL.Exceptions;
+using SSL.Gauge;
 using Xunit;
 
-namespace SSL_Tests.gauges
+namespace SSL.Tests.Gauges
 {
     public class GaugeTests
     {
-        private readonly Gauge gauge;
+        private readonly Gauge.Gauge gauge;
 
         public GaugeTests()
         {
-            gauge = new Gauge(new GaugeData("TEST_GAUGE", 0, 100));
+            gauge = new Gauge.Gauge(new GaugeData("TEST_GAUGE", 0, 100));
         }
         
         [Theory]

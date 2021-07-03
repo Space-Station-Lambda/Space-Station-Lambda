@@ -1,18 +1,17 @@
 using Moq;
-using Ssl.Exceptions;
-using Ssl.Item;
-using Ssl.Item.items;
+using SSL.Exceptions;
+using SSL.Item;
 using Xunit;
 
-namespace SSL_Tests.item
+namespace SSL.Tests.Item
 {
     public class ItemStackTests
     {
-        private Mock<Item> item;
+        private Mock<SSL.Item.items.Item> item;
 
         public ItemStackTests()
         {
-            item = new Mock<Item>("test", "Test Item", false)
+            item = new Mock<SSL.Item.items.Item>("test", "Test Item", false)
             {
                 CallBase = true
             };
