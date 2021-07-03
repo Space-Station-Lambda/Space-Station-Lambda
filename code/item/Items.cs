@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
-using SSL.exception;
-using SSL.item.items;
+using Ssl.Exceptions;
 
-namespace SSL.item
+namespace Ssl.Item
 {
     public class Items : IItems
     {
 
-        private readonly Dictionary<string, Item> items;
+        private readonly Dictionary<string, items.Item> items;
 
         public Items()
         {
-            items = new Dictionary<string, Item>();
+            items = new Dictionary<string, items.Item>();
         }
         
-        public List<Item> GetItems()
+        public List<items.Item> GetItems()
         {
             return items.Values.ToList();
         }
@@ -25,23 +24,23 @@ namespace SSL.item
             return items.ContainsKey(id);
         }
         
-        public bool Contains(Item item)
+        public bool Contains(items.Item item)
         {
             return items.ContainsValue(item);
         }
         
-        public Item Get(string id)
+        public items.Item Get(string id)
         {
-            items.TryGetValue(id, out Item item);
+            items.TryGetValue(id, out items.Item item);
             return item;
         }
 
-        public Item[] GetByType(string type)
+        public items.Item[] GetByType(string type)
         {
             return items.Values.Where(item => item.Type.Equals(type)).ToArray();
         }
         
-        public void Add(Item item)
+        public void Add(items.Item item)
         {
             if (Contains(item.Id))
             {

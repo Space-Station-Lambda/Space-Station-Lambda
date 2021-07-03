@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using SSL.interfaces;
-using SSL.player;
-using SSL.status;
+using Ssl.Interfaces;
+using Ssl.Player;
+using Ssl.Status;
 using Xunit;
 
 namespace SSL_Tests.status

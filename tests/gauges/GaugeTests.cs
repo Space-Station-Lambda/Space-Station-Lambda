@@ -1,5 +1,5 @@
-using SSL.exception;
-using SSL.gauges;
+using Ssl.Exceptions;
+using Ssl.Gauge;
 using Xunit;
 
 namespace SSL_Tests.gauges

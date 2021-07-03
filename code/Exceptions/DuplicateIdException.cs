@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SSL.exception
+namespace Ssl.Exceptions
 {
     /// <summary>
     /// Two identical IDs are equals; i.e use of an item ID already used

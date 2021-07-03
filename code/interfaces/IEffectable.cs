@@ -1,4 +1,4 @@
-﻿namespace SSL.interfaces
+﻿namespace Ssl.Interfaces
 {
     public interface IEffectable<T>
     {

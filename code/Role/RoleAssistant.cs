@@ -1,4 +1,4 @@
-﻿namespace SSL.roles
+﻿namespace Ssl.Role
 {
     public class RoleAssistant : Role
     {

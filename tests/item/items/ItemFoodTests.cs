@@ -1,6 +1,6 @@
-using SSL.gauges;
-using SSL.item.items;
-using SSL.player;
+using Ssl.Gauge;
+using Ssl.Item.items;
+using Ssl.Player;
 using Xunit;
 
 namespace SSL_Tests.item.items

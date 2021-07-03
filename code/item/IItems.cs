@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using SSL.item.items;
 
-namespace SSL.item
+namespace Ssl.Item
 {
     public interface IItems
     {
-        List<Item> GetItems();
+        List<items.Item> GetItems();
         bool Contains(string id);
-        bool Contains(Item item);
-        Item Get(string id);
-        Item[] GetByType(string type);
-        void Add(Item item);
+        bool Contains(items.Item item);
+        items.Item Get(string id);
+        items.Item[] GetByType(string type);
+        void Add(items.Item item);
     }
 }

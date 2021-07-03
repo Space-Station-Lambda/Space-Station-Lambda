@@ -1,4 +1,4 @@
-﻿using SSL.roles;
+﻿using Ssl.Role;
 using Xunit;
 
 namespace SSL_Tests.roles

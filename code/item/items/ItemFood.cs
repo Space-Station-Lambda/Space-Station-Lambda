@@ -1,8 +1,6 @@
 using System.Runtime.Serialization;
-using SSL.gauges;
-using SSL.player;
 
-namespace SSL.item.items
+namespace Ssl.Item.items
 {
     [DataContract(Name = "ItemFood", Namespace = "items")]
     [KnownType(typeof(ItemFood))]
@@ -24,9 +22,9 @@ namespace SSL.item.items
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void Use(Player player)
+        public override void Use(Player.Player player)
         {
-            Gauge gauge = player.GaugeHandler.GetGauge("feeding");
+            Gauge.Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)
             {
                 gauge.AddValue(FeedingValue);  
