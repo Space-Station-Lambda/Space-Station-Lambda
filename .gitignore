@@ -33,3 +33,16 @@ _UpgradeReport_Files/
 Thumbs.db
 Desktop.ini
 .DS_Store
+
+#sbox specific
+
+code/obj
+code/.vs
+code/Properties/launchSettings.json
+tests/obj
+tests/.vs
+tests/Properties/launchSettings.json
+.intermediate
+tools_asset_info.bin
+_bakeresourcecache
+tools_thumbnail_cache.bin
