@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace SSL_Core.gauges
+namespace SSL.gauges
 {
     [DataContract(Name = "Gauge")]
     public class GaugeData

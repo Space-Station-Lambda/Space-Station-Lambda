@@ -1,6 +1,6 @@
 using System;
 
-namespace SSL_Core.exception
+namespace SSL.exception
 {
     public class ItemAlreadyExistsException : Exception
     {

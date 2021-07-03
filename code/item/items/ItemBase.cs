@@ -1,6 +1,6 @@
-using SSL_Core.player;
+using SSL.player;
 
-namespace SSL_Core.item.items
+namespace SSL.item.items
 {
     public class ItemBase : Item
     {

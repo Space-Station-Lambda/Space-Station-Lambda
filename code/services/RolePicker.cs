@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SSL_Core.services
+namespace SSL.services
 {
     public class RolePicker
     {

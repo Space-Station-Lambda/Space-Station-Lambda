@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using SSL_Core.gauges;
-using SSL_Core.interfaces;
-using SSL_Core.item;
-using SSL_Core.roles;
-using SSL_Core.status;
+﻿using SSL.gauges;
+using SSL.interfaces;
+using SSL.roles;
+using SSL.status;
 
-namespace SSL_Core.player
+namespace SSL.player
 {
     public partial class Player : IEffectable<Player>
     {

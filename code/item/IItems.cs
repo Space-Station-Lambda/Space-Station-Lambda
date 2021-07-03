@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using SSL_Core.item.items;
+using SSL.item.items;
 
-namespace SSL_Core.item
+namespace SSL.item
 {
     public interface IItems
     {

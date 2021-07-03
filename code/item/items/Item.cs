@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using Microsoft.VisualBasic;
-using SSL_Core.gauges;
-using SSL_Core.player;
+using SSL.player;
 
-namespace SSL_Core.item.items
+namespace SSL.item.items
 {
     [DataContract(Name = "Item",  Namespace = "items")]
     public abstract class Item

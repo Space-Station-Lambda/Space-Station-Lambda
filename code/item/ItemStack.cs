@@ -1,7 +1,7 @@
-﻿using SSL_Core.exception;
-using SSL_Core.item.items;
+﻿using SSL.exception;
+using SSL.item.items;
 
-namespace SSL_Core.item
+namespace SSL.item
 {
     public class ItemStack
     {

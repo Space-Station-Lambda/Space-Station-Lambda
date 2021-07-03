@@ -1,4 +1,4 @@
-﻿namespace SSL_Core.roles
+﻿namespace SSL.roles
 {
     /// <summary>
     /// Player's role

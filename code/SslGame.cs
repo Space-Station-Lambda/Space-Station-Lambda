@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Sandbox;
-using SSL_Core.item.items;
-using SSL_Core.utils;
-using Player = SSL_Core.player.Player;
+﻿using Sandbox;
 
-namespace SSL_Core
+namespace SSL
 {
     class SslGame : Game
     {

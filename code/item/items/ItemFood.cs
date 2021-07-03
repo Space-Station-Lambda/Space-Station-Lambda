@@ -1,9 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using SSL_Core.gauges;
-using SSL_Core.player;
+using SSL.gauges;
+using SSL.player;
 
-namespace SSL_Core.item.items
+namespace SSL.item.items
 {
     [DataContract(Name = "ItemFood", Namespace = "items")]
     [KnownType(typeof(ItemFood))]
