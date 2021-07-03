@@ -1,8 +1,8 @@
 using Moq;
-using SSL_Core.item.items;
+using SSL.item.items;
 using Xunit;
 
-namespace SSL_Core_Tests.item
+namespace SSL_Tests.item
 {
     public class ItemTests
     {

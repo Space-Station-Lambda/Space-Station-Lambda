@@ -1,9 +1,9 @@
-using SSL_Core.item.items;
-using SSL_Core.utils;
+using SSL.item.items;
+using SSL.utils;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace SSL_Core_Tests.utils
+namespace SSL_Tests.utils
 {
     public class SerializerTests
     {

@@ -23,10 +23,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<Analyzer Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Generator.dll" />
-		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.System.dll" />
-		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Engine.dll" />
-		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Game.dll" />
+		<Analyzer Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Generator.dll"/>
+		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.System.dll"/>
+		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Engine.dll"/>
+		<Reference Include="L:/Vapeur/steamapps/common/sbox/bin/managed/Sandbox.Game.dll"/>
 	</ItemGroup>
 
   <ItemGroup>
