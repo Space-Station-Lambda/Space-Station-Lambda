@@ -1,4 +1,4 @@
-namespace Ssl.Interfaces
+namespace SSL.Interfaces
 {
     /// <summary>
     /// Updatable element at each tick of the game

@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Ssl.Exceptions;
+using SSL.Exceptions;
 
-namespace Ssl.Item
+namespace SSL.Item
 {
     public class Items : IItems
     {

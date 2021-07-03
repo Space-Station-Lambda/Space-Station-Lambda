@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace Ssl.Item.items
+namespace SSL.Item.items
 {
     [DataContract(Name = "ItemFood", Namespace = "items")]
     [KnownType(typeof(ItemFood))]

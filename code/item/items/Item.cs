@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Ssl.Item.items
+namespace SSL.Item.items
 {
     [DataContract(Name = "Item",  Namespace = "items")]
     public abstract class Item

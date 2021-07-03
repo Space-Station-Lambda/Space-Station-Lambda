@@ -1,6 +1,6 @@
-using Ssl.Exceptions;
+using SSL.Exceptions;
 
-namespace Ssl.Gauge
+namespace SSL.Gauge
 {
     public class Gauge
     {

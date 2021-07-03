@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Ssl.Interfaces;
+using SSL.Interfaces;
 
-namespace Ssl.Status
+namespace SSL.Status
 {
     public class Status<T> where T : IEffectable<T>
     {

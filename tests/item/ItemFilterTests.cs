@@ -1,8 +1,8 @@
-using Ssl.Item;
-using Ssl.Item.items;
+using SSL.Item;
+using SSL.Item.items;
 using Xunit;
 
-namespace SSL_Tests.item
+namespace SSL.Tests.Item
 {
     public class ItemFilterTests
     {

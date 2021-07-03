@@ -1,7 +1,7 @@
-using Ssl.Gauge;
+using SSL.Gauge;
 using Xunit;
 
-namespace SSL_Tests.gauges
+namespace SSL.Tests.Gauges
 {
     public class GaugeDataTests
     {

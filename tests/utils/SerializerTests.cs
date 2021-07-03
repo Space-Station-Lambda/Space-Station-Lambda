@@ -1,9 +1,8 @@
-using Ssl.Item.items;
-using Ssl.Utils;
+using SSL.Item.items;
+using SSL.Utils;
 using Xunit;
-using Xunit.Abstractions;
 
-namespace SSL_Tests.utils
+namespace SSL.Tests.Utils
 {
     public class SerializerTests
     {
@@ -31,7 +30,7 @@ namespace SSL_Tests.utils
         [Fact]
         public void Should_Serialize()
         {
-            Item item = new ItemFood("test_base", "Test", 4);
+            SSL.Item.items.Item item = new ItemFood("test_base", "Test", 4);
             Serializer serializer = new();
             string serializedString = serializer.Serialize(item);
             Assert.Contains("<DestroyOnUse>false</DestroyOnUse>", serializedString);

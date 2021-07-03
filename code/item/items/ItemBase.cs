@@ -1,4 +1,4 @@
-namespace Ssl.Item.items
+namespace SSL.Item.items
 {
     public class ItemBase : Item
     {

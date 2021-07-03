@@ -1,15 +1,14 @@
 using Moq;
-using Ssl.Item.items;
 using Xunit;
 
-namespace SSL_Tests.item
+namespace SSL.Tests.Item
 {
     public class ItemTests
     {
         [Fact]
         private void ToString_Should_Returns_Id_And_Name()
         {
-            Mock<Item> mock = new Mock<Item>("test", "Test Item", false)
+            Mock<SSL.Item.items.Item> mock = new Mock<SSL.Item.items.Item>("test", "Test Item", false)
             {
                 CallBase = true
             };
