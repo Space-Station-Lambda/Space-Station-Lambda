@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>SSL_Core_Tests</RootNamespace>
+        <RootNamespace>SSL_Tests</RootNamespace>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SSL Core\SSL Core.csproj" />
+      <ProjectReference Include="..\code\SSL.csproj" />
     </ItemGroup>
 
 </Project>

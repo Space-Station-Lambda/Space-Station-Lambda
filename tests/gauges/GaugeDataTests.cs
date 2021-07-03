@@ -1,8 +1,8 @@
-using SSL_Core.exception;
-using SSL_Core.gauges;
+using SSL.exception;
+using SSL.gauges;
 using Xunit;
 
-namespace SSL_Core_Tests.gauges
+namespace SSL_Tests.gauges
 {
     public class GaugeDataTests
     {

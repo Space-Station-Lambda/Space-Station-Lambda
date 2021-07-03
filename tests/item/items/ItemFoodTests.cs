@@ -1,9 +1,9 @@
-using SSL_Core.gauges;
-using SSL_Core.item.items;
-using SSL_Core.player;
+using SSL.gauges;
+using SSL.item.items;
+using SSL.player;
 using Xunit;
 
-namespace SSL_Core_Tests.item.items
+namespace SSL_Tests.item.items
 {
     public class ItemFoodTests
     {

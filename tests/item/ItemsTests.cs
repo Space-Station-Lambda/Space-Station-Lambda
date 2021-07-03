@@ -1,9 +1,9 @@
-using SSL_Core.exception;
-using SSL_Core.item;
-using SSL_Core.item.items;
+using SSL.exception;
+using SSL.item;
+using SSL.item.items;
 using Xunit;
 
-namespace SSL_Core_Tests.item
+namespace SSL_Tests.item
 {
     public class ItemsTests
     {
