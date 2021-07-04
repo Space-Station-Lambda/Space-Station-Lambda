@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Xml;
 
-namespace Ssl.Utils
+namespace SSL.Utils
 {
     /// <summary>
     /// A serializer provides basic serializer and materializer methods.

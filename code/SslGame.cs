@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace Ssl
+namespace SSL
 {
 	[Library( "Ssl" )]
     class SslGame : Game
