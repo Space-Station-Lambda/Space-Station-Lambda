@@ -1,15 +1,15 @@
-using SSL.PlayerModel;
+using SSL.Player;
 
 namespace SSL.Item.items
 {
-	public class ItemFood : Item
+    public class ItemFood : Item
     {
-	    public int FeedingValue { get; private set; }
-
-	    public ItemFood(string id, string name, int feedingValue) : base(id, name, "food", 100)
+        public ItemFood(string id, string name, int feedingValue) : base(id, name, "food", 100)
         {
             FeedingValue = feedingValue;
         }
+
+        public int FeedingValue { get; private set; }
 
         /// <summary>
         /// First version, food feeds up the player on use
@@ -19,7 +19,7 @@ namespace SSL.Item.items
             Gauge.Gauge gauge = mainPlayer.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)
             {
-                gauge.AddValue(FeedingValue);  
+                gauge.AddValue(FeedingValue);
             }
         }
     }

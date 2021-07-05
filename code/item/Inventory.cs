@@ -4,8 +4,6 @@ namespace SSL.Item
 {
     public class Inventory
     {
-        public Slot[] Items { get; }
-
         public int Capacity;
 
         private ItemFilter filter;
@@ -15,6 +13,8 @@ namespace SSL.Item
             Items = new Slot[size];
             filter = new ItemFilter(items);
         }
+
+        public Slot[] Items { get; }
 
         public void AddItem(ItemStack itemStack)
         {

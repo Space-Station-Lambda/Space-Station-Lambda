@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using SSL.Interfaces;
-using SSL.PlayerModel;
+using SSL.Player;
 using SSL.Status;
 using Xunit;
 

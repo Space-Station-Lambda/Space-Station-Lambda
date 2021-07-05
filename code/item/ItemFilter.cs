@@ -6,6 +6,7 @@ namespace SSL.Item
     {
         public Dictionary<items.Item, bool> authorizations;
         private IItems Items;
+
         public ItemFilter(IItems items, bool authorized = true)
         {
             Items = items;
@@ -14,7 +15,8 @@ namespace SSL.Item
             {
                 authorizations.Add(item, true);
             }
-            if(!authorized) UnauthorizeAll();
+
+            if (!authorized) UnauthorizeAll();
         }
 
         public void UnauthorizeAll()
@@ -24,7 +26,7 @@ namespace SSL.Item
                 authorizations[pair.Key] = false;
             }
         }
-        
+
         public void AuthorizeAll()
         {
             foreach (KeyValuePair<items.Item, bool> pair in authorizations)
@@ -37,7 +39,7 @@ namespace SSL.Item
         {
             return authorizations[item];
         }
-        
+
         public bool IsAuthorized(string id)
         {
             return IsAuthorized(Items.Get(id));
@@ -47,12 +49,12 @@ namespace SSL.Item
         {
             authorizations[item] = newValue;
         }
-        
+
         public void SetAuthorization(string id, bool newValue)
         {
             SetAuthorization(Items.Get(id), newValue);
         }
-        
+
         public void SetAuthorizationByType(string type, bool newValue)
         {
             foreach (items.Item item in Items.GetByType(type))

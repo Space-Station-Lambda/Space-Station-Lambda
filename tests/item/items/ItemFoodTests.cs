@@ -1,6 +1,6 @@
 using SSL.Gauge;
 using SSL.Item.items;
-using SSL.PlayerModel;
+using SSL.Player;
 using Xunit;
 
 namespace SSL.Tests.Item.items

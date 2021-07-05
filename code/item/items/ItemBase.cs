@@ -1,4 +1,4 @@
-using SSL.PlayerModel;
+using SSL.Player;
 
 namespace SSL.Item.items
 {

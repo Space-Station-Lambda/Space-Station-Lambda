@@ -4,9 +4,8 @@ namespace SSL.Gauge
 {
     public class GaugeHandler
     {
-        
         private Dictionary<string, Gauge> gauges;
-        
+
         public GaugeHandler()
         {
             gauges = new Dictionary<string, Gauge>();
@@ -14,12 +13,12 @@ namespace SSL.Gauge
 
         public void AddGauge(Gauge gauge)
         {
-            gauges.Add(gauge.GaugeData.Id , gauge);
+            gauges.Add(gauge.GaugeData.Id, gauge);
         }
-        
+
         public void AddGauge(GaugeData gaugeData)
         {
-            gauges.Add(gaugeData.Id , new Gauge(gaugeData));
+            gauges.Add(gaugeData.Id, new Gauge(gaugeData));
         }
 
         public Gauge GetGauge(string gaugeId)
@@ -41,6 +40,5 @@ namespace SSL.Gauge
         {
             gauges[gaugeId].AddValue(value);
         }
-
     }
 }
