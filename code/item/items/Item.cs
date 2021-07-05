@@ -21,11 +21,11 @@ namespace ssl.item.items
         public String Type { get; private set; }
 
         /// <summary>
-        /// Uses the object
+        /// Apply the object's effects when the user is a Player
         /// TODO : implement the destroy on use
         /// </summary>
-        public abstract void Use(MainPlayer mainPlayer);
-
+        public abstract void UsedBy(MainPlayer player);
+        
         public override string ToString()
         {
             return $"[{Id}] {Name}";

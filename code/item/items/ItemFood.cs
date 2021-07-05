@@ -14,9 +14,9 @@ namespace ssl.item.items
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void Use(MainPlayer mainPlayer)
+        public override void UsedBy(MainPlayer player)
         {
-            Gauge.Gauge gauge = mainPlayer.GaugeHandler.GetGauge("feeding");
+            Gauge.Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)
             {
                 gauge.AddValue(FeedingValue);
