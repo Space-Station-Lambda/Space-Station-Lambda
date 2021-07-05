@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 
-namespace SSL.UI
+namespace ssl.UI
 {
     public partial class Hud : HudEntity<RootPanel>
     {

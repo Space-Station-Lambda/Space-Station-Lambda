@@ -1,7 +1,7 @@
 ﻿using System;
 using Sandbox;
 using ssl.Player;
-using SSL.UI;
+using ssl.UI;
 
 namespace ssl
 {
@@ -28,7 +28,7 @@ namespace ssl
         private void StartServer()
         {
             if (IsClient) throw new Exception("Invalid Context");
-            Log.Info("Launching SSL Server...");
+            Log.Info("Launching ssl Server...");
             // Create a HUD entity. This entity is globally networked
             hud = new Hud();
         }
@@ -36,7 +36,7 @@ namespace ssl
         private void StartClient()
         {
             if (IsServer) throw new Exception("Invalid Context");
-            Log.Info("Launching SSL Client...");
+            Log.Info("Launching ssl Client...");
         }
 
         private void SpawnPlayer(Client client)
