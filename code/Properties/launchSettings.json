@@ -1,9 +1,0 @@
-{
-  "profiles": {
-    "SSL": {
-      "commandName": "Executable",
-      "executablePath": "L:\\Vapeur\\steamapps\\common\\sbox\\sbox.exe",
-      "commandLineArgs": "\u002Bdeveloper -w 1280 -h 1000 -noassert -tools"
-    }
-  }
-}
