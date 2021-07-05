@@ -11,12 +11,11 @@ namespace ssl.Tests.Gauges
         {
             gaugeData = new GaugeData("TEST_GAUGEDATA", 0, 100);
         }
-        
+
         [Fact]
         private void Test_ToString()
-        { 
+        {
             Assert.Equal("[TEST_GAUGEDATA] 0|100", gaugeData.ToString());
         }
-      
     }
 }
