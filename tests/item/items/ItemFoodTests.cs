@@ -15,7 +15,7 @@ namespace ssl.Tests.Item.items
             ItemFood itemFood = new("test_food", "Food", 10);
             player.GaugeHandler.AddGauge(gauge);
             Assert.Equal(0, player.GaugeHandler.GetGaugeValue("feeding"));
-            player.Use(itemFood);
+            //player.Use(itemFood); FIXME
             Assert.Equal(10, player.GaugeHandler.GetGaugeValue("feeding"));
         }
     }

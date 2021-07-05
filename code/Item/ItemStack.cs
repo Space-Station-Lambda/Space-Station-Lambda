@@ -1,16 +1,17 @@
 ﻿using System;
+using ssl.Item.ItemTypes;
 
 namespace ssl.Item
 {
     public class ItemStack
     {
-        public ItemStack(ItemTypes.ItemCore itemCore, int amount = 1)
+        public ItemStack(ItemTypes.ItemCore item, int amount = 1)
         {
-            ItemCore = itemCore;
+            Item = item;
             Amount = amount;
         }
 
-        public ItemTypes.ItemCore ItemCore { get; }
+        public ItemCore Item { get; }
         public int Amount { get; private set; }
 
         public ItemStack Remove(int number)
@@ -27,12 +28,12 @@ namespace ssl.Item
 
             Amount -= number;
 
-            return new ItemStack(ItemCore, number);
+            return new ItemStack(Item, number);
         }
 
         public void Add(int number)
         {
-            if (Amount + number > ItemCore.MaxStack)
+            if (Amount + number > Item.MaxStack)
             {
                 throw new Exception();
             }
@@ -42,7 +43,7 @@ namespace ssl.Item
 
         public override string ToString()
         {
-            return $"{ItemCore} ({Amount})";
+            return $"{Item} ({Amount})";
         }
     }
 }
