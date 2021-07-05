@@ -4,12 +4,12 @@ namespace ssl.item.items
 {
     public class ItemFood : Item
     {
+        public int FeedingValue { get; private set; }
+        
         public ItemFood(string id, string name, int feedingValue) : base(id, name, "food", 100)
         {
             FeedingValue = feedingValue;
         }
-
-        public int FeedingValue { get; private set; }
 
         /// <summary>
         /// First version, food feeds up the player on use

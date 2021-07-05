@@ -7,11 +7,11 @@ namespace SSL.Tests.Item
 {
     public class ItemStackTests
     {
-        private Mock<SSL.Item.items.Item> item;
+        private Mock<Item> item;
 
         public ItemStackTests()
         {
-            item = new Mock<SSL.Item.items.Item>("test", "Test Item", false)
+            item = new Mock<Item>("test", "Test Item", false)
             {
                 CallBase = true
             };
@@ -66,7 +66,7 @@ namespace SSL.Tests.Item
         [Fact]
         private void ToString_Should_Return_Item_And_Amount()
         {
-            ItemStack itemStack = new ItemStack(item.Object);
+            ItemStack itemStack = new(item.Object);
             
             Assert.Equal($"{item.Object} (1)", itemStack.ToString());
         }
