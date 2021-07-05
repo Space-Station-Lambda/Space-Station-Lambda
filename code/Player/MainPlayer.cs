@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using ssl.Gauge;
 using ssl.Interfaces;
-using ssl.status;
+using ssl.Status;
 
 namespace ssl.Player
 {

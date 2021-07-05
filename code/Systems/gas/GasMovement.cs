@@ -1,4 +1,4 @@
-namespace SSL_Core.systems.gas
+namespace ssl.Systems.gas
 {
     public class GasMovement
     {
