@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Moq;
 using ssl.Interfaces;
 using ssl.Player;
 using ssl.Status;
@@ -35,12 +36,12 @@ namespace ssl.Tests.Status
         private void Should_Remove_On_Finished()
         {
             Status<MainPlayer> status = new(5f, new List<IEffect<MainPlayer>>());
-            MainPlayer player = new();
+            Mock<MainPlayer> player = new();
 
             StatusHandler<MainPlayer> statusHandler = new();
             statusHandler.AddStatus(status);
 
-            while (status.MillisLeft > 0) status.Update(player, 1f);
+            while (status.MillisLeft > 0) status.Update(player.Object, 1f);
 
             Assert.Equal(0, statusHandler.StatusCount);
         }
@@ -50,18 +51,18 @@ namespace ssl.Tests.Status
         {
             Status<MainPlayer> status = new(5f, new List<IEffect<MainPlayer>>());
             Status<MainPlayer> status1 = new(10f, new List<IEffect<MainPlayer>>());
-            MainPlayer player = new();
+            Mock<MainPlayer> player = new();
 
             StatusHandler<MainPlayer> statusHandler = new();
 
             statusHandler.AddStatus(status);
             statusHandler.AddStatus(status1);
 
-            while (status.MillisLeft > 0) statusHandler.Update(player);
+            while (status.MillisLeft > 0) statusHandler.Update(player.Object);
 
             Assert.Equal(1, statusHandler.StatusCount);
 
-            while (status1.MillisLeft > 0) statusHandler.Update(player);
+            while (status1.MillisLeft > 0) statusHandler.Update(player.Object);
 
             Assert.Equal(0, statusHandler.StatusCount);
         }
