@@ -3,14 +3,14 @@
     /// <summary>
     /// Player's role
     /// </summary>
-    public abstract class Role
+    public abstract class RoleCore
     {
-        public Role(string name)
+        public string Name { get; }
+        
+        public RoleCore(string name)
         {
             Name = name;
         }
-
-        public string Name { get; }
 
         public override string ToString()
         {

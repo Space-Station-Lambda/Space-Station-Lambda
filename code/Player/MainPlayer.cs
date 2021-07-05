@@ -2,6 +2,7 @@
 using ssl.Gauge;
 using ssl.Interfaces;
 using ssl.Status;
+using ssl.Role;
 
 namespace ssl.Player
 {
@@ -12,7 +13,7 @@ namespace ssl.Player
         private const int PhysicGroupVelocity = 40;
         private const int InitialCapacity = 100;
 
-        public Role.Role Role;
+        public RoleCore Role;
 
         public MainPlayer()
         {
