@@ -1,11 +1,11 @@
 ﻿using System;
 using ssl.Player;
 
-namespace ssl.item.items
+namespace ssl.Item.ItemTypes
 {
-    public abstract class Item
+    public abstract class ItemCore
     {
-        public Item(string id, string name, string type = "", int maxStack = 1, bool destroyOnUse = false)
+        public ItemCore(string id, string name, string type = "", int maxStack = 1, bool destroyOnUse = false)
         {
             Id = id;
             Name = name;

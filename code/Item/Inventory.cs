@@ -1,7 +1,7 @@
 ﻿using System;
 using ssl.item;
 
-namespace ssl.item
+namespace ssl.Item
 {
     public class Inventory
     {

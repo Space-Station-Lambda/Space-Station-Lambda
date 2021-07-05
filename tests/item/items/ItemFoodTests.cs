@@ -1,9 +1,9 @@
-using SSL.Gauge;
-using SSL.Item.items;
-using SSL.Player;
+using ssl.Gauge;
+using ssl.Item.ItemTypes;
+using ssl.Player;
 using Xunit;
 
-namespace SSL.Tests.Item.items
+namespace ssl.Tests.Item.items
 {
     public class ItemFoodTests
     {

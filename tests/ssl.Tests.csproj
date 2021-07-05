@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\code\SSL.csproj"/>
+        <ProjectReference Include="..\code\ssl.csproj"/>
     </ItemGroup>
 
 </Project>

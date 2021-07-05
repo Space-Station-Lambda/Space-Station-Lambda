@@ -1,8 +1,8 @@
 using ssl.Player;
 
-namespace ssl.item.items
+namespace ssl.Item.ItemTypes
 {
-    public class ItemFood : Item
+    public class ItemFood : ItemCore
     {
         public int FeedingValue { get; private set; }
         

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using SSL.Interfaces;
-using SSL.Player;
-using SSL.Status;
+using ssl.Interfaces;
+using ssl.Player;
+using ssl.Status;
 using Xunit;
 
-namespace SSL.Tests.Status
+namespace ssl.Tests.Status
 {
     public class StatusTests
     {
