@@ -1,4 +1,4 @@
-﻿namespace SSL.Interfaces
+﻿namespace ssl.Interfaces
 {
     public interface IEffect<T>
     {

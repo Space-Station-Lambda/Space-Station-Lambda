@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SSL.Item
+namespace ssl.item
 {
     public class ItemFilter
     {

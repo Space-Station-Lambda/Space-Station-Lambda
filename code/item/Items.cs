@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SSL.Item
+namespace ssl.item
 {
     public class Items : IItems
     {

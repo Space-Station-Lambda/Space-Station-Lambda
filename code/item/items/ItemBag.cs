@@ -1,6 +1,6 @@
-using SSL.Player;
+using ssl.Player;
 
-namespace SSL.Item.items
+namespace ssl.item.items
 {
     public class ItemBag : Item
     {
