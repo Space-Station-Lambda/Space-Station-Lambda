@@ -5,12 +5,12 @@
     /// </summary>
     public abstract class Role
     {
+        public string Name { get; }
+        
         public Role(string name)
         {
             Name = name;
         }
-
-        public string Name { get; }
 
         public override string ToString()
         {
