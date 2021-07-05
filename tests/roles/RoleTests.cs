@@ -1,7 +1,7 @@
-﻿using SSL.Role;
+﻿using ssl.Role;
 using Xunit;
 
-namespace SSL.Tests.Roles
+namespace ssl.Tests.Roles
 {
     public class RoleTests
     {
