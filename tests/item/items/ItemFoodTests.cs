@@ -1,5 +1,6 @@
 using SSL.Gauge;
 using SSL.Item.items;
+using SSL.PlayerModel;
 using Xunit;
 
 namespace SSL.Tests.Item.items
@@ -9,7 +10,7 @@ namespace SSL.Tests.Item.items
         [Fact]
         private void Should_Add_Feeding_To_Player()
         {
-            Player.Player player = new();
+            MainPlayer player = new();
             Gauge.Gauge gauge = new(new GaugeData("feeding"));
             ItemFood itemFood = new("test_food", "Food", 10);
             player.GaugeHandler.AddGauge(gauge);

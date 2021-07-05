@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using SSL.Exceptions;
 
 namespace SSL.Item
 {
@@ -44,7 +44,7 @@ namespace SSL.Item
         {
             if (Contains(item.Id))
             {
-                throw new ItemAlreadyExistsException();
+                throw new Exception();
             }
             items.Add(item.Id, item);
         }

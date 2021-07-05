@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using SSL.Interfaces;
+using SSL.PlayerModel;
 using SSL.Status;
 using Xunit;
 
@@ -7,11 +8,11 @@ namespace SSL.Tests.Status
 {
     public class StatusTests
     {
-        private class TestEffect : IEffect<Player.Player>
+        private class TestEffect : IEffect<MainPlayer>
         {
             public int Counter = 0;
             
-            public void Trigger(Player.Player affected)
+            public void Trigger(MainPlayer affected)
             {
                 Counter++;
             }
@@ -22,8 +23,8 @@ namespace SSL.Tests.Status
         [InlineData(985.4894f, 1894.14f)]
         private void Update_Correct_Time(float total, float step)
         {
-            Player.Player player = new Player.Player();
-            Status<Player.Player> status = new Status<Player.Player>(total, new List<IEffect<Player.Player>>());
+            MainPlayer player = new MainPlayer();
+            Status<MainPlayer> status = new Status<MainPlayer>(total, new List<IEffect<MainPlayer>>());
             
             Assert.Equal(total, status.TotalMillis);
             Assert.Equal(total, status.MillisLeft);
@@ -53,8 +54,8 @@ namespace SSL.Tests.Status
         {
             bool finished = false;
             
-            Player.Player player = new Player.Player();
-            Status<Player.Player> status = new Status<Player.Player>(total, new List<IEffect<Player.Player>>());
+            MainPlayer player = new MainPlayer();
+            Status<MainPlayer> status = new Status<MainPlayer>(total, new List<IEffect<MainPlayer>>());
 
             status.StatusFinished += (s, elapsed) => finished = true;
             
@@ -72,11 +73,11 @@ namespace SSL.Tests.Status
         {
             TestEffect test = new TestEffect();
             
-            List<IEffect<Player.Player>> effects = new List<IEffect<Player.Player>>();
+            List<IEffect<MainPlayer>> effects = new List<IEffect<MainPlayer>>();
             effects.Add(test);
             
-            Status<Player.Player> status = new Status<Player.Player>(10f, effects);
-            Player.Player player = new Player.Player();
+            Status<MainPlayer> status = new Status<MainPlayer>(10f, effects);
+            MainPlayer player = new MainPlayer();
             
             status.Update(player);
             

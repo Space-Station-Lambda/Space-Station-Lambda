@@ -1,4 +1,4 @@
-using SSL.Exceptions;
+using System;
 
 namespace SSL.Gauge
 {
@@ -22,7 +22,7 @@ namespace SSL.Gauge
         {
             if (Value + value > GaugeData.MaxValue || Value + value < GaugeData.MinValue)
             {
-                throw new OutOfGaugeException();
+                throw new Exception();
             }
             
             Value += value;

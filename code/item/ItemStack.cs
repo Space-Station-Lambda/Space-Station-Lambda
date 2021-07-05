@@ -1,4 +1,4 @@
-﻿using SSL.Exceptions;
+﻿using System;
 
 namespace SSL.Item
 {
@@ -17,7 +17,7 @@ namespace SSL.Item
         {
             if (number > Amount)
             {
-                throw new NegativeItemStackException();
+                throw new Exception();
             }
             if (number == Amount)
             {
@@ -33,7 +33,7 @@ namespace SSL.Item
         {
             if (Amount + number > Item.MaxStack)
             {
-                throw new OutOfStackItemStackException();
+                throw new Exception();
             }
             
             Amount += number;
