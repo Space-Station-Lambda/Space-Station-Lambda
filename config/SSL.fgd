@@ -1,5 +1,5 @@
 // 
-// SSL.SslGame : Sandbox.Game 
+// ssl.SslGame : Sandbox.Game 
 // 
 @PointClass = ssl : ""
 [
