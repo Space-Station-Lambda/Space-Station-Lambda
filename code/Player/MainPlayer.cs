@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using ssl.Gauge;
 using ssl.Interfaces;
+using ssl.Item.ItemTypes;
 using ssl.Status;
 using ssl.Role;
 
@@ -14,19 +15,26 @@ namespace ssl.Player
         private const int InitialCapacity = 100;
 
         public RoleCore Role;
-
+        public StatusHandler<MainPlayer> StatusHandler { get; }
+        public GaugeHandler GaugeHandler { get; }
+        
         public MainPlayer()
         {
             StatusHandler = new StatusHandler<MainPlayer>();
             GaugeHandler = new GaugeHandler();
         }
 
-        public StatusHandler<MainPlayer> StatusHandler { get; }
-        public GaugeHandler GaugeHandler { get; }
-
         public void Apply(IEffect<MainPlayer> effect)
         {
             effect.Trigger(this);
+        }
+
+        /// <summary>
+        /// Makes the player use the item.
+        /// </summary>
+        public void Use(ItemCore item)
+        {
+            item.UsedBy(this);
         }
 
         /// <summary>
