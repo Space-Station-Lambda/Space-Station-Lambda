@@ -3,11 +3,11 @@
     /// <summary>
     /// Player's role
     /// </summary>
-    public abstract class Role
+    public abstract class RoleCore
     {
         public string Name { get; }
         
-        public Role(string name)
+        public RoleCore(string name)
         {
             Name = name;
         }
