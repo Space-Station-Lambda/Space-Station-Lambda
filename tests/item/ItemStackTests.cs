@@ -12,7 +12,7 @@ namespace ssl.Tests.Item
 
         public ItemStackTests()
         {
-            item = new Mock<ItemCore>("test", "Test Item", false)
+            item = new Mock<ItemCore>("test", "Test Item", "test", 1, false)
             {
                 CallBase = true
             };
