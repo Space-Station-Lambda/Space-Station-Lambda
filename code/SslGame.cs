@@ -1,11 +1,11 @@
 ﻿using System;
 using Sandbox;
-using SSL.Player;
+using ssl.Player;
 using SSL.UI;
 
-namespace SSL
+namespace ssl
 {
-    [Library("SSL")]
+    [Library("ssl")]
     public partial class SslGame : Game
     {
         private Hud hud;

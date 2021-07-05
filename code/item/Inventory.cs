@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SSL.Item
+namespace ssl.item
 {
     public class Inventory
     {

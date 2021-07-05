@@ -1,4 +1,4 @@
-namespace SSL.Item
+namespace ssl.item
 {
     public class Slot
     {

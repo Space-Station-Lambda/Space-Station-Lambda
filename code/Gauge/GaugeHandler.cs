@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace SSL.Gauge
+namespace ssl.Gauge
 {
     public class GaugeHandler
     {

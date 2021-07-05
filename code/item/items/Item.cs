@@ -1,7 +1,7 @@
 ﻿using System;
-using SSL.Player;
+using ssl.Player;
 
-namespace SSL.Item.items
+namespace ssl.item.items
 {
     public abstract class Item
     {

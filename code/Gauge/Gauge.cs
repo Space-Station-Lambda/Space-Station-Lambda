@@ -1,6 +1,6 @@
 using System;
 
-namespace SSL.Gauge
+namespace ssl.Gauge
 {
     public class Gauge
     {

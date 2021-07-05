@@ -1,9 +1,9 @@
 ﻿using Sandbox;
-using SSL.Gauge;
-using SSL.Interfaces;
-using SSL.Status;
+using ssl.Gauge;
+using ssl.Interfaces;
+using ssl.Status;
 
-namespace SSL.Player
+namespace ssl.Player
 {
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
@@ -12,7 +12,7 @@ namespace SSL.Player
         private const int PhysicGroupVelocity = 40;
         private const int InitialCapacity = 100;
 
-        public SSL.Role.Role Role;
+        public Role.Role Role;
 
         public MainPlayer()
         {
