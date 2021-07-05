@@ -1,4 +1,4 @@
-using SSL.Exceptions;
+using System;
 using SSL.Gauge;
 using Xunit;
 
@@ -25,7 +25,7 @@ namespace SSL.Tests.Gauges
         [Fact]
         private void Should_Throw_Exception()
         {
-            Assert.Throws<OutOfGaugeException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 gauge.AddValue(500);
             });

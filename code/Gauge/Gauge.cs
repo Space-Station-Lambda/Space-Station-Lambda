@@ -1,18 +1,18 @@
-using SSL.Exceptions;
+using System;
 
 namespace SSL.Gauge
 {
     public class Gauge
     {
-        public GaugeData GaugeData { get; }
-        public int Value { get; private set;  }
-        public int ValueLeft => GaugeData.MaxValue - Value;
-       
         public Gauge(GaugeData gaugeData)
         {
             GaugeData = gaugeData;
         }
-        
+
+        public GaugeData GaugeData { get; }
+        public int Value { get; private set; }
+        public int ValueLeft => GaugeData.MaxValue - Value;
+
         /// <summary>
         /// Ajoute la valeur à la gauge actuelle.
         /// </summary>
@@ -22,16 +22,15 @@ namespace SSL.Gauge
         {
             if (Value + value > GaugeData.MaxValue || Value + value < GaugeData.MinValue)
             {
-                throw new OutOfGaugeException();
+                throw new Exception();
             }
-            
+
             Value += value;
         }
-        
-        public override string ToString() 
+
+        public override string ToString()
         {
             return $"[{GaugeData.Id}] {Value}/{GaugeData.MaxValue}";
         }
-        
     }
 }

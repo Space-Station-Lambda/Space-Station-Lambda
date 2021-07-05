@@ -1,4 +1,4 @@
-using SSL.Exceptions;
+using System;
 using SSL.Item;
 using SSL.Item.items;
 using Xunit;
@@ -28,7 +28,7 @@ namespace SSL.Tests.Item
         {
             SSL.Item.items.Item item = new ItemBase("test_food", "Test food");
             items.Add(item);
-            Assert.Throws<ItemAlreadyExistsException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 items.Add(item);
             });

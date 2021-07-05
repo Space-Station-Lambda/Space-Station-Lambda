@@ -10,7 +10,7 @@ namespace SSL.Services
         {
             choices = new Dictionary<string, RolePickerChoice>();
         }
-        
+
         public RolePicker(IEnumerable<string> roles) : this()
         {
             foreach (string role in roles)
@@ -18,7 +18,7 @@ namespace SSL.Services
                 choices.Add(role, RolePickerChoice.Never);
             }
         }
-        
+
         public RolePicker(Dictionary<string, RolePickerChoice> choices)
         {
             this.choices = choices;
@@ -31,7 +31,7 @@ namespace SSL.Services
         {
             choices[roleName] = choice;
         }
-        
+
         /// <summary>
         /// Returns a role choice
         /// </summary>

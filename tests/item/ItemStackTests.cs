@@ -1,5 +1,5 @@
+using System;
 using Moq;
-using SSL.Exceptions;
 using SSL.Item;
 using Xunit;
 
@@ -44,7 +44,7 @@ namespace SSL.Tests.Item
         {
             ItemStack itemStack = new(item.Object, 10);
 
-            Assert.Throws<OutOfStackItemStackException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 itemStack.Add(amount);
             });
@@ -57,7 +57,7 @@ namespace SSL.Tests.Item
         {
             //Arrange
             ItemStack itemStack = new(item.Object, 10);
-            Assert.Throws<NegativeItemStackException>(() =>
+            Assert.Throws<Exception>(() =>
             {
                 itemStack.Remove(amount);
             });
