@@ -9,7 +9,7 @@ namespace ssl.Tests.Roles
         [Fact]
         private void Test_ToString()
         {
-            Role.Role role = new RoleAssistant() ;
+            RoleCore role = new RoleAssistant() ;
             Assert.Equal("assistant", role.ToString());
         }
     }
