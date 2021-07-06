@@ -22,18 +22,15 @@ namespace ssl.Tests.Item
             Assert.True(items.Contains(item.Id));
             Assert.True(items.Contains(item));
         }
-        
+
         [Fact]
         private void Should_Add_Item_Exist_Throw_Error()
         {
             ItemCore item = new ItemBase("test_food", "Test food");
             items.Add(item);
-            Assert.Throws<Exception>(() =>
-            {
-                items.Add(item);
-            });
+            Assert.Throws<Exception>(() => { items.Add(item); });
         }
-        
+
         [Fact]
         private void Should_Get_Item()
         {

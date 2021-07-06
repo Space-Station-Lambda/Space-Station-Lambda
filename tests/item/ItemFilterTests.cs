@@ -8,6 +8,7 @@ namespace ssl.Tests.Item
     {
         private ItemFilter itemFilter;
         private Items items;
+
         public ItemFilterTests()
         {
             items = new Items();
@@ -23,7 +24,7 @@ namespace ssl.Tests.Item
             Assert.True(itemFilter.IsAuthorized("test_bag"));
             Assert.True(itemFilter.IsAuthorized("test_base"));
         }
-        
+
         [Fact]
         public void Should_All_Unauthorised_By_Default_When_Selected()
         {
@@ -31,7 +32,7 @@ namespace ssl.Tests.Item
             Assert.False(itemFilter.IsAuthorized("test_bag"));
             Assert.False(itemFilter.IsAuthorized("test_base"));
         }
-        
+
         [Fact]
         public void Should_All_Unauthorized()
         {
@@ -39,7 +40,7 @@ namespace ssl.Tests.Item
             Assert.False(itemFilter.IsAuthorized("test_bag"));
             Assert.False(itemFilter.IsAuthorized("test_base"));
         }
-        
+
         [Fact]
         public void Should_Not_Authorize()
         {
@@ -47,7 +48,7 @@ namespace ssl.Tests.Item
             Assert.False(itemFilter.IsAuthorized("test_bag"));
             Assert.True(itemFilter.IsAuthorized("test_base"));
         }
-        
+
         [Fact]
         public void Should_All_Authorized()
         {
@@ -56,7 +57,7 @@ namespace ssl.Tests.Item
             Assert.True(itemFilter.IsAuthorized("test_bag"));
             Assert.True(itemFilter.IsAuthorized("test_base"));
         }
-        
+
         [Fact]
         public void Should_Unauthorize_By_Type()
         {

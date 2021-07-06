@@ -12,7 +12,7 @@ namespace ssl.Tests.Gauges
         {
             gauge = new Gauge.Gauge(new GaugeData("TEST_GAUGE", 0, 100));
         }
-        
+
         [Theory]
         [InlineData(10)]
         [InlineData(90)]
@@ -21,16 +21,13 @@ namespace ssl.Tests.Gauges
             gauge.AddValue(value);
             Assert.Equal(value, gauge.Value);
         }
-        
+
         [Fact]
         private void Should_Throw_Exception()
         {
-            Assert.Throws<Exception>(() =>
-            {
-                gauge.AddValue(500);
-            });
+            Assert.Throws<Exception>(() => { gauge.AddValue(500); });
         }
-        
+
         [Theory]
         [InlineData(10)]
         [InlineData(50)]
@@ -42,10 +39,9 @@ namespace ssl.Tests.Gauges
 
         [Fact]
         private void Test_ToString()
-        { 
+        {
             gauge.AddValue(10);
             Assert.Equal("[TEST_GAUGE] 10/100", gauge.ToString());
         }
-      
     }
 }
