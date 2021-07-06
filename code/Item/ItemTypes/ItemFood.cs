@@ -6,7 +6,7 @@ namespace ssl.Item.ItemTypes
     {
         public int FeedingValue { get; private set; }
         
-        public ItemFood(string id, string name, int feedingValue) : base(id, name, "food", 100)
+        public ItemFood(string id, string name, string model, int feedingValue) : base(id, name, "food", model, 100)
         {
             FeedingValue = feedingValue;
         }

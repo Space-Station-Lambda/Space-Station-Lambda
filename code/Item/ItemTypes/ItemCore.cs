@@ -5,11 +5,17 @@ namespace ssl.Item.ItemTypes
 {
     public abstract class ItemCore
     {
-        public ItemCore(string id, string name, string type = "", int maxStack = 1, bool destroyOnUse = false)
+        public ItemCore(string id,
+            string name,
+            string type = "",
+            string model = "",
+            int maxStack = 1,
+            bool destroyOnUse = false)
         {
             Id = id;
             Name = name;
             Type = type;
+            Model = model;
             MaxStack = maxStack;
             DestroyOnUse = destroyOnUse;
         }
@@ -19,6 +25,7 @@ namespace ssl.Item.ItemTypes
         public int MaxStack { get; private set; } // 100 ?
         public bool DestroyOnUse { get; private set; }
         public string Type { get; private set; }
+        public string Model { get; private set; }
 
         /// <summary>
         /// Apply the object's effects when the user is a Player

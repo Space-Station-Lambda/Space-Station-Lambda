@@ -11,9 +11,9 @@ namespace ssl.Tests.Item
         public ItemFilterTests()
         {
             items = new Items();
-            items.Add(new ItemBag("test_bag", "Test de sac"));
-            items.Add(new ItemBase("test_base", "Test de base"));
-            items.Add(new ItemBase("test_base2", "Test de base2"));
+            items.Add(new ItemBag("test_bag", "Test de sac", ""));
+            items.Add(new ItemBase("test_base", "Test de base", ""));
+            items.Add(new ItemBase("test_base2", "Test de base2", ""));
             itemFilter = new ItemFilter(items);
         }
 
