@@ -10,8 +10,6 @@ namespace ssl.Player
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
-        private const int PositionVelocity = 40;
-        private const int PhysicGroupVelocity = 40;
         private const int InitialCapacity = 100;
         private ClothesHandler clothesHandler;
         public Role Role;
@@ -48,14 +46,12 @@ namespace ssl.Player
             base.Simulate(client);
             //Simulate children (weapon ...)
             SimulateActiveChild(client, ActiveChild);
-            if (IsServer && Input.Pressed(InputButton.Attack1))
+            CheckControls();
+            
+
+            if (Input.Pressed(InputButton.Alt2))
             {
-                ModelEntity modelEntity = new();
-                modelEntity.SetModel(Model);
-                modelEntity.Position = EyePos + EyeRot.Forward * PositionVelocity;
-                modelEntity.Rotation = Rotation.LookAt(Vector3.Random.Normal);
-                modelEntity.SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
-                modelEntity.PhysicsGroup.Velocity = EyeRot.Forward * PhysicGroupVelocity;
+                Respawn();
             }
 
             if (IsServer && Input.Pressed(InputButton.Attack1))
