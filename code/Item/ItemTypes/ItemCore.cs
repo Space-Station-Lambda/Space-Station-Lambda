@@ -18,7 +18,7 @@ namespace ssl.Item.ItemTypes
         public string Name { get; private set; } // Apple
         public int MaxStack { get; private set; } // 100 ?
         public bool DestroyOnUse { get; private set; }
-        public String Type { get; private set; }
+        public string Type { get; private set; }
 
         /// <summary>
         /// Apply the object's effects when the user is a Player
