@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using ssl.Gauge;
 using ssl.Interfaces;
-using ssl.item.ItemTypes;
+using ssl.Item.ItemTypes;
 using ssl.Player.Roles;
 using ssl.Status;
 
