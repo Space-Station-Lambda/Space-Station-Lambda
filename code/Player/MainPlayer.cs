@@ -7,13 +7,19 @@ using ssl.Status;
 
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
+    public class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int InitialCapacity = 100;
+        private const int PositionVelocity = 40;
+        private const int PhysicGroupVelocity = 5000;
         private ClothesHandler clothesHandler;
         public Role Role;
 
+        public RoleCore Role;
+        public StatusHandler<MainPlayer> StatusHandler { get; }
+        public GaugeHandler GaugeHandler { get; }
+        
         public MainPlayer()
         {
             StatusHandler = new StatusHandler<MainPlayer>();
@@ -47,7 +53,7 @@ namespace ssl.Player
             //Simulate children (weapon ...)
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
-            
+
 
             if (Input.Pressed(InputButton.Alt2))
             {
@@ -91,6 +97,65 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+        }
+
+        /// <summary>
+        /// Called on respawn
+        /// </summary>
+        public override void Respawn()
+        {
+            SetModel(Model);
+
+            Controller = new WalkController();
+            Animator = new StandardPlayerAnimator();
+            Camera = new ThirdPersonCamera();
+
+            EnableAllCollisions = true;
+            EnableDrawing = true;
+            EnableHideInFirstPerson = true;
+            EnableShadowInFirstPerson = true;
+
+            base.Respawn();
+        }
+
+        public void SpawnCorpse()
+        {
+            ModelEntity modelEntity = new();
+            modelEntity.SetModel(Model);
+            modelEntity.Position = EyePos + EyeRot.Forward * PositionVelocity;
+            modelEntity.Rotation = Rotation.LookAt(Vector3.Random.Normal);
+            modelEntity.SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
+            modelEntity.PhysicsGroup.Velocity = EyeRot.Forward * PhysicGroupVelocity;
+        }
+
+        private void CheckControls()
+        {
+            if (IsServer)
+            {
+                ServerControls();
+            }
+
+            if (IsClient)
+            {
+                ClientControls();
+            }
+        }
+
+        private void ServerControls()
+        {
+            if (Input.Pressed(InputButton.Attack1))
+            {
+                SpawnCorpse();
+            }
+
+            if (Input.Pressed(InputButton.Reload))
+            {
+                Respawn();
+            }
+        }
+
+        private void ClientControls()
+        {
         }
 
         public void SetRole(Role role)
