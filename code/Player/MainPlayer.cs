@@ -16,10 +16,6 @@ namespace ssl.Player
         private ClothesHandler clothesHandler;
         public Role Role;
 
-        public RoleCore Role;
-        public StatusHandler<MainPlayer> StatusHandler { get; }
-        public GaugeHandler GaugeHandler { get; }
-        
         public MainPlayer()
         {
             StatusHandler = new StatusHandler<MainPlayer>();
@@ -97,25 +93,6 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
-        }
-
-        /// <summary>
-        /// Called on respawn
-        /// </summary>
-        public override void Respawn()
-        {
-            SetModel(Model);
-
-            Controller = new WalkController();
-            Animator = new StandardPlayerAnimator();
-            Camera = new ThirdPersonCamera();
-
-            EnableAllCollisions = true;
-            EnableDrawing = true;
-            EnableHideInFirstPerson = true;
-            EnableShadowInFirstPerson = true;
-
-            base.Respawn();
         }
 
         public void SpawnCorpse()
