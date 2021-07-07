@@ -1,7 +1,7 @@
 ﻿using System;
-using ssl.item.ItemTypes;
+using ssl.Item.ItemTypes;
 
-namespace ssl.item
+namespace ssl.Item
 {
     public class ItemStack
     {

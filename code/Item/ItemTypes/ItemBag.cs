@@ -1,6 +1,6 @@
 using ssl.Player;
 
-namespace ssl.item.ItemTypes
+namespace ssl.Item.ItemTypes
 {
     public class ItemBag : ItemCore
     {
