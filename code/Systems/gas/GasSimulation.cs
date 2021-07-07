@@ -5,10 +5,10 @@ namespace ssl.Systems.gas
 {
     public class GasSimulation
     {
+        private IGasMovementStrategy gasMovementStrategy = new GasMovementBasicStrategy();
         private GasUnit[,] grid;
         private Dictionary<GasUnit, List<GasUnit>> neighbors;
-        private IGasMovementStrategy gasMovementStrategy = new GasMovementBasicStrategy();
-        
+
         public GasSimulation()
         {
             grid = new GasUnit[3, 3];
@@ -16,8 +16,9 @@ namespace ssl.Systems.gas
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                grid[i,j] = new();
+                grid[i, j] = new();
             }
+
             GenerateNeighbors();
         }
 
@@ -35,7 +36,7 @@ namespace ssl.Systems.gas
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                neighbors.Add(grid[i,j], GetNeighbors(i, j));
+                neighbors.Add(grid[i, j], GetNeighbors(i, j));
             }
         }
 
@@ -73,14 +74,14 @@ namespace ssl.Systems.gas
         private List<GasUnit> GetNeighbors(int i, int j)
         {
             List<GasUnit> gasUnits = new();
-            
+
             for (int k = i - 1; k <= i + 1; k++)
             for (int v = j - 1; v <= j + 1; v++)
             {
-                if(k >= 0 && k < grid.GetLength(0) && v >= 0 && v < grid.GetLength(1) && !(k != i && v != j)) 
-                    gasUnits.Add(grid[k,v]);
+                if (k >= 0 && k < grid.GetLength(0) && v >= 0 && v < grid.GetLength(1) && !(k != i && v != j))
+                    gasUnits.Add(grid[k, v]);
             }
-            
+
             return gasUnits;
         }
 
@@ -92,8 +93,9 @@ namespace ssl.Systems.gas
                 str += "| ";
                 for (int j = 0; j < grid.GetLength(1); j++)
                 {
-                    str += $"{grid[i,j]} | ";
+                    str += $"{grid[i, j]} | ";
                 }
+
                 str += "\n";
             }
 

@@ -33,7 +33,7 @@ namespace ssl.Item.ItemTypes
         /// TODO : implement the destroy on use
         /// </summary>
         public abstract void UsedBy(MainPlayer player);
-        
+
         public override string ToString()
         {
             return $"[{Id}] {Name}";

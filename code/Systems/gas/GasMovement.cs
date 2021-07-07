@@ -2,9 +2,9 @@ namespace ssl.Systems.gas
 {
     public class GasMovement
     {
+        private GasUnit gasUnit;
         private GasUnit source;
         private GasUnit target;
-        private GasUnit gasUnit;
 
         public GasMovement(GasUnit source, GasUnit target, GasUnit gasUnit)
         {

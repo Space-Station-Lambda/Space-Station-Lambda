@@ -11,6 +11,8 @@ namespace ssl.Item.ItemTypes
             FeedingValue = feedingValue;
         }
 
+        public int FeedingValue { get; private set; }
+
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>

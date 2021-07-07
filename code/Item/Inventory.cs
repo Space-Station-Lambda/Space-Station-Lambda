@@ -4,9 +4,18 @@ namespace ssl.Item
 {
     public class Inventory
     {
+        private ItemFilter filter;
+
+        public Inventory(IItems items, int size)
+        {
+            Items = new ItemStack[size];
+            filter = new ItemFilter(items);
+        }
+
         public ItemStack[] Items { get; }
 
         public int SlotsCount => Items.Length;
+
         public int SlotsLeft
         {
             get
@@ -24,15 +33,8 @@ namespace ssl.Item
                 return slotsLeft;
             }
         }
-        public int SlotsFull => SlotsCount - SlotsLeft;
-        
-        private ItemFilter filter;
 
-        public Inventory(IItems items, int size)
-        {
-            Items = new ItemStack[size];
-            filter = new ItemFilter(items);
-        }
+        public int SlotsFull => SlotsCount - SlotsLeft;
 
         /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.
@@ -49,14 +51,14 @@ namespace ssl.Item
             {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
-            
+
             if (filter.IsAuthorized(itemStack.Item))
             {
                 if (!IsPresent(itemStack))
                 {
                     var slotsCount = SlotsCount;
                     var itemAdded = false;
-                
+
                     for (var i = 0; i < slotsCount && !itemAdded; i++)
                     {
                         var j = (i + position) % SlotsCount;
@@ -64,7 +66,7 @@ namespace ssl.Item
                         {
                             Items[j] = itemStack;
                             itemAdded = true;
-                        }                    
+                        }
                         else
                         {
                             if (Items[position].Item.Equals(itemStack.Item))
@@ -102,7 +104,7 @@ namespace ssl.Item
         public ItemStack RemoveItem(int position)
         {
             ItemStack removedItem = null;
-            
+
             if (!IsSlotEmpty(position))
             {
                 removedItem = Items[position];
