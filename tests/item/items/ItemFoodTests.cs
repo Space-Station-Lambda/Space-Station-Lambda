@@ -1,5 +1,4 @@
 using Moq;
-using Moq;
 using ssl.Gauge;
 using ssl.Item.ItemTypes;
 using ssl.Player;

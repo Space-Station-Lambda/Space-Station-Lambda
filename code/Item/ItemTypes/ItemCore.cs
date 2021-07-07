@@ -5,7 +5,8 @@ namespace ssl.Item.ItemTypes
 {
     public abstract class ItemCore
     {
-        public ItemCore(string id,
+        public ItemCore(
+            string id,
             string name,
             string type = "",
             string model = "",
