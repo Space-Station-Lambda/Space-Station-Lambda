@@ -1,7 +1,7 @@
 ﻿using System;
 using ssl.Player;
 
-namespace ssl.Item.ItemTypes
+namespace ssl.item.ItemTypes
 {
     public abstract class ItemCore
     {
@@ -33,7 +33,7 @@ namespace ssl.Item.ItemTypes
         /// TODO : implement the destroy on use
         /// </summary>
         public abstract void UsedBy(MainPlayer player);
-        
+
         public override string ToString()
         {
             return $"[{Id}] {Name}";

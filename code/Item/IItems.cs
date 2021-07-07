@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ssl.Item
+namespace ssl.item
 {
     public interface IItems
     {
