@@ -1,9 +1,9 @@
 ﻿using Sandbox;
 using ssl.Gauge;
 using ssl.Interfaces;
-using ssl.Item.ItemTypes;
+using ssl.item.ItemTypes;
+using ssl.Player.Roles;
 using ssl.Status;
-using ssl.Role;
 
 namespace ssl.Player
 {
@@ -13,16 +13,18 @@ namespace ssl.Player
         private const int PositionVelocity = 40;
         private const int PhysicGroupVelocity = 40;
         private const int InitialCapacity = 100;
+        private ClothesHandler clothesHandler;
+        public Role Role;
 
-        public RoleCore Role;
-        public StatusHandler<MainPlayer> StatusHandler { get; }
-        public GaugeHandler GaugeHandler { get; }
-        
         public MainPlayer()
         {
             StatusHandler = new StatusHandler<MainPlayer>();
             GaugeHandler = new GaugeHandler();
+            clothesHandler = new ClothesHandler(this);
         }
+
+        public StatusHandler<MainPlayer> StatusHandler { get; }
+        public GaugeHandler GaugeHandler { get; }
 
         public void Apply(IEffect<MainPlayer> effect)
         {
@@ -55,6 +57,16 @@ namespace ssl.Player
                 modelEntity.SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
                 modelEntity.PhysicsGroup.Velocity = EyeRot.Forward * PhysicGroupVelocity;
             }
+
+            if (IsServer && Input.Pressed(InputButton.Attack1))
+            {
+                SetRole(new Assistant());
+            }
+
+            if (IsServer && Input.Pressed(InputButton.Attack2))
+            {
+                SetRole(new Scientist());
+            }
         }
 
         /// <summary>
@@ -73,6 +85,8 @@ namespace ssl.Player
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
 
+            SetRole(new Assistant());
+
             base.Respawn();
         }
 
@@ -81,6 +95,11 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+        }
+
+        public void SetRole(Role role)
+        {
+            clothesHandler.AttachClothes(role.Clothing);
         }
     }
 }
