@@ -10,8 +10,8 @@ namespace ssl.UI
         {
             if (IsClient)
             {
-                Panel roleListPanel = RootPanel.AddChild<RoleList>();
-                roleListPanel.CreateEvent("onSelectRole");            
+                RootPanel.AddChild<RoleList>();
+                RootPanel.AddChild<CursorController>();
             }
         }
     }

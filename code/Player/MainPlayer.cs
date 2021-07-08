@@ -15,12 +15,10 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-            StatusHandler = new StatusHandler<MainPlayer>();
             GaugeHandler = new GaugeHandler();
             clothesHandler = new ClothesHandler(this);
         }
-
-        public StatusHandler<MainPlayer> StatusHandler { get; }
+        
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
