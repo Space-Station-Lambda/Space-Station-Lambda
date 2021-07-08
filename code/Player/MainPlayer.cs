@@ -3,6 +3,7 @@ using ssl.Gauge;
 using ssl.Interfaces;
 using ssl.Item.ItemTypes;
 using ssl.Player.Roles;
+using ssl.Quests;
 using ssl.Status;
 
 namespace ssl.Player
@@ -14,6 +15,7 @@ namespace ssl.Player
         private const int PositionVelocity = 40;
         private const int PhysicGroupVelocity = 5000;
         private ClothesHandler clothesHandler;
+        private QuestsHandler questsHandler;
         public Role Role;
 
         public MainPlayer()
@@ -21,6 +23,7 @@ namespace ssl.Player
             StatusHandler = new StatusHandler<MainPlayer>();
             GaugeHandler = new GaugeHandler();
             clothesHandler = new ClothesHandler(this);
+            questsHandler = new QuestsHandler(this);
         }
 
         public StatusHandler<MainPlayer> StatusHandler { get; }

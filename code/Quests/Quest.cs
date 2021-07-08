@@ -1,4 +1,6 @@
-﻿namespace ssl.Quests
+﻿using ssl.Player;
+
+namespace ssl.Quests
 {
     /// <summary>
     /// A quest is an objective for the player
@@ -8,7 +10,7 @@
         /// <summary>
         /// Name of the quest
         /// </summary>
-        public abstract string Libelle { get; }
+        public abstract string Name { get; }
         /// <summary>
         /// Description of the question
         /// </summary>

@@ -6,12 +6,12 @@ namespace ssl.Quests
     /// <summary>
     /// Manage quests for a player
     /// </summary>
-    public class QuestHandler
+    public class QuestsHandler
     {
         public MainPlayer Player;
         public List<Quest> Quests = new();
 
-        public QuestHandler(MainPlayer player)
+        public QuestsHandler(MainPlayer player)
         {
             Player = player;
         }
