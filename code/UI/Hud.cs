@@ -3,15 +3,15 @@ using Sandbox.UI;
 
 namespace ssl.UI
 {
-    public partial class Hud : HudEntity<RootPanel>
+    [UseTemplate]
+    public class Hud : HudEntity<RootPanel>
     {
-        private const string Path = "/UI/Hud.html";
-
         public Hud()
         {
             if (IsClient)
             {
-                RootPanel.SetTemplate(Path);
+                Panel roleListPanel = RootPanel.AddChild<RoleList>();
+                roleListPanel.CreateEvent("onSelectRole");            
             }
         }
     }
