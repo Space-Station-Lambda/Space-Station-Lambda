@@ -1,6 +1,6 @@
 ﻿using Sandbox;
+using ssl.Effects;
 using ssl.Gauge;
-using ssl.Interfaces;
 using ssl.Item.ItemTypes;
 using ssl.Player.Roles;
 using ssl.Status;
@@ -26,7 +26,7 @@ namespace ssl.Player
         public StatusHandler<MainPlayer> StatusHandler { get; }
         public GaugeHandler GaugeHandler { get; }
 
-        public void Apply(IEffect<MainPlayer> effect)
+        public void Apply(Effect<MainPlayer> effect)
         {
             effect.Trigger(this);
         }
