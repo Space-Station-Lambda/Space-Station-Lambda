@@ -1,23 +1,21 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ssl.Systems.gas
 {
     public class GasMovementBasicStrategy : IGasMovementStrategy
     {
-        public GasMovement GenerateGasMovement(GasUnit source, List<GasUnit> neighbors)
+        public GasMovement GenerateGasMovement(AtmosUnit source, IEnumerable<AtmosUnit> neighbors)
         {
-            GasUnit target = source;
-            foreach (GasUnit gasUnit in neighbors)
+            AtmosUnit target = source;
+            foreach (AtmosUnit gasUnit in neighbors.Where(gasUnit => gasUnit.Value < target.Value))
             {
-                if (gasUnit.Value < target.Value)
-                {
-                    target = gasUnit;
-                }
+                target = gasUnit;
             }
 
-            GasUnit gasUnitToSend = new GasUnit();
-            gasUnitToSend.Value = 1;
-            return new GasMovement(source, target, gasUnitToSend);
+            AtmosUnit atmosUnitToSend = new AtmosUnit();
+            atmosUnitToSend.Value = 1;
+            return new GasMovement(source, target, atmosUnitToSend);
         }
     }
 }

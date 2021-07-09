@@ -2,9 +2,9 @@ using System;
 
 namespace ssl.Systems.gas
 {
-    public class GasUnit
+    public class AtmosUnit
     {
-        public int Value = 0;
+        public int Value;
 
 
         public void Randomize(int seed = 0)

@@ -2,21 +2,21 @@ namespace ssl.Systems.gas
 {
     public class GasMovement
     {
-        private GasUnit gasUnit;
-        private GasUnit source;
-        private GasUnit target;
+        private AtmosUnit atmosUnit;
+        private AtmosUnit atmosUnitSource;
+        private AtmosUnit atmosUnitTarget;
 
-        public GasMovement(GasUnit source, GasUnit target, GasUnit gasUnit)
+        public GasMovement(AtmosUnit atmosUnitSource, AtmosUnit atmosUnitTarget, AtmosUnit atmosUnit)
         {
-            this.source = source;
-            this.target = target;
-            this.gasUnit = gasUnit;
+            this.atmosUnitSource = atmosUnitSource;
+            this.atmosUnitTarget = atmosUnitTarget;
+            this.atmosUnit = atmosUnit;
         }
 
-        public void resolve()
+        public void Resolve()
         {
-            source.Value -= gasUnit.Value;
-            target.Value += gasUnit.Value;
+            atmosUnitSource.Value -= atmosUnit.Value;
+            atmosUnitTarget.Value += atmosUnit.Value;
         }
     }
 }
