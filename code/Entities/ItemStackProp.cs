@@ -1,5 +1,5 @@
 ﻿using Sandbox;
-using ssl.Item;
+using ssl.Items;
 
 namespace ssl.Entities
 {

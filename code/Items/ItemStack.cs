@@ -1,17 +1,17 @@
 ﻿using System;
-using ssl.Item.ItemTypes;
+using ssl.Items.Data;
 
-namespace ssl.Item
+namespace ssl.Items
 {
     public class ItemStack
     {
-        public ItemStack(ItemTypes.ItemCore item, int amount = 1)
+        public ItemStack(Item item, int amount = 1)
         {
             Item = item;
             Amount = amount;
         }
 
-        public ItemCore Item { get; }
+        public Item Item { get; }
         public int Amount { get; private set; }
 
         public ItemStack Remove(int number)
