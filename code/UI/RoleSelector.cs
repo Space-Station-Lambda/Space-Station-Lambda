@@ -41,11 +41,8 @@ namespace ssl.UI
         public class RoleIcon : Panel
         {
             public Role Role;
-            public SceneWorld AvatarWorld { get; set; }
-            public Scene AvatarScene { get; set; }
             private AnimSceneObject modelObject;
-            private readonly List<AnimSceneObject> clothingObjects = new();
-            
+
             public RoleIcon(Role role, Panel parent)
             {
                 StyleSheet.Load( "ui/roleicon.scss" );
