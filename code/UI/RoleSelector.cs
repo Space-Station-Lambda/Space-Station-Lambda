@@ -2,19 +2,20 @@
 using System.Linq;
 using Sandbox;
 using Sandbox.UI;
+using Sandbox.UI.Construct;
 using ssl.Player;
 using ssl.Player.Roles;
 
 namespace ssl.UI
 {
-    public class RoleList : Panel
+    public class RoleSelector : Panel
     {
         private List<RoleIcon> roleSlots = new();
         private int currentSelected = 0;
         
-        public RoleList()
+        public RoleSelector()
         {
-            StyleSheet.Load( "ui/rolelist.scss" );
+            StyleSheet.Load( "UI/RoleSelector.scss" );
             roleSlots.Add(new RoleIcon(new Assistant(), this));
             roleSlots.Add(new RoleIcon(new Scientist(), this));
             for (int i = 0; i < roleSlots.Count; i++)
@@ -33,18 +34,31 @@ namespace ssl.UI
             currentSelected = slot;
             roleSlots[currentSelected].Select();
         }
-        [Event( "buildinput" )]
-        public void ProcessClientInput( InputBuilder input )
+        public class RoleIcon : Panel
         {
-            if ( Local.Pawn is not Sandbox.Player) return;
-
-            if (input.Pressed(InputButton.Slot1))
+            public Role Role;
+            public SceneWorld AvatarWorld { get; set; }
+            public Scene AvatarScene { get; set; }
+            private AnimSceneObject modelObject;
+            private readonly List<AnimSceneObject> clothingObjects = new();
+            
+            public RoleIcon(Role role, Panel parent)
             {
-                Select(0);
+                StyleSheet.Load( "ui/roleicon.scss" );
+                Role = role;
+                Parent = parent;
+                Add.Label(role.Name, "role-name");
             }
-            if (input.Pressed(InputButton.Slot2))
+
+            public void Select()
             {
-                Select(1);
+                SetClass("selected", true);
+                ((MainPlayer) Local.Client.Pawn).SetRole(Role);
+            }
+
+            public void Unselect()
+            {
+                SetClass("selected", false);
             }
         }
     }
