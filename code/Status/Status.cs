@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ssl.Interfaces;
+using ssl.Effects;
 
 namespace ssl.Status
 {
@@ -7,9 +7,9 @@ namespace ssl.Status
     {
         public delegate void StatusFinishedEventHandler(Status<T> status, float secondsElapsed);
 
-        private List<IEffect<T>> effects;
+        private List<Effect<T>> effects;
 
-        public Status(float millis, List<IEffect<T>> effects)
+        public Status(float millis, List<Effect<T>> effects)
         {
             TotalMillis = millis;
             this.effects = effects;
