@@ -8,10 +8,13 @@ using ssl.Player.Roles;
 
 namespace ssl.UI
 {
+    /// <summary>
+    /// Role selector allow player to select a role
+    /// </summary>
     public class RoleSelector : Panel
     {
-        private List<RoleIcon> roleSlots = new();
-        private int currentSelected = 0;
+        private readonly List<RoleIcon> roleSlots = new();
+        private int currentSelected;
         
         public RoleSelector()
         {
@@ -30,6 +33,10 @@ namespace ssl.UI
             }
         }
         
+        /// <summary>
+        /// Select a specific role
+        /// </summary>
+        /// <param name="slot">Slot to select</param>
         public void Select(int slot)
         {
             roleSlots[currentSelected].Unselect();
@@ -38,6 +45,9 @@ namespace ssl.UI
             SetClass("active", false);
         }
         
+        /// <summary>
+        /// Role icon to be chosed
+        /// </summary>
         public class RoleIcon : Panel
         {
             public Role Role;
@@ -50,13 +60,19 @@ namespace ssl.UI
                 Parent = parent;
                 Add.Label(role.Name, "role-name");
             }
-
+            
+            /// <summary>
+            /// Select the role and setrole to the client
+            /// </summary>
             public void Select()
             {
                 SetClass("selected", true);
-                ((MainPlayer) Local.Client.Pawn).SetRole(Role);
+                ((MainPlayer) Local.Client.Pawn).SetRole(Role); //TODO improve the methode for retrieve the client with the UI.
             }
-
+            
+            /// <summary>
+            /// UnSelect the the role
+            /// </summary>
             public void Unselect()
             {
                 SetClass("selected", false);
