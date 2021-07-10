@@ -29,6 +29,10 @@ namespace ssl.UI
         {
             Style.BackgroundColor = null;
         }
-        
+
+        protected override void OnClick(MousePanelEvent e)
+        {
+            Select();
+        }
     }
 }

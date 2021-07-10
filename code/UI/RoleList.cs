@@ -14,8 +14,13 @@ namespace ssl.UI
         public RoleList()
         {
             StyleSheet.Load( "ui/rolelist.scss" );
-            roleSlots.Add(new RoleIcon(new Assistant(), this));
+            RoleIcon roleIcon = new(new Assistant(), this);
+            roleSlots.Add(roleIcon);
             roleSlots.Add(new RoleIcon(new Scientist(), this));
+            roleIcon.AddEventListener("onclick", () =>
+            {
+                Log.Info("Bite");
+            });
         }
         
         public void Select(int slot)

@@ -6,4 +6,8 @@
     position: relative;
     margin: 10px 2px 0px;
     font-family: poppins, serif;
+    cursor: pointer;
+    &:hover {
+        background-color: #00ff90;
+    }
 }

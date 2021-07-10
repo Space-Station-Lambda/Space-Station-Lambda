@@ -11,7 +11,6 @@ namespace ssl.UI
             if (IsClient)
             {
                 RootPanel.AddChild<RoleList>();
-                RootPanel.AddChild<CursorController>();
             }
         }
     }
