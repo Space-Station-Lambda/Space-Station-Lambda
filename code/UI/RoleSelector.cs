@@ -37,6 +37,7 @@ namespace ssl.UI
             roleSlots[currentSelected].Select();
             SetClass("active", false);
         }
+        
         public class RoleIcon : Panel
         {
             public Role Role;
