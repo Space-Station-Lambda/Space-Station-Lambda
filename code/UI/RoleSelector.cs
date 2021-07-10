@@ -16,8 +16,10 @@ namespace ssl.UI
         public RoleSelector()
         {
             StyleSheet.Load( "UI/RoleSelector.scss" );
+            SetClass("active", true);
             roleSlots.Add(new RoleIcon(new Assistant(), this));
             roleSlots.Add(new RoleIcon(new Scientist(), this));
+            roleSlots.Add(new RoleIcon(new Janitor(), this));
             for (int i = 0; i < roleSlots.Count; i++)
             {
                 int slotToSelect = i;
@@ -33,6 +35,7 @@ namespace ssl.UI
             roleSlots[currentSelected].Unselect();
             currentSelected = slot;
             roleSlots[currentSelected].Select();
+            SetClass("active", false);
         }
         public class RoleIcon : Panel
         {

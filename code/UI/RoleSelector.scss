@@ -2,8 +2,10 @@
 {
     background-color: rgba(128, 128, 128, 0.41);
     cursor: default;
-    pointer-events: all;
     position: absolute;
+    &.active {
+        pointer-events: all;
+    }
     RoleIcon
     {
         background-color: rgba( #222, 0.3 );

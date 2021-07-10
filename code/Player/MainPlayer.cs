@@ -98,12 +98,7 @@ namespace ssl.Player
 
         public void SetRole(Role role)
         {
-            if (IsServer)
-            {
-                Respawn(); 
-            }
             clothesHandler.AttachClothes(role.Clothing);
-            
         }
     }
 }
