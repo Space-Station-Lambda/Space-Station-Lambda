@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
     public class GasMovementBasicStrategy : IGasMovementStrategy
     {

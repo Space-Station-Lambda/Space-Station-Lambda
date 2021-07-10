@@ -1,4 +1,4 @@
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
     public class GasMovement
     {

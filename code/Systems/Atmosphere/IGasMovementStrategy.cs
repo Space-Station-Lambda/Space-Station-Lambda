@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
     public interface IGasMovementStrategy
     {

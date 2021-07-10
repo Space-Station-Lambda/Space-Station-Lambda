@@ -1,6 +1,6 @@
 using System;
 
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
     public class AtmosUnit
     {
