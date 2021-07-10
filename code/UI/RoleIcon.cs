@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using ssl.Player;
 using ssl.Player.Roles;
 
 namespace ssl.UI
@@ -11,6 +12,7 @@ namespace ssl.UI
     {
         public Role Role;
         public Label Label;
+        public bool IsSelected;
 
         public RoleIcon(Role role, Panel parent)
         {
@@ -22,17 +24,13 @@ namespace ssl.UI
 
         public void Select()
         {
-            Style.BackgroundColor = Color.Cyan;
-        }
-        
-        public void UnSelect()
-        {
-            Style.BackgroundColor = null;
+            SetClass("selected", true);
+            ((MainPlayer) Local.Client.Pawn).SetRole(Role);
         }
 
-        protected override void OnClick(MousePanelEvent e)
+        public void Unselect()
         {
-            Select();
+            SetClass("selected", false);
         }
     }
 }

@@ -7,7 +7,12 @@
     margin: 10px 2px 0px;
     font-family: poppins, serif;
     cursor: pointer;
+    &.selected {
+        background-color: lightblue;
+    }
     &:hover {
-        background-color: #00ff90;
+        background-color: lightblue;
+        border-color: #0a61cb;
+        border: 2px;
     }
 }

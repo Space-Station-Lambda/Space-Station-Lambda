@@ -2,6 +2,7 @@
 using System.Linq;
 using Sandbox;
 using Sandbox.UI;
+using ssl.Player;
 using ssl.Player.Roles;
 
 namespace ssl.UI
@@ -14,18 +15,21 @@ namespace ssl.UI
         public RoleList()
         {
             StyleSheet.Load( "ui/rolelist.scss" );
-            RoleIcon roleIcon = new(new Assistant(), this);
-            roleSlots.Add(roleIcon);
+            roleSlots.Add(new RoleIcon(new Assistant(), this));
             roleSlots.Add(new RoleIcon(new Scientist(), this));
-            roleIcon.AddEventListener("onclick", () =>
+            for (int i = 0; i < roleSlots.Count; i++)
             {
-                Log.Info("Bite");
-            });
+                int slotToSelect = i;
+                roleSlots[i].AddEventListener("onclick", () =>
+                {
+                    Select(slotToSelect);
+                });
+            }
         }
         
         public void Select(int slot)
         {
-            roleSlots[currentSelected].UnSelect();
+            roleSlots[currentSelected].Unselect();
             currentSelected = slot;
             roleSlots[currentSelected].Select();
         }
