@@ -1,10 +1,11 @@
-﻿namespace ssl.Rounds
+﻿using Sandbox;
+
+namespace ssl.Rounds
 {
     public delegate void RoundEnd(BaseRound round);
     
-    public class RoundManager
+    public partial class RoundManager : Networked
     {
-
         public BaseRound CurrentRound = new PreRound();
 
         public RoundManager()

@@ -9,9 +9,7 @@ namespace ssl
     [Library("ssl")]
     public class SslGame : Game
     {
-		public static SslGame Instance { get; private set; }
-        public BaseRound Round { get; private set; } = new PreRound();
-
+        [Net]
         public SslGame()
         {
             Instance = this;
@@ -32,7 +30,6 @@ namespace ssl
         {
             if (IsClient) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Server...");
-            // Create a HUD entity. This entity is globally networked
             _ = new Hud();
         }
 
