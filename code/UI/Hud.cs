@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using Sandbox.UI;
 
 namespace ssl.UI
@@ -8,6 +9,10 @@ namespace ssl.UI
     {
         public Hud()
         {
+            if (IsServer)
+            {
+                Log.Info("SERVER UI");
+            }
             if (IsClient)
             {
                 RootPanel.AddChild<RoleSelector>();

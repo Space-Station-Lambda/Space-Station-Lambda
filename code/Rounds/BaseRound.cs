@@ -1,23 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Sandbox;
 using ssl.Player;
 
 namespace ssl.Rounds
 {
-    public abstract partial class BaseRound : Networked
+    public abstract partial class BaseRound : NetworkComponent
     {
-        public event RoundEnd RoundEndedEvent;
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public HashSet<MainPlayer> Players = new();
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
+        [Net] public string TimeLeftFormatted { get; set; }
+        
 
         public void Start()
         {
             if (Host.IsServer && RoundDuration > 0)
             {
                 RoundEndTime = Time.Now + RoundDuration;
+                TimeLeftFormatted = TimeLeft.ToString(CultureInfo.InvariantCulture);
             }
 
             OnStart();
@@ -64,12 +68,17 @@ namespace ssl.Rounds
 
         public virtual void OnSecond()
         {
-            if (Host.IsServer)
+            if ( Host.IsServer)
             {
                 if (RoundEndTime > 0 && Time.Now >= RoundEndTime)
                 {
                     RoundEndTime = 0f;
                     OnTimeUp();
+                }
+                else
+                {
+                    TimeLeftFormatted = TimeLeft.ToString(CultureInfo.InvariantCulture);
+                    Log.Info("NEw TimeLeft Formated = " + TimeLeftFormatted);
                 }
             }
         }
@@ -84,7 +93,7 @@ namespace ssl.Rounds
 
         protected virtual void OnTimeUp()
         {
-            RoundEndedEvent?.Invoke(this);
+       
         }
     }
 }

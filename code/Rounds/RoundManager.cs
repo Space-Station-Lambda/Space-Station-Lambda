@@ -2,29 +2,20 @@
 
 namespace ssl.Rounds
 {
-    public delegate void RoundEnd(BaseRound round);
-    
-    public partial class RoundManager : Networked
+    public partial class RoundManager
     {
-        public BaseRound CurrentRound = new PreRound();
+        public BaseRound CurrentRound { get; private set; }
 
         public RoundManager()
         {
-            CurrentRound.RoundEndedEvent += OnRoundEnd;
+            ChangeRound(new PreRound());
         }
 
-        public void OnRoundEnd(BaseRound round)
+        private void ChangeRound(BaseRound round)
         {
-            ChangeRound(round.Next());
-        }
-        
-        public void ChangeRound(BaseRound round)
-        {
-            CurrentRound.Finish();
-            CurrentRound.RoundEndedEvent -= OnRoundEnd;
+            CurrentRound?.Finish();
             CurrentRound = round;
-            CurrentRound.Start();
-            CurrentRound.RoundEndedEvent += OnRoundEnd;
+            CurrentRound?.Start();
         }
     }
     

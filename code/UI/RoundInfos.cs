@@ -1,4 +1,5 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Rounds;
 
@@ -18,9 +19,10 @@ namespace ssl.UI
         public override void Tick()
         {
             base.Tick();
-
-            textLabel.Text = $"{SslGame.Instance.RoundManager?.CurrentRound.RoundName}:";
-
+            BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
+            if (currentRound == null) return;
+            textLabel.Text = $"{currentRound.RoundName}:{currentRound.RoundEndTime}     ";
+            timeLabel.Text = currentRound.TimeLeftFormatted;
             //_timeLabel.SetClass("hide", isWaitingRound);
         }
     }
