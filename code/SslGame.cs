@@ -11,12 +11,10 @@ namespace ssl
     public class SslGame : Game
     {
         public static SslGame Instance { get; private set; }
-        [Net]
-        public RoundManager RoundManager { get; private set; } = new();
+        [Net] public RoundManager RoundManager { get; set; }
         public SslGame()
         {
             Instance = this;
-            RoundManager = new RoundManager();
             if (IsServer) StartServer();
             if (IsClient) StartClient();
         }
@@ -36,6 +34,7 @@ namespace ssl
             Log.Info("Launching ssl Server...");
             Log.Info("Start Round Manager...");
             Log.Info("Create HUD...");
+            RoundManager = new RoundManager();
             _ = new Hud();
         }
 

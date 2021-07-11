@@ -2,9 +2,9 @@
 
 namespace ssl.Rounds
 {
-    public partial class RoundManager
+    public partial class RoundManager : Networked
     {
-        public BaseRound CurrentRound { get; private set; }
+        [Net] public BaseRound CurrentRound { get; private set; }
 
         public RoundManager()
         {
