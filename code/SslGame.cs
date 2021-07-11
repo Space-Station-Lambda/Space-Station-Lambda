@@ -1,6 +1,7 @@
 ﻿using System;
 using Sandbox;
 using ssl.Player;
+using ssl.Rounds;
 using ssl.UI;
 
 namespace ssl
@@ -8,9 +9,12 @@ namespace ssl
     [Library("ssl")]
     public class SslGame : Game
     {
+		public static SslGame Instance { get; private set; }
+        public BaseRound Round { get; private set; } = new PreRound();
 
         public SslGame()
         {
+            Instance = this;
             if (IsServer) StartServer();
             if (IsClient) StartClient();
         }
@@ -44,5 +48,7 @@ namespace ssl
             client.Pawn = player;
             player.Respawn();
         }
+
+        
     }
 }

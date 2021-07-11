@@ -6,6 +6,7 @@ namespace ssl.Rounds
 {
     public abstract partial class BaseRound : Networked
     {
+        public event RoundEnd RoundEndedEvent;
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public HashSet<MainPlayer> Players = new();
@@ -29,18 +30,21 @@ namespace ssl.Rounds
                 RoundEndTime = 0f;
                 Players.Clear();
             }
-
             OnFinish();
         }
 
         public void AddPlayer(MainPlayer player)
         {
             Host.AssertServer();
-            if (!Players.Contains(player))
-            {
-                Players.Add(player);
-            }
+            Players.Add(player);
         }
+        public void RemovePlayer(MainPlayer player)
+        {
+            Host.AssertServer();
+            Players.Remove(player);
+        }
+
+        public abstract BaseRound Next();
 
         public virtual void OnPlayerSpawn(MainPlayer player)
         {
@@ -52,7 +56,6 @@ namespace ssl.Rounds
 
         public virtual void OnPlayerLeave(MainPlayer player)
         {
-            Players.Remove(player);
         }
 
         public virtual void OnTick()
@@ -81,6 +84,7 @@ namespace ssl.Rounds
 
         protected virtual void OnTimeUp()
         {
+            RoundEndedEvent?.Invoke(this);
         }
     }
 }
