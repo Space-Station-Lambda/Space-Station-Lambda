@@ -9,11 +9,6 @@ namespace ssl.UI
     {
         public Hud()
         {
-            if (IsServer)
-            {
-                Log.Info("SERVER UI");
-            }
-
             if (IsClient)
             {
                 RootPanel.AddChild<RoleSelector>();
