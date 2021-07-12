@@ -2,6 +2,7 @@
 
 namespace ssl.Rounds
 {
+    public delegate void RoundEndedEvent(BaseRound round);
     public partial class RoundManager : NetworkedEntityAlwaysTransmitted
     {
         public RoundManager()
@@ -14,11 +15,23 @@ namespace ssl.Rounds
 
         [Net] public BaseRound CurrentRound { get; private set; }
 
-        private void ChangeRound(BaseRound round)
+        public void OnRoundEnd(BaseRound round)
         {
-            CurrentRound?.Finish();
+            ChangeRound(round.Next());
+        }
+        
+        public void ChangeRound(BaseRound round)
+        {
+            if (CurrentRound != null)
+            {
+                CurrentRound.Finish();
+                CurrentRound.RoundEndedEvent -= OnRoundEnd;
+                Log.Info("Round " + round.RoundName + " ended");
+            }
             CurrentRound = round;
-            CurrentRound?.Start();
+            CurrentRound.Start();
+            CurrentRound.RoundEndedEvent += OnRoundEnd;
+            Log.Info("Round " + round.RoundName + " started");
         }
     }
 }

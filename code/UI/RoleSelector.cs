@@ -55,7 +55,6 @@ namespace ssl.UI
 
             public RoleIcon(Role role, Panel parent)
             {
-                StyleSheet.Load( "ui/roleicon.scss" );
                 Role = role;
                 Parent = parent;
                 Add.Label(role.Name, "role-name");
