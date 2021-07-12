@@ -1,16 +1,13 @@
 using ssl.Player;
 
-namespace ssl.Item.ItemTypes
+namespace ssl.Items.Data
 {
-    public class ItemFood : ItemCore
+    public abstract class ItemFood : Item
     {
 
-        public ItemFood(string id, string name, string model, int feedingValue) : base(id, name, "food", model, 100)
-        {
-            FeedingValue = feedingValue;
-        }
-
-        public int FeedingValue { get; private set; }
+        public abstract int FeedingValue { get; }
+        public override int MaxStack => 1;
+        public override bool DestroyOnUse => true;
 
         /// <summary>
         /// First version, food feeds up the player on use

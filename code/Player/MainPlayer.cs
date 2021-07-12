@@ -1,9 +1,8 @@
 ﻿using Sandbox;
 using ssl.Effects;
 using ssl.Gauge;
-using ssl.Item.ItemTypes;
+using ssl.Items.Data;
 using ssl.Player.Roles;
-using ssl.Status;
 
 namespace ssl.Player
 {
@@ -29,7 +28,7 @@ namespace ssl.Player
         /// <summary>
         /// Makes the player use the item.
         /// </summary>
-        public void Use(ItemCore item)
+        public void Use(Item item)
         {
             item.UsedBy(this);
         }
