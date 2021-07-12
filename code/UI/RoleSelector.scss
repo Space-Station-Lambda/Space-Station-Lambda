@@ -1,26 +1,29 @@
-﻿RoleSelector
-{
-    background-color: rgba(128, 128, 128, 0.41);
-    cursor: default;
-    position: absolute;
-    &.active {
-        pointer-events: all;
+﻿RoleSelector {
+  background-color: rgba(128, 128, 128, 0.41);
+  cursor: default;
+  position: absolute;
+  display: none;
+  &.active {
+    pointer-events: all;
+    display: inline-block;
+  }
+
+  RoleIcon {
+    background-color: rgba(#222, 0.3);
+    font-size: 30px;
+    cursor: pointer;
+    padding: 4px;
+    margin: 10px;
+
+    &.selected {
+      background-color: lightblue;
     }
-    RoleIcon
-    {
-        background-color: rgba( #222, 0.3 );
-        font-size: 30px;
-        cursor: pointer;
-        padding: 4px;
-        margin: 10px;
-        &.selected {
-            background-color: lightblue;
-        }
-        &:hover {
-            background-color: lightblue;
-            border-color: #0a61cb;
-            border: 2px;
-        }
+
+    &:hover {
+      background-color: lightblue;
+      border-color: #0a61cb;
+      border: 2px;
     }
+  }
 
 }
