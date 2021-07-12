@@ -11,7 +11,7 @@ namespace ssl
     public class SslGame : Game
     {
         public static SslGame Instance { get; private set; }
-        [Net] public RoundManager RoundManager { get; set; }
+        [Net] public RoundManager RoundManager { get; set; } = new();
         public SslGame()
         {
             Instance = this;
@@ -32,9 +32,7 @@ namespace ssl
         {
             if (IsClient) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Server...");
-            Log.Info("Start Round Manager...");
             Log.Info("Create HUD...");
-            RoundManager = new RoundManager();
             _ = new Hud();
         }
 
@@ -79,7 +77,8 @@ namespace ssl
         {
             if (IsServer)
             {
-                RoundManager.CurrentRound?.OnSecond();
+                //RoundManager.Val.A++;
+                //RoundManager.CurrentRound?.OnSecond();
             }
         }
 
@@ -87,7 +86,7 @@ namespace ssl
         {
             if (IsServer)
             {
-                RoundManager.CurrentRound?.OnTick();
+                //RoundManager.CurrentRound?.OnTick();
             }
         }
 

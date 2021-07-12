@@ -2,21 +2,22 @@
 
 namespace ssl.Rounds
 {
-    public partial class RoundManager : Networked
+    public partial class RoundManager : NetworkComponent
     {
-        [Net] public BaseRound CurrentRound { get; private set; }
-
+        //[Net] public BaseRound CurrentRound { get; private set; }
+        [Net] public TestVal Val { get; set; } = new();
         public RoundManager()
         {
-            ChangeRound(new PreRound());
+            // ChangeRound(new PreRound());
+            
         }
 
-        private void ChangeRound(BaseRound round)
-        {
-            CurrentRound?.Finish();
-            CurrentRound = round;
-            CurrentRound?.Start();
-        }
+        // private void ChangeRound(BaseRound round)
+        // {
+        //     CurrentRound?.Finish();
+        //     CurrentRound = round;
+        //     CurrentRound?.Start();
+        // }
     }
     
     
