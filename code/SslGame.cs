@@ -6,9 +6,8 @@ using ssl.UI;
 namespace ssl
 {
     [Library("ssl")]
-    public partial class SslGame : Game
+    public class SslGame : Game
     {
-        private Hud hud;
 
         public SslGame()
         {
@@ -30,7 +29,7 @@ namespace ssl
             if (IsClient) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Server...");
             // Create a HUD entity. This entity is globally networked
-            hud = new Hud();
+            _ = new Hud();
         }
 
         private void StartClient()

@@ -15,12 +15,10 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-            StatusHandler = new StatusHandler<MainPlayer>();
             GaugeHandler = new GaugeHandler();
             clothesHandler = new ClothesHandler(this);
         }
-
-        public StatusHandler<MainPlayer> StatusHandler { get; }
+        
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -43,25 +41,8 @@ namespace ssl.Player
         public override void Simulate(Client client)
         {
             base.Simulate(client);
-            //Simulate children (weapon ...)
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
-
-
-            if (Input.Pressed(InputButton.Alt2))
-            {
-                Respawn();
-            }
-
-            if (IsServer && Input.Pressed(InputButton.Attack1))
-            {
-                SetRole(new Assistant());
-            }
-
-            if (IsServer && Input.Pressed(InputButton.Attack2))
-            {
-                SetRole(new Scientist());
-            }
         }
 
         /// <summary>
@@ -79,9 +60,7 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-
-            SetRole(new Assistant());
-
+            
             base.Respawn();
         }
 
@@ -91,6 +70,7 @@ namespace ssl.Player
 
             EnableDrawing = false;
         }
+
         private void CheckControls()
         {
             if (IsServer)
