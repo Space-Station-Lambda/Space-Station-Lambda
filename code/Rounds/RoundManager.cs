@@ -43,6 +43,7 @@ namespace ssl.Rounds
         private void UpdateUi()
         {
             SslGame.Instance.Hud.RoleSelector.SetClass("active", CurrentRound is PreRound);
+            SslGame.Instance.Hud.RoleSelector.SetClass("hidden", !(CurrentRound is PreRound));
         }
     }
 }
