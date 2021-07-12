@@ -8,13 +8,13 @@ namespace ssl.Rounds
 {
     public abstract partial class BaseRound : NetworkComponent
     {
+        public HashSet<MainPlayer> Players = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
-        public HashSet<MainPlayer> Players = new();
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
-        
+
 
         public void Start()
         {
@@ -34,6 +34,7 @@ namespace ssl.Rounds
                 RoundEndTime = 0f;
                 Players.Clear();
             }
+
             OnFinish();
         }
 
@@ -42,6 +43,7 @@ namespace ssl.Rounds
             Host.AssertServer();
             Players.Add(player);
         }
+
         public void RemovePlayer(MainPlayer player)
         {
             Host.AssertServer();
@@ -68,7 +70,7 @@ namespace ssl.Rounds
 
         public virtual void OnSecond()
         {
-            if ( Host.IsServer)
+            if (Host.IsServer)
             {
                 if (RoundEndTime > 0 && Time.Now >= RoundEndTime)
                 {
@@ -78,7 +80,6 @@ namespace ssl.Rounds
                 else
                 {
                     TimeLeftFormatted = TimeLeft.ToString(CultureInfo.InvariantCulture);
-                    Log.Info("NEw TimeLeft Formated = " + TimeLeftFormatted);
                 }
             }
         }
@@ -93,7 +94,6 @@ namespace ssl.Rounds
 
         protected virtual void OnTimeUp()
         {
-       
         }
     }
 }

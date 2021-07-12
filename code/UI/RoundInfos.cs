@@ -15,11 +15,11 @@ namespace ssl.UI
             textLabel = Add.Label("", "round_label");
             timeLabel = Add.Label("", "round_time");
         }
-        
+
         public override void Tick()
         {
             base.Tick();
-            
+
             BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
             if (currentRound == null) return;
             timeLabel.Text = currentRound.TimeLeftFormatted;

@@ -13,6 +13,7 @@ namespace ssl.UI
             {
                 Log.Info("SERVER UI");
             }
+
             if (IsClient)
             {
                 RootPanel.AddChild<RoleSelector>();

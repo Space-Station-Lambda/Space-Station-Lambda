@@ -2,10 +2,8 @@
 
 namespace ssl.Rounds
 {
-    public partial class RoundManager : NetworkedEntityAlwaysTransmited
+    public partial class RoundManager : NetworkedEntityAlwaysTransmitted
     {
-        [Net] public BaseRound CurrentRound { get; private set; }
-        
         public RoundManager()
         {
             if (Host.IsServer)
@@ -13,6 +11,9 @@ namespace ssl.Rounds
                 ChangeRound(new PreRound());
             }
         }
+
+        [Net] public BaseRound CurrentRound { get; private set; }
+
         private void ChangeRound(BaseRound round)
         {
             CurrentRound?.Finish();
@@ -20,6 +21,4 @@ namespace ssl.Rounds
             CurrentRound?.Start();
         }
     }
-    
-    
 }

@@ -7,7 +7,7 @@ namespace ssl.Rounds
     {
         public override string RoundName => "Preround";
         public override int RoundDuration => 1000;
-        
+
         protected override void OnStart()
         {
             base.OnStart();
@@ -22,12 +22,12 @@ namespace ssl.Rounds
                 }
             }
         }
-        
+
         public override BaseRound Next()
         {
             return new InProgressRound();
         }
-        
+
         public override void OnPlayerSpawn(MainPlayer player)
         {
             base.OnPlayerSpawn(player);
