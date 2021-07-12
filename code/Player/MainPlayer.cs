@@ -1,11 +1,8 @@
 ﻿using Sandbox;
 using ssl.Effects;
 using ssl.Gauge;
-using ssl.Interfaces;
 using ssl.Items.Data;
-using ssl.Item.ItemTypes;
 using ssl.Player.Roles;
-using ssl.Status;
 
 namespace ssl.Player
 {
