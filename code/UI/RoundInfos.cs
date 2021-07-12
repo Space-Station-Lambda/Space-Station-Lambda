@@ -20,7 +20,7 @@ namespace ssl.UI
         public override void Tick()
         {
             base.Tick();
-            BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
+            BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
             if (currentRound == null) return;
             textLabel.Text = "[" + currentRound.RoundName + "]";
             timeLabel.Text = "Temps Restant:" + currentRound.TimeLeftFormatted;
