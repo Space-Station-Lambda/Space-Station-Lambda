@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Sandbox;
 using ssl.Player;
+using ssl.Rounds;
 using ssl.UI;
 
 namespace ssl
@@ -8,12 +10,15 @@ namespace ssl
     [Library("ssl")]
     public class SslGame : Game
     {
-
         public SslGame()
         {
+            Instance = this;
             if (IsServer) StartServer();
             if (IsClient) StartClient();
         }
+
+        public static SslGame Instance { get; private set; }
+        [Net] public RoundManager RoundManager { get; set; }
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with
@@ -28,7 +33,9 @@ namespace ssl
         {
             if (IsClient) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Server...");
-            // Create a HUD entity. This entity is globally networked
+            Log.Info("Create Round Manager...");
+            RoundManager = new RoundManager();
+            Log.Info("Create HUD...");
             _ = new Hud();
         }
 
@@ -43,6 +50,46 @@ namespace ssl
             MainPlayer player = new();
             client.Pawn = player;
             player.Respawn();
+        }
+
+        public override void PostLevelLoaded()
+        {
+            _ = StartTickTimer();
+            _ = StartSecondTimer();
+        }
+
+        public async Task StartSecondTimer()
+        {
+            while (true)
+            {
+                await Task.DelaySeconds(1);
+                OnSecond();
+            }
+        }
+
+        public async Task StartTickTimer()
+        {
+            while (true)
+            {
+                await Task.NextPhysicsFrame();
+                OnTick();
+            }
+        }
+
+        private void OnSecond()
+        {
+            if (IsServer)
+            {
+                RoundManager.CurrentRound?.OnSecond();
+            }
+        }
+
+        private void OnTick()
+        {
+            if (IsServer)
+            {
+                RoundManager.CurrentRound?.OnTick();
+            }
         }
     }
 }
