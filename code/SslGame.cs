@@ -11,7 +11,7 @@ namespace ssl
     public class SslGame : Game
     {
         public static SslGame Instance { get; private set; }
-        [Net] public RoundManager RoundManager { get; set; } = new();
+        [Net] public RoundManager RoundManager { get; set; }
         public SslGame()
         {
             Instance = this;
@@ -51,6 +51,7 @@ namespace ssl
         
         public override void PostLevelLoaded()
         {
+            RoundManager = new RoundManager();
             _ = StartTickTimer();
             _ = StartSecondTimer();
         }
@@ -77,8 +78,7 @@ namespace ssl
         {
             if (IsServer)
             {
-                //RoundManager.Val.A++;
-                //RoundManager.CurrentRound?.OnSecond();
+                RoundManager.CurrentRound?.OnSecond();
             }
         }
 
@@ -86,7 +86,7 @@ namespace ssl
         {
             if (IsServer)
             {
-                //RoundManager.CurrentRound?.OnTick();
+                RoundManager.CurrentRound?.OnTick();
             }
         }
 

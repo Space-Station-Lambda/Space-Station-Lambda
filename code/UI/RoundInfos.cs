@@ -19,12 +19,10 @@ namespace ssl.UI
         public override void Tick()
         {
             base.Tick();
-            //textLabel.Text = SslGame.Instance.RoundManager.Val.A + "";
-            //BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
-            //if (currentRound == null) return;
-            //textLabel.Text = $"{currentRound.RoundName}:{currentRound.RoundEndTime}     ";
-            //timeLabel.Text = currentRound.TimeLeftFormatted;
-            //_timeLabel.SetClass("hide", isWaitingRound);
+            
+            BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
+            if (currentRound == null) return;
+            timeLabel.Text = currentRound.TimeLeftFormatted;
         }
     }
 }
