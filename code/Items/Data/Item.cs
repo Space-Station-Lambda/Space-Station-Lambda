@@ -5,11 +5,21 @@ namespace ssl.Items.Data
 {
     public abstract class Item
     {
-        public abstract string Id { get; } 
-        public abstract string Name { get; } 
-        public abstract int MaxStack { get; } 
-        public abstract bool DestroyOnUse { get; }
-        public abstract string Model { get; }
+        protected Item(string id, string name, string model, int maxStack, bool destroyOnUse)
+        {
+            Id = id;
+            Name = name;
+            Model = model;
+            MaxStack = maxStack;
+            DestroyOnUse = destroyOnUse;
+        }
+
+        public string Id { get; protected set; } 
+        public string Name { get; protected set; }
+        public string Model { get; protected set; }
+        public int MaxStack { get; protected set; }
+        public bool DestroyOnUse { get; protected set; }
+
         /// <summary>
         /// Apply the object's effects when the user is a Player
         /// TODO : implement the destroy on use
