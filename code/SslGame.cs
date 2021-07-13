@@ -8,7 +8,7 @@ using ssl.UI;
 namespace ssl
 {
     [Library("ssl")]
-    public class SslGame : Game
+    public partial class SslGame : Game
     {
         public SslGame()
         {
