@@ -12,6 +12,7 @@ namespace ssl.UI
 
         public RoundInfos()
         {
+            StyleSheet.Load( "ui/roundinfos.scss" );
             textLabel = Add.Label("", "round_label");
             timeLabel = Add.Label("", "round_time");
         }
@@ -19,10 +20,10 @@ namespace ssl.UI
         public override void Tick()
         {
             base.Tick();
-
             BaseRound currentRound = SslGame.Instance.RoundManager?.CurrentRound;
             if (currentRound == null) return;
-            timeLabel.Text = currentRound.TimeLeftFormatted;
+            textLabel.Text = "[" + currentRound.RoundName + "]";
+            timeLabel.Text = "Temps Restant:" + currentRound.TimeLeftFormatted;
         }
     }
 }
