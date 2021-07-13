@@ -2,21 +2,21 @@ namespace ssl.Systems.Atmosphere
 {
     public class GasMovement
     {
-        private AtmosUnit atmosUnit;
-        private AtmosUnit atmosUnitSource;
-        private AtmosUnit atmosUnitTarget;
+        private readonly AtmosphericUnit atmosphericUnit;
+        private readonly AtmosphericUnit atmosphericUnitSource;
+        private readonly AtmosphericUnit atmosphericUnitTarget;
 
-        public GasMovement(AtmosUnit atmosUnitSource, AtmosUnit atmosUnitTarget, AtmosUnit atmosUnit)
+        public GasMovement(AtmosphericUnit atmosphericUnitSource, AtmosphericUnit atmosphericUnitTarget, AtmosphericUnit atmosphericUnit)
         {
-            this.atmosUnitSource = atmosUnitSource;
-            this.atmosUnitTarget = atmosUnitTarget;
-            this.atmosUnit = atmosUnit;
+            this.atmosphericUnitSource = atmosphericUnitSource;
+            this.atmosphericUnitTarget = atmosphericUnitTarget;
+            this.atmosphericUnit = atmosphericUnit;
         }
 
         public void Resolve()
         {
-            atmosUnitSource.Value -= atmosUnit.Value;
-            atmosUnitTarget.Value += atmosUnit.Value;
+            atmosphericUnitSource.Value -= atmosphericUnit.Value;
+            atmosphericUnitTarget.Value += atmosphericUnit.Value;
         }
     }
 }

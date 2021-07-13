@@ -4,6 +4,6 @@ namespace ssl.Systems.Atmosphere
 {
     public interface IGasMovementStrategy
     {
-        GasMovement GenerateGasMovement(AtmosUnit source, IEnumerable<AtmosUnit> neighbors);
+        GasMovement GenerateGasMovement(AtmosphericUnit source, IEnumerable<AtmosphericUnit> neighbors);
     }
 }

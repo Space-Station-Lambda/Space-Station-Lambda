@@ -2,7 +2,7 @@ using System;
 
 namespace ssl.Systems.Atmosphere
 {
-    public class AtmosUnit
+    public class AtmosphericUnit
     {
         public int Value;
 

@@ -6,12 +6,12 @@ namespace ssl.Systems.Atmosphere
     public class GasSimulation
     {
         private IGasMovementStrategy gasMovementStrategy = new GasMovementBasicStrategy();
-        private AtmosUnit[,] grid;
-        private Dictionary<AtmosUnit, List<AtmosUnit>> neighbors;
+        private AtmosphericUnit[,] grid;
+        private Dictionary<AtmosphericUnit, List<AtmosphericUnit>> neighbors;
 
         public GasSimulation()
         {
-            grid = new AtmosUnit[3, 3];
+            grid = new AtmosphericUnit[3, 3];
             neighbors = new();
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
@@ -25,7 +25,7 @@ namespace ssl.Systems.Atmosphere
         public void Randomize(int seed = 0)
         {
             Random random = new(seed);
-            foreach (AtmosUnit gas in grid)
+            foreach (AtmosphericUnit gas in grid)
             {
                 gas.Randomize(random.Next());
             }
@@ -55,8 +55,8 @@ namespace ssl.Systems.Atmosphere
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                AtmosUnit atmosUnit = grid[i, j];
-                GasMovement movement = gasMovementStrategy.GenerateGasMovement(atmosUnit, neighbors[atmosUnit]);
+                AtmosphericUnit atmosphericUnit = grid[i, j];
+                GasMovement movement = gasMovementStrategy.GenerateGasMovement(atmosphericUnit, neighbors[atmosphericUnit]);
                 movements.Add(movement);
             }
 
@@ -71,9 +71,9 @@ namespace ssl.Systems.Atmosphere
             }
         }
 
-        private List<AtmosUnit> GetNeighbors(int i, int j)
+        private List<AtmosphericUnit> GetNeighbors(int i, int j)
         {
-            List<AtmosUnit> gasUnits = new();
+            List<AtmosphericUnit> gasUnits = new();
 
             for (int k = i - 1; k <= i + 1; k++)
             for (int v = j - 1; v <= j + 1; v++)

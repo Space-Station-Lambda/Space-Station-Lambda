@@ -5,17 +5,17 @@ namespace ssl.Systems.Atmosphere
 {
     public class GasMovementBasicStrategy : IGasMovementStrategy
     {
-        public GasMovement GenerateGasMovement(AtmosUnit source, IEnumerable<AtmosUnit> neighbors)
+        public GasMovement GenerateGasMovement(AtmosphericUnit source, IEnumerable<AtmosphericUnit> neighbors)
         {
-            AtmosUnit target = source;
-            foreach (AtmosUnit gasUnit in neighbors.Where(gasUnit => gasUnit.Value < target.Value))
+            AtmosphericUnit target = source;
+            foreach (AtmosphericUnit gasUnit in neighbors.Where(gasUnit => gasUnit.Value < target.Value))
             {
                 target = gasUnit;
             }
 
-            AtmosUnit atmosUnitToSend = new AtmosUnit();
-            atmosUnitToSend.Value = 1;
-            return new GasMovement(source, target, atmosUnitToSend);
+            AtmosphericUnit atmosphericUnitToSend = new AtmosphericUnit();
+            atmosphericUnitToSend.Value = 1;
+            return new GasMovement(source, target, atmosphericUnitToSend);
         }
     }
 }
