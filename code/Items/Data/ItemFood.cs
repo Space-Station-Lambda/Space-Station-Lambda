@@ -7,16 +7,14 @@ namespace ssl.Items.Data
     {
         public int FeedingValue { get; private set; }
 
-        public ItemFood(string id, string name, int feedingValue)
+        public ItemFood(string id, string name, int feedingValue) : base(id, name)
         {
             Name = name;
             Id = id;
             FeedingValue = feedingValue;
+            MaxStack = 1;
         }
-
-        public override string Id { get; protected set; }
-        public override string Name { get; protected set; }
-
+        
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
