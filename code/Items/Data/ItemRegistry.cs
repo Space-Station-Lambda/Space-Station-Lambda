@@ -16,8 +16,6 @@ namespace ssl.Items.Data
 			RegisterItems();
 		}
 
-		public Item Apple => registry["item.food.apple"]; //Item shortcut example
-		
 		public void Add(Item item)
 		{
 			registry.Add(item.Id, item);
@@ -25,12 +23,15 @@ namespace ssl.Items.Data
 
 		public Item GetItemById(string id)
 		{
-			if (!registry.ContainsKey(id))
-			{
-				throw new NotImplementedException( "This item does not exist.");
-			}
+			return ContainsItem(id) ? registry[id] : null;
+		}
 
-			return registry[id];
+		/// <summary>
+		/// Checks if the specified id is registered
+		/// </summary>
+		public bool ContainsItem(string id)
+		{
+			return registry.ContainsKey(id);
 		}
 
 		/// <summary>
