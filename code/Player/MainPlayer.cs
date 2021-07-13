@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 using ssl.Effects;
-using ssl.Gauge;
+using ssl.Gauges;
 using ssl.Items.Data;
 using ssl.Player.Roles;
 
