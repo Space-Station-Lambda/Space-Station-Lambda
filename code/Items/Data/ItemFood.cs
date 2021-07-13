@@ -1,3 +1,4 @@
+using ssl.Gauges;
 using ssl.Player;
 
 namespace ssl.Items.Data
@@ -14,7 +15,7 @@ namespace ssl.Items.Data
         /// </summary>
         public override void UsedBy(MainPlayer player)
         {
-            Gauge.Gauge gauge = player.GaugeHandler.GetGauge("feeding");
+            Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)
             {
                 gauge.AddValue(FeedingValue);

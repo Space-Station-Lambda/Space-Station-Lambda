@@ -1,4 +1,4 @@
-namespace ssl.Gauge
+namespace ssl.Gauges
 {
     public class GaugeData
     {
