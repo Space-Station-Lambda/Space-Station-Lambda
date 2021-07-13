@@ -1,10 +1,10 @@
 using System;
 
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
-    public class GasUnit
+    public class AtmosphericUnit
     {
-        public int Value = 0;
+        public int Value;
 
 
         public void Randomize(int seed = 0)

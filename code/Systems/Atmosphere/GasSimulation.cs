@@ -1,22 +1,22 @@
 using System;
 using System.Collections.Generic;
 
-namespace ssl.Systems.gas
+namespace ssl.Systems.Atmosphere
 {
     public class GasSimulation
     {
         private IGasMovementStrategy gasMovementStrategy = new GasMovementBasicStrategy();
-        private GasUnit[,] grid;
-        private Dictionary<GasUnit, List<GasUnit>> neighbors;
+        private AtmosphericUnit[,] grid;
+        private Dictionary<AtmosphericUnit, List<AtmosphericUnit>> neighbors;
 
         public GasSimulation()
         {
-            grid = new GasUnit[3, 3];
-            neighbors = new();
+            grid = new AtmosphericUnit[3, 3];
+            neighbors = new Dictionary<AtmosphericUnit, List<AtmosphericUnit>>();
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                grid[i, j] = new();
+                grid[i, j] = new AtmosphericUnit();
             }
 
             GenerateNeighbors();
@@ -25,7 +25,7 @@ namespace ssl.Systems.gas
         public void Randomize(int seed = 0)
         {
             Random random = new(seed);
-            foreach (GasUnit gas in grid)
+            foreach (AtmosphericUnit gas in grid)
             {
                 gas.Randomize(random.Next());
             }
@@ -55,8 +55,8 @@ namespace ssl.Systems.gas
             for (int i = 0; i < grid.GetLength(0); i++)
             for (int j = 0; j < grid.GetLength(1); j++)
             {
-                GasUnit gasUnit = grid[i, j];
-                GasMovement movement = gasMovementStrategy.GenerateGasMovement(gasUnit, neighbors[gasUnit]);
+                AtmosphericUnit atmosphericUnit = grid[i, j];
+                GasMovement movement = gasMovementStrategy.GenerateGasMovement(atmosphericUnit, neighbors[atmosphericUnit]);
                 movements.Add(movement);
             }
 
@@ -67,13 +67,13 @@ namespace ssl.Systems.gas
         {
             foreach (GasMovement gasMovement in gasMovements)
             {
-                gasMovement.resolve();
+                gasMovement.Resolve();
             }
         }
 
-        private List<GasUnit> GetNeighbors(int i, int j)
+        private List<AtmosphericUnit> GetNeighbors(int i, int j)
         {
-            List<GasUnit> gasUnits = new();
+            List<AtmosphericUnit> gasUnits = new();
 
             for (int k = i - 1; k <= i + 1; k++)
             for (int v = j - 1; v <= j + 1; v++)
