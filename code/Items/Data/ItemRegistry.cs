@@ -13,7 +13,6 @@ namespace ssl.Items.Data
 		public ItemRegistry()
 		{
 			registry = new Dictionary<string, Item>();
-			
 			RegisterItems();
 		}
 
