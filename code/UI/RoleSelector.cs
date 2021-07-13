@@ -42,7 +42,6 @@ namespace ssl.UI
             roleSlots[currentSelected].Unselect();
             currentSelected = slot;
             roleSlots[currentSelected].Select();
-            SetClass("active", false);
         }
         
         /// <summary>
