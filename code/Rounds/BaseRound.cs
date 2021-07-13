@@ -9,6 +9,7 @@ namespace ssl.Rounds
     public abstract partial class BaseRound : NetworkComponent
     {
         public event RoundEndedEvent RoundEndedEvent;
+        
         public HashSet<MainPlayer> Players = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
