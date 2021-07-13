@@ -8,16 +8,16 @@ using ssl.UI;
 namespace ssl
 {
     [Library("ssl")]
-    public partial class SslGame : Game
+    public partial class Gamemode : Game
     {
-        public SslGame()
+        public Gamemode()
         {
             Instance = this;
             if (IsServer) StartServer();
             if (IsClient) StartClient();
         }
 
-        public static SslGame Instance { get; private set; }
+        public static Gamemode Instance { get; private set; }
         [Net] public RoundManager RoundManager { get; set; }
 
         /// <summary>
