@@ -8,7 +8,7 @@ namespace ssl.Items.Data
 
         protected Item(string id, string name)
         {
-            Id = "item" + id;
+            Id = id;
             Name = name;
         }
         public string Id { get; protected set; }
