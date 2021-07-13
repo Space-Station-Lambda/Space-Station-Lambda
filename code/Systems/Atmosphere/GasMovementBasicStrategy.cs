@@ -13,8 +13,10 @@ namespace ssl.Systems.Atmosphere
                 target = gasUnit;
             }
 
-            AtmosphericUnit atmosphericUnitToSend = new AtmosphericUnit();
-            atmosphericUnitToSend.Value = 1;
+            AtmosphericUnit atmosphericUnitToSend = new()
+            {
+                Value = 1
+            };
             return new GasMovement(source, target, atmosphericUnitToSend);
         }
     }
