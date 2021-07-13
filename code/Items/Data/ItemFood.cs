@@ -10,7 +10,7 @@ namespace ssl.Items.Data
         public ItemFood(string id, string name, int feedingValue) : base(id, name)
         {
             Name = name;
-            Id = id;
+            Id = ".food." + id;
             FeedingValue = feedingValue;
             MaxStack = 1;
         }
