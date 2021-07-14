@@ -10,14 +10,15 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private readonly ClothesHandler clothesHandler;
-        public Role Role { get; set; }
 
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
             clothesHandler = new ClothesHandler(this);
         }
-        
+
+        public Role Role { get; private set; }
+
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -59,9 +60,9 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-            
+
             InitRole();
-            
+
             base.Respawn();
         }
 
@@ -70,6 +71,12 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+        }
+        
+        public void AssignRole(Role role)
+        {
+            Role = role;
+            Log.Info("Role " + role.Name + " selected");
         }
 
         private void CheckControls()
@@ -97,17 +104,10 @@ namespace ssl.Player
         {
         }
 
-        public void AssignRole(Role role)
-        {
-            Role = role;
-            Log.Info("Role " + role.Name + " selected");
-        }
-        
         [ClientRpc]
-        public void InitRole()
+        private void InitRole()
         {
-            if (Role != null) clothesHandler.AttachClothes(Role.Clothing);
-            else Log.Warning("Bad role");
+            clothesHandler.AttachClothes(Role.Clothing);
         }
     }
 }
