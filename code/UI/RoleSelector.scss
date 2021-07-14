@@ -6,6 +6,10 @@
     &.active {
         pointer-events: all;
     }
+    &.hidden {
+        pointer-events: none;
+        display: none;
+    }
     RoleIcon
     {
         background-color: rgba( #222, 0.3 );
@@ -22,5 +26,4 @@
             border: 2px;
         }
     }
-
 }

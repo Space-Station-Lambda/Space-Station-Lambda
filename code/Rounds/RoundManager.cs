@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.UI;
 
 namespace ssl.Rounds
 {
@@ -13,8 +14,13 @@ namespace ssl.Rounds
             }
         }
 
-        [Net] public BaseRound CurrentRound { get; private set; }
+        [Net, OnChangedCallback] public BaseRound CurrentRound { get; private set; }
 
+        public void OnCurrentRoundChanged()
+        {
+            UpdateUi();
+        }
+        
         public void OnRoundEnd(BaseRound round)
         {
             ChangeRound(round.Next());
@@ -32,6 +38,12 @@ namespace ssl.Rounds
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
             Log.Info("Round " + round.RoundName + " started");
+        }
+
+        private void UpdateUi()
+        {
+            SslGame.Instance.Hud.RoleSelector.SetClass("active", CurrentRound is PreRound);
+            SslGame.Instance.Hud.RoleSelector.SetClass("hidden", !(CurrentRound is PreRound));
         }
     }
 }
