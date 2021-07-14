@@ -19,7 +19,6 @@ namespace ssl.UI
         
         public RoleSelector()
         {
-            //StyleSheet.Load( "UI/RoleSelector.scss" );
             SetClass("active", true);
             rolesSelected.Add(new RoleIcon(new Assistant(), this), true);
             rolesSelected.Add(new RoleIcon(new Janitor(), this), false);
@@ -51,7 +50,7 @@ namespace ssl.UI
             }
             else
             {
-                roleIcon.Unselect();
+                roleIcon.Select();
                 rolesSelected[roleIcon] = true;
             }
         }
