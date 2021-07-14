@@ -65,7 +65,7 @@ namespace ssl.UI
             public void Select()
             {
                 SetClass("selected", true);
-                ((MainPlayer) Local.Client.Pawn).SetRole(Role); //TODO improve the methode for retrieve the client with the UI.
+                ((MainPlayer) Local.Client.Pawn).AssignRole(Role); //TODO improve the methode for retrieve the client with the UI.
             }
             
             /// <summary>

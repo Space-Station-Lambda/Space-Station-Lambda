@@ -6,11 +6,11 @@ using ssl.Player.Roles;
 
 namespace ssl.Player
 {
-    public class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
+    public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
-        private ClothesHandler clothesHandler;
-        public Role Role;
+        private readonly ClothesHandler clothesHandler;
+        public Role Role { get; set; }
 
         public MainPlayer()
         {
@@ -60,6 +60,8 @@ namespace ssl.Player
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
             
+            InitRole();
+            
             base.Respawn();
         }
 
@@ -95,9 +97,17 @@ namespace ssl.Player
         {
         }
 
-        public void SetRole(Role role)
+        public void AssignRole(Role role)
         {
-            clothesHandler.AttachClothes(role.Clothing);
+            Role = role;
+            Log.Info("Role " + role.Name + " selected");
+        }
+        
+        [ClientRpc]
+        public void InitRole()
+        {
+            if (Role != null) clothesHandler.AttachClothes(Role.Clothing);
+            else Log.Warning("Bad role");
         }
     }
 }
