@@ -11,24 +11,29 @@ namespace ssl.UI
     /// <summary>
     /// Role selector allow player to select a role
     /// </summary>
+    [UseTemplate]
     public class RoleSelector : Panel
     {
-        private readonly List<RoleIcon> roleSlots = new();
+        private readonly Dictionary<RoleIcon, bool> rolesSelected = new();
         private int currentSelected;
         
         public RoleSelector()
         {
-            StyleSheet.Load( "UI/RoleSelector.scss" );
+            //StyleSheet.Load( "UI/RoleSelector.scss" );
             SetClass("active", true);
-            roleSlots.Add(new RoleIcon(new Assistant(), this));
-            roleSlots.Add(new RoleIcon(new Scientist(), this));
-            roleSlots.Add(new RoleIcon(new Janitor(), this));
-            for (int i = 0; i < roleSlots.Count; i++)
+            rolesSelected.Add(new RoleIcon(new Assistant(), this), true);
+            rolesSelected.Add(new RoleIcon(new Janitor(), this), false);
+            rolesSelected.Add(new RoleIcon(new Scientist(), this), false);
+            rolesSelected.Add(new RoleIcon(new Guard(), this), false);
+            rolesSelected.Add(new RoleIcon(new Captain(), this), false);
+            rolesSelected.Add(new RoleIcon(new Mechanic(), this), false);
+            rolesSelected.Add(new RoleIcon(new Engineer(), this), false);
+            rolesSelected.Add(new RoleIcon(new Traitor(), this), false);
+            foreach (RoleIcon roleIcon in rolesSelected.Keys)
             {
-                int slotToSelect = i;
-                roleSlots[i].AddEventListener("onclick", () =>
+                roleIcon.AddEventListener("onclick", () =>
                 {
-                    Select(slotToSelect);
+                    Select(roleIcon);
                 });
             }
         }
@@ -36,12 +41,19 @@ namespace ssl.UI
         /// <summary>
         /// Select a specific role
         /// </summary>
-        /// <param name="slot">Slot to select</param>
-        public void Select(int slot)
+        /// <param name="roleIcon">Slot to select</param>
+        public void Select(RoleIcon roleIcon)
         {
-            roleSlots[currentSelected].Unselect();
-            currentSelected = slot;
-            roleSlots[currentSelected].Select();
+            if (rolesSelected[roleIcon])
+            {
+                roleIcon.Unselect();
+                rolesSelected[roleIcon] = false;
+            }
+            else
+            {
+                roleIcon.Unselect();
+                rolesSelected[roleIcon] = true;
+            }
         }
         
         /// <summary>

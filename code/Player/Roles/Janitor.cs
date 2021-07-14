@@ -4,7 +4,7 @@ namespace ssl.Player.Roles
 {
     public class Janitor : Role
     {
-        public override string Id => "role.janitor";
+        public override string Id => "janitor";
         public override string Name => "Janitor";
         public override string Description => "Janitor";
 
