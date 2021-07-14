@@ -18,6 +18,7 @@ namespace ssl
         }
 
         public static Gamemode Instance { get; private set; }
+        [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
 
         /// <summary>
@@ -36,7 +37,7 @@ namespace ssl
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
-            _ = new Hud();
+            Hud = new Hud();
         }
 
         private void StartClient()
