@@ -6,18 +6,19 @@ using ssl.Player.Roles;
 
 namespace ssl.Player
 {
-    public class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
+    public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
-        private ClothesHandler clothesHandler;
-        public Role Role;
+        private readonly ClothesHandler clothesHandler;
 
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
             clothesHandler = new ClothesHandler(this);
         }
-        
+
+        public Role Role { get; private set; }
+
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -59,7 +60,9 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-            
+
+            InitRole();
+
             base.Respawn();
         }
 
@@ -68,6 +71,12 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+        }
+        
+        public void AssignRole(Role role)
+        {
+            Role = role;
+            Log.Info("Role " + role.Name + " selected");
         }
 
         private void CheckControls()
@@ -95,9 +104,10 @@ namespace ssl.Player
         {
         }
 
-        public void SetRole(Role role)
+        [ClientRpc]
+        private void InitRole()
         {
-            clothesHandler.AttachClothes(role.Clothing);
+            clothesHandler.AttachClothes(Role.Clothing);
         }
     }
 }

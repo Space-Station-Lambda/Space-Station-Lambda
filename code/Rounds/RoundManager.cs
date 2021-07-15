@@ -32,18 +32,18 @@ namespace ssl.Rounds
             {
                 CurrentRound.Finish();
                 CurrentRound.RoundEndedEvent -= OnRoundEnd;
-                Log.Info("Round " + round.RoundName + " ended");
+                Log.Info("Round " + CurrentRound.RoundName + " ended");
             }
             CurrentRound = round;
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
-            Log.Info("Round " + round.RoundName + " started");
+            Log.Info("Round " + CurrentRound.RoundName + " started");
         }
 
         private void UpdateUi()
         {
             Gamemode.Instance.Hud.RoleSelector.SetClass("active", CurrentRound is PreRound);
-            Gamemode.Instance.Hud.RoleSelector.SetClass("hidden", !(CurrentRound is PreRound));
+            Gamemode.Instance.Hud.RoleSelector.SetClass("hidden", CurrentRound is not PreRound);
         }
     }
 }

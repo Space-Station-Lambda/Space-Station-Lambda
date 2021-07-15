@@ -8,21 +8,6 @@ namespace ssl.Rounds
         public override string RoundName => "Preround";
         public override int RoundDuration => 10;
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            if (Host.IsServer)
-            {
-                foreach (Client client in Client.All)
-                {
-                    if (client.Pawn is MainPlayer player)
-                    {
-                        player.Respawn();
-                    }
-                }
-            }
-        }
-
         public override BaseRound Next()
         {
             return new InProgressRound();

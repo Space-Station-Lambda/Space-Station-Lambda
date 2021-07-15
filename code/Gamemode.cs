@@ -50,7 +50,6 @@ namespace ssl
         {
             MainPlayer player = new();
             client.Pawn = player;
-            player.Respawn();
         }
 
         public override void PostLevelLoaded()
