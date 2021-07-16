@@ -1,10 +1,15 @@
 ﻿using System;
+using Sandbox;
 using ssl.Items.Data;
 
 namespace ssl.Items
 {
-    public class ItemStack
+    public class ItemStack : BaseCarriable
     {
+        
+        public ItemStack()
+        {
+        }
         public ItemStack(Item item, int amount = 1)
         {
             Item = item;

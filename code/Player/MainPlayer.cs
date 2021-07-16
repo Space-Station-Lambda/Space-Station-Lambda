@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using ssl.Effects;
 using ssl.Gauges;
+using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player.Roles;
 
@@ -14,11 +15,13 @@ namespace ssl.Player
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
+            Inventory = new Inventory(10);
             clothesHandler = new ClothesHandler(this);
         }
 
         public Role Role { get; private set; }
-
+        public Inventory Inventory { get; private set; }
+        public Item Holding { get; private set; }
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -43,6 +46,7 @@ namespace ssl.Player
             base.Simulate(client);
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
+            SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
         }
 
         /// <summary>
@@ -62,8 +66,12 @@ namespace ssl.Player
             EnableShadowInFirstPerson = true;
 
             InitRole();
-
+            
             base.Respawn();
+            
+            // ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
+            // i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
+            // i.ActiveStart(this);
         }
 
         public override void OnKilled()
