@@ -46,7 +46,6 @@ namespace ssl.Player
             base.Simulate(client);
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
-            SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
         }
 
         /// <summary>
@@ -64,14 +63,17 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-
+            
+            ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
+            i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
+            //i.Spawn();
+            i.OnCarryStart(this);
+            i.ActiveStart(this);
             InitRole();
             
-            base.Respawn();
+           
             
-            // ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
-            // i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
-            // i.ActiveStart(this);
+            base.Respawn();
         }
 
         public override void OnKilled()
