@@ -12,11 +12,16 @@ namespace ssl.Items.Data
             Name = name;
             Model = model;
         }
+        
+        protected Item(string id, string name, string model) : this(id, name)
+        {
+            Model = model;
+        }
         public string Id { get; protected set; }
         public string Name { get; protected set; }
         public string Model { get; protected set; } =  ""; //Find default model
-        public int MaxStack{ get; protected set; } =  99; //Default max stack 
-        public bool DestroyOnUse { get; protected set; } = false;
+        public virtual int MaxStack{ get; protected set; } =  99; //Default max stack 
+        public virtual bool DestroyOnUse { get; protected set; } = false;
 
         /// <summary>
         /// Apply the object's effects when the user is a Player
