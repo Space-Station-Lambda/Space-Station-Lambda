@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Sandbox;
+using ssl.Items.Data;
 using ssl.Player;
 using ssl.Rounds;
 using ssl.UI;
@@ -18,6 +19,8 @@ namespace ssl
         }
 
         public static Gamemode Instance { get; private set; }
+        
+        public ItemRegistry ItemRegistery { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
 
@@ -44,6 +47,7 @@ namespace ssl
         {
             if (IsServer) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Client...");
+            ItemRegistery = new ItemRegistry();
         }
 
         private void SpawnPlayer(Client client)

@@ -10,6 +10,7 @@ namespace ssl.Items
         public ItemStack()
         {
         }
+        
         public ItemStack(Item item, int amount = 1)
         {
             Item = item;

@@ -21,7 +21,7 @@ namespace ssl.Player
 
         public Role Role { get; private set; }
         public Inventory Inventory { get; private set; }
-        public Item Holding { get; private set; }
+        public ItemStack Holding { get; private set; }
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -64,14 +64,7 @@ namespace ssl.Player
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
             
-            ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
-            i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
-            //i.Spawn();
-            i.OnCarryStart(this);
-            i.ActiveStart(this);
             InitRole();
-            
-           
             
             base.Respawn();
         }
@@ -114,10 +107,25 @@ namespace ssl.Player
         {
         }
 
+        public void SetHolding(int slot)
+        {
+            ItemStack itemStack = Inventory.Items[slot];
+            Holding?.ActiveEnd(this, true);
+            Holding = itemStack;
+            //ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
+            //i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
+            Log.Info("Hold " + Holding?.Item.Name);
+            Holding?.SetModel(Holding.Item.Model);
+            Holding?.OnCarryStart(this);
+            Holding?.ActiveStart(this);
+        }
+
         [ClientRpc]
         private void InitRole()
         {
             clothesHandler.AttachClothes(Role.Clothing);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.vine")), 4);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.coffee")), 3);
         }
     }
 }

@@ -40,7 +40,8 @@ namespace ssl.Items.Data
 		/// </summary>
 		private void RegisterItems()
 		{
-			Add(new ItemFood("food.apple", "Apple", 10)); //Item registration Example
+			Add(new ItemFood("food.coffee", "Apple", 10, "weapons/rust_pistol/rust_pistol.vmdl")); //Item registration Example
+			Add(new ItemFood("food.vine", "Vine", 5, "weapons/rust_pistol/rust_pistol.vmdl")); //Item registration Example
 		}
 	}
 }
