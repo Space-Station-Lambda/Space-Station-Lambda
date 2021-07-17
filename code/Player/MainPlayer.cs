@@ -20,8 +20,8 @@ namespace ssl.Player
         }
 
         public Role Role { get; private set; }
-        public Inventory Inventory { get; private set; }
-        public ItemStack Holding { get; private set; }
+        [Net] public new Inventory Inventory { get; }
+        public ItemStack Holding { get; set; }
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
@@ -65,8 +65,13 @@ namespace ssl.Player
             EnableShadowInFirstPerson = true;
             
             InitRole();
-            
+
             base.Respawn();
+            
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.vine")), 4);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.coffee")), 1);
+
+
         }
 
         public override void OnKilled()
@@ -107,25 +112,26 @@ namespace ssl.Player
         {
         }
 
-        public void SetHolding(int slot)
+        [ServerCmd( "set_inventory_holding" )]
+        public static void SetInventoryHolding( int slot )
         {
-            ItemStack itemStack = Inventory.Items[slot];
-            Holding?.ActiveEnd(this, true);
-            Holding = itemStack;
-            //ItemStack i = new ItemStack(new ItemFood("apple", "test", 10));
-            //i.SetModel("weapons/rust_pistol/rust_pistol.vmdl");
-            Log.Info("Hold " + Holding?.Item.Name);
-            Holding?.SetModel(Holding.Item.Model);
-            Holding?.OnCarryStart(this);
-            Holding?.ActiveStart(this);
+            MainPlayer target = (MainPlayer) ConsoleSystem.Caller.Pawn;
+            if ( target == null ) return;
+            ItemStack itemStack = target.Inventory.Items[slot];
+            target.Holding?.ActiveEnd(target,false );
+            target.Holding = itemStack;
+            target.Holding?.SetModel(target.Holding.Item.Model);
+            target.Holding?.OnCarryStart(target);
+            target.Holding?.ActiveStart(target);
+            
         }
 
         [ClientRpc]
         private void InitRole()
         {
+            Log.Info("Server ?" + Host.IsServer);
+            
             clothesHandler.AttachClothes(Role.Clothing);
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.vine")), 4);
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.coffee")), 3);
         }
     }
 }

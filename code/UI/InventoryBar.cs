@@ -29,9 +29,7 @@ namespace ssl.UI
             if (selected < 0) selected = 9;
             if (selected > 9) selected = 0;
             icons[selected].SetClass("selected", true);
-            
-            MainPlayer player = (MainPlayer)Local.Pawn;
-            player?.SetHolding(slot);
+            ConsoleSystem.Run( "set_inventory_holding", selected );
         }
 
         [Event( "buildinput" )]
