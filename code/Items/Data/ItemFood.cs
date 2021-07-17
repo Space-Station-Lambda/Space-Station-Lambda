@@ -7,13 +7,12 @@ namespace ssl.Items.Data
     {
         public int FeedingValue { get; private set; }
 
-        public ItemFood(string id, string name, int feedingValue, string model) : base(id, name)
+        public ItemFood(string id, string name, int feedingValue, string model) : base(id, name, model)
         {
             Name = name;
             Id = id;
             FeedingValue = feedingValue;
             MaxStack = 1;
-            Model = model;
         }
         
         /// <summary>
