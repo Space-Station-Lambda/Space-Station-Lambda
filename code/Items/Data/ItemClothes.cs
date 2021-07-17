@@ -5,7 +5,6 @@ namespace ssl.Items.Data
     public class ItemClothes : Item
     {
 
-        
         public ItemClothes(string id, string name, string model) : base(id, name)
         {
             Model = model;
