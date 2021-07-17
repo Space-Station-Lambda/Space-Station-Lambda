@@ -10,12 +10,13 @@ namespace ssl.Player
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
+        private const int MaxInventoryCapacity = 10;
         private readonly ClothesHandler clothesHandler;
 
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
-            Inventory = new Inventory(10);
+            Inventory = new Inventory(MaxInventoryCapacity);
             clothesHandler = new ClothesHandler(this);
         }
 
@@ -87,10 +88,10 @@ namespace ssl.Player
             base.Respawn();
             
             //Current add items for testing purpose. 
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("weapon.pistol")), 4);
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.wine")), 1);
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.apple")), 6);
-            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistery.GetItemById("food.hotdog")), 9);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol")), 4);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.wine")), 1);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.apple")), 6);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.hotdog")), 9);
         }
 
         public override void OnKilled()
