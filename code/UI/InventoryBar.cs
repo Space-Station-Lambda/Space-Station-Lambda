@@ -9,7 +9,6 @@ namespace ssl.UI
     public class InventoryBar : Panel
     {
         private int selected;
-        
         private InventoryIcon[] icons = new InventoryIcon[10];
         
         public InventoryBar()
@@ -30,8 +29,7 @@ namespace ssl.UI
             if (selected < 0) selected = 9;
             if (selected > 9) selected = 0;
             icons[selected].SetClass("selected", true);
-            
-            //TODO some stuff with selected item ((MainPlayer)Local.Pawn).Inventory.Active
+            ConsoleSystem.Run( "set_inventory_holding", selected );
         }
 
         [Event( "buildinput" )]

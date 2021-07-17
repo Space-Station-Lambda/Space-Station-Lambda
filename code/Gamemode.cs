@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Sandbox;
+using ssl.Items.Data;
 using ssl.Player;
 using ssl.Rounds;
 using ssl.UI;
@@ -18,6 +19,8 @@ namespace ssl
         }
 
         public static Gamemode Instance { get; private set; }
+        
+        [Net] public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
 
@@ -38,6 +41,7 @@ namespace ssl
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
             Hud = new Hud();
+            ItemRegistry = new ItemRegistry();
         }
 
         private void StartClient()

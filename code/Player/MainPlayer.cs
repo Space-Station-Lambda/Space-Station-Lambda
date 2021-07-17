@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using ssl.Effects;
 using ssl.Gauges;
+using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player.Roles;
 
@@ -9,18 +10,38 @@ namespace ssl.Player
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
     {
         private const string Model = "models/citizen/citizen.vmdl";
+        private const int MaxInventoryCapacity = 10;
         private readonly ClothesHandler clothesHandler;
 
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
+            Inventory = new Inventory(MaxInventoryCapacity);
             clothesHandler = new ClothesHandler(this);
         }
 
         public Role Role { get; private set; }
-
+        [Net] public new Inventory Inventory { get; }
+        [Net] public ItemStack Holding { get; set; }
         public GaugeHandler GaugeHandler { get; }
-
+        
+        /// <summary>
+        /// When the player change selected slot
+        /// </summary>
+        /// <param name="slot">The current slot sleected</param>
+        [ServerCmd("set_inventory_holding")]
+        public static void SetInventoryHolding(int slot)
+        {
+            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            if (target == null) return;
+            ItemStack itemStack = target.Inventory.Items[slot];
+            target.Holding?.ActiveEnd(target, false);
+            target.Holding = itemStack;
+            target.Holding?.SetModel(target.Holding.Item.Model);
+            target.Holding?.OnCarryStart(target);
+            target.Holding?.ActiveStart(target);
+        }
+        
         public void Apply(Effect<MainPlayer> effect)
         {
             effect.Trigger(this);
@@ -64,6 +85,12 @@ namespace ssl.Player
             InitRole();
 
             base.Respawn();
+            
+            //Current add items for testing purpose. 
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol")), 4);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.wine")), 1);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.apple")), 6);
+            Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.hotdog")), 9);
         }
 
         public override void OnKilled()
@@ -72,7 +99,7 @@ namespace ssl.Player
 
             EnableDrawing = false;
         }
-        
+
         public void AssignRole(Role role)
         {
             Role = role;
@@ -104,9 +131,12 @@ namespace ssl.Player
         {
         }
 
+
         [ClientRpc]
         private void InitRole()
         {
+            Log.Info("Server ?" + Host.IsServer);
+
             clothesHandler.AttachClothes(Role.Clothing);
         }
     }
