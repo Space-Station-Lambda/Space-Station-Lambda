@@ -5,16 +5,19 @@ namespace ssl.Items.Data
 {
     public class ItemFood : Item
     {
-        public int FeedingValue { get; private set; }
 
         public ItemFood(string id, string name, int feedingValue, string model) : base(id, name, model)
         {
             Name = name;
             Id = id;
             FeedingValue = feedingValue;
-            MaxStack = 1;
         }
         
+        public int FeedingValue { get; }
+        public override int MaxStack => 1;
+        public override bool DestroyOnUse => true;
+
+
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>

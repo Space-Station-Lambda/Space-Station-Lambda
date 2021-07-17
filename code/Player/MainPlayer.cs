@@ -135,9 +135,7 @@ namespace ssl.Player
         [ClientRpc]
         private void InitRole()
         {
-            Log.Info("Server ?" + Host.IsServer);
-
-            clothesHandler.AttachClothes(Role.Clothing);
+            ClothesHandler.AttachClothes(Role.Clothing);
         }
     }
 }
