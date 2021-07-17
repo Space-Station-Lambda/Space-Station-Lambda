@@ -20,7 +20,7 @@ namespace ssl.Items.Data
         public string Id { get; protected set; }
         public string Name { get; protected set; }
         public string Model { get; protected set; } =  ""; //Find default model
-        public virtual int MaxStack{ get; protected set; } =  99; //Default max stack 
+        public virtual int MaxStack { get; protected set; } =  99; //Default max stack 
         public virtual bool DestroyOnUse { get; protected set; } = false;
 
         /// <summary>
