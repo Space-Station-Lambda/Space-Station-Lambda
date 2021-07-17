@@ -23,7 +23,6 @@ namespace ssl.Player
         [Net] public new Inventory Inventory { get; }
         [Net] public ItemStack Holding { get; set; }
         public GaugeHandler GaugeHandler { get; }
-
         
         /// <summary>
         /// When the player change selected slot
