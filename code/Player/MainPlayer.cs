@@ -11,13 +11,13 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
-        private readonly ClothesHandler clothesHandler;
+        public readonly ClothesHandler ClothesHandler;
 
         public MainPlayer()
         {
             GaugeHandler = new GaugeHandler();
             Inventory = new Inventory(MaxInventoryCapacity);
-            clothesHandler = new ClothesHandler(this);
+            ClothesHandler = new ClothesHandler(this);
         }
 
         public Role Role { get; private set; }

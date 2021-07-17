@@ -6,11 +6,10 @@ namespace ssl.Items.Data
     public abstract class Item
     {
 
-        protected Item(string id, string name, string model)
+        protected Item(string id, string name)
         {
             Id = id;
             Name = name;
-            Model = model;
         }
         
         protected Item(string id, string name, string model) : this(id, name)
