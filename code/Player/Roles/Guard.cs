@@ -2,11 +2,11 @@
 
 namespace ssl.Player.Roles
 {
-    public class Assistant : Role
+    public class Guard : Role
     {
-        public override string Id => "assistant";
-        public override string Name => "Assistant";
-        public override string Description => "Assistant";
+        public override string Id => "guard";
+        public override string Name => "Guard";
+        public override string Description => "Guard";
 
         public override HashSet<string> Clothing => new()
         {

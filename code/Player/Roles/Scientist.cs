@@ -4,7 +4,7 @@ namespace ssl.Player.Roles
 {
     public class Scientist : Role
     {
-        public override string Id => "role.scientist";
+        public override string Id => "scientist";
         public override string Name => "Scientist";
         public override string Description => "Scientist";
 

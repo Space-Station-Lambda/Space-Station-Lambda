@@ -1,8 +1,10 @@
-﻿RoleSelector
+RoleSelector
 {
     background-color: darkcyan;
     cursor: default;
     position: absolute;
+    flex-direction: row;
+    flex-wrap: wrap;
     &.active {
         pointer-events: all;
         height: 100%;
@@ -17,8 +19,8 @@
         background-color: rgba( #222, 0.3 );
         font-size: 30px;
         cursor: pointer;
-        height: 50px;
-        width: 200px;
+        height: 300px;
+        width: 150px;
         padding: 4px;
         margin: 10px;
         &.selected {
