@@ -18,5 +18,19 @@ namespace ssl.Rounds
             base.OnPlayerSpawn(player);
             AddPlayer(player);
         }
+
+        protected override void OnFinish()
+        {
+            base.OnFinish();
+            AssignRoles();
+        }
+
+        private void AssignRoles()
+        {
+            foreach (MainPlayer mainPlayer in Players)
+            {
+                mainPlayer.RoleHandler.AssignRandomRole();
+            }
+        }
     }
 }
