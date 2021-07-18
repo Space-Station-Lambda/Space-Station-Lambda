@@ -1,6 +1,6 @@
 RoleSelector
 {
-    background-color: darkcyan;
+    background-color: black;
     cursor: default;
     position: absolute;
     flex-direction: row;
@@ -16,7 +16,7 @@ RoleSelector
     }
     RoleIcon
     {
-        background-color: rgba( #222, 0.3 );
+        background-color: whitesmoke;
         font-size: 30px;
         cursor: pointer;
         height: 300px;
