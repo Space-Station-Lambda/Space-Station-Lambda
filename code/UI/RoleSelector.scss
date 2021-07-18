@@ -1,38 +1,35 @@
-RoleSelector {
-  background-color: darkcyan;
-  cursor: default;
-  position: absolute;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  &.active {
-    pointer-events: all;
-    height: 100%;
-    width: 100%;
-  }
-
-  &.hidden {
-    pointer-events: none;
-    display: none;
-  }
-
-  RoleIcon {
-    background-color: rgba(#222, 0.3);
-    font-size: 30px;
-    cursor: pointer;
-    height: 300px;
-    width: 150px;
-    padding: 4px;
-    margin: 10px;
-
-    &.selected {
-      background-color: lightblue;
+RoleSelector
+{
+    background-color: black;
+    cursor: default;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &.active {
+        pointer-events: all;
+        height: 100%;
+        width: 100%;
     }
-
-    &:hover {
-      background-color: lightblue;
-      border-color: #0a61cb;
-      border: 2px;
+    &.hidden {
+        pointer-events: none;
+        display: none;
     }
-  }
+    RoleIcon
+    {
+        background-color: whitesmoke;
+        font-size: 30px;
+        cursor: pointer;
+        height: 300px;
+        width: 150px;
+        padding: 4px;
+        margin: 10px;
+        &.selected {
+            background-color: lightblue;
+        }
+        &:hover {
+            background-color: lightblue;
+            border-color: #0a61cb;
+            border: 2px;
+        }
+    }
 }
