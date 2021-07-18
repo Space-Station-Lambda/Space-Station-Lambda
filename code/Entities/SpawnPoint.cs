@@ -15,6 +15,12 @@ namespace ssl.Entities
     {
         [Property(Title = "Role filter")] public string RoleFilter { get; set; } = "";
 
+        public override void OnActive()
+        {
+            base.OnActive();
+            Tags.Add("spawnpoint");
+        }
+
         /// <summary>
         /// Checks if a player with a specific role can spawn on this SpawnPoint
         /// </summary>
