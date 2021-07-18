@@ -15,14 +15,17 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-            GaugeHandler = new GaugeHandler();
-            Inventory = new Inventory(MaxInventoryCapacity);
-            ClothesHandler = new ClothesHandler(this);
+            if (Host.IsServer)
+            {
+                GaugeHandler = new GaugeHandler();
+                Inventory = new Inventory(MaxInventoryCapacity);
+                ClothesHandler = new ClothesHandler(this);
+            }
         }
 
         public Role Role { get; private set; }
-        [Net] public new Inventory Inventory { get; }
-        [Net] public ItemStack Holding { get; set; }
+        [Net] public new Inventory Inventory { get; private set; }
+        [Net] public ItemStack Holding { get; private set; }
         public GaugeHandler GaugeHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)

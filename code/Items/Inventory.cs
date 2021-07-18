@@ -1,20 +1,32 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using Sandbox;
 
 namespace ssl.Items
 {
-    public class Inventory
+    public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
         private ItemFilter filter;
 
+        public Inventory()
+        {
+            
+        }
+        
         public Inventory(int size)
         {
-            Items = new ItemStack[size];
+            Items = new List<ItemStack>(size);
+            for (int i = 0; i < size; i++)
+            {
+                Items.Add(null);
+            }
             filter = new ItemFilter();
         }
 
-        public ItemStack[] Items { get; }
+        [Net] public List<ItemStack> Items { get; private set; }
 
-        public int SlotsCount => Items.Length;
+        public int SlotsCount => Items.Count;
 
         public int SlotsLeft
         {
@@ -130,7 +142,7 @@ namespace ssl.Items
         /// It checks for the same reference and not only the same item.
         public bool IsPresent(ItemStack itemStack)
         {
-            return Array.IndexOf(Items, itemStack) > -1;
+            return Items.IndexOf(itemStack) > -1;
         }
     }
 }
