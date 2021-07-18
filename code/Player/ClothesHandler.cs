@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Sandbox;
+using ssl.Items.Data;
 
 namespace ssl.Player
 {
@@ -10,11 +11,7 @@ namespace ssl.Player
     /// </summary>
     public class ClothesHandler
     {
-        /// <summary>
-        /// List of current clothes.
-        /// </summary>
-        private readonly List<ModelEntity> clothesList = new();
-
+        private readonly Dictionary<ClothesSlot, List<Clothes>> clothesDictionary = new();
         /// <summary>
         /// Player concerned.
         /// </summary>
@@ -35,30 +32,40 @@ namespace ssl.Player
             if (strip) Strip();
             foreach (string c in clothesSet)
             {
-                AttachClothes(c, false);
+                AttachClothes(c,ClothesSlot.None);
             }
         }
 
         /// <summary>
         /// Attach a piece of clothes to the player
         /// </summary>
-        /// <param name="clothesPart">Name of the clothes</param>
-        /// <param name="strip">If true, strip the player before add clothes</param>
-        public void AttachClothes(string clothes, bool strip = true)
+        /// <param name="clothes">Name of the clothes</param>
+        /// <param name="slot">Slot concerned</param>
+        public void AttachClothes(string clothes, ClothesSlot slot = ClothesSlot.None)
         {
-            AttachClothes(new Clothes(clothes), false);
+            AttachClothes(new Clothes(clothes),slot);
         }
 
         /// <summary>
         /// Attach a piece of clothes to the player
         /// </summary>
-        /// <param name="clothesPart">Concerned clothes</param>
-        /// <param name="strip">If true, strip the player before add clothes</param>
-        public void AttachClothes(Clothes clothes, bool strip = true)
+        /// <param name="clothes">Concerned clothes</param>
+        /// <param name="slot">Slot concerned</param>
+        public void AttachClothes(Clothes clothes, ClothesSlot slot = ClothesSlot.None)
         {
-            if (strip) Strip();
             clothes.SetParent(player, true);
-            clothesList.Add(clothes);
+            //If the slot is not none, strip the slot
+            if (slot != ClothesSlot.None)
+            {
+                Strip(slot);
+            }
+
+            if (!clothesDictionary.ContainsKey(slot))
+            {
+                clothesDictionary.Add(slot, new List<Clothes>());
+            }
+            clothesDictionary[slot].Add(clothes);
+           
         }
 
         /// <summary>
@@ -66,12 +73,26 @@ namespace ssl.Player
         /// </summary>
         public void Strip()
         {
-            foreach (ModelEntity c in clothesList)
+            foreach (List<Clothes> clothesList in clothesDictionary.Values)
             {
-                c.Delete();
+                foreach (Clothes clothes in clothesList)
+                {
+                    clothes.Delete();
+                }
             }
-
-            clothesList.Clear();
+            clothesDictionary.Clear();
+        }
+        
+        public void Strip(ClothesSlot slot)
+        {
+            foreach ((ClothesSlot key, List<Clothes> value) in clothesDictionary.Where(keyValuePair => keyValuePair.Key == slot))
+            {
+                foreach (Clothes clothes in value)
+                {
+                    clothes.Delete();
+                }
+                clothesDictionary.Remove(key);
+            }
         }
     }
 }
