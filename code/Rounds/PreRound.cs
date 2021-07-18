@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using Sandbox;
 using ssl.Player;
 
 namespace ssl.Rounds
@@ -11,13 +12,24 @@ namespace ssl.Rounds
         protected override void OnStart()
         {
             base.OnStart();
+            List<Entities.SpawnPoint> spawnPoints = GetSpawnPoints();
             if (Host.IsServer)
             {
                 foreach (Client client in Client.All)
                 {
                     if (client.Pawn is MainPlayer player)
                     {
-                        player.Respawn();
+                        foreach (Entities.SpawnPoint point in spawnPoints)
+                        {
+                            if (point.CanPlayerSpawn(player))
+                            {
+                                player.Respawn();
+                                player.Position = point.Position;
+                                player.Rotation = point.Rotation;
+                            }
+                            
+                            break;
+                        }
                     }
                 }
             }
@@ -32,6 +44,21 @@ namespace ssl.Rounds
         {
             base.OnPlayerSpawn(player);
             AddPlayer(player);
+        }
+
+        private List<Entities.SpawnPoint> GetSpawnPoints()
+        {
+            List<Entities.SpawnPoint> spawnPoints = new();
+            
+            foreach (Entity entity in Entity.All)
+            {
+                if (entity.Tags.Has("spawnpoint"))
+                {
+                    spawnPoints.Add(entity as Entities.SpawnPoint);
+                }
+            }
+
+            return spawnPoints;
         }
     }
 }
