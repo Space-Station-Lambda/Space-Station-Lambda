@@ -5,21 +5,21 @@ namespace ssl.Items.Data
 {
     public abstract class Item
     {
-
         protected Item(string id, string name)
         {
             Id = id;
             Name = name;
         }
-        
+
         protected Item(string id, string name, string model) : this(id, name)
         {
             Model = model;
         }
+
         public string Id { get; protected set; }
         public string Name { get; protected set; }
-        public string Model { get; protected set; } =  ""; //Find default model
-        public virtual int MaxStack { get; protected set; } =  99; //Default max stack 
+        public string Model { get; protected set; } = ""; //Find default model
+        public virtual int MaxStack { get; protected set; } = 99; //Default max stack 
         public virtual bool DestroyOnUse { get; protected set; } = false;
 
         /// <summary>

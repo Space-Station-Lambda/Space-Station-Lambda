@@ -4,6 +4,7 @@ using ssl.UI;
 namespace ssl.Rounds
 {
     public delegate void RoundEndedEvent(BaseRound round);
+
     public partial class RoundManager : NetworkedEntityAlwaysTransmitted
     {
         public RoundManager()
@@ -20,12 +21,12 @@ namespace ssl.Rounds
         {
             UpdateUi();
         }
-        
+
         public void OnRoundEnd(BaseRound round)
         {
             ChangeRound(round.Next());
         }
-        
+
         public void ChangeRound(BaseRound round)
         {
             if (CurrentRound != null)
@@ -34,6 +35,7 @@ namespace ssl.Rounds
                 CurrentRound.RoundEndedEvent -= OnRoundEnd;
                 Log.Info("Round " + CurrentRound.RoundName + " ended");
             }
+
             CurrentRound = round;
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;

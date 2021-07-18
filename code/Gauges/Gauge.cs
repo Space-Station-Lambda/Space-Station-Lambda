@@ -13,10 +13,12 @@ namespace ssl.Gauges
         }
 
         public GaugeData GaugeData { get; }
+
         /// <summary>
         /// Current Value
         /// </summary>
         public int Value { get; private set; }
+
         /// <summary>
         /// Remaining value
         /// </summary>
@@ -36,7 +38,7 @@ namespace ssl.Gauges
 
             Value += value;
         }
-    
+
         public override string ToString()
         {
             return $"[{GaugeData.Id}] {Value}/{GaugeData.MaxValue}";

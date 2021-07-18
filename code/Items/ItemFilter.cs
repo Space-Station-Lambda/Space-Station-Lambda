@@ -12,6 +12,7 @@ namespace ssl.Items
         /// Not authorized items
         /// </summary>
         public HashSet<Item> Blacklist = new();
+
         /// <summary>
         /// Authorized items
         /// </summary>
@@ -26,19 +27,19 @@ namespace ssl.Items
 
         public void AddToWhitelist(Item item)
         {
-           Whitelist.Add(item);
+            Whitelist.Add(item);
         }
-        
+
         public void RemoveFromWhitelist(Item item)
         {
             Whitelist.Remove(item);
         }
-        
+
         public void AddToBlacklist(Item item)
         {
             Blacklist.Add(item);
         }
-        
+
         public void RemoveFromBlacklist(Item item)
         {
             Blacklist.Remove(item);

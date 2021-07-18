@@ -16,7 +16,7 @@ namespace ssl.UI
     {
         private readonly Dictionary<RoleIcon, bool> rolesSelected = new();
         private int currentSelected;
-        
+
         public RoleSelector()
         {
             SetClass("active", true);
@@ -30,13 +30,10 @@ namespace ssl.UI
             rolesSelected.Add(new RoleIcon(new Traitor(), this), false);
             foreach (RoleIcon roleIcon in rolesSelected.Keys)
             {
-                roleIcon.AddEventListener("onclick", () =>
-                {
-                    Select(roleIcon);
-                });
+                roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
             }
         }
-        
+
         /// <summary>
         /// Select a specific role
         /// </summary>
@@ -54,14 +51,14 @@ namespace ssl.UI
                 rolesSelected[roleIcon] = true;
             }
         }
-        
+
         /// <summary>
         /// Role icon to be chosed
         /// </summary>
         public class RoleIcon : Panel
         {
-            public Role Role;
             private AnimSceneObject modelObject;
+            public Role Role;
 
             public RoleIcon(Role role, Panel parent)
             {
@@ -69,16 +66,17 @@ namespace ssl.UI
                 Parent = parent;
                 Add.Label(role.Name, "role-name");
             }
-            
+
             /// <summary>
             /// Select the role and setrole to the client
             /// </summary>
             public void Select()
             {
                 SetClass("selected", true);
-                ((MainPlayer) Local.Client.Pawn).AssignRole(Role); //TODO improve the methode for retrieve the client with the UI.
+                ((MainPlayer)Local.Client.Pawn)
+                    .AssignRole(Role); //TODO improve the methode for retrieve the client with the UI.
             }
-            
+
             /// <summary>
             /// UnSelect the the role
             /// </summary>

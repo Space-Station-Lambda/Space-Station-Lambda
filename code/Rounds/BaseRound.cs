@@ -8,14 +8,13 @@ namespace ssl.Rounds
 {
     public abstract partial class BaseRound : NetworkComponent
     {
-        public event RoundEndedEvent RoundEndedEvent;
-        
         public HashSet<MainPlayer> Players = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
+        public event RoundEndedEvent RoundEndedEvent;
 
 
         public void Start()

@@ -56,7 +56,8 @@ namespace ssl.Systems.Atmosphere
             for (int j = 0; j < grid.GetLength(1); j++)
             {
                 AtmosphericUnit atmosphericUnit = grid[i, j];
-                GasMovement movement = gasMovementStrategy.GenerateGasMovement(atmosphericUnit, neighbors[atmosphericUnit]);
+                GasMovement movement =
+                    gasMovementStrategy.GenerateGasMovement(atmosphericUnit, neighbors[atmosphericUnit]);
                 movements.Add(movement);
             }
 

@@ -4,7 +4,9 @@ namespace ssl.Player
 {
     public class Clothes : ModelEntity
     {
-        public Clothes() { }
+        public Clothes()
+        {
+        }
 
         public Clothes(string clothesModel)
         {
@@ -18,6 +20,5 @@ namespace ssl.Player
             AddCollisionLayer(CollisionLayer.Debris);
             SetModel(clothesModel);
         }
-        
     }
 }

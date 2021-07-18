@@ -1,17 +1,17 @@
-﻿InventoryBar
-{
+﻿InventoryBar {
   //background-color: darkcyan;
   position: absolute;
   bottom: 20px;
   width: 100%;
   justify-content: center;
   font-family: Roboto;
+
   &.hidden {
     pointer-events: none;
     display: none;
   }
-  InventoryIcon
-  {
+
+  InventoryIcon {
     background-color: rgba(0, 0, 0, 0.12);
     font-size: 20px;
     cursor: pointer;
@@ -21,11 +21,13 @@
     margin: 5px;
     border: 4px rgba(0, 0, 0, 0.35);
     border-radius: 25px;
+
     &.selected {
       border: 4px rgba(0, 0, 0, 0.60);
       border-radius: 35px;
       background-color: rgba(0, 0, 0, 0.19);
     }
+
     &:hover {
       background-color: lightblue;
       border-color: #0a61cb;
