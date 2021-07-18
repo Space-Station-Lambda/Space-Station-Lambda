@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using Sandbox.ScreenShake;
 
 namespace ssl.Player.Roles
 {
@@ -22,7 +21,6 @@ namespace ssl.Player.Roles
         {
             rolePreferences = new Dictionary<Role, RolePreference>();
         }
-
 
         [Net] public Role Role { get; private set; }
         
@@ -65,11 +63,13 @@ namespace ssl.Player.Roles
             int totalPoints = rolePreferences.Sum(rolePreference => rolesFactors[rolePreference.Value]);
             System.Random rnd = new();
             int res = rnd.Next(totalPoints);
+            Log.Info("Random number for pick is " + res + " /" + totalPoints);
             totalPoints = 0;
+            
             foreach ((Role role, RolePreference value) in rolePreferences)
             {
-                if (res <= totalPoints) return role;
                 totalPoints += rolesFactors[value];
+                if (res <= totalPoints) return role;
             }
             return new Assistant();
         }
@@ -79,29 +79,19 @@ namespace ssl.Player.Roles
         /// <returns></returns>
         private static Role GetRoleById(string id)
         {
-            switch (id)
+            return id switch
             {
-                case "assistant":
-                    return new Assistant();
-                case "captain":
-                    return new Captain();
-                case "engineer":
-                    return new Engineer();
-                case "ghost":
-                    return new Ghost();
-                case "guard":
-                    return new Guard();
-                case "janitor":
-                    return new Janitor();
-                case "mechanic":
-                    return new Mechanic();
-                case "scientist":
-                    return new Scientist();
-                case "traitor":
-                    return new Traitor();
-            }
-
-            throw new Exception($"This id {id} don't exist");
+                "assistant" => new Assistant(),
+                "captain" => new Captain(),
+                "engineer" => new Engineer(),
+                "ghost" => new Ghost(),
+                "guard" => new Guard(),
+                "janitor" => new Janitor(),
+                "mechanic" => new Mechanic(),
+                "scientist" => new Scientist(),
+                "traitor" => new Traitor(),
+                _ => throw new Exception($"This id {id} don't exist")
+            };
         }
     }
 }

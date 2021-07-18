@@ -86,7 +86,7 @@ namespace ssl.Player
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
 
-            //InitRole();
+            InitRole();
 
             base.Respawn();
 

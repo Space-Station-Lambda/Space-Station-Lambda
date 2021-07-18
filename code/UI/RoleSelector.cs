@@ -81,7 +81,7 @@ namespace ssl.UI
             public void Unselect()
             {
                 SetClass("selected", false);
-                ConsoleSystem.Run("select_preference_role", Role, RolePreference.Never); 
+                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Never); 
             }
         }
     }
