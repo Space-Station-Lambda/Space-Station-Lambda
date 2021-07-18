@@ -6,7 +6,7 @@ namespace ssl.Rounds
     public class PreRound : BaseRound
     {
         public override string RoundName => "Preround";
-        public override int RoundDuration => 10;
+        public override int RoundDuration => 5;
 
         public override BaseRound Next()
         {
