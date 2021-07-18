@@ -13,7 +13,8 @@ namespace ssl.Entities
         "Defines a point where the player can spawn. Roles can be specified if a spawnpoint is role exclusive")]
     public partial class SpawnPoint : Entity
     {
-        [Property(Title = "Role filter")] public string RoleFilter { get; set; } = "";
+        [Property(Title = "Role filter")] 
+        public string RoleFilter { get; set; } = "";
 
         public override void OnActive()
         {
