@@ -10,6 +10,7 @@
     pointer-events: none;
     display: none;
   }
+  
 
   InventoryIcon {
     background-color: rgba(0, 0, 0, 0.12);
@@ -18,9 +19,16 @@
     height: 100px;
     width: 100px;
     padding: 10px;
-    margin: 5px;
+    margin-right: 5px;
     border: 4px rgba(0, 0, 0, 0.35);
     border-radius: 25px;
+
+    .itemslot-model {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      left: 7px;
+    }
 
     &.selected {
       border: 4px rgba(0, 0, 0, 0.60);
