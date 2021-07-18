@@ -24,7 +24,12 @@ namespace ssl.Player
         [Net] public new Inventory Inventory { get; }
         [Net] public ItemStack Holding { get; set; }
         public GaugeHandler GaugeHandler { get; }
-        
+
+        public void Apply(Effect<MainPlayer> effect)
+        {
+            effect.Trigger(this);
+        }
+
         /// <summary>
         /// When the player change selected slot
         /// </summary>
@@ -40,11 +45,6 @@ namespace ssl.Player
             target.Holding?.SetModel(target.Holding.Item.Model);
             target.Holding?.OnCarryStart(target);
             target.Holding?.ActiveStart(target);
-        }
-        
-        public void Apply(Effect<MainPlayer> effect)
-        {
-            effect.Trigger(this);
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace ssl.Player
             InitRole();
 
             base.Respawn();
-            
+
             //Current add items for testing purpose. 
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol")), 4);
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.wine")), 1);

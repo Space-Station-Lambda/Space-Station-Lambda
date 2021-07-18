@@ -14,6 +14,7 @@ namespace ssl.Player
         /// List of current clothes.
         /// </summary>
         private readonly List<ModelEntity> clothesList = new();
+
         /// <summary>
         /// Player concerned.
         /// </summary>
@@ -23,6 +24,7 @@ namespace ssl.Player
         {
             this.player = player;
         }
+
         /// <summary>
         /// Attach a set of clothes to the player.
         /// </summary>
@@ -36,6 +38,7 @@ namespace ssl.Player
                 AttachClothes(c, false);
             }
         }
+
         /// <summary>
         /// Attach a piece of clothes to the player
         /// </summary>
@@ -45,6 +48,7 @@ namespace ssl.Player
         {
             AttachClothes(new Clothes(clothes), false);
         }
+
         /// <summary>
         /// Attach a piece of clothes to the player
         /// </summary>
@@ -56,6 +60,7 @@ namespace ssl.Player
             clothes.SetParent(player, true);
             clothesList.Add(clothes);
         }
+
         /// <summary>
         /// Remove all clothes of the player
         /// </summary>
@@ -65,6 +70,7 @@ namespace ssl.Player
             {
                 c.Delete();
             }
+
             clothesList.Clear();
         }
     }

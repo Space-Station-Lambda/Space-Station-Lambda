@@ -6,7 +6,8 @@ namespace ssl.Systems.Atmosphere
         private readonly AtmosphericUnit atmosphericUnitSource;
         private readonly AtmosphericUnit atmosphericUnitTarget;
 
-        public GasMovement(AtmosphericUnit atmosphericUnitSource, AtmosphericUnit atmosphericUnitTarget, AtmosphericUnit atmosphericUnit)
+        public GasMovement(AtmosphericUnit atmosphericUnitSource, AtmosphericUnit atmosphericUnitTarget,
+            AtmosphericUnit atmosphericUnit)
         {
             this.atmosphericUnitSource = atmosphericUnitSource;
             this.atmosphericUnitTarget = atmosphericUnitTarget;

@@ -9,15 +9,17 @@ namespace ssl.Entities
     /// </summary>
     public partial class ItemStackProp : Prop
     {
-        public ItemStack ItemStack { get; private set; }
+        public ItemStackProp()
+        {
+        }
 
-        public ItemStackProp() { }
-        
         public ItemStackProp(ItemStack itemStack) : this()
         {
             ItemStack = itemStack;
             SetupModel();
         }
+
+        public ItemStack ItemStack { get; private set; }
 
         protected void SetupModel()
         {

@@ -7,7 +7,7 @@ namespace ssl.Rounds
     {
         public override string RoundName => "Preround";
         public override int RoundDuration => 100;
-        
+
         public override BaseRound Next()
         {
             return new PreRound();
@@ -16,7 +16,7 @@ namespace ssl.Rounds
         protected override void OnStart()
         {
             base.OnStart();
-            
+
             if (Host.IsServer)
             {
                 foreach (Client client in Client.All)

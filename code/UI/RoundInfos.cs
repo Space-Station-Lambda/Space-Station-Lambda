@@ -12,7 +12,7 @@ namespace ssl.UI
 
         public RoundInfos()
         {
-            StyleSheet.Load( "ui/roundinfos.scss" );
+            StyleSheet.Load("ui/roundinfos.scss");
             textLabel = Add.Label("", "round_label");
             timeLabel = Add.Label("", "round_time");
         }
