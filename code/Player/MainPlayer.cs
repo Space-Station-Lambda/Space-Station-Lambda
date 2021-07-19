@@ -11,19 +11,23 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
-        public readonly ClothesHandler ClothesHandler;
+        
 
         public MainPlayer()
         {
-            GaugeHandler = new GaugeHandler();
             Inventory = new Inventory(MaxInventoryCapacity);
+            GaugeHandler = new GaugeHandler();
             ClothesHandler = new ClothesHandler(this);
+            RoleHandler = new RoleHandler();
         }
-
-        public Role Role { get; private set; }
         [Net] public new Inventory Inventory { get; }
         [Net] public ItemStack Holding { get; set; }
+        /**
+         * Handlers
+         */
         public GaugeHandler GaugeHandler { get; }
+        public ClothesHandler ClothesHandler { get;}
+        [Net] public RoleHandler RoleHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
         {
@@ -100,12 +104,6 @@ namespace ssl.Player
             EnableDrawing = false;
         }
 
-        public void AssignRole(Role role)
-        {
-            Role = role;
-            Log.Info("Role " + role.Name + " selected");
-        }
-
         private void CheckControls()
         {
             if (IsServer)
@@ -130,12 +128,10 @@ namespace ssl.Player
         private void ClientControls()
         {
         }
-
-
-        [ClientRpc]
+        
         private void InitRole()
         {
-            ClothesHandler.AttachClothes(Role.Clothing);
+            ClothesHandler.AttachClothes(RoleHandler.Role.Clothing);
         }
     }
 }

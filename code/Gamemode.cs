@@ -19,7 +19,6 @@ namespace ssl
         }
 
         public static Gamemode Instance { get; private set; }
-
         [Net] public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
@@ -54,6 +53,7 @@ namespace ssl
         {
             MainPlayer player = new();
             client.Pawn = player;
+            RoundManager.CurrentRound.OnPlayerSpawn(player);
         }
 
         public override void PostLevelLoaded()

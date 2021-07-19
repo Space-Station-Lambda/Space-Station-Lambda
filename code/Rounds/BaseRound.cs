@@ -55,6 +55,7 @@ namespace ssl.Rounds
 
         public virtual void OnPlayerSpawn(MainPlayer player)
         {
+            Players.Add(player);
         }
 
         public virtual void OnPlayerKilled(MainPlayer player)
