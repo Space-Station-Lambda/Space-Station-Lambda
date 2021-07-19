@@ -3,6 +3,7 @@ using ssl.Effects;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Items.Data;
+using ssl.Player.Controllers;
 using ssl.Player.Roles;
 
 namespace ssl.Player
@@ -77,7 +78,7 @@ namespace ssl.Player
         {
             SetModel(Model);
 
-            Controller = new WalkController();
+            Controller = new HumanController();
             Animator = new StandardPlayerAnimator();
             Camera = new ThirdPersonCamera();
 
@@ -95,6 +96,8 @@ namespace ssl.Player
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.wine")), 1);
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.apple")), 6);
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.hotdog")), 9);
+
+            Prop prop = new();
         }
 
         public override void OnKilled()
