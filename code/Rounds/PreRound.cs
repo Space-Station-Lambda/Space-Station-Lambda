@@ -21,9 +21,8 @@ namespace ssl.Rounds
 
         protected override void OnTimeUp()
         {
-            Log.Info("Times up");
-            AssignRoles();
             base.OnTimeUp();
+            AssignRoles();
         }
 
         private void AssignRoles()
