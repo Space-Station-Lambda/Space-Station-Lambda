@@ -11,7 +11,6 @@ namespace ssl.Items
 
         public Inventory()
         {
-            
         }
         
         public Inventory(int size)
