@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Auto-Issues 3D models
+
+# Controls when the workflow will run
+on:
+  issues:
+    types: [opened]
+
+
+jobs:
+  add-label:
+    if: ${{ startsWith(github.event.title, '3D') }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add assets label
+        uses: andymckay/labeler@5c59dabdfd4dd5bd9c6e6d255b01b9d764af4414
+        with:
+          add-labels: "assets"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
