@@ -20,7 +20,7 @@ namespace ssl
 
         public static Gamemode Instance { get; private set; }
 
-        [Net] public ItemRegistry ItemRegistry { get; private set; }
+        public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
 
@@ -48,6 +48,7 @@ namespace ssl
         {
             if (IsServer) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Client...");
+            ItemRegistry = new ItemRegistry();
         }
 
         private void SpawnPlayer(Client client)
