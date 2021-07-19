@@ -94,13 +94,13 @@ namespace ssl.UI
 
                 using (SceneWorld.SetCurrent(sceneWorld))
                 {
-                    if (!player.Inventory.IsSlotEmpty(SlotNumber))
-                    {
+                    if (player.Inventory.IsSlotEmpty(SlotNumber)) return;
+                    
                         Model model = Model.Load("models/knife/knife.vmdl");
                         sceneObject = new SceneObject(model, Transform.Zero);
                         sceneLight = Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                             2000, Color.White * 15000.0f);
-                    }
+                    
                 }
             
                 Angles angles = new(30, 180+45, 0);
