@@ -20,3 +20,13 @@ jobs:
         with:
           add-labels: "assets"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+  add-project:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create new project card with issue
+      id: list
+      uses: qmacro/action-add-issue-to-project-column@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        project: '3D pipeline'
+        column: 'To do'
