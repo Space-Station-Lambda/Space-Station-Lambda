@@ -43,7 +43,7 @@ namespace ssl.Player
         /// <param name="slot">Slot concerned</param>
         public void AttachClothes(string clothes, ClothesSlot slot = ClothesSlot.None)
         {
-            AttachClothes(new Clothes(clothes),slot);
+            AttachClothes(new Clothes(clothes), slot);
         }
 
         /// <summary>
