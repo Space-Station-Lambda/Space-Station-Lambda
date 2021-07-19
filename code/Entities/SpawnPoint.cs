@@ -25,9 +25,9 @@ namespace ssl.Entities
         /// <summary>
         /// Checks if a player with a specific role can spawn on this SpawnPoint
         /// </summary>
-        public bool CanPlayerSpawn(MainPlayer player)
+        public bool CanRoleSpawn(Role role)
         {
-            return player.Role.Id == RoleFilter || RoleFilter == "";
+            return role.Id == RoleFilter || RoleFilter == "";
         }
     }
 }

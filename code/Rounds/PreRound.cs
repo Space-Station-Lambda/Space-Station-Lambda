@@ -21,7 +21,7 @@ namespace ssl.Rounds
                     {
                         foreach (Entities.SpawnPoint point in spawnPoints)
                         {
-                            if (point.CanPlayerSpawn(player))
+                            if (point.CanRoleSpawn(player.Role))
                             {
                                 player.Respawn();
                                 player.Position = point.Position;
