@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Player;
 
@@ -46,17 +47,7 @@ namespace ssl.Rounds
 
         private List<Entities.SpawnPoint> GetSpawnPoints()
         {
-            List<Entities.SpawnPoint> spawnPoints = new();
-            
-            foreach (Entity entity in Entity.All)
-            {
-                if (entity.Tags.Has("spawnpoint"))
-                {
-                    spawnPoints.Add(entity as Entities.SpawnPoint);
-                }
-            }
-
-            return spawnPoints;
+            return (from entity in Entity.All where entity.Tags.Has("spawnpoint") select entity as Entities.SpawnPoint).ToList();
         }
     }
 }
