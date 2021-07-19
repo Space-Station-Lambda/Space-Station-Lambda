@@ -67,6 +67,9 @@ namespace ssl.UI
         
         public class InventoryIcon : Panel
         {
+            private static readonly Angles angles = new(30, 180+45, 0);
+            private static readonly Vector3 pos = new(10, 10, 10);
+            
             private Scene scene;
             private SceneWorld sceneWorld;
             private SceneObject sceneObject;
@@ -102,9 +105,7 @@ namespace ssl.UI
                             2000, Color.White * 15000.0f);
                     }
                 }
-            
-                Angles angles = new(30, 180+45, 0);
-                Vector3 pos = new(10, 10, 10);
+                
                 if (scene != null)
                 {
                     scene.World = sceneWorld;
