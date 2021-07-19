@@ -42,7 +42,7 @@ namespace ssl.Player
         {
             MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (target == null) return;
-            ItemStack itemStack = target.Inventory.Items[slot];
+            ItemStack itemStack = target.Inventory.GetItem(slot);
             target.Holding?.ActiveEnd(target, false);
             target.Holding = itemStack;
             target.Holding?.SetModel(target.Holding.Item.Model);

@@ -15,17 +15,17 @@ namespace ssl.Items
         
         public Inventory(int size)
         {
-            Items = new List<ItemStack>(size);
+            items = new List<ItemStack>(size);
             for (int i = 0; i < size; i++)
             {
-                Items.Add(null);
+                items.Add(null);
             }
             filter = new ItemFilter();
         }
 
-        [Net] public List<ItemStack> Items { get; private set; }
+        [Net] private List<ItemStack> items { get; set; }
 
-        public int SlotsCount => Items.Count;
+        public int SlotsCount => items.Count;
 
         public int SlotsLeft
         {
@@ -35,7 +35,7 @@ namespace ssl.Items
 
                 for (var i = 0; i < SlotsCount; i++)
                 {
-                    if (Items[i] == null)
+                    if (items[i] == null)
                     {
                         slotsLeft++;
                     }
@@ -75,16 +75,16 @@ namespace ssl.Items
                         var j = (i + position) % SlotsCount;
                         if (IsSlotEmpty(j))
                         {
-                            Items[j] = itemStack;
+                            items[j] = itemStack;
                             itemAdded = true;
                         }
                         else
                         {
-                            if (Items[position].Item.Equals(itemStack.Item))
+                            if (items[position].Item.Equals(itemStack.Item))
                             {
                                 try
                                 {
-                                    Items[position].Add(itemStack.Amount);
+                                    items[position].Add(itemStack.Amount);
                                     itemAdded = true;
                                 }
                                 catch (Exception)
@@ -118,13 +118,23 @@ namespace ssl.Items
 
             if (!IsSlotEmpty(position))
             {
-                removedItem = Items[position];
-                Items[position] = null;
+                removedItem = items[position];
+                items[position] = null;
             }
 
             return removedItem;
         }
 
+        public ItemStack GetItem(int position)
+        {
+            if (position < 0 || position >= SlotsCount)
+            {
+                throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
+            }
+
+            return items[position];
+        }
+        
         /// <summary>
         /// Checks if a specific slot is empty.
         /// </summary>
@@ -132,7 +142,7 @@ namespace ssl.Items
         /// <returns>True if empty, false otherwise</returns>
         public bool IsSlotEmpty(int position)
         {
-            return Items[position] == null;
+            return items[position] == null;
         }
 
         /// <summary>
@@ -141,7 +151,7 @@ namespace ssl.Items
         /// It checks for the same reference and not only the same item.
         public bool IsPresent(ItemStack itemStack)
         {
-            return Items.IndexOf(itemStack) > -1;
+            return items.IndexOf(itemStack) > -1;
         }
     }
 }
