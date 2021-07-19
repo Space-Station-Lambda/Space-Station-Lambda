@@ -23,9 +23,7 @@ namespace ssl.Rounds
                         {
                             if (point.CanRoleSpawn(player.Role))
                             {
-                                player.Respawn();
-                                player.Position = point.Position;
-                                player.Rotation = point.Rotation;
+                                player.Respawn(point);
                             }
                             
                             break;

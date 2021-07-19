@@ -63,6 +63,14 @@ namespace ssl.Player
             base.Respawn();
         }
 
+        public void Respawn(Entities.SpawnPoint spawnPoint)
+        {
+            Respawn();
+
+            Position = spawnPoint.Position;
+            Rotation = spawnPoint.Rotation;
+        }
+
         public override void OnKilled()
         {
             base.OnKilled();
