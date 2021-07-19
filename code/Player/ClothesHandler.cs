@@ -65,7 +65,6 @@ namespace ssl.Player
                 clothesDictionary.Add(slot, new List<Clothes>());
             }
             clothesDictionary[slot].Add(clothes);
-           
         }
 
         /// <summary>
