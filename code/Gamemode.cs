@@ -18,7 +18,7 @@ namespace ssl
             if (IsClient) StartClient();
         }
 
-        [Net] public static Gamemode Instance { get; private set; }
+        public static Gamemode Instance { get; private set; }
         [Net] public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
