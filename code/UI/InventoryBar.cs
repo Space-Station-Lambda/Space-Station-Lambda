@@ -56,6 +56,14 @@ namespace ssl.UI
 
             if (input.MouseWheel != 0) SelectSlot(selected + input.MouseWheel);
         }
+
+        private void RefreshAllModels()
+        {
+            foreach (InventoryIcon icon in icons)
+            {
+                icon.RefreshModel();
+            }
+        }
         
         public class InventoryIcon : Panel
         {
