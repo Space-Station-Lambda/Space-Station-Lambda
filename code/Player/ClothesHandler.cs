@@ -32,7 +32,7 @@ namespace ssl.Player
             if (strip) Strip();
             foreach (string c in clothesSet)
             {
-                AttachClothes(c,ClothesSlot.None);
+                AttachClothes(c, ClothesSlot.None);
             }
         }
 
