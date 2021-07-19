@@ -76,7 +76,7 @@ namespace ssl.UI
 
             public void RefreshModel()
             {
-                if (Local.Client.Pawn is not MainPlayer)
+                if (Local.Client?.Pawn is not MainPlayer)
                     return;
                 
                 MainPlayer player = (MainPlayer) Local.Client.Pawn;
