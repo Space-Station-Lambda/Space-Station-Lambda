@@ -10,6 +10,7 @@ on:
 
 jobs:
   add-label:
+    if: ${{ startsWith(github.event.issue.title, '3D') }}
     runs-on: ubuntu-latest
     permissions:
       issues: write
