@@ -21,6 +21,7 @@ jobs:
           add-labels: "assets"
           repo-token: ${{ secrets.GITHUB_TOKEN }}
   add-project:
+    if: ${{ startsWith(github.event.issue.title, '3D') }}
     runs-on: ubuntu-latest
     steps:
     - name: Create new project card with issue
