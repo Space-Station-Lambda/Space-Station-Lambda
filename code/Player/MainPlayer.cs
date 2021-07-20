@@ -96,8 +96,6 @@ namespace ssl.Player
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.wine")), 1);
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.apple")), 6);
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.hotdog")), 9);
-
-            Prop prop = new();
         }
 
         public override void OnKilled()
