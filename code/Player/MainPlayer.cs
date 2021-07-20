@@ -80,7 +80,7 @@ namespace ssl.Player
 
             Controller = new HumanController();
             Animator = new StandardPlayerAnimator();
-            Camera = new ThirdPersonCamera();
+            Camera = new FirstPersonCamera();
 
             EnableAllCollisions = true;
             EnableDrawing = true;
