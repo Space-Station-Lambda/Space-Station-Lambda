@@ -6,45 +6,45 @@ namespace ssl.Player.Controllers
 	[Library]
 	public partial class HumanController : BasePlayerController
 	{
-		private Angles lookAngles = Angles.Zero;
-		
 		public HumanController()
 		{
 			
 		}
-
-		public Vector2 ClampedPitch { get; set; } = new(-89, 89);
+		public float WalkSpeed { get; set; } = 150.0f;
 		public float EyeHeight { get; set; } = 64.0f;
-		public bool IsPitchClamped { get; set; } = true;
 
 		public override void Simulate()
 		{
 			EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
-			EyeRot = Rotation.From(lookAngles);
+			EyeRot = Input.Rotation;
+
+			// Walk
+			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
+			Velocity = EyeRot * WishVelocity.ClampLength(1) * WalkSpeed;
+			
+			TryPlayerMove();
+			
+			DebugOverlay.ScreenText( 0, $"    WishVelocity: {WishVelocity}" );
+			DebugOverlay.ScreenText( 1, $"        Velocity: {Velocity}" );
+			DebugOverlay.ScreenText( 2, $"         Eye Rot: {EyeRot}" );
 		}
 
 		public override void FrameSimulate()
 		{
 			base.FrameSimulate();
 
-			EyeRot = Rotation.From(lookAngles);
+			EyeRot = Input.Rotation;
 		}
-
-		public override void BuildInput(InputBuilder input)
+		
+		public virtual void TryPlayerMove()
 		{
-			// We get the raw input so we're not clamped by default
-			lookAngles += input.AnalogLook;
-			lookAngles = lookAngles.WithRoll(0);
-			
-			if (IsPitchClamped)
-			{
-				lookAngles.pitch = lookAngles.pitch.Clamp(ClampedPitch.x, ClampedPitch.y);
-			}
-			
-			input.Clear();
-			input.StopProcessing = true;
+			MoveHelper mover = new MoveHelper(Position, Velocity);
+			mover.Trace = mover.Trace.Size(0, 0).Ignore(Pawn);
 
-			base.BuildInput(input);
+			mover.TryMove(Time.Delta);
+
+			Position = mover.Position;
+			Velocity = mover.Velocity;
 		}
 	}
 }
