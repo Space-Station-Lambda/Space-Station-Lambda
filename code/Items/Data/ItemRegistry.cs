@@ -49,6 +49,10 @@ namespace ssl.Items.Data
                 "models/citizen_props/wineglass02/wineglass01gib01_lod01.vmdl")); //Item registration Example
             Add(new ItemFood("food.hotdog", "HotDog", 5,
                 "models/citizen_props/hotdog01.vmdl")); //Item registration Example
-        }
+			Add(new ItemWeapon("weapon.knife", "Knife",
+				"models/knife/knife.vmdl")); //Item registration Example
+			Add(new ItemFood("food.banana", "Banana", 10,
+				"models/food/banana/banana.vmdl")); //Item registration Example
+		}
     }
 }
