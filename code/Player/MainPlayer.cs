@@ -15,13 +15,17 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-            Inventory = new Inventory(MaxInventoryCapacity);
-            GaugeHandler = new GaugeHandler();
-            ClothesHandler = new ClothesHandler(this);
-            RoleHandler = new RoleHandler();
+
+            if (Host.IsServer)
+            {
+                Inventory = new Inventory(MaxInventoryCapacity);
+                GaugeHandler = new GaugeHandler();
+                ClothesHandler = new ClothesHandler(this);
+                RoleHandler = new RoleHandler();            }
         }
-        [Net] public new Inventory Inventory { get; }
-        [Net] public ItemStack Holding { get; set; }
+        
+        [Net] public new Inventory Inventory { get; private set; }
+        [Net] public ItemStack Holding { get; private set; }
         /**
          * Handlers
          */
@@ -43,7 +47,7 @@ namespace ssl.Player
         {
             MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (target == null) return;
-            ItemStack itemStack = target.Inventory.Items[slot];
+            ItemStack itemStack = target.Inventory.GetItem(slot);
             target.Holding?.ActiveEnd(target, false);
             target.Holding = itemStack;
             target.Holding?.SetModel(target.Holding.Item.Model);
