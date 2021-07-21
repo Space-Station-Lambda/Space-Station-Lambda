@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using Sandbox;
+﻿using Sandbox;
 using ssl.Player;
-using SpawnPoint = ssl.Entities.SpawnPoint;
 
 namespace ssl.Rounds
 {
@@ -21,21 +19,11 @@ namespace ssl.Rounds
 
             if (Host.IsServer)
             {
-                List<SpawnPoint> spawnPoints = SpawnPoint.GetAllSpawnPoints();
-                
                 foreach (Client client in Client.All)
                 {
                     if (client.Pawn is MainPlayer player)
                     {
-                        foreach (SpawnPoint point in spawnPoints)
-                        {
-                            if (point.CanRoleSpawn(player.RoleHandler.Role))
-                            {
-                                player.Respawn(point);
-                            }
-                            
-                            break;
-                        }
+                        player.Respawn();
                     }
                 }
             }
