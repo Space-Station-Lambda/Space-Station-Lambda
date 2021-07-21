@@ -7,7 +7,7 @@ namespace ssl.Items.Data
     /// <summary>
     /// Stores all references of item archetypes.
     /// </summary>
-    public class ItemRegistry : NetworkComponent
+    public class ItemRegistry
     {
         private readonly Dictionary<string, Item> registry;
 

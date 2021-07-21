@@ -11,19 +11,27 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
-        public readonly ClothesHandler ClothesHandler;
+        
 
         public MainPlayer()
         {
-            GaugeHandler = new GaugeHandler();
-            Inventory = new Inventory(MaxInventoryCapacity);
-            ClothesHandler = new ClothesHandler(this);
-        }
 
-        public Role Role { get; private set; }
-        [Net] public new Inventory Inventory { get; }
-        [Net] public ItemStack Holding { get; set; }
+            if (Host.IsServer)
+            {
+                Inventory = new Inventory(MaxInventoryCapacity);
+                GaugeHandler = new GaugeHandler();
+                ClothesHandler = new ClothesHandler(this);
+                RoleHandler = new RoleHandler();            }
+        }
+        
+        [Net] public new Inventory Inventory { get; private set; }
+        [Net] public ItemStack Holding { get; private set; }
+        /**
+         * Handlers
+         */
         public GaugeHandler GaugeHandler { get; }
+        public ClothesHandler ClothesHandler { get;}
+        [Net] public RoleHandler RoleHandler { get; }
 
         public void Apply(Effect<MainPlayer> effect)
         {
@@ -39,7 +47,7 @@ namespace ssl.Player
         {
             MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (target == null) return;
-            ItemStack itemStack = target.Inventory.Items[slot];
+            ItemStack itemStack = target.Inventory.GetItem(slot);
             target.Holding?.ActiveEnd(target, false);
             target.Holding = itemStack;
             target.Holding?.SetModel(target.Holding.Item.Model);
@@ -93,17 +101,19 @@ namespace ssl.Player
             Inventory.AddItem(new ItemStack(Gamemode.Instance.ItemRegistry.GetItemById("food.hotdog")), 9);
         }
 
+        public void Respawn(Entities.SpawnPoint spawnPoint)
+        {
+            Respawn();
+
+            Position = spawnPoint.Position;
+            Rotation = spawnPoint.Rotation;
+        }
+
         public override void OnKilled()
         {
             base.OnKilled();
 
             EnableDrawing = false;
-        }
-
-        public void AssignRole(Role role)
-        {
-            Role = role;
-            Log.Info("Role " + role.Name + " selected");
         }
 
         private void CheckControls()
@@ -130,12 +140,10 @@ namespace ssl.Player
         private void ClientControls()
         {
         }
-
-
-        [ClientRpc]
+        
         private void InitRole()
         {
-            ClothesHandler.AttachClothes(Role.Clothing);
+            ClothesHandler.AttachClothes(RoleHandler.Role.Clothing);
         }
     }
 }

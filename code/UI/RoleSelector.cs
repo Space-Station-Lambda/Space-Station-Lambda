@@ -15,8 +15,6 @@ namespace ssl.UI
     public class RoleSelector : Panel
     {
         private readonly Dictionary<RoleIcon, bool> rolesSelected = new();
-        private int currentSelected;
-
         public RoleSelector()
         {
             SetClass("active", true);
@@ -31,6 +29,7 @@ namespace ssl.UI
             foreach (RoleIcon roleIcon in rolesSelected.Keys)
             {
                 roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
+                ConsoleSystem.Run("select_preference_role", roleIcon.Role.Id, RolePreference.Never);
             }
         }
 
@@ -73,8 +72,7 @@ namespace ssl.UI
             public void Select()
             {
                 SetClass("selected", true);
-                ((MainPlayer)Local.Client.Pawn)
-                    .AssignRole(Role); //TODO improve the methode for retrieve the client with the UI.
+                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Medium); 
             }
 
             /// <summary>
@@ -83,6 +81,7 @@ namespace ssl.UI
             public void Unselect()
             {
                 SetClass("selected", false);
+                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Never); 
             }
         }
     }

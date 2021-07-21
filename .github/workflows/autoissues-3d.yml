@@ -1,0 +1,33 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Auto-Issues 3D models
+
+# Controls when the workflow will run
+on:
+  issues:
+    types: [opened]
+
+
+jobs:
+  add-label:
+    if: ${{ startsWith(github.event.issue.title, '3D') }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Add assets label
+        uses: andymckay/labeler@5c59dabdfd4dd5bd9c6e6d255b01b9d764af4414
+        with:
+          add-labels: "assets"
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+  add-project:
+    if: ${{ startsWith(github.event.issue.title, '3D') }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create new project card with issue
+      id: list
+      uses: qmacro/action-add-issue-to-project-column@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        project: '3D pipeline'
+        column: 'To do'
