@@ -15,7 +15,10 @@ namespace ssl.Items
 
         public ItemStackWeapon(Item item, int amount = 1) : base(item, amount)
         {
+            Log.Info("Create itemstack");
         }
+        
+        public PickupTrigger PickupTrigger { get; protected set; }
 
         public override void Spawn()
         {
@@ -23,6 +26,12 @@ namespace ssl.Items
 
             CollisionGroup = CollisionGroup.Weapon; // so players touch it as a trigger but not as a solid
             SetInteractsAs(CollisionLayer.Debris); // so player movement doesn't walk into it
+            
+            PickupTrigger = new PickupTrigger
+            {
+                Parent = this,
+                Position = Position
+            };
         }
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
@@ -31,12 +40,13 @@ namespace ssl.Items
 
         public override void Simulate(Client player)
         {
+            Log.Info("Simualte");
             if (CanReload())
             {
                 Reload();
             }
             
-
+            Log.Info("Can primary attack" + CanPrimaryAttack());
             if (CanPrimaryAttack())
             {
                 TimeSincePrimaryAttack = 0;
@@ -61,6 +71,7 @@ namespace ssl.Items
 
         public virtual bool CanPrimaryAttack()
         {
+
             if (!Owner.IsValid() || !Input.Down(InputButton.Attack1)) return false;
             
             Log.Info("Primary attack");
@@ -73,6 +84,16 @@ namespace ssl.Items
 
         public virtual void AttackPrimary()
         {
+            TimeSincePrimaryAttack = 0;
+            TimeSinceSecondaryAttack = 0;
+
+            using (Prediction.Off())
+            {
+                ShootEffects();
+            }
+
+            ShootBullet(0.05f, 1.5f, 1, 3.0f);
+            Log.Info("Primary attack");
         }
 
         public virtual bool CanSecondaryAttack()
@@ -110,6 +131,49 @@ namespace ssl.Items
             //
             // Another trace, bullet going through thin material, penetrating water surface?
             //
+        }
+        public virtual void ShootBullet(float spread, float force, float damage, float bulletSize)
+        {
+            Vector3 forward = Owner.EyeRot.Forward;
+            forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
+            forward = forward.Normal;
+
+            foreach (TraceResult tr in TraceBullet(Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize))
+            {
+                tr.Surface.DoBulletImpact(tr);
+
+                if (!IsServer || !tr.Entity.IsValid())
+                {
+                    continue;
+                }
+
+                using (Prediction.Off())
+                {
+                    DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
+                        .UsingTraceResult(tr)
+                        .WithAttacker(Owner)
+                        .WithWeapon(this);
+
+                    tr.Entity.TakeDamage(damageInfo);
+                }
+            }
+        }
+        
+        [ClientRpc]
+        protected virtual void ShootEffects()
+        {
+            Host.AssertClient();
+            
+            Particles.Create("particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle");
+          
+
+            if (IsLocalPawn)
+            {
+                new Sandbox.ScreenShake.Perlin();
+            }
+
+            ViewModelEntity?.SetAnimBool("fire", true);
+            CrosshairPanel?.CreateEvent("fire");
         }
     }
 }
