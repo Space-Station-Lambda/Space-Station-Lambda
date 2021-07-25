@@ -14,7 +14,7 @@
 						name = "lod0"
 						filename = "models/knife/knife.fbx"
 						import_translation = [ 0.0, 0.0, 0.0 ]
-						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 270.0, 0.0, 0.0 ]
 						import_scale = 1.0
 						align_origin_x_type = "None"
 						align_origin_y_type = "None"
@@ -55,9 +55,9 @@
 						parent_bone = ""
 						surface_prop = "metal"
 						collision_prop = "default"
-						radius = 4.147657
-						point0 = [ -14.680547, -0.03895, -0.517666 ]
-						point1 = [ 26.491436, -0.030178, 0.546926 ]
+						radius = 1.378046
+						point0 = [ -6.032161, -0.037107, -0.294043 ]
+						point1 = [ 10.818479, -0.060336, 0.135877 ]
 					},
 				]
 			},
@@ -75,7 +75,7 @@
 					{
 						_class = "Bone"
 						name = "hold_R"
-						origin = [ -9.0, 0.0, 0.0 ]
+						origin = [ 0.0, 1.0, -3.0 ]
 						angles = [ 0.0, 0.0, 0.0 ]
 						do_not_discard = true
 					},
