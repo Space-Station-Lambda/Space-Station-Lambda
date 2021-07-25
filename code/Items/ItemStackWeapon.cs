@@ -15,13 +15,14 @@ namespace ssl.Items
 
         public ItemStackWeapon(Item item, int amount = 1) : base(item, amount)
         {
-            Log.Info("Create itemstack");
         }
         
         public PickupTrigger PickupTrigger { get; protected set; }
 
         public override void Spawn()
         {
+            
+
             base.Spawn();
 
             CollisionGroup = CollisionGroup.Weapon; // so players touch it as a trigger but not as a solid
@@ -40,13 +41,11 @@ namespace ssl.Items
 
         public override void Simulate(Client player)
         {
-            Log.Info("Simualte");
             if (CanReload())
             {
                 Reload();
             }
             
-            Log.Info("Can primary attack" + CanPrimaryAttack());
             if (CanPrimaryAttack())
             {
                 TimeSincePrimaryAttack = 0;

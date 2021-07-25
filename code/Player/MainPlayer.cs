@@ -62,6 +62,7 @@ namespace ssl.Player
             target.Holding?.SetModel(target.Holding.Item.Model);
             target.Holding?.OnCarryStart(target);
             target.Holding?.ActiveStart(target);
+            target.ActiveChild = target.Holding;
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace ssl.Player
         {
            Respawn(spawnPoint.Position, spawnPoint.Rotation);
         }
-
+        
         public override void OnKilled()
         {
             LifeState = LifeState.Dead;

@@ -44,7 +44,7 @@ namespace ssl.Items.Data
             Add(new ItemFood("food.apple", "Apple", 10,
                 "models/rust_props/small_junk/apple.vmdl")); //Item registration Example
             Add(new ItemWeapon("weapon.pistol", "Pistol",
-                "weapons/rust_pistol/rust_pistol.vmdl")); //Item registration Example
+                "weapons/rust_pistol/v_rust_pistol.vmdl")); //Item registration Example
             Add(new ItemFood("food.wine", "Wine", 5,
                 "models/citizen_props/wineglass02/wineglass01gib01_lod01.vmdl")); //Item registration Example
             Add(new ItemFood("food.hotdog", "HotDog", 5,
