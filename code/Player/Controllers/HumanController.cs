@@ -9,67 +9,64 @@ namespace ssl.Player.Controllers
 		private Vector3 mins;
 		private Vector3 maxs;
 		private Unstuck unstuck;
+
+		private const float BodyHeight  = 72.0F;
+	    private const float EyeHeight  = 64.0F;
+		private const float BodyGirth = 16.0F;
+		
+		private const float StopSpeed = 100.0f;
+		private const float WalkAcceleration = 100.0f;
+		private const float WalkSpeed = 150.0f;
+		
+		private const float GroundAngle = 46.0f;
 		
 		public HumanController()
 		{
 			unstuck = new Unstuck(this);
+
 		}
-		
 		public Vector3 GravityVector { get; set; } = new(0, 0, -981F);
-
-		public float BodyHeight { get; set; } = 72.0F;
-		public float EyeHeight { get; set; } = 64.0F;
-		public float BodyGirth { get; set; } = 16.0F;
-
 		public float CurrentSpeed => Velocity.Length;
-		public float WalkSpeed { get; set; } = 150.0F;
-		public float WalkAcceleration { get; set; } = 300.0F;
-
+		
 		public bool IsGrounded => GroundEntity != null;
 		public Surface GroundSurface { get; set; }
-		public float GroundAngle { get; set; } = 46.0F;
-
-
-		private void Walk()
-		{
-			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
-			WishVelocity = EyeRot * WishVelocity.ClampLength(1) * WalkSpeed;
-			
-			Accelerate(WalkAcceleration);
-		}
-
+		public float SurfaceFriction { get; set; } = 4;
+		
+		
 		public override void Simulate()
 		{
 			UpdateBBox();
-			
+
 			EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
 			EyeRot = Input.Rotation;
 			
-			if (unstuck.TestAndFix())
-			{
-				return;
-			}
-			
-			Gravity();
+			//If the player is stuck, fix and stop
+			if (unstuck.TestAndFix()) return;
+
+			ApplyGravity();
 			
 			UpdateGroundEntity();
 			
 			if (IsGrounded)
 			{
 				Walk();
-				GroundFriction();
+				ApplyFriction(GroundSurface.Friction * SurfaceFriction);
 			}
 			
-			
 			TryPlayerMove();
+		}
+		
+		private void Walk()
+		{
+			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
+			WishVelocity = EyeRot * WishVelocity.ClampLength(1);
+			WishVelocity *= WalkSpeed;
 			
-			DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
-			DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length}");
-			DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
-			DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
+			Accelerate();
 		}
 
-		private void Gravity()
+
+		private void ApplyGravity()
 		{
 			if (!IsGrounded)
 			{
@@ -80,32 +77,23 @@ namespace ssl.Player.Controllers
 				Velocity = Velocity.WithZ(0);
 			}
 		}
-
-		private void GroundFriction()
+		
+		/// <summary>
+		/// Apply a specific amount of friction
+		/// </summary>
+		/// <param name="frictionAmount">Friction to apply</param>
+		private void ApplyFriction( float frictionAmount = 1.0f )
 		{
-			if (CurrentSpeed < 0.1f)
-			{
-				Velocity = Vector3.Zero;
-				return;
-			}
-
-			if (!IsGrounded)
-			{
-				return;
-			}
+			if (CurrentSpeed < 0.1f) return;
 			
-			// Friction = coefficient * force pushing on ground
-			float frictionForce = GroundSurface.Friction * Math.Clamp(Vector3.Dot(-GroundNormal, GravityVector), 0, 1) * GravityVector.Length;
+			float usedSpeed = CurrentSpeed < StopSpeed ? StopSpeed : CurrentSpeed;
+			float droppedSpeed = usedSpeed * Time.Delta * frictionAmount;
+			float newSpeed = CurrentSpeed - droppedSpeed;
 			
-			DebugOverlay.ScreenText(5,$"  Friction Force: {frictionForce}");
-
-			float newSpeed = CurrentSpeed - frictionForce * Time.Delta;
-			if (newSpeed < 0)
-			{
-				newSpeed = 0;
-			}
+			if (newSpeed < 0) newSpeed = 0;
 			
-			Velocity *= newSpeed / CurrentSpeed;
+			newSpeed /= CurrentSpeed;
+			Velocity *= newSpeed;
 		}
 
 		/// <summary>
@@ -123,7 +111,6 @@ namespace ssl.Player.Controllers
 				GroundNormal = trace.Normal;
 				GroundEntity = trace.Entity;
 				GroundSurface = trace.Surface;
-
 				BaseVelocity = GroundEntity.Velocity;
 			}
 			else
@@ -131,14 +118,13 @@ namespace ssl.Player.Controllers
 				GroundNormal = Vector3.Zero;
 				GroundEntity = null;
 				GroundSurface = null;
-				
 				BaseVelocity = Vector3.Zero;
 			}
 		}
 
-		private void Accelerate(float acceleration)
+		private void Accelerate()
 		{
-			Vector3 accelerationVelocity = WishVelocity.Normal * acceleration * Time.Delta;
+			Vector3 accelerationVelocity = WishVelocity * Time.Delta;
 
 			Velocity += accelerationVelocity;
 		}
@@ -150,6 +136,7 @@ namespace ssl.Player.Controllers
 				Velocity = Vector3.Zero;
 				return;
 			}
+			
 			MoveHelper mover = new(Position, Velocity);
 			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
 			mover.MaxStandableAngle = GroundAngle;
@@ -169,7 +156,9 @@ namespace ssl.Player.Controllers
 		{
 			return TraceBBox( start, end, mins, maxs, liftFeet );
 		}
-
+		/// <summary>
+		/// BoundingBox (collision box)
+		/// </summary>
 		protected virtual void UpdateBBox()
 		{
 			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
