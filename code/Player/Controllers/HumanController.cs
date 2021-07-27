@@ -15,7 +15,7 @@ namespace ssl.Player.Controllers
 		private const float BodyGirth = 16.0F;
 		
 		private const float StopSpeed = 100.0f;
-		private const float WalkAcceleration = 100.0f;
+		private const float WalkAcceleration = 800.0f;
 		private const float WalkSpeed = 150.0f;
 		
 		private const float GroundAngle = 46.0f;
@@ -53,6 +53,11 @@ namespace ssl.Player.Controllers
 				ApplyFriction(GroundSurface.Friction * SurfaceFriction);
 			}
 			
+			DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
+			DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length})");
+			DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
+			DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
+
 			TryPlayerMove();
 		}
 		
@@ -60,7 +65,20 @@ namespace ssl.Player.Controllers
 		{
 			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
 			WishVelocity = EyeRot * WishVelocity.ClampLength(1);
-			WishVelocity *= WalkSpeed;
+			WishVelocity *= WalkAcceleration;
+
+			if (!Velocity.IsNearZeroLength)
+			{
+				Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
+				Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
+				
+				if (CurrentSpeed + projectedVelocity.Length * Time.Delta > WalkSpeed && projectedVelocity.Length > 0f)
+				{
+					projectedVelocity *= ((WalkSpeed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
+				}
+
+				WishVelocity = projectedVelocity + rejectedVelocity;
+			}
 			
 			Accelerate();
 		}
@@ -124,9 +142,9 @@ namespace ssl.Player.Controllers
 
 		private void Accelerate()
 		{
-			Vector3 accelerationVelocity = WishVelocity * Time.Delta;
+			Vector3 acceleration = WishVelocity * Time.Delta;
 
-			Velocity += accelerationVelocity;
+			Velocity += acceleration;
 		}
 
 		protected virtual void TryPlayerMove()
