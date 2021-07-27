@@ -23,6 +23,7 @@ namespace ssl.Player.Controllers
 
 		public float CurrentSpeed => Velocity.Length;
 		public float WalkSpeed { get; set; } = 150.0F;
+		public float WalkAcceleration { get; set; } = 300.0F;
 
 		public bool IsGrounded => GroundEntity != null;
 		public Surface GroundSurface { get; set; }
@@ -32,9 +33,9 @@ namespace ssl.Player.Controllers
 		private void Walk()
 		{
 			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
-			Velocity += EyeRot * WishVelocity.ClampLength(1) * WalkSpeed;
+			WishVelocity = EyeRot * WishVelocity.ClampLength(1) * WalkSpeed;
 			
-			TryPlayerMove();
+			Accelerate(WalkAcceleration);
 		}
 
 		public override void Simulate()
@@ -43,19 +44,27 @@ namespace ssl.Player.Controllers
 			
 			EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
 			EyeRot = Input.Rotation;
-
+			
 			if (unstuck.TestAndFix())
+			{
 				return;
+			}
 			
 			Gravity();
 			
 			UpdateGroundEntity();
-			GroundFriction();
 			
-			Walk();
+			if (IsGrounded)
+			{
+				Walk();
+				GroundFriction();
+			}
+			
+			
+			TryPlayerMove();
 			
 			DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
-			DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}");
+			DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length}");
 			DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
 			DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
 		}
@@ -79,15 +88,24 @@ namespace ssl.Player.Controllers
 				Velocity = Vector3.Zero;
 				return;
 			}
-				
-			if (!IsGrounded)
-				return;
 
+			if (!IsGrounded)
+			{
+				return;
+			}
+			
 			// Friction = coefficient * force pushing on ground
 			float frictionForce = GroundSurface.Friction * Math.Clamp(Vector3.Dot(-GroundNormal, GravityVector), 0, 1) * GravityVector.Length;
+			
+			DebugOverlay.ScreenText(5,$"  Friction Force: {frictionForce}");
 
 			float newSpeed = CurrentSpeed - frictionForce * Time.Delta;
-			Velocity *= (newSpeed / CurrentSpeed);
+			if (newSpeed < 0)
+			{
+				newSpeed = 0;
+			}
+			
+			Velocity *= newSpeed / CurrentSpeed;
 		}
 
 		/// <summary>
@@ -118,31 +136,30 @@ namespace ssl.Player.Controllers
 			}
 		}
 
-		public override void FrameSimulate()
+		private void Accelerate(float acceleration)
 		{
-			base.FrameSimulate();
+			Vector3 accelerationVelocity = WishVelocity.Normal * acceleration * Time.Delta;
 
-			EyeRot = Input.Rotation;
+			Velocity += accelerationVelocity;
 		}
 
-		public virtual void TryPlayerMove()
+		protected virtual void TryPlayerMove()
 		{
+			if (Velocity.Length <= 1.0F)
+			{
+				Velocity = Vector3.Zero;
+				return;
+			}
 			MoveHelper mover = new(Position, Velocity);
 			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
 			mover.MaxStandableAngle = GroundAngle;
-			
-			DebugOverlay.ScreenText(4,$"  Ground Normal: {mover.TryMove(Time.Delta)}");
+
+			mover.TryMove(Time.Delta);
 			
 			Position = mover.Position;
 			Velocity = mover.Velocity;
 		}
 
-		public virtual void UpdateBBox()
-		{
-			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
-			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
-		}
-		
 		/// <summary>
 		/// Traces the current bbox and returns the result.
 		/// liftFeet will move the start position up by this amount, while keeping the top of the bbox at the same
@@ -151,6 +168,19 @@ namespace ssl.Player.Controllers
 		public override TraceResult TraceBBox( Vector3 start, Vector3 end, float liftFeet = 0.0f )
 		{
 			return TraceBBox( start, end, mins, maxs, liftFeet );
+		}
+
+		protected virtual void UpdateBBox()
+		{
+			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
+			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
+		}
+
+		public override void FrameSimulate()
+		{
+			base.FrameSimulate();
+
+			EyeRot = Input.Rotation;
 		}
 	}
 }
