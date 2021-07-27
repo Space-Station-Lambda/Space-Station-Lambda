@@ -16,7 +16,9 @@ namespace ssl.Player.Controllers
 		
 		private const float StopSpeed = 100.0f;
 		private const float WalkAcceleration = 800.0f;
-		private const float WalkSpeed = 150.0f;
+		private const float WalkSpeed = 150.0f;		
+		private const float SprintAcceleration = 1000.0f;
+		private const float SprintSpeed = 300.0f;
 		
 		private const float GroundAngle = 46.0f;
 		
@@ -31,6 +33,8 @@ namespace ssl.Player.Controllers
 		public bool IsGrounded => GroundEntity != null;
 		public Surface GroundSurface { get; set; }
 		public float SurfaceFriction { get; set; } = 4;
+
+		public bool IsSprinting { get; set; } = false;
 		
 		
 		public override void Simulate()
@@ -44,13 +48,14 @@ namespace ssl.Player.Controllers
 			if (unstuck.TestAndFix()) return;
 
 			ApplyGravity();
-			
 			UpdateGroundEntity();
+			
+			ProcessInputs();
 			
 			if (IsGrounded)
 			{
-				Walk();
 				ApplyFriction(GroundSurface.Friction * SurfaceFriction);
+				Walk();
 			}
 			
 			DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
@@ -60,21 +65,41 @@ namespace ssl.Player.Controllers
 
 			TryPlayerMove();
 		}
-		
-		private void Walk()
+
+		private void ProcessInputs()
 		{
 			WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
 			WishVelocity = EyeRot * WishVelocity.ClampLength(1);
-			WishVelocity *= WalkAcceleration;
+
+			IsSprinting = Input.Down(InputButton.Run);
+		}
+		
+		private void Walk()
+		{
+			float acceleration;
+			float speed;
+
+			if (IsSprinting)
+			{
+				acceleration = SprintAcceleration;
+				speed = SprintSpeed;
+			}
+			else
+			{
+				acceleration = WalkAcceleration;
+				speed = WalkSpeed;
+			}
+			
+			WishVelocity *= acceleration;
 
 			if (!Velocity.IsNearZeroLength)
 			{
 				Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
 				Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
 				
-				if (CurrentSpeed + projectedVelocity.Length * Time.Delta > WalkSpeed && projectedVelocity.Length > 0f)
+				if (CurrentSpeed + projectedVelocity.Length * Time.Delta > speed && projectedVelocity.Length > 0f)
 				{
-					projectedVelocity *= ((WalkSpeed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
+					projectedVelocity *= ((speed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
 				}
 
 				WishVelocity = projectedVelocity + rejectedVelocity;
@@ -82,8 +107,7 @@ namespace ssl.Player.Controllers
 			
 			Accelerate();
 		}
-
-
+		
 		private void ApplyGravity()
 		{
 			if (!IsGrounded)
