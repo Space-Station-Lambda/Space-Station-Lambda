@@ -7,8 +7,8 @@ namespace ssl.Items
     public partial class ItemStackWeapon : ItemStack
     {
         public virtual float PrimaryRate => 5.0f;
-        public virtual float SecondaryRate => 15.0f;
-
+        public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
+        
         public ItemStackWeapon()
         {
         }
@@ -17,27 +17,15 @@ namespace ssl.Items
         {
         }
         
-        public PickupTrigger PickupTrigger { get; protected set; }
-
         public override void Spawn()
         {
-            
-
             base.Spawn();
 
             CollisionGroup = CollisionGroup.Weapon; // so players touch it as a trigger but not as a solid
             SetInteractsAs(CollisionLayer.Debris); // so player movement doesn't walk into it
-            
-            PickupTrigger = new PickupTrigger
-            {
-                Parent = this,
-                Position = Position
-            };
         }
 
-        [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
-
-        [Net, Predicted] public TimeSince TimeSinceSecondaryAttack { get; set; }
+        [Net, Predicted] private TimeSince TimeSincePrimaryAttack { get; set; }
 
         public override void Simulate(Client player)
         {
@@ -50,12 +38,6 @@ namespace ssl.Items
             {
                 TimeSincePrimaryAttack = 0;
                 AttackPrimary();
-            }
-            
-            if (CanSecondaryAttack())
-            {
-                TimeSinceSecondaryAttack = 0;
-                AttackSecondary();
             }
         }
 
@@ -73,8 +55,6 @@ namespace ssl.Items
 
             if (!Owner.IsValid() || !Input.Down(InputButton.Attack1)) return false;
             
-            Log.Info("Primary attack");
-            
             float rate = PrimaryRate;
             if (rate <= 0) return true;
 
@@ -84,36 +64,21 @@ namespace ssl.Items
         public virtual void AttackPrimary()
         {
             TimeSincePrimaryAttack = 0;
-            TimeSinceSecondaryAttack = 0;
 
             using (Prediction.Off())
             {
                 ShootEffects();
             }
 
+            //TODO: Bullet to class
             ShootBullet(0.05f, 1.5f, 1, 3.0f);
-            Log.Info("Primary attack");
-        }
-
-        public virtual bool CanSecondaryAttack()
-        {
-            if (!Owner.IsValid() || !Input.Down(InputButton.Attack2)) return false;
-
-            float rate = SecondaryRate;
-            if (rate <= 0) return true;
-
-            return TimeSinceSecondaryAttack > (1 / rate);
-        }
-
-        protected virtual void AttackSecondary()
-        {
         }
 
         /// <summary>
         /// Does a trace from start to end, does bullet impact effects. Coded as an IEnumerable so you can return multiple
         /// hits, like if you're going through layers or ricocet'ing or something.
         /// </summary>
-        public virtual IEnumerable<TraceResult> TraceBullet(Vector3 start, Vector3 end, float radius = 2.0f)
+        public virtual TraceResult TraceBullet(Vector3 start, Vector3 end, float radius = 2.0f)
         {
             bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);
 
@@ -124,8 +89,8 @@ namespace ssl.Items
                 .Ignore(this)
                 .Size(radius)
                 .Run();
-
-            yield return tr;
+            
+            return tr;
 
             //
             // Another trace, bullet going through thin material, penetrating water surface?
@@ -137,25 +102,18 @@ namespace ssl.Items
             forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
             forward = forward.Normal;
 
-            foreach (TraceResult tr in TraceBullet(Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize))
-            {
-                tr.Surface.DoBulletImpact(tr);
+            TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize);
+            
+            if (!IsServer || !tr.Entity.IsValid()) return;
+            
+            tr.Surface.DoBulletImpact(tr);
+            
+            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
+                .UsingTraceResult(tr)
+                .WithAttacker(Owner)
+                .WithWeapon(this);
 
-                if (!IsServer || !tr.Entity.IsValid())
-                {
-                    continue;
-                }
-
-                using (Prediction.Off())
-                {
-                    DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
-                        .UsingTraceResult(tr)
-                        .WithAttacker(Owner)
-                        .WithWeapon(this);
-
-                    tr.Entity.TakeDamage(damageInfo);
-                }
-            }
+            tr.Entity.TakeDamage(damageInfo);
         }
         
         [ClientRpc]
