@@ -23,7 +23,7 @@ namespace ssl.UI
             BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
             if (currentRound == null) return;
             textLabel.Text = "[" + currentRound.RoundName + "]";
-            timeLabel.Text = "Temps Restant:" + currentRound.TimeLeftFormatted;
+            timeLabel.Text = "Time Remaining:" + currentRound.TimeLeftFormatted;
         }
     }
 }
