@@ -28,6 +28,7 @@ namespace ssl.UI
             rolesSelected.Add(new RoleIcon(new Traitor(), this), false);
             foreach (RoleIcon roleIcon in rolesSelected.Keys)
             {
+                if (rolesSelected[roleIcon]) roleIcon.Select();
                 roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
                 ConsoleSystem.Run("select_preference_role", roleIcon.Role.Id, RolePreference.Never);
             }
@@ -64,6 +65,7 @@ namespace ssl.UI
                 Role = role;
                 Parent = parent;
                 Add.Label(role.Name, "role-name");
+                
             }
 
             /// <summary>
