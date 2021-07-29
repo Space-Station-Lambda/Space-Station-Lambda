@@ -162,7 +162,6 @@ namespace ssl.Player
         public override void TakeDamage(DamageInfo info)
         {
             base.TakeDamage(info);
-            Log.Info($"Health: {Health}");
         }
 
         private void EnableRagdoll( Vector3 force, int forceBone )
