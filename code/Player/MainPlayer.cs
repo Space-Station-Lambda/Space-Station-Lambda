@@ -118,6 +118,7 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+            Inventory.ClearInventory();
         }
 
         private void CheckControls()

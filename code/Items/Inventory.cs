@@ -134,6 +134,17 @@ namespace ssl.Items
 
             return items[position];
         }
+
+        /// <summary>
+        /// Removes each ItemStack of all slots of the inventory.
+        /// </summary>
+        public void ClearInventory()
+        {
+            for (int i = 0; i < SlotsCount; i++)
+            {
+                items[i] = null;
+            }
+        }
         
         /// <summary>
         /// Checks if a specific slot is empty.
