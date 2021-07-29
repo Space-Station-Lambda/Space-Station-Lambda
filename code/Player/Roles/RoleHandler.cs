@@ -17,11 +17,14 @@ namespace ssl.Player.Roles
         };
 
         private readonly Dictionary<Role, RolePreference> rolePreferences;
-        public RoleHandler()
+        private MainPlayer player;
+        public RoleHandler(MainPlayer player)
         {
             rolePreferences = new Dictionary<Role, RolePreference>();
+            this.player = player;
         }
 
+        
         [Net] public Role Role { get; private set; }
         
         [ServerCmd("select_preference_role")]
@@ -33,8 +36,9 @@ namespace ssl.Player.Roles
         
         public void AssignRole(Role role)
         {
-            Log.Info($"Role {role} assigned");
+            Role?.OnUnassigned(player);
             Role = role;
+            Role?.OnAssigned(player);
         }
 
         public void SetPreference(Role role, RolePreference preference)
@@ -72,6 +76,17 @@ namespace ssl.Player.Roles
                 if (res <= totalPoints) return role;
             }
             return new Assistant();
+        }
+        /// <summary>
+        /// When player spawn with role
+        /// </summary>
+        public void Init()
+        {
+            if (Role != null)
+            {
+                player.ClothesHandler.AttachClothes(Role.Clothing);
+                Role.OnSpawn(player);
+            }
         }
         /// <summary>
         /// TODO Role registery

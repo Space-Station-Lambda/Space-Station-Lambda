@@ -29,7 +29,7 @@ namespace ssl.Rounds
         {
             foreach (MainPlayer mainPlayer in Players)
             {
-                Log.Info("Assign role to " + mainPlayer.ToString());
+                Log.Info("Assign role to " + mainPlayer);
                 mainPlayer.RoleHandler.AssignRandomRole();
             }
         }
