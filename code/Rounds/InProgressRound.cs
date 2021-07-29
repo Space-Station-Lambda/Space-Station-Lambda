@@ -27,14 +27,21 @@ namespace ssl.Rounds
                 {
                     if (client.Pawn is MainPlayer player)
                     {
-                        foreach (SpawnPoint point in spawnPoints)
+                        if (spawnPoints.Count > 0)
                         {
-                            if (point.CanRoleSpawn(player.RoleHandler.Role))
+                            foreach (SpawnPoint point in spawnPoints)
                             {
-                                player.Respawn(point);
-                            }
+                                if (point.CanRoleSpawn(player.RoleHandler.Role))
+                                {
+                                    player.Respawn(point);
+                                }
                             
-                            break;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            player.Respawn();
                         }
                     }
                 }
