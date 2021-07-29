@@ -64,16 +64,20 @@ namespace ssl.Player.Roles
         /// <returns></returns>
         public Role GetRandomRoleFromPreferences()
         {
-            int totalPoints = rolePreferences.Sum(rolePreference => rolesFactors[rolePreference.Value]);
-            System.Random rnd = new();
-            int res = rnd.Next(totalPoints);
-            Log.Info("Random number for pick is " + res + " /" + totalPoints);
-            totalPoints = 0;
-            
+            int totalPoints = 0;
             foreach ((Role role, RolePreference value) in rolePreferences)
             {
                 totalPoints += rolesFactors[value];
-                if (res <= totalPoints) return role;
+            }
+            Random rnd = new();
+            int res = rnd.Next(totalPoints);
+            Log.Info("Random number for pick is " + res + " /" + totalPoints);
+            totalPoints = 0;
+            foreach ((Role role, RolePreference value) in rolePreferences)
+            {
+                Log.Info("Add " + rolesFactors[value]  + " for role " + role);
+                totalPoints += rolesFactors[value];
+                if (res < totalPoints) return role;
             }
             return new Assistant();
         }

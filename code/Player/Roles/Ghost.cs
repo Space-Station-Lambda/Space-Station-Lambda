@@ -8,6 +8,6 @@ namespace ssl.Player.Roles
         public override string Name => "Ghost";
         public override string Description => "Ghost";
 
-        public override HashSet<string> Clothing => new();
+        public override IEnumerable<string> Clothing => new HashSet<string>();
     }
 }
