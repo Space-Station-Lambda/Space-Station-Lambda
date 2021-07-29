@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Sandbox;
@@ -97,6 +97,13 @@ namespace ssl.Rounds
         protected virtual void OnTimeUp()
         {
             RoundEndedEvent?.Invoke(this);
+        }
+
+        public override string ToString()
+        {
+	        return $"Round Name: {RoundName}\n" +
+	               $"Round Duration: {RoundDuration}\n" +
+	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
         }
     }
 }
