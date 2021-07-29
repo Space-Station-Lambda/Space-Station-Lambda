@@ -132,7 +132,7 @@ namespace ssl.Items
         /// <param name="position">The preferred position</param>
         /// <param name="amount">Amount of items to add</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void AddItem(string itemId, int amount, int position = 0)
+        public void AddItem(string itemId, int amount = 1, int position = 0)
         {
             Item item = new ItemRegistry().GetItemById(itemId);
             AddItem(item, amount, position);
