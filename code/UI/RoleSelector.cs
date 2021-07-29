@@ -18,7 +18,7 @@ namespace ssl.UI
         public RoleSelector()
         {
             SetClass("active", true);
-            rolesSelected.Add(new RoleIcon(new Assistant(), this), true);
+            rolesSelected.Add(new RoleIcon(new Assistant(), this), false);
             rolesSelected.Add(new RoleIcon(new Janitor(), this), false);
             rolesSelected.Add(new RoleIcon(new Scientist(), this), false);
             rolesSelected.Add(new RoleIcon(new Guard(), this), false);
