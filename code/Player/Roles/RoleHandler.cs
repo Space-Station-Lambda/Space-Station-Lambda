@@ -24,7 +24,6 @@ namespace ssl.Player.Roles
             rolePreferences = new Dictionary<Role, RolePreference>();
             this.player = player;
         }
-
         
         [Net] public Role Role { get; private set; }
         
