@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace ssl.Player.Roles
 {
@@ -10,7 +10,11 @@ namespace ssl.Player.Roles
 
         public override HashSet<string> Clothing => new()
         {
-            "models/citizen_clothes/hat/hat_hardhat.vmdl"
+            "models/citizen_clothes/shoes/shoes.workboots.vmdl",
+            "models/citizen_clothes/shoes/shorts.cargo.vmdl",
+            "models/citizen_clothes/hat/hat_hardhat.vmdl",
+            "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
+            "models/citizen_clothes/jacket/jacket.red.vmdl"
         };
     }
 }
