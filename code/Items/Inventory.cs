@@ -65,7 +65,6 @@ namespace ssl.Items
             
             if (filter.IsAuthorized(itemStack.Item))
             {
-                Log.Info(itemStack.Item + " " + itemStack.Amount);
                 if (!IsPresent(itemStack))
                 {
                     var slotsCount = SlotsCount;
