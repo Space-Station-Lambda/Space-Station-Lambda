@@ -19,7 +19,7 @@
     height: 100px;
     width: 100px;
     padding: 10px;
-    margin-right: 5px;
+    margin: 2px;
     border: 4px rgba(0, 0, 0, 0.35);
     border-radius: 25px;
 
@@ -27,7 +27,6 @@
       position: absolute;
       width: 80px;
       height: 80px;
-      left: 7px;
     }
 
     &.selected {
