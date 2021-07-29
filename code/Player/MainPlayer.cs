@@ -26,7 +26,6 @@ namespace ssl.Player
                 RoleHandler = new RoleHandler();            }
         }
 
-
         [Net] public new Inventory Inventory { get; private set; }
         [Net] public ItemStack Holding { get; private set; }
 
