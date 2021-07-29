@@ -25,7 +25,6 @@ namespace ssl.Player.Controllers
 		public HumanController()
 		{
 			unstuck = new Unstuck(this);
-
 		}
 		public Vector3 GravityVector { get; set; } = new(0, 0, -981F);
 		public float CurrentSpeed => Velocity.Length;
@@ -76,6 +75,9 @@ namespace ssl.Player.Controllers
 			return TraceBBox( start, end, mins, maxs, liftFeet );
 		}
 
+		/// <summary>
+		/// Moves the player in the direction of their velocity if there is no colliding objects.
+		/// </summary>
 		protected virtual void TryPlayerMove()
 		{
 			if (Velocity.Length <= 1.0F)
@@ -111,6 +113,9 @@ namespace ssl.Player.Controllers
 			IsSprinting = Input.Down(InputButton.Run);
 		}
 
+		/// <summary>
+		/// Applies the walking logic to accelerate the player
+		/// </summary>
 		private void Walk()
 		{
 			float acceleration;
@@ -146,6 +151,9 @@ namespace ssl.Player.Controllers
 			Accelerate();
 		}
 
+		/// <summary>
+		/// Adds the Gravity Vector if the player is not on ground
+		/// </summary>
 		private void ApplyGravity()
 		{
 			if (!IsGrounded)
