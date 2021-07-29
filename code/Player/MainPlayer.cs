@@ -3,6 +3,7 @@ using ssl.Effects;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Items.Data;
+using ssl.Player.Controllers;
 using ssl.Player.Roles;
 
 namespace ssl.Player
@@ -81,9 +82,9 @@ namespace ssl.Player
         {
             SetModel(Model);
 
-            Controller = new WalkController();
+            Controller = new HumanController();
             Animator = new StandardPlayerAnimator();
-            Camera = new ThirdPersonCamera();
+            Camera = new FirstPersonCamera();
 
             EnableAllCollisions = true;
             EnableDrawing = true;
