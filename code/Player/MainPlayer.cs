@@ -1,10 +1,13 @@
 ﻿using Sandbox;
+using Sandbox.Rcon;
 using ssl.Effects;
+using ssl.Entities;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
+using Input = Sandbox.Input;
 
 namespace ssl.Player
 {
@@ -12,11 +15,9 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
-        
 
         public MainPlayer()
         {
-
             if (Host.IsServer)
             {
                 Inventory = new Inventory(MaxInventoryCapacity);
@@ -24,15 +25,21 @@ namespace ssl.Player
                 ClothesHandler = new ClothesHandler(this);
                 RoleHandler = new RoleHandler();            }
         }
-        
+
+
         [Net] public new Inventory Inventory { get; private set; }
         [Net] public ItemStack Holding { get; private set; }
+
         /**
          * Handlers
          */
         public GaugeHandler GaugeHandler { get; }
+
+
         public ClothesHandler ClothesHandler { get;}
         [Net] public RoleHandler RoleHandler { get; }
+        public PlayerCorpse Ragdoll { get; set; }
+
 
         public void Apply(Effect<MainPlayer> effect)
         {
@@ -118,7 +125,9 @@ namespace ssl.Player
             base.OnKilled();
 
             EnableDrawing = false;
+            EnableRagdoll(Vector3.Zero, 0);
         }
+
 
         private void CheckControls()
         {
@@ -144,10 +153,31 @@ namespace ssl.Player
         private void ClientControls()
         {
         }
-        
+
         private void InitRole()
         {
             ClothesHandler.AttachClothes(RoleHandler.Role.Clothing);
+        }
+
+        public override void TakeDamage(DamageInfo info)
+        {
+            base.TakeDamage(info);
+            Log.Info($"Health: {Health}");
+        }
+
+        private void EnableRagdoll( Vector3 force, int forceBone )
+        {
+            PlayerCorpse ragdoll = new()
+            {
+                Position = Position,
+                Rotation = Rotation
+            };
+
+            ragdoll.CopyFrom( this );
+            ragdoll.ApplyForceToBone( force, forceBone );
+            ragdoll.Player = this;
+
+            Ragdoll = ragdoll;
         }
     }
 }
