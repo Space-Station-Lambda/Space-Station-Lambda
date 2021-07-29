@@ -104,6 +104,14 @@ namespace ssl.Player
             Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.hotdog")), 9);
         }
 
+        public void Respawn(Entities.SpawnPoint spawnPoint)
+        {
+            Respawn();
+
+            Position = spawnPoint.Position;
+            Rotation = spawnPoint.Rotation;
+        }
+
         public override void OnKilled()
         {
             base.OnKilled();
