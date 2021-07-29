@@ -211,7 +211,6 @@ namespace ssl.Player.Controllers
 		private void Accelerate()
 		{
 			Vector3 acceleration = WishVelocity * Time.Delta;
-
 			Velocity += acceleration;
 		}
 	}
