@@ -65,7 +65,6 @@ namespace ssl.UI
                 Role = role;
                 Parent = parent;
                 Add.Label(role.Name, "role-name");
-                
             }
 
             /// <summary>
