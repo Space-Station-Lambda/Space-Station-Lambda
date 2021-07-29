@@ -94,15 +94,6 @@ namespace ssl.Player
             RoleHandler.Init();
 
             base.Respawn();
-
-			//Current add items for testing purpose. 
-			ItemRegistry itemRegistry = Gamemode.Instance.ItemRegistry;
-            Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("weapon.pistol")), 4);
-			Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("weapon.knife")), 2);
-			Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.banana")), 3);
-            Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.wine")), 1);
-            Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.apple")), 6);
-            Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.hotdog")), 9);
         }
 
         public void Respawn(Entities.SpawnPoint spawnPoint)
