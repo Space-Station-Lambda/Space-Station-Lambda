@@ -7,7 +7,6 @@ namespace ssl.Player.Roles
         public override string Id => "traitor";
         public override string Name => "Traitor";
         public override string Description => "Traitor";
-
         public override HashSet<string> Clothing => new()
         {
 	        "models/citizen_clothes/trousers/trousers.smart.vmdl",

@@ -22,7 +22,7 @@ namespace ssl.Player
                 Inventory = new Inventory(MaxInventoryCapacity);
                 GaugeHandler = new GaugeHandler();
                 ClothesHandler = new ClothesHandler(this);
-                RoleHandler = new RoleHandler();            }
+                RoleHandler = new RoleHandler(this);            }
         }
         
         [Net] public new Inventory Inventory { get; private set; }
@@ -91,7 +91,7 @@ namespace ssl.Player
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
 
-            InitRole();
+            RoleHandler.Init();
 
             base.Respawn();
 
@@ -145,9 +145,6 @@ namespace ssl.Player
         {
         }
         
-        private void InitRole()
-        {
-            ClothesHandler.AttachClothes(RoleHandler.Role.Clothing);
-        }
+        
     }
 }
