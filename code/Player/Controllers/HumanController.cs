@@ -15,10 +15,10 @@ namespace ssl.Player.Controllers
 		private const float BodyGirth = 16.0F;
 		
 		private const float StopSpeed = 100.0f;
-		private const float WalkAcceleration = 800.0f;
+		private const float WalkAcceleration = 1500.0f;
 		private const float WalkSpeed = 150.0f;		
-		private const float SprintAcceleration = 1000.0f;
-		private const float SprintSpeed = 300.0f;
+		private const float SprintAcceleration = 2000.0f;
+		private const float SprintSpeed = 200.0f;
 		
 		private const float GroundAngle = 46.0f;
 		
@@ -58,12 +58,49 @@ namespace ssl.Player.Controllers
 				Walk();
 			}
 			
-			DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
-			DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length})");
-			DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
-			DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
+			// DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
+			// DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length})");
+			// DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
+			// DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
 
 			TryPlayerMove();
+		}
+
+		/// <summary>
+		/// Traces the current bbox and returns the result.
+		/// liftFeet will move the start position up by this amount, while keeping the top of the bbox at the same
+		/// position. This is good when tracing down because you won't be tracing through the ceiling above.
+		/// </summary>
+		public override TraceResult TraceBBox( Vector3 start, Vector3 end, float liftFeet = 0.0f )
+		{
+			return TraceBBox( start, end, mins, maxs, liftFeet );
+		}
+
+		protected virtual void TryPlayerMove()
+		{
+			if (Velocity.Length <= 1.0F)
+			{
+				Velocity = Vector3.Zero;
+				return;
+			}
+			
+			MoveHelper mover = new(Position, Velocity);
+			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
+			mover.MaxStandableAngle = GroundAngle;
+
+			mover.TryMove(Time.Delta);
+			
+			Position = mover.Position;
+			Velocity = mover.Velocity;
+		}
+
+		/// <summary>
+		/// BoundingBox (collision box)
+		/// </summary>
+		protected virtual void UpdateBBox()
+		{
+			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
+			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
 		}
 
 		private void ProcessInputs()
@@ -73,7 +110,7 @@ namespace ssl.Player.Controllers
 
 			IsSprinting = Input.Down(InputButton.Run);
 		}
-		
+
 		private void Walk()
 		{
 			float acceleration;
@@ -101,13 +138,14 @@ namespace ssl.Player.Controllers
 				{
 					projectedVelocity *= ((speed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
 				}
-
+			
 				WishVelocity = projectedVelocity + rejectedVelocity;
+				WishVelocity = WishVelocity.WithZ(0);
 			}
 			
 			Accelerate();
 		}
-		
+
 		private void ApplyGravity()
 		{
 			if (!IsGrounded)
@@ -119,7 +157,7 @@ namespace ssl.Player.Controllers
 				Velocity = Velocity.WithZ(0);
 			}
 		}
-		
+
 		/// <summary>
 		/// Apply a specific amount of friction
 		/// </summary>
@@ -169,49 +207,6 @@ namespace ssl.Player.Controllers
 			Vector3 acceleration = WishVelocity * Time.Delta;
 
 			Velocity += acceleration;
-		}
-
-		protected virtual void TryPlayerMove()
-		{
-			if (Velocity.Length <= 1.0F)
-			{
-				Velocity = Vector3.Zero;
-				return;
-			}
-			
-			MoveHelper mover = new(Position, Velocity);
-			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
-			mover.MaxStandableAngle = GroundAngle;
-
-			mover.TryMove(Time.Delta);
-			
-			Position = mover.Position;
-			Velocity = mover.Velocity;
-		}
-
-		/// <summary>
-		/// Traces the current bbox and returns the result.
-		/// liftFeet will move the start position up by this amount, while keeping the top of the bbox at the same
-		/// position. This is good when tracing down because you won't be tracing through the ceiling above.
-		/// </summary>
-		public override TraceResult TraceBBox( Vector3 start, Vector3 end, float liftFeet = 0.0f )
-		{
-			return TraceBBox( start, end, mins, maxs, liftFeet );
-		}
-		/// <summary>
-		/// BoundingBox (collision box)
-		/// </summary>
-		protected virtual void UpdateBBox()
-		{
-			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
-			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
-		}
-
-		public override void FrameSimulate()
-		{
-			base.FrameSimulate();
-
-			EyeRot = Input.Rotation;
 		}
 	}
 }
