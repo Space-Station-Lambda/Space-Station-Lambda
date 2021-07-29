@@ -10,6 +10,9 @@ namespace ssl.Player.Controllers
 		private Vector3 maxs;
 		private Unstuck unstuck;
 
+		private const float TopGroundDetect = 0.1f;
+		private const float BottomGroundDetect = 2.0f;
+
 		private const float BodyHeight  = 72.0F;
 	    private const float EyeHeight  = 64.0F;
 		private const float BodyGirth = 16.0F;
@@ -56,11 +59,6 @@ namespace ssl.Player.Controllers
 				ApplyFriction(GroundSurface.Friction * SurfaceFriction);
 				Walk();
 			}
-			
-			// DebugOverlay.ScreenText(0, $"    IsGrounded: {IsGrounded}");
-			// DebugOverlay.ScreenText(1,$"       Velocity: {Velocity}  ({Velocity.Length})");
-			// DebugOverlay.ScreenText(2,$"SurfaceFriction: {GroundSurface?.Friction}");
-			// DebugOverlay.ScreenText(3,$"  Ground Normal: {GroundNormal}");
 
 			TryPlayerMove();
 		}
@@ -189,8 +187,8 @@ namespace ssl.Player.Controllers
 		/// </summary>
 		private void UpdateGroundEntity()
 		{
-			Vector3 startPos = Position + Vector3.Up * 0.1f;
-			Vector3 endPos = Position - Vector3.Up * 2.0f;
+			Vector3 startPos = Position + Vector3.Up * TopGroundDetect;
+			Vector3 endPos = Position - Vector3.Up * BottomGroundDetect;
 
 			TraceResult trace = TraceBBox(startPos, endPos, mins, maxs, 4.0F);
 
