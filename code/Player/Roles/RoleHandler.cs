@@ -18,6 +18,7 @@ namespace ssl.Player.Roles
 
         private readonly Dictionary<Role, RolePreference> rolePreferences;
         private MainPlayer player;
+        
         public RoleHandler(MainPlayer player)
         {
             rolePreferences = new Dictionary<Role, RolePreference>();
