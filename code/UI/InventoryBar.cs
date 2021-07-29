@@ -93,7 +93,6 @@ namespace ssl.UI
                 MainPlayer player = (MainPlayer) Local.Client.Pawn;
                 
                 sceneWorld = new SceneWorld();
-                Log.Info(player.Inventory.SlotsFull);
 
                 using (SceneWorld.SetCurrent(sceneWorld))
                 {
