@@ -1,10 +1,12 @@
 ﻿using Sandbox;
+using Sandbox.Rcon;
 using ssl.Effects;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
+using Input = Sandbox.Input;
 
 namespace ssl.Player
 {
@@ -16,13 +18,13 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-
             if (Host.IsServer)
             {
                 Inventory = new Inventory(MaxInventoryCapacity);
                 GaugeHandler = new GaugeHandler();
                 ClothesHandler = new ClothesHandler(this);
-                RoleHandler = new RoleHandler(this);            }
+                RoleHandler = new RoleHandler(this);
+            }
         }
         
         [Net] public new Inventory Inventory { get; private set; }
@@ -70,7 +72,9 @@ namespace ssl.Player
         /// <param name="client"></param>
         public override void Simulate(Client client)
         {
-            base.Simulate(client);
+            PawnController controller = GetActiveController();
+            controller?.Simulate( client, this, GetActiveAnimator() );
+            
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
         }
@@ -115,10 +119,12 @@ namespace ssl.Player
 
         public override void OnKilled()
         {
-            base.OnKilled();
+            LifeState = LifeState.Dead;
+            StopUsing();
 
-            EnableDrawing = false;
             Inventory.ClearInventory();
+            RoleHandler.AssignRole(new Ghost());
+            RoleHandler.Init();
         }
 
         private void CheckControls()
@@ -145,7 +151,5 @@ namespace ssl.Player
         private void ClientControls()
         {
         }
-        
-        
     }
 }

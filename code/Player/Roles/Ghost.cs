@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 
 namespace ssl.Player.Roles
 {
@@ -9,5 +10,14 @@ namespace ssl.Player.Roles
         public override string Description => "Ghost";
 
         public override HashSet<string> Clothing => new();
+
+        public override void OnSpawn(MainPlayer player)
+        {
+            base.OnSpawn(player);
+
+            player.Transmit = TransmitType.Owner;
+            player.Camera = new ThirdPersonCamera();
+            player.RenderAlpha = 0.25f;
+        }
     }
 }
