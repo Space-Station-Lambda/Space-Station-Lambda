@@ -5,6 +5,8 @@ namespace ssl.Player.Roles
 {
     public class Ghost : Role
     {
+        private const float RenderingAlpha = 0.25f;
+        
         public override string Id => "ghost";
         public override string Name => "Ghost";
         public override string Description => "Ghost";
@@ -17,7 +19,7 @@ namespace ssl.Player.Roles
 
             player.Transmit = TransmitType.Owner;
             player.Camera = new ThirdPersonCamera();
-            player.RenderAlpha = 0.25f;
+            player.RenderAlpha = RenderingAlpha;
         }
     }
 }
