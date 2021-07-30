@@ -8,3 +8,21 @@
 	enable_shadows(boolean) [ group="Render Properties" ] : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
 ]
 
+// 
+// ssl.Entities.SpawnPoint : Sandbox.Entity 
+// 
+@PointClass editormodel( "models/citizen/citizen.vmdl" ) 
+metadata
+{
+	entity_tool_name = "SSL Player Spawnpoint"
+	entity_tool_group = "Space Station Lambda"
+	entity_tool_tip = "Defines a point where the player can spawn. Roles can be specified if a spawnpoint is role exclusive"
+}
+= ssl_player_spawn : ""
+[
+	targetname(target_source) : "Name" : : "The name that other entities refer to this entity by."
+	parentname(target_destination) [ group="Hierarchy" ] : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+	rolefilter(string) : "Role filter" : "" : ""
+	enable_shadows(boolean) [ group="Render Properties" ] : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+]
+

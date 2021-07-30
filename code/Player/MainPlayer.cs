@@ -1,11 +1,14 @@
 ﻿using Sandbox;
+using Sandbox.Rcon;
 using ssl.Effects;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
-
+using Input = Sandbox.Input;
+using SpawnPoint = ssl.Entities.SpawnPoint;
+    
 namespace ssl.Player
 {
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
@@ -16,13 +19,13 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-
             if (Host.IsServer)
             {
                 Inventory = new Inventory(MaxInventoryCapacity);
                 GaugeHandler = new GaugeHandler();
                 ClothesHandler = new ClothesHandler(this);
-                RoleHandler = new RoleHandler(this);            }
+                RoleHandler = new RoleHandler(this);
+            }
         }
         
         [Net] public new Inventory Inventory { get; private set; }
@@ -70,7 +73,9 @@ namespace ssl.Player
         /// <param name="client"></param>
         public override void Simulate(Client client)
         {
-            base.Simulate(client);
+            PawnController controller = GetActiveController();
+            controller?.Simulate( client, this, GetActiveAnimator() );
+            
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
         }
@@ -95,20 +100,25 @@ namespace ssl.Player
 
             base.Respawn();
         }
-
-        public void Respawn(Entities.SpawnPoint spawnPoint)
+        
+        public void Respawn(Vector3 position, Rotation rotation)
         {
             Respawn();
 
-            Position = spawnPoint.Position;
-            Rotation = spawnPoint.Rotation;
+            Position = position;
+            Rotation = rotation;
+        }
+        
+        public void Respawn(SpawnPoint spawnPoint)
+        {
+           Respawn(spawnPoint.Position, spawnPoint.Rotation);
         }
 
         public override void OnKilled()
         {
-            base.OnKilled();
-
-            EnableDrawing = false;
+            LifeState = LifeState.Dead;
+            StopUsing();
+            RoleHandler.Role?.OnKilled(this);
         }
 
         private void CheckControls()
@@ -136,6 +146,13 @@ namespace ssl.Player
         {
         }
         
-        
+        [ServerCmd("kill_player")]
+        private static void KillPlayer()
+        {
+            ConsoleSystem.Caller.Pawn.TakeDamage(new DamageInfo()
+            {
+                Damage = 100
+            });
+        }
     }
 }

@@ -16,7 +16,6 @@ namespace ssl.Player.Roles
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
-        /// <param name="player"></param>
         public virtual void OnAssigned(MainPlayer player){}
 
         /// <summary>
@@ -31,10 +30,17 @@ namespace ssl.Player.Roles
             }
         }
         /// <summary>
-        /// Trigger when the role is unasigned
+        /// Trigger when the role is unassigned
         /// </summary>
-        /// <param name="player"></param>
         public virtual void OnUnassigned(MainPlayer player){}
+        /// <summary>
+        /// Trigger when a player with the role is killed
+        /// </summary>
+        public virtual void OnKilled(MainPlayer player)
+        {
+            player.RoleHandler.AssignRole(new Ghost());
+            player.Respawn(player.Position, player.Rotation);
+        }
         public override string ToString()
         {
             return $"[{Id}]{Name}";
