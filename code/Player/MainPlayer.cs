@@ -7,7 +7,8 @@ using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
 using Input = Sandbox.Input;
-
+using SpawnPoint = ssl.Entities.SpawnPoint;
+    
 namespace ssl.Player
 {
     public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
@@ -108,13 +109,18 @@ namespace ssl.Player
             Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.apple")), 6);
             Inventory.AddItem(new ItemStack(itemRegistry.GetItemById("food.hotdog")), 9);
         }
-
-        public void Respawn(Entities.SpawnPoint spawnPoint)
+        
+        public void Respawn(Vector3 position, Rotation rotation)
         {
             Respawn();
 
-            Position = spawnPoint.Position;
-            Rotation = spawnPoint.Rotation;
+            Position = position;
+            Rotation = rotation;
+        }
+        
+        public void Respawn(SpawnPoint spawnPoint)
+        {
+           Respawn(spawnPoint.Position, spawnPoint.Rotation);
         }
 
         public override void OnKilled()
@@ -147,6 +153,16 @@ namespace ssl.Player
 
         private void ClientControls()
         {
+        }
+
+
+        [ServerCmd("kill_player")]
+        private static void KillPlayer()
+        {
+            ConsoleSystem.Caller.Pawn.TakeDamage(new DamageInfo()
+            {
+                Damage = 100
+            });
         }
     }
 }
