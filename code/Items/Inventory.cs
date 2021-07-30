@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Sandbox;
+using ssl.Items.Data;
 
 namespace ssl.Items
 {
@@ -55,14 +56,13 @@ namespace ssl.Items
         /// <param name="itemStack">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        /// <exception cref="FullInventoryException">When the item stack can't be added because the inventory is full</exception>
         public void AddItem(ItemStack itemStack, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
-
+            
             if (filter.IsAuthorized(itemStack.Item))
             {
                 if (!IsPresent(itemStack))
@@ -105,6 +105,37 @@ namespace ssl.Items
             {
                 throw new NotImplementedException("ItemAuthorizer/Filter needs a rework before");
             }
+        }
+        
+        /// <summary>
+        /// Adds an Item to a preferred position in the inventory.
+        /// </summary>
+        /// The Item will be merged if the preferred position is the same Item.
+        /// If the preferred position is not the same Item, it will add the stack to the next available slot.
+        /// <param name="item">Item to add</param>
+        /// <param name="position">The preferred position</param>
+        /// <param name="amount">Amount of items to add</param>
+        /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
+        public void AddItem(Item item, int amount = 1, int position = 0)
+        {
+            ItemStack itemStack = new(item);
+            itemStack.Add(amount);
+            AddItem(itemStack, position);
+        }
+        
+        /// <summary>
+        /// Adds an Item to a preferred position in the inventory by its id.
+        /// </summary>
+        /// The Item will be merged if the preferred position is the same Item.
+        /// If the preferred position is not the same Item, it will add the stack to the next available slot.
+        /// <param name="itemId">ItemId to add</param>
+        /// <param name="position">The preferred position</param>
+        /// <param name="amount">Amount of items to add</param>
+        /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
+        public void AddItem(string itemId, int amount = 1, int position = 0)
+        {
+            Item item = new ItemRegistry().GetItemById(itemId);
+            AddItem(item, amount, position);
         }
 
         /// <summary>

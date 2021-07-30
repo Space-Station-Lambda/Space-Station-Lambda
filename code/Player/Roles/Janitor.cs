@@ -8,7 +8,7 @@ namespace ssl.Player.Roles
         public override string Name => "Janitor";
         public override string Description => "Janitor";
 
-        public override HashSet<string> Clothing => new()
+        public override IEnumerable<string> Clothing => new HashSet<string>
         {
             "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
             "models/citizen_clothes/shirt/shirt_longsleeve.plain.vmdl",
