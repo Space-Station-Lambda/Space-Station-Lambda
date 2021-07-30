@@ -5,6 +5,9 @@ namespace ssl.Entities
 {
 	public class PlayerCorpse : ModelEntity
 	{
+		private const float ForceMultiplier = 1000F;
+		private const string ClothesModelIndicator = "clothes";
+		
 		public MainPlayer Player { get; set; }
 
 		public PlayerCorpse()
@@ -32,7 +35,7 @@ namespace ssl.Entities
 				{
 					string model = e.GetModelName();
 
-					if (model != null && !model.Contains("clothes"))
+					if (model != null && !model.Contains(ClothesModelIndicator))
 						continue;
 
 					ModelEntity clothing = new();
@@ -44,19 +47,19 @@ namespace ssl.Entities
 
 		public void ApplyForceToBone(Vector3 force, int forceBone)
 		{
-			PhysicsGroup.AddVelocity( force );
+			PhysicsGroup.AddVelocity(force);
 
 			if (forceBone >= 0)
 			{
-				PhysicsBody body = GetBonePhysicsBody( forceBone );
+				PhysicsBody body = GetBonePhysicsBody(forceBone);
 
 				if (body != null)
 				{
-					body.ApplyForce( force * 1000 );
+					body.ApplyForce(force * ForceMultiplier);
 				}
 				else
 				{
-					PhysicsGroup.AddVelocity( force );
+					PhysicsGroup.AddVelocity(force);
 				}
 			}
 		}
