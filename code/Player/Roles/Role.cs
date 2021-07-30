@@ -30,6 +30,7 @@ namespace ssl.Player.Roles
         public virtual void OnKilled(MainPlayer player)
         {
             player.RoleHandler.AssignRole(new Ghost());
+            player.Respawn(player.Position, player.Rotation);
         }
         public override string ToString()
         {

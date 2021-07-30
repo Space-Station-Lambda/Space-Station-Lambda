@@ -17,7 +17,6 @@ namespace ssl.Player.Roles
         {
             base.OnSpawn(player);
             
-            player.Respawn(player.Position, player.Rotation);
             player.Transmit = TransmitType.Owner;
             player.Camera = new ThirdPersonCamera();
             player.RenderAlpha = RenderingAlpha;
