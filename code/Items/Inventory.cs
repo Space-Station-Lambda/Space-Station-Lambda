@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Items.Data;
 
@@ -8,7 +9,7 @@ namespace ssl.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
-        private ItemFilter filter;
+        private readonly ItemFilter itemFilter = new();
 
         public Inventory()
         {
@@ -16,32 +17,29 @@ namespace ssl.Items
         
         public Inventory(int size)
         {
-            items = new List<ItemStack>(size);
+            Slots = new List<Slot>(size);
             for (int i = 0; i < size; i++)
             {
-                items.Add(null);
+                Slots.Add(new Slot());
             }
-            filter = new ItemFilter();
         }
 
-        [Net] private List<ItemStack> items { get; set; }
+        [Net] public List<Slot> Slots { get; set;  }
 
-        public int SlotsCount => items.Count;
+        public int SlotsCount => Slots.Count;
 
         public int SlotsLeft
         {
             get
             {
-                var slotsLeft = 0;
-
-                for (var i = 0; i < SlotsCount; i++)
+                int slotsLeft = 0;
+                for (int i = 0; i < SlotsCount; i++)
                 {
-                    if (items[i] == null)
+                    if (Slots[i].IsEmpty())
                     {
                         slotsLeft++;
                     }
                 }
-
                 return slotsLeft;
             }
         }
@@ -56,57 +54,27 @@ namespace ssl.Items
         /// <param name="itemStack">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void AddItem(ItemStack itemStack, int position = 0)
+        public ItemStack AddItem(ItemStack itemStack, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
-            
-            if (filter.IsAuthorized(itemStack.Item))
+            if (itemFilter.IsAuthorized(itemStack.Item))
             {
-                if (!IsPresent(itemStack))
+                List<ItemStack> currentItemStacks = GetItems(itemStack.Item);
+                ItemStack remainingItemStack = new(itemStack.Item, itemStack.Amount);
+                remainingItemStack = currentItemStacks.Aggregate(remainingItemStack, (current, currentItemStack) => currentItemStack.AddItemStack(current));
+                if (remainingItemStack.Amount > 0)
                 {
-                    var slotsCount = SlotsCount;
-                    var itemAdded = false;
-
-                    for (var i = 0; i < slotsCount && !itemAdded; i++)
-                    {
-                        var j = (i + position) % SlotsCount;
-                        if (IsSlotEmpty(j))
-                        {
-                            items[j] = itemStack;
-                            itemAdded = true;
-                        }
-                        else
-                        {
-                            if (items[position].Item.Equals(itemStack.Item))
-                            {
-                                try
-                                {
-                                    items[position].Add(itemStack.Amount);
-                                    itemAdded = true;
-                                }
-                                catch (Exception)
-                                {
-                                    // ignored
-                                }
-                            }
-                        }
-                    }
-
-                    if (!itemAdded)
-                    {
-                        throw new Exception($"{itemStack} could not be added into the inventory.");
-                    }
+                    Slot slot = GetFirstEmptySlot();
+                    slot?.Add(remainingItemStack);
                 }
+                return remainingItemStack;
             }
-            else
-            {
-                throw new NotImplementedException("ItemAuthorizer/Filter needs a rework before");
-            }
+            throw new Exception("Not permission");
         }
-        
+
         /// <summary>
         /// Adds an Item to a preferred position in the inventory.
         /// </summary>
@@ -149,8 +117,8 @@ namespace ssl.Items
 
             if (!IsSlotEmpty(position))
             {
-                removedItem = items[position];
-                items[position] = null;
+                removedItem = Slots[position].ItemStack;
+                Slots[position].ItemStack = null;
             }
 
             return removedItem;
@@ -163,7 +131,22 @@ namespace ssl.Items
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
 
-            return items[position];
+            return Slots[position].ItemStack;
+        }
+
+        public Slot GetFirstEmptySlot()
+        {
+            return Slots.FirstOrDefault(slot => slot.IsEmpty());
+        }
+        
+        public ItemStack GetItem(Item item)
+        {
+            return (from slot in Slots where item.Equals(slot.ItemStack?.Item) select slot.ItemStack).FirstOrDefault();
+        }
+        
+        public List<ItemStack> GetItems(Item item)
+        {
+            return (from slot in Slots where item.Equals(slot.ItemStack?.Item) select slot.ItemStack).ToList();
         }
         
         /// <summary>
@@ -173,16 +156,16 @@ namespace ssl.Items
         /// <returns>True if empty, false otherwise</returns>
         public bool IsSlotEmpty(int position)
         {
-            return items[position] == null;
+            return Slots[position] == null;
         }
 
         /// <summary>
         /// Checks if an item stack is already in the inventory.
         /// </summary>
         /// It checks for the same reference and not only the same item.
-        public bool IsPresent(ItemStack itemStack)
+        public bool IsPresent(Item item)
         {
-            return items.IndexOf(itemStack) > -1;
+            return Slots.Any(slot => item.Equals(slot.ItemStack?.Item));
         }
     }
 }
