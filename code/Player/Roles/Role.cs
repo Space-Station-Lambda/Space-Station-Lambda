@@ -15,18 +15,22 @@ namespace ssl.Player.Roles
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
-        /// <param name="player"></param>
         public virtual void OnAssigned(MainPlayer player){}
         /// <summary>
         /// Trigger when the player spawn
         /// </summary>
-        /// <param name="player"></param>
         public virtual void OnSpawn(MainPlayer player){}
         /// <summary>
-        /// Trigger when the role is unasigned
+        /// Trigger when the role is unassigned
         /// </summary>
-        /// <param name="player"></param>
         public virtual void OnUnassigned(MainPlayer player){}
+        /// <summary>
+        /// Trigger when a player with the role is killed
+        /// </summary>
+        public virtual void OnKilled(MainPlayer player)
+        {
+            player.RoleHandler.AssignRole(new Ghost());
+        }
         public override string ToString()
         {
             return $"[{Id}]{Name}";

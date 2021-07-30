@@ -121,10 +121,7 @@ namespace ssl.Player
         {
             LifeState = LifeState.Dead;
             StopUsing();
-
-            Inventory.ClearInventory();
-            RoleHandler.AssignRole(new Ghost());
-            RoleHandler.Init();
+            RoleHandler.Role?.OnKilled(this);
         }
 
         private void CheckControls()
