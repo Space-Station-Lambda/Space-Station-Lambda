@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using Sandbox;
 using Input = Sandbox.Input;
 
@@ -22,6 +24,7 @@ namespace ssl.Player.Controllers
 		private const float WalkSpeed = 150.0f;		
 		private const float SprintAcceleration = 2000.0f;
 		private const float SprintSpeed = 200.0f;
+		private const float StepSize = 20.0f;
 		
 		private const float GroundAngle = 46.0f;
 		
@@ -147,6 +150,41 @@ namespace ssl.Player.Controllers
 			}
 			
 			Accelerate();
+
+			if (WishVelocity.IsNearZeroLength) return;
+			
+			ClimbStep();
+		}
+
+		/// <summary>
+		/// Tries to climb steps in case player can't just simply walk.
+		/// </summary>
+		private void ClimbStep() {
+			MoveHelper mover = CheckMove();
+			if (mover.TryMove(Time.Delta) > 0.9) return;
+			
+			TraceResult ray = Trace.Ray(mover.Position, mover.Position + Vector3.Up * StepSize)
+				.HitLayer(CollisionLayer.All, false)
+				.HitLayer(CollisionLayer.Solid, true)
+				.HitLayer(CollisionLayer.GRATE, true)
+				.HitLayer(CollisionLayer.PLAYER_CLIP, true)
+				.Ignore(Pawn)
+				.Run();
+
+			Position = ray.EndPos;
+		}
+
+		/// <summary>
+		/// Try to do simple walk
+		/// </summary>
+		/// <returns>Returns if simple walk was possible</returns>
+		private MoveHelper CheckMove()
+		{
+			MoveHelper mover = new(Position, WishVelocity);
+			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
+			mover.MaxStandableAngle = GroundAngle;
+			
+			return mover;
 		}
 
 		/// <summary>
@@ -168,7 +206,7 @@ namespace ssl.Player.Controllers
 		/// Apply a specific amount of friction
 		/// </summary>
 		/// <param name="frictionAmount">Friction to apply</param>
-		private void ApplyFriction( float frictionAmount = 1.0f )
+		private void ApplyFriction(float frictionAmount = 1.0f)
 		{
 			if (CurrentSpeed < 0.1f) return;
 			
