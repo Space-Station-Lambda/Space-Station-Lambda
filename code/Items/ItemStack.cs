@@ -16,6 +16,12 @@ namespace ssl.Items
             Amount = amount;
         }
 
+        public ItemStack(ItemStack itemStack)
+        {
+            Item = itemStack.Item;
+            Amount = itemStack.Amount;
+        }
+
         public Item Item
         {
             get => item;
@@ -49,15 +55,27 @@ namespace ssl.Items
 
             return new ItemStack(Item, number);
         }
-
-        public void Add(int number)
+        
+        /// <summary>
+        /// Add items to the stack
+        /// </summary>
+        /// <param name="number">Number to add</param>
+        /// <returns>Remaining items not added</returns>
+        public int Add(int number)
         {
-            if (Amount + number > Item.MaxStack)
-            {
-                throw new Exception();
-            }
-
             Amount += number;
+            if (Amount > Item.MaxStack)
+            {
+                int overAmount = Amount - Item.MaxStack;
+                Amount = Item.MaxStack;
+                return overAmount;
+            }
+            return 0;
+        }
+
+        public ItemStack AddItemStack(ItemStack itemStack)
+        {
+            return new ItemStack(Item, Add(itemStack.Amount));
         }
 
         /// <summary>
