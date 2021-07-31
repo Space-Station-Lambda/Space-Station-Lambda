@@ -5,7 +5,7 @@ namespace ssl.Items
 {
     public class Slot : NetworkComponent
     {
-        public ItemStack ItemStack { get; set; }
+        [Net] public ItemStack ItemStack { get; set; }
 
         public bool IsEmpty()
         {
