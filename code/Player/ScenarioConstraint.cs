@@ -14,5 +14,10 @@ namespace ssl.Player
         public Role Role { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
+
+        public override string ToString()
+        {
+            return $"[{Role}]{Min}|{Max}";
+        }
     }
 }

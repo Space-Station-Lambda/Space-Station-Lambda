@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Rounds;
 
 namespace ssl.Commands
 {
@@ -9,5 +10,18 @@ namespace ssl.Commands
         {
             Log.Info("Pong");
         }
+        
+        [AdminCmd]
+        public static void preround()
+        {
+            Gamemode.Instance.RoundManager.ChangeRound(new PreRound());
+        }
+
+        [AdminCmd]
+        public static void round()
+        {
+            Gamemode.Instance.RoundManager.ChangeRound(new InProgressRound());
+        }
+        
     }
 }

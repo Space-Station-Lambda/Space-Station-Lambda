@@ -1,5 +1,7 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using Sandbox;
 using ssl.Player;
+using ssl.Player.Roles;
 
 namespace ssl.Rounds
 {
@@ -27,11 +29,23 @@ namespace ssl.Rounds
 
         private void AssignRoles()
         {
-            foreach (MainPlayer mainPlayer in Players)
+            Scenario scenario = new(
+            new Dictionary<int, List<ScenarioConstraint>>
             {
-                mainPlayer.RoleHandler.AssignRandomRole();
-                Log.Info($"Assign role {mainPlayer.RoleHandler.Role} to {mainPlayer}");
-            }
+                {
+                    2, new List<ScenarioConstraint>
+                    {
+                        new(new Guard(), 1, 1)
+                    }},
+                {
+                    3, new List<ScenarioConstraint>
+                {
+                    new(new Traitor(), 1, 1),
+                    new(new Guard(), 0, 3)
+                }}
+            });
+            RoleDistributor distributor = new(scenario, Players);
+            distributor.Distribute();
         }
     }
 }

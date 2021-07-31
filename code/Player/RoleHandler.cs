@@ -23,6 +23,10 @@ namespace ssl.Player.Roles
         {
             rolePreferences = new Dictionary<Role, RolePreference>();
             this.player = player;
+            foreach (Role role in Role.All.Values)
+            {
+                rolePreferences.Add(role, RolePreference.Never);
+            }
         }
         
         [Net] public Role Role { get; private set; }

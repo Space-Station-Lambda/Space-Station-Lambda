@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.VisualBasic.CompilerServices;
 using Sandbox;
 using ssl.Player.Roles;
 
@@ -10,12 +8,13 @@ namespace ssl.Player
 {
     public class RoleDistributor
     {
-        public Scenario Scenario = Scenario.BasicScenario;
+        public Scenario Scenario;
 
-        private List<MainPlayer> players;
+        private HashSet<MainPlayer> players;
 
-        public RoleDistributor(List<MainPlayer> players)
+        public RoleDistributor(Scenario scenario, HashSet<MainPlayer> players)
         {
+            this.Scenario = scenario;
             this.players = players;
         }
 
@@ -24,9 +23,11 @@ namespace ssl.Player
             Log.Info($"[RoleDistributor] Starting to distribute roles for {players.Count} players..");
             //Get constraints
             List<ScenarioConstraint> constraints = Scenario.GetScenarioConstraint(players.Count);
+            Log.Info($"[RoleDistributor] {constraints.Count} constraints finded");
             //Fulfill constraits
             foreach (ScenarioConstraint constraint in constraints)
             {
+                Log.Info($"[RoleDistributor] Constraint {constraint} have to be fullfilled");
                 while (!ConstraintFullfilled(constraint))
                 {
                     if (FulfillConstraint(constraint))
@@ -41,12 +42,13 @@ namespace ssl.Player
                 }
             }
             Log.Info($"[RoleDistributor] {constraints.Count} Constraints are treated");
-            
+            Log.Info($"[RoleDistributor] {GetPlayersWithoutRole().Count} Not have any role");
             foreach (MainPlayer player in GetPlayersWithoutRole())
             {
+                Log.Info($"[RoleDistributor] Give a role to {player}..");
                 if (GivePreferedRoles(player))
                 {
-                    Log.Info($"[RoleDistributor] Constraint {player} get the role {player.RoleHandler.Role}");
+                    Log.Info($"[RoleDistributor] Player {player} get the role {player.RoleHandler.Role}");
                 }
                 else
                 {
@@ -75,11 +77,7 @@ namespace ssl.Player
         private bool ConstraintFullfilled(ScenarioConstraint constraint)
         {
             int min = constraint.Min;
-            int current = 0;
-            foreach (MainPlayer player in GetPlayersWithRole())
-            {
-                if (player.RoleHandler.Role.Equals(constraint.Role)) current++;
-            }
+            int current = GetPlayersWithRole().Count(player => player.RoleHandler.Role.Equals(constraint.Role));
             return current >= min;
         }
         
@@ -88,7 +86,8 @@ namespace ssl.Player
             Dictionary<Role, float> returnedPreferences = new(); 
             foreach ((Role role, float preference) in preferences)
             {
-                if (CountRole(role) < GetConstraint(role).Max)
+                ScenarioConstraint constraint = GetConstraint(role);
+                if (constraint == null || CountRole(role) < GetConstraint(role).Max)
                 {
                     returnedPreferences.Add(role, preference);
                 }
@@ -116,14 +115,9 @@ namespace ssl.Player
             return GetPlayersWithRole(role).Count;
         }
         
-        private List<MainPlayer> GetPlayersWithRole()
+        private IEnumerable<MainPlayer> GetPlayersWithRole()
         {
-            List<MainPlayer> playersWithRoles = new();
-            foreach (MainPlayer mainPlayer in players)
-            {
-                if(mainPlayer.RoleHandler.Role != null) playersWithRoles.Add(mainPlayer);
-            }
-            return playersWithRoles;
+            return players.Where(mainPlayer => mainPlayer.RoleHandler.Role != null).ToList();
         }
         
         private List<MainPlayer> GetPlayersWithRole(Role role)
