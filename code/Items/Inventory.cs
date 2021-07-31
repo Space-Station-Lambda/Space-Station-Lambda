@@ -118,7 +118,7 @@ namespace ssl.Items
             if (!IsSlotEmpty(position))
             {
                 removedItem = Slots[position].ItemStack;
-                Slots[position].ItemStack = null;
+                Slots[position].Clear();
             }
 
             return removedItem;

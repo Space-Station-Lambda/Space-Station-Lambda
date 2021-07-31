@@ -27,5 +27,10 @@ namespace ssl.Items
             ItemStack ??= new ItemStack(itemStack.Item, 0);
             return ItemStack.AddItemStack(itemStack);
         }
+
+        public void Clear()
+        {
+            ItemStack = null;
+        }
     }
 }
