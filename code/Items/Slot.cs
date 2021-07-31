@@ -3,7 +3,7 @@ using ssl.Items.Data;
 
 namespace ssl.Items
 {
-    public class Slot : NetworkComponent
+    public partial class Slot : NetworkedEntityAlwaysTransmitted
     {
         [Net] public ItemStack ItemStack { get; set; }
 
@@ -14,18 +14,16 @@ namespace ssl.Items
         
         public bool IsFull()
         {
-            return ItemStack.Amount >= ItemStack.Item.MaxStack;
+            return ItemStack != null;
         }
 
         /// <summary>
-        /// Add an itemstack to the slot
+        /// Set an itemstack to the slot
         /// </summary>
-        /// <param name="itemStack">Itemstack to add</param>
-        /// <returns>Remaining itemstack</returns>
-        public ItemStack Add(ItemStack itemStack)
+        /// <param name="itemStack">Itemstack to set</param>
+        public void Set(ItemStack itemStack)
         {
-            ItemStack ??= new ItemStack(itemStack.Item, 0);
-            return ItemStack.AddItemStack(itemStack);
+            ItemStack = itemStack;
         }
 
         public void Clear()

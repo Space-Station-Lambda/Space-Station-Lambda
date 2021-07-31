@@ -10,16 +10,14 @@ namespace ssl.Items
         {
         }
 
-        public ItemStack(Item item, int amount = 1)
+        public ItemStack(Item item)
         {
             Item = item;
-            Amount = amount;
         }
 
         public ItemStack(ItemStack itemStack)
         {
             Item = itemStack.Item;
-            Amount = itemStack.Amount;
         }
 
         public Item Item
@@ -32,51 +30,11 @@ namespace ssl.Items
             }
         }
 
-        [Net] public int Amount { get; private set; }
-
         // This property exists to allow Item to be networked by its id only
         // The _ is here to have a better callback method name since it is a private field
         [Net, OnChangedCallback] private string _itemId { get; set; } 
         private Item item;
 
-        public ItemStack Remove(int number)
-        {
-            if (number > Amount)
-            {
-                throw new Exception();
-            }
-
-            if (number == Amount)
-            {
-                return this;
-            }
-
-            Amount -= number;
-
-            return new ItemStack(Item, number);
-        }
-        
-        /// <summary>
-        /// Add items to the stack
-        /// </summary>
-        /// <param name="number">Number to add</param>
-        /// <returns>Remaining items not added</returns>
-        public int Add(int number)
-        {
-            Amount += number;
-            if (Amount > Item.MaxStack)
-            {
-                int overAmount = Amount - Item.MaxStack;
-                Amount = Item.MaxStack;
-                return overAmount;
-            }
-            return 0;
-        }
-
-        public ItemStack AddItemStack(ItemStack itemStack)
-        {
-            return new ItemStack(Item, Add(itemStack.Amount));
-        }
 
         /// <summary>
         /// Callback executed to keep the Item property synced
@@ -89,7 +47,7 @@ namespace ssl.Items
 
         public override string ToString()
         {
-            return $"{Item} ({Amount})";
+            return $"{Item}";
         }
     }
 }

@@ -24,7 +24,7 @@ namespace ssl.Items
             }
         }
 
-        [Net] public List<Slot> Slots { get; set;  }
+        [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
@@ -60,18 +60,18 @@ namespace ssl.Items
             {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
+            
             if (itemFilter.IsAuthorized(itemStack.Item))
             {
-                List<ItemStack> currentItemStacks = GetItems(itemStack.Item);
-                ItemStack remainingItemStack = new(itemStack.Item, itemStack.Amount);
-                remainingItemStack = currentItemStacks.Aggregate(remainingItemStack, (current, currentItemStack) => currentItemStack.AddItemStack(current));
-                if (remainingItemStack.Amount > 0)
+                Slot destination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
+                if (destination != null)
                 {
-                    Slot slot = GetFirstEmptySlot();
-                    slot?.Add(remainingItemStack);
+                    destination.Set(itemStack);   
+                    return itemStack;
                 }
-                return remainingItemStack;
+                return null;
             }
+
             throw new Exception("Not permission");
         }
 
@@ -84,11 +84,10 @@ namespace ssl.Items
         /// <param name="position">The preferred position</param>
         /// <param name="amount">Amount of items to add</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void AddItem(Item item, int amount = 1, int position = 0)
+        public ItemStack AddItem(Item item, int position = 0)
         {
             ItemStack itemStack = new(item);
-            itemStack.Add(amount);
-            AddItem(itemStack, position);
+            return AddItem(itemStack, position);
         }
         
         /// <summary>
@@ -100,10 +99,10 @@ namespace ssl.Items
         /// <param name="position">The preferred position</param>
         /// <param name="amount">Amount of items to add</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void AddItem(string itemId, int amount = 1, int position = 0)
+        public ItemStack AddItem(string itemId, int position = 0)
         {
             Item item = new ItemRegistry().GetItemById(itemId);
-            AddItem(item, amount, position);
+            return AddItem(item, position);
         }
 
         /// <summary>
@@ -138,7 +137,6 @@ namespace ssl.Items
         {
             return Slots.FirstOrDefault(slot => slot.IsEmpty());
         }
-        
         public ItemStack GetItem(Item item)
         {
             return (from slot in Slots where item.Equals(slot.ItemStack?.Item) select slot.ItemStack).FirstOrDefault();
@@ -156,7 +154,7 @@ namespace ssl.Items
         {
             for (int i = 0; i < SlotsCount; i++)
             {
-                items[i] = null;
+                Slots[i].Clear();
             }
         }
         
@@ -167,7 +165,7 @@ namespace ssl.Items
         /// <returns>True if empty, false otherwise</returns>
         public bool IsSlotEmpty(int position)
         {
-            return Slots[position] == null;
+            return Slots[position].IsEmpty();
         }
 
         /// <summary>

@@ -7,7 +7,7 @@ namespace ssl.Items
     {
         public BaseWeapon Weapon;
 
-        public ItemStackWeapon(ItemWeapon item, int amount = 1) : base(item, amount)
+        public ItemStackWeapon(ItemWeapon item) : base(item)
         {
             Weapon = new BaseWeapon();
         }
