@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 
 namespace ssl.Player.Roles
 {
@@ -63,5 +64,18 @@ namespace ssl.Player.Roles
         {
             return (Id != null ? Id.GetHashCode() : 0);
         }
+
+        public static Dictionary<string, Role> All = new()
+        {
+            { "assistant", new Assistant() },
+            { "captain", new Captain() },
+            { "engineer", new Engineer() },
+            { "ghost", new Ghost() },
+            { "guard", new Guard() },
+            { "janitor", new Janitor() },
+            { "mechanic", new Mechanic() },
+            { "scientist", new Scientist() },
+            { "traitor", new Traitor() },
+        };
     }
 }

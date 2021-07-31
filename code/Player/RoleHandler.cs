@@ -7,7 +7,7 @@ namespace ssl.Player.Roles
 {
     public class RoleHandler : NetworkComponent
     {
-        private Dictionary<RolePreference, int> rolesFactors = new()
+        private static Dictionary<RolePreference, int> rolesFactors = new()
         {
             { RolePreference.Never, 0 },
             { RolePreference.Low, 1 },
@@ -33,7 +33,22 @@ namespace ssl.Player.Roles
             RoleHandler target = ((MainPlayer)ConsoleSystem.Caller.Pawn).RoleHandler;
             target?.SetPreference(GetRoleById(roleId), preference);
         }
-        
+
+        public Dictionary<Role, float> GetPreferencesNormalised()
+        {
+            int total = 0;
+            foreach (RolePreference rolePreferencesValue in rolePreferences.Values)
+            {
+                total += rolesFactors[rolePreferencesValue];
+            }
+            Dictionary<Role, float> normalisedPreferences = new();
+            foreach ((Role key, RolePreference value) in rolePreferences)
+            {
+                normalisedPreferences[key] = (float) rolesFactors[value] / total;
+            }
+            return normalisedPreferences;
+        }
+
         public void AssignRole(Role role)
         {
             Role?.OnUnassigned(player);
