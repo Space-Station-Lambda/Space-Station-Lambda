@@ -52,7 +52,6 @@ namespace ssl.Items
 
         public virtual bool CanPrimaryAttack()
         {
-
             if (!Owner.IsValid() || !Input.Down(InputButton.Attack1)) return false;
             
             float rate = PrimaryRate;
