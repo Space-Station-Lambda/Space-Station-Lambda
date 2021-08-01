@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
@@ -156,7 +155,7 @@ namespace ssl.Items
         {
             for (int i = 0; i < SlotsCount; i++)
             {
-                items[i] = null;
+                Slots[i].Clear();
             }
         }
         

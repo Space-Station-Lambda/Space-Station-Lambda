@@ -3,7 +3,7 @@ using ssl.Items.Data;
 
 namespace ssl.Items
 {
-    public class Slot : NetworkComponent
+    public partial class Slot : NetworkComponent
     {
         [Net] public ItemStack ItemStack { get; set; }
 
