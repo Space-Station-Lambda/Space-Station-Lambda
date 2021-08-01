@@ -35,7 +35,7 @@ namespace ssl.Player
         public static void SelectPreference(string roleId, RolePreference preference)
         {
             RoleHandler target = ((MainPlayer)ConsoleSystem.Caller.Pawn).RoleHandler;
-            target?.SetPreference(GetRoleById(roleId), preference);
+            target?.SetPreference(Role.All[roleId], preference);
         }
 
         public void Clear()
@@ -80,12 +80,7 @@ namespace ssl.Player
                 rolePreferences[role] = preference;
             }
         }
-
-        public void AssignRandomRole()
-        {
-            AssignRole(GetRandomRoleFromPreferences());
-        }
-
+        
         /// <summary>
         /// Get a random role from the preferences
         /// </summary>
@@ -122,26 +117,6 @@ namespace ssl.Player
                 player.ClothesHandler.AttachClothes(Role.Clothing);
                 Role.OnSpawn(player);
             }
-        }
-
-        /// <summary>
-        /// TODO Role registery
-        /// </summary>
-        /// <returns></returns>
-        private static Role GetRoleById(string id)
-        {
-            return id switch
-            {
-                "assistant" => new Assistant(),
-                "captain" => new Captain(),
-                "engineer" => new Engineer(),
-                "ghost" => new Ghost(),
-                "guard" => new Guard(),
-                "janitor" => new Janitor(),
-                "scientist" => new Scientist(),
-                "traitor" => new Traitor(),
-                _ => throw new Exception($"This id {id} don't exist")
-            };
         }
     }
 }
