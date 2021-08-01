@@ -16,6 +16,10 @@ namespace ssl.Player
         {
             this.Scenario = scenario;
             this.players = players;
+            foreach (MainPlayer mainPlayer in this.players)
+            {
+                mainPlayer.RoleHandler.AssignRole(null);
+            }
         }
 
         public void Distribute()

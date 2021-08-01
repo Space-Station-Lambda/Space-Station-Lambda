@@ -30,12 +30,17 @@ namespace ssl.Player.Roles
         }
         
         [Net] public Role Role { get; private set; }
-        
+
         [ServerCmd("select_preference_role")]
         public static void SelectPreference(string roleId, RolePreference preference)
         {
             RoleHandler target = ((MainPlayer)ConsoleSystem.Caller.Pawn).RoleHandler;
             target?.SetPreference(GetRoleById(roleId), preference);
+        }
+
+        public void Clear()
+        {
+            AssignRole(null);
         }
 
         public Dictionary<Role, float> GetPreferencesNormalised()
