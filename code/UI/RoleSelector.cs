@@ -11,12 +11,12 @@ namespace ssl.UI
     /// <summary>
     /// Role selector allow player to select a role
     /// </summary>
-    [UseTemplate]
     public class RoleSelector : Panel
     {
         private readonly Dictionary<RoleIcon, bool> rolesSelected = new();
         public RoleSelector()
         {
+            StyleSheet.Load("ui/RoleSelector.scss");
             SetClass("active", true);
             rolesSelected.Add(new RoleIcon(new Assistant(), this), false);
             rolesSelected.Add(new RoleIcon(new Janitor(), this), false);

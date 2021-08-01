@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using ssl.Items;
-using ssl.Items.Data;
 using ssl.Player;
 
 namespace ssl.UI
