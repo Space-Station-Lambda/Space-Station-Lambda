@@ -17,6 +17,8 @@ namespace ssl.Items
         {
         }
         
+        [Net, Predicted] private TimeSince TimeSincePrimaryAttack { get; set; }
+
         public override void Spawn()
         {
             base.Spawn();
@@ -24,8 +26,6 @@ namespace ssl.Items
             CollisionGroup = CollisionGroup.Weapon; // so players touch it as a trigger but not as a solid
             SetInteractsAs(CollisionLayer.Debris); // so player movement doesn't walk into it
         }
-
-        [Net, Predicted] private TimeSince TimeSincePrimaryAttack { get; set; }
 
         public override void Simulate(Client player)
         {
