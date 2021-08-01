@@ -8,14 +8,14 @@ namespace ssl.Player
 {
     public class RoleDistributor
     {
-        public Scenario Scenario;
-
         private HashSet<MainPlayer> players;
+        public Scenario Scenario;
 
         public RoleDistributor(Scenario scenario, HashSet<MainPlayer> players)
         {
             this.Scenario = scenario;
             this.players = players;
+            Log.Info("Remove role for " + this.players.Count);
             foreach (MainPlayer mainPlayer in this.players)
             {
                 mainPlayer.RoleHandler.AssignRole(null);
@@ -45,6 +45,7 @@ namespace ssl.Player
                     }
                 }
             }
+
             Log.Info($"[RoleDistributor] {constraints.Count} Constraints are treated");
             Log.Info($"[RoleDistributor] {GetPlayersWithoutRole().Count} Not have any role");
             foreach (MainPlayer player in GetPlayersWithoutRole())
@@ -59,13 +60,13 @@ namespace ssl.Player
                     Log.Warning($"[RoleDistributor] Constraint {player} get Assistant by default");
                 }
             }
+
             //TODO Give roles with their preferences
             if (GetPlayersWithoutRole().Count > 0)
             {
                 Log.Error($"[RoleDistributor] Everyplayer don't have a role");
                 throw new Exception();
             }
-            
         }
 
 
@@ -78,16 +79,17 @@ namespace ssl.Player
 
             return null;
         }
+
         private bool ConstraintFullfilled(ScenarioConstraint constraint)
         {
             int min = constraint.Min;
             int current = GetPlayersWithRole().Count(player => player.RoleHandler.Role.Equals(constraint.Role));
             return current >= min;
         }
-        
+
         private Dictionary<Role, float> GetPreferencesWithConstraints(Dictionary<Role, float> preferences)
         {
-            Dictionary<Role, float> returnedPreferences = new(); 
+            Dictionary<Role, float> returnedPreferences = new();
             foreach ((Role role, float preference) in preferences)
             {
                 ScenarioConstraint constraint = GetConstraint(role);
@@ -100,15 +102,16 @@ namespace ssl.Player
                     returnedPreferences.Add(role, 0);
                 }
             }
+
             return returnedPreferences;
         }
-        
+
         private List<MainPlayer> GetPlayersWithoutRole()
         {
             List<MainPlayer> playersWithoutRoles = new();
             foreach (MainPlayer mainPlayer in players)
             {
-                if(mainPlayer.RoleHandler.Role == null) playersWithoutRoles.Add(mainPlayer);
+                if (mainPlayer.RoleHandler.Role == null) playersWithoutRoles.Add(mainPlayer);
             }
 
             return playersWithoutRoles;
@@ -118,19 +121,20 @@ namespace ssl.Player
         {
             return GetPlayersWithRole(role).Count;
         }
-        
+
         private IEnumerable<MainPlayer> GetPlayersWithRole()
         {
             return players.Where(mainPlayer => mainPlayer.RoleHandler.Role != null).ToList();
         }
-        
+
         private List<MainPlayer> GetPlayersWithRole(Role role)
         {
             List<MainPlayer> playersWithRoles = new();
             foreach (MainPlayer mainPlayer in players)
             {
-                if(role.Equals(mainPlayer.RoleHandler.Role)) playersWithRoles.Add(mainPlayer);
+                if (role.Equals(mainPlayer.RoleHandler.Role)) playersWithRoles.Add(mainPlayer);
             }
+
             return playersWithRoles;
         }
 
@@ -142,7 +146,8 @@ namespace ssl.Player
         private bool GivePreferedRoles(MainPlayer player)
         {
             //Get preferences but remove roles with constraint max reached
-            Dictionary<Role, float> preferences = GetPreferencesWithConstraints(player.RoleHandler.GetPreferencesNormalised());
+            Dictionary<Role, float> preferences =
+                GetPreferencesWithConstraints(player.RoleHandler.GetPreferencesNormalised());
             float total = preferences.Values.Sum();
             //If you have 0 preferences, you are assistant
             if (total <= 0f)
@@ -150,6 +155,7 @@ namespace ssl.Player
                 player.RoleHandler.AssignRole(new Assistant());
                 return false;
             }
+
             Random random = new();
             float res = (float)random.NextDouble() * total;
             //Search the player with the role
@@ -163,16 +169,18 @@ namespace ssl.Player
                     return true;
                 }
             }
+
             player.RoleHandler.AssignRole(new Assistant());
             return false;
         }
 
-        
-        
+
         private bool FulfillConstraint(ScenarioConstraint constraint)
         {
             //Add the preference of the player to the preferencesOfRole for this role
-            Dictionary<MainPlayer, float> preferencesOfRole = GetPlayersWithoutRole().ToDictionary(mainPlayer => mainPlayer, mainPlayer => mainPlayer.RoleHandler.GetPreferencesNormalised()[constraint.Role]);
+            Dictionary<MainPlayer, float> preferencesOfRole = GetPlayersWithoutRole()
+                .ToDictionary(mainPlayer => mainPlayer,
+                    mainPlayer => mainPlayer.RoleHandler.GetPreferencesNormalised()[constraint.Role]);
             //Get the total of preferences
             float total = preferencesOfRole.Values.Sum();
             //If nobody fulfill the constraint, make everyone want the role.
@@ -184,6 +192,7 @@ namespace ssl.Player
                     preferencesOfRole[mainPlayer] = 1;
                 }
             }
+
             //Random picker
             Random random = new();
             float res = (float)random.NextDouble() * total;

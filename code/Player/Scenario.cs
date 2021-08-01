@@ -25,22 +25,26 @@ namespace ssl.Player
 
             return constraintToReturn;
         }
-        
+
         public int MinRole(int playerCount, Role role)
         {
-            foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount).Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)))
+            foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
+                .Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)))
             {
                 return scenarioConstraint.Min;
             }
+
             return -1;
         }
 
         public int MaxRole(int playerCount, Role role)
         {
-            foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount).Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)))
+            foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
+                .Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)))
             {
                 return scenarioConstraint.Max;
             }
+
             return -1;
         }
     }

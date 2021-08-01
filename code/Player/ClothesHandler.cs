@@ -12,6 +12,7 @@ namespace ssl.Player
     public class ClothesHandler
     {
         private readonly Dictionary<ClothesSlot, List<Clothes>> clothesDictionary = new();
+
         /// <summary>
         /// Player concerned.
         /// </summary>
@@ -64,6 +65,7 @@ namespace ssl.Player
             {
                 clothesDictionary.Add(slot, new List<Clothes>());
             }
+
             clothesDictionary[slot].Add(clothes);
         }
 
@@ -79,17 +81,20 @@ namespace ssl.Player
                     clothes.Delete();
                 }
             }
+
             clothesDictionary.Clear();
         }
-        
+
         public void Strip(ClothesSlot slot)
         {
-            foreach ((ClothesSlot key, List<Clothes> value) in clothesDictionary.Where(keyValuePair => keyValuePair.Key == slot))
+            foreach ((ClothesSlot key, List<Clothes> value) in clothesDictionary.Where(keyValuePair =>
+                keyValuePair.Key == slot))
             {
                 foreach (Clothes clothes in value)
                 {
                     clothes.Delete();
                 }
+
                 clothesDictionary.Remove(key);
             }
         }
