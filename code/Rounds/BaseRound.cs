@@ -23,8 +23,8 @@ namespace ssl.Rounds
             {
                 RoundEndTime = Time.Now + RoundDuration;
                 TimeLeftFormatted = ((int)TimeLeft).ToString(CultureInfo.InvariantCulture);
+                InitPlayers();
             }
-
             OnStart();
         }
 
@@ -105,5 +105,17 @@ namespace ssl.Rounds
 	               $"Round Duration: {RoundDuration}\n" +
 	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
         }
+
+        /// <summary>
+        /// Set players to the list
+        /// </summary>
+        private void InitPlayers()
+        {
+            foreach (Client client in Client.All)
+            {
+                Players.Add((MainPlayer)client.Pawn);
+            }
+        }
+        
     }
 }
