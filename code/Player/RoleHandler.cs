@@ -51,9 +51,11 @@ namespace ssl.Player.Roles
                 total += rolesFactors[rolePreferencesValue];
             }
             Dictionary<Role, float> normalisedPreferences = new();
+            
             foreach ((Role key, RolePreference value) in rolePreferences)
             {
-                normalisedPreferences[key] = (float) rolesFactors[value] / total;
+                if (total == 0) normalisedPreferences[key] = 0f;
+                else normalisedPreferences[key] = (float) rolesFactors[value] / total;
             }
             return normalisedPreferences;
         }

@@ -156,12 +156,12 @@ namespace ssl.Player
             total = 0;
             foreach ((Role role, float preference) in preferences)
             {
+                total += preference;
                 if (res < total)
                 {
                     player.RoleHandler.AssignRole(role);
                     return true;
                 }
-                total += preference;
             }
             player.RoleHandler.AssignRole(new Assistant());
             return false;
@@ -191,12 +191,12 @@ namespace ssl.Player
             total = 0;
             foreach ((MainPlayer player, float preference) in preferencesOfRole)
             {
+                total += preference;
                 if (res < total)
                 {
                     player.RoleHandler.AssignRole(constraint.Role);
                     return true;
                 }
-                total += preference;
             }
 
             return false;
