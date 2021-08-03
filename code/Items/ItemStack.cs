@@ -1,11 +1,14 @@
 ﻿using System;
 using Sandbox;
 using ssl.Items.Data;
+using ssl.Player;
 
 namespace ssl.Items
 {
     public partial class ItemStack : BaseCarriable
     {
+        private Item item;
+
         public ItemStack()
         {
         }
@@ -13,12 +16,14 @@ namespace ssl.Items
         public ItemStack(Item item)
         {
             Item = item;
+            Item.OnInit(this);
         }
 
-        public ItemStack(ItemStack itemStack)
+        public ItemStack(ItemStack itemStack) : this(itemStack.item)
         {
-            Item = itemStack.Item;
         }
+
+        public override string ViewModelPath => item.ViewModelPath;
 
         public Item Item
         {
@@ -31,17 +36,44 @@ namespace ssl.Items
         }
 
         // This property exists to allow Item to be networked by its id only
-        // The _ is here to have a better callback method name since it is a private field
-        [Net, OnChangedCallback] private string _itemId { get; set; } 
-        private Item item;
 
+        // The _ is here to have a better callback method name since it is a private field
+        [Net, OnChangedCallback] private string _itemId { get; set; }
+        [Net, Predicted] public StackData Data { get; set; }
+
+        public override void Spawn()
+        {
+            base.Spawn();
+            
+            CollisionGroup = CollisionGroup.Weapon; // so players touch it as a trigger but not as a solid
+            SetInteractsAs(CollisionLayer.Debris); // so player movement doesn't walk into it
+        }
+
+        public override void Simulate(Client cl)
+        {
+            base.Simulate(cl);
+            item.OnSimulate(Owner as MainPlayer, this);
+        }
+
+        public override void CreateViewModel()
+        {
+            Host.AssertClient();
+            
+            if (string.IsNullOrEmpty(ViewModelPath))
+                return;
+
+            ViewModelEntity = new BaseViewModel();
+            ViewModelEntity.Position = Position;
+            ViewModelEntity.Owner = Owner;
+            ViewModelEntity.EnableViewmodelRendering = true;
+            ViewModelEntity.SetModel(ViewModelPath);
+        }
 
         /// <summary>
-        /// Callback executed to keep the Item property synced
+        /// Callback executed to keep the Item property synceds
         /// </summary>
         private void On_itemIdChanged()
         {
-            Log.Info($"{(IsClient ? "Client" : "Server")} {_itemId}");
             Item = Gamemode.Instance.ItemRegistry.GetItemById(_itemId);
         }
 

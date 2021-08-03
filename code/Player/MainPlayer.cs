@@ -8,6 +8,7 @@ using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
 using Input = Sandbox.Input;
+using ItemWeapon = ssl.Items.Data.Weapon.ItemWeapon;
 using SpawnPoint = ssl.Entities.SpawnPoint;
     
 namespace ssl.Player
@@ -57,19 +58,10 @@ namespace ssl.Player
             MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (target == null) return;
             ItemStack itemStack = target.Inventory.GetItem(slot);
-            target.Holding?.ActiveEnd(target, false);
             target.Holding = itemStack;
             target.Holding?.SetModel(target.Holding.Item.Model);
             target.Holding?.OnCarryStart(target);
-            target.Holding?.ActiveStart(target);
-        }
-
-        /// <summary>
-        /// Makes the player use the item.
-        /// </summary>
-        public void Use(Item item)
-        {
-            item.UsedBy(this);
+            target.ActiveChild = target.Holding;
         }
 
         /// <summary>
@@ -102,6 +94,8 @@ namespace ssl.Player
             EnableShadowInFirstPerson = true;
 
             RoleHandler.Init();
+
+            Inventory.AddItem(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol"));
 
             base.Respawn();
         }

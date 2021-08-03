@@ -13,14 +13,12 @@ namespace ssl.Items.Data
         }
 
         public int FeedingValue { get; }
-        public override int MaxStack => 1;
-        public override bool DestroyOnUse => true;
 
 
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void UsedBy(MainPlayer player)
+        public override void UsedBy(MainPlayer player, ItemStack itemStack)
         {
             Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)

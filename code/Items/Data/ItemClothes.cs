@@ -13,10 +13,8 @@ namespace ssl.Items.Data
 
         private ClothesSlot slot;
 
-        public override int MaxStack => 1;
-        public override bool DestroyOnUse => true;
 
-        public override void UsedBy(MainPlayer player)
+        public override void UsedBy(MainPlayer player, ItemStack itemStack)
         {
             player.ClothesHandler.AttachClothes(Model, slot);
             //TODO Give to the player the old cloth in this slot

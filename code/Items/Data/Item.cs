@@ -1,4 +1,5 @@
 ﻿using System;
+using Sandbox;
 using ssl.Player;
 
 namespace ssl.Items.Data
@@ -19,14 +20,17 @@ namespace ssl.Items.Data
         public string Id { get; protected set; }
         public string Name { get; protected set; }
         public string Model { get; protected set; } = ""; //Find default model
-        public virtual int MaxStack { get; protected set; } = 99; //Default max stack 
-        public virtual bool DestroyOnUse { get; protected set; } = false;
+        public virtual string ViewModelPath => "";
 
+        public virtual void OnInit(ItemStack itemStack) { }
         /// <summary>
-        /// Apply the object's effects when the user is a Player
-        /// TODO : implement the destroy on use
+        /// Called when the player use the item in their hand
         /// </summary>
-        public abstract void UsedBy(MainPlayer player);
+        public virtual void UsedBy(MainPlayer player, ItemStack itemStack) { }
+        public virtual void OnSimulate(MainPlayer player, ItemStack itemStack)
+        {
+            if (Input.Down(InputButton.Attack2)) UsedBy(player, itemStack);
+        }
 
         public override string ToString()
         {
