@@ -13,6 +13,7 @@ namespace ssl.UI
             {
                 RootPanel.AddChild<RoundInfos>();
                 RootPanel.AddChild<InventoryBar>();
+                RootPanel.AddChild<Crosshair>();
                 RoleSelector = RootPanel.AddChild<RoleSelector>();
             }
         }
