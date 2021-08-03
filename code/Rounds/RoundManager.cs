@@ -14,12 +14,7 @@ namespace ssl.Rounds
             }
         }
 
-        [Net, OnChangedCallback] public BaseRound CurrentRound { get; private set; }
-
-        public void OnCurrentRoundChanged()
-        {
-            UpdateUi();
-        }
+        [Net] public BaseRound CurrentRound { get; private set; }
 
         public void OnRoundEnd(BaseRound round)
         {
