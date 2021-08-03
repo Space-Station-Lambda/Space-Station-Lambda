@@ -15,7 +15,7 @@ namespace ssl.Player
         {
             this.Scenario = scenario;
             this.players = players;
-            Log.Info("Remove role for " + this.players.Count);
+            Log.Info("[RoleDistributor] Remove role for " + this.players.Count);
             foreach (MainPlayer mainPlayer in this.players)
             {
                 mainPlayer.RoleHandler.AssignRole(null);
