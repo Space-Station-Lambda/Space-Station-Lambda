@@ -20,7 +20,7 @@ namespace ssl
 
         public static Gamemode Instance { get; private set; }
 
-        public ItemRegistry ItemRegistry { get; private set; }
+
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
 
@@ -41,14 +41,12 @@ namespace ssl
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
             Hud = new Hud();
-            ItemRegistry = new ItemRegistry();
         }
 
         private void StartClient()
         {
             if (IsServer) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Client...");
-            ItemRegistry = new ItemRegistry();
         }
 
         private void SpawnPlayer(Client client)

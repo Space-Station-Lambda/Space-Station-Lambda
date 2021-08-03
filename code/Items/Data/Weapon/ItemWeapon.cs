@@ -19,9 +19,10 @@ namespace ssl.Items.Data.Weapon
             itemStack.Data = new WeaponData();
         }
 
-        public override void OnSimulate(MainPlayer player, ItemStack itemStack)
+        public override void UsedBy(MainPlayer player, ItemStack itemStack)
         {
-            base.OnSimulate(player, itemStack);
+            base.UsedBy(player, itemStack);
+            
             if (itemStack.Data is not WeaponData data || !CanPrimaryAttack(itemStack)) return;
             data.TimeSincePrimaryAttack = 0;
             AttackPrimary(itemStack);
@@ -50,10 +51,7 @@ namespace ssl.Items.Data.Weapon
 
         protected void AttackPrimary(ItemStack stack)
         {
-            Log.Trace("Attack");
-            WeaponData data = stack.Data as WeaponData;
-
-            data.TimeSincePrimaryAttack = 0;
+            if (stack.Data is WeaponData data) data.TimeSincePrimaryAttack = 0;
 
             using (Prediction.Off())
             {
@@ -106,8 +104,11 @@ namespace ssl.Items.Data.Weapon
             tr.Entity.TakeDamage(damageInfo);
         }
         
+        // TODO: This needs to be called on all client to have particle effect
         private static void ShootEffects(BaseCarriable entity)
         {
+            if (!Host.IsClient) return;
+            
             Particles.Create("particles/pistol_muzzleflash.vpcf", entity, "muzzle");
             
             if (!entity.IsLocalPawn)

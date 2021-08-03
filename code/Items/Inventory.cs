@@ -101,7 +101,7 @@ namespace ssl.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public ItemStack AddItem(string itemId, int position = 0)
         {
-            Item item = new ItemRegistry().GetItemById(itemId);
+            Item item = Item.All[itemId];
             return AddItem(item, position);
         }
 

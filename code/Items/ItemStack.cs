@@ -52,15 +52,17 @@ namespace ssl.Items
         public override void Simulate(Client cl)
         {
             base.Simulate(cl);
-            item.OnSimulate(Owner as MainPlayer, this);
+            item.OnSimulate(this);
         }
+        
+        
 
         /// <summary>
         /// Callback executed to keep the Item property synceds
         /// </summary>
         private void On_itemIdChanged()
         {
-            Item = Gamemode.Instance.ItemRegistry.GetItemById(_itemId);
+            Item = Item.All[_itemId];
         }
 
         public override string ToString()
