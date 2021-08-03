@@ -11,9 +11,9 @@ namespace ssl.Player
             Max = max;
         }
 
-        public Role Role { get; set; }
-        public int Min { get; set; }
-        public int Max { get; set; }
+        public Role Role { get; }
+        public int Min { get; }
+        public int Max { get; }
 
         public override string ToString()
         {
