@@ -32,17 +32,13 @@ namespace ssl.Player
             foreach (ScenarioConstraint constraint in constraints)
             {
                 Log.Info($"[RoleDistributor] Constraint {constraint} have to be fullfilled");
-                while (!ConstraintFullfilled(constraint))
+                if (!ConstraintFullfilled(constraint) && FulfillConstraint(constraint))
                 {
-                    if (FulfillConstraint(constraint))
-                    {
-                        Log.Info($"[RoleDistributor] Constraint {constraint} is fulfilled");
-                    }
-                    else
-                    {
-                        Log.Warning($"[RoleDistributor] Constraint {constraint} is not fulfilled, something wrong");
-                        break;
-                    }
+                    Log.Info($"[RoleDistributor] Constraint {constraint} is fulfilled");
+                }
+                else
+                {
+                    Log.Warning($"[RoleDistributor] Constraint {constraint} is not fulfilled, something wrong");
                 }
             }
 
