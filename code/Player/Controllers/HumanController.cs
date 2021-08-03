@@ -61,9 +61,12 @@ namespace ssl.Player.Controllers
 			{
 				ApplyFriction(GroundSurface.Friction * SurfaceFriction);
 				Walk();
+				TryPlayerMoveWithStep();
 			}
-
-			TryPlayerMove();
+			else
+			{
+				TryPlayerMove();
+			}
 		}
 
 		/// <summary>
@@ -86,17 +89,34 @@ namespace ssl.Player.Controllers
 				Velocity = Vector3.Zero;
 				return;
 			}
-			
-			MoveHelper mover = new(Position, Velocity);
-			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
-			mover.MaxStandableAngle = GroundAngle;
+
+			MoveHelper mover = GetMoveHelper();
 
 			mover.TryMove(Time.Delta);
 			
 			Position = mover.Position;
 			Velocity = mover.Velocity;
 		}
+		
+		/// <summary>
+		/// Moves the player in the direction of their velocity and if there is colliding objects, checks if it can step.
+		/// </summary>
+		protected virtual void TryPlayerMoveWithStep()
+		{
+			if (Velocity.Length <= 1.0F)
+			{
+				Velocity = Vector3.Zero;
+				return;
+			}
 
+			MoveHelper mover = GetMoveHelper();
+			
+			mover.TryMoveWithStep(Time.Delta, StepSize);
+			
+			Position = mover.Position;
+			Velocity = mover.Velocity;
+		}
+		
 		/// <summary>
 		/// BoundingBox (collision box)
 		/// </summary>
@@ -104,6 +124,14 @@ namespace ssl.Player.Controllers
 		{
 			mins = new Vector3( -BodyGirth, -BodyGirth, 0 ) * Pawn.Scale;
 			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
+		}
+
+		private MoveHelper GetMoveHelper() {
+			MoveHelper mover = new(Position, Velocity);
+			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
+			mover.MaxStandableAngle = GroundAngle;
+
+			return mover;
 		}
 
 		private void ProcessInputs()
@@ -150,43 +178,8 @@ namespace ssl.Player.Controllers
 			}
 			
 			Accelerate();
-
-			if (WishVelocity.IsNearZeroLength) return;
-			
-			ClimbStep();
 		}
-
-		/// <summary>
-		/// Tries to climb steps in case player can't just simply walk.
-		/// </summary>
-		private void ClimbStep() {
-			MoveHelper mover = CheckMove();
-			if (mover.TryMove(Time.Delta) > 0.9) return;
-			
-			TraceResult ray = Trace.Ray(mover.Position, mover.Position + Vector3.Up * StepSize)
-				.HitLayer(CollisionLayer.All, false)
-				.HitLayer(CollisionLayer.Solid, true)
-				.HitLayer(CollisionLayer.GRATE, true)
-				.HitLayer(CollisionLayer.PLAYER_CLIP, true)
-				.Ignore(Pawn)
-				.Run();
-
-			Position = ray.EndPos;
-		}
-
-		/// <summary>
-		/// Try to do simple walk
-		/// </summary>
-		/// <returns>Returns if simple walk was possible</returns>
-		private MoveHelper CheckMove()
-		{
-			MoveHelper mover = new(Position, WishVelocity);
-			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
-			mover.MaxStandableAngle = GroundAngle;
-			
-			return mover;
-		}
-
+		
 		/// <summary>
 		/// Adds the Gravity Vector if the player is not on ground
 		/// </summary>
