@@ -17,6 +17,7 @@ namespace ssl.Player
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
 
+
         public MainPlayer()
         {
             if (Host.IsServer)
@@ -35,9 +36,7 @@ namespace ssl.Player
          * Handlers
          */
         public GaugeHandler GaugeHandler { get; }
-
-
-        public ClothesHandler ClothesHandler { get;}
+        public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
         public PlayerCorpse Ragdoll { get; set; }
 

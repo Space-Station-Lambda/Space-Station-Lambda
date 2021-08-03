@@ -1,18 +1,32 @@
 ﻿using System.Collections.Generic;
+using ssl.Player.Roles;
 
-namespace ssl.Player.Roles
+namespace ssl.Player
 {
     /// <summary>
     /// Player's role
     /// </summary>
     public abstract class Role
     {
+        public static Dictionary<string, Role> All = new()
+        {
+            { "assistant", new Assistant() },
+            { "captain", new Captain() },
+            { "engineer", new Engineer() },
+            { "ghost", new Ghost() },
+            { "guard", new Guard() },
+            { "janitor", new Janitor() },
+            { "scientist", new Scientist() },
+            { "traitor", new Traitor() },
+        };
+
         public abstract string Id { get; }
         public abstract string Name { get; }
         public abstract string Description { get; }
         public virtual string Model => "models/units/simpleterry.vmdl";
         public virtual IEnumerable<string> Clothing => new HashSet<string>();
         public virtual Dictionary<string, int> Items => new();
+
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
@@ -29,6 +43,7 @@ namespace ssl.Player.Roles
                 player.Inventory.AddItem(id, amount);
             }
         }
+
         /// <summary>
         /// Trigger when the role is unassigned
         /// </summary>
