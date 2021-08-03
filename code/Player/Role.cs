@@ -16,7 +16,6 @@ namespace ssl.Player
             { "ghost", new Ghost() },
             { "guard", new Guard() },
             { "janitor", new Janitor() },
-            { "mechanic", new Mechanic() },
             { "scientist", new Scientist() },
             { "traitor", new Traitor() },
         };
