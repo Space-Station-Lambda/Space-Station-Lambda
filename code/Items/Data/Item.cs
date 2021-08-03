@@ -26,7 +26,7 @@ namespace ssl.Items.Data
         /// Apply the object's effects when the user is a Player
         /// TODO : implement the destroy on use
         /// </summary>
-        public abstract void UsedBy(MainPlayer player);
+        public abstract void UseOn(MainPlayer player);
 
         public override string ToString()
         {

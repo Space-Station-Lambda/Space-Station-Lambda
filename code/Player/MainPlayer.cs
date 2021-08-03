@@ -64,15 +64,7 @@ namespace ssl.Player
             target.Holding?.ActiveStart(target);
             target.ActiveChild = target.Holding;
         }
-
-        /// <summary>
-        /// Makes the player use the item.
-        /// </summary>
-        public void Use(Item item)
-        {
-            item.UsedBy(this);
-        }
-
+        
         /// <summary>
         /// Called each tick, clientside and serverside
         /// </summary>
