@@ -4,6 +4,6 @@ namespace ssl.Items.Data
 {
     public partial class WeaponData : StackData
     {
-        [Net] public TimeSince TimeSincePrimaryAttack { get; set; }
+        [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
     }
 }

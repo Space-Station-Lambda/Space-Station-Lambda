@@ -36,7 +36,7 @@ namespace ssl.Items.Data.Weapon
         {
         }
 
-        protected bool CanPrimaryAttack(ItemStack stack)
+        private bool CanPrimaryAttack(ItemStack stack)
         {
             WeaponData data = stack.Data as WeaponData;
             
@@ -86,7 +86,7 @@ namespace ssl.Items.Data.Weapon
             // Another trace, bullet going through thin material, penetrating water surface?
             //
         }
-        public virtual void ShootBullet(ItemStack stack, float spread, float force, float damage, float bulletSize)
+        protected virtual void ShootBullet(ItemStack stack, float spread, float force, float damage, float bulletSize)
         {
             Vector3 forward = stack.Owner.EyeRot.Forward;
             forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
@@ -106,13 +106,14 @@ namespace ssl.Items.Data.Weapon
             tr.Entity.TakeDamage(damageInfo);
         }
         
-        protected static void ShootEffects(BaseCarriable entity)
+        private static void ShootEffects(BaseCarriable entity)
         {
             Particles.Create("particles/pistol_muzzleflash.vpcf", entity, "muzzle");
             
-            if (!entity.IsLocalPawn) return;
-            
-            new Sandbox.ScreenShake.Perlin();
+            if (!entity.IsLocalPawn)
+            {
+                new Sandbox.ScreenShake.Perlin();
+            }
             
             entity.ViewModelEntity?.SetAnimBool("fire", true);
             entity.CrosshairPanel?.CreateEvent("fire");
