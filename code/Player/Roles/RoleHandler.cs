@@ -106,7 +106,6 @@ namespace ssl.Player.Roles
                 "ghost" => new Ghost(),
                 "guard" => new Guard(),
                 "janitor" => new Janitor(),
-                "mechanic" => new Mechanic(),
                 "scientist" => new Scientist(),
                 "traitor" => new Traitor(),
                 _ => throw new Exception($"This id {id} don't exist")

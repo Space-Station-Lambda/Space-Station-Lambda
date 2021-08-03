@@ -23,7 +23,6 @@ namespace ssl.UI
             rolesSelected.Add(new RoleIcon(new Scientist(), this), false);
             rolesSelected.Add(new RoleIcon(new Guard(), this), false);
             rolesSelected.Add(new RoleIcon(new Captain(), this), false);
-            rolesSelected.Add(new RoleIcon(new Mechanic(), this), false);
             rolesSelected.Add(new RoleIcon(new Engineer(), this), false);
             rolesSelected.Add(new RoleIcon(new Traitor(), this), false);
             foreach (RoleIcon roleIcon in rolesSelected.Keys)
