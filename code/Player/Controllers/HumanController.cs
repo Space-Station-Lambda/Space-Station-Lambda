@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using Sandbox;
 using Input = Sandbox.Input;
 
