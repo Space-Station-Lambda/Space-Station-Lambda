@@ -14,7 +14,7 @@ namespace ssl.Player.Controllers
 		private const float BottomGroundDetect = 2.0f;
 
 		private const float BodyHeight  = 72.0F;
-	    private const float EyeHeight  = 64.0F;
+	    	private const float EyeHeight  = 64.0F;
 		private const float BodyGirth = 16.0F;
 		
 		private const float StopSpeed = 100.0f;
@@ -25,6 +25,7 @@ namespace ssl.Player.Controllers
 		private const float StepSize = 20.0f;
 		
 		private const float GroundAngle = 46.0f;
+		private const float MinSpeed = 1.0f;
 		
 		public HumanController()
 		{
@@ -82,7 +83,7 @@ namespace ssl.Player.Controllers
 		/// </summary>
 		protected virtual void TryPlayerMove()
 		{
-			if (Velocity.Length <= 1.0F)
+			if (Velocity.Length <= MinSpeed)
 			{
 				Velocity = Vector3.Zero;
 				return;
@@ -101,7 +102,7 @@ namespace ssl.Player.Controllers
 		/// </summary>
 		protected virtual void TryPlayerMoveWithStep()
 		{
-			if (Velocity.Length <= 1.0F)
+			if (Velocity.Length <= MinSpeed)
 			{
 				Velocity = Vector3.Zero;
 				return;
