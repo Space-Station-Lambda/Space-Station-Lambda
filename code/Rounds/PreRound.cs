@@ -13,12 +13,6 @@ namespace ssl.Rounds
             return new InProgressRound();
         }
 
-        public override void OnPlayerSpawn(MainPlayer player)
-        {
-            base.OnPlayerSpawn(player);
-            AddPlayer(player);
-        }
-
         protected override void OnTimeUp()
         {
             AssignRoles();
