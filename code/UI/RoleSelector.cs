@@ -5,6 +5,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Player;
 using ssl.Player.Roles;
+using ssl.Rounds;
 
 namespace ssl.UI
 {
@@ -49,6 +50,14 @@ namespace ssl.UI
                 roleIcon.Select();
                 rolesSelected[roleIcon] = true;
             }
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            BaseRound currentRound = Gamemode.Instance.RoundManager.CurrentRound;
+            SetClass("active", currentRound is PreRound);
+            SetClass("hidden", currentRound is not PreRound);
         }
 
         /// <summary>
