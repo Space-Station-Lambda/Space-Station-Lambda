@@ -17,12 +17,12 @@ namespace ssl.UI
         public InventoryBar()
         {
             StyleSheet.Load("ui/InventoryBar.scss");
-            for (int i = 1; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
-                icons[i] = new InventoryIcon(i, this);
+                string name = (i + 1).ToString();
+                if (i == 9) name = "0";
+                icons[i] = new InventoryIcon(i, name, this);
             }
-
-            icons[0] = new InventoryIcon(0, this);
             SelectSlot(0);
         }
 
@@ -43,16 +43,16 @@ namespace ssl.UI
             if (Local.Pawn is not MainPlayer player)
                 return;
 
-            if (input.Pressed(InputButton.Slot1)) SelectSlot(1);
-            if (input.Pressed(InputButton.Slot2)) SelectSlot(2);
-            if (input.Pressed(InputButton.Slot3)) SelectSlot(3);
-            if (input.Pressed(InputButton.Slot4)) SelectSlot(4);
-            if (input.Pressed(InputButton.Slot5)) SelectSlot(5);
-            if (input.Pressed(InputButton.Slot6)) SelectSlot(6);
-            if (input.Pressed(InputButton.Slot7)) SelectSlot(7);
-            if (input.Pressed(InputButton.Slot8)) SelectSlot(8);
-            if (input.Pressed(InputButton.Slot9)) SelectSlot(9);
-            if (input.Pressed(InputButton.Slot0)) SelectSlot(0);
+            if (input.Pressed(InputButton.Slot1)) SelectSlot(0);
+            if (input.Pressed(InputButton.Slot2)) SelectSlot(1);
+            if (input.Pressed(InputButton.Slot3)) SelectSlot(2);
+            if (input.Pressed(InputButton.Slot4)) SelectSlot(3);
+            if (input.Pressed(InputButton.Slot5)) SelectSlot(4);
+            if (input.Pressed(InputButton.Slot6)) SelectSlot(5);
+            if (input.Pressed(InputButton.Slot7)) SelectSlot(6);
+            if (input.Pressed(InputButton.Slot8)) SelectSlot(7);
+            if (input.Pressed(InputButton.Slot9)) SelectSlot(8);
+            if (input.Pressed(InputButton.Slot0)) SelectSlot(9);
 
             if (input.MouseWheel != 0) SelectSlot(selected + input.MouseWheel);
         }
@@ -75,11 +75,11 @@ namespace ssl.UI
             private SceneObject sceneObject;
             private Light sceneLight;
             
-            public InventoryIcon(int slotNumber, Panel parent)
+            public InventoryIcon(int slotNumber, string name, Panel parent)
             {
                 SlotNumber = slotNumber;
                 Parent = parent;
-                Add.Label($"{SlotNumber}");
+                Add.Label($"{name}");
                 RefreshModel();
             }
 
