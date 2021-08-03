@@ -14,10 +14,8 @@ namespace ssl.UI
                 RootPanel.AddChild<RoundInfos>();
                 RootPanel.AddChild<InventoryBar>();
                 RootPanel.AddChild<Crosshair>();
-                RoleSelector = RootPanel.AddChild<RoleSelector>();
+                RootPanel.AddChild<RoleSelector>();
             }
         }
-
-        public RoleSelector RoleSelector { get; set; }
     }
 }

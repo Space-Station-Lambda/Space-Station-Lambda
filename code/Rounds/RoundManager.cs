@@ -1,5 +1,4 @@
-﻿using Sandbox;
-using ssl.UI;
+using Sandbox;
 
 namespace ssl.Rounds
 {
@@ -40,12 +39,6 @@ namespace ssl.Rounds
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
             Log.Info("Round " + CurrentRound.RoundName + " started");
-        }
-
-        private void UpdateUi()
-        {
-            Gamemode.Instance.Hud.RoleSelector.SetClass("active", CurrentRound is PreRound);
-            Gamemode.Instance.Hud.RoleSelector.SetClass("hidden", CurrentRound is not PreRound);
         }
     }
 }
