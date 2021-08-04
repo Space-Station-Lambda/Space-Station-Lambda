@@ -63,10 +63,10 @@ namespace ssl.Items
             
             if (itemFilter.IsAuthorized(itemStack.Item))
             {
-                Slot destination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
-                if (destination != null)
+                Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
+                if (slotDestination != null)
                 {
-                    destination.Set(itemStack);   
+                    slotDestination.Set(itemStack);   
                     return itemStack;
                 }
                 return null;

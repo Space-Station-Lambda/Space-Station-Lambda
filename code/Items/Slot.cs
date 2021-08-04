@@ -12,7 +12,7 @@ namespace ssl.Items
             return ItemStack == null;
         }
         
-        public bool IsFull()
+        public bool IsFilled()
         {
             return ItemStack != null;
         }
