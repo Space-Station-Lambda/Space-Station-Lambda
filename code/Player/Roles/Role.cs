@@ -26,7 +26,7 @@ namespace ssl.Player.Roles
         {
             foreach ((string id, int amount) in Items)
             {
-                player.Inventory.AddItem(id, amount);
+                player.Inventory.Add(id, amount);
             }
         }
         /// <summary>

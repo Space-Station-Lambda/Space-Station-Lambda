@@ -11,36 +11,36 @@ namespace ssl.Items
         /// <summary>
         /// Not authorized items
         /// </summary>
-        public HashSet<Item> Blacklist = new();
+        public HashSet<string> Blacklist = new();
 
         /// <summary>
         /// Authorized items
         /// </summary>
-        public HashSet<Item> Whitelist = new();
+        public HashSet<string> Whitelist = new();
 
-        public bool IsAuthorized(Item item)
+        public bool IsAuthorized(string itemId)
         {
-            if (Whitelist.Contains(item)) return true;
-            if (Blacklist.Contains(item)) return false;
+            if (Whitelist.Contains(itemId)) return true;
+            if (Blacklist.Contains(itemId)) return false;
             return !(Whitelist.Count > 0);
         }
 
-        public void AddToWhitelist(Item item)
+        public void AddToWhitelist(string item)
         {
             Whitelist.Add(item);
         }
 
-        public void RemoveFromWhitelist(Item item)
+        public void RemoveFromWhitelist(string item)
         {
             Whitelist.Remove(item);
         }
 
-        public void AddToBlacklist(Item item)
+        public void AddToBlacklist(string item)
         {
             Blacklist.Add(item);
         }
 
-        public void RemoveFromBlacklist(Item item)
+        public void RemoveFromBlacklist(string item)
         {
             Blacklist.Remove(item);
         }

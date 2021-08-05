@@ -1,34 +1,36 @@
-﻿using Sandbox;
+﻿using System.Reflection.Metadata;
+using Sandbox;
 using ssl.Items.Data;
 
 namespace ssl.Items
 {
     public partial class Slot : NetworkedEntityAlwaysTransmitted
     {
-        [Net] public ItemStack ItemStack { get; set; }
+        [Net] public Item Item { get; set; }
 
         public bool IsEmpty()
         {
-            return ItemStack == null;
+            return Item == null;
         }
         
         public bool IsFilled()
         {
-            return ItemStack != null;
+            return Item != null;
         }
 
         /// <summary>
         /// Set an itemstack to the slot
         /// </summary>
-        /// <param name="itemStack">Itemstack to set</param>
-        public void Set(ItemStack itemStack)
+        /// <param name="item">Itemstack to set</param>
+        public void Set(Item item)
         {
-            ItemStack = itemStack;
+            Item = item;
+            item.Owner = this;
         }
 
         public void Clear()
         {
-            ItemStack = null;
+            Item = null;
         }
     }
 }

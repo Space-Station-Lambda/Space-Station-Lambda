@@ -5,20 +5,17 @@ namespace ssl.Items.Data
 {
     public class ItemFood : Item
     {
-        public ItemFood(string id, string name, int feedingValue, string model) : base(id, name, model)
+        public ItemFood(ItemFoodData foodData) : base(foodData)
         {
-            Name = name;
-            Id = id;
-            FeedingValue = feedingValue;
+            FeedingValue = foodData.FeedingValue;
         }
 
         public int FeedingValue { get; }
 
-
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void UsedBy(MainPlayer player, ItemStack itemStack)
+        public override void UsedBy(MainPlayer player)
         {
             Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)

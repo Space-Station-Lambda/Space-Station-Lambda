@@ -5,16 +5,15 @@ namespace ssl.Items.Data
     public class ItemClothes : Item
     {
 
-        public ItemClothes(string id, string name, string model, ClothesSlot slot) : base(id, name)
+        public ItemClothes(ItemClothesData data) : base(data)
         {
-            Model = model;
-            this.slot = slot;
+            slot = data.Slot;
         }
 
         private ClothesSlot slot;
+        
 
-
-        public override void UsedBy(MainPlayer player, ItemStack itemStack)
+        public override void UsedBy(MainPlayer player)
         {
             player.ClothesHandler.AttachClothes(Model, slot);
             //TODO Give to the player the old cloth in this slot
