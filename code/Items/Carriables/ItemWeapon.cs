@@ -1,26 +1,34 @@
 ﻿using Sandbox;
+using ssl.Items.Data;
 using ssl.Player;
 
-namespace ssl.Items.Data.Weapon
+namespace ssl.Items.Carriables
 {
     public partial class ItemWeapon : Item
     {
-        private const float PrimaryRate = 5.0F;
-
+        public ItemWeapon()
+        {
+            
+        }
         public ItemWeapon(ItemWeaponData weaponData) : base(weaponData)
         {
+            PrimaryRate = weaponData.PrimaryRate;
         }
 
-        public int TimeSincePrimaryAttack { get; set; }
+        public float PrimaryRate { get; private set; } = 5.0F;
+
+        public TimeSince TimeSincePrimaryAttack { get; set; }
         
         public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
         
         public override void UsedBy(MainPlayer player)
         {
             base.UsedBy(player);
-            
-            TimeSincePrimaryAttack = 0;
-            AttackPrimary();
+
+            if (CanPrimaryAttack())
+            {
+                AttackPrimary();
+            }
         }
 
         protected bool CanReload()
@@ -34,7 +42,7 @@ namespace ssl.Items.Data.Weapon
 
         private bool CanPrimaryAttack()
         {
-            if (!Owner.IsValid() || !Input.Down(InputButton.Attack1)) return false;
+            if (!Owner.IsValid()) return false;
             
             float rate = PrimaryRate;
             if (rate <= 0) return true;

@@ -1,4 +1,4 @@
-﻿using ssl.Items.Data.Weapon;
+﻿using ItemWeapon = ssl.Items.Carriables.ItemWeapon;
 
 namespace ssl.Items.Data
 {

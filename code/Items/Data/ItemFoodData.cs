@@ -1,4 +1,6 @@
-﻿namespace ssl.Items.Data
+﻿using ssl.Items.Carriables;
+
+namespace ssl.Items.Data
 {
     public class ItemFoodData : ItemData
     {

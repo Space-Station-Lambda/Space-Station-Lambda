@@ -1,6 +1,7 @@
-﻿using ssl.Player;
+﻿using ssl.Items.Data;
+using ssl.Player;
 
-namespace ssl.Items.Data
+namespace ssl.Items.Carriables
 {
     public class ItemClothes : Item
     {

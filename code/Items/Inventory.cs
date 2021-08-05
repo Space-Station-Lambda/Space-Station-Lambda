@@ -146,7 +146,7 @@ namespace ssl.Items
         
         public List<Item> GetItems(ItemData item)
         {
-            return (from slot in Slots where item.Equals(slot.Item) select slot.Item).ToList();
+            return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
         }
 
         /// <summary>

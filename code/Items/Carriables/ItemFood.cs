@@ -1,7 +1,8 @@
 using ssl.Gauges;
+using ssl.Items.Data;
 using ssl.Player;
 
-namespace ssl.Items.Data
+namespace ssl.Items.Carriables
 {
     public class ItemFood : Item
     {

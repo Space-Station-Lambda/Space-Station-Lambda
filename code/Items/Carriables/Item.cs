@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Items.Data
 {
-    public abstract class Item : BaseCarriable
+    public abstract partial class Item : BaseCarriable
     {
         public static Dictionary<string, ItemData> All = new()
         {
@@ -28,6 +28,11 @@ namespace ssl.Items.Data
                 "food.banana", new ItemFoodData("food.banana", "Banana", "models/food/banana/banana.vmdl", 10)
             }
         };
+
+        protected Item()
+        {
+            
+        }
         
         protected Item(ItemData data)
         {
@@ -36,14 +41,23 @@ namespace ssl.Items.Data
             Model = data.Name;
         }
 
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string Model { get; set; }
+        [Net] public string Id { get; set; }
+        [Net] public string Name { get; set; }
+        [Net] public string Model { get; set; }
 
         /// <summary>
         /// Called each tick when an ItemStack of this Item is active.
         /// </summary>
         public virtual void UsedBy(MainPlayer player) { }
+
+        public override void Simulate(Client cl)
+        {
+            base.Simulate(cl);
+            
+            //TODO: Change this to use an InputHandler class
+            if (Input.Down(InputButton.Attack1)) UsedBy(cl.Pawn as MainPlayer);
+        }
+
         public override string ToString()
         {
             return $"[{Id}] {Name}";

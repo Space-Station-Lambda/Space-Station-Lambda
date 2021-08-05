@@ -15,10 +15,5 @@
 
         public abstract Item create();
         
-        public virtual bool Equals(Item obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            return Equals(obj.Id, Id);
-        }
     }
 }
