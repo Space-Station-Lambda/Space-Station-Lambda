@@ -125,7 +125,8 @@ namespace ssl.Player.Controllers
 			maxs = new Vector3( +BodyGirth, +BodyGirth, BodyHeight ) * Pawn.Scale;
 		}
 
-		private MoveHelper GetMoveHelper() {
+		private MoveHelper GetMoveHelper() 
+		{
 			MoveHelper mover = new(Position, Velocity);
 			mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
 			mover.MaxStandableAngle = GroundAngle;
