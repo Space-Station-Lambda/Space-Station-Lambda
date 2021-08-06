@@ -66,7 +66,7 @@ namespace ssl.Items
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
             
-            if (itemFilter.IsAuthorized(item.Id))
+            if (itemFilter.IsAuthorized(item))
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 if (slotDestination != null)
@@ -90,7 +90,7 @@ namespace ssl.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public Item Add(string itemId, int position = 0)
         {
-            Item item = Item.All[itemId].Create();
+            Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
             return Add(item, position);
         }
 
