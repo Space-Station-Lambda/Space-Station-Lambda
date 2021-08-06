@@ -3,8 +3,11 @@ using ssl.Player;
 
 namespace ssl.Items.Carriables
 {
-    public class ItemClothes : Item
+    public partial class ItemClothes : Item
     {
+        public ItemClothes()
+        {
+        }
 
         public ItemClothes(ItemClothesData data) : base(data)
         {
