@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Runtime.CompilerServices;
+using Sandbox;
 using ssl.Items.Data;
 using ssl.Player;
 
@@ -15,9 +16,8 @@ namespace ssl.Items.Carriables
             PrimaryRate = weaponData.PrimaryRate;
         }
 
-        public float PrimaryRate { get; private set; } = 5.0F;
-
-        public TimeSince TimeSincePrimaryAttack { get; set; }
+        [Net] public float PrimaryRate { get; private set; }
+        [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
         
         public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
         
@@ -43,11 +43,9 @@ namespace ssl.Items.Carriables
         private bool CanPrimaryAttack()
         {
             if (!Owner.IsValid()) return false;
-            
-            float rate = PrimaryRate;
-            if (rate <= 0) return true;
+            if (PrimaryRate <= 0) return true;
 
-            return TimeSincePrimaryAttack > (1 / rate);
+            return TimeSincePrimaryAttack > (1 / PrimaryRate);
         }
 
         protected void AttackPrimary()
@@ -85,26 +83,7 @@ namespace ssl.Items.Carriables
             // Another trace, bullet going through thin material, penetrating water surface?
             //
         }
-        protected virtual void ShootBullet(float spread, float force, float damage, float bulletSize)
-        {
-            Vector3 forward = Owner.EyeRot.Forward;
-            forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
-            forward = forward.Normal;
 
-            TraceResult tr = TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize);
-
-            tr.Surface.DoBulletImpact(tr);
-            
-            if (!IsServer || !tr.Entity.IsValid()) return;
-
-            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
-                .UsingTraceResult(tr)
-                .WithAttacker(Owner)
-                .WithWeapon(this);
-
-            tr.Entity.TakeDamage(damageInfo);
-        }
-        
         [ClientRpc]
         private void ShootEffects()
         {
@@ -119,6 +98,26 @@ namespace ssl.Items.Carriables
             
             ViewModelEntity?.SetAnimBool("fire", true);
             CrosshairPanel?.CreateEvent("fire");
+        }
+
+        protected virtual void ShootBullet(float spread, float force, float damage, float bulletSize)
+        {
+            Vector3 forward = Owner.EyeRot.Forward;
+            forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
+            forward = forward.Normal;
+
+            TraceResult tr = TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize);
+            
+            if (!IsServer || !tr.Entity.IsValid()) return;
+            
+            tr.Surface.DoBulletImpact(tr);
+            
+            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
+                .UsingTraceResult(tr)
+                .WithAttacker(Owner)
+                .WithWeapon(this);
+
+            tr.Entity.TakeDamage(damageInfo);
         }
     }
 }
