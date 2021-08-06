@@ -8,6 +8,8 @@ using ssl.Items.Data;
 using ssl.Player.Controllers;
 using ssl.Player.Roles;
 using Input = Sandbox.Input;
+using Item = ssl.Items.Carriables.Item;
+using ItemWeapon = ssl.Items.Carriables.ItemWeapon;
 using SpawnPoint = ssl.Entities.SpawnPoint;
     
 namespace ssl.Player
@@ -22,7 +24,10 @@ namespace ssl.Player
         {
             if (Host.IsServer)
             {
-                Inventory = new Inventory(MaxInventoryCapacity);
+                Inventory = new Inventory(MaxInventoryCapacity)
+                {
+                    Owner = this
+                };
                 GaugeHandler = new GaugeHandler();
                 ClothesHandler = new ClothesHandler(this);
                 RoleHandler = new RoleHandler(this);
@@ -30,7 +35,7 @@ namespace ssl.Player
         }
 
         [Net] public new Inventory Inventory { get; private set; }
-        [Net] public ItemStack Holding { get; private set; }
+        [Net] public Item Holding { get; private set; }
 
         /**
          * Handlers
@@ -55,12 +60,10 @@ namespace ssl.Player
         {
             MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (target == null) return;
-            ItemStack itemStack = target.Inventory.GetItem(slot);
-            target.Holding?.ActiveEnd(target, false);
-            target.Holding = itemStack;
-            target.Holding?.SetModel(target.Holding.Item.Model);
+            Item item = target.Inventory.Get(slot);
+            target.Holding = item;
+            target.Holding?.SetModel(target.Holding.Model);
             target.Holding?.OnCarryStart(target);
-            target.Holding?.ActiveStart(target);
             target.ActiveChild = target.Holding;
         }
         
@@ -94,6 +97,8 @@ namespace ssl.Player
             EnableShadowInFirstPerson = true;
 
             RoleHandler.Init();
+
+            Inventory.Add(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol"));
 
             base.Respawn();
         }

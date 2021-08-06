@@ -9,20 +9,20 @@ namespace ssl.Items.Data
     /// </summary>
     public class ItemRegistry
     {
-        private readonly Dictionary<string, Item> registry;
+        private readonly Dictionary<string, ItemData> registry;
 
         public ItemRegistry()
         {
-            registry = new Dictionary<string, Item>();
+            registry = new Dictionary<string, ItemData>();
             RegisterItems();
         }
 
-        public void Add(Item item)
+        public void Add(ItemData item)
         {
             registry.Add(item.Id, item);
         }
 
-        public Item GetItemById(string id)
+        public ItemData GetItemById(string id)
         {
             return ContainsItem(id) ? registry[id] : null;
         }
@@ -41,18 +41,12 @@ namespace ssl.Items.Data
         /// </summary>
         private void RegisterItems()
         {
-            Add(new ItemFood("food.apple", "Apple", 10,
-                "models/rust_props/small_junk/apple.vmdl")); //Item registration Example
-            Add(new ItemWeapon("weapon.pistol", "Pistol",
-                "weapons/rust_pistol/rust_pistol.vmdl")); //Item registration Example
-            Add(new ItemFood("food.wine", "Wine", 5,
-                "models/citizen_props/wineglass02/wineglass01gib01_lod01.vmdl")); //Item registration Example
-            Add(new ItemFood("food.hotdog", "HotDog", 5,
-                "models/citizen_props/hotdog01.vmdl")); //Item registration Example
-			Add(new ItemWeapon("weapon.knife", "Knife",
-				"models/knife/knife.vmdl")); //Item registration Example
-			Add(new ItemFood("food.banana", "Banana", 10,
-				"models/food/banana/banana.vmdl")); //Item registration Example
+            Add(new ItemFoodData("food.apple", "Apple", "models/rust_props/small_junk/apple.vmdl", 10));
+            Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl", 5f));
+            Add(new ItemFoodData("food.wine", "Wine", "models/citizen_props/wineglass02/wineglass01gib01_lod01.vmdl", 5));
+            Add(new ItemFoodData("food.hotdog", "HotDog", "models/citizen_props/hotdog01.vmdl", 5));
+			Add(new ItemWeaponData("weapon.knife", "Knife", "models/knife/knife.vmdl", 5f));
+			Add(new ItemFoodData("food.banana", "Banana", "models/food/banana/banana.vmdl", 10));
 		}
     }
 }

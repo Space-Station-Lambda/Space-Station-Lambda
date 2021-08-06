@@ -1,21 +1,22 @@
+using Sandbox;
 using ssl.Gauges;
+using ssl.Items.Data;
 using ssl.Player;
 
-namespace ssl.Items.Data
+namespace ssl.Items.Carriables
 {
-    public class ItemFood : Item
+    public partial class ItemFood : Item
     {
-        public ItemFood(string id, string name, int feedingValue, string model) : base(id, name, model)
+        public ItemFood()
         {
-            Name = name;
-            Id = id;
-            FeedingValue = feedingValue;
+        }
+        
+        public ItemFood(ItemFoodData foodData) : base(foodData)
+        {
+            FeedingValue = foodData.FeedingValue;
         }
 
-        public int FeedingValue { get; }
-        public override int MaxStack => 1;
-        public override bool DestroyOnUse => true;
-
+        [Net] public int FeedingValue { get; }
 
         /// <summary>
         /// First version, food feeds up the player on use
