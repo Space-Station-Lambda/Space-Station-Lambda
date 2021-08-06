@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ssl.Items.Data;
 using Enumerable = System.Linq.Enumerable;
+using Item = ssl.Items.Carriables.Item;
 
 namespace ssl.Items
 {

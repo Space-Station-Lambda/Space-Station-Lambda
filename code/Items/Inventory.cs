@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Sandbox;
 using ssl.Items.Data;
+using Item = ssl.Items.Carriables.Item;
 
 namespace ssl.Items
 {

@@ -1,14 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using Sandbox;
+﻿using Sandbox;
+using ssl.Items.Data;
 using ssl.Player;
 
-namespace ssl.Items.Data
+namespace ssl.Items.Carriables
 {
+    
+    /// <summary>
+    /// Base class of any Item entity.
+    /// It is both the item in inventory and the world entity.
+    ///
+    /// This class is used clientside & server side so properties useful clientside should be [Net]
+    /// </summary>
     public partial class Item : BaseCarriable
     {
 
-        protected Item()
+        public Item()
         {
         }
         
@@ -24,10 +30,15 @@ namespace ssl.Items.Data
         [Net] public string Model { get; set; }
 
         /// <summary>
-        /// Called each tick when an ItemStack of this Item is active.
+        /// Called when a player use an Item.
         /// </summary>
         public virtual void UsedOn(MainPlayer player) { }
 
+        
+        /// <summary>
+        /// Called each player's tick when the Item is considered as the player's active child.
+        /// The Item is the active child when the player holds it.
+        /// </summary>
         public override void Simulate(Client cl)
         {
             base.Simulate(cl);
