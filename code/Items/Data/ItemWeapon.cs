@@ -8,7 +8,7 @@ namespace ssl.Items.Data
         {
         }
 
-        public override void UsedBy(MainPlayer player)
+        public override void UseOn(MainPlayer player)
         {
             throw new System.NotImplementedException();
         }

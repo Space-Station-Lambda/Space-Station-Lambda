@@ -1,6 +1,7 @@
 ﻿using System;
 using Sandbox;
 using ssl.Items.Data;
+using ssl.Player;
 
 namespace ssl.Items
 {
@@ -73,6 +74,11 @@ namespace ssl.Items
             return 0;
         }
 
+        public void UseOn(MainPlayer player)
+        {
+            Item.UseOn(player);
+        }
+        
         public ItemStack AddItemStack(ItemStack itemStack)
         {
             return new ItemStack(Item, Add(itemStack.Amount));

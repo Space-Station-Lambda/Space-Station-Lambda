@@ -1,4 +1,6 @@
-﻿using Sandbox.UI;
+﻿using Sandbox;
+using Sandbox.UI;
+using ssl.Player;
 
 namespace ssl.UI
 {
@@ -10,6 +12,15 @@ namespace ssl.UI
             StyleSheet.Load("ui/crosshair.scss");
             selectCircle = AddChild<SelectCircle>();
         }
+        [Event("buildinput")]
+        public void ProcessClientInput(InputBuilder input)
+        {
+            if (Local.Pawn is not MainPlayer player)
+                return;
+
+            if (input.Pressed(InputButton.Attack2)) player.Holding.UseOn(player);
+        }
+        
         public class SelectCircle : Panel
         {
             public SelectCircle()
