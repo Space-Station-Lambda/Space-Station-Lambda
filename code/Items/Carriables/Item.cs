@@ -31,7 +31,6 @@ namespace ssl.Items.Data
 
         protected Item()
         {
-            
         }
         
         protected Item(ItemData data)
