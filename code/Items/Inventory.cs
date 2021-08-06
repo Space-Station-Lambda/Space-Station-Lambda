@@ -90,7 +90,7 @@ namespace ssl.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public Item Add(string itemId, int position = 0)
         {
-            Item item = Item.All[itemId].create();
+            Item item = Item.All[itemId].Create();
             return Add(item, position);
         }
 
@@ -104,7 +104,7 @@ namespace ssl.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public Item Add(ItemData data, int position = 0)
         {
-            return Add(data.create(), position);
+            return Add(data.Create(), position);
         }
 
         /// <summary>

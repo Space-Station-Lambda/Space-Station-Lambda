@@ -13,7 +13,7 @@
         public string Name { get; }
         public string Model { get; } = ""; //Find default model
 
-        public abstract Item create();
+        public abstract Item Create();
         
     }
 }

@@ -11,7 +11,7 @@ namespace ssl.Items.Data
 
         public int FeedingValue { get; }
         
-        public override Item create()
+        public override Item Create()
         {
             return new ItemFood(this);
         }

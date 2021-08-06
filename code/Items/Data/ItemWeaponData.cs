@@ -11,7 +11,7 @@ namespace ssl.Items.Data
 
         public float PrimaryRate { get; }
         
-        public override ItemWeapon create()
+        public override ItemWeapon Create()
         {
             return new ItemWeapon(this);
         }
