@@ -13,7 +13,7 @@ namespace ssl.Items.Data
         
         public override ItemWeapon Create()
         {
-            return new ItemWeapon(this);
+            return new(this);
         }
     }
 }

@@ -16,7 +16,6 @@ namespace ssl.Items.Carriables
 
         private ClothesSlot slot;
         
-
         public override void UsedOn(MainPlayer player)
         {
             player.ClothesHandler.AttachClothes(Model, slot);

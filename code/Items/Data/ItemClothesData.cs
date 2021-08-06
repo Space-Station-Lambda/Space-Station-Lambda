@@ -12,9 +12,9 @@ namespace ssl.Items.Data
 
         public ClothesSlot Slot { get; }
         
-        public override Item Create()
+        public override ItemClothes Create()
         {
-            return new ItemClothes(this);
+            return new(this);
         }
     }
 }

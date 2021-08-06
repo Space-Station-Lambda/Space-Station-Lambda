@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Items.Data
 {
-    public abstract partial class Item : BaseCarriable
+    public partial class Item : BaseCarriable
     {
         public static Dictionary<string, ItemData> All = new()
         {
@@ -33,7 +33,7 @@ namespace ssl.Items.Data
         {
         }
         
-        protected Item(ItemData data)
+        public Item(ItemData data)
         {
             Id = data.Id;
             Name = data.Name;

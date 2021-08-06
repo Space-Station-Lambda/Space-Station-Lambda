@@ -1,6 +1,6 @@
 ﻿namespace ssl.Items.Data
 {
-    public abstract class ItemData
+    public class ItemData
     {
         public ItemData(string id, string name, string model)
         {
@@ -13,7 +13,9 @@
         public string Name { get; }
         public string Model { get; }
 
-        public abstract Item Create();
-        
+        public virtual Item Create()
+        {
+            return new(this);
+        }
     }
 }
