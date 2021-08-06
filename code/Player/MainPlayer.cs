@@ -98,7 +98,7 @@ namespace ssl.Player
 
             RoleHandler.Init();
 
-            Inventory.Add(Item.All["weapon.pistol"]);
+            Inventory.Add(Gamemode.Instance.ItemRegistry.GetItemById("weapon.pistol"));
 
             base.Respawn();
         }
