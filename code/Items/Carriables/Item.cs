@@ -47,14 +47,14 @@ namespace ssl.Items.Data
         /// <summary>
         /// Called each tick when an ItemStack of this Item is active.
         /// </summary>
-        public virtual void UsedBy(MainPlayer player) { }
+        public virtual void UsedOn(MainPlayer player) { }
 
         public override void Simulate(Client cl)
         {
             base.Simulate(cl);
             
             //TODO: Change this to use an InputHandler class
-            if (Input.Down(InputButton.Attack1)) UsedBy(cl.Pawn as MainPlayer);
+            if (Input.Down(InputButton.Attack1)) UsedOn(cl.Pawn as MainPlayer);
         }
 
         public override string ToString()

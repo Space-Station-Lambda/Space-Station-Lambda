@@ -21,9 +21,9 @@ namespace ssl.Items.Carriables
         
         public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
         
-        public override void UsedBy(MainPlayer player)
+        public override void UsedOn(MainPlayer player)
         {
-            base.UsedBy(player);
+            base.UsedOn(player);
 
             if (CanPrimaryAttack())
             {

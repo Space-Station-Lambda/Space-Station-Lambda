@@ -16,7 +16,7 @@ namespace ssl.Items.Carriables
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void UsedBy(MainPlayer player)
+        public override void UsedOn(MainPlayer player)
         {
             Gauge gauge = player.GaugeHandler.GetGauge("feeding");
             if (gauge.ValueLeft > FeedingValue)

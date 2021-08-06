@@ -14,7 +14,7 @@ namespace ssl.Items.Carriables
         private ClothesSlot slot;
         
 
-        public override void UsedBy(MainPlayer player)
+        public override void UsedOn(MainPlayer player)
         {
             player.ClothesHandler.AttachClothes(Model, slot);
             //TODO Give to the player the old cloth in this slot
