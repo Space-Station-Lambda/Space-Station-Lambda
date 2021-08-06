@@ -11,7 +11,7 @@
         
         public string Id { get; }
         public string Name { get; }
-        public string Model { get; } = ""; //Find default model
+        public string Model { get; }
 
         public abstract Item Create();
         
