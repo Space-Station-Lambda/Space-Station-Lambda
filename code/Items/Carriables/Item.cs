@@ -4,12 +4,10 @@ using ssl.Player;
 
 namespace ssl.Items.Carriables
 {
-    
     /// <summary>
     /// Base class of any Item entity.
     /// It is both the item in inventory and the world entity.
-    ///
-    /// This class is used clientside & server side so properties useful clientside should be [Net]
+    /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
     public partial class Item : BaseCarriable
     {
