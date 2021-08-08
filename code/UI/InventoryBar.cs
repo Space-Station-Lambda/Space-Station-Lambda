@@ -36,9 +36,7 @@ namespace ssl.UI
         [Event("buildinput")]
         public void ProcessClientInput(InputBuilder input)
         {
-            if (Local.Pawn is not MainPlayer player)
-                return;
-
+            
             if (input.Pressed(InputButton.Slot1)) SelectSlot(0);
             if (input.Pressed(InputButton.Slot2)) SelectSlot(1);
             if (input.Pressed(InputButton.Slot3)) SelectSlot(2);
