@@ -9,13 +9,11 @@ namespace ssl.UI
     {
         public Hud()
         {
-            if (IsClient)
-            {
-                RootPanel.AddChild<RoundInfos>();
-                RootPanel.AddChild<InventoryBar>();
-                RootPanel.AddChild<Crosshair>();
-                RootPanel.AddChild<RoleSelector>();
-            }
+            if (!IsClient) return;
+            RootPanel.AddChild<RoundInfos>();
+            RootPanel.AddChild<InventoryBar>();
+            RootPanel.AddChild<Crosshair>();
+            RootPanel.AddChild<RoleSelector>();
         }
     }
 }

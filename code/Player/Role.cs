@@ -1,4 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using Sandbox;
+using ssl.Items.Data;
 using ssl.Player.Roles;
 
 namespace ssl.Player
@@ -25,7 +29,7 @@ namespace ssl.Player
         public abstract string Description { get; }
         public virtual string Model => "models/units/simpleterry.vmdl";
         public virtual IEnumerable<string> Clothing => new HashSet<string>();
-        public virtual Dictionary<string, int> Items => new();
+        public virtual IEnumerable<string> Items => new List<string>();
 
         /// <summary>
         /// Trigger when the role is assigned
@@ -38,9 +42,9 @@ namespace ssl.Player
         /// <param name="player"></param>
         public virtual void OnSpawn(MainPlayer player)
         {
-            foreach ((string id, int amount) in Items)
+            foreach (ItemData itemData in Items.Select(itemDataId => Gamemode.Instance.ItemRegistry.GetItemById(itemDataId)))
             {
-                player.Inventory.Add(id, amount);
+                player.Inventory.Add(itemData.Create());
             }
         }
 
