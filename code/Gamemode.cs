@@ -26,6 +26,9 @@ namespace ssl
         }
         
         public static Gamemode Instance { get; private set; }
+
+        public event Action<MainPlayer> PlayerAddedEvent;
+        public event Action<MainPlayer> PlayerRemovedEvent;
         /// <summary>
         /// Items in the gamemode
         /// </summary>

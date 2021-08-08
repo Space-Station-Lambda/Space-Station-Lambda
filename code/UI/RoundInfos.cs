@@ -24,9 +24,9 @@ namespace ssl.UI
         public override void Tick()
         {
             base.Tick();
-            SetClass("hidden", !Input.Down(InputButton.Score));
-            SetClass("hidden", false);
-            UpdatePlayers();
+            bool scorePressed = Input.Down(InputButton.Score);
+            SetClass("hidden", !scorePressed);
+            if(scorePressed) UpdatePlayers();
         }
 
         /// <summary>
