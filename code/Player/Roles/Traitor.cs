@@ -21,7 +21,7 @@ namespace ssl.Player.Roles
 
         public override Dictionary<string, int> Items => new()
         {
-            { "weapon.pistol", 1 }
+            { "weapon.knife", 1 }
         };
 
         public Role SecondaryRole { get; set; }

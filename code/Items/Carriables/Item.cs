@@ -41,7 +41,6 @@ namespace ssl.Items.Carriables
         {
             base.Simulate(cl);
             
-            //TODO: Change this to use an InputHandler class
             if (Input.Down(InputButton.Attack1)) UseOn(cl.Pawn as MainPlayer);
         }
 
