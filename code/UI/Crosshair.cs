@@ -18,7 +18,7 @@ namespace ssl.UI
             if (Local.Pawn is not MainPlayer player)
                 return;
 
-            if (input.Pressed(InputButton.Attack2)) player.Holding.UseOn(player);
+            if (input.Pressed(InputButton.Attack2)) player.Holding?.UseOn(player);
         }
         
         public class SelectCircle : Panel
