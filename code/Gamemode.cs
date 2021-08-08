@@ -8,6 +8,8 @@ using ssl.UI;
 
 namespace ssl
 {
+    public delegate void PlayerAddedEvent(MainPlayer player);
+    public delegate void PlayerRemovedEvent(MainPlayer player);
     [Library("ssl")]
     public partial class Gamemode : Game
     {
@@ -20,6 +22,8 @@ namespace ssl
 
         public static Gamemode Instance { get; private set; }
 
+        public event PlayerAddedEvent PlayerAddedEvent;
+        public event PlayerRemovedEvent PlayerRemovedEvent;
         public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
@@ -40,8 +44,8 @@ namespace ssl
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
-            Hud = new Hud();
             ItemRegistry = new ItemRegistry();
+            Hud = new Hud();
         }
 
         private void StartClient()
@@ -55,7 +59,14 @@ namespace ssl
         {
             MainPlayer player = new();
             client.Pawn = player;
+            EmitEvent(player);
             RoundManager.CurrentRound.OnPlayerSpawn(player);
+        }
+
+        [ClientRpc]
+        private void EmitEvent(MainPlayer player)
+        {
+            PlayerAddedEvent?.Invoke(player);
         }
 
         public override void PostLevelLoaded()

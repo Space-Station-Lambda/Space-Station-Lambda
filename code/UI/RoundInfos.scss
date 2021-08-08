@@ -1,7 +1,14 @@
 ﻿RoundInfos {
-  Label {
-    font-weight: bold;
-    font-size: 30px;
-    left: 410px;
+  position: absolute;
+  left: 45%;
+  top: 40%;
+  width: 10%;
+  background-color: rgba(243, 240, 240, 0.26);
+  &.hidden {
+    display: none;
+  }
+  RoundPlayer {
+    border-width: 2px;
+    border-color: rgba(65, 57, 57, 0.19);
   }
 }

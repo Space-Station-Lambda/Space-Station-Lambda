@@ -6,6 +6,8 @@ using ssl.Player;
 
 namespace ssl.Rounds
 {
+
+    
     public abstract partial class BaseRound : NetworkComponent
     {
         public HashSet<MainPlayer> Players = new();
@@ -15,7 +17,6 @@ namespace ssl.Rounds
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
         public event RoundEndedEvent RoundEndedEvent;
-
 
         public void Start()
         {
