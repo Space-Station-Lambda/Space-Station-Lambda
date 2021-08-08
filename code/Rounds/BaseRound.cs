@@ -6,6 +6,8 @@ using ssl.Player;
 
 namespace ssl.Rounds
 {
+
+    
     public abstract partial class BaseRound : NetworkComponent
     {
         public HashSet<MainPlayer> Players = new();
