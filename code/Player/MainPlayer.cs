@@ -1,20 +1,15 @@
 ﻿using Sandbox;
-using Sandbox.Rcon;
-using ssl.Effects;
 using ssl.Entities;
 using ssl.Gauges;
 using ssl.Items;
-using ssl.Items.Data;
 using ssl.Player.Controllers;
-using ssl.Player.Roles;
 using Input = Sandbox.Input;
 using Item = ssl.Items.Carriables.Item;
-using ItemWeapon = ssl.Items.Carriables.ItemWeapon;
 using SpawnPoint = ssl.Entities.SpawnPoint;
     
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player, IEffectable<MainPlayer>
+    public partial class MainPlayer : Sandbox.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
@@ -44,12 +39,6 @@ namespace ssl.Player
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
         public PlayerCorpse Ragdoll { get; set; }
-
-
-        public void Apply(Effect<MainPlayer> effect)
-        {
-            effect.Trigger(this);
-        }
 
         /// <summary>
         /// When the player change selected slot
