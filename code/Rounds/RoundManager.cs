@@ -2,8 +2,6 @@ using Sandbox;
 
 namespace ssl.Rounds
 {
-    public delegate void RoundEndedEvent(BaseRound round);
-
     public partial class RoundManager : NetworkedEntityAlwaysTransmitted
     {
         public RoundManager()
