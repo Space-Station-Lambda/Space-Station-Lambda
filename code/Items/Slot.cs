@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata;
-using Sandbox;
+﻿using Sandbox;
 using ssl.Items.Data;
 using Item = ssl.Items.Carriables.Item;
 

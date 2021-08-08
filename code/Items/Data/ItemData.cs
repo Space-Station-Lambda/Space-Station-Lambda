@@ -1,4 +1,6 @@
-﻿namespace ssl.Items.Data
+﻿using ssl.Items.Carriables;
+
+namespace ssl.Items.Data
 {
     /// <summary>
     /// Stores data to create an Item instance.
@@ -16,9 +18,13 @@
         public string Name { get; }
         public string Model { get; }
 
-        public virtual Carriables.Item Create()
+        /// <summary>
+        /// Create a new item with current data
+        /// </summary>
+        /// <returns>The new item</returns>
+        public virtual Item Create()
         {
-            return new(this);
+            return new Item(this);
         }
     }
 }

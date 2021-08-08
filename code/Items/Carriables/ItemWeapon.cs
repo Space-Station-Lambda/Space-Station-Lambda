@@ -7,6 +7,7 @@ namespace ssl.Items.Carriables
 {
     public partial class ItemWeapon : Item
     {
+        private const float MaxRange = 5000;
         public ItemWeapon()
         {
             
@@ -14,9 +15,13 @@ namespace ssl.Items.Carriables
         public ItemWeapon(ItemWeaponData weaponData) : base(weaponData)
         {
             PrimaryRate = weaponData.PrimaryRate;
+            Range = weaponData.Range;
         }
 
         [Net] public float PrimaryRate { get; private set; }
+        
+        [Net] public float Range { get; private set; }
+        
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
         
         public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
@@ -106,7 +111,9 @@ namespace ssl.Items.Carriables
             forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
             forward = forward.Normal;
 
-            TraceResult tr = TraceBullet( Owner.EyePos, Owner.EyePos + forward * 5000, bulletSize);
+            //If the range is 0, the range is max.
+            float range = Range == 0 ? MaxRange : Range;
+            TraceResult tr = TraceBullet( Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
             
             if (!IsServer || !tr.Entity.IsValid()) return;
             

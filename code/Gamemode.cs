@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Sandbox;
+using ssl.Items;
 using ssl.Items.Data;
 using ssl.Player;
 using ssl.Rounds;
