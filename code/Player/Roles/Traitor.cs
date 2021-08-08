@@ -19,9 +19,9 @@ namespace ssl.Player.Roles
             "models/citizen_clothes/hat/hat_beret.black.vmdl"
         };
 
-        public override Dictionary<string, int> Items => new()
+        public override IEnumerable<string> Items => new List<string>
         {
-            { "weapon.pistol", 1 }
+           "weapon.knife"
         };
 
         public Role SecondaryRole { get; set; }
