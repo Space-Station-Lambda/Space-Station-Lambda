@@ -40,12 +40,15 @@ namespace ssl.Items
         /// </summary>
         private void RegisterItems()
         {
+            //Food
             Add(new ItemFoodData("food.apple", "Apple", "models/rust_props/small_junk/apple.vmdl", 10));
-            Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl", 5f));
             Add(new ItemFoodData("food.wine", "Wine", "models/citizen_props/wineglass02/wineglass01gib01_lod01.vmdl", 5));
             Add(new ItemFoodData("food.hotdog", "HotDog", "models/citizen_props/hotdog01.vmdl", 5));
-			Add(new ItemWeaponData("weapon.knife", "Knife", "models/knife/knife.vmdl", 5f, 100f));
-			Add(new ItemFoodData("food.banana", "Banana", "models/food/banana/banana.vmdl", 10));
-		}
+            Add(new ItemFoodData("food.banana", "Banana", "models/food/banana/banana.vmdl", 10));
+            //Weapons
+            Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl"));
+            Add(new ItemWeaponData("weapon.knife", "Knife", "models/knife/knife.vmdl", damage: 5000, range: 100f));
+
+        }
     }
 }
