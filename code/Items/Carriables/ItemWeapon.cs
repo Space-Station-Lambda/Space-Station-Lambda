@@ -16,11 +16,21 @@ namespace ssl.Items.Carriables
         {
             PrimaryRate = weaponData.PrimaryRate;
             Range = weaponData.Range;
+            Damage = weaponData.Damage;
         }
 
+        /// <summary>
+        /// PrimaryRate of the weapon
+        /// </summary>
         [Net] public float PrimaryRate { get; private set; }
-        
+        /// <summary>
+        /// Range of the weapon, 0 means @MaxRange
+        /// </summary>
         [Net] public float Range { get; private set; }
+        /// <summary>
+        /// Damage of the weapon
+        /// </summary>
+        [Net] public float Damage { get; private set; }
         
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
         
@@ -63,7 +73,7 @@ namespace ssl.Items.Carriables
             }
 
             //TODO: Bullet to class
-            ShootBullet(0.05f, 1.5f, 1, 3.0f);
+            ShootBullet(0.05f, 1.5f, 3.0f);
         }
 
         /// <summary>
@@ -105,7 +115,7 @@ namespace ssl.Items.Carriables
             CrosshairPanel?.CreateEvent("fire");
         }
 
-        protected virtual void ShootBullet(float spread, float force, float damage, float bulletSize)
+        protected virtual void ShootBullet(float spread, float force, float bulletSize)
         {
             Vector3 forward = Owner.EyeRot.Forward;
             forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
@@ -119,7 +129,7 @@ namespace ssl.Items.Carriables
             
             tr.Surface.DoBulletImpact(tr);
             
-            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, damage)
+            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Damage)
                 .UsingTraceResult(tr)
                 .WithAttacker(Owner)
                 .WithWeapon(this);
