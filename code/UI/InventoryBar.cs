@@ -19,7 +19,9 @@ namespace ssl.UI
                 if (i == 9) name = "0";
                 icons[i] = new InventoryIcon(i, name, this);
             }
-            SelectSlot(0);
+            //When spawn select the last slot probably empty
+            //TODO FIXME Select slot 0 OnSpawn and refresh all models, first try to repair events
+            SelectSlot(9);
         }
 
         public void SelectSlot(int slot)
