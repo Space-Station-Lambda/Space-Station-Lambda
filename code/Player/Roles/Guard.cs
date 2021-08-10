@@ -15,5 +15,10 @@ namespace ssl.Player.Roles
             "models/citizen_clothes/shoes/shoes.police.vmdl",
             "models/citizen_clothes/trousers/trousers.police.vmdl"
         };
+        
+        public override IEnumerable<string> Items => new List<string>
+        {
+            "weapon.pistol"
+        };
     }
 }
