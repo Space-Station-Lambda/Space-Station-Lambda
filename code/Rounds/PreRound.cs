@@ -35,7 +35,7 @@ namespace ssl.Rounds
                     3, new List<ScenarioConstraint>
                 {
                     new(new Traitor(), 1, 1),
-                    new(new Guard(), 0, 3)
+                    new(new Guard(), 2, 3)
                 }}
             });
             RoleDistributor distributor = new(scenario, Players);
