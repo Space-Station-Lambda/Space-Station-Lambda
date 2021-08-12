@@ -29,9 +29,9 @@ namespace ssl.UI
             if(scorePressed) UpdatePlayers();
         }
 
-        public void OnPlayerAdded(object sender, PlayerAddedEventArgs e)
+        public void OnPlayerAdded(MainPlayer player)
         {
-            AddPlayer(e.Player);
+            AddPlayer(player);
         }
         
         /// <summary>
