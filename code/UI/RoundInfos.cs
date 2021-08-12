@@ -17,7 +17,7 @@ namespace ssl.UI
         {
             StyleSheet.Load("ui/roundinfos.scss");
             Log.Info("Register event...");
-            Gamemode.Instance.PlayerAddedEvent += AddPlayer;
+            Gamemode.Instance.PlayerAddedEvent += OnPlayerAdded;
 
         }
 
@@ -29,13 +29,17 @@ namespace ssl.UI
             if(scorePressed) UpdatePlayers();
         }
 
+        public void OnPlayerAdded(object sender, PlayerAddedEventArgs e)
+        {
+            AddPlayer(e.Player);
+        }
+        
         /// <summary>
         /// Add player to the round info
         /// </summary>
         /// <param name="player">The player to be added</param>
         private void AddPlayer(MainPlayer player)
         {
-            Log.Info("Add Player");
             RoundPlayer roundPlayer = new(player);
             roundPlayers.Add(roundPlayer);
             AddChild(roundPlayer);
