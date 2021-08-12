@@ -127,6 +127,12 @@ namespace ssl
         {
             if (IsServer) RoundManager.CurrentRound?.OnSecond();
         }
+        
+        
+        public override void OnKilled(Entity pawn)
+        {
+            RoundManager.CurrentRound.OnPlayerKilled((MainPlayer) pawn);
+        }
 
         /// <summary>
         /// Called each ticks

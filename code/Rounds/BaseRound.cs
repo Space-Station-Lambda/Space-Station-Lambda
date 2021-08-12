@@ -36,7 +36,10 @@ namespace ssl.Rounds
                 RoundEndTime = 0f;
                 Players.Clear();
             }
-            RoundEndedEvent?.Invoke(this);
+            RoundEndedEvent?.Invoke(this, new RoundEndedEventArgs
+            {
+                Round = this
+            });
             OnFinish();
         }
 
@@ -91,22 +94,21 @@ namespace ssl.Rounds
         {
         }
 
+        /// <summary>
+        /// Default event when the round is finished.
+        /// </summary>
         protected virtual void OnFinish()
         {
         }
 
+        /// <summary>
+        /// Default event when times is up.
+        /// </summary>
         protected virtual void OnTimeUp()
         {
-            RoundEndedEvent?.Invoke(this);
+            Finish();
         }
-
-        public override string ToString()
-        {
-	        return $"Round Name: {RoundName}\n" +
-	               $"Round Duration: {RoundDuration}\n" +
-	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
-        }
-
+        
         /// <summary>
         /// Set players to the list
         /// </summary>
@@ -117,6 +119,15 @@ namespace ssl.Rounds
                 Players.Add((MainPlayer)client.Pawn);
             }
         }
+
+        public override string ToString()
+        {
+	        return $"Round Name: {RoundName}\n" +
+	               $"Round Duration: {RoundDuration}\n" +
+	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
+        }
+
+        
         
     }
 }
