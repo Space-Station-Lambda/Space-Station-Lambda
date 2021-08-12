@@ -80,7 +80,8 @@ namespace ssl.Player
         {
             int min = constraint.Min;
             int current = GetPlayersWithRole().Count(player => player.RoleHandler.Role.Equals(constraint.Role));
-            return current >= min;
+            //If the constraint is -1 or >= min
+            return min < 0 || current >= min;
         }
 
         private Dictionary<Role, float> GetPreferencesWithConstraints(Dictionary<Role, float> preferences)
@@ -89,7 +90,9 @@ namespace ssl.Player
             foreach ((Role role, float preference) in preferences)
             {
                 ScenarioConstraint constraint = GetConstraint(role);
-                if (constraint == null || CountRole(role) < GetConstraint(role).Max)
+                int max = GetConstraint(role).Max;
+                //If the constraint is -1 or null or <= max
+                if (constraint == null || max < 0 || CountRole(role) < max)
                 {
                     returnedPreferences.Add(role, preference);
                 }
