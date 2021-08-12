@@ -14,11 +14,6 @@ namespace ssl.Rounds
 
         [Net] public BaseRound CurrentRound { get; private set; }
 
-        public void OnRoundEnd(BaseRound round)
-        {
-            ChangeRound(round.Next());
-        }
-
         public void ChangeRound(BaseRound round)
         {
             if (CurrentRound != null)
@@ -32,6 +27,11 @@ namespace ssl.Rounds
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
             Log.Info("Round " + CurrentRound.RoundName + " started");
+        }
+
+        private void OnRoundEnd(object sender, RoundEndedEventArgs args)
+        {
+            ChangeRound(args.Round.Next());
         }
     }
 }
