@@ -9,18 +9,26 @@ using ssl.UI;
 
 namespace ssl
 {
+    /// <summary>
+    /// Gamemode is the base class for SSL.
+    /// </summary>
     [Library("ssl")]
     public partial class Gamemode : Game
     {
+        /// <summary>
+        /// Create a gamemode
+        /// </summary>
         public Gamemode()
         {
-            Instance = this;
+            Instance = this; //Singleton DP
             if (IsServer) StartServer();
-            if (IsClient) StartClient();
+            else if (IsClient) StartClient();
         }
-
+        
         public static Gamemode Instance { get; private set; }
-
+        /// <summary>
+        /// Items in the gamemode
+        /// </summary>
         public ItemRegistry ItemRegistry { get; private set; }
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
@@ -34,9 +42,12 @@ namespace ssl
             SpawnPlayer(client);
         }
 
+        /// <summary>
+        /// Start server and init classes.
+        /// </summary>
         private void StartServer()
         {
-            if (IsClient) throw new Exception("Invalid Context");
+          
             Log.Info("Launching ssl Server...");
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
@@ -45,26 +56,38 @@ namespace ssl
             ItemRegistry = new ItemRegistry();
         }
 
+        /// <summary>
+        /// Stat client and init classes
+        /// </summary>
         private void StartClient()
         {
-            if (IsServer) throw new Exception("Invalid Context");
             Log.Info("Launching ssl Client...");
             ItemRegistry = new ItemRegistry();
         }
 
+        /// <summary>
+        /// Spawn the client and create the player class.
+        /// </summary>
+        /// <param name="client"></param>
         private void SpawnPlayer(Client client)
         {
+            //Init the player.
             MainPlayer player = new();
             client.Pawn = player;
             RoundManager.CurrentRound.OnPlayerSpawn(player);
         }
-
+        /// <summary>
+        /// Called after the level is loaded
+        /// </summary>
         public override void PostLevelLoaded()
         {
             _ = StartTickTimer();
             _ = StartSecondTimer();
         }
 
+        /// <summary>
+        /// Loop trigger OnSecond() each seconds.
+        /// </summary>
         public async Task StartSecondTimer()
         {
             while (true)
@@ -74,6 +97,9 @@ namespace ssl
             }
         }
 
+        /// <summary>
+        /// Loop trigger OnTick() each tick.
+        /// </summary>
         public async Task StartTickTimer()
         {
             while (true)
@@ -83,20 +109,20 @@ namespace ssl
             }
         }
 
+        /// <summary>
+        /// Called each seconds
+        /// </summary>
         private void OnSecond()
         {
-            if (IsServer)
-            {
-                RoundManager.CurrentRound?.OnSecond();
-            }
+            if (IsServer) RoundManager.CurrentRound?.OnSecond();
         }
 
+        /// <summary>
+        /// Called each ticks
+        /// </summary>
         private void OnTick()
         {
-            if (IsServer)
-            {
-                RoundManager.CurrentRound?.OnTick();
-            }
+            if (IsServer) RoundManager.CurrentRound?.OnTick();
         }
     }
 }
