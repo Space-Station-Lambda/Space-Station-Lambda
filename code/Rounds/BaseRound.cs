@@ -14,7 +14,7 @@ namespace ssl.Rounds
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
-        public event EventHandler<RoundEndedEventArgs> RoundEndedEvent;
+        public event Action<BaseRound> RoundEndedEvent;
         
         public void Start()
         {
@@ -95,10 +95,7 @@ namespace ssl.Rounds
 
         protected virtual void OnTimeUp()
         {
-            RoundEndedEvent?.Invoke(this, new RoundEndedEventArgs
-            {
-                Round = this
-            });
+            RoundEndedEvent?.Invoke(this);
         }
 
         public override string ToString()

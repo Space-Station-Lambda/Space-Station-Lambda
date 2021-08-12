@@ -29,9 +29,9 @@ namespace ssl.Rounds
             Log.Info("Round " + CurrentRound.RoundName + " started");
         }
 
-        private void OnRoundEnd(object sender, RoundEndedEventArgs args)
+        private void OnRoundEnd(BaseRound round)
         {
-            ChangeRound(args.Round.Next());
+            ChangeRound(round.Next());
         }
     }
 }
