@@ -87,7 +87,10 @@ namespace ssl
         [ClientRpc]
         private void EmitEvent(MainPlayer player)
         {
-            PlayerAddedEvent?.Invoke(player);
+            PlayerAddedEvent?.Invoke(this, new PlayerAddedEventArgs
+            {
+                Player = player
+            });
         }
 
         public override void PostLevelLoaded()
