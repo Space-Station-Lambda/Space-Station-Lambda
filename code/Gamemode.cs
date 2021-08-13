@@ -26,6 +26,9 @@ namespace ssl
         }
         
         public static Gamemode Instance { get; private set; }
+
+        public event Action<MainPlayer> PlayerAddedEvent;
+        public event Action<MainPlayer> PlayerRemovedEvent;
         /// <summary>
         /// Items in the gamemode
         /// </summary>
@@ -52,8 +55,8 @@ namespace ssl
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
-            Hud = new Hud();
             ItemRegistry = new ItemRegistry();
+            Hud = new Hud();
         }
 
         /// <summary>
@@ -74,11 +77,19 @@ namespace ssl
             //Init the player.
             MainPlayer player = new();
             client.Pawn = player;
+            EmitEvent(player);
             RoundManager.CurrentRound.OnPlayerSpawn(player);
         }
         /// <summary>
         /// Called after the level is loaded
         /// </summary>
+
+        [ClientRpc]
+        private void EmitEvent(MainPlayer player)
+        {
+            PlayerAddedEvent?.Invoke(player);
+        }
+
         public override void PostLevelLoaded()
         {
             _ = StartTickTimer();
