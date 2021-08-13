@@ -14,7 +14,7 @@ namespace ssl.Player.Controllers
 		private const float BottomGroundDetect = 2.0f;
 
 		private const float BodyHeight  = 72.0F;
-	    	private const float EyeHeight  = 64.0F;
+	    private const float EyeHeight  = 64.0F;
 		private const float BodyGirth = 16.0F;
 		
 		private const float StopSpeed = 100.0f;
