@@ -154,7 +154,7 @@ namespace ssl.Modules.Items
         /// <summary>
         /// Removes each ItemStack of all slots of the inventory.
         /// </summary>
-        public void ClearInventory()
+        public void Clear()
         {
             for (int i = 0; i < SlotsCount; i++)
             {
