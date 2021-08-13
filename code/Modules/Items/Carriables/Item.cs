@@ -19,7 +19,7 @@ namespace ssl.Modules.Items.Carriables
         {
             Id = data.Id;
             Name = data.Name;
-            Model = data.Name;
+            Model = data.Model;
         }
 
         [Net] public string Id { get; set; }
