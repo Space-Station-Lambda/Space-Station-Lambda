@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using ssl.Player;
-using ssl.Roles;
-using ssl.Rounds;
+using ssl.Modules.Roles;
+using ssl.Modules.Roles.Types.Antagonists;
+using ssl.Modules.Roles.Types.Jobs;
+using ssl.Modules.Rounds;
 
 namespace ssl.UI
 {
@@ -15,6 +15,7 @@ namespace ssl.UI
     public class RoleSelector : Panel
     {
         private readonly Dictionary<RoleIcon, bool> rolesSelected = new();
+
         public RoleSelector()
         {
             StyleSheet.Load("ui/RoleSelector.scss");
@@ -81,7 +82,7 @@ namespace ssl.UI
             public void Select()
             {
                 SetClass("selected", true);
-                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Medium); 
+                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Medium);
             }
 
             /// <summary>
@@ -90,7 +91,7 @@ namespace ssl.UI
             public void Unselect()
             {
                 SetClass("selected", false);
-                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Never); 
+                ConsoleSystem.Run("select_preference_role", Role.Id, RolePreference.Never);
             }
         }
     }

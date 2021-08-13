@@ -4,21 +4,18 @@ using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Player;
-using Steamworks;
 
 namespace ssl.UI
 {
     public class RoundInfos : Panel
     {
-
         private readonly List<RoundPlayer> roundPlayers = new();
-        
+
         public RoundInfos()
         {
             StyleSheet.Load("ui/roundinfos.scss");
             Log.Info("Register event...");
             Gamemode.Instance.PlayerAddedEvent += OnPlayerAdded;
-
         }
 
         public override void Tick()
@@ -26,14 +23,14 @@ namespace ssl.UI
             base.Tick();
             bool scorePressed = Input.Down(InputButton.Score);
             SetClass("hidden", !scorePressed);
-            if(scorePressed) UpdatePlayers();
+            if (scorePressed) UpdatePlayers();
         }
 
         public void OnPlayerAdded(MainPlayer player)
         {
             AddPlayer(player);
         }
-        
+
         /// <summary>
         /// Add player to the round info
         /// </summary>
@@ -44,7 +41,7 @@ namespace ssl.UI
             roundPlayers.Add(roundPlayer);
             AddChild(roundPlayer);
         }
-        
+
         /// <summary>
         /// Remove player from round info
         /// </summary>
@@ -70,8 +67,9 @@ namespace ssl.UI
 
         public class RoundPlayer : Panel
         {
-            public MainPlayer Player;
             public Label Name;
+            public MainPlayer Player;
+
             //public Label RoleName;
             public RoundPlayer(MainPlayer player)
             {

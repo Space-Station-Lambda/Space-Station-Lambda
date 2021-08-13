@@ -19,6 +19,7 @@ namespace ssl.UI
                 if (i == 9) name = "0";
                 icons[i] = new InventoryIcon(i, name, this);
             }
+
             //When spawn select the last slot probably empty
             //TODO FIXME Select slot 0 OnSpawn and refresh all models, first try to repair events
             SelectSlot(9);
@@ -38,7 +39,6 @@ namespace ssl.UI
         [Event("buildinput")]
         public void ProcessClientInput(InputBuilder input)
         {
-            
             if (input.Pressed(InputButton.Slot1)) SelectSlot(0);
             if (input.Pressed(InputButton.Slot2)) SelectSlot(1);
             if (input.Pressed(InputButton.Slot3)) SelectSlot(2);
@@ -60,17 +60,17 @@ namespace ssl.UI
                 icon.RefreshModel();
             }
         }
-        
+
         public class InventoryIcon : Panel
         {
-            private static readonly Angles angles = new(30, 180+45, 0);
+            private static readonly Angles angles = new(30, 180 + 45, 0);
             private static readonly Vector3 pos = new(10, 10, 10);
-            
+
             private Scene scene;
-            private SceneWorld sceneWorld;
-            private SceneObject sceneObject;
             private Light sceneLight;
-            
+            private SceneObject sceneObject;
+            private SceneWorld sceneWorld;
+
             public InventoryIcon(int slotNumber, string name, Panel parent)
             {
                 SlotNumber = slotNumber;
@@ -85,21 +85,21 @@ namespace ssl.UI
             {
                 if (Local.Client?.Pawn is not MainPlayer)
                     return;
-                
-                MainPlayer player = (MainPlayer) Local.Client.Pawn;
-                
+
+                MainPlayer player = (MainPlayer)Local.Client.Pawn;
+
                 sceneWorld = new SceneWorld();
 
                 using (SceneWorld.SetCurrent(sceneWorld))
                 {
                     if (player.Inventory.IsSlotEmpty(SlotNumber)) return;
-                    
+
                     Model model = Model.Load(player.Inventory.Get(SlotNumber).Model);
                     sceneObject = new SceneObject(model, Transform.Zero);
                     sceneLight = Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                         2000, Color.White * 15000.0f);
                 }
-                
+
                 if (scene != null)
                 {
                     scene.World = sceneWorld;
