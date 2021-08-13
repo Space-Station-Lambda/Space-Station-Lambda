@@ -39,6 +39,7 @@ code/*.csproj
 code/obj
 code/.vs
 code/Properties/launchSettings.json
+config/SSL.fgd
 tests/obj
 tests/.vs
 tests/Properties/launchSettings.json
