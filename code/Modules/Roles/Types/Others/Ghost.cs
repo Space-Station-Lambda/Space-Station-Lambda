@@ -6,8 +6,8 @@ namespace ssl.Modules.Roles.Types.Others
 {
     public class Ghost : Role
     {
-        private const float RenderingAlpha = 0.25F;
-        private static readonly Color32 RenderingColor = new Color32(255, 255, 255);
+        private const float RenderingAlpha = 0.25f;
+        private const float BasicAlpha = 1f;
 
         public override string Id => "ghost";
         public override string Name => "Ghost";
@@ -21,11 +21,16 @@ namespace ssl.Modules.Roles.Types.Others
             base.OnSpawn(player);
 
             player.Transmit = TransmitType.Owner;
-            player.Camera = new ThirdPersonCamera();
             player.RenderAlpha = RenderingAlpha;
-            player.RenderColor = RenderingColor;
             player.RemoveCollisionLayer(CollisionLayer.PhysicsProp);
             player.RemoveCollisionLayer(CollisionLayer.Player);
+        }
+
+        public override void OnUnassigned(MainPlayer player)
+        {
+            base.OnUnassigned(player);
+            
+            player.RenderAlpha = BasicAlpha;
         }
     }
 }
