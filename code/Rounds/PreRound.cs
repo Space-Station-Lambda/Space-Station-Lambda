@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
 using ssl.Player;
-using ssl.Player.Roles;
+using ssl.Roles;
 
 namespace ssl.Rounds
 {

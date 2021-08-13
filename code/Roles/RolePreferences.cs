@@ -1,4 +1,4 @@
-﻿namespace ssl.Player
+﻿namespace ssl.Roles
 {
     public enum RolePreference
     {

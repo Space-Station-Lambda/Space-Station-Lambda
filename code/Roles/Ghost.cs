@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
+using ssl.Player;
 
-namespace ssl.Player.Roles
+namespace ssl.Roles
 {
     public class Ghost : Role
     {

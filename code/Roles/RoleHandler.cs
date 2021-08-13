@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sandbox;
-using ssl.Player.Roles;
+using ssl.Player;
 
-namespace ssl.Player
+namespace ssl.Roles
 {
     public class RoleHandler : NetworkComponent
     {

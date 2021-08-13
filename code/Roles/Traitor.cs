@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
-using Sandbox;
-using ssl.Items;
+using ssl.Player;
 
-namespace ssl.Player.Roles
+namespace ssl.Roles
 {
     public class Traitor : Role
     {

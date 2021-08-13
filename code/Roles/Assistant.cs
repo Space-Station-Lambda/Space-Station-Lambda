@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace ssl.Player.Roles
+namespace ssl.Roles
 {
     public class Assistant : Role
     {
