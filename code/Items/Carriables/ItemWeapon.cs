@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Sandbox;
+using Sandbox.ScreenShake;
 using ssl.Items.Data;
 using ssl.Player;
 
@@ -108,7 +109,7 @@ namespace ssl.Items.Carriables
             
             if (!IsLocalPawn)
             {
-                new Sandbox.ScreenShake.Perlin();
+                _ = new Perlin();
             }
             
             ViewModelEntity?.SetAnimBool("fire", true);
