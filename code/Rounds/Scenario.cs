@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Sandbox;
-using ssl.Player.Roles;
+using ssl.Roles;
 
-namespace ssl.Player
+namespace ssl.Rounds
 {
     public class Scenario
     {

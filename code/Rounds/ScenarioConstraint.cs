@@ -1,6 +1,6 @@
-﻿using ssl.Player.Roles;
+﻿using ssl.Roles;
 
-namespace ssl.Player
+namespace ssl.Rounds
 {
     public class ScenarioConstraint
     {

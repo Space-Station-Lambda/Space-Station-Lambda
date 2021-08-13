@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Player.Roles;
+using ssl.Player;
+using ssl.Rounds;
 
-namespace ssl.Player
+namespace ssl.Roles
 {
     public class RoleDistributor
     {

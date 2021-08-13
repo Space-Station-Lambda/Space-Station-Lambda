@@ -3,6 +3,7 @@ using ssl.Entities;
 using ssl.Gauges;
 using ssl.Items;
 using ssl.Player.Controllers;
+using ssl.Roles;
 using Input = Sandbox.Input;
 using Item = ssl.Items.Carriables.Item;
 using SpawnPoint = ssl.Entities.SpawnPoint;

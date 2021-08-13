@@ -3,7 +3,7 @@ using System.Linq;
 using Hammer;
 using Sandbox;
 using ssl.Player;
-using ssl.Player.Roles;
+using ssl.Roles;
 
 namespace ssl.Entities
 {

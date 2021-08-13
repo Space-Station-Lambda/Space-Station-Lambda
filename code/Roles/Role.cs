@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using Sandbox;
 using ssl.Items.Data;
-using ssl.Player.Roles;
+using ssl.Player;
 
-namespace ssl.Player
+namespace ssl.Roles
 {
     /// <summary>
     /// Player's role

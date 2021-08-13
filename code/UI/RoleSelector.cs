@@ -4,7 +4,7 @@ using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Player;
-using ssl.Player.Roles;
+using ssl.Roles;
 using ssl.Rounds;
 
 namespace ssl.UI
