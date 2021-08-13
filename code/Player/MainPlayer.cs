@@ -85,9 +85,11 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-
+            
+            Inventory.Clear();
+            
             RoleHandler.Init();
-
+            
             base.Respawn();
         }
 
