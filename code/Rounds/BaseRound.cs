@@ -28,26 +28,37 @@ namespace ssl.Rounds
             }
             OnStart();
         }
-
-        public void Finish()
+        
+        public void Stop()
         {
+            Log.Info($"[Round] Round {this} stopped");
             if (Host.IsServer)
             {
                 RoundEndTime = 0f;
                 Players.Clear();
             }
-            RoundEndedEvent?.Invoke(this);
+        }
+
+        /// <summary>
+        /// When the round is finish
+        /// </summary>
+        public void Finish()
+        {
+            Log.Info($"[Round] Round {this} finished");
             OnFinish();
+            RoundEndedEvent?.Invoke(this);
         }
 
         public void AddPlayer(MainPlayer player)
         {
+            Log.Info($"[Round] Add player {player} to the round");
             Host.AssertServer();
             Players.Add(player);
         }
 
         public void RemovePlayer(MainPlayer player)
         {
+            Log.Info($"[Round] Remove player {player} to the round");
             Host.AssertServer();
             Players.Remove(player);
         }
@@ -61,6 +72,7 @@ namespace ssl.Rounds
 
         public virtual void OnPlayerKilled(MainPlayer player)
         {
+            RemovePlayer(player);
         }
 
         public virtual void OnPlayerLeave(MainPlayer player)
@@ -91,22 +103,21 @@ namespace ssl.Rounds
         {
         }
 
+        /// <summary>
+        /// Default event when the round is finished.
+        /// </summary>
         protected virtual void OnFinish()
         {
         }
 
+        /// <summary>
+        /// Default event when times is up.
+        /// </summary>
         protected virtual void OnTimeUp()
         {
-            RoundEndedEvent?.Invoke(this);
+            Finish();
         }
-
-        public override string ToString()
-        {
-	        return $"Round Name: {RoundName}\n" +
-	               $"Round Duration: {RoundDuration}\n" +
-	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
-        }
-
+        
         /// <summary>
         /// Set players to the list
         /// </summary>
@@ -117,6 +128,15 @@ namespace ssl.Rounds
                 Players.Add((MainPlayer)client.Pawn);
             }
         }
+
+        public override string ToString()
+        {
+	        return $"Round Name: {RoundName}\n" +
+	               $"Round Duration: {RoundDuration}\n" +
+	               $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
+        }
+
+        
         
     }
 }

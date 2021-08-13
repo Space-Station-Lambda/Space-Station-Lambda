@@ -91,9 +91,8 @@ namespace ssl.Roles
             foreach ((Role role, float preference) in preferences)
             {
                 ScenarioConstraint constraint = GetConstraint(role);
-                int max = GetConstraint(role).Max;
                 //If the constraint is -1 or null or <= max
-                if (constraint == null || max < 0 || CountRole(role) < max)
+                if (constraint == null || constraint.Max < 0 || CountRole(role) < constraint.Max)
                 {
                     returnedPreferences.Add(role, preference);
                 }

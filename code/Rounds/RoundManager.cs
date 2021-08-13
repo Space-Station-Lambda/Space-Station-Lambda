@@ -18,7 +18,7 @@ namespace ssl.Rounds
         {
             if (CurrentRound != null)
             {
-                CurrentRound.Finish();
+                CurrentRound.Stop();
                 CurrentRound.RoundEndedEvent -= OnRoundEnd;
                 Log.Info("Round " + CurrentRound.RoundName + " ended");
             }

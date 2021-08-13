@@ -127,7 +127,7 @@ namespace ssl
         {
             if (IsServer) RoundManager.CurrentRound?.OnSecond();
         }
-
+        
         /// <summary>
         /// Called each ticks
         /// </summary>

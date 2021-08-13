@@ -53,5 +53,29 @@ namespace ssl.Rounds
             //TODO Player wait before spawn
             base.OnPlayerSpawn(player);
         }
+
+        public override void OnPlayerKilled(MainPlayer player)
+        {
+            base.OnPlayerKilled(player);
+            if (IsRoundFinished())
+            {
+                Finish();
+            }
+        }
+
+        private bool IsRoundFinished()
+        {
+            int numberOfTraitors = 0;
+            int numberOfProtagonists = 0;
+            foreach (MainPlayer mainPlayer in Players)
+            {
+                if (mainPlayer.RoleHandler.Role.Id == "traitor") numberOfTraitors++;
+                else numberOfProtagonists++;
+            }
+
+            Log.Info($"Traitors: {numberOfTraitors}");
+            Log.Info($"Protagonists: {numberOfProtagonists}");
+            return numberOfTraitors == 0 || numberOfProtagonists == 0;
+        }
     }
 }
