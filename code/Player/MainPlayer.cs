@@ -110,6 +110,7 @@ namespace ssl.Player
             StopUsing();
             RoleHandler.Role?.OnKilled(this);
             EnableRagdoll(Vector3.Zero, 0);
+            Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
         
         private void CheckControls()

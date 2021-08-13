@@ -56,11 +56,11 @@ namespace ssl.Rounds
 
         public override void OnPlayerKilled(MainPlayer player)
         {
+            base.OnPlayerKilled(player);
             if (IsRoundFinished())
             {
                 Finish();
             }
-            base.OnPlayerKilled(player);
         }
 
         private bool IsRoundFinished()
@@ -73,6 +73,8 @@ namespace ssl.Rounds
                 else numberOfProtagonists++;
             }
 
+            Log.Info($"Traitors: {numberOfTraitors}");
+            Log.Info($"Protagonists: {numberOfProtagonists}");
             return numberOfTraitors == 0 || numberOfProtagonists == 0;
         }
     }

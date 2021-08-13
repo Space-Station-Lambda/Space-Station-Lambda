@@ -28,29 +28,37 @@ namespace ssl.Rounds
             }
             OnStart();
         }
-
-        public void Finish()
+        
+        public void Stop()
         {
+            Log.Info($"[Round] Round {this} stopped");
             if (Host.IsServer)
             {
                 RoundEndTime = 0f;
                 Players.Clear();
             }
-            RoundEndedEvent?.Invoke(this, new RoundEndedEventArgs
-            {
-                Round = this
-            });
+        }
+
+        /// <summary>
+        /// When the round is finish
+        /// </summary>
+        public void Finish()
+        {
+            Log.Info($"[Round] Round {this} finished");
             OnFinish();
+            RoundEndedEvent?.Invoke(this);
         }
 
         public void AddPlayer(MainPlayer player)
         {
+            Log.Info($"[Round] Add player {player} to the round");
             Host.AssertServer();
             Players.Add(player);
         }
 
         public void RemovePlayer(MainPlayer player)
         {
+            Log.Info($"[Round] Remove player {player} to the round");
             Host.AssertServer();
             Players.Remove(player);
         }
@@ -64,6 +72,7 @@ namespace ssl.Rounds
 
         public virtual void OnPlayerKilled(MainPlayer player)
         {
+            RemovePlayer(player);
         }
 
         public virtual void OnPlayerLeave(MainPlayer player)
