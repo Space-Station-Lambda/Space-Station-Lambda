@@ -49,6 +49,7 @@ namespace ssl.Modules.Items
             //Weapons
             Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl", damage: 4f));
             Add(new ItemWeaponData("weapon.knife", "Knife", "models/knife/knife.vmdl", damage: 5000, range: 100f));
+            Add(new ItemTorchlightData("item.torchlight", "Torchlight", "models/knife/knife.vmdl"));
         }
     }
 }
