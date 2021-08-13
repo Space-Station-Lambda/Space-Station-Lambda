@@ -1,13 +1,12 @@
 ﻿using Sandbox;
-using ssl.Entities;
-using ssl.Gauges;
-using ssl.Items;
+using ssl.Modules.Clothes;
+using ssl.Modules.Gauges;
+using ssl.Modules.Items;
+using ssl.Modules.Items.Carriables;
+using ssl.Modules.Roles;
 using ssl.Player.Controllers;
-using ssl.Roles;
-using Input = Sandbox.Input;
-using Item = ssl.Items.Carriables.Item;
-using SpawnPoint = ssl.Entities.SpawnPoint;
-    
+using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
+
 namespace ssl.Player
 {
     public partial class MainPlayer : Sandbox.Player
@@ -37,6 +36,7 @@ namespace ssl.Player
          * Handlers
          */
         public GaugeHandler GaugeHandler { get; }
+
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
         public PlayerCorpse Ragdoll { get; set; }
@@ -56,7 +56,7 @@ namespace ssl.Player
             target.Holding?.OnCarryStart(target);
             target.ActiveChild = target.Holding;
         }
-        
+
         /// <summary>
         /// Called each tick, clientside and serverside
         /// </summary>
@@ -64,8 +64,8 @@ namespace ssl.Player
         public override void Simulate(Client client)
         {
             PawnController controller = GetActiveController();
-            controller?.Simulate( client, this, GetActiveAnimator() );
-            
+            controller?.Simulate(client, this, GetActiveAnimator());
+
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
         }
@@ -90,7 +90,7 @@ namespace ssl.Player
 
             base.Respawn();
         }
-        
+
         public void Respawn(Vector3 position, Rotation rotation)
         {
             Respawn();
@@ -98,12 +98,12 @@ namespace ssl.Player
             Position = position;
             Rotation = rotation;
         }
-        
+
         public void Respawn(SpawnPoint spawnPoint)
         {
-           Respawn(spawnPoint.Position, spawnPoint.Rotation);
+            Respawn(spawnPoint.Position, spawnPoint.Rotation);
         }
-        
+
         public override void OnKilled()
         {
             LifeState = LifeState.Dead;
@@ -112,7 +112,7 @@ namespace ssl.Player
             EnableRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
-        
+
         private void CheckControls()
         {
             if (IsServer)
@@ -137,7 +137,7 @@ namespace ssl.Player
         private void ClientControls()
         {
         }
-        
+
         [ServerCmd("kill_player")]
         private static void KillPlayer()
         {
@@ -148,7 +148,7 @@ namespace ssl.Player
         }
 
 
-        private void EnableRagdoll( Vector3 force, int forceBone )
+        private void EnableRagdoll(Vector3 force, int forceBone)
         {
             PlayerCorpse ragdoll = new()
             {
@@ -156,8 +156,8 @@ namespace ssl.Player
                 Rotation = Rotation
             };
 
-            ragdoll.CopyFrom( this );
-            ragdoll.ApplyForceToBone( force, forceBone );
+            ragdoll.CopyFrom(this);
+            ragdoll.ApplyForceToBone(force, forceBone);
             ragdoll.Player = this;
 
             Ragdoll = ragdoll;

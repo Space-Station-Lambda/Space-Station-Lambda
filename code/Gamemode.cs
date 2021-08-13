@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Sandbox;
-using ssl.Items;
-using ssl.Items.Data;
+using ssl.Modules.Items;
+using ssl.Modules.Rounds;
 using ssl.Player;
-using ssl.Rounds;
 using ssl.UI;
 
 namespace ssl
@@ -24,17 +23,19 @@ namespace ssl
             if (IsServer) StartServer();
             else if (IsClient) StartClient();
         }
-        
+
         public static Gamemode Instance { get; private set; }
 
-        public event Action<MainPlayer> PlayerAddedEvent;
-        public event Action<MainPlayer> PlayerRemovedEvent;
         /// <summary>
         /// Items in the gamemode
         /// </summary>
         public ItemRegistry ItemRegistry { get; private set; }
+
         [Net] public Hud Hud { get; set; }
         [Net] public RoundManager RoundManager { get; set; }
+
+        public event Action<MainPlayer> PlayerAddedEvent;
+        public event Action<MainPlayer> PlayerRemovedEvent;
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with
@@ -50,7 +51,6 @@ namespace ssl
         /// </summary>
         private void StartServer()
         {
-          
             Log.Info("Launching ssl Server...");
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
@@ -80,10 +80,10 @@ namespace ssl
             EmitEvent(player);
             RoundManager.CurrentRound.OnPlayerSpawn(player);
         }
+
         /// <summary>
         /// Called after the level is loaded
         /// </summary>
-
         [ClientRpc]
         private void EmitEvent(MainPlayer player)
         {
@@ -127,7 +127,7 @@ namespace ssl
         {
             if (IsServer) RoundManager.CurrentRound?.OnSecond();
         }
-        
+
         /// <summary>
         /// Called each ticks
         /// </summary>

@@ -7,11 +7,13 @@ namespace ssl.UI
     public class Crosshair : Panel
     {
         private SelectCircle selectCircle;
+
         public Crosshair()
         {
             StyleSheet.Load("ui/crosshair.scss");
             selectCircle = AddChild<SelectCircle>();
         }
+
         [Event("buildinput")]
         public void ProcessClientInput(InputBuilder input)
         {
@@ -20,7 +22,7 @@ namespace ssl.UI
 
             if (input.Pressed(InputButton.Attack2)) player.Holding?.UseOn(player);
         }
-        
+
         public class SelectCircle : Panel
         {
             public SelectCircle()
