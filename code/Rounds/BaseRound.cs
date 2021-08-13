@@ -36,7 +36,7 @@ namespace ssl.Rounds
                 RoundEndTime = 0f;
                 Players.Clear();
             }
-
+            RoundEndedEvent?.Invoke(this);
             OnFinish();
         }
 
