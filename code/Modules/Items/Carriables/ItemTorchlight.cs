@@ -30,8 +30,6 @@ namespace ssl.Modules.Items.Carriables
         [Net, Local, Predicted]
         private bool LightEnabled { get; set; } = true;
 
-        
-
         private TimeSince timeSinceLightToggled;
         
         public override void Spawn()
