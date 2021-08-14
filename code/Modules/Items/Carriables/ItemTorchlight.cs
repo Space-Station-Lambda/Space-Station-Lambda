@@ -10,11 +10,11 @@ namespace ssl.Modules.Items.Carriables
         private const float LinearAttenuation = 0.0f;
         private const float QuadraticAttenuation = 1.0f;
         private const int Brightness = 2;
-        private SpotLightEntity worldLight;
-        private SpotLightEntity viewLight;
         private const int InnerConeAngle = 20;
         private const int OuterConeAngle = 40;
         private const float FogStength = 1.0f;
+        private SpotLightEntity worldLight;
+        private SpotLightEntity viewLight;
         public ItemTorchlight()
         {
         }
