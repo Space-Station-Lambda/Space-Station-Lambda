@@ -5,29 +5,38 @@ namespace ssl.Modules.Items.Carriables
 {
     public partial class ItemTorchlight : Item
     {
-        
+        private const int Range = 512;
+        private const float Falloff = 1.0f;
+        private const float LinearAttenuation = 0.0f;
+        private const float QuadraticAttenuation = 1.0f;
+        private const int Brightness = 2;
         private SpotLightEntity worldLight;
         private SpotLightEntity viewLight;
+        private const int InnerConeAngle = 20;
+        private const int OuterConeAngle = 40;
+        private const float FogStength = 1.0f;
         public ItemTorchlight()
         {
         }
+        
         public ItemTorchlight(ItemData data) : base(data)
         {
         }
         
+        //TODO Replace with the NeckCamera 
         public override string ViewModelPath => "weapons/rust_flashlight/v_rust_flashlight.vmdl";
-        protected Vector3 LightOffset => Vector3.Forward * 10;
         
+        private static Vector3 LightOffset => Vector3.Forward * 10;
         [Net, Local, Predicted]
         private bool LightEnabled { get; set; } = true;
+
         
-        TimeSince timeSinceLightToggled;
+
+        private TimeSince timeSinceLightToggled;
         
         public override void Spawn()
         {
             base.Spawn();
-
-            SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
 
             worldLight = CreateLight();
             worldLight.SetParent( this, "slide", new Transform( LightOffset ) );
@@ -51,15 +60,15 @@ namespace ssl.Modules.Items.Carriables
             {
                 Enabled = true,
                 DynamicShadows = true,
-                Range = 512,
-                Falloff = 1.0f,
-                LinearAttenuation = 0.0f,
-                QuadraticAttenuation = 1.0f,
-                Brightness = 2,
+                Range = Range,
+                Falloff = Falloff,
+                LinearAttenuation = LinearAttenuation,
+                QuadraticAttenuation = QuadraticAttenuation,
+                Brightness = Brightness,
                 Color = Color.White,
-                InnerConeAngle = 20,
-                OuterConeAngle = 40,
-                FogStength = 1.0f,
+                InnerConeAngle = InnerConeAngle,
+                OuterConeAngle = OuterConeAngle,
+                FogStength = FogStength,
                 Owner = Owner,
             };
 
@@ -70,8 +79,7 @@ namespace ssl.Modules.Items.Carriables
         
         public override void Simulate( Client cl )
         {
-            if ( cl == null )
-                return;
+            if ( cl == null ) return;
 
             base.Simulate( cl );
 
