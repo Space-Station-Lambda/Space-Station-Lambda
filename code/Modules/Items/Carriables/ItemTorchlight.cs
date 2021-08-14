@@ -13,45 +13,47 @@ namespace ssl.Modules.Items.Carriables
         private const int InnerConeAngle = 20;
         private const int OuterConeAngle = 40;
         private const float FogStength = 1.0f;
+        private const string SlideAttachementName = "slide";
+        private const string LightAttachementName = "light";
         private SpotLightEntity worldLight;
         private SpotLightEntity viewLight;
+
         public ItemTorchlight()
         {
         }
-        
+
         public ItemTorchlight(ItemData data) : base(data)
         {
         }
-        
+
         //TODO Replace with the NeckCamera 
         public override string ViewModelPath => "weapons/rust_flashlight/v_rust_flashlight.vmdl";
-        
+
         private static Vector3 LightOffset => Vector3.Forward * 10;
-        [Net, Local, Predicted]
-        private bool LightEnabled { get; set; } = true;
+        [Net, Local, Predicted] private bool LightEnabled { get; set; } = true;
 
         private TimeSince timeSinceLightToggled;
-        
+
         public override void Spawn()
         {
             base.Spawn();
 
             worldLight = CreateLight();
-            worldLight.SetParent( this, "slide", new Transform( LightOffset ) );
+            worldLight.SetParent(this, SlideAttachementName, new Transform(LightOffset));
             worldLight.EnableHideInFirstPerson = true;
             worldLight.Enabled = false;
         }
-        
+
         public override void CreateViewModel()
         {
             base.CreateViewModel();
 
             viewLight = CreateLight();
-            viewLight.SetParent( ViewModelEntity, "light", new Transform( LightOffset ) );
+            viewLight.SetParent(ViewModelEntity, LightAttachementName, new Transform(LightOffset));
             viewLight.EnableViewmodelRendering = true;
             viewLight.Enabled = LightEnabled;
         }
-        
+
         private SpotLightEntity CreateLight()
         {
             SpotLightEntity light = new()
@@ -74,68 +76,68 @@ namespace ssl.Modules.Items.Carriables
 
             return light;
         }
-        
-        public override void Simulate( Client cl )
+
+        public override void Simulate(Client cl)
         {
-            if ( cl == null ) return;
+            if (cl == null) return;
 
-            base.Simulate( cl );
+            base.Simulate(cl);
 
-            bool toggle = Input.Pressed( InputButton.Flashlight ) || Input.Pressed( InputButton.Attack1 );
+            bool toggle = Input.Pressed(InputButton.Flashlight) || Input.Pressed(InputButton.Attack1);
 
-            if ( timeSinceLightToggled > 0.1f && toggle )
+            if (timeSinceLightToggled > 0.1f && toggle)
             {
                 LightEnabled = !LightEnabled;
 
-                PlaySound( LightEnabled ? "flashlight-on" : "flashlight-off" );
+                PlaySound(LightEnabled ? "flashlight-on" : "flashlight-off");
 
-                if ( worldLight.IsValid() )
+                if (worldLight.IsValid())
                 {
                     worldLight.Enabled = LightEnabled;
                 }
 
-                if ( viewLight.IsValid() )
+                if (viewLight.IsValid())
                 {
                     viewLight.Enabled = LightEnabled;
                 }
 
                 timeSinceLightToggled = 0;
             }
-            
         }
+
         private void Activate()
         {
-            if ( worldLight.IsValid() )
+            if (worldLight.IsValid())
             {
                 worldLight.Enabled = LightEnabled;
             }
         }
-        
+
         private void Deactivate()
         {
-            if ( worldLight.IsValid() )
+            if (worldLight.IsValid())
             {
                 worldLight.Enabled = false;
             }
         }
-        
-        public override void ActiveStart( Entity ent )
-        {
-            base.ActiveStart( ent );
 
-            if ( IsServer )
+        public override void ActiveStart(Entity ent)
+        {
+            base.ActiveStart(ent);
+
+            if (IsServer)
             {
                 Activate();
             }
         }
 
-        public override void ActiveEnd( Entity ent, bool dropped )
+        public override void ActiveEnd(Entity ent, bool dropped)
         {
-            base.ActiveEnd( ent, dropped );
+            base.ActiveEnd(ent, dropped);
 
-            if ( IsServer )
+            if (IsServer)
             {
-                if ( dropped )
+                if (dropped)
                 {
                     Activate();
                 }
@@ -145,6 +147,5 @@ namespace ssl.Modules.Items.Carriables
                 }
             }
         }
-
     }
 }
