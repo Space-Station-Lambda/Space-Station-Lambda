@@ -13,7 +13,7 @@ namespace ssl.Player
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
-
+        private const float MaxHealth = 100f;
 
         public MainPlayer()
         {
@@ -26,6 +26,7 @@ namespace ssl.Player
                 GaugeHandler = new GaugeHandler();
                 ClothesHandler = new ClothesHandler(this);
                 RoleHandler = new RoleHandler(this);
+                Health = MaxHealth;
             }
         }
 
