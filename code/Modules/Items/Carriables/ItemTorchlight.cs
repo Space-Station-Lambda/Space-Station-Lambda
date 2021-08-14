@@ -15,6 +15,8 @@ namespace ssl.Modules.Items.Carriables
         private const float FogStength = 1.0f;
         private const string SlideAttachementName = "slide";
         private const string LightAttachementName = "light";
+        private const string FlashLighOnName = "flashlight-on";
+        private const string FlashLighOffName = "flashlight-off";
         private SpotLightEntity worldLight;
         private SpotLightEntity viewLight;
 
