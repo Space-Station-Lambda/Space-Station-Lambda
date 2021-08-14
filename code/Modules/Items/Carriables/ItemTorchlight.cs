@@ -15,8 +15,8 @@ namespace ssl.Modules.Items.Carriables
         private const float FogStength = 1.0f;
         private const string SlideAttachementName = "slide";
         private const string LightAttachementName = "light";
-        private const string FlashLighOnName = "flashlight-on";
-        private const string FlashLighOffName = "flashlight-off";
+        private const string FlashLightSoundSwitchOnName = "flashlight-on";
+        private const string FlashLightSoundSwitchOffName = "flashlight-off";
         private SpotLightEntity worldLight;
         private SpotLightEntity viewLight;
 
@@ -90,8 +90,8 @@ namespace ssl.Modules.Items.Carriables
             if (timeSinceLightToggled > 0.1f && toggle)
             {
                 LightEnabled = !LightEnabled;
-
-                PlaySound(LightEnabled ? FlashLighOnName : FlashLighOffName);
+                
+                PlaySound(LightEnabled ? FlashLightSoundSwitchOnName : FlashLightSoundSwitchOffName);
 
                 if (worldLight.IsValid())
                 {
