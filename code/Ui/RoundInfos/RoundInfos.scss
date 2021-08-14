@@ -4,6 +4,7 @@
   top: 40%;
   width: 10%;
   background-color: rgba(243, 240, 240, 0.26);
+  flex-direction: column;
   &.hidden {
     display: none;
   }
