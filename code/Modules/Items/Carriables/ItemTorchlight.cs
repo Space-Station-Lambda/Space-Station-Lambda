@@ -91,7 +91,7 @@ namespace ssl.Modules.Items.Carriables
             {
                 LightEnabled = !LightEnabled;
 
-                PlaySound(LightEnabled ? "flashlight-on" : "flashlight-off");
+                PlaySound(LightEnabled ? FlashLighOnName : FlashLighOffName);
 
                 if (worldLight.IsValid())
                 {
