@@ -28,7 +28,7 @@ namespace ssl.UI
             public SelectCircle()
             {
                 //TODO modify this when something is selected; Maybe use tick()
-                SetClass("selected", true);
+                SetClass("selected", false);
             }
         }
     }
