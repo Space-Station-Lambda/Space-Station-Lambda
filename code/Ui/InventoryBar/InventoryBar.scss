@@ -1,0 +1,14 @@
+﻿InventoryBar 
+{
+  //background-color: darkcyan;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  justify-content: center;
+  font-family: Roboto;
+
+  &.hidden {
+    pointer-events: none;
+    display: none;
+  }
+}

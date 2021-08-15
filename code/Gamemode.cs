@@ -4,7 +4,7 @@ using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Rounds;
 using ssl.Player;
-using ssl.UI;
+using ssl.Ui;
 
 namespace ssl
 {

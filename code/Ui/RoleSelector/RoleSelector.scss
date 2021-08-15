@@ -1,0 +1,17 @@
+RoleSelector
+{
+    background-color: black;
+    cursor: default;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: wrap;
+    &.active {
+        pointer-events: all;
+        height: 100%;
+        width: 100%;
+    }
+    &.hidden {
+        pointer-events: none;
+        display: none;
+    }
+}

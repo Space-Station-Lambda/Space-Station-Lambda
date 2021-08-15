@@ -14,5 +14,10 @@ namespace ssl.Modules.Roles.Types.Jobs
             "models/citizen_clothes/dress/dress.kneelength.vmdl",
             "models/citizen_clothes/shoes/trainers.vmdl_c"
         };
+        
+        public override IEnumerable<string> Items => new List<string>
+        {
+            "food.apple"
+        };
     }
 }
