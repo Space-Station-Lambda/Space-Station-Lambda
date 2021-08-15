@@ -42,6 +42,7 @@ namespace ssl.Player
 
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
+        [Net] public ISelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
         /// <summary>
@@ -70,9 +71,8 @@ namespace ssl.Player
             controller?.Simulate(client, this, GetActiveAnimator());
 
             SimulateActiveChild(client, ActiveChild);
-            CheckControls();
-
-            if(Host.IsClient) Selector?.CheckSelection();
+            CheckControls(); 
+            Selector?.CheckSelection();
         }
 
         /// <summary>
