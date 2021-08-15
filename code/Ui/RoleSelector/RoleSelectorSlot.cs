@@ -20,7 +20,7 @@ namespace ssl.Ui.RoleSelector
         
         public RoleSelectorSlot(Role role)
         {
-            StyleSheet.Load("ui/RoleSelectorSlot.scss");
+            StyleSheet.Load("Ui/RoleSelector/RoleSelectorSlot.scss");
             Role = role;
             
             Add.Label(role.Name, "role-name");

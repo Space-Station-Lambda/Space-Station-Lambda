@@ -5,17 +5,17 @@ namespace ssl.Ui.InventoryBar
 {
     public class InventoryBar : Panel
     {
-        private InventoryIcon[] icons = new InventoryIcon[10];
+        private InventoryBarSlot[] icons = new InventoryBarSlot[10];
         private int selected;
 
         public InventoryBar()
         {
-            StyleSheet.Load("ui/InventoryBar.scss");
+            StyleSheet.Load("Ui/InventoryBar/InventoryBar.scss");
             for (int i = 0; i < 10; i++)
             {
                 string name = (i + 1).ToString();
                 if (i == 9) name = "0";
-                icons[i] = new InventoryIcon(i, name, this);
+                icons[i] = new InventoryBarSlot(i, name, this);
             }
 
             //When spawn select the last slot probably empty
@@ -53,7 +53,7 @@ namespace ssl.Ui.InventoryBar
 
         private void RefreshAllModels()
         {
-            foreach (InventoryIcon icon in icons)
+            foreach (InventoryBarSlot icon in icons)
             {
                 icon.RefreshModel();
             }

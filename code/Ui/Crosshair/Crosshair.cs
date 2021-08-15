@@ -8,9 +8,8 @@ namespace ssl.Ui.Crosshair
 
         public Crosshair()
         {
-            StyleSheet.Load("ui/crosshair.scss");
+            StyleSheet.Load("Ui/Crosshair/crosshair.scss");
             crosshairSelectionCircle = AddChild<CrosshairSelectionCircle>();
         }
-        }
-    
+    }
 }

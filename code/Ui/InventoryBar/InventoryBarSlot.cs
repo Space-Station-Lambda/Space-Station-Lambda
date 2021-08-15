@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Ui.InventoryBar
 {
-    public class InventoryIcon : Panel
+    public class InventoryBarSlot : Panel
     {
         private static readonly Angles angles = new(30, 180 + 45, 0);
         private static readonly Vector3 pos = new(10, 10, 10);
@@ -15,9 +15,9 @@ namespace ssl.Ui.InventoryBar
         private SceneObject sceneObject;
         private SceneWorld sceneWorld;
 
-        public InventoryIcon(int slotNumber, string name, Panel parent)
+        public InventoryBarSlot(int slotNumber, string name, Panel parent)
         {
-            StyleSheet.Load("ui/InventoryBarSlot.scss");
+            StyleSheet.Load("Ui/InventoryBar/InventoryBarSlot.scss");
             SlotNumber = slotNumber;
             Parent = parent;
             Add.Label($"{name}");

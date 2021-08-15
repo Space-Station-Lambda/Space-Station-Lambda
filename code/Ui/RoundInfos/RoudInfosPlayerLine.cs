@@ -12,7 +12,7 @@ namespace ssl.Ui.RoundInfos
         //public Label RoleName;
         public RoundInfosPlayerLine(MainPlayer player)
         {
-            StyleSheet.Load("ui/RoudInfosPlayerLine.scss");
+            StyleSheet.Load("Ui/RoundInfos/RoudInfosPlayerLine.scss");
             Player = player;
             Name = Add.Label(player.GetClientOwner().Name);
             //RoleName = Add.Label(player.RoleHandler?.Role?.Name);

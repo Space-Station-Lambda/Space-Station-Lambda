@@ -17,7 +17,7 @@ namespace ssl.Ui.RoleSelector
 
         public RoleSelector()
         {
-            StyleSheet.Load("ui/RoleSelector.scss");
+            StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
             SetClass("active", true);
             rolesSelected.Add(new RoleSelectorSlot(new Assistant(), this), false);
             rolesSelected.Add(new RoleSelectorSlot(new Janitor(), this), false);

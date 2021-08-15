@@ -12,7 +12,7 @@ namespace ssl.Ui.RoundInfos
 
         public RoundInfos()
         {
-            StyleSheet.Load("ui/roundinfos.scss");
+            StyleSheet.Load("Ui/RoundInfos/RoundInfos.scss");
             Log.Info("Register event...");
             Gamemode.Instance.PlayerAddedEvent += OnPlayerAdded;
         }
