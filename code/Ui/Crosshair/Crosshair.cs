@@ -1,8 +1,6 @@
-﻿using Sandbox;
-using Sandbox.UI;
-using ssl.Player;
+﻿using Sandbox.UI;
 
-namespace ssl.UI
+namespace ssl.Ui.Crosshair
 {
     public class Crosshair : Panel
     {

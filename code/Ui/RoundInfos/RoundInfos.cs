@@ -4,7 +4,7 @@ using Sandbox;
 using Sandbox.UI;
 using ssl.Player;
 
-namespace ssl.UI.RoundInfosComponents
+namespace ssl.Ui.RoundInfos
 {
     public class RoundInfos : Panel
     {

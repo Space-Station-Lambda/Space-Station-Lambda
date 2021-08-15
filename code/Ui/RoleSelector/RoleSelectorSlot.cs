@@ -3,7 +3,7 @@ using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Modules.Roles;
 
-namespace ssl.UI
+namespace ssl.Ui.RoleSelector
 {
     /// <summary>
     /// Role icon to be chosed

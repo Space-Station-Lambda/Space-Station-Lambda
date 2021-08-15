@@ -2,7 +2,7 @@
 using Sandbox.UI.Construct;
 using ssl.Player;
 
-namespace ssl.UI
+namespace ssl.Ui.RoundInfos
 {
     public class RoundInfosPlayerLine : Panel
     {

@@ -1,9 +1,7 @@
 ﻿using Sandbox;
 using Sandbox.UI;
-using Sandbox.UI.Construct;
-using ssl.Player;
 
-namespace ssl.UI
+namespace ssl.Ui.InventoryBar
 {
     public class InventoryBar : Panel
     {

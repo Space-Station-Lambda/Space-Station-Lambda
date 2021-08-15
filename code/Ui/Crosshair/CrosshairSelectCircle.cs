@@ -2,7 +2,7 @@
 using Sandbox.UI;
 using ssl.Player;
 
-namespace ssl.UI
+namespace ssl.Ui.Crosshair
 {
     public class CrosshairSelectionCircle : Panel
     {
@@ -17,7 +17,7 @@ namespace ssl.UI
             if (Local.Pawn is not MainPlayer player)
                 return;
 
-            SetClass("selected", player.Selector.IsSelected());
+            //TODO fix in merge SetClass("selected", player.Selector.IsSelected());
         }
     }
 }

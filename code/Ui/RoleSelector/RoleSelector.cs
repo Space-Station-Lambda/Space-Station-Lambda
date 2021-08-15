@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
 using Sandbox.UI;
-using Sandbox.UI.Construct;
 using ssl.Modules.Roles;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Rounds;
 
-namespace ssl.UI
+namespace ssl.Ui.RoleSelector
 {
     /// <summary>
     /// Role selector allow player to select a role
