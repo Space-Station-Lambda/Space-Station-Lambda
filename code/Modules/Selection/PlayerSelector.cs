@@ -22,14 +22,14 @@ namespace ssl.Player
             Entity result = tr.Entity;
             if (result is ISelectable selectable)
             {
-                if (selected != selectable)
+                if (!selectable.Equals(selected))
                 {
                     StopSelection();
                     StartSelection(selectable);
                 }
                 selected.OnSelect(this);
             }
-            else
+            else if (selected != null)
             {
                 StopSelection();
             }
@@ -38,13 +38,14 @@ namespace ssl.Player
 
         public void StartSelection(ISelectable selectable)
         {
-            selected.OnSelectStop(this);
-            selected = null;
+            selected = selectable;
+            selected.OnSelectStart(this);
         }
         
         public void StopSelection()
         {
-            selected.OnSelectStop(this);
+            Log.Warning("Not selected");
+            selected?.OnSelectStop(this);
             selected = null;
         }
         

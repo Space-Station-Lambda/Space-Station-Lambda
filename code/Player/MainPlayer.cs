@@ -14,6 +14,7 @@ namespace ssl.Player
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
         private const float MaxHealth = 100f;
+        private ISelector Selector; 
 
         public MainPlayer()
         {
@@ -28,6 +29,7 @@ namespace ssl.Player
                 RoleHandler = new RoleHandler(this);
                 Health = MaxHealth;
             }
+            Selector = new PlayerSelector(this);
         }
 
         [Net] public new Inventory Inventory { get; private set; }
@@ -69,6 +71,8 @@ namespace ssl.Player
 
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
+
+            Selector?.CheckSelection();
         }
 
         /// <summary>
@@ -168,22 +172,25 @@ namespace ssl.Player
 
         public void OnSelectStart(ISelector player)
         {
-            throw new System.NotImplementedException();
+            Log.Info(this + " Selected by " + player);
+            GlowActive = true;
+            GlowColor = new Color(255, 255, 255, 0.05f);
         }
 
         public void OnSelectStop(ISelector player)
         {
-            throw new System.NotImplementedException();
+            GlowActive = false;
+            GlowColor = Color.White;
         }
 
         public void OnSelect(ISelector player)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void OnAction(ISelector player)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
     }
 }

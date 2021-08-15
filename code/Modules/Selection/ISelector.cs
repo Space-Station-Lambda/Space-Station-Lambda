@@ -6,5 +6,6 @@ namespace ssl.Player
     {
         public void StopSelection();
         public void StartSelection(ISelectable selectable);
+        public void CheckSelection();
     }
 }
