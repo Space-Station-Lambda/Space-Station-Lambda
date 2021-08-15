@@ -15,7 +15,7 @@ namespace ssl.Player.Controllers
         private const float WalkAcceleration = 1500.0f;
         private const float WalkSpeed = 150.0f;
         private const float SprintAcceleration = 2000.0f;
-        private const float SprintSpeed = 200.0f;
+        private const float SprintSpeed = 300.0f;
         private const float StepSize = 20.0f;
 
         private const float GroundAngle = 46.0f;
