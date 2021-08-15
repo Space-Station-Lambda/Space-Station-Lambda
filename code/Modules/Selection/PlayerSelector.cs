@@ -4,12 +4,12 @@ namespace ssl.Player
 {
     public class PlayerSelector : ISelector
     {
-        private const float SelectionRange = 1000f;
+        private const float SelectionRange = 50f;
         
-        private MainPlayer player;
+        private readonly MainPlayer player;
+        
         private ISelectable selected;
-        
-        
+
         public PlayerSelector(MainPlayer player)
         {
             this.player = player;
@@ -33,7 +33,11 @@ namespace ssl.Player
             {
                 StopSelection();
             }
-                
+        }
+
+        public bool IsSelected()
+        {
+            return selected != null;
         }
 
         public void StartSelection(ISelectable selectable)

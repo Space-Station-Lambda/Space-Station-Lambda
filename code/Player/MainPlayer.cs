@@ -72,7 +72,7 @@ namespace ssl.Player
             SimulateActiveChild(client, ActiveChild);
             CheckControls();
 
-            Selector?.CheckSelection();
+            if(Host.IsClient) Selector?.CheckSelection();
         }
 
         /// <summary>
@@ -172,25 +172,22 @@ namespace ssl.Player
 
         public void OnSelectStart(ISelector player)
         {
-            Log.Info(this + " Selected by " + player);
-            GlowActive = true;
-            GlowColor = new Color(255, 255, 255, 0.05f);
+            //TODO
         }
 
         public void OnSelectStop(ISelector player)
         {
-            GlowActive = false;
-            GlowColor = Color.White;
+            //TODO
         }
 
         public void OnSelect(ISelector player)
         {
-            //throw new System.NotImplementedException();
+            //TODO
         }
 
         public void OnAction(ISelector player)
         {
-            //throw new System.NotImplementedException();
+            //TODO
         }
     }
 }
