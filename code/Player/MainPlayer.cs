@@ -9,7 +9,7 @@ using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player
+    public partial class MainPlayer : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
@@ -164,6 +164,26 @@ namespace ssl.Player
             ragdoll.Player = this;
 
             Ragdoll = ragdoll;
+        }
+
+        public void OnSelectStart(ISelector player)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnSelectStop(ISelector player)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnSelect(ISelector player)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnAction(ISelector player)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
