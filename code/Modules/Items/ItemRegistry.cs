@@ -47,7 +47,7 @@ namespace ssl.Modules.Items
             Add(new ItemFoodData("food.hotdog", "HotDog", "models/citizen_props/hotdog01.vmdl", 5));
             Add(new ItemFoodData("food.banana", "Banana", "models/food/banana/banana.vmdl", 10));
             //Weapons
-            Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl", damage: 4f));
+            Add(new ItemWeaponData("weapon.pistol", "Pistol", "weapons/rust_pistol/rust_pistol.vmdl", damage: 40f));
             Add(new ItemWeaponData("weapon.knife", "Knife", "models/knife/knife.vmdl", damage: 5000, range: 100f));
             Add(new ItemTorchlightData("item.torchlight", "Torchlight", "models/knife/knife.vmdl"));
         }
