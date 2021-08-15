@@ -1,0 +1,18 @@
+﻿RoleSelectorSlot
+{
+  background-color: whitesmoke;
+  font-size: 30px;
+  cursor: pointer;
+  height: 300px;
+  width: 150px;
+  padding: 4px;
+  margin: 10px;
+  &.selected {
+    background-color: lightblue;
+  }
+  &:hover {
+    background-color: lightblue;
+    border-color: #0a61cb;
+    border: 2px;
+  }
+}

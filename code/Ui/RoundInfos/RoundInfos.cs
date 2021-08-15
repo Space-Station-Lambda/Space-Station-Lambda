@@ -2,14 +2,13 @@
 using System.Linq;
 using Sandbox;
 using Sandbox.UI;
-using Sandbox.UI.Construct;
 using ssl.Player;
 
-namespace ssl.UI
+namespace ssl.UI.RoundInfosComponents
 {
     public class RoundInfos : Panel
     {
-        private readonly List<RoundPlayer> roundPlayers = new();
+        private readonly List<RoundInfosPlayerLine> roundPlayers = new();
 
         public RoundInfos()
         {
@@ -37,9 +36,9 @@ namespace ssl.UI
         /// <param name="player">The player to be added</param>
         private void AddPlayer(MainPlayer player)
         {
-            RoundPlayer roundPlayer = new(player);
-            roundPlayers.Add(roundPlayer);
-            AddChild(roundPlayer);
+            RoundInfosPlayerLine roudInfosPlayerLine = new(player);
+            roundPlayers.Add(roudInfosPlayerLine);
+            AddChild(roudInfosPlayerLine);
         }
 
         /// <summary>
@@ -48,7 +47,7 @@ namespace ssl.UI
         /// <param name="player">The player to be removed</param>
         private void RemovePlayer(MainPlayer player)
         {
-            foreach (RoundPlayer roundPlayer in roundPlayers.Where(roundPlayer => roundPlayer.Player.Equals(player)))
+            foreach (RoundInfosPlayerLine roundPlayer in roundPlayers.Where(roundPlayer => roundPlayer.Player.Equals(player)))
             {
                 //Delete the element
                 roundPlayer.Delete();
@@ -59,28 +58,9 @@ namespace ssl.UI
 
         private void UpdatePlayers()
         {
-            foreach (RoundPlayer roundPlayer in roundPlayers)
+            foreach (RoundInfosPlayerLine roundPlayer in roundPlayers)
             {
                 roundPlayer.Update();
-            }
-        }
-
-        public class RoundPlayer : Panel
-        {
-            public Label Name;
-            public MainPlayer Player;
-
-            //public Label RoleName;
-            public RoundPlayer(MainPlayer player)
-            {
-                Player = player;
-                Name = Add.Label(player.GetClientOwner().Name);
-                //RoleName = Add.Label(player.RoleHandler?.Role?.Name);
-            }
-
-            public void Update()
-            {
-                //RoleName.Text = Player.RoleHandler?.Role?.Name;
             }
         }
     }
