@@ -17,7 +17,7 @@ namespace ssl.Ui.Crosshair
             if (Local.Pawn is not MainPlayer player)
                 return;
 
-            //TODO fix in merge SetClass("selected", player.Selector.IsSelected());
+            SetClass("selected", player.Selector.IsSelected());
         }
     }
 }
