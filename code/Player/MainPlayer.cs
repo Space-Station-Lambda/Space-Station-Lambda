@@ -14,7 +14,6 @@ namespace ssl.Player
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
         private const float MaxHealth = 100f;
-        private ISelector Selector; 
 
         public MainPlayer()
         {
