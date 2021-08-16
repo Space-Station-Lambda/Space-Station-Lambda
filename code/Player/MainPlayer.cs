@@ -9,11 +9,12 @@ using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player
+    public partial class MainPlayer : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const int MaxInventoryCapacity = 10;
         private const float MaxHealth = 100f;
+        private ISelector Selector; 
 
         public MainPlayer()
         {
@@ -28,6 +29,7 @@ namespace ssl.Player
                 RoleHandler = new RoleHandler(this);
                 Health = MaxHealth;
             }
+            Selector = new PlayerSelector(this);
         }
 
         [Net] public new Inventory Inventory { get; private set; }
@@ -40,6 +42,7 @@ namespace ssl.Player
 
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
+        public ISelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
         /// <summary>
@@ -68,7 +71,8 @@ namespace ssl.Player
             controller?.Simulate(client, this, GetActiveAnimator());
 
             SimulateActiveChild(client, ActiveChild);
-            CheckControls();
+            CheckControls(); 
+            Selector?.CheckSelection();
         }
 
         /// <summary>
@@ -164,6 +168,26 @@ namespace ssl.Player
             ragdoll.Player = this;
 
             Ragdoll = ragdoll;
+        }
+
+        public void OnSelectStart(ISelector player)
+        {
+            //TODO
+        }
+
+        public void OnSelectStop(ISelector player)
+        {
+            //TODO
+        }
+
+        public void OnSelect(ISelector player)
+        {
+            //TODO
+        }
+
+        public void OnAction(ISelector player)
+        {
+            //TODO
         }
     }
 }
