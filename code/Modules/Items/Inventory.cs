@@ -4,13 +4,15 @@ using System.Linq;
 using Sandbox;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Items.Data;
+using ssl.Player;
 
 namespace ssl.Modules.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
         private readonly ItemFilter itemFilter = new();
-
+        [Net] public Item HoldingItem => HoldingSlot.Item;
+        [Net] public Slot HoldingSlot { get; private set; }
         public Inventory()
         {
         }
@@ -51,6 +53,25 @@ namespace ssl.Modules.Items
 
         public int SlotsFull => SlotsCount - SlotsLeft;
 
+        /// <summary>
+        /// When the player change selected slot
+        /// </summary>
+        /// <param name="slot">The current slot sleected</param>
+        [ServerCmd("set_inventory_holding")]
+        public static void SetInventoryHolding(int slot)
+        {
+            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            target?.Inventory.StartHolding(target, slot);
+        }
+
+        public void StartHolding(MainPlayer player,  int slot)
+        {
+            HoldingSlot = Slots[slot];
+            HoldingItem?.SetModel(HoldingItem.Model);
+            HoldingItem?.OnCarryStart(player);
+            ActiveChild = player;
+        }
+        
         /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.
         /// </summary>
@@ -179,6 +200,12 @@ namespace ssl.Modules.Items
         public bool IsPresent(Item item)
         {
             return Slots.Any(slot => item.Equals(slot.Item));
+        }
+
+        public void DropItem(MainPlayer player)
+        {
+            HoldingItem?.OnCarryDrop(player);
+            HoldingSlot.Clear();
         }
     }
 }

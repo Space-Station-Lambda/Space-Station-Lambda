@@ -1,10 +1,12 @@
-﻿using Sandbox;
+﻿using System.Diagnostics;
+using Sandbox;
+using Trace = Sandbox.Trace;
 
 namespace ssl.Player
 {
-    public class PlayerSelector : ISelector
+    public class PlayerSelector
     {
-        private const float SelectionRange = 50f;
+        private const float SelectionRange = 150f;
         
         private readonly MainPlayer player;
         
@@ -19,6 +21,7 @@ namespace ssl.Player
         {
             Vector3 forward = player.EyeRot.Forward;
             TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
+            DebugOverlay.Line(player.EyePos, player.EyePos + forward * SelectionRange);
             Entity result = tr.Entity;
             if (result is ISelectable selectable)
             {
@@ -27,7 +30,7 @@ namespace ssl.Player
                     StopSelection();
                     StartSelection(selectable);
                 }
-                selected.OnSelect(this);
+                selected.OnSelect(player);
             }
             else if (selected != null)
             {
@@ -40,16 +43,21 @@ namespace ssl.Player
             return selected != null;
         }
 
+        public void UseSelected()
+        {
+            selected?.OnAction(player);
+        }
+
         public void StartSelection(ISelectable selectable)
         {
             selected = selectable;
-            selected.OnSelectStart(this);
+            selected.OnSelectStart(player);
         }
         
         public void StopSelection()
         {
             Log.Warning("Not selected");
-            selected?.OnSelectStop(this);
+            selected?.OnSelectStop(player);
             selected = null;
         }
         

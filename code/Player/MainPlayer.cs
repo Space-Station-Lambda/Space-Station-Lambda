@@ -32,7 +32,6 @@ namespace ssl.Player
         }
 
         [Net] public new Inventory Inventory { get; private set; }
-        [Net] public Item Holding { get; private set; }
 
         /**
          * Handlers
@@ -41,24 +40,8 @@ namespace ssl.Player
 
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
-        public ISelector Selector { get; }
+        public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
-
-        /// <summary>
-        /// When the player change selected slot
-        /// </summary>
-        /// <param name="slot">The current slot sleected</param>
-        [ServerCmd("set_inventory_holding")]
-        public static void SetInventoryHolding(int slot)
-        {
-            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            if (target == null) return;
-            Item item = target.Inventory.Get(slot);
-            target.Holding = item;
-            target.Holding?.SetModel(target.Holding.Model);
-            target.Holding?.OnCarryStart(target);
-            target.ActiveChild = target.Holding;
-        }
 
         /// <summary>
         /// Called each tick, clientside and serverside
@@ -138,6 +121,14 @@ namespace ssl.Player
             {
                 Respawn();
             }
+            if (Input.Pressed(InputButton.Attack2))
+            {
+                Inventory.DropItem(this);
+            }
+            if (Input.Pressed(InputButton.Voice))
+            {
+                Selector.UseSelected();
+            }
         }
 
         private void ClientControls()
@@ -169,22 +160,22 @@ namespace ssl.Player
             Ragdoll = ragdoll;
         }
 
-        public void OnSelectStart(ISelector player)
+        public void OnSelectStart(MainPlayer player)
         {
             //TODO
         }
 
-        public void OnSelectStop(ISelector player)
+        public void OnSelectStop(MainPlayer player)
         {
             //TODO
         }
 
-        public void OnSelect(ISelector player)
+        public void OnSelect(MainPlayer player)
         {
             //TODO
         }
 
-        public void OnAction(ISelector player)
+        public void OnAction(MainPlayer player)
         {
             //TODO
         }
