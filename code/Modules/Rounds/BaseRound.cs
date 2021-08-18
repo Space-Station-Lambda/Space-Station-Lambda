@@ -2,6 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using Sandbox;
+using ssl.Modules.Roles;
+using ssl.Modules.Roles.Types.Antagonists;
+using ssl.Modules.Roles.Types.Jobs;
+using ssl.Modules.Scenarios;
 using ssl.Player;
 
 namespace ssl.Modules.Rounds
@@ -15,7 +19,31 @@ namespace ssl.Modules.Rounds
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
         public event Action<BaseRound> RoundEndedEvent;
+        
+        public RoleDistributor RoleDistributor { get; }
 
+        protected BaseRound()
+        {
+            Scenario scenario = new(
+                new Dictionary<int, List<ScenarioConstraint>>
+                {
+                    {
+                        2, new List<ScenarioConstraint>
+                        {
+                            new(new Guard(), 1, 1)
+                        }
+                    },
+                    {
+                        3, new List<ScenarioConstraint>
+                        {
+                            new(new Traitor(), 1, 1),
+                            new(new Guard(), 2, 3)
+                        }
+                    }
+                });
+            RoleDistributor = new RoleDistributor(scenario, Players);
+        }
+        
         public void Start()
         {
             if (Host.IsServer && RoundDuration > 0)

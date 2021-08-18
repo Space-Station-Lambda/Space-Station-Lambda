@@ -24,25 +24,7 @@ namespace ssl.Modules.Rounds
 
         private void AssignRoles()
         {
-            Scenario scenario = new(
-                new Dictionary<int, List<ScenarioConstraint>>
-                {
-                    {
-                        2, new List<ScenarioConstraint>
-                        {
-                            new(new Guard(), 1, 1)
-                        }
-                    },
-                    {
-                        3, new List<ScenarioConstraint>
-                        {
-                            new(new Traitor(), 1, 1),
-                            new(new Guard(), 2, 3)
-                        }
-                    }
-                });
-            RoleDistributor distributor = new(scenario, Players);
-            distributor.Distribute();
+            RoleDistributor.Distribute();
         }
     }
 }

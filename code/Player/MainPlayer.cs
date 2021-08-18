@@ -92,7 +92,7 @@ namespace ssl.Player
             
             Inventory.Clear();
             
-            RoleHandler.Init();
+            RoleHandler.SpawnRole();
             
             base.Respawn();
         }
