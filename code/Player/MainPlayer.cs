@@ -19,7 +19,7 @@ namespace ssl.Player
         {
             if (Host.IsServer)
             {
-                Inventory = new Inventory(MaxInventoryCapacity)
+                Inventory = new PlayerInventory(this)
                 {
                     Owner = this
                 };
@@ -31,7 +31,7 @@ namespace ssl.Player
             Selector = new PlayerSelector(this);
         }
 
-        [Net] public new Inventory Inventory { get; private set; }
+        [Net] public new PlayerInventory Inventory { get; private set; }
 
         /**
          * Handlers
@@ -121,11 +121,11 @@ namespace ssl.Player
             {
                 Respawn();
             }
-            if (Input.Pressed(InputButton.Attack2))
+            if (Input.Pressed(InputButton.Drop))
             {
-                Inventory.DropItem(this);
+                Inventory.DropItem();
             }
-            if (Input.Pressed(InputButton.Voice))
+            if (Input.Pressed(InputButton.Use))
             {
                 Selector.UseSelected();
             }

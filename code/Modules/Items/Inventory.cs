@@ -11,8 +11,7 @@ namespace ssl.Modules.Items
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
         private readonly ItemFilter itemFilter = new();
-        public Item HoldingItem => HoldingSlot?.Item;
-        [Net] public Slot HoldingSlot { get; private set; }
+
         public Inventory()
         {
         }
@@ -54,27 +53,6 @@ namespace ssl.Modules.Items
         public int SlotsFull => SlotsCount - SlotsLeft;
 
         /// <summary>
-        /// When the player change selected slot
-        /// </summary>
-        /// <param name="slot">The current slot sleected</param>
-        [ServerCmd("set_inventory_holding")]
-        public static void SetInventoryHolding(int slot)
-        {
-            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            target?.Inventory.StartHolding(target, slot);
-        }
-
-        public void StartHolding(MainPlayer player,  int slot)
-        {
-            HoldingItem?.ActiveEnd(player, false);
-            HoldingSlot = Slots[slot];
-            HoldingItem?.SetModel(HoldingItem.Model);
-            HoldingItem?.OnCarryStart(player);
-            HoldingItem?.ActiveStart(player);
-            ActiveChild = player;
-        }
-        
-        /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.
         /// </summary>
         /// The ItemStack will be merged if the preferred position is the same Item.
@@ -82,7 +60,7 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(Item item, int position = 0)
+        public void Add(Item item, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
@@ -92,16 +70,12 @@ namespace ssl.Modules.Items
             if (itemFilter.IsAuthorized(item))
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
-                if (slotDestination != null)
-                {
-                    slotDestination.Set(item);
-                    return item;
-                }
-
-                return null;
+                slotDestination?.Set(item);
             }
-
-            throw new Exception("Not permission");
+            else
+            {
+                throw new Exception("Not permission");
+            }
         }
 
         /// <summary>
@@ -112,10 +86,10 @@ namespace ssl.Modules.Items
         /// <param name="itemId">ItemId to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(string itemId, int position = 0)
+        public void Add(string itemId, int position = 0)
         {
             Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
-            return Add(item, position);
+            Add(item, position);
         }
 
         /// <summary>
@@ -126,9 +100,9 @@ namespace ssl.Modules.Items
         /// <param name="data">Item to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(ItemData data, int position = 0)
+        public void Add(ItemData data, int position = 0)
         {
-            return Add(data.Create(), position);
+            Add(data.Create(), position);
         }
 
         /// <summary>
@@ -202,13 +176,6 @@ namespace ssl.Modules.Items
         public bool IsPresent(Item item)
         {
             return Slots.Any(slot => item.Equals(slot.Item));
-        }
-
-        public void DropItem(MainPlayer player)
-        {
-            HoldingItem?.OnCarryDrop(player);
-            HoldingItem?.ActiveEnd(player, true);
-            HoldingSlot.Clear();
         }
     }
 }
