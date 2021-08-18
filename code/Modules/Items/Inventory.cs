@@ -4,6 +4,7 @@ using System.Linq;
 using Sandbox;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Items.Data;
+using ssl.Player;
 
 namespace ssl.Modules.Items
 {
@@ -59,7 +60,7 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(Item item, int position = 0)
+        public void Add(Item item, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
@@ -69,16 +70,12 @@ namespace ssl.Modules.Items
             if (itemFilter.IsAuthorized(item))
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
-                if (slotDestination != null)
-                {
-                    slotDestination.Set(item);
-                    return item;
-                }
-
-                return null;
+                slotDestination?.Set(item);
             }
-
-            throw new Exception("Not permission");
+            else
+            {
+                throw new Exception("Not permission");
+            }
         }
 
         /// <summary>
@@ -89,10 +86,10 @@ namespace ssl.Modules.Items
         /// <param name="itemId">ItemId to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(string itemId, int position = 0)
+        public void Add(string itemId, int position = 0)
         {
             Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
-            return Add(item, position);
+            Add(item, position);
         }
 
         /// <summary>
@@ -103,9 +100,9 @@ namespace ssl.Modules.Items
         /// <param name="data">Item to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(ItemData data, int position = 0)
+        public void Add(ItemData data, int position = 0)
         {
-            return Add(data.Create(), position);
+            Add(data.Create(), position);
         }
 
         /// <summary>

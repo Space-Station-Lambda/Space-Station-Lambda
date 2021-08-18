@@ -9,7 +9,7 @@ namespace ssl.Modules.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : BaseCarriable
+    public partial class Item : BaseCarriable, ISelectable
     {
         public Item()
         {
@@ -66,6 +66,28 @@ namespace ssl.Modules.Items.Carriables
         public override int GetHashCode()
         {
             return (Id != null ? Id.GetHashCode() : 0);
+        }
+
+        public void OnSelectStart(MainPlayer player)
+        {
+            GlowActive = true;
+            Log.Info("Selected");
+        }
+
+        public void OnSelectStop(MainPlayer player)
+        {
+            GlowActive = false;
+        }
+
+        public void OnSelect(MainPlayer player)
+        {
+            //TODO
+        }
+
+        public void OnAction(MainPlayer player)
+        {
+            player.Inventory.Add(this);
+            ActiveEnd(player, false);
         }
     }
 }
