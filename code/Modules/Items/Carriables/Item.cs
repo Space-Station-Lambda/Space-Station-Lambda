@@ -87,6 +87,7 @@ namespace ssl.Modules.Items.Carriables
         public void OnAction(MainPlayer player)
         {
             player.Inventory.Add(this);
+            ActiveEnd(player, false);
         }
     }
 }

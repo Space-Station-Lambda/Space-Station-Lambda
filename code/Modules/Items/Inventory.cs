@@ -11,7 +11,7 @@ namespace ssl.Modules.Items
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
         private readonly ItemFilter itemFilter = new();
-        [Net] public Item HoldingItem => HoldingSlot.Item;
+        public Item HoldingItem => HoldingSlot?.Item;
         [Net] public Slot HoldingSlot { get; private set; }
         public Inventory()
         {
@@ -66,9 +66,11 @@ namespace ssl.Modules.Items
 
         public void StartHolding(MainPlayer player,  int slot)
         {
+            HoldingItem?.ActiveEnd(player, false);
             HoldingSlot = Slots[slot];
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
+            HoldingItem?.ActiveStart(player);
             ActiveChild = player;
         }
         
@@ -205,6 +207,7 @@ namespace ssl.Modules.Items
         public void DropItem(MainPlayer player)
         {
             HoldingItem?.OnCarryDrop(player);
+            HoldingItem?.ActiveEnd(player, true);
             HoldingSlot.Clear();
         }
     }
