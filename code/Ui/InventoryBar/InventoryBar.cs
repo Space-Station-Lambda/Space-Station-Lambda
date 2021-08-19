@@ -31,11 +31,19 @@ namespace ssl.Ui.InventoryBar
             if (!player.IsLocalPawn) return;
             Log.Trace("[InventoryBar] Player Added, registering events");
             player.Inventory.SlotSelected += OnSlotSelected;
+            player.Inventory.ItemAdded += OnItemUpdated;
+            player.Inventory.ItemRemoved += OnItemUpdated;
         }
 
-        private void OnSlotSelected(int slotIndex)
+        private void OnItemUpdated(int slotIndex, Slot slot)
         {
-            Log.Trace("[InventoryBar] New slot selected");
+            Log.Trace("[UI] Item updated {slotIndex}");
+            icons[slotIndex].RefreshModel();
+        }
+
+        private void OnSlotSelected(int slotIndex, Slot slot)
+        {
+            Log.Trace($"[InventoryBar] New slot selected {selected}");
             icons[selected].SetClass("selected", false);
             selected = slotIndex;
             if (slotIndex < 0) selected = 9;
@@ -45,7 +53,7 @@ namespace ssl.Ui.InventoryBar
         }
 
         [Event.BuildInput]
-        public void ProcessClientInput(InputBuilder input)
+        private void ProcessClientInput(InputBuilder input)
         {
             PlayerInventory inventory = player.Inventory;
             if (input.Pressed(InputButton.Slot1)) inventory.StartHolding(0);
@@ -58,7 +66,10 @@ namespace ssl.Ui.InventoryBar
             if (input.Pressed(InputButton.Slot8)) inventory.StartHolding(7);
             if (input.Pressed(InputButton.Slot9)) inventory.StartHolding(8);
             if (input.Pressed(InputButton.Slot0)) inventory.StartHolding(9);
-            // if (input.MouseWheel != 0) PlayerInventory.SetInventoryHolding((selected + input.MouseWheel) % inventory.SlotsCount);
+            if (input.MouseWheel != 0) inventory.StartHolding(
+                selected + input.MouseWheel < 0 ? 
+                inventory.SlotsCount - 1: 
+                (selected + input.MouseWheel) % inventory.SlotsCount);
         }
 
         private void RefreshAllModels()

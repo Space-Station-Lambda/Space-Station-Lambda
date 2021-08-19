@@ -7,8 +7,8 @@ namespace ssl.Modules.Items
 {
     public partial class PlayerInventory : Inventory
     {
-        public event Action<int> SlotSelected;
-        
+        public event Action<int, Slot> SlotSelected;
+
         public Item HoldingItem => HoldingSlot?.Item;
         [Net] public Slot HoldingSlot { get; private set; }
         
@@ -50,7 +50,7 @@ namespace ssl.Modules.Items
             HoldingItem?.OnCarryStart(player);
             player.ActiveChild = HoldingItem;
             
-            SlotSelected?.Invoke(Slots.IndexOf(slot));
+            SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
         }
 
         public void DropItem()

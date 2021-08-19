@@ -1,11 +1,15 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Items.Carriables;
 
 namespace ssl.Modules.Items
 {
     public partial class Slot : NetworkedEntityAlwaysTransmitted
     {
-        [Net] public Item Item { get; set; }
+        internal event Action<Slot> ItemAdded;
+        internal event Action<Slot> ItemRemoved;
+        
+        [Net] public Item Item { get; private set; }
 
         public bool IsEmpty()
         {
@@ -25,11 +29,41 @@ namespace ssl.Modules.Items
         {
             Item = item;
             item.Owner = this;
+            FireItemAddedEvent();
         }
 
         public void Clear()
         {
             Item = null;
+            FireItemRemovedEvent();
+        }
+
+        private void FireItemAddedEvent()
+        {
+            Log.Trace($"[Slot] FireItemAddedEvent");
+            
+            ItemAdded?.Invoke(this);
+            OnItemAdded();
+        }
+
+        private void FireItemRemovedEvent()
+        {
+            Log.Trace($"[Slot] FireItemRemovedEvent");
+            
+            ItemRemoved?.Invoke(this);
+            OnItemRemoved();
+        }
+
+        [ClientRpc]
+        private void OnItemAdded()
+        {
+            ItemAdded?.Invoke(this);
+        }
+
+        [ClientRpc]
+        private void OnItemRemoved()
+        {
+            ItemRemoved?.Invoke(this);
         }
     }
 }

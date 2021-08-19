@@ -10,6 +10,9 @@ namespace ssl.Modules.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
+        public event Action<int, Slot> ItemAdded;
+        public event Action<int, Slot> ItemRemoved;
+
         private readonly ItemFilter itemFilter = new();
 
         public Inventory()
@@ -25,11 +28,15 @@ namespace ssl.Modules.Items
                 {
                     Owner = this
                 };
+                
+                slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
+                slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
+                
                 Slots.Add(slot);
             }
         }
 
-        [Net] public List<Slot> Slots { get; private set; }
+        [Net, OnChangedCallback] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
@@ -71,6 +78,7 @@ namespace ssl.Modules.Items
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 slotDestination?.Set(item);
+                ItemAdded?.Invoke(Slots.IndexOf(slotDestination), slotDestination);
             }
             else
             {
@@ -118,6 +126,7 @@ namespace ssl.Modules.Items
             {
                 removedItem = Slots[position].Item;
                 Slots[position].Clear();
+                ItemRemoved?.Invoke(position, Slots[position]);
             }
 
             return removedItem;
@@ -176,6 +185,15 @@ namespace ssl.Modules.Items
         public bool IsPresent(Item item)
         {
             return Slots.Any(slot => item.Equals(slot.Item));
+        }
+
+        private void OnSlotsChanged()
+        {
+            foreach (Slot slot in Slots)
+            {
+                slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
+                slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
+            }
         }
     }
 }
