@@ -59,7 +59,5 @@ namespace ssl.Ui.RoleSelector
             SetClass("active", currentRound is PreRound);
             SetClass("hidden", currentRound is not PreRound);
         }
-
-        
     }
 }
