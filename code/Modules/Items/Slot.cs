@@ -29,22 +29,22 @@ namespace ssl.Modules.Items
         {
             Item = item;
             item.Owner = this;
-            FireItemAddedEvent();
+            EmitItemAddedEvent();
         }
 
         public void Clear()
         {
             Item = null;
-            FireItemRemovedEvent();
+            EmitItemRemovedEvent();
         }
 
-        private void FireItemAddedEvent()
+        private void EmitItemAddedEvent()
         {
             ItemAdded?.Invoke(this);
             OnItemAdded();
         }
 
-        private void FireItemRemovedEvent()
+        private void EmitItemRemovedEvent()
         {
             ItemRemoved?.Invoke(this);
             OnItemRemoved();
