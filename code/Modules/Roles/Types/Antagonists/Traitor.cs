@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ssl.Modules.Roles.Types.Jobs;
 using ssl.Player;
 
 namespace ssl.Modules.Roles.Types.Antagonists
@@ -28,7 +29,9 @@ namespace ssl.Modules.Roles.Types.Antagonists
         {
             base.OnAssigned(player);
             player.RoleHandler.SetPreference(new Traitor(), RolePreference.Never);
-            SecondaryRole = player.RoleHandler.GetRandomRoleFromPreferences();
+            Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
+            SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(player) ??
+                            defaultRole;
             SecondaryRole.OnAssigned(player);
         }
 

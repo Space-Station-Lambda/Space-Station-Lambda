@@ -51,6 +51,7 @@ namespace ssl.Modules.Roles
             {
                 player.Inventory.Add(itemData.Create());
             }
+            player.ClothesHandler.AttachClothes(Clothing);
         }
 
         /// <summary>
