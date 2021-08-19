@@ -22,14 +22,13 @@ namespace ssl.Modules.Rounds
             if (CurrentRound != null)
             {
                 CurrentRound.Stop();
-                CurrentRound.RoundEnded -= OnRoundEnd;
+                CurrentRound.RoundEndedEvent -= OnRoundEnd;
                 Log.Info("Round " + CurrentRound.RoundName + " ended");
             }
 
             CurrentRound = round;
             CurrentRound.Start();
-            CurrentRound.RoundEnded += OnRoundEnd;
-            FireRoundStartedEvent();
+            CurrentRound.RoundEndedEvent += OnRoundEnd;
             Log.Info("Round " + CurrentRound.RoundName + " started");
         }
 

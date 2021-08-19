@@ -14,8 +14,7 @@ namespace ssl.Modules.Rounds
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
         [Net] public string TimeLeftFormatted { get; set; }
-        
-        public event Action<BaseRound> RoundEnded;
+        public event Action<BaseRound> RoundEndedEvent;
 
         public void Start()
         {
@@ -46,7 +45,7 @@ namespace ssl.Modules.Rounds
         {
             Log.Info($"[Round] Round {this} finished");
             OnFinish();
-            FireRoundEndedEvent();
+            RoundEndedEvent?.Invoke(this);
         }
 
         public void AddPlayer(MainPlayer player)
@@ -134,18 +133,6 @@ namespace ssl.Modules.Rounds
             return $"Round Name: {RoundName}\n" +
                    $"Round Duration: {RoundDuration}\n" +
                    $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
-        }
-
-        private void FireRoundEndedEvent()
-        {
-            RoundEnded?.Invoke(this);
-            OnRoundEnded();
-        }
-
-        [ClientRpc]
-        private void OnRoundEnded()
-        {
-            RoundEnded?.Invoke(this);
         }
     }
 }
