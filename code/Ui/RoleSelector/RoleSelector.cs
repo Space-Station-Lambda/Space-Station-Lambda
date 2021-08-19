@@ -32,6 +32,8 @@ namespace ssl.Ui.RoleSelector
                 roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
                 ConsoleSystem.Run("select_preference_role", roleIcon.Role.Id, RolePreference.Never);
             }
+            
+            Gamemode.Instance.RoundManagerCreated += OnRoundManagerCreated;
         }
 
         /// <summary>
@@ -52,14 +54,18 @@ namespace ssl.Ui.RoleSelector
             }
         }
 
-        public override void Tick()
+        private void OnRoundStarted()
         {
-            base.Tick();
+            Log.Trace("[RoleSelector] Round started");
             BaseRound currentRound = Gamemode.Instance.RoundManager.CurrentRound;
             SetClass("active", currentRound is PreRound);
             SetClass("hidden", currentRound is not PreRound);
         }
 
-        
+        private void OnRoundManagerCreated()
+        {
+            Log.Trace("[RoleSelector] Round created");
+            Gamemode.Instance.RoundManager.RoundStarted += OnRoundStarted;
+        }
     }
 }

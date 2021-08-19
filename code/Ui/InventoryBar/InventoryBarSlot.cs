@@ -33,26 +33,25 @@ namespace ssl.Ui.InventoryBar
 
             MainPlayer player = (MainPlayer)Local.Client.Pawn;
 
-            sceneWorld = new SceneWorld();
-
+            sceneWorld ??= new SceneWorld();
             using (SceneWorld.SetCurrent(sceneWorld))
             {
-                if (player.Inventory.IsSlotEmpty(SlotNumber)) return;
-
-                Model model = Model.Load(player.Inventory.Get(SlotNumber).Model);
-                sceneObject = new SceneObject(model, Transform.Zero);
-                sceneLight = Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
-                    2000, Color.White * 15000.0f);
+                if (player.Inventory.IsSlotEmpty(SlotNumber))
+                {
+                    sceneObject?.Delete();
+                    sceneObject = null;
+                }
+                else
+                {
+                    Model model = Model.Load(player.Inventory.Get(SlotNumber).Model);
+                    sceneObject ??= new SceneObject(model, Transform.Zero);
+                }
+                
+                sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
+                    2000, Color.White * 15000f);
             }
 
-            if (scene != null)
-            {
-                scene.World = sceneWorld;
-            }
-            else
-            {
-                scene = Add.Scene(sceneWorld, pos, angles, 50, "itemslot-model");
-            }
+            scene ??= Add.Scene(sceneWorld, pos, angles, 50, "itemslot-model");
         }
     }
 }

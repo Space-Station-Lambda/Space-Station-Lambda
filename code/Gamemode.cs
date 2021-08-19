@@ -24,6 +24,10 @@ namespace ssl
             else if (IsClient) StartClient();
         }
 
+        public event Action RoundManagerCreated;
+        public event Action<MainPlayer> PlayerAddedEvent;
+        public event Action<MainPlayer> PlayerRemovedEvent;
+        
         public static Gamemode Instance { get; private set; }
 
         /// <summary>
@@ -32,10 +36,7 @@ namespace ssl
         public ItemRegistry ItemRegistry { get; private set; }
 
         [Net] public Hud Hud { get; set; }
-        [Net] public RoundManager RoundManager { get; set; }
-
-        public event Action<MainPlayer> PlayerAddedEvent;
-        public event Action<MainPlayer> PlayerRemovedEvent;
+        [Net, OnChangedCallback] public RoundManager RoundManager { get; private set; }
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with
@@ -54,6 +55,7 @@ namespace ssl
             Log.Info("Launching ssl Server...");
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
+            RoundManagerCreated?.Invoke();
             Log.Info("Create HUD...");
             ItemRegistry = new ItemRegistry();
             Hud = new Hud();
@@ -87,6 +89,7 @@ namespace ssl
         [ClientRpc]
         private void EmitEvent(MainPlayer player)
         {
+            Log.Trace("[Gamemode] RPC - Player added");
             PlayerAddedEvent?.Invoke(player);
         }
 
@@ -134,6 +137,11 @@ namespace ssl
         private void OnTick()
         {
             if (IsServer) RoundManager.CurrentRound?.OnTick();
+        }
+
+        private void OnRoundManagerChanged()
+        {
+            RoundManagerCreated?.Invoke();
         }
     }
 }
