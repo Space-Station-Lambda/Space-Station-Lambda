@@ -1,3 +1,4 @@
+using System;
 using Sandbox;
 
 namespace ssl.Modules.Rounds
@@ -11,6 +12,8 @@ namespace ssl.Modules.Rounds
                 ChangeRound(new PreRound());
             }
         }
+
+        public event Action RoundStarted;
 
         [Net] public BaseRound CurrentRound { get; private set; }
 
@@ -26,12 +29,25 @@ namespace ssl.Modules.Rounds
             CurrentRound = round;
             CurrentRound.Start();
             CurrentRound.RoundEnded += OnRoundEnd;
+            FireRoundStartedEvent();
             Log.Info("Round " + CurrentRound.RoundName + " started");
+        }
+
+        private void FireRoundStartedEvent()
+        {
+            RoundStarted?.Invoke();
+            OnRoundStarted();
         }
 
         private void OnRoundEnd(BaseRound round)
         {
             ChangeRound(round.Next());
+        }
+
+        [ClientRpc]
+        private void OnRoundStarted()
+        {
+            RoundStarted?.Invoke();
         }
     }
 }

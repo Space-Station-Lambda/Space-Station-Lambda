@@ -40,16 +40,12 @@ namespace ssl.Modules.Items
 
         private void FireItemAddedEvent()
         {
-            Log.Trace($"[Slot] FireItemAddedEvent");
-            
             ItemAdded?.Invoke(this);
             OnItemAdded();
         }
 
         private void FireItemRemovedEvent()
         {
-            Log.Trace($"[Slot] FireItemRemovedEvent");
-            
             ItemRemoved?.Invoke(this);
             OnItemRemoved();
         }

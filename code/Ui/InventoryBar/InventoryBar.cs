@@ -37,13 +37,11 @@ namespace ssl.Ui.InventoryBar
 
         private void OnItemUpdated(int slotIndex, Slot slot)
         {
-            Log.Trace("[UI] Item updated {slotIndex}");
             icons[slotIndex].RefreshModel();
         }
 
         private void OnSlotSelected(int slotIndex, Slot slot)
         {
-            Log.Trace($"[InventoryBar] New slot selected {selected}");
             icons[selected].SetClass("selected", false);
             selected = slotIndex;
             if (slotIndex < 0) selected = 9;
