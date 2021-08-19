@@ -87,6 +87,7 @@ namespace ssl
         [ClientRpc]
         private void EmitEvent(MainPlayer player)
         {
+            Log.Trace("[Gamemode] RPC - Player added");
             PlayerAddedEvent?.Invoke(player);
         }
 
