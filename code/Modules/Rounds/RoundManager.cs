@@ -29,6 +29,7 @@ namespace ssl.Modules.Rounds
             CurrentRound = round;
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
+            FireRoundStartedEvent();
             Log.Info("Round " + CurrentRound.RoundName + " started");
         }
 
