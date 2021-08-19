@@ -50,7 +50,7 @@ namespace ssl.Modules.Roles
             foreach (MainPlayer player in GetPlayersWithoutRole())
             {
                 Log.Info($"[RoleDistributor] Give a role to {player}..");
-                if (GivePreferedRole(player))
+                if (GivePreferredRole(player))
                 {
                     Log.Info($"[RoleDistributor] Player {player} get the role {player.RoleHandler.Role}");
                 }
@@ -133,7 +133,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>If false, the player have the default assistant role</returns>
-        private bool GivePreferedRole(MainPlayer player)
+        private bool GivePreferredRole(MainPlayer player)
         {
             Role role = GetPreferedRole(player);
             if (role == null)
