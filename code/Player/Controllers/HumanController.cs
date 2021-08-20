@@ -156,7 +156,8 @@ namespace ssl.Player.Controllers
 
             if (IsGrounded)
             {
-                WishVelocity = Rotation.From(Rotation.Angles().WithPitch(0)) * WishVelocity.ClampLength(1);
+                Angles eyeRotationYaw = Rotation.Angles().WithPitch(0);
+                WishVelocity = Rotation.From(eyeRotationYaw) * WishVelocity.ClampLength(1);
             }
             else
             {
