@@ -61,5 +61,10 @@ namespace ssl.Modules.Items
         {
             ItemRemoved?.Invoke(this);
         }
+
+        public override string ToString()
+        {
+            return IsEmpty() ? "-" : Item.ToString();
+        }
     }
 }
