@@ -1,35 +1,44 @@
 ﻿using Sandbox;
+using ssl.Ui.Crosshair;
 
 namespace ssl.Player.Controllers
 {
     public partial class HumanController : BasePlayerController
     {
-        private const float TopGroundDetect = 0.1f;
-        private const float BottomGroundDetect = 2.0f;
+        private const float TopGroundDetect = 0.1F;
+        private const float BottomGroundDetect = 2F;
 
-        private const float BodyHeight = 72.0F;
-        private const float EyeHeight = 64.0F;
-        private const float BodyGirth = 16.0F;
+        private const float BodyHeight = 72F;
+        private const float EyeHeight = 64F;
+        private const float BodyGirth = 16F;
 
-        private const float StopSpeed = 100.0f;
-        private const float WalkAcceleration = 1500.0f;
-        private const float WalkSpeed = 150.0f;
-        private const float SprintAcceleration = 2000.0f;
-        private const float SprintSpeed = 300.0f;
-        private const float StepSize = 20.0f;
+        private const float StopSpeed = 100F;
+        private const float WalkAcceleration = 1500F;
+        private const float WalkSpeed = 150F;
+        private const float SprintAcceleration = 2000F;
+        private const float SprintSpeed = 300F;
+        private const float StepSize = 20F;
+        
+        private const float JumpForce = 300F;
+        private const float AirSpeed = 30F;
+        private const float AirAcceleration = 500F;
 
-        private const float GroundAngle = 46.0f;
-        private const float MinSpeed = 1.0f;
+        private const float MinSpeed = 1F;
+        
+        private const float GroundAngle = 46F;
+
+        private const string JumpEventName = "jump";
+
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
-
+        
         public HumanController()
         {
             unstuck = new Unstuck(this);
         }
 
-        public Vector3 GravityVector { get; set; } = new(0, 0, -981F);
+        public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
         public float CurrentSpeed => Velocity.Length;
 
         public bool IsGrounded => GroundEntity != null;
@@ -49,19 +58,28 @@ namespace ssl.Player.Controllers
             //If the player is stuck, fix and stop
             if (unstuck.TestAndFix()) return;
 
-            ApplyGravity();
+            
             UpdateGroundEntity();
 
             ProcessInputs();
 
             if (IsGrounded)
             {
-                ApplyFriction(GroundSurface.Friction * SurfaceFriction);
-                Walk();
-                TryPlayerMoveWithStep();
+                if (Input.Pressed(InputButton.Jump))
+                {
+                    Jump();
+                }
+                else
+                {
+                    ApplyFriction(GroundSurface.Friction * SurfaceFriction);
+                    Walk();
+                    TryPlayerMoveWithStep();
+                }
             }
             else
             {
+                ApplyGravity();
+                Air();
                 TryPlayerMove();
             }
         }
@@ -158,24 +176,21 @@ namespace ssl.Player.Controllers
                 acceleration = WalkAcceleration;
                 speed = WalkSpeed;
             }
-
             WishVelocity *= acceleration;
+            Accelerate(WishVelocity, speed);
+        }
 
-            if (!Velocity.IsNearZeroLength)
-            {
-                Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
-                Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
+        private void Jump()
+        {
+            ClearGroundEntity();
+            Velocity += Vector3.Up * JumpForce;
+            AddEvent(JumpEventName);
+        }
 
-                if (CurrentSpeed + projectedVelocity.Length * Time.Delta > speed && projectedVelocity.Length > 0f)
-                {
-                    projectedVelocity *= ((speed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
-                }
-
-                WishVelocity = projectedVelocity + rejectedVelocity;
-                WishVelocity = WishVelocity.WithZ(0);
-            }
-
-            Accelerate();
+        private void Air()
+        {
+            WishVelocity *= AirAcceleration;
+            Accelerate(WishVelocity, AirSpeed);
         }
 
         /// <summary>
@@ -230,17 +245,37 @@ namespace ssl.Player.Controllers
             }
             else
             {
-                GroundNormal = Vector3.Zero;
-                GroundEntity = null;
-                GroundSurface = null;
-                BaseVelocity = Vector3.Zero;
+                ClearGroundEntity();
             }
         }
 
-        private void Accelerate()
+        /// <summary>
+        /// Clear the grounded state of the player.
+        /// </summary>
+        private void ClearGroundEntity()
         {
-            Vector3 acceleration = WishVelocity * Time.Delta;
-            Velocity += acceleration;
+            GroundNormal = Vector3.Zero;
+            GroundEntity = null;
+            GroundSurface = null;
+            BaseVelocity = Vector3.Zero;
+        }
+
+        private void Accelerate(Vector3 acceleration, float maxSpeed)
+        {
+            if (!Velocity.IsNearZeroLength)
+            {
+                Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
+                Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
+
+                if (CurrentSpeed + projectedVelocity.Length * Time.Delta > maxSpeed && projectedVelocity.Length > 0f)
+                {
+                    projectedVelocity *= ((maxSpeed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
+                }
+
+                acceleration = projectedVelocity + rejectedVelocity;
+            }
+
+            Velocity += acceleration * Time.Delta;
         }
     }
 }
