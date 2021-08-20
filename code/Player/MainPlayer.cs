@@ -126,7 +126,8 @@ namespace ssl.Player
             }
             if (Input.Pressed(InputButton.Drop))
             {
-                Inventory.DropItem();
+                Item dropped = Inventory.DropItem();
+                dropped.Velocity += Velocity;
             }
             if (Input.Pressed(InputButton.Use))
             {

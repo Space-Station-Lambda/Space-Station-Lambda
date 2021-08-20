@@ -53,11 +53,13 @@ namespace ssl.Modules.Items
             SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
         }
 
-        public void DropItem()
+        public Item DropItem()
         {
+            Item droppedItem = HoldingItem;
             HoldingItem?.OnCarryDrop(player);
             HoldingItem?.ActiveEnd(player, true);
             HoldingSlot.Clear();
+            return droppedItem;
         }
         
         /// <summary>
