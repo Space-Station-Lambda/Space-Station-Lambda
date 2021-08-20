@@ -1,9 +1,10 @@
 RoleSelector
 {
+    font-family: conthrax-sb;
     background-color: black;
     cursor: default;
     position: absolute;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     &.active {
         pointer-events: all;

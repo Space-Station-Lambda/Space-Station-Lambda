@@ -3,10 +3,13 @@
   background-color: whitesmoke;
   font-size: 30px;
   cursor: pointer;
-  height: 300px;
-  width: 150px;
+  height: 100px;
+  width: 500px;
   padding: 4px;
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &.selected {
     background-color: lightblue;
   }
