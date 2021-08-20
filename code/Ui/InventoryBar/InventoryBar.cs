@@ -30,9 +30,16 @@ namespace ssl.Ui.InventoryBar
         {
             if (!player.IsLocalPawn) return;
             Log.Trace("[InventoryBar] Player Added, registering events");
+            
+            player.PlayerSpawned += OnPlayerSpawned;
             player.Inventory.SlotSelected += OnSlotSelected;
             player.Inventory.ItemAdded += OnItemUpdated;
             player.Inventory.ItemRemoved += OnItemUpdated;
+        }
+
+        private void OnPlayerSpawned()
+        {
+            player.Inventory.StartHolding(0);
         }
 
         private void OnItemUpdated(int slotIndex, Slot slot)
