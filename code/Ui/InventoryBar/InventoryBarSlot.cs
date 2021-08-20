@@ -9,6 +9,8 @@ namespace ssl.Ui.InventoryBar
     {
         private static readonly Angles angles = new(30, 180 + 45, 0);
         private static readonly Vector3 pos = new(10, 10, 10);
+        private static readonly Vector3 focusSize = new(5, 5, 5);
+        private const float fieldOfView = 50;
 
         private Scene scene;
         private Light sceneLight;
@@ -44,14 +46,17 @@ namespace ssl.Ui.InventoryBar
                 else
                 {
                     Model model = Model.Load(player.Inventory.Get(SlotNumber).Model);
-                    sceneObject ??= new SceneObject(model, Transform.Zero);
+                    Transform modelTransform = new Transform()
+                        .WithPosition(-model.RenderBounds.Center)
+                        .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
+                        .WithRotation(Rotation.Identity);
+                    sceneObject ??= new SceneObject(model, modelTransform);
                 }
                 
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                     2000, Color.White * 15000f);
             }
-
-            scene ??= Add.Scene(sceneWorld, pos, angles, 50, "itemslot-model");
+            scene ??= Add.Scene(sceneWorld, pos, angles, fieldOfView, "itemslot-model");
         }
     }
 }
