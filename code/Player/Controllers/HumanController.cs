@@ -153,7 +153,15 @@ namespace ssl.Player.Controllers
         private void ProcessInputs()
         {
             WishVelocity = new Vector3(Input.Forward, Input.Left, 0);
-            WishVelocity = EyeRot * WishVelocity.ClampLength(1);
+
+            if (IsGrounded)
+            {
+                WishVelocity = Rotation.From(Rotation.Angles().WithPitch(0)) * WishVelocity.ClampLength(1);
+            }
+            else
+            {
+                WishVelocity = EyeRot * WishVelocity.ClampLength(1);
+            }
 
             IsSprinting = Input.Down(InputButton.Run);
         }
@@ -176,7 +184,9 @@ namespace ssl.Player.Controllers
                 acceleration = WalkAcceleration;
                 speed = WalkSpeed;
             }
+            
             WishVelocity *= acceleration;
+            
             Accelerate(WishVelocity, speed);
         }
 
