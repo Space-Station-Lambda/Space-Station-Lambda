@@ -7,6 +7,8 @@ namespace ssl.Modules.Items
 {
     public partial class PlayerInventory : Inventory
     {
+        private const int MaxInventoryCapacity = 10;
+        
         public event Action<int, Slot> SlotSelected;
 
         public Item HoldingItem => HoldingSlot?.Item;
@@ -18,7 +20,7 @@ namespace ssl.Modules.Items
         {
         }
 
-        public PlayerInventory(MainPlayer player) : base(10)
+        public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
         {
             this.player = player;
         }

@@ -13,7 +13,6 @@ namespace ssl.Player
     public partial class MainPlayer : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
-        private const int MaxInventoryCapacity = 10;
         private const float MaxHealth = 100f;
 
         public MainPlayer()
