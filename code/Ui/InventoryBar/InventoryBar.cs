@@ -39,6 +39,7 @@ namespace ssl.Ui.InventoryBar
 
         private void OnPlayerSpawned()
         {
+            RefreshAllModels();
             player.Inventory.StartHolding(0);
         }
 
