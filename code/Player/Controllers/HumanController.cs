@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Ui.Crosshair;
 
 namespace ssl.Player.Controllers
 {
@@ -17,12 +18,17 @@ namespace ssl.Player.Controllers
         private const float SprintAcceleration = 2000.0f;
         private const float SprintSpeed = 300.0f;
         private const float StepSize = 20.0f;
+        
+        private const float JumpForce = 300.0f;
+        private const float AirSpeed = 30f;
+        private const float AirAcceleration = 500.0f;
 
         private const float GroundAngle = 46.0f;
         private const float MinSpeed = 1.0f;
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
+
 
         public HumanController()
         {
@@ -49,19 +55,28 @@ namespace ssl.Player.Controllers
             //If the player is stuck, fix and stop
             if (unstuck.TestAndFix()) return;
 
-            ApplyGravity();
+            
             UpdateGroundEntity();
 
             ProcessInputs();
 
             if (IsGrounded)
             {
-                ApplyFriction(GroundSurface.Friction * SurfaceFriction);
-                Walk();
-                TryPlayerMoveWithStep();
+                if (Input.Pressed(InputButton.Jump))
+                {
+                    Jump();
+                }
+                else
+                {
+                    ApplyFriction(GroundSurface.Friction * SurfaceFriction);
+                    Walk();
+                    TryPlayerMoveWithStep();
+                }
             }
             else
             {
+                ApplyGravity();
+                Air();
                 TryPlayerMove();
             }
         }
@@ -158,24 +173,22 @@ namespace ssl.Player.Controllers
                 acceleration = WalkAcceleration;
                 speed = WalkSpeed;
             }
-
             WishVelocity *= acceleration;
+            Accelerate(WishVelocity, speed);
+        }
 
-            if (!Velocity.IsNearZeroLength)
-            {
-                Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
-                Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
+        private void Jump()
+        {
+            ClearGroundEntity();
+            Velocity += new Vector3(0, 0, JumpForce);
+            
+            AddEvent("jump");
+        }
 
-                if (CurrentSpeed + projectedVelocity.Length * Time.Delta > speed && projectedVelocity.Length > 0f)
-                {
-                    projectedVelocity *= ((speed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
-                }
-
-                WishVelocity = projectedVelocity + rejectedVelocity;
-                WishVelocity = WishVelocity.WithZ(0);
-            }
-
-            Accelerate();
+        private void Air()
+        {
+            WishVelocity *= AirAcceleration;
+            Accelerate(WishVelocity, AirSpeed);
         }
 
         /// <summary>
@@ -230,17 +243,37 @@ namespace ssl.Player.Controllers
             }
             else
             {
-                GroundNormal = Vector3.Zero;
-                GroundEntity = null;
-                GroundSurface = null;
-                BaseVelocity = Vector3.Zero;
+                ClearGroundEntity();
             }
         }
 
-        private void Accelerate()
+        /// <summary>
+        /// Clear the grounded state of the player.
+        /// </summary>
+        private void ClearGroundEntity()
         {
-            Vector3 acceleration = WishVelocity * Time.Delta;
-            Velocity += acceleration;
+            GroundNormal = Vector3.Zero;
+            GroundEntity = null;
+            GroundSurface = null;
+            BaseVelocity = Vector3.Zero;
+        }
+
+        private void Accelerate(Vector3 acceleration, float maxSpeed)
+        {
+            if (!Velocity.IsNearZeroLength)
+            {
+                Vector3 projectedVelocity = Velocity.Dot(WishVelocity) / Velocity.Length * Velocity.Normal;
+                Vector3 rejectedVelocity = WishVelocity - projectedVelocity;
+
+                if (CurrentSpeed + projectedVelocity.Length * Time.Delta > maxSpeed && projectedVelocity.Length > 0f)
+                {
+                    projectedVelocity *= ((maxSpeed - CurrentSpeed) / projectedVelocity.Length).Clamp(0f, 1f);
+                }
+
+                acceleration = projectedVelocity + rejectedVelocity;
+            }
+
+            Velocity += acceleration * Time.Delta;
         }
     }
 }
