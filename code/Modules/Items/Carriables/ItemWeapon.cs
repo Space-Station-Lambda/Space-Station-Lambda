@@ -112,7 +112,7 @@ namespace ssl.Modules.Items.Carriables
 
             Particles.Create("particles/pistol_muzzleflash.vpcf", this, "muzzle");
 
-            if (!IsLocalPawn)
+            if (IsLocalPawn)
             {
                 _ = new Perlin();
             }
