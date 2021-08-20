@@ -7,6 +7,9 @@ namespace ssl.Ui.InventoryBar
 {
     public class InventoryBar : Panel
     {
+        private const int DefaultSlot = 0;
+
+        
         private InventoryBarSlot[] icons = new InventoryBarSlot[10];
         private int selected;
 
@@ -40,7 +43,7 @@ namespace ssl.Ui.InventoryBar
         private void OnPlayerSpawned()
         {
             RefreshAllModels();
-            player.Inventory.StartHolding(0);
+            player.Inventory.StartHolding(DefaultSlot);
         }
 
         private void OnItemUpdated(int slotIndex, Slot slot)
