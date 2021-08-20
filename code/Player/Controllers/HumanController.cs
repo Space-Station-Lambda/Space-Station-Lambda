@@ -25,6 +25,7 @@ namespace ssl.Player.Controllers
 
         private const float GroundAngle = 46.0f;
         private const float MinSpeed = 1.0f;
+        
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
