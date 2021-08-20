@@ -5,38 +5,40 @@ namespace ssl.Player.Controllers
 {
     public partial class HumanController : BasePlayerController
     {
-        private const float TopGroundDetect = 0.1f;
-        private const float BottomGroundDetect = 2.0f;
+        private const float TopGroundDetect = 0.1F;
+        private const float BottomGroundDetect = 2F;
 
-        private const float BodyHeight = 72.0F;
-        private const float EyeHeight = 64.0F;
-        private const float BodyGirth = 16.0F;
+        private const float BodyHeight = 72F;
+        private const float EyeHeight = 64F;
+        private const float BodyGirth = 16F;
 
-        private const float StopSpeed = 100.0f;
-        private const float WalkAcceleration = 1500.0f;
-        private const float WalkSpeed = 150.0f;
-        private const float SprintAcceleration = 2000.0f;
-        private const float SprintSpeed = 300.0f;
-        private const float StepSize = 20.0f;
+        private const float StopSpeed = 100F;
+        private const float WalkAcceleration = 1500F;
+        private const float WalkSpeed = 150F;
+        private const float SprintAcceleration = 2000F;
+        private const float SprintSpeed = 300F;
+        private const float StepSize = 20F;
         
-        private const float JumpForce = 300.0f;
-        private const float AirSpeed = 30f;
-        private const float AirAcceleration = 500.0f;
+        private const float JumpForce = 300F;
+        private const float AirSpeed = 30F;
+        private const float AirAcceleration = 500F;
 
-        private const float GroundAngle = 46.0f;
-        private const float MinSpeed = 1.0f;
+        private const float MinSpeed = 1F;
         
+        private const float GroundAngle = 46F;
+
+        private const string JumpEventName = "jump";
+
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
-
-
+        
         public HumanController()
         {
             unstuck = new Unstuck(this);
         }
 
-        public Vector3 GravityVector { get; set; } = new(0, 0, -981F);
+        public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
         public float CurrentSpeed => Velocity.Length;
 
         public bool IsGrounded => GroundEntity != null;
@@ -181,9 +183,8 @@ namespace ssl.Player.Controllers
         private void Jump()
         {
             ClearGroundEntity();
-            Velocity += new Vector3(0, 0, JumpForce);
-            
-            AddEvent("jump");
+            Velocity += Vector3.Up * JumpForce;
+            AddEvent(JumpEventName);
         }
 
         private void Air()
