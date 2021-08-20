@@ -21,7 +21,6 @@ namespace ssl.Player
         {
             Vector3 forward = player.EyeRot.Forward;
             TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
-            DebugOverlay.Line(player.EyePos, player.EyePos + forward * SelectionRange);
             Entity result = tr.Entity;
             if (result is ISelectable selectable)
             {
