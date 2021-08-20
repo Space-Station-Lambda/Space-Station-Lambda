@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Gauges;
 using ssl.Modules.Items;
@@ -31,13 +32,14 @@ namespace ssl.Player
             Selector = new PlayerSelector(this);
         }
 
+        public event Action PlayerSpawned;
+
         [Net] public new PlayerInventory Inventory { get; private set; }
 
         /**
          * Handlers
          */
         public GaugeHandler GaugeHandler { get; }
-
         public ClothesHandler ClothesHandler { get; }
         [Net] public RoleHandler RoleHandler { get; }
         public PlayerSelector Selector { get; }
@@ -77,6 +79,7 @@ namespace ssl.Player
             
             RoleHandler.SpawnRole();
             
+            EmitPlayerSpawnedEvent();
             base.Respawn();
         }
 
@@ -178,6 +181,18 @@ namespace ssl.Player
         public void OnAction(MainPlayer player)
         {
             //TODO
+        }
+
+        private void EmitPlayerSpawnedEvent()
+        {
+            PlayerSpawned?.Invoke();
+            OnPlayerSpawned();
+        }
+
+        [ClientRpc]
+        private void OnPlayerSpawned()
+        {
+            PlayerSpawned?.Invoke();
         }
     }
 }

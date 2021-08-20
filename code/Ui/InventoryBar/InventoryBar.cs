@@ -7,6 +7,9 @@ namespace ssl.Ui.InventoryBar
 {
     public class InventoryBar : Panel
     {
+        private const int DefaultSlot = 0;
+
+        
         private InventoryBarSlot[] icons = new InventoryBarSlot[10];
         private int selected;
 
@@ -30,9 +33,17 @@ namespace ssl.Ui.InventoryBar
         {
             if (!player.IsLocalPawn) return;
             Log.Trace("[InventoryBar] Player Added, registering events");
+            
+            player.PlayerSpawned += OnPlayerSpawned;
             player.Inventory.SlotSelected += OnSlotSelected;
             player.Inventory.ItemAdded += OnItemUpdated;
             player.Inventory.ItemRemoved += OnItemUpdated;
+        }
+
+        private void OnPlayerSpawned()
+        {
+            RefreshAllModels();
+            player.Inventory.StartHolding(DefaultSlot);
         }
 
         private void OnItemUpdated(int slotIndex, Slot slot)
