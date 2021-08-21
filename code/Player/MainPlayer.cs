@@ -25,7 +25,7 @@ namespace ssl.Player
         }
 
         public event Action PlayerSpawned;
-        public new PlayerInventory Inventory { get; private set; }
+        [Net] public new PlayerInventory Inventory { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public RoleHandler RoleHandler { get; }
         public PlayerSelector Selector { get; }
@@ -94,15 +94,19 @@ namespace ssl.Player
 
         private void CheckControls()
         {
-            if (IsServer)
-            {
-                ServerControls();
-            }
-
-            if (IsClient)
-            {
-                ClientControls();
-            }
+            if (Input.Pressed(InputButton.Slot1)) Inventory.StartHolding(0);
+            if (Input.Pressed(InputButton.Slot2)) Inventory.StartHolding(1);
+            if (Input.Pressed(InputButton.Slot3)) Inventory.StartHolding(2);
+            if (Input.Pressed(InputButton.Slot4)) Inventory.StartHolding(3);
+            if (Input.Pressed(InputButton.Slot5)) Inventory.StartHolding(4);
+            if (Input.Pressed(InputButton.Slot6)) Inventory.StartHolding(5);
+            if (Input.Pressed(InputButton.Slot7)) Inventory.StartHolding(6);
+            if (Input.Pressed(InputButton.Slot8)) Inventory.StartHolding(7);
+            if (Input.Pressed(InputButton.Slot9)) Inventory.StartHolding(8);
+            if (Input.Pressed(InputButton.Slot0)) Inventory.StartHolding(9);
+            
+            if (IsServer) ServerControls();
+            if (IsClient) ClientControls();
         }
 
         private void ServerControls()

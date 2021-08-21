@@ -14,26 +14,15 @@ namespace ssl.Modules.Items
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
         
-        private MainPlayer player { get; set; }
-        
+        [Net] private MainPlayer player { get; set; }
+
         public PlayerInventory()
         {
         }
-
+        
         public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
         {
             this.player = player;
-        }
-
-        /// <summary>
-        /// When the player change selected slot
-        /// </summary>
-        /// <param name="slotIndex">The current slot selected</param>
-        [CmdShared("set_inventory_holding")]
-        private static void SetInventoryHolding(int slotIndex)
-        {
-            MainPlayer player = Host.IsServer ? (MainPlayer)ConsoleSystem.Caller.Pawn : (MainPlayer)Local.Pawn;
-            player?.Inventory.StartHolding(slotIndex);
         }
 
         public void StartHolding(int slotIndex)

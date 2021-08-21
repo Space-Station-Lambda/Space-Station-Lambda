@@ -35,7 +35,7 @@ namespace ssl
         /// </summary>
         public ItemRegistry ItemRegistry { get; private set; }
         public Hud Hud { get; set; }
-        public RoundManager RoundManager { get; private set; }
+        [Net] public RoundManager RoundManager { get; private set; }
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with

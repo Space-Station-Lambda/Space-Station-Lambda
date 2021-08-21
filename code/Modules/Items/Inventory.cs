@@ -8,7 +8,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Items
 {
-    public partial class Inventory
+    public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
         public event Action<int, Slot> ItemAdded;
         public event Action<int, Slot> ItemRemoved;
@@ -33,7 +33,7 @@ namespace ssl.Modules.Items
             }
         }
 
-        public List<Slot> Slots { get; private set; }
+        [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
@@ -182,15 +182,6 @@ namespace ssl.Modules.Items
         public bool IsPresent(Item item)
         {
             return Slots.Any(slot => item.Equals(slot.Item));
-        }
-
-        private void OnSlotsChanged()
-        {
-            foreach (Slot slot in Slots)
-            {
-                slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
-                slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
-            }
         }
     }
 }

@@ -33,10 +33,10 @@ namespace ssl.Modules.Roles
 
         public Role Role { get; private set; }
 
-        [CmdShared("select_preference_role")]
+        [ServerCmd("select_preference_role")]
         public static void SelectPreference(string roleId, RolePreference preference)
         {
-            MainPlayer player = Host.IsServer ? (MainPlayer)ConsoleSystem.Caller.Pawn : (MainPlayer)Local.Pawn;
+            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
             RoleHandler target = player.RoleHandler;
             target?.SetPreference(Role.All[roleId], preference);
         }
