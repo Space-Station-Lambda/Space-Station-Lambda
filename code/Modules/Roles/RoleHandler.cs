@@ -6,7 +6,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public class RoleHandler : NetworkComponent
+    public partial class RoleHandler : NetworkComponent
     {
         private static Dictionary<RolePreference, int> rolesFactors = new()
         {
@@ -88,6 +88,13 @@ namespace ssl.Modules.Roles
         public void SpawnRole()
         {
             Role?.OnSpawn(player);
+            Text(Role.Name);
         }
+        [ClientRpc]
+        public static void Text(string t)
+        {
+            Event.Run("notification", t);
+        }
+        
     }
 }
