@@ -4,12 +4,12 @@ using ssl.Modules.Items.Carriables;
 
 namespace ssl.Modules.Items
 {
-    public partial class Slot : NetworkedEntityAlwaysTransmitted
+    public class Slot
     {
         internal event Action<Slot> ItemAdded;
         internal event Action<Slot> ItemRemoved;
         
-        [Net] public Item Item { get; private set; }
+        public Item Item { get; private set; }
 
         public bool IsEmpty()
         {
@@ -28,37 +28,12 @@ namespace ssl.Modules.Items
         public void Set(Item item)
         {
             Item = item;
-            item.Owner = this;
-            EmitItemAddedEvent();
+            ItemAdded?.Invoke(this);
         }
 
         public void Clear()
         {
             Item = null;
-            EmitItemRemovedEvent();
-        }
-
-        private void EmitItemAddedEvent()
-        {
-            ItemAdded?.Invoke(this);
-            OnItemAdded();
-        }
-
-        private void EmitItemRemovedEvent()
-        {
-            ItemRemoved?.Invoke(this);
-            OnItemRemoved();
-        }
-
-        [ClientRpc]
-        private void OnItemAdded()
-        {
-            ItemAdded?.Invoke(this);
-        }
-
-        [ClientRpc]
-        private void OnItemRemoved()
-        {
             ItemRemoved?.Invoke(this);
         }
 

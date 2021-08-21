@@ -126,8 +126,8 @@ namespace ssl.Modules.Items.Carriables
         public override void ActiveStart(Entity ent)
         {
             base.ActiveStart(ent);
-
-            if (IsServer)
+            
+            if (Host.IsServer)
             {
                 Activate();
             }
@@ -137,7 +137,7 @@ namespace ssl.Modules.Items.Carriables
         {
             base.ActiveEnd(ent, dropped);
 
-            if (IsServer)
+            if (Host.IsServer)
             {
                 if (dropped)
                 {

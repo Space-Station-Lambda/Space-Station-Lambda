@@ -12,9 +12,9 @@ namespace ssl.Modules.Items
         public event Action<int, Slot> SlotSelected;
 
         public Item HoldingItem => HoldingSlot?.Item;
-        [Net] public Slot HoldingSlot { get; private set; }
+        public Slot HoldingSlot { get; private set; }
         
-        [Net] private MainPlayer player { get; set; }
+        private MainPlayer player { get; set; }
         
         public PlayerInventory()
         {
@@ -29,11 +29,11 @@ namespace ssl.Modules.Items
         /// When the player change selected slot
         /// </summary>
         /// <param name="slotIndex">The current slot selected</param>
-        [ServerCmd("set_inventory_holding")]
+        [CmdShared("set_inventory_holding")]
         private static void SetInventoryHolding(int slotIndex)
         {
-            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            target?.Inventory.StartHolding(slotIndex);
+            MainPlayer player = Host.IsServer ? (MainPlayer)ConsoleSystem.Caller.Pawn : (MainPlayer)Local.Pawn;
+            player?.Inventory.StartHolding(slotIndex);
         }
 
         public void StartHolding(int slotIndex)
@@ -43,15 +43,12 @@ namespace ssl.Modules.Items
         
         public void StartHolding(Slot slot)
         {
-            if (IsClient) SetInventoryHolding(Slots.IndexOf(slot));
-            
             HoldingItem?.ActiveEnd(player, false);
             HoldingSlot = slot;
             HoldingItem?.ActiveStart(player);
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
             player.ActiveChild = HoldingItem;
-            
             SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
         }
 

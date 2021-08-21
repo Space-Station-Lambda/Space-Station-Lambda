@@ -1,4 +1,6 @@
-﻿namespace ssl.Player
+﻿using ssl.Player;
+
+namespace ssl.Modules.Selection
 {
     public interface ISelectable
     {

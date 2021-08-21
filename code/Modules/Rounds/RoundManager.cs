@@ -3,7 +3,7 @@ using Sandbox;
 
 namespace ssl.Modules.Rounds
 {
-    public partial class RoundManager : NetworkedEntityAlwaysTransmitted
+    public partial class RoundManager
     {
         public RoundManager()
         {
@@ -13,9 +13,11 @@ namespace ssl.Modules.Rounds
             }
         }
 
-        public event Action RoundStarted;
+        //public event Action RoundStarted;
 
-        [Net] public BaseRound CurrentRound { get; private set; }
+        public BaseRound CurrentRound { get; private set; }
+        
+        public string RoundName { get; private set;} 
 
         public void ChangeRound(BaseRound round)
         {
@@ -29,25 +31,13 @@ namespace ssl.Modules.Rounds
             CurrentRound = round;
             CurrentRound.Start();
             CurrentRound.RoundEndedEvent += OnRoundEnd;
-            EmitRoundStartedEvent();
+            //RoundStarted?.Invoke();
             Log.Info("Round " + CurrentRound.RoundName + " started");
-        }
-
-        private void EmitRoundStartedEvent()
-        {
-            RoundStarted?.Invoke();
-            OnRoundStarted();
         }
 
         private void OnRoundEnd(BaseRound round)
         {
             ChangeRound(round.Next());
-        }
-
-        [ClientRpc]
-        private void OnRoundStarted()
-        {
-            RoundStarted?.Invoke();
         }
     }
 }
