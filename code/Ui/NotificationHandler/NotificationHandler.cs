@@ -13,15 +13,7 @@ namespace ssl.Ui.NotificationHandler
         {
         }
         
-        [Event( "notification" )]
-        public void DisplayNotification(string message, float duration = DefaultDuration)
-        {
-            Log.Info("[NotificationHandler] Display notif " + message);
-            RemoveNotification();
-            notification = new Notification(message);
-            AddChild(notification);
-            remaining = duration;
-        }
+        
 
         private void RemoveNotification()
         {
@@ -39,6 +31,18 @@ namespace ssl.Ui.NotificationHandler
                 remaining -= Time.Delta;
                 if (remaining < 0) RemoveNotification();
             }
+        }
+        
+         
+        [Event( "ssl.notification" )]
+        public void DisplayNotification(string message)
+        {
+            int duration = 5;
+            Log.Info("[NotificationHandler] Display notif " + message);
+            RemoveNotification();
+            notification = new Notification(message);
+            AddChild(notification);
+            remaining = duration;
         }
     }
 }

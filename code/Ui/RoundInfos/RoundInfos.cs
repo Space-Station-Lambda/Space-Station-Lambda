@@ -36,9 +36,6 @@ namespace ssl.Ui.RoundInfos
             RoundInfosPlayerLine roudInfosPlayerLine = new(player);
             AddChild(roudInfosPlayerLine);
             roundInfosPlayerLines.Add(roudInfosPlayerLine);
-            Log.Info("Added");
-            Log.Info("Add " + player);
-            Log.Info(roundInfosPlayerLines.Count);
         }
 
 
