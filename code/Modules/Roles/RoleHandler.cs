@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Modules.Roles.Types.Jobs;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
@@ -86,13 +84,7 @@ namespace ssl.Modules.Roles
         public void SpawnRole()
         {
             Role?.OnSpawn(player);
-            Text(Role.Name);
         }
-        [ClientRpc]
-        public static void Text(string t)
-        {
-            Event.Run("notification", t);
-        }
-        
+
     }
 }
