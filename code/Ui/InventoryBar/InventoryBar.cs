@@ -54,9 +54,12 @@ namespace ssl.Ui.InventoryBar
         private void OnSlotSelected(int slotIndex, Slot slot)
         {
             icons[selected].SetClass("selected", false);
-            selected = slotIndex;
-            if (slotIndex < 0) selected = 9;
-            if (slotIndex > 9) selected = 0;
+            selected = slotIndex switch
+            {
+                < 0 => 9,
+                > 9 => 0,
+                _ => slotIndex
+            };
             icons[slotIndex].SetClass("selected", true);
             icons[slotIndex].RefreshModel();
         }
@@ -67,6 +70,12 @@ namespace ssl.Ui.InventoryBar
             {
                 icon.RefreshModel();
             }
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            RefreshAllModels();
         }
     }
 }
