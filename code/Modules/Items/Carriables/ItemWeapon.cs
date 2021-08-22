@@ -110,9 +110,9 @@ namespace ssl.Modules.Items.Carriables
         {
             if (!Host.IsClient) return;
 
-            Particles.Create("particles/pistol_muzzleflash.vpcf", this, "muzzle");
+            Particles.Create("particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle");
 
-            if (!IsLocalPawn)
+            if (IsLocalPawn)
             {
                 _ = new Perlin();
             }

@@ -24,11 +24,8 @@ namespace ssl.Modules.Items
             Slots = new List<Slot>(size);
             for (int i = 0; i < size; i++)
             {
-                Slot slot = new()
-                {
-                    Owner = this
-                };
-                
+                Slot slot = new();
+
                 slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
                 slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
                 
@@ -36,7 +33,7 @@ namespace ssl.Modules.Items
             }
         }
 
-        [Net, OnChangedCallback] public List<Slot> Slots { get; private set; }
+        [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
@@ -185,15 +182,6 @@ namespace ssl.Modules.Items
         public bool IsPresent(Item item)
         {
             return Slots.Any(slot => item.Equals(slot.Item));
-        }
-
-        private void OnSlotsChanged()
-        {
-            foreach (Slot slot in Slots)
-            {
-                slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
-                slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
-            }
         }
     }
 }

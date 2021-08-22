@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public partial class RoleHandler : NetworkComponent
+    public class RoleHandler
     {
         private static Dictionary<RolePreference, int> rolesFactors = new()
         {
@@ -30,12 +31,13 @@ namespace ssl.Modules.Roles
             }
         }
 
-        [Net] public Role Role { get; private set; }
+        public Role Role { get; private set; }
 
         [ServerCmd("select_preference_role")]
         public static void SelectPreference(string roleId, RolePreference preference)
         {
-            RoleHandler target = ((MainPlayer)ConsoleSystem.Caller.Pawn).RoleHandler;
+            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            RoleHandler target = player.RoleHandler;
             target?.SetPreference(Role.All[roleId], preference);
         }
 
@@ -46,11 +48,7 @@ namespace ssl.Modules.Roles
 
         public Dictionary<Role, float> GetPreferencesNormalised()
         {
-            int total = 0;
-            foreach (RolePreference rolePreferencesValue in rolePreferences.Values)
-            {
-                total += rolesFactors[rolePreferencesValue];
-            }
+            int total = rolePreferences.Values.Sum(rolePreferencesValue => rolesFactors[rolePreferencesValue]);
 
             Dictionary<Role, float> normalisedPreferences = new();
 

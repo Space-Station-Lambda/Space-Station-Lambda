@@ -14,7 +14,7 @@ namespace ssl.Modules.Items.Data
 
         public override ItemClothes Create()
         {
-            return new(this);
+            return new ItemClothes(this);
         }
     }
 }

@@ -3,7 +3,6 @@ using Sandbox.UI;
 
 namespace ssl.Ui
 {
-    [Library]
     public partial class Hud : HudEntity<RootPanel>
     {
         public Hud()

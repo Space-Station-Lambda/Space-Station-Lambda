@@ -17,7 +17,6 @@ namespace ssl.Modules.Rounds
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
-        [Net] public string TimeLeftFormatted { get; set; }
         public event Action<BaseRound> RoundEndedEvent;
         
         public RoleDistributor RoleDistributor { get; }
@@ -49,7 +48,6 @@ namespace ssl.Modules.Rounds
             if (Host.IsServer && RoundDuration > 0)
             {
                 RoundEndTime = Time.Now + RoundDuration;
-                TimeLeftFormatted = ((int)TimeLeft).ToString(CultureInfo.InvariantCulture);
                 InitPlayers();
             }
 
@@ -119,10 +117,6 @@ namespace ssl.Modules.Rounds
                     RoundEndTime = 0f;
                     OnTimeUp();
                 }
-                else
-                {
-                    TimeLeftFormatted = ((int)TimeLeft).ToString(CultureInfo.InvariantCulture);
-                }
             }
         }
 
@@ -159,8 +153,7 @@ namespace ssl.Modules.Rounds
         public override string ToString()
         {
             return $"Round Name: {RoundName}\n" +
-                   $"Round Duration: {RoundDuration}\n" +
-                   $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
+                   $"Round Duration: {RoundDuration}\n";
         }
     }
 }

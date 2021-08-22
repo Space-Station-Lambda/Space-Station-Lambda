@@ -9,7 +9,7 @@ namespace ssl.Modules.Items
         internal event Action<Slot> ItemAdded;
         internal event Action<Slot> ItemRemoved;
         
-        [Net] public Item Item { get; private set; }
+        [Net, Predicted] public Item Item { get; private set; }
 
         public bool IsEmpty()
         {
@@ -28,43 +28,25 @@ namespace ssl.Modules.Items
         public void Set(Item item)
         {
             Item = item;
-            item.Owner = this;
-            EmitItemAddedEvent();
+            ItemAdded?.Invoke(this);
+            if (IsServer) RpcSet(item);
         }
 
         public void Clear()
         {
             Item = null;
-            EmitItemRemovedEvent();
-        }
-
-        private void EmitItemAddedEvent()
-        {
-            ItemAdded?.Invoke(this);
-            OnItemAdded();
-        }
-
-        private void EmitItemRemovedEvent()
-        {
-            ItemRemoved?.Invoke(this);
-            OnItemRemoved();
-        }
-
-        [ClientRpc]
-        private void OnItemAdded()
-        {
-            ItemAdded?.Invoke(this);
-        }
-
-        [ClientRpc]
-        private void OnItemRemoved()
-        {
             ItemRemoved?.Invoke(this);
         }
 
         public override string ToString()
         {
             return IsEmpty() ? "-" : Item.ToString();
+        }
+
+        [ClientRpc]
+        private void RpcSet(Item item)
+        {
+            Set(item);
         }
     }
 }

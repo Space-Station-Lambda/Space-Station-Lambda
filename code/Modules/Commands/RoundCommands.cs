@@ -25,7 +25,7 @@ namespace ssl.Modules.Commands
         [AdminCmd("rn_time")]
         public static void RoundGetTimer()
         {
-            Log.Info(Gamemode.Instance.RoundManager.CurrentRound.TimeLeftFormatted);
+            Log.Info(Gamemode.Instance.RoundManager.CurrentRound.TimeLeft);
         }
     }
 }

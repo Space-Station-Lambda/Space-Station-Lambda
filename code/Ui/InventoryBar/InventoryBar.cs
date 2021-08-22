@@ -54,31 +54,14 @@ namespace ssl.Ui.InventoryBar
         private void OnSlotSelected(int slotIndex, Slot slot)
         {
             icons[selected].SetClass("selected", false);
-            selected = slotIndex;
-            if (slotIndex < 0) selected = 9;
-            if (slotIndex > 9) selected = 0;
+            selected = slotIndex switch
+            {
+                < 0 => 9,
+                > 9 => 0,
+                _ => slotIndex
+            };
             icons[slotIndex].SetClass("selected", true);
             icons[slotIndex].RefreshModel();
-        }
-
-        [Event.BuildInput]
-        private void ProcessClientInput(InputBuilder input)
-        {
-            PlayerInventory inventory = player.Inventory;
-            if (input.Pressed(InputButton.Slot1)) inventory.StartHolding(0);
-            if (input.Pressed(InputButton.Slot2)) inventory.StartHolding(1);
-            if (input.Pressed(InputButton.Slot3)) inventory.StartHolding(2);
-            if (input.Pressed(InputButton.Slot4)) inventory.StartHolding(3);
-            if (input.Pressed(InputButton.Slot5)) inventory.StartHolding(4);
-            if (input.Pressed(InputButton.Slot6)) inventory.StartHolding(5);
-            if (input.Pressed(InputButton.Slot7)) inventory.StartHolding(6);
-            if (input.Pressed(InputButton.Slot8)) inventory.StartHolding(7);
-            if (input.Pressed(InputButton.Slot9)) inventory.StartHolding(8);
-            if (input.Pressed(InputButton.Slot0)) inventory.StartHolding(9);
-            if (input.MouseWheel != 0) inventory.StartHolding(
-                selected + input.MouseWheel < 0 ? 
-                inventory.SlotsCount - 1: 
-                (selected + input.MouseWheel) % inventory.SlotsCount);
         }
 
         private void RefreshAllModels()
@@ -87,6 +70,12 @@ namespace ssl.Ui.InventoryBar
             {
                 icon.RefreshModel();
             }
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            RefreshAllModels();
         }
     }
 }

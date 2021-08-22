@@ -13,7 +13,7 @@ namespace ssl.Modules.Items.Data
 
         public override ItemFood Create()
         {
-            return new(this);
+            return new ItemFood(this);
         }
     }
 }

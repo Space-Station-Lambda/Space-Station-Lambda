@@ -7,31 +7,22 @@ namespace ssl.Modules.Items
 {
     public partial class PlayerInventory : Inventory
     {
+        private const int MaxInventoryCapacity = 10;
+        
         public event Action<int, Slot> SlotSelected;
 
         public Item HoldingItem => HoldingSlot?.Item;
-        [Net] public Slot HoldingSlot { get; private set; }
+        public Slot HoldingSlot { get; private set; }
         
         [Net] private MainPlayer player { get; set; }
-        
+
         public PlayerInventory()
         {
         }
-
-        public PlayerInventory(MainPlayer player) : base(10)
+        
+        public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
         {
             this.player = player;
-        }
-
-        /// <summary>
-        /// When the player change selected slot
-        /// </summary>
-        /// <param name="slotIndex">The current slot selected</param>
-        [ServerCmd("set_inventory_holding")]
-        private static void SetInventoryHolding(int slotIndex)
-        {
-            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            target?.Inventory.StartHolding(slotIndex);
         }
 
         public void StartHolding(int slotIndex)
@@ -41,23 +32,22 @@ namespace ssl.Modules.Items
         
         public void StartHolding(Slot slot)
         {
-            if (IsClient) SetInventoryHolding(Slots.IndexOf(slot));
-            
             HoldingItem?.ActiveEnd(player, false);
             HoldingSlot = slot;
             HoldingItem?.ActiveStart(player);
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
-            player.ActiveChild = HoldingItem;
-            
+            if(null != HoldingItem) player.ActiveChild = HoldingItem;
             SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
         }
 
-        public void DropItem()
+        public Item DropItem()
         {
+            Item droppedItem = HoldingItem;
             HoldingItem?.OnCarryDrop(player);
             HoldingItem?.ActiveEnd(player, true);
             HoldingSlot.Clear();
+            return droppedItem;
         }
         
         /// <summary>
