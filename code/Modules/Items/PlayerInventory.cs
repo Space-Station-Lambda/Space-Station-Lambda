@@ -37,7 +37,7 @@ namespace ssl.Modules.Items
             HoldingItem?.ActiveStart(player);
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
-            player.ActiveChild = HoldingItem;
+            if(null != HoldingItem) player.ActiveChild = HoldingItem;
             SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
         }
 
