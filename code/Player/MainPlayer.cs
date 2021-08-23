@@ -1,10 +1,10 @@
 ﻿using System;
 using Sandbox;
 using ssl.Modules.Clothes;
-using ssl.Modules.Gauges;
 using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Roles;
+using ssl.Modules.Selection;
 using ssl.Player.Controllers;
 using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
@@ -17,30 +17,17 @@ namespace ssl.Player
 
         public MainPlayer()
         {
-            if (Host.IsServer)
-            {
-                Inventory = new PlayerInventory(this)
-                {
-                    Owner = this
-                };
-                GaugeHandler = new GaugeHandler();
-                ClothesHandler = new ClothesHandler(this);
-                RoleHandler = new RoleHandler(this);
-                Health = MaxHealth;
-            }
+            Health = MaxHealth;
+            Inventory = new PlayerInventory(this);
+            ClothesHandler = new ClothesHandler(this);
+            RoleHandler = new RoleHandler(this);
             Selector = new PlayerSelector(this);
         }
 
         public event Action PlayerSpawned;
-
         [Net] public new PlayerInventory Inventory { get; private set; }
-
-        /**
-         * Handlers
-         */
-        public GaugeHandler GaugeHandler { get; }
         public ClothesHandler ClothesHandler { get; }
-        [Net] public RoleHandler RoleHandler { get; }
+        public RoleHandler RoleHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
@@ -78,7 +65,8 @@ namespace ssl.Player
             
             RoleHandler.SpawnRole();
             
-            EmitPlayerSpawnedEvent();
+            PlayerSpawned?.Invoke();
+            
             base.Respawn();
         }
 
@@ -106,15 +94,19 @@ namespace ssl.Player
 
         private void CheckControls()
         {
-            if (IsServer)
-            {
-                ServerControls();
-            }
-
-            if (IsClient)
-            {
-                ClientControls();
-            }
+            if (Input.Pressed(InputButton.Slot1)) Inventory.StartHolding(0);
+            if (Input.Pressed(InputButton.Slot2)) Inventory.StartHolding(1);
+            if (Input.Pressed(InputButton.Slot3)) Inventory.StartHolding(2);
+            if (Input.Pressed(InputButton.Slot4)) Inventory.StartHolding(3);
+            if (Input.Pressed(InputButton.Slot5)) Inventory.StartHolding(4);
+            if (Input.Pressed(InputButton.Slot6)) Inventory.StartHolding(5);
+            if (Input.Pressed(InputButton.Slot7)) Inventory.StartHolding(6);
+            if (Input.Pressed(InputButton.Slot8)) Inventory.StartHolding(7);
+            if (Input.Pressed(InputButton.Slot9)) Inventory.StartHolding(8);
+            if (Input.Pressed(InputButton.Slot0)) Inventory.StartHolding(9);
+            
+            if (IsServer) ServerControls();
+            if (IsClient) ClientControls();
         }
 
         private void ServerControls()
@@ -143,7 +135,7 @@ namespace ssl.Player
         {
             ConsoleSystem.Caller.Pawn.TakeDamage(new DamageInfo()
             {
-                Damage = 100
+                Damage = MaxHealth
             });
         }
 
@@ -181,18 +173,6 @@ namespace ssl.Player
         public void OnAction(MainPlayer player)
         {
             //TODO
-        }
-
-        private void EmitPlayerSpawnedEvent()
-        {
-            PlayerSpawned?.Invoke();
-            OnPlayerSpawned();
-        }
-
-        [ClientRpc]
-        private void OnPlayerSpawned()
-        {
-            PlayerSpawned?.Invoke();
         }
     }
 }

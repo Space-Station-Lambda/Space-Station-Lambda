@@ -1,6 +1,8 @@
 ﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using ssl.Modules.Items;
+using ssl.Modules.Items.Carriables;
 using ssl.Player;
 
 namespace ssl.Ui.InventoryBar
@@ -16,7 +18,8 @@ namespace ssl.Ui.InventoryBar
         private Light sceneLight;
         private SceneObject sceneObject;
         private SceneWorld sceneWorld;
-
+        private Item currentItem;
+        
         public InventoryBarSlot(int slotNumber, string name, Panel parent)
         {
             StyleSheet.Load("Ui/InventoryBar/InventoryBarSlot.scss");
@@ -36,16 +39,22 @@ namespace ssl.Ui.InventoryBar
             MainPlayer player = (MainPlayer)Local.Client.Pawn;
 
             sceneWorld ??= new SceneWorld();
+            
+            Item item = player.Inventory.Get(SlotNumber);
+
+            //Return if the old item is the same
+            if (null != item && item.Equals(currentItem)) return;
+            
             using (SceneWorld.SetCurrent(sceneWorld))
             {
-                if (player.Inventory.IsSlotEmpty(SlotNumber))
+                if (null == item)
                 {
                     sceneObject?.Delete();
                     sceneObject = null;
                 }
                 else
                 {
-                    Model model = Model.Load(player.Inventory.Get(SlotNumber).Model);
+                    Model model = Model.Load(item.Model);
                     Transform modelTransform = new Transform()
                         .WithPosition(-model.RenderBounds.Center)
                         .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))

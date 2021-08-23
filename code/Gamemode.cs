@@ -20,11 +20,11 @@ namespace ssl
         public Gamemode()
         {
             Instance = this; //Singleton DP
+            ItemRegistry = new ItemRegistry();
             if (IsServer) StartServer();
             else if (IsClient) StartClient();
         }
-
-        public event Action RoundManagerCreated;
+        
         public event Action<MainPlayer> PlayerAddedEvent;
         public event Action<MainPlayer> PlayerRemovedEvent;
         
@@ -34,9 +34,8 @@ namespace ssl
         /// Items in the gamemode
         /// </summary>
         public ItemRegistry ItemRegistry { get; private set; }
-
-        [Net] public Hud Hud { get; set; }
-        [Net, OnChangedCallback] public RoundManager RoundManager { get; private set; }
+        public Hud Hud { get; set; }
+        [Net] public RoundManager RoundManager { get; private set; }
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with
@@ -55,9 +54,7 @@ namespace ssl
             Log.Info("Launching ssl Server...");
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
-            RoundManagerCreated?.Invoke();
             Log.Info("Create HUD...");
-            ItemRegistry = new ItemRegistry();
             Hud = new Hud();
         }
 
@@ -67,7 +64,6 @@ namespace ssl
         private void StartClient()
         {
             Log.Info("Launching ssl Client...");
-            ItemRegistry = new ItemRegistry();
         }
 
         /// <summary>
@@ -138,10 +134,6 @@ namespace ssl
         {
             if (IsServer) RoundManager.CurrentRound?.OnTick();
         }
-
-        private void OnRoundManagerChanged()
-        {
-            RoundManagerCreated?.Invoke();
-        }
+        
     }
 }

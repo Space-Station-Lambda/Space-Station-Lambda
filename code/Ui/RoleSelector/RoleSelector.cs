@@ -28,12 +28,8 @@ namespace ssl.Ui.RoleSelector
             rolesSelected.Add(new RoleSelectorSlot(new Traitor(), this), false);
             foreach (RoleSelectorSlot roleIcon in rolesSelected.Keys)
             {
-                if (rolesSelected[roleIcon]) roleIcon.Select();
                 roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
-                ConsoleSystem.Run("select_preference_role", roleIcon.Role.Id, RolePreference.Never);
             }
-            
-            Gamemode.Instance.RoundManagerCreated += OnRoundManagerCreated;
         }
 
         /// <summary>
@@ -65,7 +61,19 @@ namespace ssl.Ui.RoleSelector
         private void OnRoundManagerCreated()
         {
             Log.Trace("[RoleSelector] Round created");
-            Gamemode.Instance.RoundManager.RoundStarted += OnRoundStarted;
+            //Gamemode.Instance.RoundManager.RoundStarted += OnRoundStarted;
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+            
+            BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
+            if (null != currentRound)
+            {
+                SetClass("active", currentRound is PreRound);
+                SetClass("hidden", currentRound is not PreRound);
+            }
         }
     }
 }

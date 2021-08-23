@@ -1,8 +1,7 @@
-﻿using System.Diagnostics;
-using Sandbox;
-using Trace = Sandbox.Trace;
+﻿using Sandbox;
+using ssl.Player;
 
-namespace ssl.Player
+namespace ssl.Modules.Selection
 {
     public class PlayerSelector
     {
