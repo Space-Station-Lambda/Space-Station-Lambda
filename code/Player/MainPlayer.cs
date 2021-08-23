@@ -64,8 +64,10 @@ namespace ssl.Player
             Inventory.Clear();
             
             RoleHandler.SpawnRole();
-            
+
             PlayerSpawned?.Invoke();
+            
+            SendTextNotification("You are " + RoleHandler.Role.Name);
             
             base.Respawn();
         }
@@ -173,6 +175,13 @@ namespace ssl.Player
         public void OnAction(MainPlayer player)
         {
             //TODO
+        }
+
+        [ClientRpc]
+        private void SendTextNotification(string txt)
+        {
+            Log.Info("Trying to start event");
+            Event.Run("ssl.notification", txt);
         }
     }
 }

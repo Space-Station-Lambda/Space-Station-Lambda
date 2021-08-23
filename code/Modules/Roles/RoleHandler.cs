@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Modules.Roles.Types.Jobs;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
@@ -87,5 +85,6 @@ namespace ssl.Modules.Roles
         {
             Role?.OnSpawn(player);
         }
+
     }
 }

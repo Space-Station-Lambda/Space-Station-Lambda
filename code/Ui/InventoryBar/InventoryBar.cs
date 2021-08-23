@@ -25,19 +25,12 @@ namespace ssl.Ui.InventoryBar
                 if (i == 9) name = "0";
                 icons[i] = new InventoryBarSlot(i, name, this);
             }
-
-            Gamemode.Instance.PlayerAddedEvent += OnPlayerAdded;
         }
 
         private void OnPlayerAdded(MainPlayer player)
         {
             if (!player.IsLocalPawn) return;
             Log.Trace("[InventoryBar] Player Added, registering events");
-            
-            player.PlayerSpawned += OnPlayerSpawned;
-            player.Inventory.SlotSelected += OnSlotSelected;
-            player.Inventory.ItemAdded += OnItemUpdated;
-            player.Inventory.ItemRemoved += OnItemUpdated;
         }
 
         private void OnPlayerSpawned()
