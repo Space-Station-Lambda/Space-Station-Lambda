@@ -86,7 +86,7 @@ namespace ssl.Modules.Items.Carriables
             //TODO
         }
 
-        public void OnAction(MainPlayer player)
+        public void OnAction(MainPlayer player, Item item)
         {
             player.Inventory.Add(this);
             ActiveEnd(player, false);

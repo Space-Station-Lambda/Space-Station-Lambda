@@ -1,4 +1,7 @@
 ﻿using Sandbox;
+using ssl.Modules.Items;
+using ssl.Modules.Items.Carriables;
+using ssl.Modules.Props.Types;
 using ssl.Player;
 
 namespace ssl.Modules.Inputs
@@ -36,8 +39,25 @@ namespace ssl.Modules.Inputs
         public void CheckServercontrols()
         {
             if (Input.Pressed(InputButton.Reload)) player.Respawn();
-            if (Input.Pressed(InputButton.Drop)) player.Inventory.DropItem();
-            if (Input.Pressed(InputButton.Use)) player.Selector.UseSelected();
+            if (Input.Pressed(InputButton.Drop))
+            {
+                Item dropped = player.Inventory.DropItem();
+                dropped.Velocity += player.Velocity;
+            }
+            if (Input.Pressed(InputButton.Flashlight))
+            {
+                Stain ent = new()
+                {
+                    Position = player.EyePos + player.EyeRot.Forward * 50,
+                    Rotation = player.EyeRot,
+                    Velocity = player.EyeRot.Forward * 100
+                };
+            }
+            if (Input.Pressed(InputButton.Use))
+            {
+                player.Selector.UseSelected();
+            }
+        
         }
     }
 }

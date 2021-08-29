@@ -43,7 +43,7 @@ namespace ssl.Modules.Selection
 
         public void UseSelected()
         {
-            selected?.OnAction(player);
+            selected?.OnAction(player, player.Inventory.HoldingItem);
         }
 
         public void StartSelection(ISelectable selectable)
