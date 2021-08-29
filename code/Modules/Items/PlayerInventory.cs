@@ -47,6 +47,7 @@ namespace ssl.Modules.Items
             HoldingItem?.OnCarryDrop(player);
             HoldingItem?.ActiveEnd(player, true);
             HoldingSlot.Clear();
+            droppedItem.Velocity += player.Velocity;
             return droppedItem;
         }
         

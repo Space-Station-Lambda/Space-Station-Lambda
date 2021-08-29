@@ -1,6 +1,7 @@
 ﻿using System;
 using Sandbox;
 using ssl.Modules.Clothes;
+using ssl.Modules.Inputs;
 using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Roles;
@@ -22,12 +23,15 @@ namespace ssl.Player
             ClothesHandler = new ClothesHandler(this);
             RoleHandler = new RoleHandler(this);
             Selector = new PlayerSelector(this);
+            InputHandler = new InputHandler(this);
         }
 
         public event Action PlayerSpawned;
         [Net] public new PlayerInventory Inventory { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public RoleHandler RoleHandler { get; }
+        
+        public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
@@ -39,9 +43,8 @@ namespace ssl.Player
         {
             PawnController controller = GetActiveController();
             controller?.Simulate(client, this, GetActiveAnimator());
-
             SimulateActiveChild(client, ActiveChild);
-            CheckControls(); 
+            InputHandler.CheckControls(); 
             Selector?.CheckSelection();
         }
 
@@ -92,44 +95,6 @@ namespace ssl.Player
             RoleHandler.Role?.OnKilled(this);
             EnableRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
-        }
-
-        private void CheckControls()
-        {
-            if (Input.Pressed(InputButton.Slot1)) Inventory.StartHolding(0);
-            if (Input.Pressed(InputButton.Slot2)) Inventory.StartHolding(1);
-            if (Input.Pressed(InputButton.Slot3)) Inventory.StartHolding(2);
-            if (Input.Pressed(InputButton.Slot4)) Inventory.StartHolding(3);
-            if (Input.Pressed(InputButton.Slot5)) Inventory.StartHolding(4);
-            if (Input.Pressed(InputButton.Slot6)) Inventory.StartHolding(5);
-            if (Input.Pressed(InputButton.Slot7)) Inventory.StartHolding(6);
-            if (Input.Pressed(InputButton.Slot8)) Inventory.StartHolding(7);
-            if (Input.Pressed(InputButton.Slot9)) Inventory.StartHolding(8);
-            if (Input.Pressed(InputButton.Slot0)) Inventory.StartHolding(9);
-            
-            if (IsServer) ServerControls();
-            if (IsClient) ClientControls();
-        }
-
-        private void ServerControls()
-        {
-            if (Input.Pressed(InputButton.Reload))
-            {
-                Respawn();
-            }
-            if (Input.Pressed(InputButton.Drop))
-            {
-                Item dropped = Inventory.DropItem();
-                dropped.Velocity += Velocity;
-            }
-            if (Input.Pressed(InputButton.Use))
-            {
-                Selector.UseSelected();
-            }
-        }
-
-        private void ClientControls()
-        {
         }
 
         [ServerCmd("kill_player")]
