@@ -26,6 +26,7 @@ namespace ssl.Player.Controllers
         private const float MinSpeed = 1F;
         
         private const float GroundAngle = 46F;
+        private const float StickGroundStartMultiplier = 2F;
 
         private const string JumpEventName = "jump";
 
@@ -74,6 +75,7 @@ namespace ssl.Player.Controllers
                     ApplyFriction(GroundSurface.Friction * SurfaceFriction);
                     Walk();
                     TryPlayerMoveWithStep();
+                    StickToGround();
                 }
             }
             else
@@ -202,6 +204,29 @@ namespace ssl.Player.Controllers
         {
             WishVelocity *= AirAcceleration;
             Accelerate(WishVelocity, AirSpeed);
+        }
+        
+        /// <summary>
+        /// Try to keep a walking player on the ground when running down slopes
+        /// </summary>
+        private void StickToGround()
+        {
+            Vector3 start = Position + Vector3.Up * StickGroundStartMultiplier;
+            Vector3 end = Position + Vector3.Down * StepSize;
+
+            // See how far up we can go without getting stuck
+            TraceResult trace = TraceBBox(Position, start);
+            start = trace.EndPos;
+
+            // Now trace down from a known safe position
+            trace = TraceBBox(start, end);
+
+            if (trace.Fraction <= 0) return;
+            if (trace.Fraction >= 1) return;
+            if (trace.StartedSolid) return;
+            if (Vector3.GetAngle(Vector3.Up, trace.Normal) > GroundAngle) return;
+
+            Position = trace.EndPos;
         }
 
         /// <summary>
