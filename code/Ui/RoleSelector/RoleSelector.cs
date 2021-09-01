@@ -50,20 +50,6 @@ namespace ssl.Ui.RoleSelector
             }
         }
 
-        private void OnRoundStarted()
-        {
-            Log.Trace("[RoleSelector] Round started");
-            BaseRound currentRound = Gamemode.Instance.RoundManager.CurrentRound;
-            SetClass("active", currentRound is PreRound);
-            SetClass("hidden", currentRound is not PreRound);
-        }
-
-        private void OnRoundManagerCreated()
-        {
-            Log.Trace("[RoleSelector] Round created");
-            //Gamemode.Instance.RoundManager.RoundStarted += OnRoundStarted;
-        }
-
         public override void Tick()
         {
             base.Tick();
