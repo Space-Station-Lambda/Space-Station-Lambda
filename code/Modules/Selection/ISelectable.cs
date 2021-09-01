@@ -1,4 +1,5 @@
-﻿using ssl.Player;
+﻿using ssl.Modules.Items.Carriables;
+using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
@@ -19,10 +20,11 @@ namespace ssl.Modules.Selection
         /// </summary>
         /// <param name="player">The player who select.</param>
         public void OnSelect(MainPlayer player);
+
         /// <summary>
         /// Trigger when the action is requested by the player
         /// </summary>
         /// <param name="player">The player who perform the action.</param>
-        public void OnAction(MainPlayer player);
+        public void OnAction(MainPlayer player, Item item);
     }
 }
