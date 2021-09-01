@@ -39,7 +39,7 @@ namespace ssl.Player
             SetAnimInt(AnimKeyHoldType, (int) holdType);
             offset = holdType switch
             {
-                HoldType.None => NoneOffset,
+                HoldType.None => offset,
                 HoldType.Pistol => PistolOffset,
                 HoldType.Hand => HandOffset,
                 _ => throw new ArgumentOutOfRangeException(nameof(holdType), holdType, null)
