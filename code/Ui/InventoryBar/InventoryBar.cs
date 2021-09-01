@@ -12,7 +12,6 @@ namespace ssl.Ui.InventoryBar
         
         private InventoryBarSlot[] icons = new InventoryBarSlot[10];
         private int selected;
-
         private MainPlayer player => (MainPlayer)Local.Pawn;
         
         public InventoryBar()
@@ -27,34 +26,21 @@ namespace ssl.Ui.InventoryBar
             }
         }
 
-        private void OnPlayerAdded(MainPlayer player)
+        private void OnSlotSelected(int newSelected)
         {
-            if (!player.IsLocalPawn) return;
-            Log.Trace("[InventoryBar] Player Added, registering events");
-        }
-
-        private void OnPlayerSpawned()
-        {
-            RefreshAllModels();
-            player.Inventory.StartHolding(DefaultSlot);
-        }
-
-        private void OnItemUpdated(int slotIndex, Slot slot)
-        {
-            icons[slotIndex].RefreshModel();
-        }
-
-        private void OnSlotSelected(int slotIndex, Slot slot)
-        {
-            icons[selected].SetClass("selected", false);
-            selected = slotIndex switch
+            if (newSelected == selected) return;
+            //If the previous was in range
+            if (0 <= selected && icons.Length > selected)
             {
-                < 0 => 9,
-                > 9 => 0,
-                _ => slotIndex
-            };
-            icons[slotIndex].SetClass("selected", true);
-            icons[slotIndex].RefreshModel();
+                icons[selected].SetClass("selected", false);
+            }
+            //If the new is in range
+            if (0 <= newSelected && icons.Length > newSelected)
+            {
+                icons[newSelected].SetClass("selected", true);
+                icons[newSelected].RefreshModel();
+            }
+            selected = newSelected;
         }
 
         private void RefreshAllModels()
@@ -68,6 +54,7 @@ namespace ssl.Ui.InventoryBar
         public override void Tick()
         {
             base.Tick();
+            OnSlotSelected(player.Inventory.HoldingSlotNumber);
             RefreshAllModels();
         }
     }
