@@ -28,9 +28,6 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        //TODO Replace with the NeckCamera 
-        public override string ViewModelPath => "weapons/rust_flashlight/v_rust_flashlight.vmdl";
-
         private static Vector3 LightOffset => Vector3.Forward * 10;
         [Net, Local, Predicted] private bool LightEnabled { get; set; } = true;
 
@@ -44,16 +41,6 @@ namespace ssl.Modules.Items.Carriables
             worldLight.SetParent(this, SlideAttachementName, new Transform(LightOffset));
             worldLight.EnableHideInFirstPerson = true;
             worldLight.Enabled = false;
-        }
-
-        public override void CreateViewModel()
-        {
-            base.CreateViewModel();
-
-            viewLight = CreateLight();
-            viewLight.SetParent(ViewModelEntity, LightAttachementName, new Transform(LightOffset));
-            viewLight.EnableViewmodelRendering = true;
-            viewLight.Enabled = LightEnabled;
         }
 
         private SpotLightEntity CreateLight()
