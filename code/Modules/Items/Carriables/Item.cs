@@ -21,11 +21,13 @@ namespace ssl.Modules.Items.Carriables
             Id = data.Id;
             Name = data.Name;
             Model = data.Model;
+            HoldType = data.HoldType;
         }
 
         [Net] public string Id { get; set; }
         [Net] public string Name { get; set; }
         [Net] public string Model { get; set; }
+        [Net] public HoldType HoldType { get; set; }
 
         /// <summary>
         /// Called when a player use an Item.
@@ -33,7 +35,6 @@ namespace ssl.Modules.Items.Carriables
         public virtual void UseOn(MainPlayer player)
         {
         }
-
 
         /// <summary>
         /// Called each player's tick when the Item is considered as the player's active child.
