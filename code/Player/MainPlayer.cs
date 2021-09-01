@@ -32,7 +32,7 @@ namespace ssl.Player
         [Net] public new PlayerInventory Inventory { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public RoleHandler RoleHandler { get; }
-        [Net] public StatusHandler StatusHandler { get; private set; }
+        public StatusHandler StatusHandler { get; }
         public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
