@@ -10,8 +10,6 @@ namespace ssl.Modules.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
-        public event Action<int, Slot> ItemAdded;
-        public event Action<int, Slot> ItemRemoved;
 
         private readonly ItemFilter itemFilter = new();
 
@@ -26,9 +24,6 @@ namespace ssl.Modules.Items
             {
                 Slot slot = new();
 
-                slot.ItemAdded += s => ItemAdded?.Invoke(Slots.IndexOf(s), s);
-                slot.ItemRemoved += s => ItemRemoved?.Invoke(Slots.IndexOf(s), s);
-                
                 Slots.Add(slot);
             }
         }
@@ -75,7 +70,6 @@ namespace ssl.Modules.Items
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 slotDestination?.Set(item);
-                ItemAdded?.Invoke(Slots.IndexOf(slotDestination), slotDestination);
             }
             else
             {
@@ -123,7 +117,6 @@ namespace ssl.Modules.Items
             {
                 removedItem = Slots[position].Item;
                 Slots[position].Clear();
-                ItemRemoved?.Invoke(position, Slots[position]);
             }
 
             return removedItem;
