@@ -6,6 +6,7 @@ using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
+using ssl.Modules.Statuses;
 using ssl.Player.Controllers;
 using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
@@ -22,6 +23,7 @@ namespace ssl.Player
             Inventory = new PlayerInventory(this);
             ClothesHandler = new ClothesHandler(this);
             RoleHandler = new RoleHandler(this);
+            StatusHandler = new StatusHandler(this);
             Selector = new PlayerSelector(this);
             InputHandler = new InputHandler(this);
         }
@@ -30,7 +32,7 @@ namespace ssl.Player
         [Net] public new PlayerInventory Inventory { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public RoleHandler RoleHandler { get; }
-        
+        [Net] public StatusHandler StatusHandler { get; }
         public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
@@ -43,6 +45,7 @@ namespace ssl.Player
         {
             PawnController controller = GetActiveController();
             controller?.Simulate(client, this, GetActiveAnimator());
+            StatusHandler.Tick();
             SimulateActiveChild(client, ActiveChild);
             InputHandler.CheckControls(); 
             Selector?.CheckSelection();
