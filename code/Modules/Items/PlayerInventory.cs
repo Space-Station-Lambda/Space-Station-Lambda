@@ -11,7 +11,7 @@ namespace ssl.Modules.Items
 
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
-        
+        [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         [Net] private MainPlayer player { get; set; }
         public HandViewModel ViewModel { get; set; }
 
@@ -24,24 +24,33 @@ namespace ssl.Modules.Items
             this.player = player;
         }
 
-        public void StartHolding(int slotIndex)
+        public void ProcessHolding(int slotIndex)
         {
-            StartHolding(Slots[slotIndex]);
+            if (HoldingSlotNumber == slotIndex) StopHolding();
+            else StartHolding(Slots[slotIndex]);
         }
         
         public void StartHolding(Slot slot)
         {
-            HoldingItem?.ActiveEnd(player, false);
+            StopHolding();
             HoldingSlot = slot;
             HoldingItem?.ActiveStart(player);
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
             player.ActiveChild = HoldingItem;
-
+            HoldingSlotNumber = Slots.IndexOf(slot);
+            
             if (IsClient)
             {
                 RefreshViewModel();
             }
+        }
+        
+        public void StopHolding()
+        {
+            HoldingItem?.ActiveEnd(player, false);
+            HoldingSlot = null;
+            HoldingSlotNumber = -1;
         }
 
         public Item DropItem()
