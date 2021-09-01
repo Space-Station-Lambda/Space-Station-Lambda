@@ -39,9 +39,7 @@ namespace ssl.Modules.Items.Carriables
         public float Damage { get; private set; }
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
-
-        public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
-
+        
         public override void UseOn(MainPlayer player)
         {
             base.UseOn(player);
@@ -110,15 +108,12 @@ namespace ssl.Modules.Items.Carriables
         {
             if (!Host.IsClient) return;
 
-            Particles.Create("particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle");
+            Particles.Create("particles/pistol_muzzleflash.vpcf", this, "muzzle");
 
             if (IsLocalPawn)
             {
                 _ = new Perlin();
             }
-
-            ViewModelEntity?.SetAnimBool("fire", true);
-            CrosshairPanel?.CreateEvent("fire");
         }
 
         protected virtual void ShootBullet(float spread, float force, float bulletSize)
