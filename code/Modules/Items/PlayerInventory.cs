@@ -8,13 +8,12 @@ namespace ssl.Modules.Items
     public partial class PlayerInventory : Inventory
     {
         private const int MaxInventoryCapacity = 10;
-        
-        public event Action<int, Slot> SlotSelected;
 
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
         
         [Net] private MainPlayer player { get; set; }
+        public HandViewModel ViewModel { get; set; }
 
         public PlayerInventory()
         {
@@ -37,8 +36,12 @@ namespace ssl.Modules.Items
             HoldingItem?.ActiveStart(player);
             HoldingItem?.SetModel(HoldingItem.Model);
             HoldingItem?.OnCarryStart(player);
-            if(null != HoldingItem) player.ActiveChild = HoldingItem;
-            SlotSelected?.Invoke(Slots.IndexOf(slot), slot);
+            player.ActiveChild = HoldingItem;
+
+            if (IsClient)
+            {
+                RefreshViewModel();
+            }
         }
 
         public Item DropItem()
@@ -50,7 +53,7 @@ namespace ssl.Modules.Items
             droppedItem.Velocity += player.Velocity;
             return droppedItem;
         }
-        
+
         /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.
         /// </summary>
@@ -63,6 +66,15 @@ namespace ssl.Modules.Items
         {
             base.Add(item, position);
             StartHolding(HoldingSlot);
+        }
+
+        /// <summary>
+        /// Updates the view model's hold type to match the holding item
+        /// </summary>
+        private void RefreshViewModel()
+        {
+            HoldType holdingType = HoldingItem?.HoldType ?? HoldType.None;
+            ViewModel.SetHoldType(holdingType);
         }
     }
 }

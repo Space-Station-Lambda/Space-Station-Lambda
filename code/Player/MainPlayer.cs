@@ -3,7 +3,6 @@ using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Items;
-using ssl.Modules.Items.Carriables;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;
@@ -28,14 +27,27 @@ namespace ssl.Player
             InputHandler = new InputHandler(this);
         }
 
-        public event Action PlayerSpawned;
         [Net] public new PlayerInventory Inventory { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public RoleHandler RoleHandler { get; }
-        [Net] public StatusHandler StatusHandler { get; }
+        [Net] public StatusHandler StatusHandler { get; private set; }
         public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
+
+        public override void ClientSpawn()
+        {
+            base.ClientSpawn();
+
+            if (Inventory.ViewModel != null || !IsLocalPawn) return;
+            Inventory.ViewModel = new HandViewModel
+            {
+                EnableAllCollisions = false,
+                EnableViewmodelRendering = true,
+                Owner = this.Owner
+            };
+            Inventory.ViewModel.SetHoldType(HoldType.None);
+        }
 
         /// <summary>
         /// Called each tick, clientside and serverside
@@ -70,11 +82,9 @@ namespace ssl.Player
             Inventory.Clear();
             
             RoleHandler.SpawnRole();
-
-            PlayerSpawned?.Invoke();
             
             SendTextNotification("You are " + RoleHandler.Role.Name);
-            
+
             base.Respawn();
         }
 
@@ -98,6 +108,12 @@ namespace ssl.Player
             RoleHandler.Role?.OnKilled(this);
             EnableRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
+        }
+
+        public override void PostCameraSetup(ref CameraSetup setup)
+        {
+            base.PostCameraSetup(ref setup);
+            Inventory.ViewModel.PostCameraSetup(ref setup);
         }
 
         [ServerCmd("kill_player")]
