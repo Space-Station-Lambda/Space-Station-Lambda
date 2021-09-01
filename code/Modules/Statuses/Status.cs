@@ -9,7 +9,6 @@ namespace ssl.Modules.Statuses
     public abstract partial class Status : NetworkedEntityAlwaysTransmitted
     {
         public abstract string Id { get; }
-        [Net] 
         public abstract string Name { get; }
         public abstract string Description { get; }
         public virtual string IconPath => "";
