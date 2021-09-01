@@ -16,8 +16,6 @@ namespace ssl.Modules.Rounds
         //public event Action RoundStarted;
 
         [Net] public BaseRound CurrentRound { get; private set; }
-        
-        public string RoundName { get; private set;} 
 
         public void ChangeRound(BaseRound round)
         {
