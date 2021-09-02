@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
@@ -29,9 +30,21 @@ namespace ssl.Ui.GameResults
             SetClass("active", null != currentRound);
             SetClass("hidden", null == currentRound);
 
-            if (currentRound != null)
+            if (currentRound == null) return;
+            
+            switch (currentRound.RoundOutcome)
             {
-                winningTeam.SetText("HGELO");
+                case RoundOutcome.Tie:
+                    winningTeam.SetText("Tie");
+                    break;
+                case RoundOutcome.ProtagonistsWin:
+                    winningTeam.SetText("The Lambda Company wins !");
+                    break;
+                case RoundOutcome.TraitorsWin:
+                    winningTeam.SetText("The Traitors wins !");
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }
