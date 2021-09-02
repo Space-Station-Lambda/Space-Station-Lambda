@@ -40,7 +40,7 @@ namespace ssl.Modules.Items
             player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
             
-            if (IsClient)
+            if (Host.IsClient)
             {
                 RefreshViewModel();
             }
@@ -52,6 +52,7 @@ namespace ssl.Modules.Items
             HoldingSlot = null;
             player.ActiveChild = null;
             HoldingSlotNumber = -1;
+            if (Host.IsClient) RefreshViewModel();
         }
 
         public Item DropItem()
