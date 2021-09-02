@@ -65,7 +65,6 @@ namespace ssl.Modules.Items.Carriables
 			base.ActiveEnd(ent, dropped);
 
 			// If we're just holstering, then hide us
-			//
 			if (!dropped)
 			{
 				EnableDrawing = false;
