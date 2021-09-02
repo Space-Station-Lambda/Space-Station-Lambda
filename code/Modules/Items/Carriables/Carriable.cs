@@ -9,7 +9,8 @@ namespace ssl.Modules.Items.Carriables
 			base.Spawn();
 
 			MoveType = MoveType.Physics;
-			CollisionGroup = CollisionGroup.Interactive;
+			CollisionGroup = CollisionGroup.Weapon;
+			SetInteractsAs(CollisionLayer.Hitbox);
 			PhysicsEnabled = true;
 			UsePhysicsCollision = true;
 			EnableHideInFirstPerson = true;
@@ -28,7 +29,6 @@ namespace ssl.Modules.Items.Carriables
 			SetParent(carrier, true);
 			Owner = carrier;
 			MoveType = MoveType.None;
-			EnableAllCollisions = false;
 			EnableDrawing = false;
 		}
 		
@@ -40,7 +40,6 @@ namespace ssl.Modules.Items.Carriables
 			Owner = null;
 			MoveType = MoveType.Physics;
 			EnableDrawing = true;
-			EnableAllCollisions = true;
 		}
 
 		/// <summary>
