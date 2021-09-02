@@ -9,13 +9,17 @@ namespace ssl.Ui.GameResults
 {
     public class GameResults : Panel
     {
-        private Label winningTeam;
+        private const string TieText = "Tie"; 
+        private const string ProtagonistsText = "The Lambda Company wins !"; 
+        private const string TraitorsText = "The Traitors wins !"; 
+        
+        private readonly Label roundOutcome;
         
         public GameResults()
         {
             StyleSheet.Load("Ui/GameResults/GameResults.scss");
 
-            winningTeam = Add.Label(classname: "winning-team");
+            roundOutcome = Add.Label(classname: "winning-team");
             
             SetClass("active", false);
             SetClass("hidden", true);
@@ -35,13 +39,13 @@ namespace ssl.Ui.GameResults
             switch (currentRound.RoundOutcome)
             {
                 case RoundOutcome.Tie:
-                    winningTeam.SetText("Tie");
+                    roundOutcome.SetText(TieText);
                     break;
                 case RoundOutcome.ProtagonistsWin:
-                    winningTeam.SetText("The Lambda Company wins !");
+                    roundOutcome.SetText(ProtagonistsText);
                     break;
                 case RoundOutcome.TraitorsWin:
-                    winningTeam.SetText("The Traitors wins !");
+                    roundOutcome.SetText(TraitorsText);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
