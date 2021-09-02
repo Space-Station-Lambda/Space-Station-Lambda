@@ -118,16 +118,6 @@ namespace ssl.Player
             Inventory.ViewModel.PostCameraSetup(ref setup);
         }
 
-        [ServerCmd("kill_player")]
-        private static void KillPlayer()
-        {
-            ConsoleSystem.Caller.Pawn.TakeDamage(new DamageInfo()
-            {
-                Damage = MaxHealth
-            });
-        }
-
-
         private void EnableRagdoll(Vector3 force, int forceBone)
         {
             PlayerCorpse ragdoll = new()
