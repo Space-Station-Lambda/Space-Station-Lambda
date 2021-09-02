@@ -50,6 +50,7 @@ namespace ssl.Modules.Items
         {
             HoldingItem?.ActiveEnd(player, false);
             HoldingSlot = null;
+            player.ActiveChild = null;
             HoldingSlotNumber = -1;
         }
 
