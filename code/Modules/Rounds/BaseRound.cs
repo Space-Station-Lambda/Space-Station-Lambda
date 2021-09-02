@@ -10,7 +10,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Rounds
 {
-    public abstract partial class BaseRound : NetworkComponent
+    public abstract partial class BaseRound : NetworkedEntityAlwaysTransmitted
     {
         public HashSet<MainPlayer> Players = new();
         public virtual int RoundDuration => 0;
