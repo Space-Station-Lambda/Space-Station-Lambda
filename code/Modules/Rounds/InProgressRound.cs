@@ -11,7 +11,7 @@ namespace ssl.Modules.Rounds
 
         public override BaseRound Next()
         {
-            return new PreRound();
+            return new ResultsRound();
         }
 
         protected override void OnStart()
