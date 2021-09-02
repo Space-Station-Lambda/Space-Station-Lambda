@@ -34,7 +34,7 @@ namespace ssl.Ui.GameResults
             SetClass("active", null != currentRound);
             SetClass("hidden", null == currentRound);
 
-            if (currentRound == null) return;
+            if (null == currentRound) return;
             
             switch (currentRound.RoundOutcome)
             {

@@ -77,7 +77,7 @@ namespace ssl.Modules.Rounds
             int numberOfProtagonists = 0;
             foreach (MainPlayer mainPlayer in Players)
             {
-                if (mainPlayer.RoleHandler.Role.Id == TraitorId) numberOfTraitors++;
+                if (mainPlayer.RoleHandler.Role is Traitor) numberOfTraitors++;
                 else numberOfProtagonists++;
             }
 
