@@ -18,13 +18,14 @@ namespace ssl.Player.Controllers
         private const float SprintAcceleration = 2000F;
         private const float SprintSpeed = 300F;
         private const float StepSize = 20F;
-        
+
+        private const float MaxNonJumpVelocity = 200F;
         private const float JumpForce = 300F;
         private const float AirSpeed = 30F;
         private const float AirAcceleration = 500F;
 
         private const float MinSpeed = 1F;
-        
+
         private const float GroundAngle = 46F;
         private const float StickGroundStartMultiplier = 2F;
 
@@ -33,7 +34,8 @@ namespace ssl.Player.Controllers
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
-        
+
+
         public HumanController()
         {
             unstuck = new Unstuck(this);
@@ -205,7 +207,7 @@ namespace ssl.Player.Controllers
             WishVelocity *= AirAcceleration;
             Accelerate(WishVelocity, AirSpeed);
         }
-        
+
         /// <summary>
         /// Try to keep a walking player on the ground when running down slopes
         /// </summary>
@@ -272,7 +274,7 @@ namespace ssl.Player.Controllers
 
             TraceResult trace = TraceBBox(startPos, endPos, mins, maxs, 4.0F);
 
-            if (trace.Hit)
+            if (trace.Hit && Velocity.z <= MaxNonJumpVelocity)
             {
                 GroundNormal = trace.Normal;
                 GroundEntity = trace.Entity;
