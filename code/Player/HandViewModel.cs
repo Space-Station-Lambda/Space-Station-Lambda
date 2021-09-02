@@ -20,6 +20,7 @@ namespace ssl.Player
         private const string BodyGroupFeet = "feet";
 
         private Vector3 offset;
+        private AnimEntity holdingEntity;
 
         public HandViewModel()
         {
@@ -28,6 +29,7 @@ namespace ssl.Player
             SetBodyGroup(BodyGroupLegs, 1);
             SetBodyGroup(BodyGroupFeet, 1);
             SetAnimFloat(AnimKeyBodyWeight, 0f);
+            holdingEntity = null;
         }
 
         /// <summary>
@@ -50,6 +52,33 @@ namespace ssl.Player
         {
             Position = camSetup.Position + offset * Input.Rotation;
             Rotation = camSetup.Rotation;
+        }
+
+        /// <summary>
+        /// Sets the entity that is in the player's hand model
+        /// </summary>
+        /// <param name="entity"></param>
+        public void SetHoldingEntity(AnimEntity entity)
+        {
+            Host.AssertClient();
+            
+            holdingEntity = new AnimEntity
+            {
+                UsePhysicsCollision = false,
+                EnableViewmodelRendering = true,
+                Owner = this
+            };
+            holdingEntity.SetModel(entity.GetModel());
+            holdingEntity.SetParent(this, true);
+        }
+
+        /// <summary>
+        /// Remove the entity in the hand
+        /// </summary>
+        public void RemoveHoldingEntity()
+        {
+            holdingEntity.Delete();
+            holdingEntity = null;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
 {
@@ -24,7 +25,10 @@ namespace ssl.Modules.Items.Carriables
 
 		public override void OnCarryStart(Entity carrier)
 		{
-			if (IsClient) return;
+			if (IsClient && carrier is MainPlayer player)
+			{
+				player.Inventory.ViewModel.SetHoldingEntity(this);
+			}
 
 			SetParent(carrier, true);
 			Owner = carrier;
@@ -34,7 +38,10 @@ namespace ssl.Modules.Items.Carriables
 		
 		public override void OnCarryDrop(Entity dropper)
 		{
-			if (IsClient) return;
+			if (IsClient && dropper is MainPlayer player)
+			{
+				player.Inventory.ViewModel.RemoveHoldingEntity();
+			}
 
 			SetParent(null);
 			Owner = null;
