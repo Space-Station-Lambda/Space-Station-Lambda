@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.UI;
 
 namespace ssl.Modules.Rounds
 {
@@ -8,12 +9,12 @@ namespace ssl.Modules.Rounds
         {
         }
         
-        public ResultsRound(string winningTeam)
+        public ResultsRound(RoundOutcome outcome)
         {
-            WinningTeam = winningTeam;
+            RoundOutcome = outcome;
         }
         
-        [Net] public string WinningTeam { get; set; }
+        public RoundOutcome RoundOutcome { get; private set; }
         public override string RoundName => "Results round";
         public override int RoundDuration => 10;
 

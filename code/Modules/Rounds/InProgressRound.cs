@@ -6,12 +6,27 @@ namespace ssl.Modules.Rounds
 {
     public class InProgressRound : BaseRound
     {
+        private const string TraitorId = "traitor";
+        
         public override string RoundName => "Preround";
         public override int RoundDuration => 600;
 
         public override BaseRound Next()
         {
-            return new ResultsRound("Lambda team");
+            int numberOfTraitors = 0;
+            int numberOfProtagonists = 0;
+            foreach (MainPlayer mainPlayer in Players)
+            {
+                if (mainPlayer.RoleHandler.Role.Id == TraitorId) numberOfTraitors++;
+                else numberOfProtagonists++;
+            }
+
+            return numberOfTraitors switch
+            {
+                0 when numberOfProtagonists > 0 => new ResultsRound(RoundOutcome.ProtagonistsWin),
+                > 0 when numberOfProtagonists == 0 => new ResultsRound(RoundOutcome.TraitorsWin),
+                _ => new ResultsRound(RoundOutcome.Tie)
+            };
         }
 
         protected override void OnStart()
@@ -62,12 +77,12 @@ namespace ssl.Modules.Rounds
             int numberOfProtagonists = 0;
             foreach (MainPlayer mainPlayer in Players)
             {
-                if (mainPlayer.RoleHandler.Role.Id == "traitor") numberOfTraitors++;
+                if (mainPlayer.RoleHandler.Role.Id == TraitorId) numberOfTraitors++;
                 else numberOfProtagonists++;
             }
 
-            Log.Info($"Traitors: {numberOfTraitors}");
-            Log.Info($"Protagonists: {numberOfProtagonists}");
+            Log.Info($"[InProgressRound] Traitors: {numberOfTraitors}");
+            Log.Info($"[InProgressRound] Protagonists: {numberOfProtagonists}");
             return numberOfTraitors == 0 || numberOfProtagonists == 0;
         }
     }
