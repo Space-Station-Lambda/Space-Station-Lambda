@@ -11,7 +11,7 @@ namespace ssl.Modules.Rounds
 
         public override BaseRound Next()
         {
-            return new ResultsRound();
+            return new ResultsRound("Lambda team");
         }
 
         protected override void OnStart()
@@ -45,12 +45,6 @@ namespace ssl.Modules.Rounds
                     }
                 }
             }
-        }
-
-        public override void OnPlayerSpawn(MainPlayer player)
-        {
-            //TODO Player wait before spawn
-            base.OnPlayerSpawn(player);
         }
 
         public override void OnPlayerKilled(MainPlayer player)
