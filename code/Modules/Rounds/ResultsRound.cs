@@ -1,17 +1,22 @@
-﻿namespace ssl.Modules.Rounds
+﻿using Sandbox;
+
+namespace ssl.Modules.Rounds
 {
-    public class ResultsRound : BaseRound
+    public partial class ResultsRound : BaseRound
     {
-        public string WinningTeam { get; private set; }
-        public override string RoundName => "Results round";
-        public override int RoundDuration => 10;
+        public ResultsRound()
+        {
+        }
         
-        
-        public ResultsRound(string winningTeam) : base()
+        public ResultsRound(string winningTeam)
         {
             WinningTeam = winningTeam;
         }
         
+        [Net] public string WinningTeam { get; set; }
+        public override string RoundName => "Results round";
+        public override int RoundDuration => 10;
+
         public override BaseRound Next()
         {
             return new PreRound();
