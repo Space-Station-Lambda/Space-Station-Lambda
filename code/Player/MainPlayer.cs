@@ -112,25 +112,17 @@ namespace ssl.Player
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
 
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Inventory.ViewModel?.Delete();
+            Inventory.Delete();
+        }
+
         public override void PostCameraSetup(ref CameraSetup setup)
         {
             base.PostCameraSetup(ref setup);
             Inventory.ViewModel.PostCameraSetup(ref setup);
-        }
-
-        private void EnableRagdoll(Vector3 force, int forceBone)
-        {
-            PlayerCorpse ragdoll = new()
-            {
-                Position = Position,
-                Rotation = Rotation
-            };
-
-            ragdoll.CopyFrom(this);
-            ragdoll.ApplyForceToBone(force, forceBone);
-            ragdoll.Player = this;
-
-            Ragdoll = ragdoll;
         }
 
         public void OnSelectStart(MainPlayer player)
@@ -151,6 +143,21 @@ namespace ssl.Player
         public void OnAction(MainPlayer player, Item item)
         {
             //TODO
+        }
+
+        private void EnableRagdoll(Vector3 force, int forceBone)
+        {
+            PlayerCorpse ragdoll = new()
+            {
+                Position = Position,
+                Rotation = Rotation
+            };
+
+            ragdoll.CopyFrom(this);
+            ragdoll.ApplyForceToBone(force, forceBone);
+            ragdoll.Player = this;
+
+            Ragdoll = ragdoll;
         }
 
         [ClientRpc]
