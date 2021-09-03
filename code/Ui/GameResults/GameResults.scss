@@ -1,0 +1,24 @@
+﻿GameResults {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  
+  &.active {
+    pointer-events: all;
+    height: 100%;
+    width: 100%;
+  }
+  &.hidden {
+    pointer-events: none;
+    display: none;
+  }
+  
+  .winning-team {
+    color: #ffffff;
+    font-size: 90px;
+  }
+}

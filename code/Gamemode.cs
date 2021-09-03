@@ -24,10 +24,7 @@ namespace ssl
             if (IsServer) StartServer();
             else if (IsClient) StartClient();
         }
-        
-        public event Action<MainPlayer> PlayerAddedEvent;
-        public event Action<MainPlayer> PlayerRemovedEvent;
-        
+
         public static Gamemode Instance { get; private set; }
 
         /// <summary>
@@ -86,7 +83,6 @@ namespace ssl
         private void EmitEvent(MainPlayer player)
         {
             Log.Trace("[Gamemode] RPC - Player added");
-            PlayerAddedEvent?.Invoke(player);
         }
 
         public override void PostLevelLoaded()
