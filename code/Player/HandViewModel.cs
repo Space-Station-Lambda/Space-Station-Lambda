@@ -29,7 +29,7 @@ namespace ssl.Player
             SetBodyGroup(BodyGroupLegs, 1);
             SetBodyGroup(BodyGroupFeet, 1);
             SetAnimFloat(AnimKeyBodyWeight, 0f);
-            holdingEntity = null;
+            RemoveHoldingEntity();
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace ssl.Player
         /// </summary>
         public void RemoveHoldingEntity()
         {
-            holdingEntity.Delete();
+            holdingEntity?.Delete();
             holdingEntity = null;
         }
     }
