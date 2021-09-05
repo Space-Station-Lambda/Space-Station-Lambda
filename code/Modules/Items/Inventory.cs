@@ -59,7 +59,7 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(Item item, int position = 0)
+        public virtual void Add(Item item, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {

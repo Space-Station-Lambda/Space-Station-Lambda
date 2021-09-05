@@ -1,9 +1,9 @@
 ﻿using System;
 using Sandbox;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
-using ssl.Player;
 
-namespace ssl.Modules.Items
+namespace ssl.Player
 {
     public partial class PlayerInventory : Inventory
     {
@@ -12,7 +12,7 @@ namespace ssl.Modules.Items
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
         [Net, Predicted] public int HoldingSlotNumber { get; private set; }
-        [Net] private MainPlayer player { get; set; }
+        [Net] private MainPlayer Player { get; set; }
         public HandViewModel ViewModel { get; set; }
 
         public PlayerInventory()
@@ -21,7 +21,7 @@ namespace ssl.Modules.Items
         
         public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
         {
-            this.player = player;
+            this.Player = player;
         }
 
         public void ProcessHolding(int slotIndex)
@@ -29,15 +29,15 @@ namespace ssl.Modules.Items
             if (HoldingSlotNumber == slotIndex) StopHolding();
             else StartHolding(Slots[slotIndex]);
         }
-        
-        public void StartHolding(Slot slot)
+
+        private void StartHolding(Slot slot)
         {
             StopHolding();
             HoldingSlot = slot;
-            HoldingItem?.ActiveStart(player);
+            HoldingItem?.ActiveStart(Player);
             HoldingItem?.SetModel(HoldingItem.Model);
-            HoldingItem?.OnCarryStart(player);
-            player.ActiveChild = HoldingItem;
+            HoldingItem?.OnCarryStart(Player);
+            Player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
             
             if (Host.IsClient)
@@ -45,12 +45,12 @@ namespace ssl.Modules.Items
                 RefreshViewModel();
             }
         }
-        
-        public void StopHolding()
+
+        private void StopHolding()
         {
-            HoldingItem?.ActiveEnd(player, false);
+            HoldingItem?.ActiveEnd(Player, false);
             HoldingSlot = null;
-            player.ActiveChild = null;
+            Player.ActiveChild = null;
             HoldingSlotNumber = -1;
             if (Host.IsClient) RefreshViewModel();
         }
@@ -58,10 +58,10 @@ namespace ssl.Modules.Items
         public Item DropItem()
         {
             Item droppedItem = HoldingItem;
-            HoldingItem?.OnCarryDrop(player);
-            HoldingItem?.ActiveEnd(player, true);
+            HoldingItem?.OnCarryDrop(Player);
+            HoldingItem?.ActiveEnd(Player, true);
             HoldingSlot.Clear();
-            if (null != droppedItem) droppedItem.Velocity += player.Velocity;
+            if (null != droppedItem) droppedItem.Velocity += Player.Velocity;
             return droppedItem;
         }
 
@@ -73,7 +73,7 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(Item item, int position = 0)
+        public override void Add(Item item, int position = 0)
         {
             base.Add(item, position);
             StartHolding(HoldingSlot);
