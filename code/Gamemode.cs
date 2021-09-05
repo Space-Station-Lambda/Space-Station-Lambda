@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Sandbox;
+﻿using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Rounds;
 using ssl.Player;
@@ -30,8 +28,8 @@ namespace ssl
         /// <summary>
         /// Items in the gamemode
         /// </summary>
-        public ItemRegistry ItemRegistry { get; private set; }
-        public Hud Hud { get; set; }
+        public ItemRegistry ItemRegistry { get; }
+
         [Net] public RoundManager RoundManager { get; private set; }
 
         /// <summary>
@@ -52,7 +50,7 @@ namespace ssl
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
-            Hud = new Hud();
+            _ = new Hud();
         }
 
         /// <summary>
@@ -72,29 +70,19 @@ namespace ssl
             //Init the player.
             MainPlayer player = new();
             client.Pawn = player;
-            EmitEvent(player);
             RoundManager.CurrentRound.OnPlayerSpawn(player);
-        }
-
-        /// <summary>
-        /// Called after the level is loaded
-        /// </summary>
-        [ClientRpc]
-        private void EmitEvent(MainPlayer player)
-        {
-            Log.Trace("[Gamemode] RPC - Player added");
         }
 
         public override void PostLevelLoaded()
         {
-            _ = StartTickTimer();
-            _ = StartSecondTimer();
+            StartTickTimer();
+            StartSecondTimer();
         }
 
         /// <summary>
         /// Loop trigger OnSecond() each seconds.
         /// </summary>
-        public async Task StartSecondTimer()
+        private async void StartSecondTimer()
         {
             while (true)
             {
@@ -106,7 +94,7 @@ namespace ssl
         /// <summary>
         /// Loop trigger OnTick() each tick.
         /// </summary>
-        public async Task StartTickTimer()
+        private async void StartTickTimer()
         {
             while (true)
             {
