@@ -77,7 +77,7 @@ namespace ssl.Modules.Items.Carriables
 
         public void OnSelectStop(MainPlayer player)
         {
-            if(Host.IsClient) GlowActive = false;
+            if (Host.IsClient) GlowActive = false;
         }
 
         public void OnSelect(MainPlayer player)
