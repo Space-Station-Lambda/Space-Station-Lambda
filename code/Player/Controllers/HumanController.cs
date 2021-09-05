@@ -1,10 +1,19 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using Sandbox;
 using ssl.Ui.Crosshair;
 
 namespace ssl.Player.Controllers
 {
     public partial class HumanController : BasePlayerController
     {
+        private enum MovementState
+        {
+            Idle,
+            Walk,
+            Run,
+            Sprint
+        }
+        
         private const float TopGroundDetect = 0.1F;
         private const float BottomGroundDetect = 2F;
 
@@ -13,10 +22,15 @@ namespace ssl.Player.Controllers
         private const float BodyGirth = 16F;
 
         private const float StopSpeed = 100F;
-        private const float WalkAcceleration = 1500F;
-        private const float WalkSpeed = 150F;
-        private const float SprintAcceleration = 2000F;
-        private const float SprintSpeed = 300F;
+
+        private readonly Dictionary<MovementState, Speed> speeds = new()
+        { 
+            {MovementState.Idle, new Speed {Acceleration = 0f, MaxSpeed = 0f}},
+            {MovementState.Walk, new Speed {Acceleration = 500f, MaxSpeed = 70f}},
+            {MovementState.Run, new Speed {Acceleration = 1500f, MaxSpeed = 150f}},
+            {MovementState.Sprint, new Speed {Acceleration = 2000f, MaxSpeed = 300f}},
+        };
+
         private const float StepSize = 20F;
 
         private const float MaxNonJumpVelocity = 200F;
@@ -31,6 +45,8 @@ namespace ssl.Player.Controllers
 
         private const string JumpEventName = "jump";
 
+        private MovementState state = MovementState.Idle;
+        
         private Vector3 maxs;
         private Vector3 mins;
         private Unstuck unstuck;
@@ -75,7 +91,7 @@ namespace ssl.Player.Controllers
                 else
                 {
                     ApplyFriction(GroundSurface.Friction * SurfaceFriction);
-                    Walk();
+                    AccelerateGroundMovement();
                     TryPlayerMoveWithStep();
                     StickToGround();
                 }
@@ -168,28 +184,20 @@ namespace ssl.Player.Controllers
                 WishVelocity = EyeRot * WishVelocity.ClampLength(1);
             }
 
-            IsSprinting = Input.Down(InputButton.Run);
+            if (Input.Down(InputButton.Run)) state = MovementState.Sprint;
+            else if (Input.Down(InputButton.Walk)) state = MovementState.Walk;
+            else if(WishVelocity.Length > 0) state = MovementState.Run;
+            else state = MovementState.Idle;
         }
 
         /// <summary>
-        /// Applies the walking logic to accelerate the player
+        /// Applies the Ground Movement logic to accelerate the player
         /// </summary>
-        private void Walk()
+        private void AccelerateGroundMovement()
         {
-            float acceleration;
-            float speed;
+            float acceleration = speeds[state].Acceleration;
+            float speed = speeds[state].MaxSpeed;
 
-            if (IsSprinting)
-            {
-                acceleration = SprintAcceleration;
-                speed = SprintSpeed;
-            }
-            else
-            {
-                acceleration = WalkAcceleration;
-                speed = WalkSpeed;
-            }
-            
             WishVelocity *= acceleration;
             
             Accelerate(WishVelocity, speed);
