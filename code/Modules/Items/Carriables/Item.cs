@@ -69,16 +69,15 @@ namespace ssl.Modules.Items.Carriables
         {
             return (Id != null ? Id.GetHashCode() : 0);
         }
-
+        
         public void OnSelectStart(MainPlayer player)
         {
-            GlowActive = true;
-            Log.Info("Selected");
+            if (Host.IsClient) GlowActive = true;
         }
 
         public void OnSelectStop(MainPlayer player)
         {
-            GlowActive = false;
+            if (Host.IsClient) GlowActive = false;
         }
 
         public void OnSelect(MainPlayer player)
