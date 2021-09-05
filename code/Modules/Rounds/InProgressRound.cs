@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
+using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Player;
 
 namespace ssl.Modules.Rounds
