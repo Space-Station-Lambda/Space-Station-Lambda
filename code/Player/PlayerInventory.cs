@@ -35,15 +35,10 @@ namespace ssl.Player
             StopHolding();
             HoldingSlot = slot;
             HoldingItem?.ActiveStart(Player);
-            HoldingItem?.SetModel(HoldingItem.Model);
-            HoldingItem?.OnCarryStart(Player);
             Player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
             
-            if (Host.IsClient)
-            {
-                RefreshViewModel();
-            }
+            if (Host.IsClient) RefreshViewModel();
         }
 
         private void StopHolding()
@@ -52,6 +47,7 @@ namespace ssl.Player
             HoldingSlot = null;
             Player.ActiveChild = null;
             HoldingSlotNumber = -1;
+            
             if (Host.IsClient) RefreshViewModel();
         }
 
@@ -73,10 +69,17 @@ namespace ssl.Player
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public override void Add(Item item, int position = 0)
+        public override Slot Add(Item item, int position = 0)
         {
-            base.Add(item, position);
-            StartHolding(HoldingSlot);
+            Slot destinationSlot = base.Add(item, position);
+            item.OnCarryStart(Player);
+
+            if (HoldingSlot == destinationSlot)
+            {
+                StartHolding(HoldingSlot);
+            }
+
+            return destinationSlot;
         }
 
         /// <summary>

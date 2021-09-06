@@ -22,6 +22,8 @@ namespace ssl.Modules.Items.Carriables
             Name = data.Name;
             Model = data.Model;
             HoldType = data.HoldType;
+            
+            SetModel(Model);
         }
 
         [Net] public string Id { get; set; }
@@ -88,7 +90,6 @@ namespace ssl.Modules.Items.Carriables
         public void OnAction(MainPlayer player, Item item)
         {
             player.Inventory.Add(this);
-            ActiveEnd(player, false);
         }
     }
 }

@@ -25,11 +25,6 @@ namespace ssl.Modules.Items.Carriables
 
 		public override void OnCarryStart(Entity carrier)
 		{
-			if (IsClient && carrier is MainPlayer player)
-			{
-				player.Inventory.ViewModel.SetHoldingEntity(this);
-			}
-
 			SetParent(carrier, true);
 			Owner = carrier;
 			MoveType = MoveType.None;
@@ -38,11 +33,6 @@ namespace ssl.Modules.Items.Carriables
 		
 		public override void OnCarryDrop(Entity dropper)
 		{
-			if (IsClient && dropper is MainPlayer player)
-			{
-				player.Inventory.ViewModel.RemoveHoldingEntity();
-			}
-
 			SetParent(null);
 			Owner = null;
 			MoveType = MoveType.Physics;
@@ -58,6 +48,13 @@ namespace ssl.Modules.Items.Carriables
 		{
 			base.ActiveStart(ent);
 
+			Log.Trace("active start");
+			
+			if (IsClient && ent is MainPlayer player)
+			{
+				player.Inventory.ViewModel.SetHoldingEntity(this);
+			}
+			
 			EnableDrawing = true;
 		}
 
@@ -69,10 +66,15 @@ namespace ssl.Modules.Items.Carriables
 		public override void ActiveEnd(Entity ent, bool dropped)
 		{
 			base.ActiveEnd(ent, dropped);
-
+			
 			// If we're just holstering, then hide us
 			if (!dropped)
 			{
+				if (IsClient && ent is MainPlayer player)
+				{
+					player.Inventory.ViewModel.RemoveHoldingEntity();
+				}
+				
 				EnableDrawing = false;
 			}
 		}
