@@ -47,8 +47,6 @@ namespace ssl.Modules.Items.Carriables
 		public override void ActiveStart(Entity ent)
 		{
 			base.ActiveStart(ent);
-
-			Log.Trace("active start");
 			
 			if (IsClient && ent is MainPlayer player)
 			{

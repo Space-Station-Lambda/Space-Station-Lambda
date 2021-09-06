@@ -87,10 +87,10 @@ namespace ssl.Modules.Items
         /// <param name="itemId">ItemId to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(string itemId, int position = 0)
+        public Slot Add(string itemId, int position = 0)
         {
-            Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
-            Add(item, position);
+            ItemData itemData =  Gamemode.Instance.ItemRegistry.GetItemById(itemId);
+            return Add(itemData, position);
         }
 
         /// <summary>
@@ -101,9 +101,9 @@ namespace ssl.Modules.Items
         /// <param name="data">Item to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(ItemData data, int position = 0)
+        public Slot Add(ItemData data, int position = 0)
         {
-            Add(data.Create(), position);
+            return Add(data.Create(), position);
         }
 
         /// <summary>
