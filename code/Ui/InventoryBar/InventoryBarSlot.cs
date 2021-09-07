@@ -14,7 +14,7 @@ namespace ssl.Ui.InventoryBar
         private static readonly Vector3 focusSize = new(5, 5, 5);
         private const float fieldOfView = 50;
 
-        private Scene scene;
+        private ScenePanel scene;
         private Light sceneLight;
         private SceneObject sceneObject;
         private SceneWorld sceneWorld;
@@ -65,7 +65,8 @@ namespace ssl.Ui.InventoryBar
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                     2000, Color.White * 15000f);
             }
-            scene ??= Add.Scene(sceneWorld, pos, angles, fieldOfView, "itemslot-model");
+            
+            scene ??= Add.ScenePanel(sceneWorld, pos, angles.ToRotation(), fieldOfView, "itemslot-model");
         }
     }
 }
