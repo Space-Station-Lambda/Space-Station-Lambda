@@ -48,7 +48,7 @@ namespace ssl.Modules.Items.Carriables
 		{
 			base.ActiveStart(ent);
 			
-			if (IsClient && ent is MainPlayer player)
+			if (Host.IsClient && ent is MainPlayer player)
 			{
 				player.Inventory.ViewModel.SetHoldingEntity(this);
 			}
@@ -68,7 +68,7 @@ namespace ssl.Modules.Items.Carriables
 			// If we're just holstering, then hide us
 			if (!dropped)
 			{
-				if (IsClient && ent is MainPlayer player)
+				if (Host.IsClient && ent is MainPlayer player)
 				{
 					player.Inventory.ViewModel.RemoveHoldingEntity();
 				}

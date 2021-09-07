@@ -70,7 +70,6 @@ namespace ssl.Modules.Items
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 slotDestination?.Set(item);
-
                 return slotDestination;
             }
             else
