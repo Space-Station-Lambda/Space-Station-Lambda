@@ -18,7 +18,6 @@ namespace ssl
         public Gamemode()
         {
             Instance = this; //Singleton DP
-            ItemRegistry = new ItemRegistry();
             if (IsServer) StartServer();
             else if (IsClient) StartClient();
         }
