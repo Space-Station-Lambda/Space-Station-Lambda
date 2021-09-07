@@ -1,4 +1,5 @@
 ﻿using ssl.Modules.Items.Carriables;
+using ssl.Modules.Items.Data;
 using ssl.Player;
 
 namespace ssl.Modules.Selection

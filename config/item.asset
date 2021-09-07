@@ -1,0 +1,8 @@
+@BaseClass = item: "An Item"
+[
+  Id(string) : "Id" : "Item Id"
+  Name(string) : "Name" : "Item Name"
+  Description(string) : "Description" : "This is my item"
+  Model(string): "Model" : ""
+  HoldType(int): "HoldType" : "1"
+]

@@ -9,7 +9,7 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        public ItemMop(ItemMopData data) : base(data)
+        public ItemMop(ItemData data) : base(data)
         {
         }
         public override void UseOn(MainPlayer player)

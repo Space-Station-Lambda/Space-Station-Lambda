@@ -35,7 +35,7 @@ namespace ssl.Player
             StopHolding();
             HoldingSlot = slot;
             HoldingItem?.ActiveStart(Player);
-            HoldingItem?.SetModel(HoldingItem.Model);
+            HoldingItem?.SetModel(HoldingItem.Data.Model);
             HoldingItem?.OnCarryStart(Player);
             Player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
@@ -84,8 +84,12 @@ namespace ssl.Player
         /// </summary>
         private void RefreshViewModel()
         {
-            HoldType holdingType = HoldingItem?.HoldType ?? HoldType.None;
-            ViewModel.SetHoldType(holdingType);
+            //TODO
+            if (HoldingItem != null)
+            {
+                HoldType holdingType = (HoldType)HoldingItem.Data.HoldType;
+                ViewModel.SetHoldType(holdingType);
+            }
         }
     }
 }

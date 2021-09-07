@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
 {
-    public partial class ItemWeapon : Item
+    public partial class ItemWeapon : Item<ItemWeaponData>
     {
         private const float MaxRange = 5000;
 
@@ -13,11 +13,8 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        public ItemWeapon(ItemWeaponData weaponData) : base(weaponData)
+        public ItemWeapon(ItemWeaponData itemData) : base(itemData)
         {
-            PrimaryRate = weaponData.PrimaryRate;
-            Range = weaponData.Range;
-            Damage = weaponData.Damage;
         }
 
         /// <summary>
