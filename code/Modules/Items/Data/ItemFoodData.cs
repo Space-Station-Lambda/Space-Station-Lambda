@@ -1,19 +1,9 @@
-﻿using ssl.Modules.Items.Carriables;
+﻿using Sandbox;
 
 namespace ssl.Modules.Items.Data
 {
     public class ItemFoodData : ItemData
     {
-        public ItemFoodData(string id, string name, string model, int feedingValue) : base(id, name, model)
-        {
-            FeedingValue = feedingValue;
-        }
-
-        public int FeedingValue { get; }
-
-        public override ItemFood Create()
-        {
-            return new ItemFood(this);
-        }
+        public int FeedingValue { get; set; } = 10;
     }
 }

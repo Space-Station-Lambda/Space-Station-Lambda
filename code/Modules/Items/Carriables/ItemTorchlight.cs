@@ -24,7 +24,7 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        public ItemTorchlight(ItemData data) : base(data)
+        public ItemTorchlight(ItemData itemData) : base(itemData)
         {
         }
 

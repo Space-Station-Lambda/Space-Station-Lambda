@@ -25,11 +25,6 @@ namespace ssl
 
         public static Gamemode Instance { get; private set; }
 
-        /// <summary>
-        /// Items in the gamemode
-        /// </summary>
-        public ItemRegistry ItemRegistry { get; }
-
         [Net] public RoundManager RoundManager { get; private set; }
 
         /// <summary>

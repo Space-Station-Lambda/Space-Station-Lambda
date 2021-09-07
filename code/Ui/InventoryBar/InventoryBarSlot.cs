@@ -54,7 +54,7 @@ namespace ssl.Ui.InventoryBar
                 }
                 else
                 {
-                    Model model = Model.Load(item.Model);
+                    Model model = Model.Load(item.Data.Model);
                     Transform modelTransform = new Transform()
                         .WithPosition(-model.RenderBounds.Center)
                         .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
@@ -65,7 +65,6 @@ namespace ssl.Ui.InventoryBar
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                     2000, Color.White * 15000f);
             }
-            
             scene ??= Add.ScenePanel(sceneWorld, pos, angles.ToRotation(), fieldOfView, "itemslot-model");
         }
     }

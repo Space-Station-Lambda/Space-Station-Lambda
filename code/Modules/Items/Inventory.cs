@@ -87,7 +87,7 @@ namespace ssl.Modules.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public void Add(string itemId, int position = 0)
         {
-            Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
+            Item item = ItemFactory.Create(itemId);
             Add(item, position);
         }
 
@@ -96,12 +96,12 @@ namespace ssl.Modules.Items
         /// </summary>
         /// The Item will be merged if the preferred position is the same Item.
         /// If the preferred position is not the same Item, it will add the stack to the next available slot.
-        /// <param name="data">Item to add</param>
+        /// <param name="data"></param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public void Add(ItemData data, int position = 0)
         {
-            Add(data.Create(), position);
+            Add(ItemFactory.Create(data), position);
         }
 
         /// <summary>
@@ -139,12 +139,12 @@ namespace ssl.Modules.Items
 
         public Item Get(string itemId)
         {
-            return (from slot in Slots where itemId.Equals(slot.Item.Id) select slot.Item).FirstOrDefault();
+            return (from slot in Slots where itemId.Equals(slot.Item.Data.Id) select slot.Item).FirstOrDefault();
         }
 
         public List<Item> GetItems(ItemData item)
         {
-            return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
+            return (from slot in Slots where item.Id.Equals(slot.Item.Data.Id) select slot.Item).ToList();
         }
 
         /// <summary>

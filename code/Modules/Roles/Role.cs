@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
@@ -47,10 +48,9 @@ namespace ssl.Modules.Roles
         /// <param name="player"></param>
         public virtual void OnSpawn(MainPlayer player)
         {
-            foreach (ItemData itemData in Items.Select(itemDataId =>
-                Gamemode.Instance.ItemRegistry.GetItemById(itemDataId)))
+            foreach (string itemId in Items)
             {
-                player.Inventory.Add(itemData.Create());
+                player.Inventory.Add(ItemFactory.Create(itemId));
             }
             player.ClothesHandler.AttachClothes(Clothing);
         }

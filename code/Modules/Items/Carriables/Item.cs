@@ -12,22 +12,16 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
+        public virtual ItemData Data { get; }
+
         public Item()
         {
         }
 
         public Item(ItemData data)
         {
-            Id = data.Id;
-            Name = data.Name;
-            Model = data.Model;
-            HoldType = data.HoldType;
+            Data = data;
         }
-
-        [Net] public string Id { get; set; }
-        [Net] public string Name { get; set; }
-        [Net] public string Model { get; set; }
-        [Net] public HoldType HoldType { get; set; }
 
         /// <summary>
         /// Called when a player use an Item.
@@ -49,25 +43,25 @@ namespace ssl.Modules.Items.Carriables
 
         public override string ToString()
         {
-            return $"[{Id}] {Name}";
+            return $"[{Data.Id}] {Data.Name}";
         }
 
         protected bool Equals(Item other)
         {
-            return Id == other.Id;
+            return Data.Id == other.Data.Id;
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Item)obj);
         }
 
         public override int GetHashCode()
         {
-            return (Id != null ? Id.GetHashCode() : 0);
+            return (Data.Id != null ? Data.Id.GetHashCode() : 0);
         }
         
         public void OnSelectStart(MainPlayer player)
@@ -90,5 +84,19 @@ namespace ssl.Modules.Items.Carriables
             player.Inventory.Add(this);
             ActiveEnd(player, false);
         }
+    }
+
+    public class Item<T> : Item where T : ItemData
+    {
+        public Item()
+        {
+            
+        }
+        public Item(T itemData) : base(itemData)
+        {
+            Data = itemData;
+        }
+
+        public override T Data { get; }
     }
 }
