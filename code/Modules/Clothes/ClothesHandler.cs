@@ -38,7 +38,6 @@ namespace ssl.Modules.Clothes
         /// <summary>
         /// Attach a piece of clothes to the player
         /// </summary>
-        /// <param name="slot">Slot concerned</param>
         /// <param name="clothesModel">Model of the clothes</param>
         public void AttachClothes(string clothesModel)
         {
