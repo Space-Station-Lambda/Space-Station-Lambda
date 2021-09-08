@@ -1,0 +1,6 @@
+@BaseClass = item: "A data"
+[
+  Id(string) : "Id" : "Id"
+  Name(string) : "Name" : "Name"
+  Model(string): "Model" : ""
+]

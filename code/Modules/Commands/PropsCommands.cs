@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using ssl.Modules.Props.Types;
 using ssl.Player;
-using Prop = ssl.Modules.Props.Prop;
+using Prop = ssl.Modules.Props.Types.Prop;
 
 namespace ssl.Modules.Commands
 {
@@ -10,7 +10,7 @@ namespace ssl.Modules.Commands
         [AdminCmd("pp_stain")]
         public static void RestartRound()
         {
-            Client client = Sandbox.ConsoleSystem.Caller;
+            Client client = ConsoleSystem.Caller;
             MainPlayer player = (MainPlayer)client.Pawn;
             Prop ent = new Stain
             {

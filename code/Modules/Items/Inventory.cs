@@ -4,13 +4,11 @@ using System.Linq;
 using Sandbox;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Items.Data;
-using ssl.Player;
 
 namespace ssl.Modules.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
-
         private readonly ItemFilter itemFilter = new();
 
         public Inventory()
@@ -87,7 +85,8 @@ namespace ssl.Modules.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public void Add(string itemId, int position = 0)
         {
-            Item item = ItemFactory.Create(itemId);
+            ItemFactory itemFactory = new();
+            Item item = itemFactory.Create(itemId);
             Add(item, position);
         }
 
@@ -101,7 +100,8 @@ namespace ssl.Modules.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public void Add(ItemData data, int position = 0)
         {
-            Add(ItemFactory.Create(data), position);
+            ItemFactory itemFactory = new();
+            Add(itemFactory.Create(data), position);
         }
 
         /// <summary>
