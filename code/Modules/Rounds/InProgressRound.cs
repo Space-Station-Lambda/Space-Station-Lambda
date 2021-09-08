@@ -8,7 +8,7 @@ namespace ssl.Modules.Rounds
     public class InProgressRound : BaseRound
     {
         private const string TraitorId = "traitor";
-        
+
         public override string RoundName => "Preround";
         public override int RoundDuration => 600;
 

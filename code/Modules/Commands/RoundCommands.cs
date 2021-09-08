@@ -15,13 +15,13 @@ namespace ssl.Modules.Commands
         {
             Gamemode.Instance.RoundManager.CurrentRound.Finish();
         }
-        
+
         [AdminCmd("rn_set")]
         public static void RoundSetTimer(int timer)
         {
             Gamemode.Instance.RoundManager.CurrentRound.RoundEndTime = Time.Now + timer;
         }
-        
+
         [AdminCmd("rn_time")]
         public static void RoundGetTimer()
         {

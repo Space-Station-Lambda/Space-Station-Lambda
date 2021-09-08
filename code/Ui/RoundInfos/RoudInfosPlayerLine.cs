@@ -8,6 +8,7 @@ namespace ssl.Ui.RoundInfos
     public class RoundInfosPlayerLine : Panel
     {
         public readonly MainPlayer Player;
+
         public RoundInfosPlayerLine(MainPlayer player)
         {
             Player = player;

@@ -7,18 +7,18 @@ namespace ssl.Modules.Statuses
 {
     public partial class StatusHandler : NetworkedEntityAlwaysTransmitted
     {
-        [Net] private MainPlayer player { get; set; }
-        
         public StatusHandler()
         {
         }
-        
+
         public StatusHandler(MainPlayer player)
         {
             Statuses = new List<Status>();
             this.player = player;
         }
-        
+
+        [Net] private MainPlayer player { get; set; }
+
         [Net] public List<Status> Statuses { get; private set; }
 
         /// <summary>
@@ -32,6 +32,7 @@ namespace ssl.Modules.Statuses
                 s.TimeLeft += status.TimeLeft;
                 return;
             }
+
             Statuses.Add(status);
             status.OnApply(player);
         }

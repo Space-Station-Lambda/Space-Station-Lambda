@@ -1,5 +1,4 @@
 ﻿using Sandbox;
-using ssl.Modules.Items;
 using ssl.Modules.Rounds;
 using ssl.Player;
 using ssl.Ui;
@@ -112,6 +111,5 @@ namespace ssl
         {
             if (IsServer) RoundManager.CurrentRound?.OnTick();
         }
-        
     }
 }

@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Sandbox;
 using ssl.Modules.Items;
-using ssl.Modules.Items.Data;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Roles.Types.Others;
@@ -52,6 +49,7 @@ namespace ssl.Modules.Roles
             {
                 player.Inventory.Add(ItemFactory.Create(itemId));
             }
+
             player.ClothesHandler.AttachClothes(Clothing);
         }
 

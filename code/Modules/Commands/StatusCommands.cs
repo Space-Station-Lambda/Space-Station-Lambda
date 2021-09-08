@@ -9,7 +9,7 @@ namespace ssl.Modules.Commands
         [AdminCmd("st_sickness")]
         public static void ApplySickness()
         {
-            Client sender = Sandbox.ConsoleSystem.Caller;
+            Client sender = ConsoleSystem.Caller;
             MainPlayer player = (MainPlayer)sender.Pawn;
             player.StatusHandler.ApplyStatus(new Sickness(6));
         }

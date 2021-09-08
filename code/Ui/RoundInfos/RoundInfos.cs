@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Sandbox;
 using Sandbox.UI;
 using ssl.Player;
@@ -25,7 +22,7 @@ namespace ssl.Ui.RoundInfos
             SetClass("hidden", !scorePressed);
             if (scorePressed) UpdatePlayers();
         }
-        
+
 
         /// <summary>
         /// Add player to the round info
@@ -64,11 +61,13 @@ namespace ssl.Ui.RoundInfos
                 {
                     if (roundInfosPlayerLine.Player.Equals(player)) founded = true;
                 }
-                if(!founded) players.Add(player);
+
+                if (!founded) players.Add(player);
             }
+
             return players;
         }
-        
+
         private List<RoundInfosPlayerLine> RoundInfosPlayerLinesToRemove()
         {
             List<RoundInfosPlayerLine> _roundInfosPlayerLines = new();
@@ -81,11 +80,13 @@ namespace ssl.Ui.RoundInfos
                     if (((MainPlayer)client.Pawn).Equals(player)) founded = true;
                     break;
                 }
-                if(!founded) _roundInfosPlayerLines.Add(roundInfosPlayerLine);
+
+                if (!founded) _roundInfosPlayerLines.Add(roundInfosPlayerLine);
             }
+
             return _roundInfosPlayerLines;
         }
-        
+
         private void UpdatePlayers()
         {
             List<MainPlayer> playersToAdd = PlayersToAdd();
@@ -94,6 +95,7 @@ namespace ssl.Ui.RoundInfos
             {
                 AddPlayer(mainPlayer);
             }
+
             foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLinesToRemove)
             {
                 RemoveRoundInfosPlayerLine(roundInfosPlayerLine);

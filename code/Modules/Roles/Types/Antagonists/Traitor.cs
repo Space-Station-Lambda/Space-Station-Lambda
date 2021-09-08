@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using ssl.Modules.Roles.Types.Jobs;
 using ssl.Player;
 
 namespace ssl.Modules.Roles.Types.Antagonists

@@ -11,7 +11,7 @@ namespace ssl.Ui.Crosshair
             StyleSheet.Load("Ui/Crosshair/CrosshairSelectionCircle.scss");
             SetClass("selected", false);
         }
-            
+
         public override void Tick()
         {
             if (Local.Pawn is not MainPlayer player)

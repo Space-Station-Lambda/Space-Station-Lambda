@@ -1,18 +1,19 @@
-RoleSelector
-{
-    font-family: conthrax-sb;
-    background-color: black;
-    cursor: default;
-    position: absolute;
-    flex-direction: column;
-    flex-wrap: wrap;
-    &.active {
-        pointer-events: all;
-        height: 100%;
-        width: 100%;
-    }
-    &.hidden {
-        pointer-events: none;
-        display: none;
-    }
+RoleSelector {
+  font-family: conthrax-sb;
+  background-color: black;
+  cursor: default;
+  position: absolute;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  &.active {
+    pointer-events: all;
+    height: 100%;
+    width: 100%;
+  }
+
+  &.hidden {
+    pointer-events: none;
+    display: none;
+  }
 }

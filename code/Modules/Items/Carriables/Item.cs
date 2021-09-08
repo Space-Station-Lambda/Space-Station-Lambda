@@ -12,8 +12,6 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
-        public virtual ItemData Data { get; }
-
         public Item()
         {
         }
@@ -21,6 +19,29 @@ namespace ssl.Modules.Items.Carriables
         public Item(ItemData data)
         {
             Data = data;
+        }
+
+        public virtual ItemData Data { get; }
+
+        public void OnSelectStart(MainPlayer player)
+        {
+            if (Host.IsClient) GlowActive = true;
+        }
+
+        public void OnSelectStop(MainPlayer player)
+        {
+            if (Host.IsClient) GlowActive = false;
+        }
+
+        public void OnSelect(MainPlayer player)
+        {
+            //TODO
+        }
+
+        public void OnAction(MainPlayer player, Item item)
+        {
+            player.Inventory.Add(this);
+            ActiveEnd(player, false);
         }
 
         /// <summary>
@@ -63,35 +84,14 @@ namespace ssl.Modules.Items.Carriables
         {
             return (Data.Id != null ? Data.Id.GetHashCode() : 0);
         }
-        
-        public void OnSelectStart(MainPlayer player)
-        {
-            if (Host.IsClient) GlowActive = true;
-        }
-
-        public void OnSelectStop(MainPlayer player)
-        {
-            if (Host.IsClient) GlowActive = false;
-        }
-
-        public void OnSelect(MainPlayer player)
-        {
-            //TODO
-        }
-
-        public void OnAction(MainPlayer player, Item item)
-        {
-            player.Inventory.Add(this);
-            ActiveEnd(player, false);
-        }
     }
 
     public class Item<T> : Item where T : ItemData
     {
         public Item()
         {
-            
         }
+
         public Item(T itemData) : base(itemData)
         {
             Data = itemData;

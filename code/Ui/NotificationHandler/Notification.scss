@@ -15,25 +15,29 @@ Notification {
   border-width: 1px;
   border-color: lightblue;
   margin: 50px;
+
   &:intro {
     top: 125px;
-    height:0px;
+    height: 0px;
     width: 100%;
     font-size: 0px;
     background-color: transparent;
     border-color: transparent;
   }
+
   &:outro {
     top: 125px;
-    height:0px;
+    height: 0px;
     width: 100%;
     font-size: 0px;
     background-color: transparent;
     border-color: transparent;
   }
+
   Label {
-    
+
   }
+
   //&:outro {
   //  font-size: 20px;
   //  background-color: blue;

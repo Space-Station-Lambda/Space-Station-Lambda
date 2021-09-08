@@ -8,19 +8,15 @@ namespace ssl.Player
     /// </summary>
     public class HandViewModel : AnimEntity
     {
-        private static Vector3 NoneOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
-        private static Vector3 HandOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
-        private static Vector3 PistolOffset { get; } = -(Vector3.Up * 60 + Vector3.Right);
-
         private const string ViewModelPath = "models/players/citizen/v_citizen.vmdl";
         private const string AnimKeyHoldType = "holdtype";
         private const string AnimKeyBodyWeight = "aim_body_weight";
         private const string BodyGroupHead = "head";
         private const string BodyGroupLegs = "legs";
         private const string BodyGroupFeet = "feet";
+        private AnimEntity holdingEntity;
 
         private Vector3 offset;
-        private AnimEntity holdingEntity;
 
         public HandViewModel()
         {
@@ -32,13 +28,17 @@ namespace ssl.Player
             RemoveHoldingEntity();
         }
 
+        private static Vector3 NoneOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
+        private static Vector3 HandOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
+        private static Vector3 PistolOffset { get; } = -(Vector3.Up * 60 + Vector3.Right);
+
         /// <summary>
         /// Modify the holdtype of the animgraph and the offset of the viewmodel?
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void SetHoldType(HoldType holdType)
         {
-            SetAnimInt(AnimKeyHoldType, (int) holdType);
+            SetAnimInt(AnimKeyHoldType, (int)holdType);
             offset = holdType switch
             {
                 HoldType.None => offset,
@@ -61,7 +61,7 @@ namespace ssl.Player
         public void SetHoldingEntity(AnimEntity entity)
         {
             Host.AssertClient();
-            
+
             holdingEntity = new AnimEntity
             {
                 UsePhysicsCollision = false,
