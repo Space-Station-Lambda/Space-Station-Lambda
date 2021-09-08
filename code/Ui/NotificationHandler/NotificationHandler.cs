@@ -8,12 +8,11 @@ namespace ssl.Ui.NotificationHandler
         private const float DefaultDuration = 5F;
         private Panel notification;
         private float remaining;
-        
+
         public NotificationHandler()
         {
         }
-        
-        
+
 
         private void RemoveNotification()
         {
@@ -32,9 +31,9 @@ namespace ssl.Ui.NotificationHandler
                 if (remaining < 0) RemoveNotification();
             }
         }
-        
-         
-        [Event( "ssl.notification" )]
+
+
+        [Event("ssl.notification")]
         public void DisplayNotification(string message)
         {
             int duration = 5;

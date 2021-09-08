@@ -1,6 +1,4 @@
-﻿using Sandbox;
-
-namespace ssl.Modules.Items.Data
+﻿namespace ssl.Modules.Items.Data
 {
     /// <summary>
     /// Stores data to create an Item instance.

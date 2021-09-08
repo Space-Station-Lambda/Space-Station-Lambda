@@ -1,6 +1,5 @@
 ﻿using Sandbox;
 using Sandbox.UI;
-using ssl.Modules.Items;
 using ssl.Player;
 
 namespace ssl.Ui.InventoryBar
@@ -9,15 +8,14 @@ namespace ssl.Ui.InventoryBar
     {
         private const int DefaultSlot = 0;
 
-        
+
         private InventoryBarSlot[] icons = new InventoryBarSlot[10];
         private int selected;
-        private MainPlayer player => (MainPlayer)Local.Pawn;
-        
+
         public InventoryBar()
         {
             StyleSheet.Load("Ui/InventoryBar/InventoryBar.scss");
-            
+
             for (int i = 0; i < 10; i++)
             {
                 string name = (i + 1).ToString();
@@ -25,6 +23,8 @@ namespace ssl.Ui.InventoryBar
                 icons[i] = new InventoryBarSlot(i, name, this);
             }
         }
+
+        private MainPlayer player => (MainPlayer)Local.Pawn;
 
         private void OnSlotSelected(int newSelected)
         {
@@ -34,12 +34,14 @@ namespace ssl.Ui.InventoryBar
             {
                 icons[selected].SetClass("selected", false);
             }
+
             //If the new is in range
             if (0 <= newSelected && icons.Length > newSelected)
             {
                 icons[newSelected].SetClass("selected", true);
                 icons[newSelected].RefreshModel();
             }
+
             selected = newSelected;
         }
 

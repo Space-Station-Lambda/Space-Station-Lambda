@@ -1,19 +1,10 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
-using ssl.Ui.Crosshair;
 
 namespace ssl.Player.Controllers
 {
     public partial class HumanController : BasePlayerController
     {
-        private enum MovementState
-        {
-            Idle,
-            Walk,
-            Run,
-            Sprint
-        }
-        
         private const float TopGroundDetect = 0.1F;
         private const float BottomGroundDetect = 2F;
 
@@ -22,14 +13,6 @@ namespace ssl.Player.Controllers
         private const float BodyGirth = 16F;
 
         private const float StopSpeed = 100F;
-
-        private readonly Dictionary<MovementState, Speed> speeds = new()
-        { 
-            {MovementState.Idle, new Speed {Acceleration = 0f, MaxSpeed = 0f}},
-            {MovementState.Walk, new Speed {Acceleration = 500f, MaxSpeed = 70f}},
-            {MovementState.Run, new Speed {Acceleration = 1500f, MaxSpeed = 150f}},
-            {MovementState.Sprint, new Speed {Acceleration = 2000f, MaxSpeed = 300f}},
-        };
 
         private const float StepSize = 20F;
 
@@ -45,10 +28,18 @@ namespace ssl.Player.Controllers
 
         private const string JumpEventName = "jump";
 
-        private MovementState state = MovementState.Idle;
-        
+        private readonly Dictionary<MovementState, Speed> speeds = new()
+        {
+            { MovementState.Idle, new Speed { Acceleration = 0f, MaxSpeed = 0f } },
+            { MovementState.Walk, new Speed { Acceleration = 500f, MaxSpeed = 70f } },
+            { MovementState.Run, new Speed { Acceleration = 1500f, MaxSpeed = 150f } },
+            { MovementState.Sprint, new Speed { Acceleration = 2000f, MaxSpeed = 300f } },
+        };
+
         private Vector3 maxs;
         private Vector3 mins;
+
+        private MovementState state = MovementState.Idle;
         private Unstuck unstuck;
 
 
@@ -77,7 +68,7 @@ namespace ssl.Player.Controllers
             //If the player is stuck, fix and stop
             if (unstuck.TestAndFix()) return;
 
-            
+
             UpdateGroundEntity();
 
             ProcessInputs();
@@ -186,7 +177,7 @@ namespace ssl.Player.Controllers
 
             if (Input.Down(InputButton.Run)) state = MovementState.Sprint;
             else if (Input.Down(InputButton.Walk)) state = MovementState.Walk;
-            else if(WishVelocity.Length > 0) state = MovementState.Run;
+            else if (WishVelocity.Length > 0) state = MovementState.Run;
             else state = MovementState.Idle;
         }
 
@@ -199,7 +190,7 @@ namespace ssl.Player.Controllers
             float speed = speeds[state].MaxSpeed;
 
             WishVelocity *= acceleration;
-            
+
             Accelerate(WishVelocity, speed);
         }
 
@@ -322,6 +313,14 @@ namespace ssl.Player.Controllers
             }
 
             Velocity += acceleration * Time.Delta;
+        }
+
+        private enum MovementState
+        {
+            Idle,
+            Walk,
+            Run,
+            Sprint
         }
     }
 }

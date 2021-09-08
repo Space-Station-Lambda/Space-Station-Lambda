@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using ssl.Modules.Roles;
-using ssl.Modules.Roles.Types.Antagonists;
-using ssl.Modules.Roles.Types.Jobs;
-using ssl.Modules.Scenarios;
-
-namespace ssl.Modules.Rounds
+﻿namespace ssl.Modules.Rounds
 {
     public class PreRound : BaseRound
     {

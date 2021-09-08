@@ -1,10 +1,7 @@
-﻿using System;
-using Sandbox;
+﻿using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
-using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
-using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;
@@ -37,6 +34,26 @@ namespace ssl.Player
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
+        public void OnSelectStart(MainPlayer player)
+        {
+            //TODO
+        }
+
+        public void OnSelectStop(MainPlayer player)
+        {
+            //TODO
+        }
+
+        public void OnSelect(MainPlayer player)
+        {
+            //TODO
+        }
+
+        public void OnAction(MainPlayer player, Item item)
+        {
+            //TODO
+        }
+
         public override void ClientSpawn()
         {
             base.ClientSpawn();
@@ -61,7 +78,7 @@ namespace ssl.Player
             controller?.Simulate(client, this, GetActiveAnimator());
             StatusHandler.Tick();
             SimulateActiveChild(client, ActiveChild);
-            InputHandler.CheckControls(); 
+            InputHandler.CheckControls();
             Selector?.CheckSelection();
         }
 
@@ -80,11 +97,11 @@ namespace ssl.Player
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-            
+
             Inventory.Clear();
-            
+
             RoleHandler.SpawnRole();
-            
+
             SendTextNotification("You are " + RoleHandler.Role.Name);
 
             base.Respawn();
@@ -123,26 +140,6 @@ namespace ssl.Player
         {
             base.PostCameraSetup(ref setup);
             Inventory.ViewModel.PostCameraSetup(ref setup);
-        }
-
-        public void OnSelectStart(MainPlayer player)
-        {
-            //TODO
-        }
-
-        public void OnSelectStop(MainPlayer player)
-        {
-            //TODO
-        }
-
-        public void OnSelect(MainPlayer player)
-        {
-            //TODO
-        }
-
-        public void OnAction(MainPlayer player, Item item)
-        {
-            //TODO
         }
 
         private void EnableRagdoll(Vector3 force, int forceBone)

@@ -1,4 +1,3 @@
-using System;
 using Sandbox;
 
 namespace ssl.Modules.Rounds
@@ -20,7 +19,7 @@ namespace ssl.Modules.Rounds
         public void ChangeRound(BaseRound round)
         {
             Host.AssertServer();
-            
+
             if (CurrentRound != null)
             {
                 CurrentRound.Stop();

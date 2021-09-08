@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Sandbox;
 using ssl.Modules.Roles;
 using ssl.Modules.Roles.Types.Antagonists;
@@ -13,13 +12,6 @@ namespace ssl.Modules.Rounds
     public abstract partial class BaseRound : NetworkedEntityAlwaysTransmitted
     {
         public HashSet<MainPlayer> Players = new();
-        public virtual int RoundDuration => 0;
-        public virtual string RoundName => "";
-        public float RoundEndTime { get; set; }
-        public float TimeLeft => RoundEndTime - Time.Now;
-        public event Action<BaseRound> RoundEndedEvent;
-        
-        public RoleDistributor RoleDistributor { get; }
 
         protected BaseRound()
         {
@@ -42,7 +34,15 @@ namespace ssl.Modules.Rounds
                 });
             RoleDistributor = new RoleDistributor(scenario, Players);
         }
-        
+
+        public virtual int RoundDuration => 0;
+        public virtual string RoundName => "";
+        public float RoundEndTime { get; set; }
+        public float TimeLeft => RoundEndTime - Time.Now;
+
+        public RoleDistributor RoleDistributor { get; }
+        public event Action<BaseRound> RoundEndedEvent;
+
         public void Start()
         {
             if (Host.IsServer && RoundDuration > 0)

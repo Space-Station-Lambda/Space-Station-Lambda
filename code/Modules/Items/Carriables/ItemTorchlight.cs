@@ -17,8 +17,10 @@ namespace ssl.Modules.Items.Carriables
         private const string LightAttachementName = "light";
         private const string FlashLightSoundSwitchOnName = "flashlight-on";
         private const string FlashLightSoundSwitchOffName = "flashlight-off";
-        private SpotLightEntity worldLight;
+
+        private TimeSince timeSinceLightToggled;
         private SpotLightEntity viewLight;
+        private SpotLightEntity worldLight;
 
         public ItemTorchlight()
         {
@@ -30,8 +32,6 @@ namespace ssl.Modules.Items.Carriables
 
         private static Vector3 LightOffset => Vector3.Forward * 10;
         [Net, Local, Predicted] private bool LightEnabled { get; set; } = true;
-
-        private TimeSince timeSinceLightToggled;
 
         public override void Spawn()
         {
@@ -77,7 +77,7 @@ namespace ssl.Modules.Items.Carriables
             if (timeSinceLightToggled > 0.1f && toggle)
             {
                 LightEnabled = !LightEnabled;
-                
+
                 PlaySound(LightEnabled ? FlashLightSoundSwitchOnName : FlashLightSoundSwitchOffName);
 
                 if (worldLight.IsValid())
@@ -113,7 +113,7 @@ namespace ssl.Modules.Items.Carriables
         public override void ActiveStart(Entity ent)
         {
             base.ActiveStart(ent);
-            
+
             if (Host.IsServer)
             {
                 Activate();

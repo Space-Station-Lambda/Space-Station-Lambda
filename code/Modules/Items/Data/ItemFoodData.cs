@@ -1,6 +1,4 @@
-﻿using Sandbox;
-
-namespace ssl.Modules.Items.Data
+﻿namespace ssl.Modules.Items.Data
 {
     public class ItemFoodData : ItemData
     {

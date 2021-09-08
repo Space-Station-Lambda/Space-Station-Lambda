@@ -1,5 +1,4 @@
-﻿RoleSelectorSlot
-{
+﻿RoleSelectorSlot {
   background-color: whitesmoke;
   font-size: 30px;
   cursor: pointer;
@@ -10,9 +9,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   &.selected {
     background-color: lightblue;
   }
+
   &:hover {
     background-color: lightblue;
     border-color: #0a61cb;

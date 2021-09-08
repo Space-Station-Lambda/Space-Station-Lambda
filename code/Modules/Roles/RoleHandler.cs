@@ -85,6 +85,5 @@ namespace ssl.Modules.Roles
         {
             Role?.OnSpawn(player);
         }
-
     }
 }

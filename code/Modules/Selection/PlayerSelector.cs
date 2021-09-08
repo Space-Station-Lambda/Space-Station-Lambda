@@ -6,9 +6,9 @@ namespace ssl.Modules.Selection
     public class PlayerSelector
     {
         private const float SelectionRange = 150f;
-        
+
         private readonly MainPlayer player;
-        
+
         private ISelectable selected;
 
         public PlayerSelector(MainPlayer player)
@@ -28,6 +28,7 @@ namespace ssl.Modules.Selection
                     StopSelection();
                     StartSelection(selectable);
                 }
+
                 selected.OnSelect(player);
             }
             else if (selected != null)
@@ -51,15 +52,15 @@ namespace ssl.Modules.Selection
             selected = selectable;
             selected.OnSelectStart(player);
         }
-        
+
         public void StopSelection()
         {
             Log.Warning("Not selected");
             selected?.OnSelectStop(player);
             selected = null;
         }
-        
-        
+
+
         protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
         {
             bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);

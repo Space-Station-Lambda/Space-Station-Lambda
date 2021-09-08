@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using ssl.Player;
 
 namespace ssl.Modules.Clothes
@@ -64,6 +63,7 @@ namespace ssl.Modules.Clothes
             {
                 pieceOfClothes.Delete();
             }
+
             clothes.Clear();
         }
     }

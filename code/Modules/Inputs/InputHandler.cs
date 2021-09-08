@@ -1,5 +1,4 @@
 ﻿using Sandbox;
-using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Props.Types;
 using ssl.Player;
@@ -27,7 +26,7 @@ namespace ssl.Modules.Inputs
             if (Input.Pressed(InputButton.Slot8)) player.Inventory.ProcessHolding(7);
             if (Input.Pressed(InputButton.Slot9)) player.Inventory.ProcessHolding(8);
             if (Input.Pressed(InputButton.Slot0)) player.Inventory.ProcessHolding(9);
-            
+
             if (player.IsClient) CheckClientControls();
             if (player.IsServer) CheckServercontrols();
         }
@@ -44,6 +43,7 @@ namespace ssl.Modules.Inputs
                 Item dropped = player.Inventory.DropItem();
                 dropped.Velocity += player.Velocity;
             }
+
             if (Input.Pressed(InputButton.Flashlight))
             {
                 Stain ent = new()
@@ -53,11 +53,11 @@ namespace ssl.Modules.Inputs
                     Velocity = player.EyeRot.Forward * 100
                 };
             }
+
             if (Input.Pressed(InputButton.Use))
             {
                 player.Selector.UseSelected();
             }
-        
         }
     }
 }

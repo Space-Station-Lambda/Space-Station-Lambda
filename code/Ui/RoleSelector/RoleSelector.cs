@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sandbox;
 using Sandbox.UI;
-using ssl.Modules.Roles;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Rounds;
@@ -53,7 +51,7 @@ namespace ssl.Ui.RoleSelector
         public override void Tick()
         {
             base.Tick();
-            
+
             BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
             if (null != currentRound)
             {

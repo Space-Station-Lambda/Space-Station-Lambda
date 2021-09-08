@@ -17,12 +17,12 @@ namespace ssl.Ui.RoleSelector
         {
             Parent = parent;
         }
-        
+
         public RoleSelectorSlot(Role role)
         {
             StyleSheet.Load("Ui/RoleSelector/RoleSelectorSlot.scss");
             Role = role;
-            
+
             Add.Label(role.Name, "role-name");
         }
 

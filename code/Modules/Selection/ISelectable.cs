@@ -1,5 +1,4 @@
 ﻿using ssl.Modules.Items.Carriables;
-using ssl.Modules.Items.Data;
 using ssl.Player;
 
 namespace ssl.Modules.Selection
@@ -11,11 +10,13 @@ namespace ssl.Modules.Selection
         /// </summary>
         /// <param name="player">The player who select.</param>
         public void OnSelectStart(MainPlayer player);
+
         /// <summary>
         /// When the slection stopped.
         /// </summary>
         /// <param name="player">The player who select.</param>
         public void OnSelectStop(MainPlayer player);
+
         /// <summary>
         /// While the is selected.
         /// </summary>

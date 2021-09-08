@@ -29,7 +29,7 @@ namespace ssl.Modules.Roles.Types.Others
         public override void OnUnassigned(MainPlayer player)
         {
             base.OnUnassigned(player);
-            
+
             player.RenderAlpha = BasicAlpha;
         }
     }

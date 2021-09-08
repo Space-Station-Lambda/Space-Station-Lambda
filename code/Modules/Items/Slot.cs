@@ -6,10 +6,9 @@ namespace ssl.Modules.Items
 {
     public partial class Slot : NetworkedEntityAlwaysTransmitted
     {
+        [Net, Predicted] public Item Item { get; private set; }
         internal event Action<Slot> ItemAdded;
         internal event Action<Slot> ItemRemoved;
-        
-        [Net, Predicted] public Item Item { get; private set; }
 
         public bool IsEmpty()
         {

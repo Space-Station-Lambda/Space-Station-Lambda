@@ -1,4 +1,3 @@
-using Sandbox;
 using ssl.Modules.Items.Data;
 using ssl.Player;
 
@@ -11,8 +10,9 @@ namespace ssl.Modules.Items.Carriables
         }
 
         public ItemFood(ItemFoodData itemData) : base(itemData)
-        { }
-        
+        {
+        }
+
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>

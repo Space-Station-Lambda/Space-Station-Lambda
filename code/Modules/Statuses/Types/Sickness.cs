@@ -1,5 +1,4 @@
-﻿using Sandbox;
-using ssl.Player;
+﻿using ssl.Player;
 
 namespace ssl.Modules.Statuses.Types
 {
@@ -8,13 +7,12 @@ namespace ssl.Modules.Statuses.Types
         private const byte TargetRColor = 140;
         private const byte TargetGColor = 207;
         private const byte TargetBColor = 100;
-        
-        
+
 
         public Sickness() : base()
         {
         }
-        
+
         public Sickness(int duration) : base(duration)
         {
         }
@@ -28,7 +26,7 @@ namespace ssl.Modules.Statuses.Types
         {
             base.OnTick(player);
             float sicknessRatio = (InitialTime - TimeLeft) / InitialTime;
-            byte r =(byte)(255 - (sicknessRatio * 255 - TargetRColor));
+            byte r = (byte)(255 - (sicknessRatio * 255 - TargetRColor));
             byte g = (byte)(255 - (sicknessRatio * 255 - TargetGColor));
             byte b = (byte)(255 - (sicknessRatio * 255 - TargetBColor));
             player.RenderColor = new Color32(r, g, b);

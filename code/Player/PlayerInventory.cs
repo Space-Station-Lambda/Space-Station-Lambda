@@ -9,20 +9,20 @@ namespace ssl.Player
     {
         private const int MaxInventoryCapacity = 10;
 
+        public PlayerInventory()
+        {
+        }
+
+        public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
+        {
+            this.Player = player;
+        }
+
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
         [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         [Net] private MainPlayer Player { get; set; }
         public HandViewModel ViewModel { get; set; }
-
-        public PlayerInventory()
-        {
-        }
-        
-        public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
-        {
-            this.Player = player;
-        }
 
         public void ProcessHolding(int slotIndex)
         {
@@ -39,7 +39,7 @@ namespace ssl.Player
             HoldingItem?.OnCarryStart(Player);
             Player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
-            
+
             if (Host.IsClient)
             {
                 RefreshViewModel();

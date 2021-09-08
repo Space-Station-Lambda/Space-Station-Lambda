@@ -36,7 +36,7 @@ namespace ssl.Modules.Items.Carriables
         public float Damage { get; private set; }
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
-        
+
         public override void UseOn(MainPlayer player)
         {
             base.UseOn(player);

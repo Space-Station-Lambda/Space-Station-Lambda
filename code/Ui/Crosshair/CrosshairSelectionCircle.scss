@@ -1,14 +1,14 @@
 ﻿CrosshairSelectionCircle {
-    &.selected {
-        position: absolute;
-        transform: translateX(-50%) translateY(-50%);
-        left: 50%;
-        top: 50%;
-        background-color: rgba(255, 255, 255, 0);
-        height: 14px;
-        width: 14px;
-        border-radius: 50%;
-        border-width: 2px;
-        border-color: rgba(192, 192, 192, 0.88);
-    }
+  &.selected {
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top: 50%;
+    background-color: rgba(255, 255, 255, 0);
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: rgba(192, 192, 192, 0.88);
+  }
 }

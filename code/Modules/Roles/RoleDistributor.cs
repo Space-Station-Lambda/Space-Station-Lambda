@@ -10,10 +10,10 @@ namespace ssl.Modules.Roles
 {
     public class RoleDistributor
     {
+        public Role DefaultRole = new Assistant();
         private HashSet<MainPlayer> players;
         public Scenario Scenario;
-        public Role DefaultRole = new Assistant();
-        
+
         public RoleDistributor(Scenario scenario, HashSet<MainPlayer> players)
         {
             this.Scenario = scenario;
@@ -71,7 +71,8 @@ namespace ssl.Modules.Roles
 
         private ScenarioConstraint GetConstraint(Role role)
         {
-            return Scenario.GetScenarioConstraint(players.Count).FirstOrDefault(scenarioConstraint => scenarioConstraint.Role.Equals(role));
+            return Scenario.GetScenarioConstraint(players.Count)
+                .FirstOrDefault(scenarioConstraint => scenarioConstraint.Role.Equals(role));
         }
 
         private bool ConstraintFullfilled(ScenarioConstraint constraint)
@@ -141,10 +142,11 @@ namespace ssl.Modules.Roles
                 player.RoleHandler.AssignRole(DefaultRole);
                 return false;
             }
+
             player.RoleHandler.AssignRole(role);
             return true;
         }
-        
+
         /// <summary>
         /// Search for the availible prefed role
         /// </summary>
@@ -175,6 +177,7 @@ namespace ssl.Modules.Roles
                     break;
                 }
             }
+
             return roleToAssign;
         }
 
