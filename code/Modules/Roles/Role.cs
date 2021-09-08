@@ -47,7 +47,8 @@ namespace ssl.Modules.Roles
         {
             foreach (string itemId in Items)
             {
-                player.Inventory.Add(ItemFactory.Create(itemId));
+                ItemFactory itemFactory = new();
+                player.Inventory.Add(itemFactory.Create(itemId));
             }
 
             player.ClothesHandler.AttachClothes(Clothing);

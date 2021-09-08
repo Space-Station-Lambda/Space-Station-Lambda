@@ -5,7 +5,7 @@ using ssl.Modules.Items.Data;
 
 namespace ssl.Modules.Items
 {
-    public class ItemFactory
+    public class ItemFactory : InstanceFactory<ItemData, Item>
     {
         private const string FoodPrefix = "food";
         private const string WeaponPrefix = "weapon";
@@ -13,18 +13,11 @@ namespace ssl.Modules.Items
 
         private const string TorchlightName = "torchlight";
         private const string MopName = "mop";
-        
-        
-        public static Item Create(ItemData itemData)
+        protected override string BasePath => "base/items";
+
+        public override Item Create(string prefix, string name)
         {
-            return Create(itemData.Id);
-        }
-        
-        public static Item Create(string id)
-        {
-            string prefix = id.Split(".")[0];
-            string name = id.Split(".")[1];
-            string filePath = $"data/items/{prefix}/{name}.{prefix}";
+            string filePath = GetFilePath(prefix, name);
             switch (prefix)
             {
                 case FoodPrefix:
@@ -36,11 +29,10 @@ namespace ssl.Modules.Items
                     return name switch
                     {
                         TorchlightName => new ItemTorchlight(itemData),
-                        MopName => new ItemMop(itemData),
                         _ => new Item(itemData)
                     };
                 default:
-                    throw new ArgumentOutOfRangeException($"The prefix does not exist for {id}");
+                    throw new ArgumentOutOfRangeException($"The prefix does not exist for {prefix}.{name}");
             }
         }
     }
