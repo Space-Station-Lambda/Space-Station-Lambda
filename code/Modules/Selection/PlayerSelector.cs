@@ -23,7 +23,7 @@ namespace ssl.Modules.Selection
             Entity result = tr.Entity;
             if (result is ISelectable selectable)
             {
-                if (!selectable.Equals(selected))
+                if (!ReferenceEquals(selectable, selected))
                 {
                     StopSelection();
                     StartSelection(selectable);
@@ -55,7 +55,6 @@ namespace ssl.Modules.Selection
 
         public void StopSelection()
         {
-            Log.Warning("Not selected");
             selected?.OnSelectStop(player);
             selected = null;
         }

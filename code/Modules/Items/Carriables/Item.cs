@@ -19,10 +19,12 @@ namespace ssl.Modules.Items.Carriables
         public Item(ItemData data)
         {
             Data = data;
+            
+            SetModel(data.Model);
         }
 
         public virtual ItemData Data { get; }
-
+        
         public void OnSelectStart(MainPlayer player)
         {
             if (Host.IsClient) GlowActive = true;
@@ -41,7 +43,6 @@ namespace ssl.Modules.Items.Carriables
         public void OnAction(MainPlayer player, Item item)
         {
             player.Inventory.Add(this);
-            ActiveEnd(player, false);
         }
 
         /// <summary>
@@ -98,5 +99,9 @@ namespace ssl.Modules.Items.Carriables
         }
 
         public override T Data { get; }
+        public void OnAction(MainPlayer player, Item item)
+        {
+            player.Inventory.Add(this);
+        }
     }
 }

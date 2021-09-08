@@ -59,7 +59,7 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public virtual void Add(Item item, int position = 0)
+        public virtual Slot Add(Item item, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
@@ -70,6 +70,7 @@ namespace ssl.Modules.Items
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 slotDestination?.Set(item);
+                return slotDestination;
             }
             else
             {
@@ -85,10 +86,10 @@ namespace ssl.Modules.Items
         /// <param name="itemId">ItemId to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(string itemId, int position = 0)
+        public Slot Add(string itemId, int position = 0)
         {
             Item item = ItemFactory.Create(itemId);
-            Add(item, position);
+            return Add(item, position);
         }
 
         /// <summary>
@@ -99,9 +100,9 @@ namespace ssl.Modules.Items
         /// <param name="data"></param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public void Add(ItemData data, int position = 0)
+        public Slot Add(ItemData data, int position = 0)
         {
-            Add(ItemFactory.Create(data), position);
+            return Add(ItemFactory.Create(data), position);
         }
 
         /// <summary>
