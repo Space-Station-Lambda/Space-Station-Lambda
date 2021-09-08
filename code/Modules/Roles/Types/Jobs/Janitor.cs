@@ -16,12 +16,10 @@ namespace ssl.Modules.Roles.Types.Jobs
             "models/citizen_clothes/shoes/shoes.workboots.vmdl",
             "models/citizen_clothes/hat/hat_service.vmdl",
         };
-
+        
         public override IEnumerable<string> Items => new List<string>
         {
-            "item.mop",
-            "item.sponge",
-            "item.cleaning_spray"
+            "item.mop"
         };
     }
 }
