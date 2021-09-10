@@ -1,4 +1,4 @@
-@BaseClass = item: "A data"
+@BaseClass = data : "A data"
 [
   Id(string) : "Id" : "Id"
   Name(string) : "Name" : "Name"
