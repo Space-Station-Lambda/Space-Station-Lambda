@@ -18,14 +18,15 @@ namespace ssl.Modules.Items
         public override Item Create(string prefix, string name)
         {
             string filePath = GetFilePath(prefix, name);
+           
             switch (prefix)
             {
                 case FoodPrefix:
-                    return new ItemFood(Resource.FromPath<ItemFoodData>(filePath));
+                    return new ItemFood(TryLoad<ItemFoodData>(filePath));
                 case WeaponPrefix:
-                    return new ItemWeapon(Resource.FromPath<ItemWeaponData>(filePath));
+                    return new ItemWeapon(TryLoad<ItemWeaponData>(filePath));
                 case ItemPrefix:
-                    ItemData itemData = Resource.FromPath<ItemData>(filePath);
+                    ItemData itemData = TryLoad<ItemData>(filePath);
                     return name switch
                     {
                         TorchlightName => new ItemTorchlight(itemData),

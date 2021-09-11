@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
@@ -48,7 +50,15 @@ namespace ssl.Modules.Roles
             foreach (string itemId in Items)
             {
                 ItemFactory itemFactory = new();
-                player.Inventory.Add(itemFactory.Create(itemId));
+                try
+                {
+                    player.Inventory.Add(itemFactory.Create(itemId));
+                }
+                catch (ArgumentException e)
+                {
+                    Log.Error($"{itemId} can't be created because of: {e.Message}");
+                }
+                
             }
 
             player.ClothesHandler.AttachClothes(Clothing);
