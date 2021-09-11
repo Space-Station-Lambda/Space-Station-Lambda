@@ -17,7 +17,6 @@ namespace ssl.Modules.Roles.Types.Jobs
 
         public override IEnumerable<string> Items => new List<string>
         {
-            "food.apple"
         };
     }
 }

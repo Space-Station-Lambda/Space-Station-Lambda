@@ -19,7 +19,6 @@ namespace ssl.Modules.Roles.Types.Antagonists
 
         public override IEnumerable<string> Items => new List<string>
         {
-            "weapon.knife"
         };
 
         public Role SecondaryRole { get; set; }
