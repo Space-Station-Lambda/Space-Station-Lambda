@@ -19,7 +19,7 @@ namespace ssl.Modules.Props
             switch (prefix)
             {
                 case PropPrefix:
-                    PropData propData = Resource.FromPath<PropData>(filePath);
+                    PropData propData = TryLoad<PropData>(filePath);
                     return name switch
                     {
                         StainName => new Stain(propData),

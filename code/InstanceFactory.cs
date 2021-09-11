@@ -1,4 +1,8 @@
-﻿namespace ssl
+﻿using System;
+using Sandbox;
+using ssl.Modules.Items.Data;
+
+namespace ssl
 {
     public abstract class InstanceFactory<T1, T2> where T1 : BaseData
     {
@@ -21,6 +25,13 @@
         protected string GetFilePath(string prefix, string name)
         {
             return $"{BasePath}/{prefix}/{name}.{prefix}";
+        }
+
+        protected T TryLoad<T>(string filePath) where T : Asset
+        {
+            T resourceToLoad = Resource.FromPath<T>(filePath);
+            if (null == resourceToLoad) throw new ArgumentException("Invalid path file");
+            return resourceToLoad;
         }
     }
 }
