@@ -9,7 +9,7 @@ namespace ssl.Modules.Commands
     public class PropsCommands
     {
         /// <summary>
-        /// Create props with is id
+        /// Create props with its id
         /// </summary>
         /// <param name="id">The id of the prop</param>
         [AdminCmd("prop")]
