@@ -11,7 +11,7 @@ namespace ssl.Modules.Props
         private const string PropPrefix = "prop";
 
         private const string StainName = "stain";
-        protected override string BasePath => "base/items";
+        protected override string BasePath => "data/props";
 
         public override Prop Create(string prefix, string name)
         {

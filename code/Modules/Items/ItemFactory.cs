@@ -13,7 +13,7 @@ namespace ssl.Modules.Items
 
         private const string TorchlightName = "torchlight";
         private const string MopName = "mop";
-        protected override string BasePath => "base/items";
+        protected override string BasePath => "data/items";
 
         public override Item Create(string prefix, string name)
         {
