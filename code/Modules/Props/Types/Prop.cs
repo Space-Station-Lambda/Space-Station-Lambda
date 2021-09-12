@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Props.Data;
 using ssl.Modules.Selection;
@@ -10,7 +11,7 @@ namespace ssl.Modules.Props.Types
     /// A prop is an object not in inventory
     /// Inspired by sandbox Props
     /// </summary>
-    public partial class Prop : BasePhysics, ISelectable
+    public partial class Prop : ModelEntity, ISelectable
     {
         public Prop()
         {
@@ -19,6 +20,7 @@ namespace ssl.Modules.Props.Types
         public Prop(PropData data)
         {
             Data = data;
+            SetModel(Data.Model);
         }
 
         public virtual PropData Data { get; }
@@ -45,12 +47,10 @@ namespace ssl.Modules.Props.Types
 
             MoveType = MoveType.Physics;
             CollisionGroup = CollisionGroup.Interactive;
-            PhysicsEnabled = true;
             UsePhysicsCollision = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-
-            SetModel(Data.Model);
+            PhysicsEnabled = false;
         }
     }
 
