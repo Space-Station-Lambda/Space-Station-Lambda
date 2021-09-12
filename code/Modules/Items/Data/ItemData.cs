@@ -1,8 +1,11 @@
-﻿namespace ssl.Modules.Items.Data
+﻿using Sandbox;
+
+namespace ssl.Modules.Items.Data
 {
     /// <summary>
     /// Stores data to create an Item instance.
     /// </summary>
+    [Library("item")]
     public class ItemData : BaseData
     {
         public string Description { get; set; } = "This is my item";
