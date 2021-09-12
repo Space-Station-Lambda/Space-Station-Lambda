@@ -44,16 +44,6 @@ namespace ssl.Modules.Inputs
                 dropped.Velocity += player.Velocity;
             }
 
-            if (Input.Pressed(InputButton.Flashlight))
-            {
-                Stain ent = new()
-                {
-                    Position = player.EyePos + player.EyeRot.Forward * 50,
-                    Rotation = player.EyeRot,
-                    Velocity = player.EyeRot.Forward * 100
-                };
-            }
-
             if (Input.Pressed(InputButton.Use))
             {
                 player.Selector.UseSelected();
