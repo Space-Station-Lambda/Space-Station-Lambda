@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Modules.Props;
 using ssl.Modules.Props.Types;
 using ssl.Player;
 using Prop = ssl.Modules.Props.Types.Prop;
@@ -7,16 +8,26 @@ namespace ssl.Modules.Commands
 {
     public class PropsCommands
     {
-        [AdminCmd("pp_stain")]
-        public static void RestartRound()
+        /// <summary>
+        /// Create props with is id
+        /// </summary>
+        /// <param name="id">The id of the prop</param>
+        [AdminCmd("prop")]
+        public static void SpawnProp(string id)
         {
             Client client = ConsoleSystem.Caller;
             MainPlayer player = (MainPlayer)client.Pawn;
-            Prop ent = new Stain
+            PropFactory propFactory = new();
+            try
             {
-                Position = player.EyePos + player.EyeRot.Forward * 50,
-                Rotation = player.EyeRot
-            };
+                Prop prop = propFactory.Create(id);
+                prop.Position = player.EyePos + player.EyeRot.Forward * 50;
+                prop.Rotation = player.EyeRot;
+            }
+            catch
+            {
+                Log.Info($"{id} not found.");
+            }
         }
     }
 }
