@@ -8,10 +8,6 @@ namespace ssl.Modules.Props.Types
     {
         private const string MopId = "item.mop";
         
-        public Stain()
-        {
-        }
-
         public Stain(PropData itemData) : base(itemData)
         {
         }
