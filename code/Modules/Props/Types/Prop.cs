@@ -23,7 +23,7 @@ namespace ssl.Modules.Props.Types
             SetModel(data.Model);
         }
 
-        public virtual PropData Data { get; }
+        [Net] public PropData Data { get; private set; }
 
         public virtual void OnSelectStart(MainPlayer player)
         {
@@ -61,9 +61,8 @@ namespace ssl.Modules.Props.Types
         
         public Prop(T propData) : base(propData)
         {
-            Data = propData;
         }
-        
-        public override T Data { get; }
+
+        public new T Data => (T)base.Data;
     }
 }
