@@ -12,18 +12,26 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
-        protected Item()
+        public Item()
         {
         }
 
         public Item(ItemData data)
         {
-            Data = data;
+            Id = data.Id;
+            Name = data.Name;
+            Model = data.Model;
+            Description = data.Description;
+            HoldType = (HoldType) data.HoldType;
             
             SetModel(data.Model);
         }
 
-        public virtual ItemData Data { get; }
+        [Net] public string Id { get; protected set; }
+        [Net] public string Name { get; protected set; }
+        [Net] public string Model { get; protected set; }
+        [Net] public string Description { get; protected set; }
+        [Net] public HoldType HoldType { get; protected set; }
         
         public void OnSelectStart(MainPlayer player)
         {
@@ -65,12 +73,12 @@ namespace ssl.Modules.Items.Carriables
 
         public override string ToString()
         {
-            return $"[{Data.Id}] {Data.Name}";
+            return $"[{Id}] {Name}";
         }
 
         protected bool Equals(Item other)
         {
-            return Data.Id == other.Data.Id;
+            return Id == other.Id;
         }
 
         public override bool Equals(object obj)
@@ -83,25 +91,7 @@ namespace ssl.Modules.Items.Carriables
 
         public override int GetHashCode()
         {
-            return (Data.Id != null ? Data.Id.GetHashCode() : 0);
-        }
-    }
-
-    public class Item<T> : Item where T : ItemData
-    {
-        public Item()
-        {
-        }
-
-        public Item(T itemData) : base(itemData)
-        {
-            Data = itemData;
-        }
-
-        public override T Data { get; }
-        public void OnAction(MainPlayer player, Item item)
-        {
-            player.Inventory.Add(this);
+            return (Id != null ? Id.GetHashCode() : 0);
         }
     }
 }

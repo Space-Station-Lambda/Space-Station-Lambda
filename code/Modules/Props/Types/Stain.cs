@@ -19,7 +19,7 @@ namespace ssl.Modules.Props.Types
 
         public override void OnAction(MainPlayer player, Item item)
         {
-            switch (item.Data.Id)
+            switch (item.Id)
             {
                 case MopId:
                 case SpongeId:

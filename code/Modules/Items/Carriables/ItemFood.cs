@@ -3,15 +3,18 @@ using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
 {
-    public partial class ItemFood : Item<ItemFoodData>
+    public partial class ItemFood : Item
     {
         public ItemFood()
         {
         }
 
-        public ItemFood(ItemFoodData itemData) : base(itemData)
+        public ItemFood(ItemFoodData foodData) : base(foodData)
         {
+            FeedingValue = foodData.FeedingValue;
         }
+
+        public int FeedingValue { get; protected set; }
 
         /// <summary>
         /// First version, food feeds up the player on use

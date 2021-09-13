@@ -29,8 +29,8 @@ namespace ssl.Modules.Items
 
         public bool IsAuthorized(Item item)
         {
-            if (Enumerable.Any(Whitelist, data => data.Id == item.Data.Id)) return true;
-            if (Enumerable.Any(Blacklist, data => data.Id == item.Data.Id)) return false;
+            if (Enumerable.Any(Whitelist, data => data.Id == item.Id)) return true;
+            if (Enumerable.Any(Blacklist, data => data.Id == item.Id)) return false;
             return !(Whitelist.Count > 0);
         }
 

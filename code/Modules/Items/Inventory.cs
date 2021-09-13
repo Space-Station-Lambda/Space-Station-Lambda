@@ -140,12 +140,12 @@ namespace ssl.Modules.Items
 
         public Item Get(string itemId)
         {
-            return (from slot in Slots where itemId.Equals(slot.Item.Data.Id) select slot.Item).FirstOrDefault();
+            return (from slot in Slots where itemId.Equals(slot.Item.Id) select slot.Item).FirstOrDefault();
         }
 
         public List<Item> GetItems(ItemData item)
         {
-            return (from slot in Slots where item.Id.Equals(slot.Item.Data.Id) select slot.Item).ToList();
+            return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
         }
 
         /// <summary>

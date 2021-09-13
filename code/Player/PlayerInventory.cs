@@ -90,7 +90,7 @@ namespace ssl.Player
             //TODO
             if (HoldingItem != null)
             {
-                HoldType holdingType = (HoldType)HoldingItem.Data.HoldType;
+                HoldType holdingType = (HoldType)HoldingItem.HoldType;
                 ViewModel.SetHoldType(holdingType);
             }
         }

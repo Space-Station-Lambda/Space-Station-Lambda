@@ -53,7 +53,7 @@ namespace ssl.Ui.InventoryBar
                 }
                 else
                 {
-                    Model model = Model.Load(item.Data.Model);
+                    Model model = Model.Load(item.Model);
                     Transform modelTransform = new Transform()
                         .WithPosition(-model.RenderBounds.Center)
                         .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
