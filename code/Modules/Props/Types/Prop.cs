@@ -12,10 +12,14 @@ namespace ssl.Modules.Props.Types
     /// </summary>
     public partial class Prop : ModelEntity, ISelectable
     {
+        public Prop()
+        {
+        }
+        
         public Prop(PropData data)
         {
             Data = data;
-            SetModel(Data.Model);
+            SetModel(data.Model);
         }
 
         public virtual PropData Data { get; }
@@ -52,12 +56,15 @@ namespace ssl.Modules.Props.Types
 
     public class Prop<T> : Prop where T : PropData
     {
-
+        public Prop()
+        {
+        }
+        
         public Prop(T propData) : base(propData)
         {
             Data = propData;
         }
-
+        
         public override T Data { get; }
     }
 }
