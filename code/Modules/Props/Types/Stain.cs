@@ -7,6 +7,7 @@ namespace ssl.Modules.Props.Types
     public class Stain : Prop<PropData>
     {
         private const string MopId = "item.mop";
+        private const string SpongeId = "item.sponge";
         
         public Stain()
         {
@@ -18,9 +19,12 @@ namespace ssl.Modules.Props.Types
 
         public override void OnAction(MainPlayer player, Item item)
         {
-            if (MopId.Equals(item.Data.Id))
+            switch (item.Data.Id)
             {
-                Delete();
+                case MopId:
+                case SpongeId:
+                    Delete();
+                    break;
             }
         }
     }
