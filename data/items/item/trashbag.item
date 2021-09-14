@@ -6,6 +6,6 @@
 		Name = "Trash Bag"
 		Model = "models/citizen_props/trashbag02.vmdl"
 		Description = "This is my item"
-		HoldType = 3
+		HoldType = 4
 	}
 }

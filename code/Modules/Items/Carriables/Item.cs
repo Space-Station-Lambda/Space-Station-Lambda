@@ -12,7 +12,7 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
-        protected Item()
+        public Item()
         {
         }
 
