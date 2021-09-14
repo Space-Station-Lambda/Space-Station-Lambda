@@ -60,19 +60,6 @@ namespace ssl.Modules.Items.Carriables
             return $"[{Data.Id}] {Data.Name}";
         }
 
-        protected bool Equals(Item other)
-        {
-            return Data.Id == other.Data.Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((Item)obj);
-        }
-
         public override int GetHashCode()
         {
             return (Data.Id != null ? Data.Id.GetHashCode() : 0);

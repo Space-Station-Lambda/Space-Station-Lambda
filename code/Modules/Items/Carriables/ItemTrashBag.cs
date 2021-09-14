@@ -1,4 +1,5 @@
-﻿using ssl.Modules.Items.Data;
+﻿using Sandbox;
+using ssl.Modules.Items.Data;
 using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
@@ -7,7 +8,7 @@ namespace ssl.Modules.Items.Carriables
     {
         private const int InventorySize = 6;
         
-        protected ItemTrashBag()
+        public ItemTrashBag()
         {
         }
 
@@ -22,6 +23,7 @@ namespace ssl.Modules.Items.Carriables
         {
             base.UseOn(player);
             
+            if (!Host.IsServer) return;
             if (player.Selector.Selected is Item item) AddToTrashBag(item);
         }
 
@@ -31,12 +33,15 @@ namespace ssl.Modules.Items.Carriables
         /// <param name="item"></param>
         private void AddToTrashBag(Item item)
         {
+            Host.AssertServer();
+            
             Slot destinationSlot = Content.Add(item);
             if (destinationSlot == null) return;
             
-            item.SetParent(this);
+            item.SetParent(this, transform: Transform.Zero);
             item.EnableDrawing = false;
             item.PhysicsEnabled = false;
+            item.EnableAllCollisions = false;
         }
     }
 }
