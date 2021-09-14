@@ -21,7 +21,16 @@ namespace ssl.Modules.Items.Carriables
         public override void UseOn(MainPlayer player)
         {
             base.UseOn(player);
-            player.Selector.CheckSelection();
+            
+            if (player.Selector.Selected is Item item) AddToTrashBag(item);
+        }
+
+        private void AddToTrashBag(Item item)
+        {
+            item.SetParent(this);
+            item.EnableDrawing = false;
+            item.PhysicsEnabled = false;
+            Content.Add(item);
         }
     }
 }
