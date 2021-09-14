@@ -12,6 +12,7 @@ namespace ssl.Modules.Items
         private const string ItemPrefix = "item";
 
         private const string TorchlightName = "torchlight";
+        private const string TrashBagName = "trashbag";
         private const string MopName = "mop";
         protected override string BasePath => "data/items";
 
@@ -29,6 +30,7 @@ namespace ssl.Modules.Items
                     ItemData itemData = TryLoad<ItemData>(filePath);
                     return name switch
                     {
+                        TrashBagName => new ItemTrashBag(itemData),
                         TorchlightName => new ItemTorchlight(itemData),
                         _ => new Item(itemData)
                     };
