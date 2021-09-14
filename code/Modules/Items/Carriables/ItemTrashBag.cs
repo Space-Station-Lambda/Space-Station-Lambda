@@ -19,6 +19,9 @@ namespace ssl.Modules.Items.Carriables
         
         public Inventory Content { get; private set; }
 
+        /// <summary>
+        /// Using the trash bag on an item on ground will add it to the trash bag
+        /// </summary>
         public override void UseOn(MainPlayer player)
         {
             base.UseOn(player);
@@ -28,9 +31,9 @@ namespace ssl.Modules.Items.Carriables
         }
 
         /// <summary>
-        /// Adds an item in the bag's inventory while hiding it in the world
+        /// Adds an item in the bag's inventory and hide it in the world
         /// </summary>
-        /// <param name="item"></param>
+        /// <param name="item">The item to add to the trash bag</param>
         private void AddToTrashBag(Item item)
         {
             Host.AssertServer();

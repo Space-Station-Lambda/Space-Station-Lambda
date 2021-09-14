@@ -20,6 +20,7 @@ namespace ssl.Modules.Items.Carriables
         {
             Data = data;
             SetModel(data.Model);
+            GlowColor = Color.Blue;
         }
 
         [Net] public ItemData Data { get; private set; }
