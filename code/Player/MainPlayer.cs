@@ -148,7 +148,6 @@ namespace ssl.Player
             
             SpectatorCamera specCam = new();
             Camera = specCam;
-            specCam.Target = this;
             
             EnableAllCollisions = false;
             EnableDrawing = false;
