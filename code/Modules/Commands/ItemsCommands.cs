@@ -10,7 +10,7 @@ namespace ssl.Modules.Commands
         /// <summary>
         /// Clear the inventory
         /// </summary>
-        [AdminCmd("clear")]
+        [AdminCmd("inv_clear")]
         public static void ClearInventory()
         {
             Client client = ConsoleSystem.Caller;
@@ -21,7 +21,7 @@ namespace ssl.Modules.Commands
         /// <summary>
         /// give an item
         /// </summary>
-        [AdminCmd("give")]
+        [AdminCmd("inv_give")]
         public static void GiveItem(string id)
         {
             Client client = ConsoleSystem.Caller;
