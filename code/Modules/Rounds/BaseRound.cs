@@ -11,7 +11,7 @@ namespace ssl.Modules.Rounds
 {
     public abstract partial class BaseRound : NetworkedEntityAlwaysTransmitted
     {
-        public HashSet<MainPlayer> Players = new();
+        public List<MainPlayer> Players = new();
 
         protected BaseRound()
         {

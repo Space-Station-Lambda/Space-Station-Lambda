@@ -145,10 +145,11 @@ namespace ssl.Player
             
             Controller = null;
             Animator = null;
-            Camera = new SpectatorCamera()
-            {
-                Pos = Position
-            };
+            
+            SpectatorCamera specCam = new();
+            Camera = specCam;
+            specCam.Target = this;
+            
             EnableAllCollisions = false;
             EnableDrawing = false;
         }

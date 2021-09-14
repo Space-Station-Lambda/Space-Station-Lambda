@@ -3,19 +3,22 @@ using Sandbox;
 
 namespace ssl.Player.Cameras
 {
-    public partial class SpectatorCamera : Sandbox.Camera
+    public partial class SpectatorCamera : Camera
     {
-        [Net, Predicted] public Entity Target { get; set; } 
+        private const float SpectatorFieldOfView = 80F;
+        private const float FocusDistance = 100F;
         
-        public override void Activated()
-        {
-            base.Activated();
-        }
+        [Net, Predicted] public Entity Target { get; set; }
 
         public override void Update()
         {
-            Pos = Local.Pawn.Position + Vector3.Up * 100;
-            Rot = Local.Pawn.EyeRot;
+            if (Target != null)
+            {
+                Pos = Target.Position + Input.Rotation.Backward * FocusDistance;
+                Rot = Local.Pawn.EyeRot;
+            }
+
+            FieldOfView = SpectatorFieldOfView;
         }
     }
 }
