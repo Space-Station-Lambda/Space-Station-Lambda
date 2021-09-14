@@ -19,11 +19,10 @@ namespace ssl.Modules.Items.Carriables
         public Item(ItemData data)
         {
             Data = data;
-            
             SetModel(data.Model);
         }
 
-        public virtual ItemData Data { get; }
+        [Net] public ItemData Data { get; private set; }
         
         public void OnSelectStart(MainPlayer player)
         {
@@ -95,13 +94,8 @@ namespace ssl.Modules.Items.Carriables
 
         public Item(T itemData) : base(itemData)
         {
-            Data = itemData;
         }
 
-        public override T Data { get; }
-        public void OnAction(MainPlayer player, Item item)
-        {
-            player.Inventory.Add(this);
-        }
+        public new T Data => (T)base.Data;
     }
 }
