@@ -25,12 +25,18 @@ namespace ssl.Modules.Items.Carriables
             if (player.Selector.Selected is Item item) AddToTrashBag(item);
         }
 
+        /// <summary>
+        /// Adds an item in the bag's inventory while hiding it in the world
+        /// </summary>
+        /// <param name="item"></param>
         private void AddToTrashBag(Item item)
         {
+            Slot destinationSlot = Content.Add(item);
+            if (destinationSlot == null) return;
+            
             item.SetParent(this);
             item.EnableDrawing = false;
             item.PhysicsEnabled = false;
-            Content.Add(item);
         }
     }
 }
