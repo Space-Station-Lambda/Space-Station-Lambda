@@ -54,11 +54,15 @@ namespace ssl.Ui.InventoryBar
                 else
                 {
                     Model model = Model.Load(item.Data.Model);
-                    Transform modelTransform = new Transform()
-                        .WithPosition(-model.RenderBounds.Center)
-                        .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
-                        .WithRotation(Rotation.Identity);
-                    sceneObject ??= new SceneObject(model, modelTransform);
+                    if (!model.IsError)
+                    {
+                        Transform modelTransform = new Transform()
+                            .WithPosition(-model.RenderBounds.Center)
+                            .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
+                            .WithRotation(Rotation.Identity);
+                        sceneObject ??= new SceneObject(model, modelTransform);
+                    }
+
                 }
 
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
