@@ -1,12 +1,12 @@
 ﻿namespace ssl.Modules.Rounds
 {
-    public partial class ResultsRound : BaseRound
+    public partial class EndRound : BaseRound
     {
-        public ResultsRound()
+        public EndRound()
         {
         }
 
-        public ResultsRound(RoundOutcome outcome)
+        public EndRound(RoundOutcome outcome)
         {
             RoundOutcome = outcome;
         }

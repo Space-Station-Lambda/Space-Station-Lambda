@@ -24,9 +24,9 @@ namespace ssl.Modules.Rounds
 
             return numberOfTraitors switch
             {
-                0 when numberOfProtagonists > 0 => new ResultsRound(RoundOutcome.ProtagonistsWin),
-                > 0 when numberOfProtagonists == 0 => new ResultsRound(RoundOutcome.TraitorsWin),
-                _ => new ResultsRound(RoundOutcome.Tie)
+                0 when numberOfProtagonists > 0 => new EndRound(RoundOutcome.ProtagonistsWin),
+                > 0 when numberOfProtagonists == 0 => new EndRound(RoundOutcome.TraitorsWin),
+                _ => new EndRound(RoundOutcome.Tie)
             };
         }
 
