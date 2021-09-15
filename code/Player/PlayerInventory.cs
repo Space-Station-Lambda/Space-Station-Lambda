@@ -94,5 +94,15 @@ namespace ssl.Player
                 ViewModel.SetHoldType(holdingType);
             }
         }
+
+        public void UsePrimary()
+        {
+            HoldingItem?.OnUsePrimary(Player, Player.Selector.Selected);
+        }
+        
+        public void UseSecondary()
+        {
+            HoldingItem?.OnUseSecondary(Player, Player.Selector.Selected);
+        }
     }
 }

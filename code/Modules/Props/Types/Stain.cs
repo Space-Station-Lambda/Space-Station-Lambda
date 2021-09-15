@@ -17,15 +17,8 @@ namespace ssl.Modules.Props.Types
         {
         }
 
-        public override void OnAction(MainPlayer player, Item item)
+        public override void OnInteract(MainPlayer player)
         {
-            switch (item.Data.Id)
-            {
-                case MopId:
-                case SpongeId:
-                    Delete();
-                    break;
-            }
         }
     }
 }

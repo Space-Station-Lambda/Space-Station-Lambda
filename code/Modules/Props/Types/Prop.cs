@@ -37,7 +37,7 @@ namespace ssl.Modules.Props.Types
         {
         }
 
-        public virtual void OnAction(MainPlayer player, Item item)
+        public virtual void OnInteract(MainPlayer player)
         {
         }
 

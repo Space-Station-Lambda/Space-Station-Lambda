@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using Sandbox.ScreenShake;
 using ssl.Modules.Items.Data;
+using ssl.Modules.Selection;
 using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
@@ -37,9 +38,9 @@ namespace ssl.Modules.Items.Carriables
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
 
-        public override void UseOn(MainPlayer player)
+        public override void OnUsePrimary(MainPlayer player, ISelectable target)
         {
-            base.UseOn(player);
+            base.OnUsePrimary(player, target);
 
             if (CanPrimaryAttack())
             {
