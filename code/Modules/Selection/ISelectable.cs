@@ -27,6 +27,6 @@ namespace ssl.Modules.Selection
         /// Trigger when the action is requested by the player
         /// </summary>
         /// <param name="player">The player who perform the action.</param>
-        public void OnAction(MainPlayer player, Item item);
+        public void OnInteract(MainPlayer player);
     }
 }

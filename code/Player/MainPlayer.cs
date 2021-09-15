@@ -36,22 +36,18 @@ namespace ssl.Player
 
         public void OnSelectStart(MainPlayer player)
         {
-            //TODO
         }
 
         public void OnSelectStop(MainPlayer player)
         {
-            //TODO
         }
 
         public void OnSelect(MainPlayer player)
         {
-            //TODO
         }
 
-        public void OnAction(MainPlayer player, Item item)
+        public void OnInteract(MainPlayer player)
         {
-            //TODO
         }
 
         public override void ClientSpawn()

@@ -8,13 +8,14 @@ namespace ssl.Modules.Selection
         private const float SelectionRange = 150f;
 
         private readonly MainPlayer player;
-
-        private ISelectable selected;
+        
 
         public PlayerSelector(MainPlayer player)
         {
             this.player = player;
         }
+        
+        public ISelectable Selected { get; private set; }
 
         public void CheckSelection()
         {
@@ -23,15 +24,15 @@ namespace ssl.Modules.Selection
             Entity result = tr.Entity;
             if (result is ISelectable selectable)
             {
-                if (!ReferenceEquals(selectable, selected))
+                if (!ReferenceEquals(selectable, Selected))
                 {
                     StopSelection();
                     StartSelection(selectable);
                 }
 
-                selected.OnSelect(player);
+                Selected.OnSelect(player);
             }
-            else if (selected != null)
+            else if (Selected != null)
             {
                 StopSelection();
             }
@@ -39,24 +40,24 @@ namespace ssl.Modules.Selection
 
         public bool IsSelected()
         {
-            return selected != null;
+            return Selected != null;
         }
 
         public void UseSelected()
         {
-            selected?.OnAction(player, player.Inventory.HoldingItem);
+            Selected?.OnInteract(player);
         }
 
         public void StartSelection(ISelectable selectable)
         {
-            selected = selectable;
-            selected.OnSelectStart(player);
+            Selected = selectable;
+            Selected.OnSelectStart(player);
         }
 
         public void StopSelection()
         {
-            selected?.OnSelectStop(player);
-            selected = null;
+            Selected?.OnSelectStop(player);
+            Selected = null;
         }
 
 

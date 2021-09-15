@@ -1,4 +1,5 @@
 using ssl.Modules.Items.Data;
+using ssl.Modules.Selection;
 using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
@@ -16,7 +17,7 @@ namespace ssl.Modules.Items.Carriables
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void UseOn(MainPlayer player)
+        public override void OnUsePrimary(MainPlayer player, ISelectable target)
         {
             //TODO
         }

@@ -39,7 +39,7 @@ namespace ssl.Modules.Items.Carriables
             //TODO
         }
 
-        public void OnAction(MainPlayer player, Item item)
+        public void OnInteract(MainPlayer player)
         {
             player.Inventory.Add(this);
         }
@@ -47,19 +47,12 @@ namespace ssl.Modules.Items.Carriables
         /// <summary>
         /// Called when a player use an Item.
         /// </summary>
-        public virtual void UseOn(MainPlayer player)
+        public virtual void OnUsePrimary(MainPlayer player, ISelectable target)
         {
         }
-
-        /// <summary>
-        /// Called each player's tick when the Item is considered as the player's active child.
-        /// The Item is the active child when the player holds it.
-        /// </summary>
-        public override void Simulate(Client cl)
+        
+        public virtual void OnUseSecondary(MainPlayer player, ISelectable target)
         {
-            base.Simulate(cl);
-
-            if (Input.Down(InputButton.Attack1)) UseOn(cl.Pawn as MainPlayer);
         }
 
         public override string ToString()
