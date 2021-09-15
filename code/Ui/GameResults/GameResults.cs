@@ -27,7 +27,7 @@ namespace ssl.Ui.GameResults
         {
             base.Tick();
 
-            ResultsRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound as ResultsRound;
+            EndRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound as EndRound;
 
             SetClass("active", null != currentRound);
             SetClass("hidden", null == currentRound);
