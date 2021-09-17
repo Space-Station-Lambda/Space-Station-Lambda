@@ -9,6 +9,7 @@ namespace ssl.Player.Cameras
         private const float SpectatorFieldOfView = 80F;
         private const float FocusDistance = 100F;
         private const float MaxSpeed = 75F;
+        private const float SpeedChangeFactor = 3F;
 
         private bool clearTargetPressed;
         private int playerIndex;
@@ -38,9 +39,6 @@ namespace ssl.Player.Cameras
                     Target = null;
                     clearTargetPressed = true;
                 }
-
-                MoveSpeed += Input.MouseWheel;
-                MoveSpeed.Clamp(0, MaxSpeed);
             }
             else
             {
@@ -62,6 +60,9 @@ namespace ssl.Player.Cameras
                     clearTargetPressed = false;
                 }
                 
+                MoveSpeed += Input.MouseWheel * SpeedChangeFactor;
+                MoveSpeed = MoveSpeed.Clamp(0, MaxSpeed);
+                
                 Vector3 wishDir = new Vector3(Input.Forward, Input.Left, 0).Normal * Rot;
                 wishDir += Vector3.Up * up;
                 
@@ -78,7 +79,7 @@ namespace ssl.Player.Cameras
                 NextTarget();
             }
         }
-        
+
         private void NextTarget()
         {
 
