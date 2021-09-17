@@ -8,17 +8,16 @@ namespace ssl.Player.Cameras
     {
         private const float SpectatorFieldOfView = 80F;
         private const float FocusDistance = 100F;
-        
+
         private int playerIndex;
-        
-        [Net, Predicted] public Entity Target { get; private set; }
+
         private List<MainPlayer> players => Gamemode.Instance.RoundManager.CurrentRound.Players;
+        [Net, Predicted] public float MoveSpeed { get; private set; } = 50F;
+        [Net, Predicted] public Entity Target { get; private set; }
         
         public override void Activated()
         {
             base.Activated();
-
-            if (players.Count > 0) Target = players[playerIndex];
         }
 
         public override void Update()
@@ -26,7 +25,23 @@ namespace ssl.Player.Cameras
             if (Target != null)
             {
                 Pos = Target.Position + Input.Rotation.Backward * FocusDistance;
-                Rot = Local.Pawn.EyeRot;
+                Rot = Target.EyeRot;
+            }
+            else
+            {
+                float upVector = 0;
+                if (Input.Pressed(InputButton.Jump))
+                {
+                    upVector = 1;
+                }
+                else if (Input.Pressed(InputButton.Duck))
+                {
+                    upVector = -1;
+                }
+
+                Vector3 wishDir = new Vector3(Input.Forward, Input.Left, upVector).Normal * Rot;
+                Pos += wishDir * MoveSpeed;
+                Rot = Input.Rotation;
             }
 
             int playerCount = Gamemode.Instance.RoundManager.CurrentRound.Players.Count;
@@ -41,7 +56,7 @@ namespace ssl.Player.Cameras
             }
 
             if (0 <= playerIndex && playerIndex < playerCount) 
-                Target = Gamemode.Instance.RoundManager.CurrentRound.Players[playerIndex];
+                Target = players[playerIndex];
 
             FieldOfView = SpectatorFieldOfView;
         }
