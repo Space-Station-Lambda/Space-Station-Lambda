@@ -1,0 +1,14 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	data = 
+	{
+		Id = "weapon.pistol"
+		Name = "Pistol"
+		Model = "weapons/rust_pistol/rust_pistol.vmdl"
+		Description = "A basic pistol"
+		HoldType = 1
+		PrimaryRate = 5.0
+		Damage = 10.0
+		Range = 0.0
+	}
+}
