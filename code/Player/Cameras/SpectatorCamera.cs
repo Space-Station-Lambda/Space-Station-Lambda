@@ -13,7 +13,7 @@ namespace ssl.Player.Cameras
         private bool clearTargetPressed;
         private int playerIndex;
 
-        private IReadOnlyList<Entity> Players => Gamemode.Instance.RoundManager.CurrentRound.Players;
+        private List<MainPlayer> Players => Gamemode.Instance.RoundManager.CurrentRound.Players;
         public float MoveSpeed { get; private set; } = 50F;
         public Entity Target { get; private set; }
 
