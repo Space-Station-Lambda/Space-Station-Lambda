@@ -34,7 +34,7 @@ namespace ssl.Modules.Rounds
         }
 
 
-        [Net] public List<MainPlayer> Players { get; private set; }
+        [Net] public List<MainPlayer> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
