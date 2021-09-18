@@ -2,6 +2,7 @@
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Items.Carriables;
+using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;
@@ -24,6 +25,7 @@ namespace ssl.Player
             StatusHandler = new StatusHandler(this);
             Selector = new PlayerSelector(this);
             InputHandler = new InputHandler(this);
+            StainHandler = new StainHandler(this);
         }
 
         [Net] public new PlayerInventory Inventory { get; private set; }
@@ -33,6 +35,7 @@ namespace ssl.Player
         public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
+        public StainHandler StainHandler { get; set; }
 
         public void OnSelectStart(MainPlayer player)
         {
@@ -76,6 +79,7 @@ namespace ssl.Player
             SimulateActiveChild(client, ActiveChild);
             InputHandler.CheckControls();
             Selector?.CheckSelection();
+            StainHandler.TryGenerateStain();
         }
 
         /// <summary>

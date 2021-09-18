@@ -1,6 +1,4 @@
-﻿using System;
-using Sandbox;
-using ssl.Modules.Items.Carriables;
+﻿using Sandbox;
 using ssl.Modules.Props.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -44,10 +42,9 @@ namespace ssl.Modules.Props.Types
         public override void Spawn()
         {
             base.Spawn();
-
-            MoveType = MoveType.Physics;
+            
+            PhysicsEnabled = false;
             CollisionGroup = CollisionGroup.Interactive;
-            UsePhysicsCollision = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
         }
