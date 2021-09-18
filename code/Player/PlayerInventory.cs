@@ -57,7 +57,6 @@ namespace ssl.Player
             HoldingItem?.OnCarryDrop(Player);
             HoldingItem?.ActiveEnd(Player, true);
             HoldingSlot.Clear();
-            if (null != droppedItem) droppedItem.Velocity += Player.Velocity;
             return droppedItem;
         }
 
