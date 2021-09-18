@@ -51,6 +51,11 @@ namespace ssl.Modules.Inputs
             {
                 player.Selector.UseSelected();
             }
+
+            if (Input.Pressed(InputButton.Duck))
+            {
+                player.EnableSpectator();
+            }
         }
     }
 }

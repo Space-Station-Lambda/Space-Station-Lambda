@@ -6,6 +6,7 @@ using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;
+using ssl.Player.Cameras;
 using ssl.Player.Controllers;
 using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
@@ -140,6 +141,20 @@ namespace ssl.Player
         {
             base.PostCameraSetup(ref setup);
             Inventory.ViewModel.PostCameraSetup(ref setup);
+        }
+
+        public void EnableSpectator()
+        {
+            Host.AssertServer();
+            
+            Controller = null;
+            Animator = null;
+            
+            SpectatorCamera specCam = new();
+            Camera = specCam;
+            
+            EnableAllCollisions = false;
+            EnableDrawing = false;
         }
 
         private void EnableRagdoll(Vector3 force, int forceBone)

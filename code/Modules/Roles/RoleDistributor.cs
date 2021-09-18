@@ -11,10 +11,10 @@ namespace ssl.Modules.Roles
     public class RoleDistributor
     {
         public Role DefaultRole = new Assistant();
-        private HashSet<MainPlayer> players;
+        private IList<MainPlayer> players;
         public Scenario Scenario;
 
-        public RoleDistributor(Scenario scenario, HashSet<MainPlayer> players)
+        public RoleDistributor(Scenario scenario, IList<MainPlayer> players)
         {
             this.Scenario = scenario;
             this.players = players;

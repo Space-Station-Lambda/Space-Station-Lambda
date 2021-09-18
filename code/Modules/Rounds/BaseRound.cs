@@ -11,8 +11,6 @@ namespace ssl.Modules.Rounds
 {
     public abstract partial class BaseRound : NetworkedEntityAlwaysTransmitted
     {
-        public HashSet<MainPlayer> Players = new();
-
         protected BaseRound()
         {
             Scenario scenario = new(
@@ -35,6 +33,8 @@ namespace ssl.Modules.Rounds
             RoleDistributor = new RoleDistributor(scenario, Players);
         }
 
+
+        [Net] public List<MainPlayer> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
