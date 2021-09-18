@@ -10,6 +10,7 @@ namespace ssl.Player
         private const float StainChance = 0.002f;
         private readonly MainPlayer player;
         private const string StainId = "stain.step";
+        
         public StainHandler(MainPlayer player)
         {
             this.player = player;
