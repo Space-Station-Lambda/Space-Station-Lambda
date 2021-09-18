@@ -6,6 +6,7 @@ using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;
+using ssl.Player.Animators;
 using ssl.Player.Cameras;
 using ssl.Player.Controllers;
 using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
@@ -91,7 +92,7 @@ namespace ssl.Player
             SetModel(Model);
 
             Controller = new HumanController();
-            Animator = new StandardPlayerAnimator();
+            Animator = new HumanAnimator();
             Camera = new FirstPersonCamera();
 
             EnableAllCollisions = true;

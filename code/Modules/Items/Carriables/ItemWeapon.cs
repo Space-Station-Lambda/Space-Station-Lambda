@@ -3,6 +3,7 @@ using Sandbox.ScreenShake;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
+using ssl.Player.Animators;
 
 namespace ssl.Modules.Items.Carriables
 {
@@ -99,6 +100,12 @@ namespace ssl.Modules.Items.Carriables
             //
             // Another trace, bullet going through thin material, penetrating water surface?
             //
+        }
+
+        public override void SimulateAnimator(HumanAnimator animator)
+        {
+            base.SimulateAnimator(animator);
+            animator.SetParam(Item.HandednessKey, 0);
         }
 
         [ClientRpc]

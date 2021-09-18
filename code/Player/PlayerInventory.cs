@@ -87,7 +87,6 @@ namespace ssl.Player
         /// </summary>
         private void RefreshViewModel()
         {
-            //TODO
             if (HoldingItem != null)
             {
                 HoldType holdingType = (HoldType)HoldingItem.Data.HoldType;

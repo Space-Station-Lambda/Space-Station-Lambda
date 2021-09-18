@@ -2,6 +2,7 @@
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
+using ssl.Player.Animators;
 
 namespace ssl.Modules.Items.Carriables
 {
@@ -12,6 +13,9 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
+        protected const string HoldTypeKey = "holdtype";
+        protected const string HandednessKey = "holdtype_handedness";
+        
         public Item()
         {
         }
@@ -55,7 +59,13 @@ namespace ssl.Modules.Items.Carriables
         public virtual void OnUseSecondary(MainPlayer player, ISelectable target)
         {
         }
-
+        
+        public virtual void SimulateAnimator(HumanAnimator animator)
+        {
+            animator.SetParam(HoldTypeKey, Data.HoldType);
+            animator.SetParam(HandednessKey, 1);
+        }
+        
         public override string ToString()
         {
             return $"[{Data.Id}] {Data.Name}";
