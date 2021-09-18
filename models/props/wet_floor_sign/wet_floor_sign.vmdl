@@ -29,20 +29,12 @@
 						remaps = 
 						[
 							{
-								from = "bottonface.vmat"
-								to = "debug/debugempty.vmat"
-							},
-							{
-								from = "innersides.vmat"
-								to = "debug/debugempty.vmat"
-							},
-							{
-								from = "upperface.vmat"
-								to = "debug/debugempty.vmat"
+								from = "sign.vmat"
+								to = "materials/props/wet_floor_sign.vmat"
 							},
 						]
-						use_global_default = true
-						global_default_material = "materials/props/wet_floor_sign.vmat"
+						use_global_default = false
+						global_default_material = ""
 					},
 				]
 			},

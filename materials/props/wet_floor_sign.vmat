@@ -2,12 +2,29 @@
 
 Layer0
 {
-	shader "simple.vfx"
+	shader "complex.vfx"
+
+	//---- Detail Texture ----
+	F_DETAIL_TEXTURE 1 // Mod2X
+
+	//---- Ambient Occlusion ----
+	g_flAmbientOcclusionDirectDiffuse "0.000"
+	g_flAmbientOcclusionDirectSpecular "0.000"
+	TextureAmbientOcclusion "materials/default/default_ao.tga"
 
 	//---- Color ----
 	g_flModelTintAmount "1.000"
-	g_vColorTint "[0.925490 0.925490 0.925490 1.000000]"
-	TextureColor "[1.000000 0.843137 0.000000 1.000000]"
+	g_vColorTint "[1.000000 0.800000 0.000000 1.000000]"
+	TextureColor "textures/props/wet_floor_sign/wet_floor_sign.png"
+
+	//---- Detail Texture ----
+	g_flDetailBlendFactor "1.000"
+	g_flDetailBlendToFull "0.000"
+	g_flDetailTexCoordRotation "0.000"
+	g_vDetailTexCoordOffset "[0.000 0.000]"
+	g_vDetailTexCoordScale "[1.000 1.000]"
+	TextureDetail "materials/default/default_detail.tga"
+	TextureDetailMask "materials/default/default_detailmask.tga"
 
 	//---- Fade ----
 	g_flFadeExponent "1.000"
@@ -17,7 +34,7 @@ Layer0
 
 	//---- Lighting ----
 	g_flDirectionalLightmapMinZ "0.050"
-	g_flDirectionalLightmapStrength "1.000"
+	g_flDirectionalLightmapStrength "0.050"
 
 	//---- Metalness ----
 	g_flMetalness "0.000"
