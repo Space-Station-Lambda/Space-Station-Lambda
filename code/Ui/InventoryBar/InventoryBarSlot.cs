@@ -8,12 +8,16 @@ namespace ssl.Ui.InventoryBar
 {
     public class InventoryBarSlot : Panel
     {
-        private const float FieldOfView = 50;
-        private const float ScaleMultiplier = 2F;
-        private static readonly Angles angles = new(30, 180 + 45, 0);
-        private static readonly Vector3 pos = new(10, 10, 10);
-        private static readonly Vector3 focusSize = new(5, 5, 5);
+        private const float FieldOfView = 55;
+        private static readonly Angles Angles = new(30, 180 + 45, 0);
+        private static readonly Vector3 Pos = new(10, 10, 10);
+        private static readonly Vector3 FocusSize = new(9, 9, 9);
 
+        private static readonly List<Light> Lights =
+        {
+            new Light()
+        };
+        
         private Item lastItem;
         private ScenePanel scene;
         private Light sceneLight;
@@ -59,7 +63,7 @@ namespace ssl.Ui.InventoryBar
                     2000, Color.White);
             }
 
-            scene ??= Add.ScenePanel(sceneWorld, pos, angles.ToRotation(), FieldOfView, "itemslot-model");
+            scene ??= Add.ScenePanel(sceneWorld, Pos, Angles.ToRotation(), FieldOfView, "itemslot-model");
         }
 
         private void ApplyItem(Item item)
@@ -67,7 +71,7 @@ namespace ssl.Ui.InventoryBar
             Model model = Model.Load(item.Data.Model);
             if (!model.IsError)
             {
-                float scaleFactor = (focusSize.Length / model.RenderBounds.Size.Length) * ScaleMultiplier;
+                float scaleFactor = FocusSize.Length / model.RenderBounds.Size.Length;
                 Transform modelTransform = new Transform()
                     .WithPosition(-model.PhysicsBounds.Center * scaleFactor)
                     .WithScale(scaleFactor)
