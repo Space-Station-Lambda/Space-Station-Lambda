@@ -2,8 +2,8 @@
 {
 	data = 
 	{
-		Id = "wet_floor_sign"
-		Name = "Wet Floor Sign"
-		Model = ""
+		Id = "prop.wet_floor_sign"
+		Name = "Wet Floor sign"
+		Model = "models/props/wet_floor_sign/wet_floor_sign.vmdl_c"
 	}
 }
