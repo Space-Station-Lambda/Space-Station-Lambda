@@ -66,7 +66,7 @@ namespace ssl.Ui.InventoryBar
                 }
 
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
-                    2000, Color.White * 15000f);
+                    2000, Color.White);
             }
 
             scene ??= Add.ScenePanel(sceneWorld, pos, angles.ToRotation(), fieldOfView, "itemslot-model");
