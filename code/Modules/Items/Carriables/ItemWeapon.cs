@@ -83,19 +83,6 @@ namespace ssl.Modules.Items.Carriables
             //
         }
 
-        [ClientRpc]
-        private void ShootEffects()
-        {
-            if (!Host.IsClient) return;
-
-            Particles.Create("particles/pistol_muzzleflash.vpcf", this, "muzzle");
-
-            if (IsLocalPawn)
-            {
-                _ = new Perlin();
-            }
-        }
-
         protected virtual void ShootBullet(float spread, float force, float bulletSize)
         {
             Vector3 forward = Owner.EyeRot.Forward;
@@ -116,6 +103,26 @@ namespace ssl.Modules.Items.Carriables
                 .WithWeapon(this);
 
             tr.Entity.TakeDamage(damageInfo);
+        }
+
+        [ClientRpc]
+        private void ShootEffects()
+        {
+            if (!Host.IsClient) return;
+            
+            Entity effectEntity;
+            
+            if (IsLocalPawn && Local.Pawn is MainPlayer player)
+            {
+                effectEntity = player.Inventory.ViewModel.HoldingEntity;
+                _ = new Perlin();
+            }
+            else
+            {
+                effectEntity = this;
+            }
+            
+            Particles.Create("particles/pistol_muzzleflash.vpcf", effectEntity, "muzzle");
         }
     }
 }
