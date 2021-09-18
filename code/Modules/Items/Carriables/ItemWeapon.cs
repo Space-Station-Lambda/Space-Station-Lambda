@@ -8,6 +8,10 @@ namespace ssl.Modules.Items.Carriables
 {
     public partial class ItemWeapon : Item<ItemWeaponData>
     {
+        private const string ShootSound = "rust_pistol.shoot";
+        private const string MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf";
+        private const string MuzzleAttachmentName = "muzzle";
+        
         private const float MaxRange = 5000;
 
         public ItemWeapon()
@@ -94,7 +98,6 @@ namespace ssl.Modules.Items.Carriables
             TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
 
             if (!IsServer || !tr.Entity.IsValid()) return;
-
             tr.Surface.DoBulletImpact(tr);
 
             DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Data.Damage)
@@ -121,8 +124,9 @@ namespace ssl.Modules.Items.Carriables
             {
                 effectEntity = this;
             }
-            
-            Particles.Create("particles/pistol_muzzleflash.vpcf", effectEntity, "muzzle");
+
+            Sound.FromEntity(ShootSound, effectEntity);
+            Particles.Create(MuzzleFlashParticle, effectEntity, MuzzleAttachmentName);
         }
     }
 }
