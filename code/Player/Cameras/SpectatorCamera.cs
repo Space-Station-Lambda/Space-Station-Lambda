@@ -11,7 +11,7 @@ namespace ssl.Player.Cameras
         private const float MaxSpeed = 75F;
         private const float SpeedChangeFactor = 3F;
 
-        private bool clearTargetPressed;
+        private bool isClearTargetPress;
         private int playerIndex;
 
         private IList<MainPlayer> Players => Gamemode.Instance.RoundManager.CurrentRound.Players;
@@ -56,7 +56,7 @@ namespace ssl.Player.Cameras
             if (Input.Pressed(InputButton.Jump))
             {
                 Target = null;
-                clearTargetPressed = true;
+                isClearTargetPress = true;
             }
         }
 
@@ -64,7 +64,7 @@ namespace ssl.Player.Cameras
         {
             float up = 0;
 
-            if (!clearTargetPressed)
+            if (!isClearTargetPress)
             {
                 if (Input.Down(InputButton.Jump))
                 {
@@ -77,7 +77,7 @@ namespace ssl.Player.Cameras
             }
             else if (Input.Released(InputButton.Jump))
             {
-                clearTargetPressed = false;
+                isClearTargetPress = false;
             }
 
             UpdateMoveSpeed();
