@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Modules.Items.Carriables;
@@ -9,18 +10,24 @@ namespace ssl.Ui.InventoryBar
     public class InventoryBarSlot : Panel
     {
         private const float FieldOfView = 55;
-        private static readonly Angles Angles = new(30, 180 + 45, 0);
-        private static readonly Vector3 Pos = new(10, 10, 10);
+        private static readonly Angles CamAngles = new(30, 180 + 45, 0);
+        private static readonly Vector3 CamPos = new(10, 10, 8);
         private static readonly Vector3 FocusSize = new(9, 9, 9);
 
-        private static readonly List<Light> Lights =
-        {
-            new Light()
-        };
+        private static readonly Vector3 RedLightPos = new(10,0,0);
+        private static readonly Color RedLightColor = Color.Red * 0.1f;
+        
+        private static readonly Vector3 BlueLightPos = new(0,10,0);
+        private static readonly Color BlueLightColor = Color.Blue * 0.1f;
+        
+        private static readonly Vector3 MainLightPos = CamPos;
+        private static readonly Color MainLightColor = Color.White;
         
         private Item lastItem;
         private ScenePanel scene;
-        private Light sceneLight;
+        private Light redLight;
+        private Light blueLight;
+        private Light mainLight;
         private SceneObject sceneObject;
         private SceneWorld sceneWorld;
 
@@ -59,11 +66,12 @@ namespace ssl.Ui.InventoryBar
                     ApplyItem(item);
                 }
 
-                sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
-                    2000, Color.White);
+                redLight ??= Light.Point(RedLightPos, 2000, RedLightColor);
+                blueLight ??= Light.Point(BlueLightPos, 2000, BlueLightColor);
+                mainLight ??= Light.Point(MainLightPos, 2000, MainLightColor);
             }
 
-            scene ??= Add.ScenePanel(sceneWorld, Pos, Angles.ToRotation(), FieldOfView, "itemslot-model");
+            scene ??= Add.ScenePanel(sceneWorld, CamPos, CamAngles.ToRotation(), FieldOfView, "itemslot-model");
         }
 
         private void ApplyItem(Item item)
