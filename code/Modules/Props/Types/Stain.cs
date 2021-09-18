@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Props.Types
 {
-    public class Stain : Prop<PropData>
+    public class Stain : Prop<StainData>
     {
         /// <summary>
         /// Health of a basic stain
@@ -16,7 +16,7 @@ namespace ssl.Modules.Props.Types
         {
         }
 
-        public Stain(PropData itemData) : base(itemData)
+        public Stain(StainData itemData) : base(itemData)
         {
         }
 

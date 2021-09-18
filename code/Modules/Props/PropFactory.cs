@@ -10,7 +10,7 @@ namespace ssl.Modules.Props
     {
         private const string PropPrefix = "prop";
 
-        private const string StainName = "stain";
+        private const string StainPrefix = "stain";
         protected override string BasePath => "data/props";
 
         public override Prop Create(string prefix, string name)
@@ -18,11 +18,12 @@ namespace ssl.Modules.Props
             string filePath = GetFilePath(prefix, name);
             switch (prefix)
             {
+                case StainPrefix:
+                    return new Stain(TryLoad<StainData>(filePath));
                 case PropPrefix:
                     PropData propData = TryLoad<PropData>(filePath);
                     return name switch
                     {
-                        StainName => new Stain(propData),
                         _ => new Prop(propData)
                     };
                 default:

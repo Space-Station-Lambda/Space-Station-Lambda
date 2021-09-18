@@ -1,4 +1,6 @@
-﻿namespace ssl.Modules.Props.Types
+﻿using Sandbox;
+
+namespace ssl.Modules.Props.Types
 {
     public class PhysicalProp : Prop
     {
@@ -6,6 +8,8 @@
         {
             base.Spawn();
             PhysicsEnabled = true;
+            UsePhysicsCollision = true;
+            MoveType = MoveType.Physics;
         }
     }
 }
