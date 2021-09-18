@@ -89,5 +89,11 @@ namespace ssl.Ui.InventoryBar
 
             lastItem = item;
         }
+
+        public override void OnDeleted()
+        {
+            base.OnDeleted();
+            sceneWorld.Delete();
+        }
     }
 }
