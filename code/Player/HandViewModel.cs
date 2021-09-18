@@ -20,6 +20,8 @@ namespace ssl.Player
 
         public HandViewModel()
         {
+            Host.AssertClient();
+            
             SetModel(ViewModelPath);
             SetBodyGroup(BodyGroupHead, 1);
             SetBodyGroup(BodyGroupLegs, 1);
@@ -60,8 +62,7 @@ namespace ssl.Player
         /// <param name="entity"></param>
         public void SetHoldingEntity(AnimEntity entity)
         {
-            Host.AssertClient();
-
+            holdingEntity?.Delete();
             holdingEntity = new AnimEntity
             {
                 UsePhysicsCollision = false,

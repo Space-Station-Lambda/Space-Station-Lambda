@@ -37,8 +37,6 @@ namespace ssl.Player
             HoldingItem?.ActiveStart(Player);
             Player.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
-            
-            if (Host.IsClient) RefreshViewModel();
         }
 
         private void StopHolding()
@@ -47,8 +45,6 @@ namespace ssl.Player
             HoldingSlot = null;
             Player.ActiveChild = null;
             HoldingSlotNumber = -1;
-            
-            if (Host.IsClient) RefreshViewModel();
         }
 
         public Item DropItem()
@@ -80,19 +76,6 @@ namespace ssl.Player
             }
 
             return destinationSlot;
-        }
-
-        /// <summary>
-        /// Updates the view model's hold type to match the holding item
-        /// </summary>
-        private void RefreshViewModel()
-        {
-            //TODO
-            if (HoldingItem != null)
-            {
-                HoldType holdingType = (HoldType)HoldingItem.Data.HoldType;
-                ViewModel.SetHoldType(holdingType);
-            }
         }
 
         public void UsePrimary()
