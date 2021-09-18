@@ -16,6 +16,9 @@ namespace ssl.Player
             this.player = player;
         }
 
+        /// <summary>
+        ///  Spawn a stain with a specific probability
+        /// </summary>
         public void TryGenerateStain()
         {
             float prob = Time.Delta * StainChance;
