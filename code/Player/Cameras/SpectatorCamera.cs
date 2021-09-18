@@ -31,43 +31,11 @@ namespace ssl.Player.Cameras
         {
             if (Target != null)
             {
-                Pos = Target.Position + Input.Rotation.Backward * FocusDistance;
-                Rot = Input.Rotation;
-
-                if (Input.Pressed(InputButton.Jump))
-                {
-                    Target = null;
-                    clearTargetPressed = true;
-                }
+                TargetCamMove();
             }
             else
             {
-                float up = 0;
-
-                if (!clearTargetPressed)
-                {
-                    if (Input.Down(InputButton.Jump))
-                    {
-                        up = 1;
-                    }
-                    else if (Input.Down(InputButton.Duck))
-                    {
-                        up = -1;
-                    }
-                } 
-                else if (Input.Released(InputButton.Jump))
-                {
-                    clearTargetPressed = false;
-                }
-                
-                MoveSpeed += Input.MouseWheel * SpeedChangeFactor;
-                MoveSpeed = MoveSpeed.Clamp(0, MaxSpeed);
-                
-                Vector3 wishDir = new Vector3(Input.Forward, Input.Left, 0).Normal * Rot;
-                wishDir += Vector3.Up * up;
-                
-                Pos += wishDir * MoveSpeed;
-                Rot = Input.Rotation;
+                FreeCamMove();
             }
 
             if (Input.Pressed(InputButton.Attack1))
@@ -78,6 +46,53 @@ namespace ssl.Player.Cameras
             {
                 NextTarget();
             }
+        }
+
+        private void TargetCamMove()
+        {
+            Pos = Target.Position + Input.Rotation.Backward * FocusDistance;
+            Rot = Input.Rotation;
+
+            if (Input.Pressed(InputButton.Jump))
+            {
+                Target = null;
+                clearTargetPressed = true;
+            }
+        }
+
+        private void FreeCamMove()
+        {
+            float up = 0;
+
+            if (!clearTargetPressed)
+            {
+                if (Input.Down(InputButton.Jump))
+                {
+                    up = 1;
+                }
+                else if (Input.Down(InputButton.Duck))
+                {
+                    up = -1;
+                }
+            }
+            else if (Input.Released(InputButton.Jump))
+            {
+                clearTargetPressed = false;
+            }
+
+            UpdateMoveSpeed();
+
+            Vector3 wishDir = new Vector3(Input.Forward, Input.Left, 0).Normal * Rot;
+            wishDir += Vector3.Up * up;
+
+            Pos += wishDir * MoveSpeed;
+            Rot = Input.Rotation;
+        }
+
+        private void UpdateMoveSpeed()
+        {
+            MoveSpeed += Input.MouseWheel * SpeedChangeFactor;
+            MoveSpeed = MoveSpeed.Clamp(0, MaxSpeed);
         }
 
         private void NextTarget()
