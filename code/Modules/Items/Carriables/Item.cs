@@ -12,7 +12,7 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
-        protected Item()
+        public Item()
         {
         }
 
@@ -20,6 +20,7 @@ namespace ssl.Modules.Items.Carriables
         {
             Data = data;
             SetModel(data.Model);
+            GlowColor = Color.Blue;
         }
 
         [Net] public ItemData Data { get; private set; }
@@ -58,19 +59,6 @@ namespace ssl.Modules.Items.Carriables
         public override string ToString()
         {
             return $"[{Data.Id}] {Data.Name}";
-        }
-
-        protected bool Equals(Item other)
-        {
-            return Data.Id == other.Data.Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((Item)obj);
         }
 
         public override int GetHashCode()
