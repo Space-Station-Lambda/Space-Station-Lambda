@@ -12,8 +12,9 @@ namespace ssl.Ui.InventoryBar
         private static readonly Angles angles = new(30, 180 + 45, 0);
         private static readonly Vector3 pos = new(10, 10, 10);
         private static readonly Vector3 focusSize = new(5, 5, 5);
-        private Item currentItem;
 
+        private Item lastItem;
+        private Item currentItem;
         private ScenePanel scene;
         private Light sceneLight;
         private SceneObject sceneObject;
@@ -50,26 +51,41 @@ namespace ssl.Ui.InventoryBar
                 {
                     sceneObject?.Delete();
                     sceneObject = null;
+                    lastItem = null;
+                }
+                else if (lastItem != null)
+                {
+                    if (lastItem.Data != item.Data)
+                    {
+                        ApplyItem(item);
+                    }
                 }
                 else
                 {
-                    Model model = Model.Load(item.Data.Model);
-                    if (!model.IsError)
-                    {
-                        Transform modelTransform = new Transform()
-                            .WithPosition(-model.RenderBounds.Center)
-                            .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
-                            .WithRotation(Rotation.Identity);
-                        sceneObject ??= new SceneObject(model, modelTransform);
-                    }
-
+                    ApplyItem(item);
                 }
-
+                
                 sceneLight ??= Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f - Vector3.Right * 100.0f,
                     2000, Color.White);
             }
 
             scene ??= Add.ScenePanel(sceneWorld, pos, angles.ToRotation(), fieldOfView, "itemslot-model");
+        }
+
+        private void ApplyItem(Item item)
+        {
+            Model model = Model.Load(item.Data.Model);
+            if (!model.IsError)
+            {
+                Log.Trace($"Physics bound {model.PhysicsBounds}");
+                Transform modelTransform = new Transform()
+                    .WithPosition(-model.PhysicsBounds.Center)
+                    .WithScale(focusSize.Length / (model.RenderBounds.Size.Length * 0.5f))
+                    .WithRotation(Rotation.Identity);
+                sceneObject ??= new SceneObject(model, modelTransform);
+            }
+
+            lastItem = item;
         }
     }
 }
