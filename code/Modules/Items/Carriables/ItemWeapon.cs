@@ -18,24 +18,6 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        /// <summary>
-        /// PrimaryRate of the weapon
-        /// </summary>
-        [Net]
-        public float PrimaryRate { get; private set; }
-
-        /// <summary>
-        /// Range of the weapon, 0 means @MaxRange
-        /// </summary>
-        [Net]
-        public float Range { get; private set; }
-
-        /// <summary>
-        /// Damage of the weapon
-        /// </summary>
-        [Net]
-        public float Damage { get; private set; }
-
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
 
         public override void OnUsePrimary(MainPlayer player, ISelectable target)
@@ -60,9 +42,9 @@ namespace ssl.Modules.Items.Carriables
         private bool CanPrimaryAttack()
         {
             if (!Owner.IsValid()) return false;
-            if (PrimaryRate <= 0) return true;
+            if (Data.PrimaryRate <= 0) return true;
 
-            return TimeSincePrimaryAttack > (1 / PrimaryRate);
+            return TimeSincePrimaryAttack > (1 / Data.PrimaryRate);
         }
 
         protected void AttackPrimary()
@@ -121,14 +103,14 @@ namespace ssl.Modules.Items.Carriables
             forward = forward.Normal;
 
             //If the range is 0, the range is max.
-            float range = Range == 0 ? MaxRange : Range;
+            float range = Data.Range == 0 ? MaxRange : Data.Range;
             TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
 
             if (!IsServer || !tr.Entity.IsValid()) return;
 
             tr.Surface.DoBulletImpact(tr);
 
-            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Damage)
+            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Data.Damage)
                 .UsingTraceResult(tr)
                 .WithAttacker(Owner)
                 .WithWeapon(this);
