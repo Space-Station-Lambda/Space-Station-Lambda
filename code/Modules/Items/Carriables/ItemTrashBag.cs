@@ -15,7 +15,10 @@ namespace ssl.Modules.Items.Carriables
 
         public ItemTrashBag(ItemData data) : base(data)
         {
-            Content = new Inventory(InventorySize);
+            ItemFilter filter = new();
+            filter.AddToBlacklist(data);
+            
+            Content = new Inventory(InventorySize, filter);
         }
         
         [Net, Predicted] public Inventory Content { get; private set; }
