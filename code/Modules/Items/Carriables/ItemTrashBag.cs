@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using ssl.Modules.Items.Data;
+using ssl.Modules.Selection;
 using ssl.Player;
 
 namespace ssl.Modules.Items.Carriables
@@ -17,16 +18,14 @@ namespace ssl.Modules.Items.Carriables
             Content = new Inventory(InventorySize);
         }
         
-        public Inventory Content { get; private set; }
+        [Net, Predicted] public Inventory Content { get; private set; }
 
         /// <summary>
         /// Using the trash bag on an item on ground will add it to the trash bag
         /// </summary>
-        public override void UseOn(MainPlayer player)
+        public override void OnUsePrimary(MainPlayer player, ISelectable target)
         {
-            base.UseOn(player);
-            
-            if (!Host.IsServer) return;
+            base.OnUsePrimary(player, target);
             if (player.Selector.Selected is Item item) AddToTrashBag(item);
         }
 
@@ -36,10 +35,8 @@ namespace ssl.Modules.Items.Carriables
         /// <param name="item">The item to add to the trash bag</param>
         private void AddToTrashBag(Item item)
         {
-            Host.AssertServer();
-            
             Slot destinationSlot = Content.Add(item);
-            if (destinationSlot == null) return;
+            if (null == destinationSlot) return;
             
             item.SetParent(this, transform: Transform.Zero);
             item.EnableDrawing = false;

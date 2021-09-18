@@ -9,14 +9,13 @@ namespace ssl.Modules.Items
 {
     public partial class Inventory : NetworkedEntityAlwaysTransmitted
     {
-        private readonly ItemFilter itemFilter = new();
-
         public Inventory()
         {
         }
 
-        public Inventory(int size)
+        public Inventory(int size, ItemFilter itemFilter)
         {
+            Filter = itemFilter;
             Slots = new List<Slot>(size);
             for (int i = 0; i < size; i++)
             {
@@ -26,6 +25,12 @@ namespace ssl.Modules.Items
             }
         }
 
+        public Inventory(int size) : this(size, new ItemFilter())
+        {
+        }
+
+
+        [Net] public ItemFilter Filter { get; private set;}
         [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
@@ -64,7 +69,7 @@ namespace ssl.Modules.Items
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
 
-            if (itemFilter.IsAuthorized(item))
+            if (Filter.IsAuthorized(item))
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
                 slotDestination?.Set(item);
