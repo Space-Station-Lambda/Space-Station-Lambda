@@ -14,15 +14,16 @@ namespace ssl.Ui.InventoryBar
         private static readonly Vector3 CamPos = new(10, 10, 8);
         private static readonly Vector3 FocusSize = new(9, 9, 9);
 
+        private const float LightRadius = 2000F;
         private static readonly Vector3 RedLightPos = new(10,0,0);
         private static readonly Color RedLightColor = Color.Red * 0.1f;
-        
+
         private static readonly Vector3 BlueLightPos = new(0,10,0);
         private static readonly Color BlueLightColor = Color.Blue * 0.1f;
-        
+
         private static readonly Vector3 MainLightPos = CamPos;
         private static readonly Color MainLightColor = Color.White;
-        
+
         private Item lastItem;
         private ScenePanel scene;
         private Light redLight;
@@ -66,7 +67,7 @@ namespace ssl.Ui.InventoryBar
                     ApplyItem(item);
                 }
 
-                redLight ??= Light.Point(RedLightPos, 2000, RedLightColor);
+                redLight ??= Light.Point(RedLightPos, LightRadius, RedLightColor);
                 blueLight ??= Light.Point(BlueLightPos, 2000, BlueLightColor);
                 mainLight ??= Light.Point(MainLightPos, 2000, MainLightColor);
             }
