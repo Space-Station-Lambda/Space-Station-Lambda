@@ -30,7 +30,9 @@ namespace ssl.Modules.Commands
             try
             {
                 Item item = itemFactory.Create(id);
-                player.Inventory.Add(item);
+                if (null != player.Inventory.Add(item)) return;
+                Log.Info($"Cannot give {id}, inventory full.");
+                item.Delete();
             }
             catch
             {
