@@ -1,3 +1,4 @@
+using Sandbox;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -6,6 +7,8 @@ namespace ssl.Modules.Items.Carriables
 {
     public partial class ItemFood : Item<ItemFoodData>
     {
+        private const string EatSound = "grunt1";
+        
         public ItemFood()
         {
         }
@@ -19,7 +22,13 @@ namespace ssl.Modules.Items.Carriables
         /// </summary>
         public override void OnUsePrimary(MainPlayer player, ISelectable target)
         {
-            //TODO
+            PlayEatSound(player);
+        }
+
+        [ClientRpc]
+        protected void PlayEatSound(Entity entity)
+        {
+            Sound.FromEntity(EatSound, entity);
         }
     }
 }
