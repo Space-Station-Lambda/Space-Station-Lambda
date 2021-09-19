@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 using Sandbox.UI;
-using ssl.Modules.Roles.Types.Antagonists;
-using ssl.Modules.Roles.Types.Jobs;
+using ssl.Modules.Roles;
 using ssl.Modules.Rounds;
+using ssl.Modules.Saves;
 
 namespace ssl.Ui.RoleSelector
 {
@@ -11,47 +12,24 @@ namespace ssl.Ui.RoleSelector
     /// </summary>
     public class RoleSelector : Panel
     {
-        private readonly Dictionary<RoleSelectorSlot, bool> rolesSelected = new();
+        private readonly List<RoleSlot> roleSlots = new();
 
         public RoleSelector()
         {
             StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
             SetClass("active", true);
-            rolesSelected.Add(new RoleSelectorSlot(new Assistant(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Janitor(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Scientist(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Guard(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Captain(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Engineer(), this), false);
-            rolesSelected.Add(new RoleSelectorSlot(new Traitor(), this), false);
-            foreach (RoleSelectorSlot roleIcon in rolesSelected.Keys)
+            foreach ((string id, Role role) in Role.All)
             {
-                roleIcon.AddEventListener("onclick", () => { Select(roleIcon); });
-            }
-        }
-
-        /// <summary>
-        /// Select a specific role
-        /// </summary>
-        /// <param name="roleSelectorSlot">Slot to select</param>
-        public void Select(RoleSelectorSlot roleSelectorSlot)
-        {
-            if (rolesSelected[roleSelectorSlot])
-            {
-                roleSelectorSlot.Unselect();
-                rolesSelected[roleSelectorSlot] = false;
-            }
-            else
-            {
-                roleSelectorSlot.Select();
-                rolesSelected[roleSelectorSlot] = true;
+                RoleSlot slot = new(role, this);
+                roleSlots.Add(slot);
+                break;
             }
         }
 
         public override void Tick()
         {
             base.Tick();
-
+            RefreshSlots();
             BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
             if (null != currentRound)
             {
@@ -59,5 +37,14 @@ namespace ssl.Ui.RoleSelector
                 SetClass("hidden", currentRound is not PreRound);
             }
         }
+        
+        private void RefreshSlots()
+        {
+            foreach (RoleSlot slot in roleSlots)
+            {
+                slot.Refresh();
+            }
+        }
+
     }
 }

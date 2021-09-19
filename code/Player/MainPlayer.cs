@@ -22,7 +22,10 @@ namespace ssl.Player
             Health = MaxHealth;
             Inventory = new PlayerInventory(this);
             ClothesHandler = new ClothesHandler(this);
-            RoleHandler = new RoleHandler(this);
+            RoleHandler = new RoleHandler(this)
+            {
+                Owner = this
+            };
             StatusHandler = new StatusHandler(this);
             Selector = new PlayerSelector(this);
             InputHandler = new InputHandler(this);
