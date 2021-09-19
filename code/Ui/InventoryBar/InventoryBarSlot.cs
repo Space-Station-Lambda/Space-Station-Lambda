@@ -75,8 +75,8 @@ namespace ssl.Ui.InventoryBar
                 }
 
                 redLight ??= Light.Point(RedLightPos, LightRadius, RedLightColor);
-                blueLight ??= Light.Point(BlueLightPos, 2000, BlueLightColor);
-                mainLight ??= Light.Point(MainLightPos, 2000, MainLightColor);
+                blueLight ??= Light.Point(BlueLightPos, LightRadius, BlueLightColor);
+                mainLight ??= Light.Point(MainLightPos, LightRadius, MainLightColor);
             }
 
             scene ??= Add.ScenePanel(sceneWorld, CamPos, CamAngles.ToRotation(), FieldOfView, "itemslot-model");
