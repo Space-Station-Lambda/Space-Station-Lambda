@@ -8,5 +8,6 @@
 		Description = "A pretty good banana."
 		HoldType = 4
 		FeedingValue = 10
+		WasteItem = "weapon.pistol"
 	}
 }

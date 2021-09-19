@@ -133,6 +133,7 @@ namespace ssl.Modules.Items
             foreach (Slot slot in Slots.Where(slot => slot.Item == item))
             {
                 slot.Clear();
+                return;
             }
         }
 
