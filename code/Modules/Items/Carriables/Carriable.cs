@@ -47,12 +47,7 @@ namespace ssl.Modules.Items.Carriables
 		public override void ActiveStart(Entity ent)
 		{
 			base.ActiveStart(ent);
-			
-			if (Host.IsClient && ent is MainPlayer player)
-			{
-				player.Inventory.ViewModel.SetHoldingEntity(this);
-			}
-			
+
 			EnableDrawing = true;
 		}
 
@@ -68,11 +63,6 @@ namespace ssl.Modules.Items.Carriables
 			// If we're just holstering, then hide us
 			if (!dropped)
 			{
-				if (Host.IsClient && ent is MainPlayer player)
-				{
-					player.Inventory.ViewModel.RemoveHoldingEntity();
-				}
-				
 				EnableDrawing = false;
 			}
 		}

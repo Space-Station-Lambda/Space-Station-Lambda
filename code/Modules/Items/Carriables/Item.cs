@@ -56,6 +56,24 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
+        public override void ActiveStart(Entity ent)
+        {
+            base.ActiveStart(ent);
+
+            if (!Host.IsClient || ent is not MainPlayer player) return;
+            player.Inventory.ViewModel.SetHoldingEntity(this);
+            player.Inventory.ViewModel.SetHoldType((HoldType)Data.HoldType);
+        }
+
+        public override void ActiveEnd(Entity ent, bool dropped)
+        {
+            base.ActiveEnd(ent, dropped);
+
+            if (!Host.IsClient || ent is not MainPlayer player) return;
+            player.Inventory.ViewModel.RemoveHoldingEntity();
+            player.Inventory.ViewModel.SetHoldType(HoldType.None);
+        }
+
         public override string ToString()
         {
             return $"[{Data.Id}] {Data.Name}";
