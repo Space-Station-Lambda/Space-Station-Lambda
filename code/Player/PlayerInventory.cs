@@ -68,11 +68,8 @@ namespace ssl.Player
         {
             Slot destinationSlot = base.Add(item, position);
             item.OnCarryStart(Player);
-
-            if (destinationSlot == HoldingSlot)
-            {
-                StartHolding(HoldingSlot);
-            }
+            if (null == destinationSlot) item.OnCarryDrop(item);
+            if (destinationSlot == HoldingSlot) StartHolding(HoldingSlot);
 
             return destinationSlot;
         }
