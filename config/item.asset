@@ -3,5 +3,10 @@
 @BaseClass base(data) = item : "An item"
 [
   Description(string) : "Description" : "This is my item"
-  HoldType(int): "HoldType" : "1"
+  HoldType(choices): "HoldType" : "4" : "How the player should hold this item" =
+  [
+    0 : "None"
+    1 : "Pistol"
+    4 : "Hand"
+  ]
 ]
