@@ -92,7 +92,7 @@ namespace ssl.Ui.InventoryBar
                     .WithPosition(-model.PhysicsBounds.Center * scaleFactor)
                     .WithScale(scaleFactor)
                     .WithRotation(Rotation.Identity);
-                sceneObject ??= new SceneObject(model, modelTransform);
+                sceneObject = new SceneObject(model, modelTransform);
             }
 
             lastItem = item;
