@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
+using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Saves;
 using ssl.Player;
 
@@ -9,8 +10,6 @@ namespace ssl.Modules.Roles
 {
     public partial class RoleHandler : NetworkedEntityAlwaysTransmitted
     {
-        
-        private RolesPrefencesSaver saver;
 
         private static Dictionary<RolePreferenceType, int> rolesFactors = new()
         {
@@ -21,19 +20,24 @@ namespace ssl.Modules.Roles
             { RolePreferenceType.Always, 125 },
         };
 
-        [Net, Local, OnChangedCallback] private List<RolePreference> RolePreferences { get; set; }
-        [Net, Local, OnChangedCallback] private string A { get; set; }
-        
         private MainPlayer player;
+        private readonly RolesPrefencesSaver saver;
 
-        public RoleHandler(MainPlayer player)
+        public RoleHandler()
+        {
+            saver = new RolesPrefencesSaver();
+            if(Host.IsClient) LoadPreferences();
+        }
+
+        public RoleHandler(MainPlayer player) : this()
         {
             this.player = player;
-            saver = new RolesPrefencesSaver();
             RolePreferences = new List<RolePreference>();
             InitRolePreferences();
-            if(Host.IsClient) LoadRoles();
         }
+        
+        [Net] private List<RolePreference> RolePreferences { get; set; }
+
         public Role Role { get; private set; }
         
         [ServerCmd("select_preference_role")]
@@ -41,7 +45,6 @@ namespace ssl.Modules.Roles
         {
             MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
             player.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
-            player.RoleHandler.A = "A";
         }
 
         public RolePreferenceType GetPreference(Role role)
@@ -57,7 +60,7 @@ namespace ssl.Modules.Roles
             }
         }
         
-        private void LoadRoles()
+        private void LoadPreferences()
         {
             Host.AssertClient();
             if (saver.IsSaved)
@@ -68,13 +71,6 @@ namespace ssl.Modules.Roles
                     ConsoleSystem.Run("select_preference_role", preference.Role.Id, preference.Preference);
                 }
             }
-        }
-        
-        
-
-        public void Clear()
-        {
-            AssignRole(null);
         }
 
         public Dictionary<Role, float> GetPreferencesNormalised()
@@ -101,10 +97,11 @@ namespace ssl.Modules.Roles
         
         public void SetPreference(Role role, RolePreferenceType preferenceType)
         {
+            Host.AssertServer();
             RolePreference rolePreference = null;
-            foreach (RolePreference preference in RolePreferences)
+            foreach (RolePreference preference in RolePreferences.Where(preference => role.Equals(preference.Role)))
             {
-                if (role.Equals(preference.Role)) rolePreference = preference;
+                rolePreference = preference;
             }
             
             if (null == rolePreference)
@@ -115,7 +112,7 @@ namespace ssl.Modules.Roles
             {
                 rolePreference.Preference = preferenceType;
             }
-            Log.Info("change");
+            SavePreferences();
         }
 
         /// <summary>
@@ -126,18 +123,12 @@ namespace ssl.Modules.Roles
             Role?.OnSpawn(player);
         }
         
-        private void OnRolePreferencesChanged()
+        [ClientRpc]
+        private void SavePreferences()
         {
-            Log.Info("Change client preferences");
-            Log.Info("TEST");
             Host.AssertClient();
             saver.Save(RolePreferences);
         }
         
-        private void OnAChanged()
-        {
-            Log.Info("Change client preferences");
-            Log.Info("TEST");
-        }
     }
 }

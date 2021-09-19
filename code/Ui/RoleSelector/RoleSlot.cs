@@ -20,22 +20,23 @@ namespace ssl.Ui.RoleSelector
             StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
             Parent = parent;
             AddEventListener("onclick", Select);
-            Log.Info("new");
+        }
+        
+        public RoleSlot(Role role)
+        {
+            StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
+            this.role = role;
+            Add.Label(role.Name, "role-name");
         }
         
         public void Refresh()
         {
             RolePreferenceType newPreferenceType = ((MainPlayer)Local.Pawn).RoleHandler.GetPreference(role);
+
             if (currentSelected == newPreferenceType) return;
+            
             currentSelected = newPreferenceType;
             SetClass("selected", currentSelected == RolePreferenceType.Medium);
-        }
-
-        public RoleSlot(Role role)
-        {
-            StyleSheet.Load("Ui/RoleSelector/RoleSelectorSlot.scss");
-            this.role = role;
-            Add.Label(role.Name, "role-name");
         }
 
         /// <summary>

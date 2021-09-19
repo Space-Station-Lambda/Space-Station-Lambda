@@ -22,10 +22,7 @@ namespace ssl.Player
             Health = MaxHealth;
             Inventory = new PlayerInventory(this);
             ClothesHandler = new ClothesHandler(this);
-            RoleHandler = new RoleHandler(this)
-            {
-                Owner = this
-            };
+            RoleHandler = new RoleHandler(this);
             StatusHandler = new StatusHandler(this);
             Selector = new PlayerSelector(this);
             InputHandler = new InputHandler(this);
@@ -33,8 +30,8 @@ namespace ssl.Player
         }
 
         [Net] public new PlayerInventory Inventory { get; private set; }
+        [Net] public RoleHandler RoleHandler { get; private set; }
         public ClothesHandler ClothesHandler { get; }
-        public RoleHandler RoleHandler { get; }
         public StatusHandler StatusHandler { get; }
         public InputHandler InputHandler { get; }
         public PlayerSelector Selector { get; }

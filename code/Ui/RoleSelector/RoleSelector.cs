@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using Sandbox;
 using Sandbox.UI;
 using ssl.Modules.Roles;
 using ssl.Modules.Rounds;
-using ssl.Modules.Saves;
 
 namespace ssl.Ui.RoleSelector
 {
@@ -22,7 +20,6 @@ namespace ssl.Ui.RoleSelector
             {
                 RoleSlot slot = new(role, this);
                 roleSlots.Add(slot);
-                break;
             }
         }
 

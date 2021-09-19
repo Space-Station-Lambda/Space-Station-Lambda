@@ -25,7 +25,7 @@ namespace ssl.Modules.Saves
         {
             //Delete file before write on it
             if (IsSaved)FileSystem.Data.DeleteFile(path);
-            Log.Info("json saved at " + path);
+            Log.Info($"[SAVE]{toSave} saved at {path}");
             FileSystem.Data.WriteAllText( "player.txt", "hello world" );
             FileSystem.Data.WriteJson(path, toSave);
         }
@@ -36,9 +36,8 @@ namespace ssl.Modules.Saves
         /// <returns>The data</returns>
         public T Load()
         {
-            Log.Info("json load at " + path);
             T res = FileSystem.Data.ReadJson<T>(path);
-            Log.Info(res.ToString());
+            Log.Info($"[SAVE]{res} load from {path}");
             return res;
         }
         
