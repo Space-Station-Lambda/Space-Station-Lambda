@@ -128,6 +128,14 @@ namespace ssl.Modules.Items
             return removedItem;
         }
 
+        public void RemoveItem(Item item)
+        {
+            foreach (Slot slot in Slots.Where(slot => slot.Item == item))
+            {
+                slot.Clear();
+            }
+        }
+
         public Item Get(int position)
         {
             if (position < 0 || position >= SlotsCount)
