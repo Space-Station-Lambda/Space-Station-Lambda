@@ -62,7 +62,14 @@ namespace ssl.Ui.InventoryBar
                     sceneObject = null;
                     lastItem = null;
                 }
-                else if (lastItem?.Data != item.Data)
+                else if (null != lastItem)
+                {
+                    if (lastItem.Data != item.Data)
+                    {
+                        ApplyItem(item);
+                    }
+                }
+                else
                 {
                     ApplyItem(item);
                 }
