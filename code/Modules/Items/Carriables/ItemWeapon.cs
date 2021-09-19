@@ -8,10 +8,7 @@ namespace ssl.Modules.Items.Carriables
 {
     public partial class ItemWeapon : Item<ItemWeaponData>
     {
-        private const string ShootSound = "rust_pistol.shoot";
-        private const string MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf";
         private const string MuzzleAttachmentName = "muzzle";
-        
         private const float MaxRange = 5000;
 
         public ItemWeapon()
@@ -125,8 +122,8 @@ namespace ssl.Modules.Items.Carriables
                 effectEntity = this;
             }
 
-            Sound.FromEntity(ShootSound, effectEntity);
-            Particles.Create(MuzzleFlashParticle, effectEntity, MuzzleAttachmentName);
+            Sound.FromEntity(Data.ShootSound, effectEntity);
+            Particles.Create(Data.MuzzleFlashParticle, effectEntity, MuzzleAttachmentName);
         }
     }
 }
