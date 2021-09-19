@@ -27,8 +27,8 @@ namespace ssl.Modules.Inputs
             if (Input.Pressed(InputButton.Slot9)) player.Inventory.ProcessHolding(8);
             if (Input.Pressed(InputButton.Slot0)) player.Inventory.ProcessHolding(9);
 
-            if (Input.Down(InputButton.Attack1)) player.Inventory.UsePrimary();
-            if (Input.Down(InputButton.Attack2)) player.Inventory.UseSecondary();
+            if (Input.Pressed(InputButton.Attack1)) player.Inventory.UsePrimary();
+            if (Input.Pressed(InputButton.Attack2)) player.Inventory.UseSecondary();
             
             if (player.IsClient) CheckClientControls();
             if (player.IsServer) CheckServercontrols();
