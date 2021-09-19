@@ -8,6 +8,7 @@ namespace ssl.Modules.Items.Carriables
 {
     public partial class ItemWeapon : Item<ItemWeaponData>
     {
+        private const string MuzzleAttachmentName = "muzzle";
         private const float MaxRange = 5000;
 
         public ItemWeapon()
@@ -17,24 +18,6 @@ namespace ssl.Modules.Items.Carriables
         public ItemWeapon(ItemWeaponData itemData) : base(itemData)
         {
         }
-
-        /// <summary>
-        /// PrimaryRate of the weapon
-        /// </summary>
-        [Net]
-        public float PrimaryRate { get; private set; }
-
-        /// <summary>
-        /// Range of the weapon, 0 means @MaxRange
-        /// </summary>
-        [Net]
-        public float Range { get; private set; }
-
-        /// <summary>
-        /// Damage of the weapon
-        /// </summary>
-        [Net]
-        public float Damage { get; private set; }
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
 
@@ -60,9 +43,9 @@ namespace ssl.Modules.Items.Carriables
         private bool CanPrimaryAttack()
         {
             if (!Owner.IsValid()) return false;
-            if (PrimaryRate <= 0) return true;
+            if (Data.PrimaryRate <= 0) return true;
 
-            return TimeSincePrimaryAttack > (1 / PrimaryRate);
+            return TimeSincePrimaryAttack > (1 / Data.PrimaryRate);
         }
 
         protected void AttackPrimary()
@@ -101,19 +84,6 @@ namespace ssl.Modules.Items.Carriables
             //
         }
 
-        [ClientRpc]
-        private void ShootEffects()
-        {
-            if (!Host.IsClient) return;
-
-            Particles.Create("particles/pistol_muzzleflash.vpcf", this, "muzzle");
-
-            if (IsLocalPawn)
-            {
-                _ = new Perlin();
-            }
-        }
-
         protected virtual void ShootBullet(float spread, float force, float bulletSize)
         {
             Vector3 forward = Owner.EyeRot.Forward;
@@ -121,19 +91,39 @@ namespace ssl.Modules.Items.Carriables
             forward = forward.Normal;
 
             //If the range is 0, the range is max.
-            float range = Range == 0 ? MaxRange : Range;
+            float range = Data.Range == 0 ? MaxRange : Data.Range;
             TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
 
             if (!IsServer || !tr.Entity.IsValid()) return;
-
             tr.Surface.DoBulletImpact(tr);
 
-            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Damage)
+            DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Data.Damage)
                 .UsingTraceResult(tr)
                 .WithAttacker(Owner)
                 .WithWeapon(this);
 
             tr.Entity.TakeDamage(damageInfo);
+        }
+
+        [ClientRpc]
+        private void ShootEffects()
+        {
+            if (!Host.IsClient) return;
+            
+            Entity effectEntity;
+            
+            if (IsLocalPawn && Local.Pawn is MainPlayer player)
+            {
+                effectEntity = player.Inventory.ViewModel.HoldingEntity;
+                _ = new Perlin();
+            }
+            else
+            {
+                effectEntity = this;
+            }
+
+            Sound.FromEntity(Data.ShootSound, effectEntity);
+            Particles.Create(Data.MuzzleFlashParticle, effectEntity, MuzzleAttachmentName);
         }
     }
 }

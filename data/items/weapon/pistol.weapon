@@ -10,5 +10,7 @@
 		PrimaryRate = 5.0
 		Damage = 10.0
 		Range = 0.0
+		ShootSound = "rust_pistol.shoot"
+		MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
 	}
 }

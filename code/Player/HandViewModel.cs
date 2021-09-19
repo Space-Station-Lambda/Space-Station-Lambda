@@ -14,7 +14,6 @@ namespace ssl.Player
         private const string BodyGroupHead = "head";
         private const string BodyGroupLegs = "legs";
         private const string BodyGroupFeet = "feet";
-        private AnimEntity holdingEntity;
 
         private Vector3 offset;
 
@@ -27,6 +26,8 @@ namespace ssl.Player
             SetAnimFloat(AnimKeyBodyWeight, 0f);
             RemoveHoldingEntity();
         }
+
+        public AnimEntity HoldingEntity { get; private set; }
 
         private static Vector3 NoneOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
         private static Vector3 HandOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
@@ -62,14 +63,14 @@ namespace ssl.Player
         {
             Host.AssertClient();
 
-            holdingEntity = new AnimEntity
+            HoldingEntity = new AnimEntity
             {
                 UsePhysicsCollision = false,
                 EnableViewmodelRendering = true,
                 Owner = this
             };
-            holdingEntity.SetModel(entity.GetModel());
-            holdingEntity.SetParent(this, true);
+            HoldingEntity.SetModel(entity.GetModel());
+            HoldingEntity.SetParent(this, true);
         }
 
         /// <summary>
@@ -77,8 +78,8 @@ namespace ssl.Player
         /// </summary>
         public void RemoveHoldingEntity()
         {
-            holdingEntity?.Delete();
-            holdingEntity = null;
+            HoldingEntity?.Delete();
+            HoldingEntity = null;
         }
     }
 }
