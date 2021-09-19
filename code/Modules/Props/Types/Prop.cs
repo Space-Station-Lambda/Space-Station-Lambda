@@ -48,6 +48,11 @@ namespace ssl.Modules.Props.Types
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
         }
+        
+        public override string ToString()
+        {
+	        return Data.ToString();
+        }
     }
 
     public class Prop<T> : Prop where T : PropData

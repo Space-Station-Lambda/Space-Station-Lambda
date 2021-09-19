@@ -87,7 +87,7 @@ namespace ssl.Modules.Items.Carriables
         
         public override string ToString()
         {
-            return $"[{Data.Id}] {Data.Name}";
+            return Data.ToString();
         }
 
         public override int GetHashCode()
