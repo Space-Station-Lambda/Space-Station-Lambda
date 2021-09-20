@@ -27,8 +27,6 @@ namespace ssl.Modules
             InitComposition();
         }
         
-        
-        
         /// <summary>
         /// 0 Capacity mean infinit capacity
         /// </summary>
