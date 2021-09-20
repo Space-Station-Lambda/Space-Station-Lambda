@@ -78,6 +78,5 @@ namespace ssl.Modules
             Composition[liquidName] -= amount;
             return new Liquid(liquidName, amount);
         }
-
     }
 }
