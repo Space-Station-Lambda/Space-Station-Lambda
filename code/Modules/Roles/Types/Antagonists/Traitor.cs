@@ -26,7 +26,7 @@ namespace ssl.Modules.Roles.Types.Antagonists
         public override void OnAssigned(MainPlayer player)
         {
             base.OnAssigned(player);
-            player.RoleHandler.SetPreference(new Traitor(), RolePreference.Never);
+            player.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
             Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
             SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(player) ??
                             defaultRole;

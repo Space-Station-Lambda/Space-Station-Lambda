@@ -1,6 +1,6 @@
 ﻿namespace ssl.Modules.Roles
 {
-    public enum RolePreference
+    public enum RolePreferenceType
     {
         Never,
         Low,
