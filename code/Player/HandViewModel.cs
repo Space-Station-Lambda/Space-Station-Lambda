@@ -30,8 +30,7 @@ namespace ssl.Player
         }
 
         public AnimEntity HoldingEntity { get; private set; }
-
-        private static Vector3 NoneOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
+        
         private static Vector3 HandOffset { get; } = -(Vector3.Up * 50 + Vector3.Right);
         private static Vector3 PistolOffset { get; } = -(Vector3.Up * 60 + Vector3.Right);
 
