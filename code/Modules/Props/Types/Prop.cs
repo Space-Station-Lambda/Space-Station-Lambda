@@ -11,12 +11,15 @@ namespace ssl.Modules.Props.Types
     /// </summary>
     public partial class Prop : ModelEntity, ISelectable
     {
+        public const string Tag = "Prop";
+        
         public Prop()
         {
         }
         
         public Prop(PropData data)
         {
+            Tags.Add(Tag);
             Data = data;
             SetModel(data.Model);
         }
