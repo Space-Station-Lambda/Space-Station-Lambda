@@ -45,7 +45,8 @@ namespace ssl.Modules.Props.Types
         public override void Spawn()
         {
             base.Spawn();
-            
+
+            SetupPhysicsFromModel(PhysicsMotionType.Static);
             PhysicsEnabled = false;
             CollisionGroup = CollisionGroup.Interactive;
             EnableHideInFirstPerson = true;

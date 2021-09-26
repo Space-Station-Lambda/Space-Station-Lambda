@@ -9,6 +9,7 @@ namespace ssl.Modules.Items.Carriables
 		{
 			base.Spawn();
 
+			SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
 			MoveType = MoveType.Physics;
 			CollisionGroup = CollisionGroup.Weapon;
 			SetInteractsAs(CollisionLayer.Hitbox);
