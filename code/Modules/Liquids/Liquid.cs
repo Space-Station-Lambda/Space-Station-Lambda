@@ -26,6 +26,15 @@ namespace ssl.Modules
             Composition = new Dictionary<string, int>();
             InitComposition();
         }
+
+        /// <summary>
+        /// Create a copy of the liuquid
+        /// </summary>
+        /// <param name="liquid">Liquid to copy</param>
+        public Liquid(Liquid liquid)
+        {
+            throw new NotImplementedException();
+        }
         
         /// <summary>
         /// 0 Capacity mean infinit capacity
@@ -45,6 +54,11 @@ namespace ssl.Modules
             Composition.Add("liquid.waste", 0);
         }
 
+        public int GetAmount(string liquidName)
+        {
+            return Composition[liquidName];
+        }
+        
         public void Add(string liquidName, int value)
         {
             if (Capacity != 0 && CurrentAmountLiquids + value > Capacity) throw new IndexOutOfRangeException();
@@ -77,6 +91,23 @@ namespace ssl.Modules
             if (amount > Composition[liquidName]) throw new ArgumentOutOfRangeException();
             Composition[liquidName] -= amount;
             return new Liquid(liquidName, amount);
+        }
+        
+        public void Clear()
+        {
+            Composition.Clear();
+            //TODO return the copy
+        }
+        
+        /// <summary>
+        /// Set specific liquid to 0
+        /// </summary>
+        /// <param name="liquidName">The name of the liquid</param>
+        public Liquid Clear(string liquidName)
+        {
+            Liquid liquid = new Liquid(liquidName, Composition[liquidName]);
+            Composition[liquidName] = 0;
+            return liquid;
         }
     }
 }
