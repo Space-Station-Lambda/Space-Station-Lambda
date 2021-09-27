@@ -25,7 +25,7 @@ namespace ssl.Player
             ClothesHandler = new ClothesHandler(this);
             RoleHandler = new RoleHandler(this);
             StatusHandler = new StatusHandler(this);
-            Selector = new PlayerSelector(this);
+            Selector = new Selector(this);
             InputHandler = new InputHandler(this);
             StainHandler = new StainHandler(this);
         }
@@ -35,7 +35,7 @@ namespace ssl.Player
         public ClothesHandler ClothesHandler { get; }
         public StatusHandler StatusHandler { get; }
         public InputHandler InputHandler { get; }
-        public PlayerSelector Selector { get; }
+        public Selector Selector { get; }
         public PlayerCorpse Ragdoll { get; set; }
         public StainHandler StainHandler { get; set; }
 

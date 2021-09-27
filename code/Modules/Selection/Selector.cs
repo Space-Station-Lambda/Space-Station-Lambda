@@ -3,14 +3,13 @@ using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
-    public class PlayerSelector
+    public class Selector
     {
         private const float SelectionRange = 150f;
 
         private readonly MainPlayer player;
         
-
-        public PlayerSelector(MainPlayer player)
+        public Selector(MainPlayer player)
         {
             this.player = player;
         }
