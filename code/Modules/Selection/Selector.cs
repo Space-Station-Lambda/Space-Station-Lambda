@@ -18,9 +18,7 @@ namespace ssl.Modules.Selection
 
         public void CheckSelection()
         {
-            Vector3 forward = player.EyeRot.Forward;
-            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
-            Entity result = tr.Entity;
+            Entity result = GetTraceResultEntity();
             if (result is ISelectable selectable)
             {
                 if (!ReferenceEquals(selectable, Selected))
@@ -37,7 +35,7 @@ namespace ssl.Modules.Selection
             }
         }
 
-        public bool IsSelected()
+        public bool IsSelecting()
         {
             return Selected != null;
         }
@@ -59,6 +57,14 @@ namespace ssl.Modules.Selection
             Selected = null;
         }
 
+
+        protected virtual Entity GetTraceResultEntity()
+        {
+            Vector3 forward = player.EyeRot.Forward;
+            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
+            Entity result = tr.Entity;
+            return result;
+        }
 
         protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
         {
