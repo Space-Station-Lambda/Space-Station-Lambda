@@ -16,7 +16,7 @@ namespace ssl.Modules.Selection
         
         public ISelectable Selected { get; private set; }
 
-        public void CheckSelection()
+        public void UpdateSelection()
         {
             Entity result = GetTraceResultEntity();
             if (result is ISelectable selectable)

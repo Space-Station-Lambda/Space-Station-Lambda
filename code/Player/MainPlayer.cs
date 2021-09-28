@@ -80,7 +80,7 @@ namespace ssl.Player
             StatusHandler.Tick();
             SimulateActiveChild(client, ActiveChild);
             InputHandler.CheckControls();
-            Selector?.CheckSelection();
+            Selector?.UpdateTarget();
             StainHandler.TryGenerateStain();
         }
 
