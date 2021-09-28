@@ -15,8 +15,9 @@ namespace ssl.Modules.Selection
         }
         
         public ISelectable Selected { get; private set; }
-
-        public void UpdateSelection()
+        public bool IsSelecting => Selected != null;
+        
+        public virtual void UpdateTarget()
         {
             Entity result = GetTraceResultEntity();
             if (result is ISelectable selectable)
@@ -33,11 +34,6 @@ namespace ssl.Modules.Selection
             {
                 StopSelection();
             }
-        }
-
-        public bool IsSelecting()
-        {
-            return Selected != null;
         }
 
         public void UseSelected()

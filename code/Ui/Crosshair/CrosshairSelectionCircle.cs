@@ -17,7 +17,7 @@ namespace ssl.Ui.Crosshair
             if (Local.Pawn is not MainPlayer player)
                 return;
 
-            SetClass("selected", player.Selector.IsSelecting());
+            SetClass("selected", player.Selector.IsSelecting);
         }
     }
 }
