@@ -7,8 +7,8 @@ namespace ssl.Modules.Selection
     {
         private const float SelectionRange = 150f;
 
-        private readonly MainPlayer player;
-        
+        protected readonly MainPlayer player;
+
         public Selector(MainPlayer player)
         {
             this.player = player;
@@ -45,13 +45,13 @@ namespace ssl.Modules.Selection
             Selected?.OnInteract(player);
         }
 
-        public void StartSelection(ISelectable selectable)
+        private void StartSelection(ISelectable selectable)
         {
             Selected = selectable;
             Selected.OnSelectStart(player);
         }
 
-        public void StopSelection()
+        private void StopSelection()
         {
             Selected?.OnSelectStop(player);
             Selected = null;
