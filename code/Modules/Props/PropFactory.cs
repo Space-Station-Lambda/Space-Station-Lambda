@@ -24,7 +24,7 @@ namespace ssl.Modules.Props
                     PropData propData = TryLoad<PropData>(filePath);
                     return name switch
                     {
-                        _ => new Prop(propData)
+                        _ => propData.IsPhysical ? new PhysicalProp(propData) : new Prop(propData)
                     };
                 default:
                     throw new ArgumentOutOfRangeException($"The prefix does not exist for {prefix}.{name}");

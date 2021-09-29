@@ -2,7 +2,9 @@
 
 namespace ssl.Modules.Props.Data
 {
-    [Library("prop")]
-    public class PropData : BaseData
-    {}
+	[Library( "prop" )]
+	public class PropData : BaseData
+	{
+		public bool IsPhysical { get; set; }
+	}
 }
