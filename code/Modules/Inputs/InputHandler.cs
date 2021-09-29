@@ -51,6 +51,15 @@ namespace ssl.Modules.Inputs
             {
                 player.Dragger.UseSelected();
             }
+
+            //TODO: Drag Inputs (long hold to drag, etc.)
+            if (Input.Down(InputButton.Attack1))
+            {
+                player.Dragger.Drag();
+            } else if (Input.Released(InputButton.Attack1))
+            {
+                player.Dragger.StopDrag();
+            }
         }
     }
 }

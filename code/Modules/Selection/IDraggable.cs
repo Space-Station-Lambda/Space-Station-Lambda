@@ -1,9 +1,15 @@
-﻿using ssl.Player;
+﻿using Sandbox;
+using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
     public interface IDraggable
     {
+        /// <summary>
+        /// Returns the physics body that should be used by the dragger. 
+        /// </summary>
+        PhysicsBody Body { get; }
+
         /// <summary>
         /// When the drag started.
         /// </summary>
