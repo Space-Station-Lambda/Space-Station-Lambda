@@ -76,12 +76,12 @@ namespace ssl.Player
 
         public void UsePrimary()
         {
-            HoldingItem?.OnUsePrimary(Player, Player.Selector.Selected);
+            HoldingItem?.OnUsePrimary(Player, Player.Dragger.Selected);
         }
         
         public void UseSecondary()
         {
-            HoldingItem?.OnUseSecondary(Player, Player.Selector.Selected);
+            HoldingItem?.OnUseSecondary(Player, Player.Dragger.Selected);
         }
     }
 }

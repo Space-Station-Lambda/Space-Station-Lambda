@@ -29,7 +29,7 @@ namespace ssl.Modules.Items.Carriables
         public override void OnUsePrimary(MainPlayer player, ISelectable target)
         {
             base.OnUsePrimary(player, target);
-            if (player.Selector.Selected is Item item) AddToTrashBag(item);
+            if (player.Dragger.Selected is Item item) AddToTrashBag(item);
         }
 
         /// <summary>

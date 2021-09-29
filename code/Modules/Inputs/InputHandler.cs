@@ -49,7 +49,7 @@ namespace ssl.Modules.Inputs
 
             if (Input.Released(InputButton.Use))
             {
-                player.Selector.UseSelected();
+                player.Dragger.UseSelected();
             }
         }
     }
