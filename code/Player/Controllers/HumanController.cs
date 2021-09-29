@@ -196,6 +196,9 @@ namespace ssl.Player.Controllers
 
         private void Jump()
         {
+            if (GroundEntity == ((MainPlayer)Pawn).Dragger.HeldEntity) 
+                return;
+            
             ClearGroundEntity();
             Velocity += Vector3.Up * JumpForce;
             AddEvent(JumpEventName);
