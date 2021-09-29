@@ -5,7 +5,7 @@ namespace ssl.Modules.Selection
 {
     public class Selector
     {
-        private const float SelectionRange = 150f;
+        protected const float Range = 150f;
 
         protected readonly MainPlayer player;
 
@@ -57,7 +57,7 @@ namespace ssl.Modules.Selection
         protected virtual Entity GetTraceResultEntity()
         {
             Vector3 forward = player.EyeRot.Forward;
-            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
+            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * Range);
             Entity result = tr.Entity;
             return result;
         }
