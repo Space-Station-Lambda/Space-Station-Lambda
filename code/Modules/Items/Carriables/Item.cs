@@ -11,7 +11,7 @@ namespace ssl.Modules.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : Carriable, ISelectable
+    public partial class Item : Carriable, ISelectable, IDraggable
     {
         protected const string HoldTypeKey = "holdtype";
         protected const string HandednessKey = "holdtype_handedness";
@@ -26,6 +26,8 @@ namespace ssl.Modules.Items.Carriables
             SetModel(data.Model);
             GlowColor = Color.Blue;
         }
+
+        public PhysicsBody Body => PhysicsBody;
 
         [Net] public ItemData Data { get; private set; }
         
@@ -48,6 +50,23 @@ namespace ssl.Modules.Items.Carriables
         {
             player.Inventory.Add(this);
         }
+        
+        public void OnDragStart(MainPlayer player)
+        {
+        }
+
+        public void OnDragStop(MainPlayer player)
+        {
+        }
+
+        public void OnDrag(MainPlayer player)
+        {
+        }
+        
+        public bool IsDraggable(MainPlayer player)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Called when a player use an Item.
@@ -55,7 +74,7 @@ namespace ssl.Modules.Items.Carriables
         public virtual void OnUsePrimary(MainPlayer player, ISelectable target)
         {
         }
-        
+
         public virtual void OnUseSecondary(MainPlayer player, ISelectable target)
         {
         }
@@ -78,13 +97,13 @@ namespace ssl.Modules.Items.Carriables
             player.Inventory.ViewModel.SetHoldType(HoldType.None);
         }
 
-        
+
         public virtual void SimulateAnimator(HumanAnimator animator)
         {
             animator.SetParam(HoldTypeKey, Data.HoldType);
             animator.SetParam(HandednessKey, 1);
         }
-        
+
         public override string ToString()
         {
             return Data.ToString();
