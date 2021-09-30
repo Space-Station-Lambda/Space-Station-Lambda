@@ -56,7 +56,8 @@ namespace ssl.Modules.Inputs
             if (Input.Down(InputButton.Attack1))
             {
                 player.Dragger.Drag();
-            } else if (Input.Released(InputButton.Attack1))
+            } 
+            else if (Input.Released(InputButton.Attack1))
             {
                 player.Dragger.StopDrag();
             }
