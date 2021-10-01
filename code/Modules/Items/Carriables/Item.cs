@@ -51,19 +51,19 @@ namespace ssl.Modules.Items.Carriables
             player.Inventory.Add(this);
         }
         
-        public void OnDragStart(MainPlayer player)
+        public virtual void OnDragStart(MainPlayer player)
         {
         }
 
-        public void OnDragStop(MainPlayer player)
+        public virtual void OnDragStop(MainPlayer player)
         {
         }
 
-        public void OnDrag(MainPlayer player)
+        public virtual void OnDrag(MainPlayer player)
         {
         }
         
-        public bool IsDraggable(MainPlayer player)
+        public virtual bool IsDraggable(MainPlayer player)
         {
             return true;
         }
