@@ -7,11 +7,11 @@ namespace ssl.Modules.Selection
     public class Dragger : Selector
     {
         private const float HoldDistance = 50F;
-        private const float LinearFrequency = 10.0f;
-        private const float LinearDampingRatio = 1.0f;
-        private const float AngularFrequency = 10.0f;
-        private const float AngularDampingRatio = 1.0f;
-        private const float BreakLinearForce = 2000.0f;
+        private const float LinearFrequency = 10F;
+        private const float LinearDampingRatio = 1F;
+        private const float AngularFrequency = 10F;
+        private const float AngularDampingRatio = 1F;
+        private const float BreakLinearForce = 2000F;
         
         private PhysicsBody holdBody;
         private WeldJoint holdJoint;
