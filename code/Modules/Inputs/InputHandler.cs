@@ -47,7 +47,7 @@ namespace ssl.Modules.Inputs
                 dropped.Velocity += player.Velocity;
             }
 
-            if (Input.Released(InputButton.Use))
+            if (Input.Pressed(InputButton.Use))
             {
                 player.Dragger.UseSelected();
             }
