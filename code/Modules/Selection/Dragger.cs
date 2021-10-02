@@ -26,10 +26,15 @@ namespace ssl.Modules.Selection
         public Rotation HeldRot { get; private set; }
         public Entity HeldEntity { get; private set; }
 
+        /// <summary>
+        /// Updates the Dragger system.
+        /// Will start dragging item if there's not one already or will just update the position of the "hand".
+        /// </summary>
         public void Drag()
         {
             if (null == Dragged)
             {
+                //Try to start dragging the entity currently targeted.
                 Entity entity = GetTraceResultEntity();
                 if (entity is not IDraggable draggable) return;
                 if (draggable.IsDraggable(player))
@@ -39,6 +44,7 @@ namespace ssl.Modules.Selection
             }
             else
             {
+                // Updates the position of the "hand" of dragger. 
                 GrabMove(player.EyePos, player.EyeRot.Forward, player.EyeRot);
             }
         }
