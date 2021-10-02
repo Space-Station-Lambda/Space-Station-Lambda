@@ -10,7 +10,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Rounds
 {
-    public abstract partial class BaseRound : NetworkedEntityAlwaysTransmitted
+    public abstract partial class BaseRound : BaseNetworkable
     {
         protected BaseRound()
         {

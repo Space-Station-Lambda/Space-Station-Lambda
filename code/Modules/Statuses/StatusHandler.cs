@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Statuses
 {
-    public partial class StatusHandler : NetworkedEntityAlwaysTransmitted
+    public partial class StatusHandler : BaseNetworkable
     {
         public StatusHandler()
         {

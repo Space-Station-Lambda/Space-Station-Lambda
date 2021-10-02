@@ -4,12 +4,10 @@ using ssl.Modules.Items.Carriables;
 
 namespace ssl.Modules.Items
 {
-    public partial class Slot : NetworkedEntityAlwaysTransmitted
+    public partial class Slot : BaseNetworkable
     {
         [Net, Predicted] public Item Item { get; private set; }
-        internal event Action<Slot> ItemAdded;
-        internal event Action<Slot> ItemRemoved;
-
+        
         public bool IsEmpty()
         {
             return Item == null;
@@ -27,25 +25,16 @@ namespace ssl.Modules.Items
         public void Set(Item item)
         {
             Item = item;
-            ItemAdded?.Invoke(this);
-            if (IsServer) RpcSet(item);
         }
 
         public void Clear()
         {
             Item = null;
-            ItemRemoved?.Invoke(this);
         }
 
         public override string ToString()
         {
             return IsEmpty() ? "-" : Item.ToString();
-        }
-
-        [ClientRpc]
-        private void RpcSet(Item item)
-        {
-            Set(item);
         }
     }
 }

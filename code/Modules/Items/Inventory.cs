@@ -7,7 +7,7 @@ using ssl.Modules.Items.Data;
 
 namespace ssl.Modules.Items
 {
-    public partial class Inventory : NetworkedEntityAlwaysTransmitted
+    public partial class Inventory : BaseNetworkable
     {
         public Inventory()
         {

@@ -135,7 +135,6 @@ namespace ssl.Player
         {
             base.OnDestroy();
             Inventory.ViewModel?.Delete();
-            Inventory.Delete();
         }
 
         public override void PostCameraSetup(ref CameraSetup setup)

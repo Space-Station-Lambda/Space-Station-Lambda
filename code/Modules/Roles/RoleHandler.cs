@@ -8,7 +8,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public partial class RoleHandler : NetworkedEntityAlwaysTransmitted
+    public partial class RoleHandler : BaseNetworkable
     {
 
         private static Dictionary<RolePreferenceType, int> rolesFactors = new()
@@ -112,7 +112,7 @@ namespace ssl.Modules.Roles
             {
                 rolePreference.Preference = preferenceType;
             }
-            SavePreferences();
+            // SavePreferences();
         }
 
         /// <summary>
@@ -120,15 +120,14 @@ namespace ssl.Modules.Roles
         /// </summary>
         public void SpawnRole()
         {
-            Role?.OnSpawn(player);
+             Role?.OnSpawn(player);
         }
         
-        [ClientRpc]
-        private void SavePreferences()
-        {
-            Host.AssertClient();
-            saver.Save(RolePreferences);
-        }
-        
+        // [ClientRpc]
+        // private void SavePreferences()
+        // {
+        //     Host.AssertClient();
+        //     saver.Save(RolePreferences);
+        // }
     }
 }
