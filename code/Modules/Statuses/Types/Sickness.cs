@@ -2,24 +2,20 @@
 
 namespace ssl.Modules.Statuses.Types
 {
-    public partial class Sickness : Status
+    public class Sickness : Status
     {
         private const byte TargetRColor = 140;
         private const byte TargetGColor = 207;
         private const byte TargetBColor = 100;
 
 
-        public Sickness() : base()
-        {
-        }
-
         public Sickness(int duration) : base(duration)
         {
         }
 
-        public override string Id => "sick";
-        public override string Name => "Sick";
-        public override string Description => "Sick";
+        public override string Id => "status.sickness";
+        public override string Name => "Sickness";
+        public override string Description => "Sickness";
         public override bool IsInfinite => false;
 
         public override void OnTick(MainPlayer player)
