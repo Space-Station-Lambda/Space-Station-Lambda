@@ -35,12 +35,7 @@ namespace ssl.Modules.Selection
             if (null == Dragged)
             {
                 //Try to start dragging the entity currently targeted.
-                Entity entity = GetTraceResultEntity();
-                if (entity is not IDraggable draggable) return;
-                if (draggable.IsDraggable(player))
-                {
-                    StartDrag(entity, player.EyePos + player.EyeRot.Forward * HoldDistance, player.EyeRot);
-                }
+                TryDrag();
             }
             else
             {
@@ -112,6 +107,16 @@ namespace ssl.Modules.Selection
             client?.Pvs.Add( HeldEntity );
             
             draggable.OnDragStart(player);
+        }
+
+        private void TryDrag()
+        {
+            Entity entity = GetTraceResultEntity();
+            if (entity is not IDraggable draggable) return;
+            if (draggable.IsDraggable(player))
+            {
+                StartDrag(entity, player.EyePos + player.EyeRot.Forward * HoldDistance, player.EyeRot);
+            }
         }
 
         private void GrabMove(Vector3 startPos, Vector3 dir, Rotation rot)
