@@ -13,15 +13,18 @@ namespace ssl.Modules.Items.Carriables
     /// </summary>
     public partial class Item : Carriable, ISelectable
     {
+        public const string Tag = "Item";
+        
         protected const string HoldTypeKey = "holdtype";
         protected const string HandednessKey = "holdtype_handedness";
-        
+
         public Item()
         {
         }
 
         public Item(ItemData data)
         {
+            Tags.Add(Tag);
             Data = data;
             SetModel(data.Model);
             GlowColor = Color.Blue;
