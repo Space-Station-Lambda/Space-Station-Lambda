@@ -80,17 +80,10 @@ namespace ssl.Modules.Selection
         /// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
         private void StartDrag(Entity entity, Vector3 grabPos, Rotation grabRot)
         {
-            if (entity is not IDraggable draggable)
+            if (IsEntityDraggable(entity)) 
                 return;
-
-            if (!draggable.Body.IsValid())
-                return;
-
-            if (draggable.Body.PhysicsGroup == null)
-                return;
-
-            if (null != Dragged)
-                return;
+            
+            IDraggable draggable = entity as IDraggable;
 
             StopDrag();
 
@@ -117,6 +110,23 @@ namespace ssl.Modules.Selection
             client?.Pvs.Add( HeldEntity );
             
             draggable.OnDragStart(player);
+        }
+
+        private bool IsEntityDraggable(Entity entity)
+        {
+            if (entity is not IDraggable draggable)
+                return true;
+
+            if (!draggable.Body.IsValid())
+                return true;
+
+            if (draggable.Body.PhysicsGroup == null)
+                return true;
+
+            if (null != Dragged)
+                return true;
+            
+            return false;
         }
 
         private void TryDrag()
