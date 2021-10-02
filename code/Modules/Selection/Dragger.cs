@@ -44,6 +44,9 @@ namespace ssl.Modules.Selection
             }
         }
 
+        /// <summary>
+        /// Releases the Draggable currently being dragged, if there's one.
+        /// </summary>
         public void StopDrag()
         {
             if (holdJoint.IsValid)
@@ -68,6 +71,13 @@ namespace ssl.Modules.Selection
             HeldEntity = null;
         }
 
+        /// <summary>
+        /// Start dragging an Entity if it is a draggable.
+        /// Will stop dragging the previous one if there's any.
+        /// </summary>
+        /// <param name="entity">Entity to drag.</param>
+        /// <param name="grabPos">Destination of the dragged entity. (Relative to World)</param>
+        /// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
         private void StartDrag(Entity entity, Vector3 grabPos, Rotation grabRot)
         {
             if (entity is not IDraggable draggable)
