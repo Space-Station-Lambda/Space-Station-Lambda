@@ -45,33 +45,6 @@ namespace ssl.Modules.Selection
         }
 
         /// <summary>
-        /// Releases the Draggable currently being dragged, if there's one.
-        /// </summary>
-        public void StopDrag()
-        {
-            if (holdJoint.IsValid)
-            {
-                holdJoint.Remove();
-            }
-
-            if (Dragged != null)
-            {
-                HeldBody.EnableAutoSleeping = true;
-                Dragged.OnDragStop(player);
-            }
-
-            if (HeldEntity.IsValid())
-            {
-                Client client = player.GetClientOwner();
-                client?.Pvs.Remove( HeldEntity );
-            }
-
-            Dragged = null;
-            HeldRot = Rotation.Identity;
-            HeldEntity = null;
-        }
-
-        /// <summary>
         /// Start dragging an Entity if it is a draggable.
         /// Will stop dragging the previous one if there's any.
         /// </summary>
@@ -110,6 +83,33 @@ namespace ssl.Modules.Selection
             client?.Pvs.Add( HeldEntity );
             
             draggable.OnDragStart(player);
+        }
+
+        /// <summary>
+        /// Releases the Draggable currently being dragged, if there's one.
+        /// </summary>
+        public void StopDrag()
+        {
+            if (holdJoint.IsValid)
+            {
+                holdJoint.Remove();
+            }
+
+            if (Dragged != null)
+            {
+                HeldBody.EnableAutoSleeping = true;
+                Dragged.OnDragStop(player);
+            }
+
+            if (HeldEntity.IsValid())
+            {
+                Client client = player.GetClientOwner();
+                client?.Pvs.Remove( HeldEntity );
+            }
+
+            Dragged = null;
+            HeldRot = Rotation.Identity;
+            HeldEntity = null;
         }
 
         private bool IsEntityDraggable(Entity entity)
