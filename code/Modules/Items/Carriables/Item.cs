@@ -27,7 +27,11 @@ namespace ssl.Modules.Items.Carriables
             GlowColor = Color.Blue;
         }
 
-        public PhysicsBody Body => PhysicsBody;
+        /// <summary>
+        /// The PhysicsBody used when the Item will be dragged.
+        /// By default it's only the default PhysicsBody.
+        /// </summary>
+        public virtual PhysicsBody Body => PhysicsBody;
 
         [Net] public ItemData Data { get; private set; }
         

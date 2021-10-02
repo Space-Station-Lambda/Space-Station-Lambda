@@ -15,7 +15,11 @@ namespace ssl.Modules.Props.Types
 	    {
 	    }
 
-	    public PhysicsBody Body => PhysicsBody;
+	    /// <summary>
+	    /// The PhysicsBody used when the PhysicalProp will be dragged.
+	    /// By default it's only the default PhysicsBody.
+	    /// </summary>
+	    public virtual PhysicsBody Body => PhysicsBody;
 
 	    public override void Spawn()
         {
