@@ -11,7 +11,10 @@ namespace ssl.Modules.Props.Triggers
         public override void OnTouchStart(Entity toucher)
         {
             base.OnTouchStart(toucher);
-            toucher.Delete();
+            if (null == ((Item)toucher).Parent)
+            {
+                toucher.Delete();
+            }
         }
 
         public override bool PassesTriggerFilters(Entity other)
