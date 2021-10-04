@@ -24,7 +24,6 @@ namespace ssl.Modules.Selection
         public IDraggable Dragged { get; private set; }
         public PhysicsBody HeldBody => Dragged.Body;
         public Rotation HeldRot { get; private set; }
-        public Entity HeldEntity { get; private set; }
 
         /// <summary>
         /// Updates the Dragger system.
@@ -32,10 +31,10 @@ namespace ssl.Modules.Selection
         /// </summary>
         public void Drag()
         {
-            if (null == Dragged)
+            if (Dragged == null)
             {
                 //Try to start dragging the entity currently targeted.
-                TryDrag();
+                if (IsSelectedDraggable()) TryDrag();
             }
             else
             {
@@ -48,20 +47,17 @@ namespace ssl.Modules.Selection
         /// Start dragging an Entity if it is a draggable.
         /// Will stop dragging the previous one if there's any.
         /// </summary>
-        /// <param name="entity">Entity to drag.</param>
         /// <param name="grabPos">Destination of the dragged entity. (Relative to World)</param>
         /// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
-        private void StartDrag(Entity entity, Vector3 grabPos, Rotation grabRot)
+        private void StartDrag(Vector3 grabPos, Rotation grabRot)
         {
-            if (IsEntityDraggable(entity)) 
+            if (!IsSelectedDraggable()) 
                 return;
             
-            IDraggable draggable = entity as IDraggable;
-
             StopDrag();
-
-            Dragged = draggable;
             
+            Dragged = (IDraggable)Selected;
+
             HeldRot = grabRot.Inverse * HeldBody.Rotation;
 
             holdBody.Position = grabPos;
@@ -78,11 +74,7 @@ namespace ssl.Modules.Selection
                 .Breakable(HeldBody.Mass * BreakLinearForce, 0)
                 .Create();
 
-            HeldEntity = entity;
-            Client client = player.Owner.GetClientOwner();
-            client?.Pvs.Add( HeldEntity );
-            
-            draggable.OnDragStart(player);
+            Dragged.OnDragStart(player);
         }
 
         /// <summary>
@@ -101,41 +93,29 @@ namespace ssl.Modules.Selection
                 Dragged.OnDragStop(player);
             }
 
-            if (HeldEntity.IsValid())
-            {
-                Client client = player.GetClientOwner();
-                client?.Pvs.Remove( HeldEntity );
-            }
-
             Dragged = null;
             HeldRot = Rotation.Identity;
-            HeldEntity = null;
         }
 
-        private bool IsEntityDraggable(Entity entity)
+        private bool IsSelectedDraggable()
         {
-            if (entity is not IDraggable draggable)
-                return true;
+            if (Selected is not IDraggable draggable)
+                return false;
 
             if (!draggable.Body.IsValid())
-                return true;
+                return false;
 
             if (draggable.Body.PhysicsGroup == null)
-                return true;
-
-            if (null != Dragged)
-                return true;
+                return false;
             
-            return false;
+            return true;
         }
 
         private void TryDrag()
         {
-            Entity entity = GetTraceResultEntity();
-            if (entity is not IDraggable draggable) return;
-            if (draggable.IsDraggable(player))
+            if (((IDraggable)Selected).IsDraggable(player))
             {
-                StartDrag(entity, player.EyePos + player.EyeRot.Forward * HoldDistance, player.EyeRot);
+                StartDrag(player.EyePos + player.EyeRot.Forward * HoldDistance, player.EyeRot);
             }
         }
 

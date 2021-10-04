@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
+using ssl.Modules.Selection;
 
 namespace ssl.Player.Controllers
 {
@@ -196,8 +197,11 @@ namespace ssl.Player.Controllers
 
         private void Jump()
         {
-            if (GroundEntity == ((MainPlayer)Pawn).Dragger.HeldEntity) 
-                return;
+            if (GroundEntity is IDraggable draggable)
+            {
+                if (((MainPlayer)Pawn).Dragger.Dragged == draggable)
+                    return;
+            }
             
             ClearGroundEntity();
             Velocity += Vector3.Up * JumpForce;

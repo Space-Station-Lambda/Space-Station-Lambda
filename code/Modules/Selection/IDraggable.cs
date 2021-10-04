@@ -3,7 +3,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
-    public interface IDraggable
+    public interface IDraggable : ISelectable
     {
         /// <summary>
         /// Returns the physics body that should be used by the dragger. 

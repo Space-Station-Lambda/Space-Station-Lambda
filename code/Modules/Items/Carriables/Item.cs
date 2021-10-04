@@ -11,7 +11,7 @@ namespace ssl.Modules.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : Carriable, ISelectable, IDraggable
+    public partial class Item : Carriable, IDraggable
     {
         protected const string HoldTypeKey = "holdtype";
         protected const string HandednessKey = "holdtype_handedness";
