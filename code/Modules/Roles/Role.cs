@@ -35,6 +35,11 @@ namespace ssl.Modules.Roles
         public virtual IEnumerable<string> Items => new List<string>();
 
         /// <summary>
+        /// Array of factions of the role. A role can have multiple factions.
+        /// </summary>
+        public virtual Faction[] Faction => new[] { Roles.Faction.Protagonists };
+
+        /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
         public virtual void OnAssigned(MainPlayer player)

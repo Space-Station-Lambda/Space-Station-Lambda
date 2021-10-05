@@ -8,6 +8,7 @@ namespace ssl.Modules.Roles.Types.Antagonists
         public override string Id => "traitor";
         public override string Name => "Traitor";
         public override string Description => "Traitor";
+        public override Faction[] Faction => new[] { Roles.Faction.Traitors };
 
         public override IEnumerable<string> Clothing => new HashSet<string>
         {

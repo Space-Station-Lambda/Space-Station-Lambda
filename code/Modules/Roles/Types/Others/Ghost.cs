@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sandbox;
 using ssl.Player;
 
@@ -13,6 +14,9 @@ namespace ssl.Modules.Roles.Types.Others
         public override string Name => "Ghost";
         public override string Description => "Ghost";
         public override string Category => "ghost";
+        
+        //TODO Implement the old role for the ghost (need his old faction)
+        public override Faction[] Faction => Array.Empty<Faction>(); // The ghost don't have any faction. Because you know ...
 
         public override IEnumerable<string> Clothing => new HashSet<string>();
 
