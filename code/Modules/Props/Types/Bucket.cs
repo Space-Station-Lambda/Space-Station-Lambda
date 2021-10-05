@@ -1,4 +1,5 @@
-﻿using ssl.Modules.Props.Data;
+﻿using ssl.Modules.Liquids;
+using ssl.Modules.Props.Data;
 
 namespace ssl.Modules.Props.Types
 {

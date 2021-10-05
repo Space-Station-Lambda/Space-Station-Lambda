@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Sandbox;
+using ssl.Modules.Milestones;
 using ssl.Modules.Roles;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
@@ -31,15 +32,15 @@ namespace ssl.Modules.Rounds
                     }
                 });
             RoleDistributor = new RoleDistributor(scenario, Players);
+            MilestonesHandler = new MilestonesHandler();
         }
-
-
+        
         [Net] public List<MainPlayer> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
-
+        public MilestonesHandler MilestonesHandler { get; private set; }
         public RoleDistributor RoleDistributor { get; }
         public event Action<BaseRound> RoundEndedEvent;
 
