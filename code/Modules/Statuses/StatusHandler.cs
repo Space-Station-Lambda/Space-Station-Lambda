@@ -50,6 +50,36 @@ namespace ssl.Modules.Statuses
                 }
             }
         }
+        
+        public void ResolveStatus<T>() where T : Status
+        {
+            foreach (Status s in Statuses)
+            {
+                if (s is T statusT)
+                {
+                    s.OnResolve(player);
+                    Statuses.Remove(s);
+                    return;
+                }
+            }
+        }
+
+        public Status GetStatus(string id)
+        {
+            return Statuses.FirstOrDefault(s => s.Id.Equals(id));
+        }
+        
+        public T GetStatus<T>() where T : Status
+        {
+            foreach (Status status in Statuses)
+            {
+                if (status is T statusT)
+                {
+                    return statusT;
+                }
+            }
+            return null;
+        }
 
         /// <summary>
         /// Tick statuses and remove status if ended timer
