@@ -3,25 +3,23 @@ using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
-    public class PlayerSelector
+    public class Selector
     {
-        private const float SelectionRange = 150f;
+        protected const float Range = 150f;
 
-        private readonly MainPlayer player;
-        
+        protected readonly MainPlayer player;
 
-        public PlayerSelector(MainPlayer player)
+        public Selector(MainPlayer player)
         {
             this.player = player;
         }
         
         public ISelectable Selected { get; private set; }
-
-        public void CheckSelection()
+        public bool IsSelecting => Selected != null;
+        
+        public virtual void UpdateTarget()
         {
-            Vector3 forward = player.EyeRot.Forward;
-            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * SelectionRange);
-            Entity result = tr.Entity;
+            Entity result = GetTraceResultEntity();
             if (result is ISelectable selectable)
             {
                 if (!ReferenceEquals(selectable, Selected))
@@ -38,28 +36,31 @@ namespace ssl.Modules.Selection
             }
         }
 
-        public bool IsSelected()
-        {
-            return Selected != null;
-        }
-
         public void UseSelected()
         {
             Selected?.OnInteract(player);
         }
 
-        public void StartSelection(ISelectable selectable)
+        private void StartSelection(ISelectable selectable)
         {
             Selected = selectable;
             Selected.OnSelectStart(player);
         }
 
-        public void StopSelection()
+        private void StopSelection()
         {
             Selected?.OnSelectStop(player);
             Selected = null;
         }
 
+
+        protected virtual Entity GetTraceResultEntity()
+        {
+            Vector3 forward = player.EyeRot.Forward;
+            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * Range);
+            Entity result = tr.Entity;
+            return result;
+        }
 
         protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
         {

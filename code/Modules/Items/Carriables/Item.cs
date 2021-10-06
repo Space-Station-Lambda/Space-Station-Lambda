@@ -11,7 +11,7 @@ namespace ssl.Modules.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : Carriable, ISelectable
+    public partial class Item : Carriable, IDraggable
     {
         public const string Tag = "Item";
         
@@ -29,6 +29,12 @@ namespace ssl.Modules.Items.Carriables
             SetModel(data.Model);
             GlowColor = Color.Blue;
         }
+
+        /// <summary>
+        /// The PhysicsBody used when the Item will be dragged.
+        /// By default it's only the default PhysicsBody.
+        /// </summary>
+        public virtual PhysicsBody Body => PhysicsBody;
 
         [Net] public ItemData Data { get; private set; }
         
@@ -51,6 +57,23 @@ namespace ssl.Modules.Items.Carriables
         {
             player.Inventory.Add(this);
         }
+        
+        public virtual void OnDragStart(MainPlayer player)
+        {
+        }
+
+        public virtual void OnDragStop(MainPlayer player)
+        {
+        }
+
+        public virtual void OnDrag(MainPlayer player)
+        {
+        }
+        
+        public virtual bool IsDraggable(MainPlayer player)
+        {
+            return true;
+        }
 
         /// <summary>
         /// Called when a player use an Item.
@@ -58,7 +81,7 @@ namespace ssl.Modules.Items.Carriables
         public virtual void OnUsePrimary(MainPlayer player, ISelectable target)
         {
         }
-        
+
         public virtual void OnUseSecondary(MainPlayer player, ISelectable target)
         {
         }
@@ -81,13 +104,13 @@ namespace ssl.Modules.Items.Carriables
             player.Inventory.ViewModel.SetHoldType(HoldType.None);
         }
 
-        
+
         public virtual void SimulateAnimator(HumanAnimator animator)
         {
             animator.SetParam(HoldTypeKey, Data.HoldType);
             animator.SetParam(HandednessKey, 1);
         }
-        
+
         public override string ToString()
         {
             return Data.ToString();
