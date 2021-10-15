@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ssl.Modules
+namespace ssl.Modules.Liquids
 {
     /// <summary>
     /// A liquid is a set of different liquids. Liquid update is planned later in the developement. For now all liquids
