@@ -14,10 +14,10 @@ namespace ssl
 
         public WorldEntity(BaseData data)
         {
+            SetModel(data.Model);
             Data = data;
         }
-
-
+        
         [Net] protected BaseData Data { get; set; }
     }
 }

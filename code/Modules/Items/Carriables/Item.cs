@@ -22,11 +22,9 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        public Item(ItemData data)
+        public Item(ItemData data) : base(data)
         {
             Tags.Add(Tag);
-            base.Data = data;
-            SetModel(data.Model);
             GlowColor = Color.Blue;
         }
 
