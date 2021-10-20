@@ -3,8 +3,9 @@
 	data = 
 	{
 		Id = "stain.step"
-		Name = "Stain"
-		Model = "a"
+		Name = "Step stain"
+		Model = "models/props/stain/step.vmdl"
 		StainStrength = 15
+		IsPhysical = false
 	}
 }
