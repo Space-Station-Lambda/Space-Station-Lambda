@@ -21,13 +21,13 @@ namespace ssl.Player
         public MainPlayer()
         {
             Health = MaxHealth;
+            Dragger = new Dragger(this);
+            StatusHandler = new StatusHandler(this);
+            InputHandler = new InputHandler(this);
+            StainHandler = new StainHandler(this);
             Inventory = new PlayerInventory(this);
             ClothesHandler = new ClothesHandler(this);
             RoleHandler = new RoleHandler(this);
-            StatusHandler = new StatusHandler(this);
-            Dragger = new Dragger(this);
-            InputHandler = new InputHandler(this);
-            StainHandler = new StainHandler(this);
         }
 
         [Net] public new PlayerInventory Inventory { get; private set; }
