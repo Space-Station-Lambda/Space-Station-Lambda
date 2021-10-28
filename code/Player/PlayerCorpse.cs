@@ -1,8 +1,9 @@
 ﻿using Sandbox;
+using ssl.Modules.Selection;
 
 namespace ssl.Player
 {
-    public class PlayerCorpse : ModelEntity
+    public partial class PlayerCorpse : ModelEntity, IDraggable
     {
         private const float ForceMultiplier = 1000F;
         private const string ClothesModelIndicator = "clothes";
@@ -12,12 +13,18 @@ namespace ssl.Player
             MoveType = MoveType.Physics;
             UsePhysicsCollision = true;
 
-            SetInteractsAs(CollisionLayer.Debris);
+            SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
             SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
             SetInteractsExclude(CollisionLayer.Player | CollisionLayer.Debris);
         }
+        
+        public PlayerCorpse(MainPlayer player) : this()
+        {
+            Player = player;
+        }
 
-        public MainPlayer Player { get; set; }
+        [Net] public MainPlayer Player { get; private set; }
+        public PhysicsBody Body => PhysicsGroup.GetBody(0);
 
         public void CopyFrom(MainPlayer player)
         {
@@ -61,6 +68,39 @@ namespace ssl.Player
                     PhysicsGroup.AddVelocity(force);
                 }
             }
+        }
+
+        public void OnSelectStart(MainPlayer player)
+        {
+        }
+
+        public void OnSelectStop(MainPlayer player)
+        {
+        }
+
+        public void OnSelect(MainPlayer player)
+        {
+        }
+
+        public void OnInteract(MainPlayer player)
+        {
+        }
+
+        public void OnDragStart(MainPlayer player)
+        {
+        }
+
+        public void OnDragStop(MainPlayer player)
+        {
+        }
+
+        public void OnDrag(MainPlayer player)
+        {
+        }
+
+        public bool IsDraggable(MainPlayer player)
+        {
+            return true;
         }
     }
 }

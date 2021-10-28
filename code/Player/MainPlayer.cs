@@ -129,14 +129,14 @@ namespace ssl.Player
             LifeState = LifeState.Dead;
             StopUsing();
             RoleHandler.Role?.OnKilled(this);
-            EnableRagdoll(Vector3.Zero, 0);
+            SpawnRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
 
         public override void PostCameraSetup(ref CameraSetup setup)
         {
             base.PostCameraSetup(ref setup);
-            Inventory.ViewModel.PostCameraSetup(ref setup);
+            Inventory.ViewModel?.PostCameraSetup(ref setup);
         }
 
         public void EnableSpectator()
@@ -153,9 +153,9 @@ namespace ssl.Player
             EnableDrawing = false;
         }
 
-        private void EnableRagdoll(Vector3 force, int forceBone)
+        private PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
         {
-            PlayerCorpse ragdoll = new()
+            PlayerCorpse ragdoll = new(this)
             {
                 Position = Position,
                 Rotation = Rotation
@@ -163,11 +163,25 @@ namespace ssl.Player
 
             ragdoll.CopyFrom(this);
             ragdoll.ApplyForceToBone(force, forceBone);
-            ragdoll.Player = this;
 
-            Ragdoll = ragdoll;
+            return ragdoll;
         }
 
+        [ServerCmd("ragdoll")]
+        private static void StartRagdoll(bool state)
+        {
+            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            if (state)
+            {
+                player.Ragdoll = player.SpawnRagdoll(Vector3.Zero, 0);
+            }
+            else if(player.Ragdoll.IsValid)
+            {
+                player.Position = player.Ragdoll.Position;
+                player.Ragdoll.Delete();
+            }
+        }
+        
         [ClientRpc]
         private void SendTextNotification(string txt)
         {
