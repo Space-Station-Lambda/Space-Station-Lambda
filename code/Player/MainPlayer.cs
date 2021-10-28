@@ -136,12 +136,6 @@ namespace ssl.Player
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
 
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            Inventory.ViewModel?.Delete();
-        }
-
         public override void PostCameraSetup(ref CameraSetup setup)
         {
             base.PostCameraSetup(ref setup);

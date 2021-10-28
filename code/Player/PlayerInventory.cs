@@ -79,5 +79,10 @@ namespace ssl.Player
         {
             HoldingItem?.OnUseSecondary(Player, Player.Dragger.Selected);
         }
+
+        protected override void OnDeactivate()
+        {
+            if (Host.IsClient) ViewModel?.Delete();
+        }
     }
 }
