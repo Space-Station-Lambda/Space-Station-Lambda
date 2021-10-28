@@ -37,12 +37,12 @@ namespace ssl.Player
 
         public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
         public RoleHandler RoleHandler => Components.Get<RoleHandler>();
-        public ClothesHandler ClothesHandler { get; }
-        public StatusHandler StatusHandler { get; }
+        public ClothesHandler ClothesHandler => Components.Get<ClothesHandler>();
+        public StatusHandler StatusHandler => Components.Get<StatusHandler>();
+        public StainHandler StainHandler => Components.Get<StainHandler>();
         public InputHandler InputHandler { get; }
         public Dragger Dragger { get; }
         public PlayerCorpse Ragdoll { get; set; }
-        public StainHandler StainHandler { get; set; }
 
         public void OnSelectStart(MainPlayer player)
         {
