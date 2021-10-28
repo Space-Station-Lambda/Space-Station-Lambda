@@ -43,12 +43,18 @@ namespace ssl.Player.Controllers
         private MovementState state = MovementState.Idle;
         private Unstuck unstuck;
 
-
         public HumanController()
         {
             unstuck = new Unstuck(this);
         }
+        
+        public HumanController(MainPlayer player) : this()
+        {
+            if (Host.IsServer) Player = player;
+        }
 
+
+        [Net] private MainPlayer Player { get; set; }
         public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
         public float CurrentSpeed => Velocity.Length;
 
@@ -68,31 +74,42 @@ namespace ssl.Player.Controllers
 
             //If the player is stuck, fix and stop
             if (unstuck.TestAndFix()) return;
-
-
+            
             UpdateGroundEntity();
 
             ProcessInputs();
 
-            if (IsGrounded)
+            if (!Player.IsRagdoll)
             {
-                if (Input.Pressed(InputButton.Jump))
+                if (IsGrounded)
                 {
-                    Jump();
+                    if (Input.Pressed(InputButton.Jump))
+                    {
+                        Jump();
+                    }
+                    else
+                    {
+                        ApplyFriction(GroundSurface.Friction * SurfaceFriction);
+                        AccelerateGroundMovement();
+                        TryPlayerMoveWithStep();
+                        StickToGround();
+                    }
                 }
                 else
                 {
-                    ApplyFriction(GroundSurface.Friction * SurfaceFriction);
-                    AccelerateGroundMovement();
-                    TryPlayerMoveWithStep();
-                    StickToGround();
+                    ApplyGravity();
+                    Air();
+                    TryPlayerMove();
                 }
             }
-            else
+            else if (Player.CanStand)
             {
-                ApplyGravity();
-                Air();
-                TryPlayerMove();
+                bool wantExitRagdoll = Input.Pressed(InputButton.Jump) || Input.Forward + Input.Left > 0;
+                
+                if (wantExitRagdoll)
+                {
+                    Player.StopRagdoll();
+                }
             }
         }
 
