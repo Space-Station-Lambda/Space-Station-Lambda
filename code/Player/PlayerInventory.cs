@@ -11,7 +11,7 @@ namespace ssl.Player
 
         public PlayerInventory()
         {
-            Init(MaxInventoryCapacity, new ItemFilter());
+            if (Host.IsServer) Init(MaxInventoryCapacity, new ItemFilter());
         }
         
         public Item HoldingItem => HoldingSlot?.Item;

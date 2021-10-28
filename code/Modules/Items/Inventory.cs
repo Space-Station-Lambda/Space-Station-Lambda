@@ -40,6 +40,7 @@ namespace ssl.Modules.Items
 
         public void Init(int size, ItemFilter itemFilter)
         {
+            Host.AssertServer();
             Filter = itemFilter;
             for (int i = 0; i < size; i++)
             {
