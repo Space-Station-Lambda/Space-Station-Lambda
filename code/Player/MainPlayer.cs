@@ -25,10 +25,10 @@ namespace ssl.Player
             Dragger = new Dragger(this);
             InputHandler = new InputHandler(this);
             StainHandler = new StainHandler(this);
-            ClothesHandler = new ClothesHandler(this);
 
             if (Host.IsServer)
             {
+                Components.Create<ClothesHandler>();
                 Components.Create<StatusHandler>();
                 Components.Create<RoleHandler>();
                 Components.Create<PlayerInventory>();

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 using ssl.Player;
 
 namespace ssl.Modules.Clothes
@@ -6,19 +7,9 @@ namespace ssl.Modules.Clothes
     /// <summary>
     /// Manage the clothing system for the given player.
     /// </summary>
-    public class ClothesHandler
+    public class ClothesHandler : EntityComponent
     {
         private readonly List<Clothes> clothes = new();
-
-        /// <summary>
-        /// Player concerned.
-        /// </summary>
-        private readonly MainPlayer player;
-
-        public ClothesHandler(MainPlayer player)
-        {
-            this.player = player;
-        }
 
         /// <summary>
         /// Attach a set of clothes to the player.
@@ -50,7 +41,7 @@ namespace ssl.Modules.Clothes
         /// <param name="slot">Slot concerned</param>
         public void AttachClothes(Clothes pieceOfClothes)
         {
-            pieceOfClothes.SetParent(player, true);
+            pieceOfClothes.SetParent(Entity, true);
             clothes.Add(pieceOfClothes);
         }
 
