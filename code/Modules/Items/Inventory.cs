@@ -7,31 +7,15 @@ using ssl.Modules.Items.Data;
 
 namespace ssl.Modules.Items
 {
-    public partial class Inventory : BaseNetworkable
+    public partial class Inventory : EntityComponent
     {
         public Inventory()
         {
         }
 
-        public Inventory(int size, ItemFilter itemFilter)
-        {
-            Filter = itemFilter;
-            Slots = new List<Slot>(size);
-            for (int i = 0; i < size; i++)
-            {
-                Slot slot = new();
-
-                Slots.Add(slot);
-            }
-        }
-
-        public Inventory(int size) : this(size, new ItemFilter())
-        {
-        }
-
-
         [Net] public ItemFilter Filter { get; private set;}
-        [Net] public List<Slot> Slots { get; private set; }
+
+        [Net, Predicted] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
@@ -53,6 +37,17 @@ namespace ssl.Modules.Items
         }
 
         public int SlotsFull => SlotsCount - SlotsLeft;
+
+        public void Init(int size, ItemFilter itemFilter)
+        {
+            Filter = itemFilter;
+            for (int i = 0; i < size; i++)
+            {
+                Slot slot = new();
+
+                Slots.Add(slot);
+            }
+        }
 
         /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.

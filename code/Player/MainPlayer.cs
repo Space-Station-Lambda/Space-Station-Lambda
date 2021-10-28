@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
@@ -25,12 +26,13 @@ namespace ssl.Player
             StatusHandler = new StatusHandler(this);
             InputHandler = new InputHandler(this);
             StainHandler = new StainHandler(this);
-            Inventory = new PlayerInventory(this);
             ClothesHandler = new ClothesHandler(this);
             RoleHandler = new RoleHandler(this);
+
+            Components.Create<PlayerInventory>();
         }
 
-        [Net] public new PlayerInventory Inventory { get; private set; }
+        public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
         [Net] public RoleHandler RoleHandler { get; private set; }
         public ClothesHandler ClothesHandler { get; }
         public StatusHandler StatusHandler { get; }

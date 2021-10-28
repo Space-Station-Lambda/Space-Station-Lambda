@@ -18,10 +18,11 @@ namespace ssl.Modules.Items.Carriables
             ItemFilter filter = new();
             filter.AddToBlacklist(data);
             
-            Content = new Inventory(InventorySize, filter);
+            Inventory inventory = Components.Create<PlayerInventory>();
+            inventory.Init(InventorySize, filter);
         }
-        
-        [Net, Predicted] public Inventory Content { get; private set; }
+
+        public Inventory Content => Components.Get<Inventory>();
 
         /// <summary>
         /// Using the trash bag on an item on ground will add it to the trash bag

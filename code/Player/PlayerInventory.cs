@@ -11,17 +11,13 @@ namespace ssl.Player
 
         public PlayerInventory()
         {
+            Init(MaxInventoryCapacity, new ItemFilter());
         }
-
-        public PlayerInventory(MainPlayer player) : base(MaxInventoryCapacity)
-        {
-            this.Player = player;
-        }
-
+        
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
         [Net, Predicted] public int HoldingSlotNumber { get; private set; }
-        [Net] private MainPlayer Player { get; set; }
+        private MainPlayer Player => (MainPlayer) Entity;
         public HandViewModel ViewModel { get; set; }
 
         public void ProcessHolding(int slotIndex)
