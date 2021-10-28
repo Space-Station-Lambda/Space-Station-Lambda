@@ -18,13 +18,14 @@ namespace ssl.Modules.Saves
             base.Save(toSaveStringified);
         }
 
-        public new List<RolePreference> Load()
+        public new List<(string, RolePreferenceType)> Load()
         {
             Dictionary<string, RolePreferenceType> stringPreferences = base.Load();
-            List<RolePreference> rolePreferences = new();
+            List<(string, RolePreferenceType)> rolePreferences = new();
             foreach ((string roleString, RolePreferenceType preference) in stringPreferences)
             {
-                rolePreferences.Add(new RolePreference(Role.All[roleString], preference));
+                (string, RolePreferenceType) rp = (roleString, preference);
+                rolePreferences.Add(rp);
             }
             return rolePreferences;
         }

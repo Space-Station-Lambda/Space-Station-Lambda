@@ -27,13 +27,16 @@ namespace ssl.Player
             InputHandler = new InputHandler(this);
             StainHandler = new StainHandler(this);
             ClothesHandler = new ClothesHandler(this);
-            RoleHandler = new RoleHandler(this);
 
-            Components.Create<PlayerInventory>();
+            if (Host.IsServer)
+            {
+                Components.Create<RoleHandler>();
+                Components.Create<PlayerInventory>();
+            }
         }
 
         public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
-        [Net] public RoleHandler RoleHandler { get; private set; }
+        public RoleHandler RoleHandler => Components.Get<RoleHandler>();
         public ClothesHandler ClothesHandler { get; }
         public StatusHandler StatusHandler { get; }
         public InputHandler InputHandler { get; }

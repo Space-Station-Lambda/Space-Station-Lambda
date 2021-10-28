@@ -12,7 +12,7 @@ namespace ssl.Modules.Roles
     /// <summary>
     /// Player's role
     /// </summary>
-    public abstract partial class Role : NetworkComponent
+    public abstract partial class Role : BaseNetworkable
     {
         public static Dictionary<string, Role> All = new()
         {
