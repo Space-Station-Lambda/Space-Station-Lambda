@@ -29,8 +29,12 @@ namespace ssl.Player
                 Components.Create<ClothesHandler>();
                 Components.Create<StatusHandler>();
                 Components.Create<StainHandler>();
+                
+                TimeExitRagdoll = Time.Now;
             }
+
         }
+
 
         public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
         public RoleHandler RoleHandler => Components.Get<RoleHandler>();
@@ -39,7 +43,11 @@ namespace ssl.Player
         public StainHandler StainHandler => Components.Get<StainHandler>();
         public InputHandler InputHandler { get; }
         public Dragger Dragger { get; }
-        public PlayerCorpse Ragdoll { get; set; }
+
+        public bool IsRagdoll => Ragdoll != null;
+        public bool CanStand => ((TimeSince)TimeExitRagdoll).Relative >= 0;
+        private PlayerCorpse Ragdoll { get; set; }
+        public float TimeExitRagdoll { get; }
 
         public void OnSelectStart(MainPlayer player)
         {
@@ -93,7 +101,7 @@ namespace ssl.Player
         {
             SetModel(Model);
 
-            Controller = new HumanController();
+            Controller = new HumanController(this);
             Animator = new HumanAnimator();
             Camera = new FirstPersonCamera();
 
@@ -153,6 +161,29 @@ namespace ssl.Player
             EnableDrawing = false;
         }
 
+        /// <summary>
+        /// Activates the ragdoll mode of the player.
+        /// </summary>
+        public void StartRagdoll()
+        {
+            Ragdoll ??= SpawnRagdoll(Vector3.Zero, 0);
+        }
+
+        /// <summary>
+        /// Stop the ragdoll mode of the player.
+        /// </summary>
+        public void StopRagdoll()
+        {
+            if (!Ragdoll.IsValid) return;
+            
+            Position = Ragdoll.Position;
+            Ragdoll.Delete();
+            Ragdoll = null;
+        }
+
+        /// <summary>
+        /// Spawns a ragdoll looking like the player.
+        /// </summary>
         private PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
         {
             PlayerCorpse ragdoll = new(this)
@@ -168,20 +199,19 @@ namespace ssl.Player
         }
 
         [ServerCmd("ragdoll")]
-        private static void StartRagdoll(bool state)
+        private static void SetRagdoll(bool state)
         {
             MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
             if (state)
             {
-                player.Ragdoll = player.SpawnRagdoll(Vector3.Zero, 0);
+                player.StartRagdoll();
             }
-            else if(player.Ragdoll.IsValid)
+            else
             {
-                player.Position = player.Ragdoll.Position;
-                player.Ragdoll.Delete();
+                player.StopRagdoll();
             }
         }
-        
+
         [ClientRpc]
         private void SendTextNotification(string txt)
         {
