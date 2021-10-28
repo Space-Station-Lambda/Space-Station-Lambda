@@ -24,10 +24,10 @@ namespace ssl.Player
             Health = MaxHealth;
             Dragger = new Dragger(this);
             InputHandler = new InputHandler(this);
-            StainHandler = new StainHandler(this);
 
             if (Host.IsServer)
             {
+                Components.Create<StainHandler>();
                 Components.Create<ClothesHandler>();
                 Components.Create<StatusHandler>();
                 Components.Create<RoleHandler>();
