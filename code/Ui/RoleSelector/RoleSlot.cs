@@ -44,9 +44,8 @@ namespace ssl.Ui.RoleSelector
         /// </summary>
         public void Select()
         {
-            ConsoleSystem.Run("select_preference_role", role.Id, currentSelected == RolePreferenceType.Medium ? RolePreferenceType.Never: RolePreferenceType.Medium);
+            ConsoleSystem.Run("select_role_preference", role.Id, currentSelected == RolePreferenceType.Medium ? RolePreferenceType.Never: RolePreferenceType.Medium);
+            ConsoleSystem.Run("save_role_preferences");
         }
-
-        
     }
 }

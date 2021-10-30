@@ -7,30 +7,27 @@ using ssl.Modules.Items.Data;
 
 namespace ssl.Modules.Items
 {
-    public partial class Inventory : NetworkedEntityAlwaysTransmitted
+    public partial class Inventory : EntityComponent
     {
         public Inventory()
         {
         }
-
-        public Inventory(int size, ItemFilter itemFilter)
+        
+        public Inventory(int size, ItemFilter itemFilter) : this()
         {
-            Filter = itemFilter;
-            Slots = new List<Slot>(size);
-            for (int i = 0; i < size; i++)
+            if (Host.IsServer)
             {
-                Slot slot = new();
-
-                Slots.Add(slot);
+                Filter = itemFilter;
+                for (int i = 0; i < size; i++)
+                {
+                    Slot slot = new();
+                    Slots.Add(slot);
+                }
             }
         }
 
-        public Inventory(int size) : this(size, new ItemFilter())
-        {
-        }
-
-
         [Net] public ItemFilter Filter { get; private set;}
+
         [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;

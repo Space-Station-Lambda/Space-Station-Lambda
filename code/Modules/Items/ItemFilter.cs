@@ -9,7 +9,7 @@ namespace ssl.Modules.Items
     /// <summary>
     /// Filter items in a specific inventory/slot
     /// </summary>
-    public partial class ItemFilter : NetworkedEntityAlwaysTransmitted
+    public partial class ItemFilter : BaseNetworkable
     {
         public ItemFilter()
         {

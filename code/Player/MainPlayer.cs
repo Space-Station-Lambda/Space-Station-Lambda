@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
@@ -22,22 +23,30 @@ namespace ssl.Player
         {
             Health = MaxHealth;
             Dragger = new Dragger(this);
-            StatusHandler = new StatusHandler(this);
             InputHandler = new InputHandler(this);
-            StainHandler = new StainHandler(this);
-            Inventory = new PlayerInventory(this);
-            ClothesHandler = new ClothesHandler(this);
-            RoleHandler = new RoleHandler(this);
+
+            if (Host.IsServer)
+            {
+                StainHandler = Components.Create<StainHandler>();
+                ClothesHandler = Components.Create<ClothesHandler>();
+                StatusHandler = Components.Create<StatusHandler>();
+                RoleHandler = Components.Create<RoleHandler>();
+                Inventory = new PlayerInventory
+                {
+                    Enabled = true
+                };
+                Components.Add(Inventory);
+            }
         }
 
-        [Net] public new PlayerInventory Inventory { get; private set; }
-        [Net] public RoleHandler RoleHandler { get; private set; }
+        public new PlayerInventory Inventory { get; }
+        public RoleHandler RoleHandler { get; }
         public ClothesHandler ClothesHandler { get; }
         public StatusHandler StatusHandler { get; }
+        public StainHandler StainHandler { get; }
         public InputHandler InputHandler { get; }
         public Dragger Dragger { get; }
         public PlayerCorpse Ragdoll { get; set; }
-        public StainHandler StainHandler { get; set; }
 
         public void OnSelectStart(MainPlayer player)
         {
@@ -129,13 +138,6 @@ namespace ssl.Player
             RoleHandler.Role?.OnKilled(this);
             EnableRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            Inventory.ViewModel?.Delete();
-            Inventory.Delete();
         }
 
         public override void PostCameraSetup(ref CameraSetup setup)

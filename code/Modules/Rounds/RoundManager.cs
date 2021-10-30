@@ -2,7 +2,7 @@ using Sandbox;
 
 namespace ssl.Modules.Rounds
 {
-    public partial class RoundManager : NetworkedEntityAlwaysTransmitted
+    public partial class RoundManager : BaseNetworkable
     {
         public RoundManager()
         {

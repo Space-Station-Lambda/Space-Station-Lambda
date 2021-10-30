@@ -1,23 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Sandbox;
 using ssl.Player;
 
 namespace ssl.Modules.Statuses
 {
-    public partial class StatusHandler : NetworkedEntityAlwaysTransmitted
+    public partial class StatusHandler : EntityComponent<MainPlayer>
     {
+
         public StatusHandler()
         {
         }
-
-        public StatusHandler(MainPlayer player)
-        {
-            Statuses = new List<Status>();
-            this.player = player;
-        }
-
-        [Net] private MainPlayer player { get; set; }
 
         [Net] public List<Status> Statuses { get; private set; }
 
@@ -34,7 +28,7 @@ namespace ssl.Modules.Statuses
             }
 
             Statuses.Add(status);
-            status.OnApply(player);
+            status.OnApply(Entity);
         }
 
         public void ResolveStatus(Status status)
@@ -44,7 +38,7 @@ namespace ssl.Modules.Statuses
                 if (!s.IsInfinite) s.TimeLeft -= status.TimeLeft;
                 if (s.TimeLeft <= 0 || s.IsInfinite)
                 {
-                    s.OnResolve(player);
+                    s.OnResolve(Entity);
                     Statuses.Remove(s);
                     return;
                 }
@@ -57,7 +51,7 @@ namespace ssl.Modules.Statuses
             {
                 if (s is T statusT)
                 {
-                    s.OnResolve(player);
+                    s.OnResolve(Entity);
                     Statuses.Remove(s);
                     return;
                 }
@@ -89,10 +83,10 @@ namespace ssl.Modules.Statuses
             HashSet<Status> statusesToTick = new(Statuses);
             foreach (Status status in statusesToTick)
             {
-                status.OnTick(player);
+                status.OnTick(Entity);
                 if (status.TimeLeft <= 0 && !status.IsInfinite)
                 {
-                    status.OnEnd(player);
+                    status.OnEnd(Entity);
                     Statuses.Remove(status);
                 }
             }

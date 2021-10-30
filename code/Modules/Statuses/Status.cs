@@ -6,7 +6,7 @@ namespace ssl.Modules.Statuses
     /// <summary>
     /// A status is something a player can have and perform each ticks
     /// </summary>
-    public abstract partial class Status : NetworkedEntityAlwaysTransmitted
+    public abstract partial class Status : BaseNetworkable
     {
         public float InitialTime = 0f;
 

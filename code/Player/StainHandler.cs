@@ -5,16 +5,11 @@ using Prop = ssl.Modules.Props.Types.Prop;
 
 namespace ssl.Player
 {
-    public class StainHandler
+    public class StainHandler : EntityComponent
     {
         private const float StainChance = 0.002f;
-        private readonly MainPlayer player;
         private const string StainId = "stain.step";
         
-        public StainHandler(MainPlayer player)
-        {
-            this.player = player;
-        }
 
         /// <summary>
         ///  Spawn a stain with a specific probability
@@ -33,7 +28,7 @@ namespace ssl.Player
         {
             PropFactory factory = new();
             Prop stain = factory.Create(StainId);
-            stain.Position = player.Position;
+            stain.Position = Entity.Position;
         }
     }
 }

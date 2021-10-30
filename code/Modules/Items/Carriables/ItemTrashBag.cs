@@ -15,13 +15,18 @@ namespace ssl.Modules.Items.Carriables
 
         public ItemTrashBag(ItemData data) : base(data)
         {
+            if (!Host.IsServer) return;
             ItemFilter filter = new();
             filter.AddToBlacklist(data);
             
-            Content = new Inventory(InventorySize, filter);
+            Content = new Inventory(InventorySize, filter)
+            {
+                Enabled = true
+            };
+            Components.Add(Content);
         }
-        
-        [Net, Predicted] public Inventory Content { get; private set; }
+
+        public Inventory Content { get; }
 
         /// <summary>
         /// Using the trash bag on an item on ground will add it to the trash bag
