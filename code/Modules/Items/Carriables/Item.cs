@@ -11,7 +11,7 @@ namespace ssl.Modules.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : Carriable, IDraggable
+    public partial class Item : WorldEntity, IDraggable
     {
         public const string Tag = "Item";
         
@@ -22,11 +22,9 @@ namespace ssl.Modules.Items.Carriables
         {
         }
 
-        public Item(ItemData data)
+        public Item(ItemData data) : base(data)
         {
             Tags.Add(Tag);
-            Data = data;
-            SetModel(data.Model);
             GlowColor = Color.Blue;
         }
 
@@ -36,7 +34,7 @@ namespace ssl.Modules.Items.Carriables
         /// </summary>
         public virtual PhysicsBody Body => PhysicsBody;
 
-        [Net] public ItemData Data { get; private set; }
+        public new ItemData Data => (ItemData)base.Data;
         
         public void OnSelectStart(MainPlayer player)
         {

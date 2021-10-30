@@ -9,22 +9,20 @@ namespace ssl.Modules.Props.Types
     /// A prop is an object not in inventory
     /// Inspired by sandbox Props
     /// </summary>
-    public partial class Prop : ModelEntity, ISelectable
+    public partial class Prop : WorldEntity, ISelectable
     {
         public const string Tag = "Prop";
         
         public Prop()
         {
         }
-        
-        public Prop(PropData data)
+
+        public Prop(PropData data) : base(data)
         {
             Tags.Add(Tag);
-            Data = data;
-            SetModel(data.Model);
         }
 
-        [Net] public PropData Data { get; private set; }
+        public new PropData Data => (PropData)base.Data;
 
         public virtual void OnSelectStart(MainPlayer player)
         {
