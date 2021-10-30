@@ -31,7 +31,6 @@ namespace ssl.Modules.Roles
             }
         }
 
-        public MainPlayer Player => Entity;
         [Net] private List<RolePreference> RolePreferences { get; set; }
         public Role Role { get; private set; }
         
@@ -92,9 +91,9 @@ namespace ssl.Modules.Roles
 
         public void AssignRole(Role role)
         {
-            Role?.OnUnassigned(Player);
+            Role?.OnUnassigned(Entity);
             Role = role;
-            Role?.OnAssigned(Player);
+            Role?.OnAssigned(Entity);
         }
         
         public void SetPreference(Role role, RolePreferenceType preferenceType)
@@ -121,7 +120,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         public void SpawnRole()
         {
-             Role?.OnSpawn(Player);
+             Role?.OnSpawn(Entity);
         }
 
         public void SavePreferences()
