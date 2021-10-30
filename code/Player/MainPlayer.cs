@@ -27,23 +27,19 @@ namespace ssl.Player
 
             if (Host.IsServer)
             {
-                StainHandler = Components.Create<StainHandler>();
-                ClothesHandler = Components.Create<ClothesHandler>();
-                StatusHandler = Components.Create<StatusHandler>();
-                RoleHandler = Components.Create<RoleHandler>();
-                Inventory = new PlayerInventory
-                {
-                    Enabled = true
-                };
-                Components.Add(Inventory);
+                Components.Create<PlayerInventory>();
+                Components.Create<RoleHandler>();
+                Components.Create<ClothesHandler>();
+                Components.Create<StatusHandler>();
+                Components.Create<StainHandler>();
             }
         }
 
-        public new PlayerInventory Inventory { get; }
-        public RoleHandler RoleHandler { get; }
-        public ClothesHandler ClothesHandler { get; }
-        public StatusHandler StatusHandler { get; }
-        public StainHandler StainHandler { get; }
+        public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
+        public RoleHandler RoleHandler => Components.Get<RoleHandler>();
+        public ClothesHandler ClothesHandler => Components.Get<ClothesHandler>();
+        public StatusHandler StatusHandler => Components.Get<StatusHandler>();
+        public StainHandler StainHandler => Components.Get<StainHandler>();
         public InputHandler InputHandler { get; }
         public Dragger Dragger { get; }
         public PlayerCorpse Ragdoll { get; set; }
