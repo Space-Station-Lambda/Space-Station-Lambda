@@ -9,14 +9,13 @@ namespace ssl.Player
     {
         private const int MaxInventoryCapacity = 10;
 
-        public PlayerInventory()
+        public PlayerInventory() : base(MaxInventoryCapacity, new ItemFilter())
         {
-            if (Host.IsServer) Init(MaxInventoryCapacity, new ItemFilter());
         }
-        
+
+        [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
-        [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         private MainPlayer Player => (MainPlayer) Entity;
         public HandViewModel ViewModel { get; set; }
 

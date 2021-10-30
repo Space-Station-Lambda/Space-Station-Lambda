@@ -12,6 +12,19 @@ namespace ssl.Modules.Items
         public Inventory()
         {
         }
+        
+        public Inventory(int size, ItemFilter itemFilter) : this()
+        {
+            if (Host.IsServer)
+            {
+                Filter = itemFilter;
+                for (int i = 0; i < size; i++)
+                {
+                    Slot slot = new();
+                    Slots.Add(slot);
+                }
+            }
+        }
 
         [Net] public ItemFilter Filter { get; private set;}
 
@@ -37,18 +50,6 @@ namespace ssl.Modules.Items
         }
 
         public int SlotsFull => SlotsCount - SlotsLeft;
-
-        public void Init(int size, ItemFilter itemFilter)
-        {
-            Host.AssertServer();
-            Filter = itemFilter;
-            for (int i = 0; i < size; i++)
-            {
-                Slot slot = new();
-
-                Slots.Add(slot);
-            }
-        }
 
         /// <summary>
         /// Adds an ItemStack to a preferred position in the inventory.

@@ -31,7 +31,11 @@ namespace ssl.Player
                 ClothesHandler = Components.Create<ClothesHandler>();
                 StatusHandler = Components.Create<StatusHandler>();
                 RoleHandler = Components.Create<RoleHandler>();
-                Inventory = Components.Create<PlayerInventory>();
+                Inventory = new PlayerInventory
+                {
+                    Enabled = true
+                };
+                Components.Add(Inventory);
             }
         }
 
