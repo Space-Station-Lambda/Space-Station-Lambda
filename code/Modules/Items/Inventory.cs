@@ -28,7 +28,7 @@ namespace ssl.Modules.Items
 
         [Net] public ItemFilter Filter { get; private set;}
 
-        [Net, Predicted] public List<Slot> Slots { get; private set; }
+        [Net] public List<Slot> Slots { get; private set; }
 
         public int SlotsCount => Slots.Count;
 
