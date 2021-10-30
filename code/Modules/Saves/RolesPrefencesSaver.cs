@@ -24,8 +24,8 @@ namespace ssl.Modules.Saves
             List<(string, RolePreferenceType)> rolePreferences = new();
             foreach ((string roleString, RolePreferenceType preference) in stringPreferences)
             {
-                (string, RolePreferenceType) rp = (roleString, preference);
-                rolePreferences.Add(rp);
+                (string, RolePreferenceType) rolePreference = (roleString, preference);
+                rolePreferences.Add(rolePreference);
             }
             return rolePreferences;
         }
