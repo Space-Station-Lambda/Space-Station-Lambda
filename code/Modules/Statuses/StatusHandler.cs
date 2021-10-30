@@ -13,8 +13,6 @@ namespace ssl.Modules.Statuses
         {
         }
 
-        private MainPlayer Player => Entity;
-
         [Net] public List<Status> Statuses { get; private set; }
 
         /// <summary>
@@ -30,7 +28,7 @@ namespace ssl.Modules.Statuses
             }
 
             Statuses.Add(status);
-            status.OnApply(Player);
+            status.OnApply(Entity);
         }
 
         public void ResolveStatus(Status status)
@@ -40,7 +38,7 @@ namespace ssl.Modules.Statuses
                 if (!s.IsInfinite) s.TimeLeft -= status.TimeLeft;
                 if (s.TimeLeft <= 0 || s.IsInfinite)
                 {
-                    s.OnResolve(Player);
+                    s.OnResolve(Entity);
                     Statuses.Remove(s);
                     return;
                 }
@@ -53,7 +51,7 @@ namespace ssl.Modules.Statuses
             {
                 if (s is T statusT)
                 {
-                    s.OnResolve(Player);
+                    s.OnResolve(Entity);
                     Statuses.Remove(s);
                     return;
                 }
@@ -85,10 +83,10 @@ namespace ssl.Modules.Statuses
             HashSet<Status> statusesToTick = new(Statuses);
             foreach (Status status in statusesToTick)
             {
-                status.OnTick(Player);
+                status.OnTick(Entity);
                 if (status.TimeLeft <= 0 && !status.IsInfinite)
                 {
-                    status.OnEnd(Player);
+                    status.OnEnd(Entity);
                     Statuses.Remove(status);
                 }
             }
