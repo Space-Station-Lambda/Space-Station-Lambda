@@ -19,7 +19,7 @@ namespace ssl.Modules.Items.Carriables
             ItemFilter filter = new();
             filter.AddToBlacklist(data);
             
-            Inventory inventory = Components.Create<PlayerInventory>();
+            Inventory inventory = Components.Create<Inventory>();
             inventory.Init(InventorySize, filter);
         }
 
