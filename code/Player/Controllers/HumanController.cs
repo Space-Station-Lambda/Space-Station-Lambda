@@ -67,20 +67,20 @@ namespace ssl.Player.Controllers
 
         public override void Simulate()
         {
-            UpdateBBox();
-
-            EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
-            EyeRot = Input.Rotation;
-
-            //If the player is stuck, fix and stop
-            if (unstuck.TestAndFix()) return;
-            
-            UpdateGroundEntity();
-
-            ProcessInputs();
-
             if (!Player.IsRagdoll)
             {
+                UpdateBBox();
+
+                EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
+                EyeRot = Input.Rotation;
+
+                //If the player is stuck, fix and stop
+                if (unstuck.TestAndFix()) return;
+                
+                UpdateGroundEntity();
+
+                ProcessInputs();
+                
                 if (IsGrounded)
                 {
                     if (Input.Pressed(InputButton.Jump))
@@ -104,6 +104,7 @@ namespace ssl.Player.Controllers
             }
             else if (Player.CanStand)
             {
+                Log.Info(((TimeSince)Player.TimeExitRagdoll).Absolute);
                 bool wantExitRagdoll = Input.Pressed(InputButton.Jump) || Input.Forward + Input.Left > 0;
                 
                 if (wantExitRagdoll)
