@@ -1,8 +1,8 @@
 ﻿using Sandbox;
-using ssl.Modules.Elements.Props.Data;
+using ssl.Modules.Elements.Props.Data.Stains;
 using ssl.Player;
 
-namespace ssl.Modules.Elements.Props.Types
+namespace ssl.Modules.Elements.Props.Types.Stains
 {
     public class Stain : Prop<StainData>
     {
@@ -17,6 +17,7 @@ namespace ssl.Modules.Elements.Props.Types
 
         public Stain(StainData itemData) : base(itemData)
         {
+            CollisionGroup = CollisionGroup.Trigger;
         }
 
         public void CleanStain(int strength)

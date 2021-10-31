@@ -64,7 +64,6 @@ namespace ssl.Modules.Inputs
             if (Input.Pressed(InputButton.Flashlight))
             {
                 player.RagdollHandler.StartRagdoll();
-                player.RagdollHandler.TimeExitRagdoll = Time.Now + 1;
             }
         }
     }
