@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Roles;
@@ -35,7 +36,6 @@ namespace ssl.Player
 
         }
 
-
         public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
         public RoleHandler RoleHandler => Components.Get<RoleHandler>();
         public ClothesHandler ClothesHandler => Components.Get<ClothesHandler>();
@@ -45,9 +45,9 @@ namespace ssl.Player
         public Dragger Dragger { get; }
 
         public bool IsRagdoll => Ragdoll != null;
-        public bool CanStand => ((TimeSince)TimeExitRagdoll).Relative >= 0;
+        public bool CanStand => ((TimeSince)TimeExitRagdoll).Absolute >= 0;
         private PlayerCorpse Ragdoll { get; set; }
-        public float TimeExitRagdoll { get; }
+        public float TimeExitRagdoll { get; set; }
 
         public void OnSelectStart(MainPlayer player)
         {
@@ -166,7 +166,11 @@ namespace ssl.Player
         /// </summary>
         public void StartRagdoll()
         {
-            Ragdoll ??= SpawnRagdoll(Vector3.Zero, 0);
+            Ragdoll ??= SpawnRagdoll(Velocity, -1);
+            SetParent(Ragdoll);
+            EnableAllCollisions = false;
+            EnableShadowInFirstPerson = false;
+            Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), EyePos);
         }
 
         /// <summary>
@@ -177,8 +181,17 @@ namespace ssl.Player
             if (!Ragdoll.IsValid) return;
             
             Position = Ragdoll.Position;
+            Velocity = Vector3.Zero;
+            
+            SetParent(null);
+            
             Ragdoll.Delete();
             Ragdoll = null;
+            
+            EnableAllCollisions = true;
+            EnableShadowInFirstPerson = true;
+            
+            Camera = new FirstPersonCamera();
         }
 
         /// <summary>
