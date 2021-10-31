@@ -104,7 +104,6 @@ namespace ssl.Player.Controllers
             }
             else if (Player.RagdollHandler.CanStand)
             {
-                Log.Info(((TimeSince)Player.RagdollHandler.TimeExitRagdoll).Absolute);
                 bool wantExitRagdoll = Input.Pressed(InputButton.Jump) || Input.Forward + Input.Left > 0;
                 
                 if (wantExitRagdoll)
