@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Rounds;
 using ssl.Player;
 using ssl.Ui;
@@ -79,8 +80,15 @@ namespace ssl
         {
             while (true)
             {
-                await Task.DelaySeconds(1);
-                OnSecond();
+                try
+                {
+                    await Task.DelaySeconds(1);
+                    OnSecond();
+                }
+                catch(Exception e)
+                {
+                    // If we close the server we don't care about the Task
+                }
             }
         }
 
@@ -91,8 +99,15 @@ namespace ssl
         {
             while (true)
             {
-                await Task.NextPhysicsFrame();
-                OnTick();
+                try
+                {
+                    await Task.NextPhysicsFrame();
+                    OnTick();
+                }
+                catch(Exception e)
+                {
+                    // If we close the server we don't care about the Task
+                }
             }
         }
 
