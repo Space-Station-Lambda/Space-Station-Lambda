@@ -60,6 +60,12 @@ namespace ssl.Modules.Inputs
             {
                 player.Dragger.StopDrag();
             }
+
+            if (Input.Pressed(InputButton.Flashlight))
+            {
+                player.StartRagdoll();
+                player.TimeExitRagdoll = Time.Now + 1;
+            }
         }
     }
 }
