@@ -67,7 +67,7 @@ namespace ssl.Player.Controllers
 
         public override void Simulate()
         {
-            if (!Player.IsRagdoll)
+            if (!Player.RagdollHandler.IsRagdoll)
             {
                 UpdateBBox();
 
@@ -102,14 +102,14 @@ namespace ssl.Player.Controllers
                     TryPlayerMove();
                 }
             }
-            else if (Player.CanStand)
+            else if (Player.RagdollHandler.CanStand)
             {
-                Log.Info(((TimeSince)Player.TimeExitRagdoll).Absolute);
+                Log.Info(((TimeSince)Player.RagdollHandler.TimeExitRagdoll).Absolute);
                 bool wantExitRagdoll = Input.Pressed(InputButton.Jump) || Input.Forward + Input.Left > 0;
                 
                 if (wantExitRagdoll)
                 {
-                    Player.StopRagdoll();
+                    Player.RagdollHandler.StopRagdoll();
                 }
             }
         }

@@ -30,8 +30,8 @@ namespace ssl.Player
                 Components.Create<ClothesHandler>();
                 Components.Create<StatusHandler>();
                 Components.Create<StainHandler>();
-                
-                TimeExitRagdoll = Time.Now;
+
+                RagdollHandler = new RagdollHandler(this);
             }
 
         }
@@ -42,12 +42,8 @@ namespace ssl.Player
         public StatusHandler StatusHandler => Components.Get<StatusHandler>();
         public StainHandler StainHandler => Components.Get<StainHandler>();
         public InputHandler InputHandler { get; }
+        public RagdollHandler RagdollHandler { get; }
         public Dragger Dragger { get; }
-
-        public bool IsRagdoll => Ragdoll != null;
-        public bool CanStand => ((TimeSince)TimeExitRagdoll).Absolute >= 0;
-        private PlayerCorpse Ragdoll { get; set; }
-        public float TimeExitRagdoll { get; set; }
 
         public void OnSelectStart(MainPlayer player)
         {
@@ -137,7 +133,7 @@ namespace ssl.Player
             LifeState = LifeState.Dead;
             StopUsing();
             RoleHandler.Role?.OnKilled(this);
-            SpawnRagdoll(Vector3.Zero, 0);
+            RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
 
@@ -160,70 +156,7 @@ namespace ssl.Player
             EnableAllCollisions = false;
             EnableDrawing = false;
         }
-
-        /// <summary>
-        /// Activates the ragdoll mode of the player.
-        /// </summary>
-        public void StartRagdoll()
-        {
-            Ragdoll ??= SpawnRagdoll(Velocity, -1);
-            SetParent(Ragdoll);
-            EnableAllCollisions = false;
-            EnableShadowInFirstPerson = false;
-            Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), EyePos);
-        }
-
-        /// <summary>
-        /// Stop the ragdoll mode of the player.
-        /// </summary>
-        public void StopRagdoll()
-        {
-            if (!Ragdoll.IsValid) return;
-            
-            Position = Ragdoll.Position;
-            Velocity = Vector3.Zero;
-            
-            SetParent(null);
-            
-            Ragdoll.Delete();
-            Ragdoll = null;
-            
-            EnableAllCollisions = true;
-            EnableShadowInFirstPerson = true;
-            
-            Camera = new FirstPersonCamera();
-        }
-
-        /// <summary>
-        /// Spawns a ragdoll looking like the player.
-        /// </summary>
-        private PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
-        {
-            PlayerCorpse ragdoll = new(this)
-            {
-                Position = Position,
-                Rotation = Rotation
-            };
-
-            ragdoll.CopyFrom(this);
-            ragdoll.ApplyForceToBone(force, forceBone);
-
-            return ragdoll;
-        }
-
-        [ServerCmd("ragdoll")]
-        private static void SetRagdoll(bool state)
-        {
-            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            if (state)
-            {
-                player.StartRagdoll();
-            }
-            else
-            {
-                player.StopRagdoll();
-            }
-        }
+        
 
         [ClientRpc]
         private void SendTextNotification(string txt)
