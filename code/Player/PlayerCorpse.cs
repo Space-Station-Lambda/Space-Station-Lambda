@@ -12,7 +12,9 @@ namespace ssl.Player
         {
             MoveType = MoveType.Physics;
             UsePhysicsCollision = true;
-
+            EnableHideInFirstPerson = true;
+            EnableShadowInFirstPerson = true;
+            
             SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
             SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
             SetInteractsExclude(CollisionLayer.Player | CollisionLayer.Debris);
@@ -47,6 +49,7 @@ namespace ssl.Player
                     ModelEntity clothing = new();
                     clothing.SetModel(model);
                     clothing.SetParent(this, true);
+                    clothing.EnableHideInFirstPerson = true;
                 }
             }
         }
