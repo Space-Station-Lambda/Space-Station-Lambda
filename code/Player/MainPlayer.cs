@@ -22,7 +22,8 @@ namespace ssl.Player
             Health = MaxHealth;
             Dragger = new Dragger(this);
             InputHandler = new InputHandler(this);
-
+            RagdollHandler = new RagdollHandler(this);
+            
             if (Host.IsServer)
             {
                 Components.Create<PlayerInventory>();
@@ -30,10 +31,7 @@ namespace ssl.Player
                 Components.Create<ClothesHandler>();
                 Components.Create<StatusHandler>();
                 Components.Create<StainHandler>();
-
-                RagdollHandler = new RagdollHandler(this);
             }
-
         }
 
         public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
