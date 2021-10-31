@@ -1,4 +1,4 @@
-﻿using ssl.Modules.Items.Carriables;
+﻿using ssl.Modules.Elements.Items.Carriables;
 
 namespace ssl.Modules.Statuses.Types
 {

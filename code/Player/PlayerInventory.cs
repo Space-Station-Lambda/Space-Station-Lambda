@@ -1,7 +1,9 @@
 ﻿using System;
 using Sandbox;
-using ssl.Modules.Items;
-using ssl.Modules.Items.Carriables;
+using ssl.Modules.Elements.Items.Carriables;
+using Inventory = ssl.Modules.Elements.Items.Inventory;
+using ItemFilter = ssl.Modules.Elements.Items.ItemFilter;
+using Slot = ssl.Modules.Elements.Items.Slot;
 
 namespace ssl.Player
 {

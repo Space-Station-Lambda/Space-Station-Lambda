@@ -1,9 +1,6 @@
 ﻿using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
-using ssl.Modules.Items;
-using ssl.Modules.Items.Carriables;
-using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses;

@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
-using ssl.Modules.Items.Carriables;
+using ssl.Modules.Elements.Items.Carriables;
 using ssl.Player;
 
 namespace ssl.Ui.InventoryBar
