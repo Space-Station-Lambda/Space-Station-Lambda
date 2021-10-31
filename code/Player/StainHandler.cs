@@ -1,7 +1,7 @@
 ﻿using System;
 using Sandbox;
-using ssl.Modules.Props;
-using Prop = ssl.Modules.Props.Types.Prop;
+using ssl.Modules.Elements.Props;
+using Prop = ssl.Modules.Elements.Props.Types.Prop;
 
 namespace ssl.Player
 {

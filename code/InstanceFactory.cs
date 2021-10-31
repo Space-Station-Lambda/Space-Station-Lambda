@@ -1,6 +1,6 @@
 ﻿using System;
 using Sandbox;
-using ssl.Modules.Items.Data;
+using ssl.Modules.Elements;
 
 namespace ssl
 {

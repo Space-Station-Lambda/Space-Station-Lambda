@@ -1,8 +1,7 @@
 ﻿using Sandbox;
-using ssl.Modules.Props;
-using ssl.Modules.Props.Types;
+using ssl.Modules.Elements.Props;
 using ssl.Player;
-using Prop = ssl.Modules.Props.Types.Prop;
+using Prop = ssl.Modules.Elements.Props.Types.Prop;
 
 namespace ssl.Modules.Commands
 {

@@ -1,6 +1,5 @@
 ﻿using Sandbox;
-using ssl.Modules.Items.Carriables;
-using ssl.Modules.Props.Types;
+using ssl.Modules.Elements.Items.Carriables;
 using ssl.Player;
 
 namespace ssl.Modules.Inputs
