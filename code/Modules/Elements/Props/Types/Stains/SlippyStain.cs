@@ -1,4 +1,5 @@
-﻿using Sandbox;
+using System;
+using Sandbox;
 using ssl.Modules.Elements.Props.Data.Stains;
 using ssl.Player;
 
@@ -8,7 +9,7 @@ namespace ssl.Modules.Elements.Props.Types.Stains
     {
         public SlippyStain(SlippyStainData data) : base(data)
         {
-            SlipProbability = data.SlipProbability;
+            SlipProbability = data.SlipProbability.Clamp(0f, 1f);
         }
         
         public float SlipProbability { get; private set; }
@@ -16,9 +17,13 @@ namespace ssl.Modules.Elements.Props.Types.Stains
         public override void StartTouch(Entity other)
         {
             if (other is not MainPlayer player) return;
-            
-            player.RagdollHandler.StartRagdoll();
-            player.RagdollHandler.TimeExitRagdoll = Time.Now;
+
+            float random = (float)new Random().NextDouble();
+
+            if (random <= SlipProbability)
+            {
+                player.RagdollHandler.StartRagdoll();
+            }
         }
     }
 }
