@@ -5,6 +5,8 @@ namespace ssl.Player
 {
     public class RagdollHandler
     {
+        private const float DefaultTime = 6F;
+            
         private MainPlayer player;
         
         public RagdollHandler(MainPlayer player)
@@ -21,13 +23,15 @@ namespace ssl.Player
         /// <summary>
         /// Activates the ragdoll mode of the player.
         /// </summary>
-        public void StartRagdoll()
+        public void StartRagdoll(float downTime = DefaultTime)
         {
             Ragdoll ??= SpawnRagdoll(player.Velocity, -1);
             player.SetParent(Ragdoll);
             player.EnableAllCollisions = false;
             player.EnableShadowInFirstPerson = false;
             player.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), player.EyePos);
+
+            TimeExitRagdoll = Time.Now + downTime;
         }
 
         /// <summary>

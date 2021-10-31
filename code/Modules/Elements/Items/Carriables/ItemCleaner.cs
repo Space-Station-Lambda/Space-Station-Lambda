@@ -1,5 +1,6 @@
 using ssl.Modules.Elements.Items.Data;
 using ssl.Modules.Elements.Props.Types;
+using ssl.Modules.Elements.Props.Types.Stains;
 using ssl.Modules.Selection;
 using ssl.Player;
 
@@ -7,10 +8,6 @@ namespace ssl.Modules.Elements.Items.Carriables
 {
     public partial class ItemCleaner : Item<ItemCleanerData>
     {
-
-        
-        
-        
         public ItemCleaner()
         {
         }

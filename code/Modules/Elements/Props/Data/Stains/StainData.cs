@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-namespace ssl.Modules.Elements.Props.Data
+namespace ssl.Modules.Elements.Props.Data.Stains
 {
     [Library("stain")]
     public class StainData : PropData
