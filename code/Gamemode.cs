@@ -1,10 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using Sandbox;
-using ssl.Modules.Items;
+﻿using Sandbox;
 using ssl.Modules.Rounds;
 using ssl.Player;
-using ssl.UI;
+using ssl.Ui;
 
 namespace ssl
 {
@@ -26,16 +23,7 @@ namespace ssl
 
         public static Gamemode Instance { get; private set; }
 
-        /// <summary>
-        /// Items in the gamemode
-        /// </summary>
-        public ItemRegistry ItemRegistry { get; private set; }
-
-        [Net] public Hud Hud { get; set; }
-        [Net] public RoundManager RoundManager { get; set; }
-
-        public event Action<MainPlayer> PlayerAddedEvent;
-        public event Action<MainPlayer> PlayerRemovedEvent;
+        [Net] public RoundManager RoundManager { get; private set; }
 
         /// <summary>
         /// A client has joined the server. Make them a pawn to play with
@@ -55,8 +43,7 @@ namespace ssl
             Log.Info("Create Round Manager...");
             RoundManager = new RoundManager();
             Log.Info("Create HUD...");
-            ItemRegistry = new ItemRegistry();
-            Hud = new Hud();
+            _ = new Hud();
         }
 
         /// <summary>
@@ -65,7 +52,6 @@ namespace ssl
         private void StartClient()
         {
             Log.Info("Launching ssl Client...");
-            ItemRegistry = new ItemRegistry();
         }
 
         /// <summary>
@@ -77,29 +63,19 @@ namespace ssl
             //Init the player.
             MainPlayer player = new();
             client.Pawn = player;
-            EmitEvent(player);
             RoundManager.CurrentRound.OnPlayerSpawn(player);
-        }
-
-        /// <summary>
-        /// Called after the level is loaded
-        /// </summary>
-        [ClientRpc]
-        private void EmitEvent(MainPlayer player)
-        {
-            PlayerAddedEvent?.Invoke(player);
         }
 
         public override void PostLevelLoaded()
         {
-            _ = StartTickTimer();
-            _ = StartSecondTimer();
+            StartTickTimer();
+            StartSecondTimer();
         }
 
         /// <summary>
         /// Loop trigger OnSecond() each seconds.
         /// </summary>
-        public async Task StartSecondTimer()
+        private async void StartSecondTimer()
         {
             while (true)
             {
@@ -111,7 +87,7 @@ namespace ssl
         /// <summary>
         /// Loop trigger OnTick() each tick.
         /// </summary>
-        public async Task StartTickTimer()
+        private async void StartTickTimer()
         {
             while (true)
             {

@@ -1,12 +1,13 @@
-﻿using Sandbox;
+﻿using System;
+using Sandbox;
 using ssl.Modules.Items.Carriables;
 
 namespace ssl.Modules.Items
 {
-    public partial class Slot : NetworkedEntityAlwaysTransmitted
+    public partial class Slot : BaseNetworkable
     {
-        [Net] public Item Item { get; set; }
-
+        [Net, Predicted] public Item Item { get; private set; }
+        
         public bool IsEmpty()
         {
             return Item == null;
@@ -24,12 +25,16 @@ namespace ssl.Modules.Items
         public void Set(Item item)
         {
             Item = item;
-            item.Owner = this;
         }
 
         public void Clear()
         {
             Item = null;
+        }
+
+        public override string ToString()
+        {
+            return IsEmpty() ? "-" : Item.ToString();
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿RoleSlot {
+  background-color: whitesmoke;
+  font-size: 30px;
+  cursor: pointer;
+  height: 100px;
+  width: 500px;
+  padding: 4px;
+  margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.selected {
+    background-color: lightblue;
+  }
+
+  &:hover {
+    background-color: lightblue;
+    border-color: #0a61cb;
+    border: 2px;
+  }
+}

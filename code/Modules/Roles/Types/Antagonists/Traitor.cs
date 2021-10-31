@@ -8,6 +8,7 @@ namespace ssl.Modules.Roles.Types.Antagonists
         public override string Id => "traitor";
         public override string Name => "Traitor";
         public override string Description => "Traitor";
+        public override Faction[] Faction => new[] { Roles.Faction.Traitors };
 
         public override IEnumerable<string> Clothing => new HashSet<string>
         {
@@ -19,7 +20,6 @@ namespace ssl.Modules.Roles.Types.Antagonists
 
         public override IEnumerable<string> Items => new List<string>
         {
-            "weapon.knife"
         };
 
         public Role SecondaryRole { get; set; }
@@ -27,8 +27,10 @@ namespace ssl.Modules.Roles.Types.Antagonists
         public override void OnAssigned(MainPlayer player)
         {
             base.OnAssigned(player);
-            player.RoleHandler.SetPreference(new Traitor(), RolePreference.Never);
-            SecondaryRole = player.RoleHandler.GetRandomRoleFromPreferences();
+            player.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
+            Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
+            SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(player) ??
+                            defaultRole;
             SecondaryRole.OnAssigned(player);
         }
 

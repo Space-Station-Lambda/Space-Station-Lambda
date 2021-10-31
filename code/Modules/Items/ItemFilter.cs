@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Sandbox;
 using ssl.Modules.Items.Carriables;
 using ssl.Modules.Items.Data;
 
@@ -8,17 +9,24 @@ namespace ssl.Modules.Items
     /// <summary>
     /// Filter items in a specific inventory/slot
     /// </summary>
-    public class ItemFilter
+    public partial class ItemFilter : BaseNetworkable
     {
+        public ItemFilter()
+        {
+            if (!Host.IsServer) return;
+            Blacklist = new List<ItemData>();
+            Whitelist = new List<ItemData>();
+        }
+        
         /// <summary>
         /// Not authorized items
         /// </summary>
-        public HashSet<ItemData> Blacklist = new();
+        [Net] protected List<ItemData> Blacklist { get; private set; }
 
         /// <summary>
         /// Authorized items
         /// </summary>
-        public HashSet<ItemData> Whitelist = new();
+        [Net] protected List<ItemData> Whitelist { get; private set; }
 
         public bool IsAuthorized(ItemData item)
         {
@@ -29,8 +37,8 @@ namespace ssl.Modules.Items
 
         public bool IsAuthorized(Item item)
         {
-            if (Enumerable.Any(Whitelist, data => data.Id == item.Id)) return true;
-            if (Enumerable.Any(Blacklist, data => data.Id == item.Id)) return false;
+            if (Enumerable.Any(Whitelist, data => data.Id == item.Data.Id)) return true;
+            if (Enumerable.Any(Blacklist, data => data.Id == item.Data.Id)) return false;
             return !(Whitelist.Count > 0);
         }
 

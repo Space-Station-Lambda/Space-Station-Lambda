@@ -1,100 +1,61 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Sandbox;
 using ssl.Player;
 
 namespace ssl.Modules.Clothes
 {
     /// <summary>
-    /// Manage the clothing system for the given player.
+    /// Manage the clothing system for an entity
     /// </summary>
-    public class ClothesHandler
+    public class ClothesHandler : EntityComponent
     {
-        private readonly Dictionary<ClothesSlot, List<Clothes>> clothesDictionary = new();
+        private readonly List<Clothes> clothes = new();
 
         /// <summary>
-        /// Player concerned.
-        /// </summary>
-        private readonly MainPlayer player;
-
-        public ClothesHandler(MainPlayer player)
-        {
-            this.player = player;
-        }
-
-        /// <summary>
-        /// Attach a set of clothes to the player.
+        /// Attach a set of clothes to the entity
         /// </summary>
         /// <param name="clothesSet">Set of string clothes.</param>
-        /// <param name="strip">If true, strip the player before add clothes.</param>
+        /// <param name="strip">If true, strip the entity before add clothes.</param>
         public void AttachClothes(IEnumerable<string> clothesSet, bool strip = true)
         {
             if (strip) Strip();
             foreach (string c in clothesSet)
             {
-                AttachClothes(c, ClothesSlot.None);
+                AttachClothes(c);
             }
         }
 
         /// <summary>
-        /// Attach a piece of clothes to the player
+        /// Attach a piece of clothes to the entity
         /// </summary>
-        /// <param name="clothes">Name of the clothes</param>
-        /// <param name="slot">Slot concerned</param>
-        public void AttachClothes(string clothes, ClothesSlot slot = ClothesSlot.None)
+        /// <param name="clothesModel">Model of the clothes</param>
+        public void AttachClothes(string clothesModel)
         {
-            AttachClothes(new Clothes(clothes), slot);
+            AttachClothes(new Clothes(clothesModel));
         }
 
         /// <summary>
-        /// Attach a piece of clothes to the player
+        /// Attach a piece of clothes to the entity
         /// </summary>
         /// <param name="clothes">Concerned clothes</param>
         /// <param name="slot">Slot concerned</param>
-        public void AttachClothes(Clothes clothes, ClothesSlot slot = ClothesSlot.None)
+        public void AttachClothes(Clothes pieceOfClothes)
         {
-            clothes.SetParent(player, true);
-            //If the slot is not none, strip the slot
-            if (slot != ClothesSlot.None)
-            {
-                Strip(slot);
-            }
-
-            if (!clothesDictionary.ContainsKey(slot))
-            {
-                clothesDictionary.Add(slot, new List<Clothes>());
-            }
-
-            clothesDictionary[slot].Add(clothes);
+            pieceOfClothes.SetParent(Entity, true);
+            clothes.Add(pieceOfClothes);
         }
 
         /// <summary>
-        /// Remove all clothes of the player
+        /// Remove all clothes of the entity
         /// </summary>
         public void Strip()
         {
-            foreach (List<Clothes> clothesList in clothesDictionary.Values)
+            foreach (Clothes pieceOfClothes in clothes)
             {
-                foreach (Clothes clothes in clothesList)
-                {
-                    clothes.Delete();
-                }
+                pieceOfClothes.Delete();
             }
 
-            clothesDictionary.Clear();
-        }
-
-        public void Strip(ClothesSlot slot)
-        {
-            foreach ((ClothesSlot key, List<Clothes> value) in clothesDictionary.Where(keyValuePair =>
-                keyValuePair.Key == slot))
-            {
-                foreach (Clothes clothes in value)
-                {
-                    clothes.Delete();
-                }
-
-                clothesDictionary.Remove(key);
-            }
+            clothes.Clear();
         }
     }
 }

@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using ssl.Modules.Items.Data;
+﻿using System;
+using System.Collections.Generic;
+using Sandbox;
+using ssl.Modules.Items;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Roles.Types.Others;
@@ -11,7 +12,7 @@ namespace ssl.Modules.Roles
     /// <summary>
     /// Player's role
     /// </summary>
-    public abstract class Role
+    public abstract partial class Role : BaseNetworkable
     {
         public static Dictionary<string, Role> All = new()
         {
@@ -34,6 +35,11 @@ namespace ssl.Modules.Roles
         public virtual IEnumerable<string> Items => new List<string>();
 
         /// <summary>
+        /// Array of factions of the role. A role can have multiple factions.
+        /// </summary>
+        public virtual Faction[] Faction => new[] { Roles.Faction.Protagonists };
+
+        /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
         public virtual void OnAssigned(MainPlayer player)
@@ -46,11 +52,21 @@ namespace ssl.Modules.Roles
         /// <param name="player"></param>
         public virtual void OnSpawn(MainPlayer player)
         {
-            foreach (ItemData itemData in Items.Select(itemDataId =>
-                Gamemode.Instance.ItemRegistry.GetItemById(itemDataId)))
+            foreach (string itemId in Items)
             {
-                player.Inventory.Add(itemData.Create());
+                ItemFactory itemFactory = new();
+                try
+                {
+                    player.Inventory.Add(itemFactory.Create(itemId));
+                }
+                catch (ArgumentException e)
+                {
+                    Log.Error($"{itemId} can't be created because of: {e.Message}");
+                }
+                
             }
+
+            player.ClothesHandler.AttachClothes(Clothing);
         }
 
         /// <summary>

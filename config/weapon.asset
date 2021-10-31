@@ -1,0 +1,10 @@
+@include "item.asset"
+
+@BaseClass base(item) = weapon: "A Weapon"
+[
+  PrimaryRate(float): "Primary Rate" : "5"
+  Damage(float): "Damage" : "10"
+  Range(float): "Range" : "0"
+  ShootSound(string) : "Shoot Sound" : ""
+  MuzzleFlashParticle(string) : "MuzzleFlashParticle" : ""
+]

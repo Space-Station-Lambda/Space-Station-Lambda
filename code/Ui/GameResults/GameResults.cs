@@ -1,0 +1,53 @@
+﻿using System;
+using Sandbox.UI;
+using Sandbox.UI.Construct;
+using ssl.Modules.Rounds;
+
+namespace ssl.Ui.GameResults
+{
+    public class GameResults : Panel
+    {
+        private const string TieText = "Tie";
+        private const string ProtagonistsText = "The Lambda Company wins !";
+        private const string TraitorsText = "The Traitors wins !";
+
+        private readonly Label roundOutcome;
+
+        public GameResults()
+        {
+            StyleSheet.Load("Ui/GameResults/GameResults.scss");
+
+            roundOutcome = Add.Label(classname: "winning-team");
+
+            SetClass("active", false);
+            SetClass("hidden", true);
+        }
+
+        public override void Tick()
+        {
+            base.Tick();
+
+            EndRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound as EndRound;
+
+            SetClass("active", null != currentRound);
+            SetClass("hidden", null == currentRound);
+
+            if (null == currentRound) return;
+
+            switch (currentRound.RoundOutcome)
+            {
+                case RoundOutcome.Tie:
+                    roundOutcome.SetText(TieText);
+                    break;
+                case RoundOutcome.ProtagonistsWin:
+                    roundOutcome.SetText(ProtagonistsText);
+                    break;
+                case RoundOutcome.TraitorsWin:
+                    roundOutcome.SetText(TraitorsText);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
+}

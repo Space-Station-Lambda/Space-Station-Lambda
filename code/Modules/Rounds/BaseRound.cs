@@ -1,19 +1,47 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Sandbox;
+using ssl.Modules.Milestones;
+using ssl.Modules.Roles;
+using ssl.Modules.Roles.Types.Antagonists;
+using ssl.Modules.Roles.Types.Jobs;
+using ssl.Modules.Scenarios;
 using ssl.Player;
 
 namespace ssl.Modules.Rounds
 {
-    public abstract partial class BaseRound : NetworkComponent
+    public abstract partial class BaseRound : BaseNetworkable
     {
-        public HashSet<MainPlayer> Players = new();
+        protected BaseRound()
+        {
+            Scenario scenario = new(
+                new Dictionary<int, List<ScenarioConstraint>>
+                {
+                    {
+                        2, new List<ScenarioConstraint>
+                        {
+                            new(new Guard(), 1, 1)
+                        }
+                    },
+                    {
+                        3, new List<ScenarioConstraint>
+                        {
+                            new(new Traitor(), 1, 1),
+                            new(new Guard(), 2, 3)
+                        }
+                    }
+                });
+            RoleDistributor = new RoleDistributor(scenario, Players);
+            MilestonesHandler = new MilestonesHandler();
+        }
+        
+        [Net] public List<MainPlayer> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
         public float TimeLeft => RoundEndTime - Time.Now;
-        [Net] public string TimeLeftFormatted { get; set; }
+        public MilestonesHandler MilestonesHandler { get; private set; }
+        public RoleDistributor RoleDistributor { get; }
         public event Action<BaseRound> RoundEndedEvent;
 
         public void Start()
@@ -21,7 +49,6 @@ namespace ssl.Modules.Rounds
             if (Host.IsServer && RoundDuration > 0)
             {
                 RoundEndTime = Time.Now + RoundDuration;
-                TimeLeftFormatted = ((int)TimeLeft).ToString(CultureInfo.InvariantCulture);
                 InitPlayers();
             }
 
@@ -91,10 +118,6 @@ namespace ssl.Modules.Rounds
                     RoundEndTime = 0f;
                     OnTimeUp();
                 }
-                else
-                {
-                    TimeLeftFormatted = ((int)TimeLeft).ToString(CultureInfo.InvariantCulture);
-                }
             }
         }
 
@@ -131,8 +154,7 @@ namespace ssl.Modules.Rounds
         public override string ToString()
         {
             return $"Round Name: {RoundName}\n" +
-                   $"Round Duration: {RoundDuration}\n" +
-                   $"Round End: {RoundEndTime}({TimeLeftFormatted} left)";
+                   $"Round Duration: {RoundDuration}\n";
         }
     }
 }

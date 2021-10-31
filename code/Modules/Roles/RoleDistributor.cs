@@ -10,10 +10,11 @@ namespace ssl.Modules.Roles
 {
     public class RoleDistributor
     {
-        private HashSet<MainPlayer> players;
+        public Role DefaultRole = new Assistant();
+        private IList<MainPlayer> players;
         public Scenario Scenario;
 
-        public RoleDistributor(Scenario scenario, HashSet<MainPlayer> players)
+        public RoleDistributor(Scenario scenario, IList<MainPlayer> players)
         {
             this.Scenario = scenario;
             this.players = players;
@@ -49,13 +50,13 @@ namespace ssl.Modules.Roles
             foreach (MainPlayer player in GetPlayersWithoutRole())
             {
                 Log.Info($"[RoleDistributor] Give a role to {player}..");
-                if (GivePreferedRoles(player))
+                if (GivePreferredRole(player))
                 {
                     Log.Info($"[RoleDistributor] Player {player} get the role {player.RoleHandler.Role}");
                 }
                 else
                 {
-                    Log.Warning($"[RoleDistributor] Constraint {player} get Assistant by default");
+                    Log.Warning($"[RoleDistributor] Constraint {player} get the default role.");
                 }
             }
 
@@ -70,12 +71,8 @@ namespace ssl.Modules.Roles
 
         private ScenarioConstraint GetConstraint(Role role)
         {
-            foreach (ScenarioConstraint scenarioConstraint in Scenario.GetScenarioConstraint(players.Count))
-            {
-                if (scenarioConstraint.Role.Equals(role)) return scenarioConstraint;
-            }
-
-            return null;
+            return Scenario.GetScenarioConstraint(players.Count)
+                .FirstOrDefault(scenarioConstraint => scenarioConstraint.Role.Equals(role));
         }
 
         private bool ConstraintFullfilled(ScenarioConstraint constraint)
@@ -129,13 +126,7 @@ namespace ssl.Modules.Roles
 
         private List<MainPlayer> GetPlayersWithRole(Role role)
         {
-            List<MainPlayer> playersWithRoles = new();
-            foreach (MainPlayer mainPlayer in players)
-            {
-                if (role.Equals(mainPlayer.RoleHandler.Role)) playersWithRoles.Add(mainPlayer);
-            }
-
-            return playersWithRoles;
+            return players.Where(mainPlayer => role.Equals(mainPlayer.RoleHandler.Role)).ToList();
         }
 
         /// <summary>
@@ -143,17 +134,34 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>If false, the player have the default assistant role</returns>
-        private bool GivePreferedRoles(MainPlayer player)
+        private bool GivePreferredRole(MainPlayer player)
         {
-            //Get preferences but remove roles with constraint max reached
+            Role role = GetPreferedRole(player);
+            if (role == null)
+            {
+                player.RoleHandler.AssignRole(DefaultRole);
+                return false;
+            }
+
+            player.RoleHandler.AssignRole(role);
+            return true;
+        }
+
+        /// <summary>
+        /// Search for the availible prefed role
+        /// </summary>
+        /// <param name="player">The player</param>
+        /// <returns>null if the player can't have his prefered role</returns>
+        public Role GetPreferedRole(MainPlayer player)
+        {
+            Role roleToAssign = null;
             Dictionary<Role, float> preferences =
                 GetPreferencesWithConstraints(player.RoleHandler.GetPreferencesNormalised());
             float total = preferences.Values.Sum();
             //If you have 0 preferences, you are assistant
             if (total <= 0f)
             {
-                player.RoleHandler.AssignRole(new Assistant());
-                return false;
+                return null;
             }
 
             Random random = new();
@@ -165,13 +173,12 @@ namespace ssl.Modules.Roles
                 total += preference;
                 if (res < total)
                 {
-                    player.RoleHandler.AssignRole(role);
-                    return true;
+                    roleToAssign = role;
+                    break;
                 }
             }
 
-            player.RoleHandler.AssignRole(new Assistant());
-            return false;
+            return roleToAssign;
         }
 
 

@@ -7,26 +7,26 @@ using ssl.Modules.Items.Data;
 
 namespace ssl.Modules.Items
 {
-    public partial class Inventory : NetworkedEntityAlwaysTransmitted
+    public partial class Inventory : EntityComponent
     {
-        private readonly ItemFilter itemFilter = new();
-
         public Inventory()
         {
         }
-
-        public Inventory(int size)
+        
+        public Inventory(int size, ItemFilter itemFilter) : this()
         {
-            Slots = new List<Slot>(size);
-            for (int i = 0; i < size; i++)
+            if (Host.IsServer)
             {
-                Slot slot = new()
+                Filter = itemFilter;
+                for (int i = 0; i < size; i++)
                 {
-                    Owner = this
-                };
-                Slots.Add(slot);
+                    Slot slot = new();
+                    Slots.Add(slot);
+                }
             }
         }
+
+        [Net] public ItemFilter Filter { get; private set;}
 
         [Net] public List<Slot> Slots { get; private set; }
 
@@ -59,26 +59,23 @@ namespace ssl.Modules.Items
         /// <param name="item">Item stack to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(Item item, int position = 0)
+        public virtual Slot Add(Item item, int position = 0)
         {
             if (position < 0 || position >= SlotsCount)
             {
                 throw new IndexOutOfRangeException($"There is only {SlotsCount} slots in the inventory.");
             }
 
-            if (itemFilter.IsAuthorized(item))
+            if (Filter.IsAuthorized(item))
             {
                 Slot slotDestination = (Slots[position].IsEmpty()) ? Slots[position] : GetFirstEmptySlot();
-                if (slotDestination != null)
-                {
-                    slotDestination.Set(item);
-                    return item;
-                }
-
-                return null;
+                slotDestination?.Set(item);
+                return slotDestination;
             }
-
-            throw new Exception("Not permission");
+            else
+            {
+                throw new Exception("Not permission");
+            }
         }
 
         /// <summary>
@@ -89,9 +86,10 @@ namespace ssl.Modules.Items
         /// <param name="itemId">ItemId to add</param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(string itemId, int position = 0)
+        public Slot Add(string itemId, int position = 0)
         {
-            Item item = Gamemode.Instance.ItemRegistry.GetItemById(itemId).Create();
+            ItemFactory itemFactory = new();
+            Item item = itemFactory.Create(itemId);
             return Add(item, position);
         }
 
@@ -100,12 +98,13 @@ namespace ssl.Modules.Items
         /// </summary>
         /// The Item will be merged if the preferred position is the same Item.
         /// If the preferred position is not the same Item, it will add the stack to the next available slot.
-        /// <param name="data">Item to add</param>
+        /// <param name="data"></param>
         /// <param name="position">The preferred position</param>
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Item Add(ItemData data, int position = 0)
+        public Slot Add(ItemData data, int position = 0)
         {
-            return Add(data.Create(), position);
+            ItemFactory itemFactory = new();
+            return Add(itemFactory.Create(data), position);
         }
 
         /// <summary>
@@ -126,6 +125,15 @@ namespace ssl.Modules.Items
             return removedItem;
         }
 
+        public void RemoveItem(Item item)
+        {
+            foreach (Slot slot in Slots.Where(slot => slot.Item == item))
+            {
+                slot.Clear();
+                return;
+            }
+        }
+
         public Item Get(int position)
         {
             if (position < 0 || position >= SlotsCount)
@@ -143,12 +151,12 @@ namespace ssl.Modules.Items
 
         public Item Get(string itemId)
         {
-            return (from slot in Slots where itemId.Equals(slot.Item.Id) select slot.Item).FirstOrDefault();
+            return (from slot in Slots where itemId.Equals(slot.Item.Data.Id) select slot.Item).FirstOrDefault();
         }
 
         public List<Item> GetItems(ItemData item)
         {
-            return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
+            return (from slot in Slots where item.Id.Equals(slot.Item.Data.Id) select slot.Item).ToList();
         }
 
         /// <summary>

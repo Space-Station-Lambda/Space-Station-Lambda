@@ -17,24 +17,21 @@ namespace ssl.Modules.Items.Carriables
         private const string LightAttachementName = "light";
         private const string FlashLightSoundSwitchOnName = "flashlight-on";
         private const string FlashLightSoundSwitchOffName = "flashlight-off";
-        private SpotLightEntity worldLight;
+
+        private TimeSince timeSinceLightToggled;
         private SpotLightEntity viewLight;
+        private SpotLightEntity worldLight;
 
         public ItemTorchlight()
         {
         }
 
-        public ItemTorchlight(ItemData data) : base(data)
+        public ItemTorchlight(ItemData itemData) : base(itemData)
         {
         }
 
-        //TODO Replace with the NeckCamera 
-        public override string ViewModelPath => "weapons/rust_flashlight/v_rust_flashlight.vmdl";
-
         private static Vector3 LightOffset => Vector3.Forward * 10;
         [Net, Local, Predicted] private bool LightEnabled { get; set; } = true;
-
-        private TimeSince timeSinceLightToggled;
 
         public override void Spawn()
         {
@@ -44,16 +41,6 @@ namespace ssl.Modules.Items.Carriables
             worldLight.SetParent(this, SlideAttachementName, new Transform(LightOffset));
             worldLight.EnableHideInFirstPerson = true;
             worldLight.Enabled = false;
-        }
-
-        public override void CreateViewModel()
-        {
-            base.CreateViewModel();
-
-            viewLight = CreateLight();
-            viewLight.SetParent(ViewModelEntity, LightAttachementName, new Transform(LightOffset));
-            viewLight.EnableViewmodelRendering = true;
-            viewLight.Enabled = LightEnabled;
         }
 
         private SpotLightEntity CreateLight()
@@ -90,7 +77,7 @@ namespace ssl.Modules.Items.Carriables
             if (timeSinceLightToggled > 0.1f && toggle)
             {
                 LightEnabled = !LightEnabled;
-                
+
                 PlaySound(LightEnabled ? FlashLightSoundSwitchOnName : FlashLightSoundSwitchOffName);
 
                 if (worldLight.IsValid())
@@ -127,7 +114,7 @@ namespace ssl.Modules.Items.Carriables
         {
             base.ActiveStart(ent);
 
-            if (IsServer)
+            if (Host.IsServer)
             {
                 Activate();
             }
@@ -137,7 +124,7 @@ namespace ssl.Modules.Items.Carriables
         {
             base.ActiveEnd(ent, dropped);
 
-            if (IsServer)
+            if (Host.IsServer)
             {
                 if (dropped)
                 {

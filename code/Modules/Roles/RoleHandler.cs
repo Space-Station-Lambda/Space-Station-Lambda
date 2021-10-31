@@ -1,63 +1,89 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Modules.Roles.Types.Jobs;
+using ssl.Modules.Saves;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public class RoleHandler : NetworkComponent
+    public partial class RoleHandler : EntityComponent<MainPlayer>
     {
-        private static Dictionary<RolePreference, int> rolesFactors = new()
+
+        private static Dictionary<RolePreferenceType, int> rolesFactors = new()
         {
-            { RolePreference.Never, 0 },
-            { RolePreference.Low, 1 },
-            { RolePreference.Medium, 5 },
-            { RolePreference.High, 25 },
-            { RolePreference.Always, 125 },
+            { RolePreferenceType.Never, 0 },
+            { RolePreferenceType.Low, 1 },
+            { RolePreferenceType.Medium, 5 },
+            { RolePreferenceType.High, 25 },
+            { RolePreferenceType.Always, 125 },
         };
 
-        private readonly Dictionary<Role, RolePreference> rolePreferences;
-        private MainPlayer player;
+        private readonly RolesPrefencesSaver saver;
 
-        public RoleHandler(MainPlayer player)
+        public RoleHandler()
         {
-            rolePreferences = new Dictionary<Role, RolePreference>();
-            this.player = player;
-            foreach (Role role in Role.All.Values)
+            if (Host.IsClient)
             {
-                rolePreferences.Add(role, RolePreference.Never);
+                saver = new RolesPrefencesSaver();
+                LoadPreferences();
             }
         }
 
-        [Net] public Role Role { get; private set; }
-
-        [ServerCmd("select_preference_role")]
-        public static void SelectPreference(string roleId, RolePreference preference)
+        [Net] private List<RolePreference> RolePreferences { get; set; }
+        public Role Role { get; private set; }
+        
+        [ServerCmd("select_role_preference")]
+        public static void SelectPreference(string roleId, RolePreferenceType preferenceType)
         {
-            RoleHandler target = ((MainPlayer)ConsoleSystem.Caller.Pawn).RoleHandler;
-            target?.SetPreference(Role.All[roleId], preference);
+            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            player.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
         }
 
-        public void Clear()
+        [ClientCmd("save_role_preferences")]
+        public static void SaveRolePreferences()
         {
-            AssignRole(null);
+            MainPlayer player = (MainPlayer)Local.Pawn;
+            player.RoleHandler.SavePreferences();
+        }
+
+        public RolePreferenceType GetPreference(Role role)
+        {
+            return RolePreferences.Where(rolePreference => rolePreference.Role.Equals(role)).Select(rolePreference => rolePreference.Preference).FirstOrDefault();
+        }
+        
+        private void InitRolePreferences()
+        {
+            foreach (Role role in Role.All.Values)
+            {
+                RolePreferences.Add(new RolePreference(role, RolePreferenceType.Never));
+            }
+        }
+        
+        private void LoadPreferences()
+        {
+            Host.AssertClient();
+            if (saver.IsSaved)
+            {
+                List<(string, RolePreferenceType)> rolePreferences = saver.Load();
+                foreach ((string roleId, RolePreferenceType preference) in rolePreferences)
+                {
+                    ConsoleSystem.Run("select_preference_role", roleId, preference);
+                }
+            }
         }
 
         public Dictionary<Role, float> GetPreferencesNormalised()
         {
-            int total = 0;
-            foreach (RolePreference rolePreferencesValue in rolePreferences.Values)
-            {
-                total += rolesFactors[rolePreferencesValue];
-            }
+            int total = RolePreferences.Sum(rolePreference => rolesFactors[rolePreference.Preference]);
 
             Dictionary<Role, float> normalisedPreferences = new();
 
-            foreach ((Role key, RolePreference value) in rolePreferences)
+            foreach (RolePreference preference in RolePreferences)
             {
-                if (total == 0) normalisedPreferences[key] = 0f;
-                else normalisedPreferences[key] = (float)rolesFactors[value] / total;
+                if (total == 0) normalisedPreferences[preference.Role] = 0f;
+                else normalisedPreferences[preference.Role] = (float)rolesFactors[preference.Preference] / total;
             }
 
             return normalisedPreferences;
@@ -65,59 +91,47 @@ namespace ssl.Modules.Roles
 
         public void AssignRole(Role role)
         {
-            Role?.OnUnassigned(player);
+            Role?.OnUnassigned(Entity);
             Role = role;
-            Role?.OnAssigned(player);
+            Role?.OnAssigned(Entity);
         }
-
-        public void SetPreference(Role role, RolePreference preference)
+        
+        public void SetPreference(Role role, RolePreferenceType preferenceType)
         {
-            if (!rolePreferences.ContainsKey(role))
+            Host.AssertServer();
+            RolePreference rolePreference = null;
+            foreach (RolePreference preference in RolePreferences.Where(preference => role.Equals(preference.Role)))
             {
-                rolePreferences.Add(role, preference);
+                rolePreference = preference;
+            }
+            
+            if (null == rolePreference)
+            {
+                RolePreferences.Add(new RolePreference(role, preferenceType));
             }
             else
             {
-                rolePreferences[role] = preference;
+                rolePreference.Preference = preferenceType;
             }
-        }
-
-        /// <summary>
-        /// Get a random role from the preferences
-        /// </summary>
-        /// <returns></returns>
-        public Role GetRandomRoleFromPreferences()
-        {
-            int totalPoints = 0;
-            foreach ((Role role, RolePreference value) in rolePreferences)
-            {
-                totalPoints += rolesFactors[value];
-            }
-
-            Random rnd = new();
-            int res = rnd.Next(totalPoints);
-            Log.Info("Random number for pick is " + res + " /" + totalPoints);
-            totalPoints = 0;
-            foreach ((Role role, RolePreference value) in rolePreferences)
-            {
-                Log.Info("Add " + rolesFactors[value] + " for role " + role);
-                totalPoints += rolesFactors[value];
-                if (res < totalPoints) return role;
-            }
-
-            return new Assistant();
         }
 
         /// <summary>
         /// When player spawn with role
         /// </summary>
-        public void Init()
+        public void SpawnRole()
         {
-            if (Role != null)
-            {
-                player.ClothesHandler.AttachClothes(Role.Clothing);
-                Role.OnSpawn(player);
-            }
+             Role?.OnSpawn(Entity);
+        }
+
+        public void SavePreferences()
+        {
+            Host.AssertClient();
+            saver.Save(RolePreferences);
+        }
+
+        protected override void OnActivate()
+        {
+            if (Host.IsServer) InitRolePreferences();
         }
     }
 }

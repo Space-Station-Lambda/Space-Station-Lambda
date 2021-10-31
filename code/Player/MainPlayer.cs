@@ -1,60 +1,77 @@
 ﻿using Sandbox;
 using ssl.Modules.Clothes;
-using ssl.Modules.Gauges;
+using ssl.Modules.Inputs;
 using ssl.Modules.Items;
 using ssl.Modules.Items.Carriables;
+using ssl.Modules.Props.Types;
 using ssl.Modules.Roles;
+using ssl.Modules.Selection;
+using ssl.Modules.Statuses;
+using ssl.Player.Animators;
+using ssl.Player.Cameras;
 using ssl.Player.Controllers;
 using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player
+    public partial class MainPlayer : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
-        private const int MaxInventoryCapacity = 10;
-
+        private const float MaxHealth = 100f;
 
         public MainPlayer()
         {
+            Health = MaxHealth;
+            Dragger = new Dragger(this);
+            InputHandler = new InputHandler(this);
+
             if (Host.IsServer)
             {
-                Inventory = new Inventory(MaxInventoryCapacity)
-                {
-                    Owner = this
-                };
-                GaugeHandler = new GaugeHandler();
-                ClothesHandler = new ClothesHandler(this);
-                RoleHandler = new RoleHandler(this);
+                Components.Create<PlayerInventory>();
+                Components.Create<RoleHandler>();
+                Components.Create<ClothesHandler>();
+                Components.Create<StatusHandler>();
+                Components.Create<StainHandler>();
             }
         }
 
-        [Net] public new Inventory Inventory { get; private set; }
-        [Net] public Item Holding { get; private set; }
-
-        /**
-         * Handlers
-         */
-        public GaugeHandler GaugeHandler { get; }
-
-        public ClothesHandler ClothesHandler { get; }
-        [Net] public RoleHandler RoleHandler { get; }
+        public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
+        public RoleHandler RoleHandler => Components.Get<RoleHandler>();
+        public ClothesHandler ClothesHandler => Components.Get<ClothesHandler>();
+        public StatusHandler StatusHandler => Components.Get<StatusHandler>();
+        public StainHandler StainHandler => Components.Get<StainHandler>();
+        public InputHandler InputHandler { get; }
+        public Dragger Dragger { get; }
         public PlayerCorpse Ragdoll { get; set; }
 
-        /// <summary>
-        /// When the player change selected slot
-        /// </summary>
-        /// <param name="slot">The current slot sleected</param>
-        [ServerCmd("set_inventory_holding")]
-        public static void SetInventoryHolding(int slot)
+        public void OnSelectStart(MainPlayer player)
         {
-            MainPlayer target = (MainPlayer)ConsoleSystem.Caller.Pawn;
-            if (target == null) return;
-            Item item = target.Inventory.Get(slot);
-            target.Holding = item;
-            target.Holding?.SetModel(target.Holding.Model);
-            target.Holding?.OnCarryStart(target);
-            target.ActiveChild = target.Holding;
+        }
+
+        public void OnSelectStop(MainPlayer player)
+        {
+        }
+
+        public void OnSelect(MainPlayer player)
+        {
+        }
+
+        public void OnInteract(MainPlayer player)
+        {
+        }
+
+        public override void ClientSpawn()
+        {
+            base.ClientSpawn();
+
+            if (Inventory.ViewModel != null || !IsLocalPawn) return;
+            Inventory.ViewModel = new HandViewModel
+            {
+                EnableAllCollisions = false,
+                EnableViewmodelRendering = true,
+                Owner = this.Owner
+            };
+            Inventory.ViewModel.SetHoldType(HoldType.None);
         }
 
         /// <summary>
@@ -65,9 +82,11 @@ namespace ssl.Player
         {
             PawnController controller = GetActiveController();
             controller?.Simulate(client, this, GetActiveAnimator());
-
+            StatusHandler.Tick();
             SimulateActiveChild(client, ActiveChild);
-            CheckControls();
+            InputHandler.CheckControls();
+            Dragger?.UpdateTarget();
+            StainHandler.TryGenerateStain();
         }
 
         /// <summary>
@@ -78,18 +97,20 @@ namespace ssl.Player
             SetModel(Model);
 
             Controller = new HumanController();
-            Animator = new StandardPlayerAnimator();
+            Animator = new HumanAnimator();
             Camera = new FirstPersonCamera();
 
             EnableAllCollisions = true;
             EnableDrawing = true;
             EnableHideInFirstPerson = true;
             EnableShadowInFirstPerson = true;
-            
+
             Inventory.Clear();
-            
-            RoleHandler.Init();
-            
+
+            RoleHandler.SpawnRole();
+
+            SendTextNotification("You are " + RoleHandler.Role.Name);
+
             base.Respawn();
         }
 
@@ -115,40 +136,25 @@ namespace ssl.Player
             Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
         }
 
-        private void CheckControls()
+        public override void PostCameraSetup(ref CameraSetup setup)
         {
-            if (IsServer)
-            {
-                ServerControls();
-            }
-
-            if (IsClient)
-            {
-                ClientControls();
-            }
+            base.PostCameraSetup(ref setup);
+            Inventory.ViewModel.PostCameraSetup(ref setup);
         }
 
-        private void ServerControls()
+        public void EnableSpectator()
         {
-            if (Input.Pressed(InputButton.Reload))
-            {
-                Respawn();
-            }
+            Host.AssertServer();
+            
+            Controller = null;
+            Animator = null;
+            
+            SpectatorCamera specCam = new();
+            Camera = specCam;
+            
+            EnableAllCollisions = false;
+            EnableDrawing = false;
         }
-
-        private void ClientControls()
-        {
-        }
-
-        [ServerCmd("kill_player")]
-        private static void KillPlayer()
-        {
-            ConsoleSystem.Caller.Pawn.TakeDamage(new DamageInfo()
-            {
-                Damage = 100
-            });
-        }
-
 
         private void EnableRagdoll(Vector3 force, int forceBone)
         {
@@ -163,6 +169,13 @@ namespace ssl.Player
             ragdoll.Player = this;
 
             Ragdoll = ragdoll;
+        }
+
+        [ClientRpc]
+        private void SendTextNotification(string txt)
+        {
+            Log.Info("Trying to start event");
+            Event.Run("ssl.notification", txt);
         }
     }
 }
