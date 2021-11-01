@@ -9,7 +9,9 @@ namespace ssl.Modules.Elements.Props.Types.Stains
     {
         public SlippyStain(SlippyStainData data) : base(data)
         {
-            SlipProbability = data.SlipProbability.Clamp(0f, 1f);
+            if (data.SlipProbability is < 0f or > 1f)
+                throw new ArgumentException("Slip probability out of bounds, must be in [0;1] (included).");
+            SlipProbability = data.SlipProbability;
         }
         
         public float SlipProbability { get; private set; }
