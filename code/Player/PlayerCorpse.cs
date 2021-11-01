@@ -26,7 +26,6 @@ namespace ssl.Player
         }
 
         [Net] public MainPlayer Player { get; private set; }
-        public PhysicsBody Body => PhysicsGroup.GetBody(0);
 
         public void CopyFrom(MainPlayer player)
         {

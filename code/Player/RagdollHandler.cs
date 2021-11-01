@@ -85,5 +85,12 @@ namespace ssl.Player
                 player.RagdollHandler.StopRagdoll();
             }
         }
+        
+        [AdminCmd("spawn_ragdoll")]
+        private static void SpawnRagdoll()
+        {
+            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            player.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
+        }
     }
 }
