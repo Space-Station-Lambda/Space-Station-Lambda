@@ -8,19 +8,21 @@ namespace ssl.Modules.Selection
         protected const float Range = 150f;
 
         protected readonly MainPlayer player;
+        protected TraceResult traceResult;
 
         public Selector(MainPlayer player)
         {
             this.player = player;
         }
-        
+
         public ISelectable Selected { get; private set; }
         public bool IsSelecting => Selected != null;
         
         public virtual void UpdateTarget()
         {
-            Entity result = GetTraceResultEntity();
-            if (result is ISelectable selectable)
+            traceResult = GetTraceResult();
+                
+            if (traceResult.Entity is ISelectable selectable)
             {
                 if (!ReferenceEquals(selectable, Selected))
                 {
@@ -54,12 +56,11 @@ namespace ssl.Modules.Selection
         }
 
 
-        protected virtual Entity GetTraceResultEntity()
+        protected virtual TraceResult GetTraceResult()
         {
             Vector3 forward = player.EyeRot.Forward;
             TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * Range);
-            Entity result = tr.Entity;
-            return result;
+            return tr;
         }
 
         protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
