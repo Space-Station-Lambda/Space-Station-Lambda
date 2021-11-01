@@ -17,7 +17,7 @@ namespace ssl.Player
             
             SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
             SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
-            SetInteractsExclude(CollisionLayer.Player | CollisionLayer.Debris);
+            SetInteractsExclude(CollisionLayer.Player);
         }
         
         public PlayerCorpse(MainPlayer player) : this()
