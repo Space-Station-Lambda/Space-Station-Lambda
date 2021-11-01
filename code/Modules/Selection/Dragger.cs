@@ -22,7 +22,7 @@ namespace ssl.Modules.Selection
         }
 
         public IDraggable Dragged { get; private set; }
-        public PhysicsBody HeldBody => Dragged.Body;
+        public PhysicsBody HeldBody { get; private set; }
         public Rotation HeldRot { get; private set; }
 
         /// <summary>
@@ -57,14 +57,15 @@ namespace ssl.Modules.Selection
             StopDrag();
             
             Dragged = (IDraggable)Selected;
-
+            
+            HeldBody = traceResult.Body;
+            HeldBody.Wake();
+            HeldBody.EnableAutoSleeping = false;
+            
             HeldRot = grabRot.Inverse * HeldBody.Rotation;
 
             holdBody.Position = grabPos;
             holdBody.Rotation = HeldBody.Rotation;
-
-            HeldBody.Wake();
-            HeldBody.EnableAutoSleeping = false;
             
             holdJoint = PhysicsJoint.Weld
                 .From(holdBody)
@@ -92,7 +93,8 @@ namespace ssl.Modules.Selection
                 HeldBody.EnableAutoSleeping = true;
                 Dragged.OnDragStop(player);
             }
-
+            
+            HeldBody = null;
             Dragged = null;
             HeldRot = Rotation.Identity;
         }
@@ -102,10 +104,10 @@ namespace ssl.Modules.Selection
             if (Selected is not IDraggable draggable)
                 return false;
 
-            if (!draggable.Body.IsValid())
+            if (!traceResult.Body.IsValid())
                 return false;
 
-            if (draggable.Body.PhysicsGroup == null)
+            if (traceResult.Body.PhysicsGroup == null)
                 return false;
             
             return true;

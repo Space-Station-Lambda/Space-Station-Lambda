@@ -6,11 +6,6 @@ namespace ssl.Modules.Selection
     public interface IDraggable : ISelectable
     {
         /// <summary>
-        /// Returns the physics body that should be used by the dragger. 
-        /// </summary>
-        PhysicsBody Body { get; }
-
-        /// <summary>
         /// When the drag started.
         /// </summary>
         /// <param name="player">The player who drags.</param>
