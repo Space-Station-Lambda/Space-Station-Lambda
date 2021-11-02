@@ -11,7 +11,7 @@ namespace ssl.Modules.Elements.Items.Carriables
     /// It is both the item in inventory and the world entity.
     /// This class is used clientside and server side so properties useful clientside should be [Net].
     /// </summary>
-    public partial class Item : WorldEntity, IDraggable
+    public partial class Item : Carriable, IDraggable
     {
         public const string Tag = "Item";
         
