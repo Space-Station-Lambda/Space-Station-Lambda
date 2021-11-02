@@ -2,21 +2,23 @@
 
 namespace ssl.Modules.Elements.Items.Carriables
 {
-    public class Carriable : AnimEntity
+    public class Carriable : WorldEntity
     {
-	    public override void Spawn()
-		{
-			base.Spawn();
-
-			SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
-			MoveType = MoveType.Physics;
-			CollisionGroup = CollisionGroup.Weapon;
-			SetInteractsAs(CollisionLayer.Hitbox);
-			PhysicsEnabled = true;
-			UsePhysicsCollision = true;
-			EnableHideInFirstPerson = true;
-			EnableShadowInFirstPerson = true;
-		}
+	    public Carriable()
+	    {
+	    }
+	    
+	    public Carriable(BaseData data) : base(data)
+	    {
+		    SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
+		    MoveType = MoveType.Physics;
+		    CollisionGroup = CollisionGroup.Weapon;
+		    SetInteractsAs(CollisionLayer.Hitbox);
+		    PhysicsEnabled = true;
+		    UsePhysicsCollision = true;
+		    EnableHideInFirstPerson = true;
+		    EnableShadowInFirstPerson = true;
+	    }
 
 		public override bool CanCarry(Entity carrier)
 		{
