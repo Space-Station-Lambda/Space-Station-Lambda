@@ -3,7 +3,7 @@ using ssl.Modules.Elements.Items.Data;
 
 namespace ssl.Modules.Elements.Items.Carriables
 {
-    public partial class ItemTorchlight : Item
+    public partial class ItemFlashlight : Item
     {
         private const int Range = 512;
         private const float Falloff = 1.0f;
@@ -22,11 +22,11 @@ namespace ssl.Modules.Elements.Items.Carriables
         private SpotLightEntity viewLight;
         private SpotLightEntity worldLight;
 
-        public ItemTorchlight()
+        public ItemFlashlight()
         {
         }
 
-        public ItemTorchlight(ItemData itemData) : base(itemData)
+        public ItemFlashlight(ItemData itemData) : base(itemData)
         {
         }
 
