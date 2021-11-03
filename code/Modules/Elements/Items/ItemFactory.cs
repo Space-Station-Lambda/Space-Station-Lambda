@@ -10,7 +10,7 @@ namespace ssl.Modules.Elements.Items
         private const string WeaponPrefix = "weapon";
         private const string ItemPrefix = "item";
 
-        private const string TorchlightName = "torchlight";
+        private const string FlashlightName = "torchlight";
         private const string TrashBagName = "trashbag";
         private const string MopName = "mop";
         protected override string BasePath => "data/items";
@@ -30,7 +30,7 @@ namespace ssl.Modules.Elements.Items
                     return name switch
                     {
                         TrashBagName => new ItemTrashBag(itemData),
-                        TorchlightName => new ItemTorchlight(itemData),
+                        FlashlightName => new ItemFlashlight(itemData),
                         _ => new Item(itemData)
                     };
                 default:
