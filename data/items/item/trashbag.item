@@ -4,7 +4,7 @@
 	{
 		Id = "item.trashbag"
 		Name = "Trash Bag"
-		Model = "models/trashbag/trashbag.vmdl"
+		Model = "models/items/trashbag/trashbag.vmdl"
 		Description = "This is my item"
 		HoldType = 4
 	}

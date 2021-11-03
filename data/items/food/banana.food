@@ -4,7 +4,7 @@
 	{
 		Id = "food.banana"
 		Name = "Banana"
-		Model = "models/food/banana/banana.vmdl"
+		Model = "models/items/food/banana/banana.vmdl"
 		Description = "A pretty good banana."
 		HoldType = 4
 		FeedingValue = 10
