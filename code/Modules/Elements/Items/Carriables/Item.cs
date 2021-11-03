@@ -30,39 +30,39 @@ namespace ssl.Modules.Elements.Items.Carriables
 
         public new ItemData Data => (ItemData)base.Data;
         
-        public void OnSelectStart(Player.SslPlayer sslPlayer)
+        public void OnSelectStart(SslPlayer sslPlayer)
         {
             if (Host.IsClient) GlowActive = true;
         }
 
-        public void OnSelectStop(Player.SslPlayer sslPlayer)
+        public void OnSelectStop(SslPlayer sslPlayer)
         {
             if (Host.IsClient) GlowActive = false;
         }
 
-        public void OnSelect(Player.SslPlayer sslPlayer)
+        public void OnSelect(SslPlayer sslPlayer)
         {
             //TODO
         }
 
-        public void OnInteract(Player.SslPlayer sslPlayer)
+        public void OnInteract(SslPlayer sslPlayer)
         {
             sslPlayer.Inventory.Add(this);
         }
         
-        public virtual void OnDragStart(Player.SslPlayer sslPlayer)
+        public virtual void OnDragStart(SslPlayer sslPlayer)
         {
         }
 
-        public virtual void OnDragStop(Player.SslPlayer sslPlayer)
+        public virtual void OnDragStop(SslPlayer sslPlayer)
         {
         }
 
-        public virtual void OnDrag(Player.SslPlayer sslPlayer)
+        public virtual void OnDrag(SslPlayer sslPlayer)
         {
         }
         
-        public virtual bool IsDraggable(Player.SslPlayer sslPlayer)
+        public virtual bool IsDraggable(SslPlayer sslPlayer)
         {
             return true;
         }
@@ -70,11 +70,11 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// <summary>
         /// Called when a player use an Item.
         /// </summary>
-        public virtual void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
+        public virtual void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
         }
 
-        public virtual void OnUseSecondary(Player.SslPlayer sslPlayer, ISelectable target)
+        public virtual void OnUseSecondary(SslPlayer sslPlayer, ISelectable target)
         {
         }
 
@@ -82,7 +82,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         {
             base.ActiveStart(ent);
 
-            if (!Host.IsClient || ent is not Player.SslPlayer player) return;
+            if (!Host.IsClient || ent is not SslPlayer player || !player.Inventory.ViewModel.IsValid()) return;
             player.Inventory.ViewModel.SetHoldingEntity(this);
             player.Inventory.ViewModel.SetHoldType((HoldType)Data.HoldType);
         }
@@ -91,7 +91,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         {
             base.ActiveEnd(ent, dropped);
 
-            if (!Host.IsClient || ent is not Player.SslPlayer player) return;
+            if (!Host.IsClient || ent is not SslPlayer player || !player.Inventory.ViewModel.IsValid()) return;
             player.Inventory.ViewModel.RemoveHoldingEntity();
             player.Inventory.ViewModel.SetHoldType(HoldType.None);
         }
