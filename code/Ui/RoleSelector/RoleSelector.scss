@@ -12,7 +12,7 @@ RoleSelector {
     width: 100%;
   }
 
-  &.hidden {
+  &:not(.active) {
     pointer-events: none;
     display: none;
   }
