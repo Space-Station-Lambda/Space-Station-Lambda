@@ -2,5 +2,5 @@
 [
   Id(string) : "Id" : "Id"
   Name(string) : "Name" : "Name"
-  Model(string): "Model" : ""
+  Model(string): "Model" : "none"
 ]
