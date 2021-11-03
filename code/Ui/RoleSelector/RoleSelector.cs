@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 using Sandbox.UI;
 using ssl.Modules.Roles;
 using ssl.Modules.Rounds;
@@ -11,7 +12,17 @@ namespace ssl.Ui.RoleSelector
     public class RoleSelector : Panel
     {
         private readonly List<RoleSlot> roleSlots = new();
-
+        
+        /// <summary>
+        /// True if we are in preround. Created for close the roundselector after round started.
+        /// </summary>
+        private bool isPreround;
+        
+        /// <summary>
+        /// Checks if the preround menu is open.
+        /// </summary>
+        private bool isOpen = true;
+        
         public RoleSelector()
         {
             StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
@@ -22,7 +33,7 @@ namespace ssl.Ui.RoleSelector
                 roleSlots.Add(slot);
             }
         }
-
+        
         public override void Tick()
         {
             base.Tick();
@@ -30,11 +41,35 @@ namespace ssl.Ui.RoleSelector
             BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
             if (null != currentRound)
             {
-                SetClass("active", currentRound is PreRound);
-                SetClass("hidden", currentRound is not PreRound);
+                if (currentRound is PreRound)
+                {
+                    isPreround = true;
+                    isOpen = true;
+                    SetClass("active", isOpen);
+                }
+                else
+                {
+                    // Close the menu if the preround stops
+                    if (isPreround)
+                    {
+                        isPreround = false;
+                        isOpen = false;
+                    }
+                    SetClass("active", isOpen);
+                }
             }
         }
-        
+
+        [Event("buildinput")]
+        public void ProcessClientInput(InputBuilder input)
+        {
+            if (!isPreround && input.Pressed(InputButton.Menu))
+            {
+                isOpen = !isOpen;
+            }
+        }
+
+
         private void RefreshSlots()
         {
             foreach (RoleSlot slot in roleSlots)
