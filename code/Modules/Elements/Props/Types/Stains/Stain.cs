@@ -29,7 +29,7 @@ namespace ssl.Modules.Elements.Props.Types.Stains
             }
         }
         
-        public override void OnInteract(Player.Player player)
+        public override void OnInteract(Player.SslPlayer sslPlayer)
         {
             //TODO Debug purpose
             Log.Info(health);

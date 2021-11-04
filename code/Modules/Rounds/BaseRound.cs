@@ -35,7 +35,7 @@ namespace ssl.Modules.Rounds
             MilestonesHandler = new MilestonesHandler();
         }
         
-        [Net] public List<Player.Player> Players { get; private set; } = new();
+        [Net] public List<Player.SslPlayer> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
@@ -75,33 +75,33 @@ namespace ssl.Modules.Rounds
             RoundEndedEvent?.Invoke(this);
         }
 
-        public void AddPlayer(Player.Player player)
+        public void AddPlayer(Player.SslPlayer sslPlayer)
         {
-            Log.Info($"[Round] Add player {player} to the round");
+            Log.Info($"[Round] Add player {sslPlayer} to the round");
             Host.AssertServer();
-            Players.Add(player);
+            Players.Add(sslPlayer);
         }
 
-        public void RemovePlayer(Player.Player player)
+        public void RemovePlayer(Player.SslPlayer sslPlayer)
         {
-            Log.Info($"[Round] Remove player {player} to the round");
+            Log.Info($"[Round] Remove player {sslPlayer} to the round");
             Host.AssertServer();
-            Players.Remove(player);
+            Players.Remove(sslPlayer);
         }
 
         public abstract BaseRound Next();
 
-        public virtual void OnPlayerSpawn(Player.Player player)
+        public virtual void OnPlayerSpawn(Player.SslPlayer sslPlayer)
         {
-            AddPlayer(player);
+            AddPlayer(sslPlayer);
         }
 
-        public virtual void OnPlayerKilled(Player.Player player)
+        public virtual void OnPlayerKilled(Player.SslPlayer sslPlayer)
         {
-            RemovePlayer(player);
+            RemovePlayer(sslPlayer);
         }
 
-        public virtual void OnPlayerLeave(Player.Player player)
+        public virtual void OnPlayerLeave(Player.SslPlayer sslPlayer)
         {
         }
 
@@ -147,7 +147,7 @@ namespace ssl.Modules.Rounds
         {
             foreach (Client client in Client.All)
             {
-                Players.Add((Player.Player)client.Pawn);
+                Players.Add((Player.SslPlayer)client.Pawn);
             }
         }
 

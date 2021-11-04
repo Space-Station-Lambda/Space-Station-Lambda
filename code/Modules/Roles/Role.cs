@@ -42,22 +42,22 @@ namespace ssl.Modules.Roles
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
-        public virtual void OnAssigned(Player.Player player)
+        public virtual void OnAssigned(Player.SslPlayer sslPlayer)
         {
         }
 
         /// <summary>
         /// Trigger when the player spawn
         /// </summary>
-        /// <param name="player"></param>
-        public virtual void OnSpawn(Player.Player player)
+        /// <param name="sslPlayer"></param>
+        public virtual void OnSpawn(Player.SslPlayer sslPlayer)
         {
             foreach (string itemId in Items)
             {
                 ItemFactory itemFactory = new();
                 try
                 {
-                    player.Inventory.Add(itemFactory.Create(itemId));
+                    sslPlayer.Inventory.Add(itemFactory.Create(itemId));
                 }
                 catch (ArgumentException e)
                 {
@@ -66,23 +66,23 @@ namespace ssl.Modules.Roles
                 
             }
 
-            player.ClothesHandler.AttachClothes(Clothing);
+            sslPlayer.ClothesHandler.AttachClothes(Clothing);
         }
 
         /// <summary>
         /// Trigger when the role is unassigned
         /// </summary>
-        public virtual void OnUnassigned(Player.Player player)
+        public virtual void OnUnassigned(Player.SslPlayer sslPlayer)
         {
         }
 
         /// <summary>
         /// Trigger when a player with the role is killed
         /// </summary>
-        public virtual void OnKilled(Player.Player player)
+        public virtual void OnKilled(Player.SslPlayer sslPlayer)
         {
-            player.RoleHandler.AssignRole(new Ghost());
-            player.Respawn(player.Position, player.Rotation);
+            sslPlayer.RoleHandler.AssignRole(new Ghost());
+            sslPlayer.Respawn(sslPlayer.Position, sslPlayer.Rotation);
         }
 
         public override string ToString()

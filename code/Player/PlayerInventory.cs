@@ -18,7 +18,7 @@ namespace ssl.Player
         [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
-        private Player Player => (Player) Entity;
+        private SslPlayer SslPlayer => (SslPlayer) Entity;
         public HandViewModel ViewModel { get; set; }
 
         public void ProcessHolding(int slotIndex)
@@ -31,24 +31,24 @@ namespace ssl.Player
         {
             StopHolding();
             HoldingSlot = slot;
-            HoldingItem?.ActiveStart(Player);
-            Player.ActiveChild = HoldingItem;
+            HoldingItem?.ActiveStart(SslPlayer);
+            SslPlayer.ActiveChild = HoldingItem;
             HoldingSlotNumber = Slots.IndexOf(slot);
         }
 
         private void StopHolding()
         {
-            HoldingItem?.ActiveEnd(Player, false);
+            HoldingItem?.ActiveEnd(SslPlayer, false);
             HoldingSlot = null;
-            Player.ActiveChild = null;
+            SslPlayer.ActiveChild = null;
             HoldingSlotNumber = -1;
         }
 
         public Item DropItem()
         {
             Item droppedItem = HoldingItem;
-            HoldingItem?.OnCarryDrop(Player);
-            HoldingItem?.ActiveEnd(Player, true);
+            HoldingItem?.OnCarryDrop(SslPlayer);
+            HoldingItem?.ActiveEnd(SslPlayer, true);
             HoldingSlot.Clear();
             return droppedItem;
         }
@@ -64,7 +64,7 @@ namespace ssl.Player
         public override Slot Add(Item item, int position = 0)
         {
             Slot destinationSlot = base.Add(item, position);
-            item.OnCarryStart(Player);
+            item.OnCarryStart(SslPlayer);
             if (null == destinationSlot) item.OnCarryDrop(item);
             if (destinationSlot == HoldingSlot) StartHolding(HoldingSlot);
 
@@ -73,12 +73,12 @@ namespace ssl.Player
 
         public void UsePrimary()
         {
-            HoldingItem?.OnUsePrimary(Player, Player.Dragger.Selected);
+            HoldingItem?.OnUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
         }
         
         public void UseSecondary()
         {
-            HoldingItem?.OnUseSecondary(Player, Player.Dragger.Selected);
+            HoldingItem?.OnUseSecondary(SslPlayer, SslPlayer.Dragger.Selected);
         }
 
         protected override void OnDeactivate()

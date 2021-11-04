@@ -39,46 +39,46 @@ namespace ssl.Modules.Statuses
         /// <summary>
         /// When the status is applied to the player.
         /// </summary>
-        /// <param name="player">The player who receive the status.</param>
-        public virtual void OnApply(Player.Player player)
+        /// <param name="sslPlayer">The player who receive the status.</param>
+        public virtual void OnApply(Player.SslPlayer sslPlayer)
         {
         }
 
         /// <summary>
         /// When the status is removed from the player.
         /// </summary>
-        /// <param name="player">The player who lost the status.</param>
-        public virtual void OnResolve(Player.Player player)
+        /// <param name="sslPlayer">The player who lost the status.</param>
+        public virtual void OnResolve(Player.SslPlayer sslPlayer)
         {
         }
 
         /// <summary>
         /// When the timer is finished.
         /// </summary>
-        /// <param name="player">When the status timer is finished.</param>
-        public virtual void OnEnd(Player.Player player)
+        /// <param name="sslPlayer">When the status timer is finished.</param>
+        public virtual void OnEnd(Player.SslPlayer sslPlayer)
         {
-            OnResolve(player);
+            OnResolve(sslPlayer);
         }
 
         /// <summary>
         /// Each tick the status is on the player
         /// </summary>
-        /// <param name="player">The player who is affected</param>
-        public virtual void OnTick(Player.Player player)
+        /// <param name="sslPlayer">The player who is affected</param>
+        public virtual void OnTick(Player.SslPlayer sslPlayer)
         {
             if (!IsInfinite)
             {
                 TimeLeft -= Time.Delta;
-                CheckResolve(player);
+                CheckResolve(sslPlayer);
             }
         }
 
         /// <summary>
         /// Check if the status can be removed
         /// </summary>
-        /// <param name="player"></param>
-        public virtual void CheckResolve(Player.Player player)
+        /// <param name="sslPlayer"></param>
+        public virtual void CheckResolve(Player.SslPlayer sslPlayer)
         {
             if (TimeLeft < 0)
             {

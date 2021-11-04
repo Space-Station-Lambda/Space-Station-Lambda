@@ -20,20 +20,20 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void OnUsePrimary(Player.Player player, ISelectable target)
+        public override void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
         {
             OnCarryDrop(this);
-            ActiveEnd(player, false);
-            player.Inventory.RemoveItem(this);
+            ActiveEnd(sslPlayer, false);
+            sslPlayer.Inventory.RemoveItem(this);
             
             if (!string.IsNullOrWhiteSpace(Data.WasteItem))
             {
                 ItemFactory factory = new();
                 Item waste = factory.Create(Data.WasteItem);
-                player.Inventory.Add(waste);
+                sslPlayer.Inventory.Add(waste);
             }
             
-            PlayEatSound(player);
+            PlayEatSound(sslPlayer);
             if(Host.IsServer) Delete();
         }
 

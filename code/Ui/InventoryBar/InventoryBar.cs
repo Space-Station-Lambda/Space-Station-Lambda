@@ -24,7 +24,7 @@ namespace ssl.Ui.InventoryBar
             }
         }
 
-        private Player.Player player => (Player.Player)Local.Pawn;
+        private Player.SslPlayer SslPlayer => (Player.SslPlayer)Local.Pawn;
 
         private void OnSlotSelected(int newSelected)
         {
@@ -56,7 +56,7 @@ namespace ssl.Ui.InventoryBar
         public override void Tick()
         {
             base.Tick();
-            OnSlotSelected(player.Inventory.HoldingSlotNumber);
+            OnSlotSelected(SslPlayer.Inventory.HoldingSlotNumber);
             RefreshAllModels();
         }
     }

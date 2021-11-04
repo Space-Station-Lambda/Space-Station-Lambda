@@ -61,9 +61,9 @@ namespace ssl
         private void SpawnPlayer(Client client)
         {
             //Init the player.
-            Player.Player player = new();
-            client.Pawn = player;
-            RoundManager.CurrentRound.OnPlayerSpawn(player);
+            Player.SslPlayer sslPlayer = new();
+            client.Pawn = sslPlayer;
+            RoundManager.CurrentRound.OnPlayerSpawn(sslPlayer);
         }
 
         public override void PostLevelLoaded()

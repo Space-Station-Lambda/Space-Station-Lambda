@@ -14,7 +14,7 @@ namespace ssl.Ui.Crosshair
 
         public override void Tick()
         {
-            if (Local.Pawn is not Player.Player player)
+            if (Local.Pawn is not Player.SslPlayer player)
                 return;
 
             SetClass("selected", player.Dragger.IsSelecting);

@@ -18,20 +18,20 @@ namespace ssl.Modules.Statuses.Types
         public override string Description => "Sickness";
         public override bool IsInfinite => false;
 
-        public override void OnTick(Player.Player player)
+        public override void OnTick(Player.SslPlayer sslPlayer)
         {
-            base.OnTick(player);
+            base.OnTick(sslPlayer);
             float sicknessRatio = (InitialTime - TimeLeft) / InitialTime;
             byte r = (byte)(255 - (sicknessRatio * 255 - TargetRColor));
             byte g = (byte)(255 - (sicknessRatio * 255 - TargetGColor));
             byte b = (byte)(255 - (sicknessRatio * 255 - TargetBColor));
-            player.RenderColor = new Color(r, g, b);
+            sslPlayer.RenderColor = new Color(r, g, b);
         }
 
-        public override void OnResolve(Player.Player player)
+        public override void OnResolve(Player.SslPlayer sslPlayer)
         {
-            player.RenderColor = Color.White;
-            base.OnResolve(player);
+            sslPlayer.RenderColor = Color.White;
+            base.OnResolve(sslPlayer);
         }
     }
 }

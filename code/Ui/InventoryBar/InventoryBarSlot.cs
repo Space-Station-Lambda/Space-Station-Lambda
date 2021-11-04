@@ -44,14 +44,14 @@ namespace ssl.Ui.InventoryBar
 
         public void RefreshModel()
         {
-            if (Local.Client?.Pawn is not Player.Player)
+            if (Local.Client?.Pawn is not Player.SslPlayer)
                 return;
 
-            Player.Player player = (Player.Player)Local.Client.Pawn;
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)Local.Client.Pawn;
 
             sceneWorld ??= new SceneWorld();
 
-            Item item = player.Inventory.Get(SlotNumber);
+            Item item = sslPlayer.Inventory.Get(SlotNumber);
 
             using (SceneWorld.SetCurrent(sceneWorld))
             {

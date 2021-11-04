@@ -7,14 +7,14 @@ namespace ssl.Ui.RoundInfos
 {
     public class RoundInfosPlayerLine : Panel
     {
-        public readonly Player.Player Player;
+        public readonly Player.SslPlayer SslPlayer;
 
-        public RoundInfosPlayerLine(Player.Player player)
+        public RoundInfosPlayerLine(Player.SslPlayer sslPlayer)
         {
-            Player = player;
+            SslPlayer = sslPlayer;
             Log.Info("Création d'un player");
             StyleSheet.Load("Ui/RoundInfos/RoudInfosPlayerLine.scss");
-            Add.Label(player.GetClientOwner().Name);
+            Add.Label(sslPlayer.GetClientOwner().Name);
         }
     }
 }

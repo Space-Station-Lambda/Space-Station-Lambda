@@ -6,31 +6,31 @@ namespace ssl.Modules.Inputs
 {
     public class InputHandler
     {
-        private Player.Player player;
+        private Player.SslPlayer sslPlayer;
 
-        public InputHandler(Player.Player player)
+        public InputHandler(Player.SslPlayer sslPlayer)
         {
-            this.player = player;
+            this.sslPlayer = sslPlayer;
         }
 
         public void CheckControls()
         {
-            if (Input.Pressed(InputButton.Slot1)) player.Inventory.ProcessHolding(0);
-            if (Input.Pressed(InputButton.Slot2)) player.Inventory.ProcessHolding(1);
-            if (Input.Pressed(InputButton.Slot3)) player.Inventory.ProcessHolding(2);
-            if (Input.Pressed(InputButton.Slot4)) player.Inventory.ProcessHolding(3);
-            if (Input.Pressed(InputButton.Slot5)) player.Inventory.ProcessHolding(4);
-            if (Input.Pressed(InputButton.Slot6)) player.Inventory.ProcessHolding(5);
-            if (Input.Pressed(InputButton.Slot7)) player.Inventory.ProcessHolding(6);
-            if (Input.Pressed(InputButton.Slot8)) player.Inventory.ProcessHolding(7);
-            if (Input.Pressed(InputButton.Slot9)) player.Inventory.ProcessHolding(8);
-            if (Input.Pressed(InputButton.Slot0)) player.Inventory.ProcessHolding(9);
+            if (Input.Pressed(InputButton.Slot1)) sslPlayer.Inventory.ProcessHolding(0);
+            if (Input.Pressed(InputButton.Slot2)) sslPlayer.Inventory.ProcessHolding(1);
+            if (Input.Pressed(InputButton.Slot3)) sslPlayer.Inventory.ProcessHolding(2);
+            if (Input.Pressed(InputButton.Slot4)) sslPlayer.Inventory.ProcessHolding(3);
+            if (Input.Pressed(InputButton.Slot5)) sslPlayer.Inventory.ProcessHolding(4);
+            if (Input.Pressed(InputButton.Slot6)) sslPlayer.Inventory.ProcessHolding(5);
+            if (Input.Pressed(InputButton.Slot7)) sslPlayer.Inventory.ProcessHolding(6);
+            if (Input.Pressed(InputButton.Slot8)) sslPlayer.Inventory.ProcessHolding(7);
+            if (Input.Pressed(InputButton.Slot9)) sslPlayer.Inventory.ProcessHolding(8);
+            if (Input.Pressed(InputButton.Slot0)) sslPlayer.Inventory.ProcessHolding(9);
 
-            if (Input.Pressed(InputButton.Attack1)) player.Inventory.UsePrimary();
-            if (Input.Pressed(InputButton.Attack2)) player.Inventory.UseSecondary();
+            if (Input.Pressed(InputButton.Attack1)) sslPlayer.Inventory.UsePrimary();
+            if (Input.Pressed(InputButton.Attack2)) sslPlayer.Inventory.UseSecondary();
             
-            if (player.IsClient) CheckClientControls();
-            if (player.IsServer) CheckServercontrols();
+            if (sslPlayer.IsClient) CheckClientControls();
+            if (sslPlayer.IsServer) CheckServercontrols();
         }
 
         public void CheckClientControls()
@@ -39,31 +39,31 @@ namespace ssl.Modules.Inputs
 
         public void CheckServercontrols()
         {
-            if (Input.Pressed(InputButton.Reload)) player.Respawn();
+            if (Input.Pressed(InputButton.Reload)) sslPlayer.Respawn();
             if (Input.Pressed(InputButton.Drop))
             {
-                Item dropped = player.Inventory.DropItem();
-                dropped.Velocity += player.Velocity;
+                Item dropped = sslPlayer.Inventory.DropItem();
+                dropped.Velocity += sslPlayer.Velocity;
             }
 
             if (Input.Pressed(InputButton.Use))
             {
-                player.Dragger.UseSelected();
+                sslPlayer.Dragger.UseSelected();
             }
 
             //TODO: Drag Inputs (long hold to drag, etc.)
             if (Input.Down(InputButton.Attack1))
             {
-                player.Dragger.Drag();
+                sslPlayer.Dragger.Drag();
             } 
             else if (Input.Released(InputButton.Attack1))
             {
-                player.Dragger.StopDrag();
+                sslPlayer.Dragger.StopDrag();
             }
 
             if (Input.Pressed(InputButton.Flashlight))
             {
-                player.RagdollHandler.StartRagdoll();
+                sslPlayer.RagdollHandler.StartRagdoll();
             }
         }
     }

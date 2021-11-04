@@ -48,13 +48,13 @@ namespace ssl.Player.Controllers
             unstuck = new Unstuck(this);
         }
         
-        public HumanController(Player player) : this()
+        public HumanController(SslPlayer sslPlayer) : this()
         {
-            if (Host.IsServer) Player = player;
+            if (Host.IsServer) SslPlayer = sslPlayer;
         }
 
 
-        [Net] private Player Player { get; set; }
+        [Net] private SslPlayer SslPlayer { get; set; }
         public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
         public float CurrentSpeed => Velocity.Length;
 
@@ -67,7 +67,7 @@ namespace ssl.Player.Controllers
 
         public override void Simulate()
         {
-            if (!Player.RagdollHandler.IsRagdoll)
+            if (!SslPlayer.RagdollHandler.IsRagdoll)
             {
                 UpdateBBox();
 
@@ -102,13 +102,13 @@ namespace ssl.Player.Controllers
                     TryPlayerMove();
                 }
             }
-            else if (Player.RagdollHandler.CanStand)
+            else if (SslPlayer.RagdollHandler.CanStand)
             {
                 bool wantExitRagdoll = Input.Pressed(InputButton.Jump) || Input.Forward + Input.Left > 0;
                 
                 if (wantExitRagdoll)
                 {
-                    Player.RagdollHandler.StopRagdoll();
+                    SslPlayer.RagdollHandler.StopRagdoll();
                 }
             }
         }
@@ -216,7 +216,7 @@ namespace ssl.Player.Controllers
         {
             if (GroundEntity is IDraggable draggable)
             {
-                if (((Player)Pawn).Dragger.Dragged == draggable)
+                if (((SslPlayer)Pawn).Dragger.Dragged == draggable)
                     return;
             }
             

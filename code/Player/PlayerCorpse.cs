@@ -20,23 +20,23 @@ namespace ssl.Player
             SetInteractsExclude(CollisionLayer.Player);
         }
         
-        public PlayerCorpse(Player player) : this()
+        public PlayerCorpse(SslPlayer sslPlayer) : this()
         {
-            Player = player;
+            SslPlayer = sslPlayer;
         }
 
-        [Net] public Player Player { get; private set; }
+        [Net] public SslPlayer SslPlayer { get; private set; }
 
-        public void CopyFrom(Player player)
+        public void CopyFrom(SslPlayer sslPlayer)
         {
-            SetModel(player.GetModelName());
-            TakeDecalsFrom(player);
+            SetModel(sslPlayer.GetModelName());
+            TakeDecalsFrom(sslPlayer);
 
             // We have to use `this` to refer to the extension methods.
-            this.CopyBonesFrom(player);
-            this.SetRagdollVelocityFrom(player);
+            this.CopyBonesFrom(sslPlayer);
+            this.SetRagdollVelocityFrom(sslPlayer);
 
-            foreach (Entity child in player.Children)
+            foreach (Entity child in sslPlayer.Children)
             {
                 if (child is ModelEntity e)
                 {
@@ -72,35 +72,35 @@ namespace ssl.Player
             }
         }
 
-        public void OnSelectStart(Player player)
+        public void OnSelectStart(SslPlayer sslPlayer)
         {
         }
 
-        public void OnSelectStop(Player player)
+        public void OnSelectStop(SslPlayer sslPlayer)
         {
         }
 
-        public void OnSelect(Player player)
+        public void OnSelect(SslPlayer sslPlayer)
         {
         }
 
-        public void OnInteract(Player player)
+        public void OnInteract(SslPlayer sslPlayer)
         {
         }
 
-        public void OnDragStart(Player player)
+        public void OnDragStart(SslPlayer sslPlayer)
         {
         }
 
-        public void OnDragStop(Player player)
+        public void OnDragStop(SslPlayer sslPlayer)
         {
         }
 
-        public void OnDrag(Player player)
+        public void OnDrag(SslPlayer sslPlayer)
         {
         }
 
-        public bool IsDraggable(Player player)
+        public bool IsDraggable(SslPlayer sslPlayer)
         {
             return true;
         }

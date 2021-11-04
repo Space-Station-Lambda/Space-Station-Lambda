@@ -18,7 +18,7 @@ namespace ssl.Modules.Elements.Props.Types.Stains
 
         public override void StartTouch(Entity other)
         {
-            if (other is not Player.Player player) return;
+            if (other is not Player.SslPlayer player) return;
 
             float random = (float)new Random().NextDouble();
 

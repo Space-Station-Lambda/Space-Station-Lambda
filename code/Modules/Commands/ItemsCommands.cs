@@ -14,8 +14,8 @@ namespace ssl.Modules.Commands
         public static void ClearInventory()
         {
             Client client = ConsoleSystem.Caller;
-            Player.Player player = (Player.Player)client.Pawn;
-            player.Inventory.Clear();
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
+            sslPlayer.Inventory.Clear();
             Log.Info("Your inventory is now clear.");
         }
         /// <summary>
@@ -25,12 +25,12 @@ namespace ssl.Modules.Commands
         public static void GiveItem(string id)
         {
             Client client = ConsoleSystem.Caller;
-            Player.Player player = (Player.Player)client.Pawn;
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
             ItemFactory itemFactory = new();
             try
             {
                 Item item = itemFactory.Create(id);
-                if (null != player.Inventory.Add(item)) return;
+                if (null != sslPlayer.Inventory.Add(item)) return;
                 Log.Info($"Cannot give {id}, inventory full.");
                 item.Delete();
             }
@@ -46,13 +46,13 @@ namespace ssl.Modules.Commands
         public static void SpawnItem(string id)
         {
             Client client = ConsoleSystem.Caller;
-            Player.Player player = (Player.Player) client.Pawn;
+            Player.SslPlayer sslPlayer = (Player.SslPlayer) client.Pawn;
             ItemFactory itemFactory = new();
             try
             {
                 Item item = itemFactory.Create(id);
-                item.Position = player.EyePos + player.EyeRot.Forward * 50;
-                item.Rotation = player.EyeRot;
+                item.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
+                item.Rotation = sslPlayer.EyeRot;
                 
                 Log.Info($"{item} has been spawned.");
             }

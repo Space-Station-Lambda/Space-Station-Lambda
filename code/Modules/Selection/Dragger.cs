@@ -16,7 +16,7 @@ namespace ssl.Modules.Selection
         private PhysicsBody holdBody;
         private WeldJoint holdJoint;
         
-        public Dragger(Player.Player player) : base(player)
+        public Dragger(Player.SslPlayer sslPlayer) : base(sslPlayer)
         {
             Activate();
         }
@@ -39,7 +39,7 @@ namespace ssl.Modules.Selection
             else
             {
                 // Updates the position of the "hand" of dragger. 
-                GrabMove(player.EyePos, player.EyeRot.Forward, player.EyeRot);
+                GrabMove(SslPlayer.EyePos, SslPlayer.EyeRot.Forward, SslPlayer.EyeRot);
             }
         }
 
@@ -75,7 +75,7 @@ namespace ssl.Modules.Selection
                 .Breakable(HeldBody.Mass * BreakLinearForce, 0)
                 .Create();
 
-            Dragged.OnDragStart(player);
+            Dragged.OnDragStart(SslPlayer);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ssl.Modules.Selection
             if (Dragged != null)
             {
                 HeldBody.EnableAutoSleeping = true;
-                Dragged.OnDragStop(player);
+                Dragged.OnDragStop(SslPlayer);
             }
             
             HeldBody = null;
@@ -115,9 +115,9 @@ namespace ssl.Modules.Selection
 
         private void TryDrag()
         {
-            if (((IDraggable)Selected).IsDraggable(player))
+            if (((IDraggable)Selected).IsDraggable(SslPlayer))
             {
-                StartDrag(player.EyePos + player.EyeRot.Forward * HoldDistance, player.EyeRot);
+                StartDrag(SslPlayer.EyePos + SslPlayer.EyeRot.Forward * HoldDistance, SslPlayer.EyeRot);
             }
         }
 
@@ -126,7 +126,7 @@ namespace ssl.Modules.Selection
             if (!HeldBody.IsValid())
                 return;
 
-            Dragged.OnDrag(player);
+            Dragged.OnDrag(SslPlayer);
             
             holdBody.Position = startPos + dir * HoldDistance;
             holdBody.Rotation = rot * HeldRot;

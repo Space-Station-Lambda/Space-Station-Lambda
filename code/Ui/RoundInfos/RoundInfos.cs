@@ -27,10 +27,10 @@ namespace ssl.Ui.RoundInfos
         /// <summary>
         /// Add player to the round info
         /// </summary>
-        /// <param name="player">The player to be added</param>
-        private void AddPlayer(Player.Player player)
+        /// <param name="sslPlayer">The player to be added</param>
+        private void AddPlayer(Player.SslPlayer sslPlayer)
         {
-            RoundInfosPlayerLine roudInfosPlayerLine = new(player);
+            RoundInfosPlayerLine roudInfosPlayerLine = new(sslPlayer);
             AddChild(roudInfosPlayerLine);
             roundInfosPlayerLines.Add(roudInfosPlayerLine);
         }
@@ -50,19 +50,19 @@ namespace ssl.Ui.RoundInfos
         {
         }
 
-        private List<Player.Player> PlayersToAdd()
+        private List<Player.SslPlayer> PlayersToAdd()
         {
-            List<Player.Player> players = new();
+            List<Player.SslPlayer> players = new();
             foreach (Client client in Client.All)
             {
-                Player.Player player = (Player.Player)client.Pawn;
+                Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
                 bool founded = false;
                 foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
                 {
-                    if (roundInfosPlayerLine.Player.Equals(player)) founded = true;
+                    if (roundInfosPlayerLine.SslPlayer.Equals(sslPlayer)) founded = true;
                 }
 
-                if (!founded) players.Add(player);
+                if (!founded) players.Add(sslPlayer);
             }
 
             return players;
@@ -73,11 +73,11 @@ namespace ssl.Ui.RoundInfos
             List<RoundInfosPlayerLine> _roundInfosPlayerLines = new();
             foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
             {
-                Player.Player player = roundInfosPlayerLine.Player;
+                Player.SslPlayer sslPlayer = roundInfosPlayerLine.SslPlayer;
                 bool founded = false;
                 foreach (Client client in Client.All)
                 {
-                    if (((Player.Player)client.Pawn).Equals(player)) founded = true;
+                    if (((Player.SslPlayer)client.Pawn).Equals(sslPlayer)) founded = true;
                     break;
                 }
 
@@ -89,9 +89,9 @@ namespace ssl.Ui.RoundInfos
 
         private void UpdatePlayers()
         {
-            List<Player.Player> playersToAdd = PlayersToAdd();
+            List<Player.SslPlayer> playersToAdd = PlayersToAdd();
             List<RoundInfosPlayerLine> roundInfosPlayerLinesToRemove = RoundInfosPlayerLinesToRemove();
-            foreach (Player.Player mainPlayer in playersToAdd)
+            foreach (Player.SslPlayer mainPlayer in playersToAdd)
             {
                 AddPlayer(mainPlayer);
             }

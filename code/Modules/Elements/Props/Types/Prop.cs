@@ -24,19 +24,19 @@ namespace ssl.Modules.Elements.Props.Types
 
         public new PropData Data => (PropData)base.Data;
 
-        public virtual void OnSelectStart(Player.Player player)
+        public virtual void OnSelectStart(Player.SslPlayer sslPlayer)
         {
         }
 
-        public virtual void OnSelectStop(Player.Player player)
+        public virtual void OnSelectStop(Player.SslPlayer sslPlayer)
         {
         }
 
-        public virtual void OnSelect(Player.Player player)
+        public virtual void OnSelect(Player.SslPlayer sslPlayer)
         {
         }
 
-        public virtual void OnInteract(Player.Player player)
+        public virtual void OnInteract(Player.SslPlayer sslPlayer)
         {
         }
 

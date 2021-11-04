@@ -31,10 +31,10 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// <summary>
         /// Using the trash bag on an item on ground will add it to the trash bag
         /// </summary>
-        public override void OnUsePrimary(Player.Player player, ISelectable target)
+        public override void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
         {
-            base.OnUsePrimary(player, target);
-            if (player.Dragger.Selected is Item item) AddToTrashBag(item);
+            base.OnUsePrimary(sslPlayer, target);
+            if (sslPlayer.Dragger.Selected is Item item) AddToTrashBag(item);
         }
 
         /// <summary>

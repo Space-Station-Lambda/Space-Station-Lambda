@@ -1,5 +1,4 @@
-﻿using System;
-using Sandbox;
+﻿using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Roles;
@@ -12,12 +11,12 @@ using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player
 {
-    public partial class Player : Sandbox.Player, ISelectable
+    public partial class SslPlayer : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const float MaxHealth = 100f;
 
-        public Player()
+        public SslPlayer()
         {
             Health = MaxHealth;
             Dragger = new Dragger(this);
@@ -43,19 +42,19 @@ namespace ssl.Player
         public RagdollHandler RagdollHandler { get; }
         public Dragger Dragger { get; }
 
-        public void OnSelectStart(Player player)
+        public void OnSelectStart(SslPlayer sslPlayer)
         {
         }
 
-        public void OnSelectStop(Player player)
+        public void OnSelectStop(SslPlayer sslPlayer)
         {
         }
 
-        public void OnSelect(Player player)
+        public void OnSelect(SslPlayer sslPlayer)
         {
         }
 
-        public void OnInteract(Player player)
+        public void OnInteract(SslPlayer sslPlayer)
         {
         }
 

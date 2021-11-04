@@ -7,12 +7,12 @@ namespace ssl.Modules.Selection
     {
         protected const float Range = 150f;
 
-        protected readonly Player.Player player;
+        protected readonly Player.SslPlayer SslPlayer;
         protected TraceResult traceResult;
 
-        public Selector(Player.Player player)
+        public Selector(Player.SslPlayer sslPlayer)
         {
-            this.player = player;
+            this.SslPlayer = sslPlayer;
         }
 
         public ISelectable Selected { get; private set; }
@@ -30,7 +30,7 @@ namespace ssl.Modules.Selection
                     StartSelection(selectable);
                 }
 
-                Selected.OnSelect(player);
+                Selected.OnSelect(SslPlayer);
             }
             else if (Selected != null)
             {
@@ -40,26 +40,26 @@ namespace ssl.Modules.Selection
 
         public void UseSelected()
         {
-            Selected?.OnInteract(player);
+            Selected?.OnInteract(SslPlayer);
         }
 
         private void StartSelection(ISelectable selectable)
         {
             Selected = selectable;
-            Selected.OnSelectStart(player);
+            Selected.OnSelectStart(SslPlayer);
         }
 
         private void StopSelection()
         {
-            Selected?.OnSelectStop(player);
+            Selected?.OnSelectStop(SslPlayer);
             Selected = null;
         }
 
 
         protected virtual TraceResult GetTraceResult()
         {
-            Vector3 forward = player.EyeRot.Forward;
-            TraceResult tr = TraceSelector(player.EyePos, player.EyePos + forward * Range);
+            Vector3 forward = SslPlayer.EyeRot.Forward;
+            TraceResult tr = TraceSelector(SslPlayer.EyePos, SslPlayer.EyePos + forward * Range);
             return tr;
         }
 
@@ -70,7 +70,7 @@ namespace ssl.Modules.Selection
             TraceResult tr = Trace.Ray(start, end)
                 .UseHitboxes()
                 .HitLayer(CollisionLayer.Water, !inWater)
-                .Ignore(player)
+                .Ignore(SslPlayer)
                 .Run();
 
             return tr;

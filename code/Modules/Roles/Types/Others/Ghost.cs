@@ -20,21 +20,21 @@ namespace ssl.Modules.Roles.Types.Others
 
         public override IEnumerable<string> Clothing => new HashSet<string>();
 
-        public override void OnSpawn(Player.Player player)
+        public override void OnSpawn(Player.SslPlayer sslPlayer)
         {
-            base.OnSpawn(player);
+            base.OnSpawn(sslPlayer);
 
-            player.Transmit = TransmitType.Owner;
-            player.RenderAlpha = RenderingAlpha;
-            player.RemoveCollisionLayer(CollisionLayer.PhysicsProp);
-            player.RemoveCollisionLayer(CollisionLayer.Player);
+            sslPlayer.Transmit = TransmitType.Owner;
+            sslPlayer.RenderAlpha = RenderingAlpha;
+            sslPlayer.RemoveCollisionLayer(CollisionLayer.PhysicsProp);
+            sslPlayer.RemoveCollisionLayer(CollisionLayer.Player);
         }
 
-        public override void OnUnassigned(Player.Player player)
+        public override void OnUnassigned(Player.SslPlayer sslPlayer)
         {
-            base.OnUnassigned(player);
+            base.OnUnassigned(sslPlayer);
 
-            player.RenderAlpha = BasicAlpha;
+            sslPlayer.RenderAlpha = BasicAlpha;
         }
     }
 }

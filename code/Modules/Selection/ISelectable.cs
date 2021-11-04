@@ -7,25 +7,25 @@ namespace ssl.Modules.Selection
         /// <summary>
         /// When the selection started.
         /// </summary>
-        /// <param name="player">The player who select.</param>
-        public void OnSelectStart(Player.Player player);
+        /// <param name="sslPlayer">The player who select.</param>
+        public void OnSelectStart(Player.SslPlayer sslPlayer);
 
         /// <summary>
         /// When the slection stopped.
         /// </summary>
-        /// <param name="player">The player who select.</param>
-        public void OnSelectStop(Player.Player player);
+        /// <param name="sslPlayer">The player who select.</param>
+        public void OnSelectStop(Player.SslPlayer sslPlayer);
 
         /// <summary>
         /// While the is selected.
         /// </summary>
-        /// <param name="player">The player who select.</param>
-        public void OnSelect(Player.Player player);
+        /// <param name="sslPlayer">The player who select.</param>
+        public void OnSelect(Player.SslPlayer sslPlayer);
 
         /// <summary>
         /// Trigger when the action is requested by the player
         /// </summary>
-        /// <param name="player">The player who perform the action.</param>
-        public void OnInteract(Player.Player player);
+        /// <param name="sslPlayer">The player who perform the action.</param>
+        public void OnInteract(Player.SslPlayer sslPlayer);
     }
 }

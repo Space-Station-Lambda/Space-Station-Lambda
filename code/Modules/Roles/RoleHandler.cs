@@ -8,7 +8,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public partial class RoleHandler : EntityComponent<Player.Player>
+    public partial class RoleHandler : EntityComponent<Player.SslPlayer>
     {
 
         private static Dictionary<RolePreferenceType, int> rolesFactors = new()
@@ -37,15 +37,15 @@ namespace ssl.Modules.Roles
         [ServerCmd("select_role_preference")]
         public static void SelectPreference(string roleId, RolePreferenceType preferenceType)
         {
-            Player.Player player = (Player.Player)ConsoleSystem.Caller.Pawn;
-            player.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)ConsoleSystem.Caller.Pawn;
+            sslPlayer.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
         }
 
         [ClientCmd("save_role_preferences")]
         public static void SaveRolePreferences()
         {
-            Player.Player player = (Player.Player)Local.Pawn;
-            player.RoleHandler.SavePreferences();
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)Local.Pawn;
+            sslPlayer.RoleHandler.SavePreferences();
         }
 
         public RolePreferenceType GetPreference(Role role)

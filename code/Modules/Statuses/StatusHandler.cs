@@ -6,7 +6,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Statuses
 {
-    public partial class StatusHandler : EntityComponent<Player.Player>
+    public partial class StatusHandler : EntityComponent<Player.SslPlayer>
     {
 
         public StatusHandler()

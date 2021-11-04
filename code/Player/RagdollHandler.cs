@@ -7,11 +7,11 @@ namespace ssl.Player
     {
         private const float DefaultTime = 6F;
             
-        private Player player;
+        private SslPlayer sslPlayer;
         
-        public RagdollHandler(Player player)
+        public RagdollHandler(SslPlayer sslPlayer)
         {
-            this.player = player;
+            this.sslPlayer = sslPlayer;
             TimeExitRagdoll = Time.Now;
         }
         
@@ -25,11 +25,11 @@ namespace ssl.Player
         /// </summary>
         public void StartRagdoll(float downTime = DefaultTime)
         {
-            Ragdoll ??= SpawnRagdoll(player.Velocity, -1);
-            player.SetParent(Ragdoll);
-            player.EnableAllCollisions = false;
-            player.EnableShadowInFirstPerson = false;
-            player.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), player.EyePos);
+            Ragdoll ??= SpawnRagdoll(sslPlayer.Velocity, -1);
+            sslPlayer.SetParent(Ragdoll);
+            sslPlayer.EnableAllCollisions = false;
+            sslPlayer.EnableShadowInFirstPerson = false;
+            sslPlayer.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), sslPlayer.EyePos);
 
             TimeExitRagdoll = Time.Now + downTime;
         }
@@ -41,18 +41,18 @@ namespace ssl.Player
         {
             if (!Ragdoll.IsValid) return;
             
-            player.Position = Ragdoll.Position;
-            player.Velocity = Vector3.Zero;
+            sslPlayer.Position = Ragdoll.Position;
+            sslPlayer.Velocity = Vector3.Zero;
             
-            player.SetParent(null);
+            sslPlayer.SetParent(null);
             
             Ragdoll.Delete();
             Ragdoll = null;
             
-            player.EnableAllCollisions = true;
-            player.EnableShadowInFirstPerson = true;
+            sslPlayer.EnableAllCollisions = true;
+            sslPlayer.EnableShadowInFirstPerson = true;
             
-            player.Camera = new FirstPersonCamera();
+            sslPlayer.Camera = new FirstPersonCamera();
         }
 
         /// <summary>
@@ -60,13 +60,13 @@ namespace ssl.Player
         /// </summary>
         public PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
         {
-            PlayerCorpse ragdoll = new(player)
+            PlayerCorpse ragdoll = new(sslPlayer)
             {
-                Position = player.Position,
-                Rotation = player.Rotation
+                Position = sslPlayer.Position,
+                Rotation = sslPlayer.Rotation
             };
 
-            ragdoll.CopyFrom(player);
+            ragdoll.CopyFrom(sslPlayer);
             ragdoll.ApplyForceToBone(force, forceBone);
 
             return ragdoll;
@@ -75,22 +75,22 @@ namespace ssl.Player
         [ServerCmd("ragdoll")]
         private static void SetRagdoll(bool state)
         {
-            Player player = (Player)ConsoleSystem.Caller.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
             if (state)
             {
-                player.RagdollHandler.StartRagdoll();
+                sslPlayer.RagdollHandler.StartRagdoll();
             }
             else
             {
-                player.RagdollHandler.StopRagdoll();
+                sslPlayer.RagdollHandler.StopRagdoll();
             }
         }
         
         [AdminCmd("spawn_ragdoll")]
         private static void SpawnRagdoll()
         {
-            Player player = (Player)ConsoleSystem.Caller.Pawn;
-            player.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
+            SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
+            sslPlayer.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
         }
     }
 }

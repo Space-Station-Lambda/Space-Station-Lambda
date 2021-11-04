@@ -24,26 +24,26 @@ namespace ssl.Modules.Roles.Types.Antagonists
 
         public Role SecondaryRole { get; set; }
 
-        public override void OnAssigned(Player.Player player)
+        public override void OnAssigned(Player.SslPlayer sslPlayer)
         {
-            base.OnAssigned(player);
-            player.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
+            base.OnAssigned(sslPlayer);
+            sslPlayer.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
             Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
-            SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(player) ??
+            SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer) ??
                             defaultRole;
-            SecondaryRole.OnAssigned(player);
+            SecondaryRole.OnAssigned(sslPlayer);
         }
 
-        public override void OnSpawn(Player.Player player)
+        public override void OnSpawn(Player.SslPlayer sslPlayer)
         {
-            base.OnSpawn(player);
-            SecondaryRole.OnSpawn(player);
+            base.OnSpawn(sslPlayer);
+            SecondaryRole.OnSpawn(sslPlayer);
         }
 
-        public override void OnUnassigned(Player.Player player)
+        public override void OnUnassigned(Player.SslPlayer sslPlayer)
         {
-            base.OnUnassigned(player);
-            SecondaryRole.OnUnassigned(player);
+            base.OnUnassigned(sslPlayer);
+            SecondaryRole.OnUnassigned(sslPlayer);
         }
     }
 }

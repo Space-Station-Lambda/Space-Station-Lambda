@@ -15,13 +15,13 @@ namespace ssl.Modules.Commands
         public static void SpawnProp(string id)
         {
             Client client = ConsoleSystem.Caller;
-            Player.Player player = (Player.Player)client.Pawn;
+            Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
             PropFactory propFactory = new();
             try
             {
                 Prop prop = propFactory.Create(id);
-                prop.Position = player.EyePos + player.EyeRot.Forward * 50;
-                prop.Rotation = player.EyeRot;
+                prop.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
+                prop.Rotation = sslPlayer.EyeRot;
             }
             catch
             {

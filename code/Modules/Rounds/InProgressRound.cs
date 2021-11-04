@@ -16,7 +16,7 @@ namespace ssl.Modules.Rounds
         {
             int numberOfTraitors = 0;
             int numberOfProtagonists = 0;
-            foreach (Player.Player mainPlayer in Players)
+            foreach (Player.SslPlayer mainPlayer in Players)
             {
                 if (mainPlayer.RoleHandler.Role.Id == TraitorId) numberOfTraitors++;
                 else numberOfProtagonists++;
@@ -40,7 +40,7 @@ namespace ssl.Modules.Rounds
 
                 foreach (Client client in Client.All)
                 {
-                    if (client.Pawn is Player.Player player)
+                    if (client.Pawn is Player.SslPlayer player)
                     {
                         if (spawnPoints.Count > 0)
                         {
@@ -63,9 +63,9 @@ namespace ssl.Modules.Rounds
             }
         }
 
-        public override void OnPlayerKilled(Player.Player player)
+        public override void OnPlayerKilled(Player.SslPlayer sslPlayer)
         {
-            base.OnPlayerKilled(player);
+            base.OnPlayerKilled(sslPlayer);
             if (IsRoundFinished())
             {
                 Finish();
@@ -76,7 +76,7 @@ namespace ssl.Modules.Rounds
         {
             int numberOfTraitors = 0;
             int numberOfProtagonists = 0;
-            foreach (Player.Player mainPlayer in Players)
+            foreach (Player.SslPlayer mainPlayer in Players)
             {
                 if (mainPlayer.RoleHandler.Role is Traitor) numberOfTraitors++;
                 else numberOfProtagonists++;
