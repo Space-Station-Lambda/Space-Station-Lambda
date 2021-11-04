@@ -3,17 +3,11 @@ using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
-    public class Selector
+    public class Selector : EntityComponent<SslPlayer>
     {
         protected const float Range = 150f;
-
-        protected readonly Player.SslPlayer SslPlayer;
+        
         protected TraceResult traceResult;
-
-        public Selector(Player.SslPlayer sslPlayer)
-        {
-            this.SslPlayer = sslPlayer;
-        }
 
         public ISelectable Selected { get; private set; }
         public bool IsSelecting => Selected != null;
@@ -30,7 +24,7 @@ namespace ssl.Modules.Selection
                     StartSelection(selectable);
                 }
 
-                Selected.OnSelect(SslPlayer);
+                Selected.OnSelect(Entity);
             }
             else if (Selected != null)
             {
@@ -40,26 +34,26 @@ namespace ssl.Modules.Selection
 
         public void UseSelected()
         {
-            Selected?.OnInteract(SslPlayer);
+            Selected?.OnInteract(Entity);
         }
 
         private void StartSelection(ISelectable selectable)
         {
             Selected = selectable;
-            Selected.OnSelectStart(SslPlayer);
+            Selected.OnSelectStart(Entity);
         }
 
         private void StopSelection()
         {
-            Selected?.OnSelectStop(SslPlayer);
+            Selected?.OnSelectStop(Entity);
             Selected = null;
         }
 
 
         protected virtual TraceResult GetTraceResult()
         {
-            Vector3 forward = SslPlayer.EyeRot.Forward;
-            TraceResult tr = TraceSelector(SslPlayer.EyePos, SslPlayer.EyePos + forward * Range);
+            Vector3 forward = Entity.EyeRot.Forward;
+            TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * Range);
             return tr;
         }
 
@@ -70,7 +64,7 @@ namespace ssl.Modules.Selection
             TraceResult tr = Trace.Ray(start, end)
                 .UseHitboxes()
                 .HitLayer(CollisionLayer.Water, !inWater)
-                .Ignore(SslPlayer)
+                .Ignore(Entity)
                 .Run();
 
             return tr;

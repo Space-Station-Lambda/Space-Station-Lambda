@@ -1,4 +1,6 @@
-﻿using Sandbox;
+﻿// ReSharper disable UnassignedGetOnlyAutoProperty
+
+using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Roles;
@@ -19,12 +21,12 @@ namespace ssl.Player
         public SslPlayer()
         {
             Health = MaxHealth;
-            Dragger = new Dragger(this);
-            InputHandler = new InputHandler(this);
-            RagdollHandler = new RagdollHandler(this);
-            
+
             if (Host.IsServer)
             {
+                Components.Create<InputHandler>();
+                Components.Create<Dragger>();
+                Components.Create<RagdollHandler>();
                 Components.Create<PlayerInventory>();
                 Components.Create<RoleHandler>();
                 Components.Create<ClothesHandler>();
@@ -32,15 +34,14 @@ namespace ssl.Player
                 Components.Create<StainHandler>();
             }
         }
-
-        public new PlayerInventory Inventory => Components.Get<PlayerInventory>();
-        public RoleHandler RoleHandler => Components.Get<RoleHandler>();
-        public ClothesHandler ClothesHandler => Components.Get<ClothesHandler>();
-        public StatusHandler StatusHandler => Components.Get<StatusHandler>();
-        public StainHandler StainHandler => Components.Get<StainHandler>();
-        public InputHandler InputHandler { get; }
-        public RagdollHandler RagdollHandler { get; }
-        public Dragger Dragger { get; }
+        [BindComponent] public new PlayerInventory Inventory  { get; }
+        [BindComponent] public RoleHandler RoleHandler { get; }
+        [BindComponent] public ClothesHandler ClothesHandler { get; }
+        [BindComponent] public StatusHandler StatusHandler { get; }
+        [BindComponent] public StainHandler StainHandler { get; }
+        [BindComponent] public InputHandler InputHandler { get; }
+        [BindComponent] public RagdollHandler RagdollHandler { get; }
+        [BindComponent] public Dragger Dragger { get; }
 
         public void OnSelectStart(SslPlayer sslPlayer)
         {

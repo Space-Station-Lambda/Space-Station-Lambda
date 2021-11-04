@@ -3,15 +3,12 @@ using ssl.Player.Cameras;
 
 namespace ssl.Player
 {
-    public class RagdollHandler
+    public class RagdollHandler : EntityComponent<SslPlayer>
     {
         private const float DefaultTime = 6F;
-            
-        private SslPlayer sslPlayer;
-        
-        public RagdollHandler(SslPlayer sslPlayer)
+
+        public RagdollHandler()
         {
-            this.sslPlayer = sslPlayer;
             TimeExitRagdoll = Time.Now;
         }
         
@@ -25,11 +22,11 @@ namespace ssl.Player
         /// </summary>
         public void StartRagdoll(float downTime = DefaultTime)
         {
-            Ragdoll ??= SpawnRagdoll(sslPlayer.Velocity, -1);
-            sslPlayer.SetParent(Ragdoll);
-            sslPlayer.EnableAllCollisions = false;
-            sslPlayer.EnableShadowInFirstPerson = false;
-            sslPlayer.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), sslPlayer.EyePos);
+            Ragdoll ??= SpawnRagdoll(Entity.Velocity, -1);
+            Entity.SetParent(Ragdoll);
+            Entity.EnableAllCollisions = false;
+            Entity.EnableShadowInFirstPerson = false;
+            Entity.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), Entity.EyePos);
 
             TimeExitRagdoll = Time.Now + downTime;
         }
@@ -41,18 +38,18 @@ namespace ssl.Player
         {
             if (!Ragdoll.IsValid) return;
             
-            sslPlayer.Position = Ragdoll.Position;
-            sslPlayer.Velocity = Vector3.Zero;
+            Entity.Position = Ragdoll.Position;
+            Entity.Velocity = Vector3.Zero;
             
-            sslPlayer.SetParent(null);
+            Entity.SetParent(null);
             
             Ragdoll.Delete();
             Ragdoll = null;
             
-            sslPlayer.EnableAllCollisions = true;
-            sslPlayer.EnableShadowInFirstPerson = true;
+            Entity.EnableAllCollisions = true;
+            Entity.EnableShadowInFirstPerson = true;
             
-            sslPlayer.Camera = new FirstPersonCamera();
+            Entity.Camera = new FirstPersonCamera();
         }
 
         /// <summary>
@@ -60,13 +57,13 @@ namespace ssl.Player
         /// </summary>
         public PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
         {
-            PlayerCorpse ragdoll = new(sslPlayer)
+            PlayerCorpse ragdoll = new(Entity)
             {
-                Position = sslPlayer.Position,
-                Rotation = sslPlayer.Rotation
+                Position = Entity.Position,
+                Rotation = Entity.Rotation
             };
 
-            ragdoll.CopyFrom(sslPlayer);
+            ragdoll.CopyFrom(Entity);
             ragdoll.ApplyForceToBone(force, forceBone);
 
             return ragdoll;

@@ -1,6 +1,5 @@
 ﻿using Sandbox;
 using Sandbox.Joints;
-using ssl.Player;
 
 namespace ssl.Modules.Selection
 {
@@ -16,7 +15,7 @@ namespace ssl.Modules.Selection
         private PhysicsBody holdBody;
         private WeldJoint holdJoint;
         
-        public Dragger(Player.SslPlayer sslPlayer) : base(sslPlayer)
+        public Dragger() : base()
         {
             Activate();
         }
@@ -39,7 +38,7 @@ namespace ssl.Modules.Selection
             else
             {
                 // Updates the position of the "hand" of dragger. 
-                GrabMove(SslPlayer.EyePos, SslPlayer.EyeRot.Forward, SslPlayer.EyeRot);
+                GrabMove(Entity.EyePos, Entity.EyeRot.Forward, Entity.EyeRot);
             }
         }
 
@@ -75,7 +74,7 @@ namespace ssl.Modules.Selection
                 .Breakable(HeldBody.Mass * BreakLinearForce, 0)
                 .Create();
 
-            Dragged.OnDragStart(SslPlayer);
+            Dragged.OnDragStart(Entity);
         }
 
         /// <summary>
@@ -91,7 +90,7 @@ namespace ssl.Modules.Selection
             if (Dragged != null)
             {
                 HeldBody.EnableAutoSleeping = true;
-                Dragged.OnDragStop(SslPlayer);
+                Dragged.OnDragStop(Entity);
             }
             
             HeldBody = null;
@@ -115,9 +114,9 @@ namespace ssl.Modules.Selection
 
         private void TryDrag()
         {
-            if (((IDraggable)Selected).IsDraggable(SslPlayer))
+            if (((IDraggable)Selected).IsDraggable(Entity))
             {
-                StartDrag(SslPlayer.EyePos + SslPlayer.EyeRot.Forward * HoldDistance, SslPlayer.EyeRot);
+                StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HoldDistance, Entity.EyeRot);
             }
         }
 
@@ -126,7 +125,7 @@ namespace ssl.Modules.Selection
             if (!HeldBody.IsValid())
                 return;
 
-            Dragged.OnDrag(SslPlayer);
+            Dragged.OnDrag(Entity);
             
             holdBody.Position = startPos + dir * HoldDistance;
             holdBody.Rotation = rot * HeldRot;
