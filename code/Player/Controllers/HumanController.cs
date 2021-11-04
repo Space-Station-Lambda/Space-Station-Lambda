@@ -62,12 +62,12 @@ namespace ssl.Player.Controllers
         public Surface GroundSurface { get; set; }
         public float SurfaceFriction { get; set; } = 4;
 
-        public bool IsSprinting { get; set; } = false;
+        public bool IsFrozen { get; set; }
 
 
         public override void Simulate()
         {
-            if (!SslPlayer.RagdollHandler.IsRagdoll)
+            if (!SslPlayer.RagdollHandler.IsRagdoll && !IsFrozen)
             {
                 UpdateBBox();
 

@@ -43,6 +43,12 @@ namespace ssl.Player
         [BindComponent] public RagdollHandler RagdollHandler { get; }
         [BindComponent] public Dragger Dragger { get; }
 
+        public new HumanController Controller
+        {
+            get => (HumanController)base.Controller;
+            private set => base.Controller = value;
+        }
+
         public void OnSelectStart(SslPlayer sslPlayer)
         {
         }
@@ -103,7 +109,7 @@ namespace ssl.Player
         public override void Respawn()
         {
             SetModel(Model);
-
+            
             Controller = new HumanController(this);
             Animator = new HumanAnimator();
             Camera = new FirstPersonCamera();
@@ -135,6 +141,23 @@ namespace ssl.Player
             Respawn(spawnPoint.Position, spawnPoint.Rotation);
         }
 
+        /// <summary>
+        /// Freeze the player in place
+        /// A player freezed can't do anything
+        /// </summary>
+        public void Freeze()
+        {
+            Log.Trace("[Player] Freeze");
+            Controller.IsFrozen = true;
+            // TODO Cancel all allowed actions
+        }
+
+        public void Unfreeze()
+        {
+            Log.Trace("[Player] Unfreeze");
+            Controller.IsFrozen = false;
+        }
+        
         public override void OnKilled()
         {
             LifeState = LifeState.Dead;
@@ -163,7 +186,6 @@ namespace ssl.Player
             EnableAllCollisions = false;
             EnableDrawing = false;
         }
-        
 
         [ClientRpc]
         private void SendTextNotification(string txt)
