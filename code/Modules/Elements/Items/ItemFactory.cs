@@ -10,7 +10,7 @@ namespace ssl.Modules.Elements.Items
         private const string WeaponPrefix = "weapon";
         private const string ItemPrefix = "item";
 
-        private const string FlashlightName = "torchlight";
+        private const string FlashlightName = "flashlight";
         private const string TrashBagName = "trashbag";
         private const string MopName = "mop";
         protected override string BasePath => "data/items";
