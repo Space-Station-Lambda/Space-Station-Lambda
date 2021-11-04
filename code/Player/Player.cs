@@ -12,12 +12,12 @@ using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player
 {
-    public partial class MainPlayer : Sandbox.Player, ISelectable
+    public partial class Player : Sandbox.Player, ISelectable
     {
         private const string Model = "models/citizen/citizen.vmdl";
         private const float MaxHealth = 100f;
 
-        public MainPlayer()
+        public Player()
         {
             Health = MaxHealth;
             Dragger = new Dragger(this);
@@ -43,19 +43,19 @@ namespace ssl.Player
         public RagdollHandler RagdollHandler { get; }
         public Dragger Dragger { get; }
 
-        public void OnSelectStart(MainPlayer player)
+        public void OnSelectStart(Player player)
         {
         }
 
-        public void OnSelectStop(MainPlayer player)
+        public void OnSelectStop(Player player)
         {
         }
 
-        public void OnSelect(MainPlayer player)
+        public void OnSelect(Player player)
         {
         }
 
-        public void OnInteract(MainPlayer player)
+        public void OnInteract(Player player)
         {
         }
 

@@ -7,9 +7,9 @@ namespace ssl.Player
     {
         private const float DefaultTime = 6F;
             
-        private MainPlayer player;
+        private Player player;
         
-        public RagdollHandler(MainPlayer player)
+        public RagdollHandler(Player player)
         {
             this.player = player;
             TimeExitRagdoll = Time.Now;
@@ -75,7 +75,7 @@ namespace ssl.Player
         [ServerCmd("ragdoll")]
         private static void SetRagdoll(bool state)
         {
-            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            Player player = (Player)ConsoleSystem.Caller.Pawn;
             if (state)
             {
                 player.RagdollHandler.StartRagdoll();
@@ -89,7 +89,7 @@ namespace ssl.Player
         [AdminCmd("spawn_ragdoll")]
         private static void SpawnRagdoll()
         {
-            MainPlayer player = (MainPlayer)ConsoleSystem.Caller.Pawn;
+            Player player = (Player)ConsoleSystem.Caller.Pawn;
             player.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
         }
     }

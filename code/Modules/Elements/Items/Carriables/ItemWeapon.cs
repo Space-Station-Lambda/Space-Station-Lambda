@@ -22,7 +22,7 @@ namespace ssl.Modules.Elements.Items.Carriables
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
 
-        public override void OnUsePrimary(MainPlayer player, ISelectable target)
+        public override void OnUsePrimary(Player.Player player, ISelectable target)
         {
             base.OnUsePrimary(player, target);
 
@@ -119,7 +119,7 @@ namespace ssl.Modules.Elements.Items.Carriables
             
             Entity effectEntity;
             
-            if (IsLocalPawn && Local.Pawn is MainPlayer player)
+            if (IsLocalPawn && Local.Pawn is Player.Player player)
             {
                 effectEntity = player.Inventory.ViewModel.HoldingEntity;
                 _ = new Perlin();

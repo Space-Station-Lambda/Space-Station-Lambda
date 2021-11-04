@@ -11,15 +11,15 @@ namespace ssl.Modules.Roles
     public class RoleDistributor
     {
         public Role DefaultRole = new Assistant();
-        private IList<MainPlayer> players;
+        private IList<Player.Player> players;
         public Scenario Scenario;
 
-        public RoleDistributor(Scenario scenario, IList<MainPlayer> players)
+        public RoleDistributor(Scenario scenario, IList<Player.Player> players)
         {
             this.Scenario = scenario;
             this.players = players;
             Log.Info("[RoleDistributor] Remove role for " + this.players.Count);
-            foreach (MainPlayer mainPlayer in this.players)
+            foreach (Player.Player mainPlayer in this.players)
             {
                 mainPlayer.RoleHandler.AssignRole(null);
             }
@@ -47,7 +47,7 @@ namespace ssl.Modules.Roles
 
             Log.Info($"[RoleDistributor] {constraints.Count} Constraints are treated");
             Log.Info($"[RoleDistributor] {GetPlayersWithoutRole().Count} Not have any role");
-            foreach (MainPlayer player in GetPlayersWithoutRole())
+            foreach (Player.Player player in GetPlayersWithoutRole())
             {
                 Log.Info($"[RoleDistributor] Give a role to {player}..");
                 if (GivePreferredRole(player))
@@ -103,10 +103,10 @@ namespace ssl.Modules.Roles
             return returnedPreferences;
         }
 
-        private List<MainPlayer> GetPlayersWithoutRole()
+        private List<Player.Player> GetPlayersWithoutRole()
         {
-            List<MainPlayer> playersWithoutRoles = new();
-            foreach (MainPlayer mainPlayer in players)
+            List<Player.Player> playersWithoutRoles = new();
+            foreach (Player.Player mainPlayer in players)
             {
                 if (mainPlayer.RoleHandler.Role == null) playersWithoutRoles.Add(mainPlayer);
             }
@@ -119,12 +119,12 @@ namespace ssl.Modules.Roles
             return GetPlayersWithRole(role).Count;
         }
 
-        private IEnumerable<MainPlayer> GetPlayersWithRole()
+        private IEnumerable<Player.Player> GetPlayersWithRole()
         {
             return players.Where(mainPlayer => mainPlayer.RoleHandler.Role != null).ToList();
         }
 
-        private List<MainPlayer> GetPlayersWithRole(Role role)
+        private List<Player.Player> GetPlayersWithRole(Role role)
         {
             return players.Where(mainPlayer => role.Equals(mainPlayer.RoleHandler.Role)).ToList();
         }
@@ -134,7 +134,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>If false, the player have the default assistant role</returns>
-        private bool GivePreferredRole(MainPlayer player)
+        private bool GivePreferredRole(Player.Player player)
         {
             Role role = GetPreferedRole(player);
             if (role == null)
@@ -152,7 +152,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="player">The player</param>
         /// <returns>null if the player can't have his prefered role</returns>
-        public Role GetPreferedRole(MainPlayer player)
+        public Role GetPreferedRole(Player.Player player)
         {
             Role roleToAssign = null;
             Dictionary<Role, float> preferences =
@@ -185,7 +185,7 @@ namespace ssl.Modules.Roles
         private bool FulfillConstraint(ScenarioConstraint constraint)
         {
             //Add the preference of the player to the preferencesOfRole for this role
-            Dictionary<MainPlayer, float> preferencesOfRole = GetPlayersWithoutRole()
+            Dictionary<Player.Player, float> preferencesOfRole = GetPlayersWithoutRole()
                 .ToDictionary(mainPlayer => mainPlayer,
                     mainPlayer => mainPlayer.RoleHandler.GetPreferencesNormalised()[constraint.Role]);
             //Get the total of preferences
@@ -194,7 +194,7 @@ namespace ssl.Modules.Roles
             if (total <= 0f)
             {
                 total = preferencesOfRole.Count;
-                foreach (MainPlayer mainPlayer in preferencesOfRole.Keys)
+                foreach (Player.Player mainPlayer in preferencesOfRole.Keys)
                 {
                     preferencesOfRole[mainPlayer] = 1;
                 }
@@ -205,7 +205,7 @@ namespace ssl.Modules.Roles
             float res = (float)random.NextDouble() * total;
             //Search the player with the role
             total = 0;
-            foreach ((MainPlayer player, float preference) in preferencesOfRole)
+            foreach ((Player.Player player, float preference) in preferencesOfRole)
             {
                 total += preference;
                 if (res < total)

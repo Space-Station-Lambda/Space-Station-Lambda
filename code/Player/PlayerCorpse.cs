@@ -20,14 +20,14 @@ namespace ssl.Player
             SetInteractsExclude(CollisionLayer.Player);
         }
         
-        public PlayerCorpse(MainPlayer player) : this()
+        public PlayerCorpse(Player player) : this()
         {
             Player = player;
         }
 
-        [Net] public MainPlayer Player { get; private set; }
+        [Net] public Player Player { get; private set; }
 
-        public void CopyFrom(MainPlayer player)
+        public void CopyFrom(Player player)
         {
             SetModel(player.GetModelName());
             TakeDecalsFrom(player);
@@ -72,35 +72,35 @@ namespace ssl.Player
             }
         }
 
-        public void OnSelectStart(MainPlayer player)
+        public void OnSelectStart(Player player)
         {
         }
 
-        public void OnSelectStop(MainPlayer player)
+        public void OnSelectStop(Player player)
         {
         }
 
-        public void OnSelect(MainPlayer player)
+        public void OnSelect(Player player)
         {
         }
 
-        public void OnInteract(MainPlayer player)
+        public void OnInteract(Player player)
         {
         }
 
-        public void OnDragStart(MainPlayer player)
+        public void OnDragStart(Player player)
         {
         }
 
-        public void OnDragStop(MainPlayer player)
+        public void OnDragStop(Player player)
         {
         }
 
-        public void OnDrag(MainPlayer player)
+        public void OnDrag(Player player)
         {
         }
 
-        public bool IsDraggable(MainPlayer player)
+        public bool IsDraggable(Player player)
         {
             return true;
         }

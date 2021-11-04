@@ -21,7 +21,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// </summary>
         public int Dirtyness { get; private set; }
         
-        public override void OnUsePrimary(MainPlayer player, ISelectable target)
+        public override void OnUsePrimary(Player.Player player, ISelectable target)
         {
             switch (target)
             {

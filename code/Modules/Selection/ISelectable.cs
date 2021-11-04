@@ -8,24 +8,24 @@ namespace ssl.Modules.Selection
         /// When the selection started.
         /// </summary>
         /// <param name="player">The player who select.</param>
-        public void OnSelectStart(MainPlayer player);
+        public void OnSelectStart(Player.Player player);
 
         /// <summary>
         /// When the slection stopped.
         /// </summary>
         /// <param name="player">The player who select.</param>
-        public void OnSelectStop(MainPlayer player);
+        public void OnSelectStop(Player.Player player);
 
         /// <summary>
         /// While the is selected.
         /// </summary>
         /// <param name="player">The player who select.</param>
-        public void OnSelect(MainPlayer player);
+        public void OnSelect(Player.Player player);
 
         /// <summary>
         /// Trigger when the action is requested by the player
         /// </summary>
         /// <param name="player">The player who perform the action.</param>
-        public void OnInteract(MainPlayer player);
+        public void OnInteract(Player.Player player);
     }
 }

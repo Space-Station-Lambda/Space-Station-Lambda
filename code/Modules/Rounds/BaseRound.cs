@@ -35,7 +35,7 @@ namespace ssl.Modules.Rounds
             MilestonesHandler = new MilestonesHandler();
         }
         
-        [Net] public List<MainPlayer> Players { get; private set; } = new();
+        [Net] public List<Player.Player> Players { get; private set; } = new();
         public virtual int RoundDuration => 0;
         public virtual string RoundName => "";
         public float RoundEndTime { get; set; }
@@ -75,14 +75,14 @@ namespace ssl.Modules.Rounds
             RoundEndedEvent?.Invoke(this);
         }
 
-        public void AddPlayer(MainPlayer player)
+        public void AddPlayer(Player.Player player)
         {
             Log.Info($"[Round] Add player {player} to the round");
             Host.AssertServer();
             Players.Add(player);
         }
 
-        public void RemovePlayer(MainPlayer player)
+        public void RemovePlayer(Player.Player player)
         {
             Log.Info($"[Round] Remove player {player} to the round");
             Host.AssertServer();
@@ -91,17 +91,17 @@ namespace ssl.Modules.Rounds
 
         public abstract BaseRound Next();
 
-        public virtual void OnPlayerSpawn(MainPlayer player)
+        public virtual void OnPlayerSpawn(Player.Player player)
         {
             AddPlayer(player);
         }
 
-        public virtual void OnPlayerKilled(MainPlayer player)
+        public virtual void OnPlayerKilled(Player.Player player)
         {
             RemovePlayer(player);
         }
 
-        public virtual void OnPlayerLeave(MainPlayer player)
+        public virtual void OnPlayerLeave(Player.Player player)
         {
         }
 
@@ -147,7 +147,7 @@ namespace ssl.Modules.Rounds
         {
             foreach (Client client in Client.All)
             {
-                Players.Add((MainPlayer)client.Pawn);
+                Players.Add((Player.Player)client.Pawn);
             }
         }
 

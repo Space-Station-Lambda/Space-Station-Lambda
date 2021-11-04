@@ -40,7 +40,7 @@ namespace ssl.Modules.Statuses
         /// When the status is applied to the player.
         /// </summary>
         /// <param name="player">The player who receive the status.</param>
-        public virtual void OnApply(MainPlayer player)
+        public virtual void OnApply(Player.Player player)
         {
         }
 
@@ -48,7 +48,7 @@ namespace ssl.Modules.Statuses
         /// When the status is removed from the player.
         /// </summary>
         /// <param name="player">The player who lost the status.</param>
-        public virtual void OnResolve(MainPlayer player)
+        public virtual void OnResolve(Player.Player player)
         {
         }
 
@@ -56,7 +56,7 @@ namespace ssl.Modules.Statuses
         /// When the timer is finished.
         /// </summary>
         /// <param name="player">When the status timer is finished.</param>
-        public virtual void OnEnd(MainPlayer player)
+        public virtual void OnEnd(Player.Player player)
         {
             OnResolve(player);
         }
@@ -65,7 +65,7 @@ namespace ssl.Modules.Statuses
         /// Each tick the status is on the player
         /// </summary>
         /// <param name="player">The player who is affected</param>
-        public virtual void OnTick(MainPlayer player)
+        public virtual void OnTick(Player.Player player)
         {
             if (!IsInfinite)
             {
@@ -78,7 +78,7 @@ namespace ssl.Modules.Statuses
         /// Check if the status can be removed
         /// </summary>
         /// <param name="player"></param>
-        public virtual void CheckResolve(MainPlayer player)
+        public virtual void CheckResolve(Player.Player player)
         {
             if (TimeLeft < 0)
             {

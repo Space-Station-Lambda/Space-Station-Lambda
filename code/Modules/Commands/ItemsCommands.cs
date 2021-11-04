@@ -14,7 +14,7 @@ namespace ssl.Modules.Commands
         public static void ClearInventory()
         {
             Client client = ConsoleSystem.Caller;
-            MainPlayer player = (MainPlayer)client.Pawn;
+            Player.Player player = (Player.Player)client.Pawn;
             player.Inventory.Clear();
             Log.Info("Your inventory is now clear.");
         }
@@ -25,7 +25,7 @@ namespace ssl.Modules.Commands
         public static void GiveItem(string id)
         {
             Client client = ConsoleSystem.Caller;
-            MainPlayer player = (MainPlayer)client.Pawn;
+            Player.Player player = (Player.Player)client.Pawn;
             ItemFactory itemFactory = new();
             try
             {
@@ -46,7 +46,7 @@ namespace ssl.Modules.Commands
         public static void SpawnItem(string id)
         {
             Client client = ConsoleSystem.Caller;
-            MainPlayer player = (MainPlayer) client.Pawn;
+            Player.Player player = (Player.Player) client.Pawn;
             ItemFactory itemFactory = new();
             try
             {

@@ -7,9 +7,9 @@ namespace ssl.Ui.RoundInfos
 {
     public class RoundInfosPlayerLine : Panel
     {
-        public readonly MainPlayer Player;
+        public readonly Player.Player Player;
 
-        public RoundInfosPlayerLine(MainPlayer player)
+        public RoundInfosPlayerLine(Player.Player player)
         {
             Player = player;
             Log.Info("Création d'un player");

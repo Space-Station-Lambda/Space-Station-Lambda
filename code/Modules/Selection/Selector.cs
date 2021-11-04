@@ -7,10 +7,10 @@ namespace ssl.Modules.Selection
     {
         protected const float Range = 150f;
 
-        protected readonly MainPlayer player;
+        protected readonly Player.Player player;
         protected TraceResult traceResult;
 
-        public Selector(MainPlayer player)
+        public Selector(Player.Player player)
         {
             this.player = player;
         }

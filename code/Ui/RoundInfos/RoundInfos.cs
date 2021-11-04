@@ -28,7 +28,7 @@ namespace ssl.Ui.RoundInfos
         /// Add player to the round info
         /// </summary>
         /// <param name="player">The player to be added</param>
-        private void AddPlayer(MainPlayer player)
+        private void AddPlayer(Player.Player player)
         {
             RoundInfosPlayerLine roudInfosPlayerLine = new(player);
             AddChild(roudInfosPlayerLine);
@@ -50,12 +50,12 @@ namespace ssl.Ui.RoundInfos
         {
         }
 
-        private List<MainPlayer> PlayersToAdd()
+        private List<Player.Player> PlayersToAdd()
         {
-            List<MainPlayer> players = new();
+            List<Player.Player> players = new();
             foreach (Client client in Client.All)
             {
-                MainPlayer player = (MainPlayer)client.Pawn;
+                Player.Player player = (Player.Player)client.Pawn;
                 bool founded = false;
                 foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
                 {
@@ -73,11 +73,11 @@ namespace ssl.Ui.RoundInfos
             List<RoundInfosPlayerLine> _roundInfosPlayerLines = new();
             foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
             {
-                MainPlayer player = roundInfosPlayerLine.Player;
+                Player.Player player = roundInfosPlayerLine.Player;
                 bool founded = false;
                 foreach (Client client in Client.All)
                 {
-                    if (((MainPlayer)client.Pawn).Equals(player)) founded = true;
+                    if (((Player.Player)client.Pawn).Equals(player)) founded = true;
                     break;
                 }
 
@@ -89,9 +89,9 @@ namespace ssl.Ui.RoundInfos
 
         private void UpdatePlayers()
         {
-            List<MainPlayer> playersToAdd = PlayersToAdd();
+            List<Player.Player> playersToAdd = PlayersToAdd();
             List<RoundInfosPlayerLine> roundInfosPlayerLinesToRemove = RoundInfosPlayerLinesToRemove();
-            foreach (MainPlayer mainPlayer in playersToAdd)
+            foreach (Player.Player mainPlayer in playersToAdd)
             {
                 AddPlayer(mainPlayer);
             }

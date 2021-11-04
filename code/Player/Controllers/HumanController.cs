@@ -48,13 +48,13 @@ namespace ssl.Player.Controllers
             unstuck = new Unstuck(this);
         }
         
-        public HumanController(MainPlayer player) : this()
+        public HumanController(Player player) : this()
         {
             if (Host.IsServer) Player = player;
         }
 
 
-        [Net] private MainPlayer Player { get; set; }
+        [Net] private Player Player { get; set; }
         public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
         public float CurrentSpeed => Velocity.Length;
 
@@ -216,7 +216,7 @@ namespace ssl.Player.Controllers
         {
             if (GroundEntity is IDraggable draggable)
             {
-                if (((MainPlayer)Pawn).Dragger.Dragged == draggable)
+                if (((Player)Pawn).Dragger.Dragged == draggable)
                     return;
             }
             

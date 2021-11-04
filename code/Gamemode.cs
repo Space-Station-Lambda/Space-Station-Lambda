@@ -61,7 +61,7 @@ namespace ssl
         private void SpawnPlayer(Client client)
         {
             //Init the player.
-            MainPlayer player = new();
+            Player.Player player = new();
             client.Pawn = player;
             RoundManager.CurrentRound.OnPlayerSpawn(player);
         }

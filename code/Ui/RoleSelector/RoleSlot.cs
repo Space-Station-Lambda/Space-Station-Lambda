@@ -31,7 +31,7 @@ namespace ssl.Ui.RoleSelector
         
         public void Refresh()
         {
-            RolePreferenceType newPreferenceType = ((MainPlayer)Local.Pawn).RoleHandler.GetPreference(role);
+            RolePreferenceType newPreferenceType = ((Player.Player)Local.Pawn).RoleHandler.GetPreference(role);
 
             if (currentSelected == newPreferenceType) return;
             

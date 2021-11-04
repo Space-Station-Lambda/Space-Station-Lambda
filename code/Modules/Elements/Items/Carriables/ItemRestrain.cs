@@ -21,11 +21,11 @@ namespace ssl.Modules.Elements.Items.Carriables
         
         public Lock Lock { get; }
         
-        public override void OnUsePrimary(MainPlayer player, ISelectable target)
+        public override void OnUsePrimary(Player.Player player, ISelectable target)
         {
             base.OnUsePrimary(player, target);
             // Get the player selected and restrain him
-            if (target is MainPlayer targetPlayer)
+            if (target is Player.Player targetPlayer)
             {
                 Status handcuffedStatus = new Restrained(this);
                 targetPlayer.StatusHandler.ApplyStatus(handcuffedStatus);

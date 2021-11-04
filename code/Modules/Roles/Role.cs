@@ -42,7 +42,7 @@ namespace ssl.Modules.Roles
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
-        public virtual void OnAssigned(MainPlayer player)
+        public virtual void OnAssigned(Player.Player player)
         {
         }
 
@@ -50,7 +50,7 @@ namespace ssl.Modules.Roles
         /// Trigger when the player spawn
         /// </summary>
         /// <param name="player"></param>
-        public virtual void OnSpawn(MainPlayer player)
+        public virtual void OnSpawn(Player.Player player)
         {
             foreach (string itemId in Items)
             {
@@ -72,14 +72,14 @@ namespace ssl.Modules.Roles
         /// <summary>
         /// Trigger when the role is unassigned
         /// </summary>
-        public virtual void OnUnassigned(MainPlayer player)
+        public virtual void OnUnassigned(Player.Player player)
         {
         }
 
         /// <summary>
         /// Trigger when a player with the role is killed
         /// </summary>
-        public virtual void OnKilled(MainPlayer player)
+        public virtual void OnKilled(Player.Player player)
         {
             player.RoleHandler.AssignRole(new Ghost());
             player.Respawn(player.Position, player.Rotation);

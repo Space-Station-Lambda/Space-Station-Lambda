@@ -9,24 +9,24 @@ namespace ssl.Modules.Selection
         /// When the drag started.
         /// </summary>
         /// <param name="player">The player who drags.</param>
-        void OnDragStart(MainPlayer player);
+        void OnDragStart(Player.Player player);
 
         /// <summary>
         /// When the drag stopped.
         /// </summary>
         /// <param name="player">The player who drags.</param>
-        void OnDragStop(MainPlayer player);
+        void OnDragStop(Player.Player player);
 
         /// <summary>
         /// While the entity is dragged.
         /// </summary>
         /// <param name="player">The player who drags.</param>
-        void OnDrag(MainPlayer player);
+        void OnDrag(Player.Player player);
 
         /// <summary>
         /// Check if the Draggable can be dragged by the player
         /// </summary>
         /// <param name="player">The player who wants to drag.</param>
-        bool IsDraggable(MainPlayer player);
+        bool IsDraggable(Player.Player player);
     }
 }

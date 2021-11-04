@@ -17,7 +17,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void OnUsePrimary(MainPlayer player, ISelectable target)
+        public override void OnUsePrimary(Player.Player player, ISelectable target)
         {
             //TODO equip the item
         }

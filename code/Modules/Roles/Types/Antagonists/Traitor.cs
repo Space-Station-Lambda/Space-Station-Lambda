@@ -24,7 +24,7 @@ namespace ssl.Modules.Roles.Types.Antagonists
 
         public Role SecondaryRole { get; set; }
 
-        public override void OnAssigned(MainPlayer player)
+        public override void OnAssigned(Player.Player player)
         {
             base.OnAssigned(player);
             player.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
@@ -34,13 +34,13 @@ namespace ssl.Modules.Roles.Types.Antagonists
             SecondaryRole.OnAssigned(player);
         }
 
-        public override void OnSpawn(MainPlayer player)
+        public override void OnSpawn(Player.Player player)
         {
             base.OnSpawn(player);
             SecondaryRole.OnSpawn(player);
         }
 
-        public override void OnUnassigned(MainPlayer player)
+        public override void OnUnassigned(Player.Player player)
         {
             base.OnUnassigned(player);
             SecondaryRole.OnUnassigned(player);

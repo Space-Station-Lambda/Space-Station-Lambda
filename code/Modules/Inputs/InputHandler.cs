@@ -6,9 +6,9 @@ namespace ssl.Modules.Inputs
 {
     public class InputHandler
     {
-        private MainPlayer player;
+        private Player.Player player;
 
-        public InputHandler(MainPlayer player)
+        public InputHandler(Player.Player player)
         {
             this.player = player;
         }

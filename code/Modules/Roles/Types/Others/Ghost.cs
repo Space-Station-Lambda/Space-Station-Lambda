@@ -20,7 +20,7 @@ namespace ssl.Modules.Roles.Types.Others
 
         public override IEnumerable<string> Clothing => new HashSet<string>();
 
-        public override void OnSpawn(MainPlayer player)
+        public override void OnSpawn(Player.Player player)
         {
             base.OnSpawn(player);
 
@@ -30,7 +30,7 @@ namespace ssl.Modules.Roles.Types.Others
             player.RemoveCollisionLayer(CollisionLayer.Player);
         }
 
-        public override void OnUnassigned(MainPlayer player)
+        public override void OnUnassigned(Player.Player player)
         {
             base.OnUnassigned(player);
 

@@ -10,7 +10,7 @@ namespace ssl.Modules.Commands
         public static void ApplySickness()
         {
             Client sender = ConsoleSystem.Caller;
-            MainPlayer player = (MainPlayer)sender.Pawn;
+            Player.Player player = (Player.Player)sender.Pawn;
             player.StatusHandler.ApplyStatus(new Sickness(6));
         }
     }

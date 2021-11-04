@@ -18,7 +18,7 @@ namespace ssl.Modules.Statuses.Types
         public override string Description => "Sickness";
         public override bool IsInfinite => false;
 
-        public override void OnTick(MainPlayer player)
+        public override void OnTick(Player.Player player)
         {
             base.OnTick(player);
             float sicknessRatio = (InitialTime - TimeLeft) / InitialTime;
@@ -28,7 +28,7 @@ namespace ssl.Modules.Statuses.Types
             player.RenderColor = new Color(r, g, b);
         }
 
-        public override void OnResolve(MainPlayer player)
+        public override void OnResolve(Player.Player player)
         {
             player.RenderColor = Color.White;
             base.OnResolve(player);

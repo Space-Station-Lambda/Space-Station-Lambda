@@ -18,7 +18,7 @@ namespace ssl.Player
         [Net, Predicted] public int HoldingSlotNumber { get; private set; }
         public Item HoldingItem => HoldingSlot?.Item;
         public Slot HoldingSlot { get; private set; }
-        private MainPlayer Player => (MainPlayer) Entity;
+        private Player Player => (Player) Entity;
         public HandViewModel ViewModel { get; set; }
 
         public void ProcessHolding(int slotIndex)
