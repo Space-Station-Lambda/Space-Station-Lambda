@@ -9,7 +9,6 @@ namespace ssl
     /// <summary>
     /// Gamemode is the base class for SSL.
     /// </summary>
-    [Library("ssl")]
     public partial class Gamemode : Game
     {
         /// <summary>
