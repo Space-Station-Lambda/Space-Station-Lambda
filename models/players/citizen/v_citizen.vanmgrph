@@ -14,7 +14,7 @@
 					m_id = 1133314288
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -31,7 +31,7 @@
 					m_id = 1205941383
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -46,7 +46,7 @@
 					m_id = 1414089017
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -63,7 +63,7 @@
 					m_id = 660872845
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -77,7 +77,7 @@
 					m_id = 1712449780
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = true
 				m_bPredicted = true
@@ -91,7 +91,7 @@
 					m_id = 1786846365
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -105,7 +105,7 @@
 					m_id = 1322758033
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -127,7 +127,7 @@
 					m_id = 1874579477
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -144,7 +144,7 @@
 					m_id = 1442178442
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -159,7 +159,7 @@
 					m_id = 947135196
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -173,7 +173,7 @@
 					m_id = 1553483055
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = true
 				m_bPredicted = true
@@ -187,7 +187,7 @@
 					m_id = 1744787321
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = true
 				m_bPredicted = true
@@ -201,7 +201,7 @@
 					m_id = 1705107189
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -229,7 +229,7 @@
 					m_id = 2040912413
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -246,7 +246,7 @@
 					m_id = 1861877049
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -260,7 +260,7 @@
 					m_id = 1948856038
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = false
@@ -276,7 +276,7 @@
 					m_id = 750655510
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = false
@@ -291,7 +291,7 @@
 					m_id = 777850505
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = false
@@ -306,7 +306,7 @@
 					m_id = 1091955609
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = false
@@ -323,7 +323,7 @@
 					m_id = 1596905024
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -340,7 +340,7 @@
 					m_id = 1722198213
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -355,7 +355,7 @@
 					m_id = 2048710183
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -372,7 +372,7 @@
 					m_id = 917822622
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -389,7 +389,7 @@
 					m_id = 1285441981
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -406,7 +406,7 @@
 					m_id = 1179231407
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -423,7 +423,7 @@
 					m_id = 1677366560
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -443,7 +443,7 @@
 					m_id = 1234271754
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -460,7 +460,7 @@
 					m_id = 1529188552
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -477,7 +477,7 @@
 					m_id = 826923118
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = true
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -494,7 +494,7 @@
 					m_id = 48706934
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -511,7 +511,7 @@
 					m_id = 582995392
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -590,7 +590,7 @@
 					m_id = 1427661587
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -605,7 +605,7 @@
 					m_id = 893385008
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -620,7 +620,7 @@
 					m_id = 1416508132
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -635,7 +635,7 @@
 					m_id = 143828656
 				}
 				m_previewButton = "ANIMPARAM_BUTTON_NONE"
-				m_bNetwork = true
+				m_bNetwork = false
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = true
@@ -868,7 +868,7 @@
 	}
 	m_previewModels = 
 	[
-		"models/citizen/citizen.vmdl",
+		"models/players/citizen/v_citizen.vmdl",
 	]
 	m_nodes = 
 	[
@@ -886,7 +886,7 @@
 				{
 					m_id = 3734787
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_NE"
@@ -908,7 +908,7 @@
 				{
 					m_id = 5116495
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -963,7 +963,7 @@
 				{
 					m_id = 10666434
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose"
 				m_nFrameIndex = 0
@@ -983,7 +983,7 @@
 				{
 					m_id = 13314778
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "SMG_2H_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -1003,7 +1003,7 @@
 				{
 					m_id = 20220173
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -1043,7 +1043,7 @@
 				{
 					m_id = 20815911
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -1075,7 +1075,7 @@
 				{
 					m_id = 27335223
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -1095,7 +1095,7 @@
 				{
 					m_id = 31752012
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_items = 
 				[
@@ -1192,7 +1192,7 @@
 				{
 					m_id = 33659839
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Attacking"
 				m_nFrameIndex = 3
@@ -1212,7 +1212,7 @@
 				{
 					m_id = 34519731
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HoldItem_LH_Throw_Normal_delta"
@@ -1234,7 +1234,7 @@
 				{
 					m_id = 44406478
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Fingers"
 				m_child1ID = 
@@ -1274,7 +1274,7 @@
 				{
 					m_id = 44592124
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -1294,7 +1294,7 @@
 				{
 					m_id = 51281283
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -1422,7 +1422,7 @@
 				{
 					m_id = 52274056
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -1562,7 +1562,7 @@
 				{
 					m_id = 55936528
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -1610,7 +1610,7 @@
 				{
 					m_id = 57626763
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -1642,7 +1642,7 @@
 				{
 					m_id = 60935388
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -1705,7 +1705,7 @@
 				{
 					m_id = 76050772
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -1737,7 +1737,7 @@
 				{
 					m_id = 78892489
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -1777,7 +1777,7 @@
 				{
 					m_id = 87783558
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -1825,7 +1825,7 @@
 				{
 					m_id = 89058032
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -1873,7 +1873,7 @@
 				{
 					m_id = 90111475
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_LH_Move"
 				m_child1ID = 
@@ -1913,7 +1913,7 @@
 				{
 					m_id = 91040128
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4480.0, 28.0 ]
@@ -1934,7 +1934,7 @@
 				{
 					m_id = 92362426
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -2074,7 +2074,7 @@
 				{
 					m_id = 92818430
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_UpperBody"
 				m_child1ID = 
@@ -2114,7 +2114,7 @@
 				{
 					m_id = 95163520
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "CrouchIdlePose_LowCeiling"
 				m_nFrameIndex = 0
@@ -2134,7 +2134,7 @@
 				{
 					m_id = 95493621
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_CrouchingLow_02"
 				m_nFrameIndex = 0
@@ -2154,7 +2154,7 @@
 				{
 					m_id = 98134428
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_NW"
@@ -2176,7 +2176,7 @@
 				{
 					m_id = 104114289
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Move"
 				m_child1ID = 
@@ -2216,7 +2216,7 @@
 				{
 					m_id = 105259112
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_N"
@@ -2238,7 +2238,7 @@
 				{
 					m_id = 107196430
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -2293,7 +2293,7 @@
 				{
 					m_id = 117751201
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_W"
@@ -2315,7 +2315,7 @@
 				{
 					m_id = 118963955
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -2596,7 +2596,7 @@
 				{
 					m_id = 119418276
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -2644,7 +2644,7 @@
 				{
 					m_id = 129578067
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Blend between different weightlists for upper body compositing based on whether or not WEAPON IS IDLE (not taking actions such as reloading or attacking), and whether or not you are IDLE (movement, so not walking, running, etc)"
 				m_states = 
 				[
@@ -3028,7 +3028,7 @@
 				{
 					m_id = 155852758
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -3156,7 +3156,7 @@
 				{
 					m_id = 156626407
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -3176,7 +3176,7 @@
 				{
 					m_id = 165447400
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "FacialFidget_03"
@@ -3198,7 +3198,7 @@
 				{
 					m_id = 167910153
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "The \"duck\" float parameter doesn\'t stop at 1.0; it goes up to 2.0!\n\n1.0 is \"regular\" crouching, and 2.0 is \"extra low\" crouching, where the poses get pushed as hard as needed to respect the maximum height of 96 units. Ideally, the game will test the space above the player\'s bounding box, and set duck to 2.0 as we approach no space at all above."
 				m_size = [ 368.0, 320.0 ]
@@ -3219,7 +3219,7 @@
 				{
 					m_id = 184545486
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Need this hack to keep the movement state machines alive while playing idles that fully take-over, otherwise the SMs that tag movement can only be there for an IN and not for an EXIT"
 				m_weightListName = "_empty_anim_weightlist"
 				m_child1ID = 
@@ -3259,7 +3259,7 @@
 				{
 					m_id = 188493545
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Because we are cancelling the vast majority of the incoming upper body animation, and the \"Aim Head\" Look At nodes usually live in the weapon chains, we have to put one back in here. It would be technically possible to forego this and just let the original neck/head through but this seemed to produce weird-looking results most of the time."
 				m_childID = 
 				{
@@ -3307,7 +3307,7 @@
 				{
 					m_id = 189516921
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 1088.0, 28.0 ]
@@ -3328,7 +3328,7 @@
 				{
 					m_id = 195658540
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Use tags to figure out if we\'re reloading, and progressively disable the aim chains using a State Machine if so. The reload animation/state could have been post-aim too... but decoupling it potentially allows more flexibility and nicer transition blends."
 				m_states = 
 				[
@@ -3457,7 +3457,7 @@
 				{
 					m_id = 197056323
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -3534,7 +3534,7 @@
 				{
 					m_id = 198508897
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -3597,7 +3597,7 @@
 				{
 					m_id = 201689666
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -3645,7 +3645,7 @@
 				{
 					m_id = 209759353
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_LH_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -3665,7 +3665,7 @@
 				{
 					m_id = 213225180
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "(Run_2X is actually slightly wrong because I set it to 1.66x after deciding what the legs were a bit too fast. But it\'s fine because you can\'t notice.)"
 				m_items = 
 				[
@@ -3858,7 +3858,7 @@
 				{
 					m_id = 224745405
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Move"
 				m_child1ID = 
@@ -3898,7 +3898,7 @@
 				{
 					m_id = 227555572
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Draw_01_delta"
@@ -3920,7 +3920,7 @@
 				{
 					m_id = 229370958
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_LH_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -3940,7 +3940,7 @@
 				{
 					m_id = 229867030
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "SMG_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -3960,7 +3960,7 @@
 				{
 					m_id = 234569918
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -3992,7 +3992,7 @@
 				{
 					m_id = 253453213
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_N"
@@ -4014,7 +4014,7 @@
 				{
 					m_id = 255895969
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -4029,12 +4029,12 @@
 			{
 				_class = "CBlendAnimNode"
 				m_sName = "Blend 1D - Center delta"
-				m_vecPosition = [ -2304.0, -592.0 ]
+				m_vecPosition = [ -2301.0, -608.0 ]
 				m_nNodeID = 
 				{
 					m_id = 255951594
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Fade in the center pose delta only if we are between [not moving] to [the first ring of the 2D Blend]"
 				m_children = 
 				[
@@ -4089,7 +4089,7 @@
 				{
 					m_id = 264411229
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "If we don\'t do this, the Aim Head node will \"cancel out\" any movement that came before itself on the bones in its chain (according to their weights). So head kickback from firing a gun would get reduced by two-thirds. Not good. This is my attempt at a workaround: making Aim Head additive. However, it needs sanitized input that doesn\'t have any head motion if we\'re gonna do this."
 				m_weightListName = "Remove_Head"
 				m_child1ID = 
@@ -4129,7 +4129,7 @@
 				{
 					m_id = 268548634
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -4184,7 +4184,7 @@
 				{
 					m_id = 269857516
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The original upper body rotations (as composited on top of the movements) are brought back in as they were before the pelvis was put in. Otherwise that motion becomes effectively doubled up"
 				m_weightListName = "Only_UpperBody"
 				m_child1ID = 
@@ -4224,7 +4224,7 @@
 				{
 					m_id = 270339095
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -4272,7 +4272,7 @@
 				{
 					m_id = 273666139
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "The \"Idle\" SMs in the Pose Sources are a way to implement a \"long idle pose\" entirely using Animgraph logic. There are a variety of checks in place (must be standing, not moving, not crouching, not attacking...) and if they stay true for X seconds, then we can move on to the state that the long idle pose is hooked up to.\n\nTechnically, this is a feature that would be a lot simpler to handle with an input from the Player Controller, but this is a good showcase of the power of the AnimGraph tools."
 				m_size = [ 592.0, 320.0 ]
@@ -4293,7 +4293,7 @@
 				{
 					m_id = 283342228
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "(Additional benefit: damping the delta center pose makes the transition from moving to idle smoother!!)"
 				m_commentText = "Plugging in the center pose (from Step 01) as a 1D Blend between 0 and the first ring of the 2D Blend is a naive approach with one big downside: the movement of the steps becomes more and more inaccurate as we approach 0.\n\nThe current solution\? Computing the difference between [the default center pose] & [the current center pose], and applying that as a delta that fades in progressively. (100% when standing still, and 0% at a move speed around the first ring.)"
 				m_size = [ 1184.0, 174.0 ]
@@ -4314,7 +4314,7 @@
 				{
 					m_id = 286986567
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Standing_03"
 				m_nFrameIndex = 0
@@ -4334,7 +4334,7 @@
 				{
 					m_id = 293998072
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -4445,7 +4445,7 @@
 				{
 					m_id = 316830707
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -4500,7 +4500,7 @@
 				{
 					m_id = 320027631
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -4532,7 +4532,7 @@
 				{
 					m_id = 331338247
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -4580,7 +4580,7 @@
 				{
 					m_id = 332651487
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -4636,7 +4636,7 @@
 				{
 					m_id = 339386212
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Shotgun_2H_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -4656,7 +4656,7 @@
 				{
 					m_id = 344991687
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "FacialFidget_04"
@@ -4678,7 +4678,7 @@
 				{
 					m_id = 345761469
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -4700,7 +4700,7 @@
 				{
 					m_id = 350620979
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -4732,7 +4732,7 @@
 				{
 					m_id = 355362079
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SwimN"
@@ -4754,7 +4754,7 @@
 				{
 					m_id = 363505556
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4496.0, 28.0 ]
@@ -4775,7 +4775,7 @@
 				{
 					m_id = 367311260
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -4795,7 +4795,7 @@
 				{
 					m_id = 377444004
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Blend between different weightlists for upper body compositing based on whether or not WEAPON IS IDLE (not taking actions such as reloading or attacking), and whether or not you are IDLE (movement, so not walking, running, etc)"
 				m_states = 
 				[
@@ -5085,7 +5085,7 @@
 				{
 					m_id = 377965166
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Crouching_03"
 				m_nFrameIndex = 0
@@ -5105,7 +5105,7 @@
 				{
 					m_id = 379747379
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Reload_01"
@@ -5127,7 +5127,7 @@
 				{
 					m_id = 382273333
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This state machine is responsible for checking if the weapon has been idle for long enough (no actions taken), and if other conditions are also met (must be standing, not crouching, for example)"
 				m_states = 
 				[
@@ -5808,7 +5808,7 @@
 				{
 					m_id = 382772088
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "The \"Model Space blended pose\" nodes are compositing the pose on top of the movement anims using \"world space blending\" (or model space, as it\'s known now). The idle input of each weapon\'s State Machine is a 1D Blend which itself looks at the Duck parameter to know whether it needs to feed the standing pose or ducking pose.\n\nThis causes a problem, however: because the other anims are only created \"against\" the standing pose, we can\'t compute a proper \"PelvisOnly\" additive unless we get the crouched pose out of the way.\n\nCurrently, this is done by duplicating each weapon\'s state machine, and changing the Idle input of that one, so it only ever gets the standing pose. This isn\'t particularly elegant, and means copy/pasting if other inputs are ever to be added... but it works well enough for now!"
 				m_size = [ 656.0, 496.0 ]
@@ -5829,7 +5829,7 @@
 				{
 					m_id = 390251455
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -5877,7 +5877,7 @@
 				{
 					m_id = 390754814
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -6006,7 +6006,7 @@
 				{
 					m_id = 391619027
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -6078,7 +6078,7 @@
 				{
 					m_id = 396295361
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -6155,7 +6155,7 @@
 				{
 					m_id = 397615568
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Full"
 				m_child1ID = 
@@ -6195,7 +6195,7 @@
 				{
 					m_id = 400842860
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -6227,7 +6227,7 @@
 				{
 					m_id = 413559262
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Panic"
 				m_nFrameIndex = 0
@@ -6247,7 +6247,7 @@
 				{
 					m_id = 416886386
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -6310,7 +6310,7 @@
 				{
 					m_id = 417949460
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Shotgun_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -6330,7 +6330,7 @@
 				{
 					m_id = 426982440
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -6362,7 +6362,7 @@
 				{
 					m_id = 430509615
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -6491,7 +6491,7 @@
 				{
 					m_id = 433167958
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Eyes_Blink"
@@ -6513,7 +6513,7 @@
 				{
 					m_id = 446717019
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "There needs to be a distinction between attacking and other \"use\" animations (this is relevant to the \"holditem\" type)"
 				m_size = [ 368.0, 128.0 ]
@@ -6534,7 +6534,7 @@
 				{
 					m_id = 451886430
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_SE"
@@ -6556,7 +6556,7 @@
 				{
 					m_id = 463782911
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_SW"
@@ -6578,7 +6578,7 @@
 				{
 					m_id = 480127671
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -6626,7 +6626,7 @@
 				{
 					m_id = 483617363
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "Implement RH variant"
 				m_size = [ 375.0, 98.0 ]
@@ -6647,7 +6647,7 @@
 				{
 					m_id = 483872748
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -6667,7 +6667,7 @@
 				{
 					m_id = 484478564
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Full"
 				m_child1ID = 
@@ -6707,7 +6707,7 @@
 				{
 					m_id = 485328404
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -6727,7 +6727,7 @@
 				{
 					m_id = 500742143
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -6767,7 +6767,7 @@
 				{
 					m_id = 503036300
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -6815,7 +6815,7 @@
 				{
 					m_id = 505062400
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "DeltaPelvisCompositingSource_NoPelvis"
 				m_child1ID = 
@@ -6855,7 +6855,7 @@
 				{
 					m_id = 506302857
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Noclip_Start_delta"
@@ -6877,7 +6877,7 @@
 				{
 					m_id = 509286395
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This SM isn\'t dictating what the movement state is... it\'s *detecting* it. It checks for speed values etc. in order to set Tags! This node also handles the reset of the movement anim cycle (so that movement always starts the same way)"
 				m_states = 
 				[
@@ -7288,7 +7288,7 @@
 				{
 					m_id = 515530287
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -7398,7 +7398,7 @@
 				{
 					m_id = 519808182
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -7688,7 +7688,7 @@
 				{
 					m_id = 527589190
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_LH_Idle"
 				m_child1ID = 
@@ -7728,7 +7728,7 @@
 				{
 					m_id = 529717570
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The original upper body rotations (as composited on top of the movements) are brought back in as they were before the pelvis was put in. Otherwise that motion becomes effectively doubled up"
 				m_weightListName = "Only_UpperBody"
 				m_child1ID = 
@@ -7768,7 +7768,7 @@
 				{
 					m_id = 531209404
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Fetch original whole-body movement in Child1, then the Child2 input applies the hold_* and IKrule bones positions in parent space from the weapon\'s branch."
 				m_weightListName = "Only_Holds_and_IK_hands"
 				m_child1ID = 
@@ -7808,7 +7808,7 @@
 				{
 					m_id = 535830434
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 2272.0, 28.0 ]
@@ -7829,7 +7829,7 @@
 				{
 					m_id = 537450518
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Move"
 				m_child1ID = 
@@ -7869,7 +7869,7 @@
 				{
 					m_id = 538031385
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "When switching between weapon A to B, weapon B could start with Idle Aim chains enabled. The \"Time in State\" condition check here is a safeguard that prevents this."
 				m_states = 
 				[
@@ -7949,7 +7949,7 @@
 						{
 							m_id = 1228346111
 						}
-						m_position = [ 178.0, -144.0 ]
+						m_position = [ 176.0, -144.0 ]
 						m_bIsStartState = false
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -8007,7 +8007,7 @@
 						{
 							m_id = 1975384318
 						}
-						m_position = [ -103.0, -19.0 ]
+						m_position = [ -112.0, -32.0 ]
 						m_bIsStartState = true
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -8033,7 +8033,7 @@
 				{
 					m_id = 540547917
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -8081,7 +8081,7 @@
 				{
 					m_id = 559530876
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 371.0, 28.0 ]
@@ -8102,7 +8102,7 @@
 				{
 					m_id = 566113606
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -8142,7 +8142,7 @@
 				{
 					m_id = 571667285
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "bindPose"
@@ -8164,7 +8164,7 @@
 				{
 					m_id = 577320921
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Reload_01_exit"
@@ -8186,7 +8186,7 @@
 				{
 					m_id = 581719747
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -8314,7 +8314,7 @@
 				{
 					m_id = 585075286
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -8346,7 +8346,7 @@
 				{
 					m_id = 592747523
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -8409,7 +8409,7 @@
 				{
 					m_id = 607842145
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "If helper bones were attempted to be \"written\" to at any point during the graph, they will appear somewhat jittery! This node restores them to their clean starting slate using a bindPose frame."
 				m_weightListName = "Only_Helpers"
 				m_child1ID = 
@@ -8449,7 +8449,7 @@
 				{
 					m_id = 611462345
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -8673,7 +8673,7 @@
 				{
 					m_id = 620015896
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -8727,7 +8727,7 @@
 				{
 					m_id = 620338767
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "A gun firing needs to be able to arbitrarily repeat as fast as possible, so \"Always Evaluate\" is on here... but that prevents other things from being implemented cleanly, so the attack lives in its own SM."
 				m_states = 
 				[
@@ -8862,7 +8862,7 @@
 				{
 					m_id = 622177005
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose"
 				m_nFrameIndex = 0
@@ -8882,7 +8882,7 @@
 				{
 					m_id = 624825047
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -8906,7 +8906,7 @@
 				{
 					m_id = 625666589
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_N"
@@ -8928,7 +8928,7 @@
 				{
 					m_id = 637521504
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Holds_and_IK_hands"
 				m_child1ID = 
@@ -8968,7 +8968,7 @@
 				{
 					m_id = 647471857
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The original upper body rotations (as composited on top of the movements) are brought back in as they were before the pelvis was put in. Otherwise that motion becomes effectively doubled up"
 				m_weightListName = "Only_UpperBody"
 				m_child1ID = 
@@ -9008,7 +9008,7 @@
 				{
 					m_id = 647828716
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -9028,7 +9028,7 @@
 				{
 					m_id = 649236102
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "Everything needed to composite the weapon pose and gestures (attack, reload...) is sourced here.\n\nRight now, there\'s a sort-of split between \"pre-aim\" and \"post-aim\" animations, that is to say, before VS after [Look At] / [Aim Matrix] nodes.\n\nThere is a better way to do this, but things work just OK enough for now that I\'m not compelled enough to tear everything down just yet."
 				m_size = [ 480.0, 496.0 ]
@@ -9049,7 +9049,7 @@
 				{
 					m_id = 650818093
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_CrouchingLow_04"
 				m_nFrameIndex = 0
@@ -9069,7 +9069,7 @@
 				{
 					m_id = 657973700
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Standing_Idle_01"
 				m_nFrameIndex = 0
@@ -9089,7 +9089,7 @@
 				{
 					m_id = 667298929
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_NW"
@@ -9111,7 +9111,7 @@
 				{
 					m_id = 667333490
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Run"
 				m_child1ID = 
@@ -9151,7 +9151,7 @@
 				{
 					m_id = 674615398
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -9228,7 +9228,7 @@
 				{
 					m_id = 677959629
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -9276,7 +9276,7 @@
 				{
 					m_id = 679008941
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This choice node will constantly pick a new animation at random. The two inputs: \"eyes open\" for 1s, and a short blink. The probability is set to 85/15. The result: every second, there\'s a 15% chance to blink, and each blink has a 15% chance to get another blink right behind it."
 				m_children = 
 				[
@@ -9323,7 +9323,7 @@
 				{
 					m_id = 681726834
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -9343,7 +9343,7 @@
 				{
 					m_id = 688260769
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -9375,7 +9375,7 @@
 				{
 					m_id = 691412695
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Reload_01_delta"
@@ -9397,7 +9397,7 @@
 				{
 					m_id = 692942140
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -9460,7 +9460,7 @@
 				{
 					m_id = 695637243
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -9600,7 +9600,7 @@
 				{
 					m_id = 696201853
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -9648,7 +9648,7 @@
 				{
 					m_id = 698541416
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_LH_Full"
 				m_child1ID = 
@@ -9688,7 +9688,7 @@
 				{
 					m_id = 717068246
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -9736,7 +9736,7 @@
 				{
 					m_id = 723029269
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "FacialFidget_02"
@@ -9758,7 +9758,7 @@
 				{
 					m_id = 735989307
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "TAG - disable eye look\n"
 				m_tagSpans = 
 				[
@@ -9791,7 +9791,7 @@
 				{
 					m_id = 736226070
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "IdleMenu_Exit_In_delta"
@@ -9813,7 +9813,7 @@
 				{
 					m_id = 757426854
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -9845,7 +9845,7 @@
 				{
 					m_id = 757953372
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Don\'t reset base child here so the idle keeps cycling normally even if the noclip state itself keeps getting cycled (through repeated \"early\" ins/outs)"
 				m_baseChildID = 
 				{
@@ -9877,7 +9877,7 @@
 				{
 					m_id = 763436071
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_RH_Full"
 				m_child1ID = 
@@ -9917,7 +9917,7 @@
 				{
 					m_id = 768999794
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -9965,7 +9965,7 @@
 				{
 					m_id = 770235078
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -10002,7 +10002,7 @@
 				{
 					m_id = 773026807
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Attack_01_delta"
@@ -10024,7 +10024,7 @@
 				{
 					m_id = 775986261
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Noclip_Idle"
@@ -10046,7 +10046,7 @@
 				{
 					m_id = 777506612
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -10066,7 +10066,7 @@
 				{
 					m_id = 783748628
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_E"
@@ -10088,7 +10088,7 @@
 				{
 					m_id = 790605251
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -10217,7 +10217,7 @@
 				{
 					m_id = 792409217
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "Holdtypes are how something is held... usually a weapon.\n\nRight now, they are specifically reference weapons.\n\nThe LONG-TERM GOAL is to have fewer, but more universal+configurable types. Think something like selecting 1-handed vs 2-handed, which kind of attack and reload animations (if any) there should be, and how the pose should be (with hand poses and such also being configurable)\n\nThis way, it reduces the likelihood that someone would have to make extensive changes for their gamemode. The more use cases can be comfortably covered by this \"base\", the better."
 				m_size = [ 512.0, 496.0 ]
@@ -10238,7 +10238,7 @@
 				{
 					m_id = 797424782
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4672.0, 28.0 ]
@@ -10259,7 +10259,7 @@
 				{
 					m_id = 802860766
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "SMG_2H_Pose_Standing_Idle_01"
 				m_nFrameIndex = 0
@@ -10279,7 +10279,7 @@
 				{
 					m_id = 807335923
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This state machine is responsible for checking if the weapon has been idle for long enough (no actions taken), and if other conditions are also met (must be standing, not crouching, for example)"
 				m_states = 
 				[
@@ -10960,7 +10960,7 @@
 				{
 					m_id = 811720563
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -11100,7 +11100,7 @@
 				{
 					m_id = 811925905
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -11381,7 +11381,7 @@
 				{
 					m_id = 823831900
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The idea behind this branch was to turn the feet IK targets into jigglebones that would stay far away enough to keep the legs straight, then turn that result into an additive that would effectively result in legs dragging behind you & having inertia when flying around in noclip mode. HOWEVER, even in worldspace mode, the Jiggle Bone nodes don\'t implement the concept of air drag, so while the legs would drag far behind you when flying forwards, they would eventually bounce back forwards because there wouldn\'t be any \"fake\" \"air drag\" to keep them behind."
 				m_commentText = "(Click on this node to read its note.)"
 				m_size = [ 373.0, 62.0 ]
@@ -11402,7 +11402,7 @@
 				{
 					m_id = 830356252
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Noclip is something that effectively overrides all other movement types, so its SM comes last in the chain of all \"movement SMs\". Either you\'re noclipping, and you\'re not doing anything else by definition, or you\'re not noclipping, and you have a \"normal\" movement state, defined further left. So this SM is the one that feeds the result of the movement branch to the weapon branches above! If we are noclip, then none of the idle/walking/running tags should be able to get triggered since the branch in which their \"tag setter\" is located gets cut off."
 				m_states = 
 				[
@@ -11779,7 +11779,7 @@
 				{
 					m_id = 833763258
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -11816,7 +11816,7 @@
 				{
 					m_id = 844993412
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "When switching between weapon A to B, weapon B could start with Idle Aim chains enabled. The \"Time in State\" condition check here is a safeguard that prevents this."
 				m_states = 
 				[
@@ -11980,7 +11980,7 @@
 				{
 					m_id = 851123708
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -12028,7 +12028,7 @@
 				{
 					m_id = 859100630
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SitPoseDefault"
@@ -12050,7 +12050,7 @@
 				{
 					m_id = 866254719
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Eyelids"
 				m_child1ID = 
@@ -12090,7 +12090,7 @@
 				{
 					m_id = 866400192
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "DeltaPelvisCompositingSource"
 				m_child1ID = 
@@ -12130,7 +12130,7 @@
 				{
 					m_id = 883344777
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -12270,7 +12270,7 @@
 				{
 					m_id = 893934444
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -12626,7 +12626,7 @@
 				{
 					m_id = 916901547
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Shotgun_2H_Pose_Standing_Idle_01"
 				m_nFrameIndex = 0
@@ -12646,7 +12646,7 @@
 				{
 					m_id = 921955730
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -12694,7 +12694,7 @@
 				{
 					m_id = 923531284
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -12834,7 +12834,7 @@
 				{
 					m_id = 933547013
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "IdlePose_Default"
 				m_nFrameIndex = 0
@@ -12854,7 +12854,7 @@
 				{
 					m_id = 940080085
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -13198,7 +13198,7 @@
 				{
 					m_id = 946508919
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Draw_delta"
@@ -13220,7 +13220,7 @@
 				{
 					m_id = 948652424
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -13252,7 +13252,7 @@
 				{
 					m_id = 951038986
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Falling"
@@ -13274,7 +13274,7 @@
 				{
 					m_id = 952701847
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -13345,7 +13345,7 @@
 				{
 					m_id = 963248500
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 2145.0, 481.0 ]
@@ -13366,7 +13366,7 @@
 				{
 					m_id = 974635641
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Reload_01_entry"
@@ -13388,7 +13388,7 @@
 				{
 					m_id = 974737544
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_RH_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -13408,7 +13408,7 @@
 				{
 					m_id = 981196828
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -13456,7 +13456,7 @@
 				{
 					m_id = 982096737
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -13504,7 +13504,7 @@
 				{
 					m_id = 983395801
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Attacking"
 				m_nFrameIndex = 1
@@ -13524,7 +13524,7 @@
 				{
 					m_id = 984815264
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Noclip_Idle"
@@ -13546,7 +13546,7 @@
 				{
 					m_id = 984887598
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "FacialFidget_01"
@@ -13568,7 +13568,7 @@
 				{
 					m_id = 985251156
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -13605,7 +13605,7 @@
 				{
 					m_id = 985618817
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_RH_Idle"
 				m_child1ID = 
@@ -13645,7 +13645,7 @@
 				{
 					m_id = 986215674
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Used in the \"HoldItem\" holdtype. References a 100-frame (*) animation, so that every digit from 0.00 to 1.00 can land cleanly on the full pose, rather than in-between. Going halfway between specific poses e.g. 0.125 is perfectly valid, though! The relevant parameter is holdtype_pose_hand (float).\n(* Currently only has 18 poses as of the time of writing this comment node.)"
 				m_commentText = "(click to read note...)"
 				m_size = [ 188.0, 60.0 ]
@@ -13666,7 +13666,7 @@
 				{
 					m_id = 988157259
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -13698,7 +13698,7 @@
 				{
 					m_id = 991620686
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Needs two Nothing inputs due to WeightedRandomNoRepeat. We want Nothing to be able to repeat, but we don\'t want any of the fidgets to repeat."
 				m_children = 
 				[
@@ -13754,7 +13754,7 @@
 				{
 					m_id = 995066484
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -13802,7 +13802,7 @@
 				{
 					m_id = 997916151
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -13850,7 +13850,7 @@
 				{
 					m_id = 998884633
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Morphs"
 				m_child1ID = 
@@ -13890,7 +13890,7 @@
 				{
 					m_id = 1005328494
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "1) Need to switch to per-animation tags instead of state tags because not all usages of a \"weapon\" are going to be an \"attack\".\n\nThis is because for the throws, we don\'t necessarily want an angry face. And a use animation for this holdtype could be to drink from a bottle.\n\n2) Need consistency in how wide the arms get in 2H mode, maybe use IK chains"
 				m_size = [ 375.0, 670.0 ]
@@ -13911,7 +13911,7 @@
 				{
 					m_id = 1007255934
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -13931,7 +13931,7 @@
 				{
 					m_id = 1008134879
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Standing_04"
 				m_nFrameIndex = 0
@@ -13951,7 +13951,7 @@
 				{
 					m_id = 1022060687
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -13983,7 +13983,7 @@
 				{
 					m_id = 1022950112
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -14031,7 +14031,7 @@
 				{
 					m_id = 1024201930
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Reload_01"
@@ -14053,7 +14053,7 @@
 				{
 					m_id = 1024859842
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -14090,7 +14090,7 @@
 				{
 					m_id = 1047061742
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Land_delta"
@@ -14112,7 +14112,7 @@
 				{
 					m_id = 1049963638
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -14144,7 +14144,7 @@
 				{
 					m_id = 1061096843
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_E"
@@ -14166,7 +14166,7 @@
 				{
 					m_id = 1066583987
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HandPoses"
@@ -14188,7 +14188,7 @@
 				{
 					m_id = 1073483016
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This state machine checks if you\'re standing and doing nothing for long enough, and plays fidget animations randomly if that is the case\?"
 				m_states = 
 				[
@@ -14325,7 +14325,7 @@
 				{
 					m_id = 1078311000
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Expressions_IdleNoiseLayer"
@@ -14347,7 +14347,7 @@
 				{
 					m_id = 1081477410
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "Additive pelvis is disabled on the Shotgun branch while we figure out a SENSIBLE way to handle reload events (a flexible way to play the start of a reload, each individual reload, and the exit of a reload, while being scalable in speed)"
 				m_size = [ 372.0, 446.0 ]
@@ -14368,7 +14368,7 @@
 				{
 					m_id = 1094063810
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -14503,7 +14503,7 @@
 				{
 					m_id = 1097524216
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_SE"
@@ -14525,7 +14525,7 @@
 				{
 					m_id = 1109484399
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -14596,7 +14596,7 @@
 				{
 					m_id = 1110076542
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HoldItem_RH_Throw_Strong_delta"
@@ -14618,7 +14618,7 @@
 				{
 					m_id = 1112359698
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 387.0, 28.0 ]
@@ -14639,7 +14639,7 @@
 				{
 					m_id = 1113915751
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Crouching_02"
 				m_nFrameIndex = 0
@@ -14659,7 +14659,7 @@
 				{
 					m_id = 1118478640
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 1181.0, 28.0 ]
@@ -14680,7 +14680,7 @@
 				{
 					m_id = 1138653908
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -14720,7 +14720,7 @@
 				{
 					m_id = 1140851394
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4480.0, 28.0 ]
@@ -14741,7 +14741,7 @@
 				{
 					m_id = 1146838027
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Move"
 				m_child1ID = 
@@ -14781,7 +14781,7 @@
 				{
 					m_id = 1160860374
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -14821,7 +14821,7 @@
 				{
 					m_id = 1161157102
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -14853,7 +14853,7 @@
 				{
 					m_id = 1168245162
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_S"
@@ -14875,7 +14875,7 @@
 				{
 					m_id = 1171505945
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -14923,7 +14923,7 @@
 				{
 					m_id = 1175469056
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -15047,12 +15047,12 @@
 			{
 				_class = "CBlendAnimNode"
 				m_sName = "Blend 1D - Duck"
-				m_vecPosition = [ -1920.0, -560.0 ]
+				m_vecPosition = [ -1917.0, -560.0 ]
 				m_nNodeID = 
 				{
 					m_id = 1176432092
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -15115,7 +15115,7 @@
 				{
 					m_id = 1179797376
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "IdleLayer_Breathe_delta"
@@ -15137,7 +15137,7 @@
 				{
 					m_id = 1182396459
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_W"
@@ -15159,7 +15159,7 @@
 				{
 					m_id = 1184263888
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Standing_02"
 				m_nFrameIndex = 0
@@ -15179,7 +15179,7 @@
 				{
 					m_id = 1191026274
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -15239,7 +15239,7 @@
 				{
 					m_id = 1192326726
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -15287,7 +15287,7 @@
 				{
 					m_id = 1193498997
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -15335,7 +15335,7 @@
 				{
 					m_id = 1202533654
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The original upper body rotations (as composited on top of the movements) are brought back in as they were before the pelvis was put in. Otherwise that motion becomes effectively doubled up"
 				m_weightListName = "Only_UpperBody"
 				m_child1ID = 
@@ -15375,7 +15375,7 @@
 				{
 					m_id = 1205733630
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -15417,7 +15417,7 @@
 				{
 					m_id = 1219797409
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_SW"
@@ -15439,7 +15439,7 @@
 				{
 					m_id = 1221129568
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -15487,7 +15487,7 @@
 				{
 					m_id = 1221789499
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "IdlePose_Default"
 				m_nFrameIndex = 0
@@ -15507,7 +15507,7 @@
 				{
 					m_id = 1223815227
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Jump"
@@ -15529,7 +15529,7 @@
 				{
 					m_id = 1226252395
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_RH_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -15549,7 +15549,7 @@
 				{
 					m_id = 1229324925
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -15581,7 +15581,7 @@
 				{
 					m_id = 1231836749
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -15641,7 +15641,7 @@
 				{
 					m_id = 1239708077
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -15701,7 +15701,7 @@
 				{
 					m_id = 1240987964
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_Pelvis"
 				m_child1ID = 
@@ -15741,7 +15741,7 @@
 				{
 					m_id = 1264061614
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -15870,7 +15870,7 @@
 				{
 					m_id = 1268452721
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -15902,7 +15902,7 @@
 				{
 					m_id = 1288092477
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -15957,7 +15957,7 @@
 				{
 					m_id = 1292126990
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_LeftHand_Fingers"
 				m_child1ID = 
@@ -15997,7 +15997,7 @@
 				{
 					m_id = 1302088909
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -16017,7 +16017,7 @@
 				{
 					m_id = 1306574413
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "You could parent a crate to the attachment \"middle_of_both_hands\"... then set \"holdtype_handedness\" to 2H, \"holdtype_pose\" to 4 (hands far apart, heavy), and an appropriate \"holdtype_pose_hand\" (like 0.02)."
 				m_size = [ 426.0, 194.0 ]
@@ -16038,7 +16038,7 @@
 				{
 					m_id = 1318183572
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -16070,7 +16070,7 @@
 				{
 					m_id = 1327441636
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -16090,7 +16090,7 @@
 				{
 					m_id = 1344927959
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "SMG_2H_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -16110,7 +16110,7 @@
 				{
 					m_id = 1347531432
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -16158,7 +16158,7 @@
 				{
 					m_id = 1348778745
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -16190,7 +16190,7 @@
 				{
 					m_id = 1349930633
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -16222,7 +16222,7 @@
 				{
 					m_id = 1353146373
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Land"
@@ -16244,7 +16244,7 @@
 				{
 					m_id = 1356554811
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -16373,7 +16373,7 @@
 				{
 					m_id = 1365759779
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -16405,7 +16405,7 @@
 				{
 					m_id = 1389216160
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -16453,7 +16453,7 @@
 				{
 					m_id = 1391393136
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Crouching_04"
 				m_nFrameIndex = 0
@@ -16473,7 +16473,7 @@
 				{
 					m_id = 1400101249
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "The idea here was to make Aim Head a completely additive node. This is because Look Chains take absolute control of bones (according to the weights defined in ModelDoc for a particular chain), and the way they do so is... a bit weird and unintuitive at first\?"
 				m_commentText = "(Click on this node to read its note.)"
 				m_size = [ 351.0, 62.0 ]
@@ -16494,7 +16494,7 @@
 				{
 					m_id = 1400541335
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Idle"
 				m_child1ID = 
@@ -16534,7 +16534,7 @@
 				{
 					m_id = 1402869356
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "ReduceBonesBy50Percent"
 				m_child1ID = 
@@ -16574,7 +16574,7 @@
 				{
 					m_id = 1406355439
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Full"
 				m_child1ID = 
@@ -16614,7 +16614,7 @@
 				{
 					m_id = 1407345693
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -16662,7 +16662,7 @@
 				{
 					m_id = 1407868694
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Needs two Nothing inputs due to WeightedRandomNoRepeat. We want Nothing to be able to repeat, but we don\'t want any of the fidgets to repeat."
 				m_children = 
 				[
@@ -16745,7 +16745,7 @@
 				{
 					m_id = 1409704718
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SMG_2H_Reload_01"
@@ -16767,7 +16767,7 @@
 				{
 					m_id = 1414740341
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This is, effectively speaking, the \"none\" weapon branch."
 				m_states = 
 				[
@@ -16896,7 +16896,7 @@
 				{
 					m_id = 1420086429
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -16959,7 +16959,7 @@
 				{
 					m_id = 1422116875
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -16991,7 +16991,7 @@
 				{
 					m_id = 1422452847
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_CrouchingLow_03"
 				m_nFrameIndex = 0
@@ -17011,7 +17011,7 @@
 				{
 					m_id = 1424234691
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "If crouching, don\'t use the weaponless body look chain"
 				m_children = 
 				[
@@ -17066,7 +17066,7 @@
 				{
 					m_id = 1424385152
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_items = 
 				[
@@ -17163,7 +17163,7 @@
 				{
 					m_id = 1426917551
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -17218,7 +17218,7 @@
 				{
 					m_id = 1441156180
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "The big lines coming out of the Noclip SM are what is feeding each weapon branch\'s \"Parent space holds+IK\" node. \n\nIn a way, so far, you can think of us having set up the \"lower body\", so far, and now we\'re going up to set up the \"upper body\".\n\n(In reality, we also do set up some of the upper body here, but it\'s not a bad way to think about it)"
 				m_size = [ 354.0, 384.0 ]
@@ -17239,7 +17239,7 @@
 				{
 					m_id = 1449392910
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "CrouchIdlePose_Low"
 				m_nFrameIndex = 0
@@ -17259,7 +17259,7 @@
 				{
 					m_id = 1456003713
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -17307,7 +17307,7 @@
 				{
 					m_id = 1457131411
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Fetch original whole-body movement in Child1, then the Child2 input applies the hold_* and IKrule bones positions in parent space from the weapon\'s branch."
 				m_weightListName = "Only_Holds_and_IK_hands"
 				m_child1ID = 
@@ -17347,7 +17347,7 @@
 				{
 					m_id = 1458689683
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -17410,7 +17410,7 @@
 				{
 					m_id = 1458846097
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_W"
@@ -17432,7 +17432,7 @@
 				{
 					m_id = 1463624701
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4480.0, 28.0 ]
@@ -17453,7 +17453,7 @@
 				{
 					m_id = 1469909658
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -17593,7 +17593,7 @@
 				{
 					m_id = 1471043247
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Attacking"
 				m_nFrameIndex = 2
@@ -17613,7 +17613,7 @@
 				{
 					m_id = 1471704119
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 1488.0, 481.0 ]
@@ -17634,7 +17634,7 @@
 				{
 					m_id = 1491194561
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HoldItem_RH_Throw_Normal_delta"
@@ -17656,7 +17656,7 @@
 				{
 					m_id = 1491375752
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_NE"
@@ -17678,7 +17678,7 @@
 				{
 					m_id = 1497857068
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_E"
@@ -17700,7 +17700,7 @@
 				{
 					m_id = 1503929865
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_items = 
 				[
@@ -17797,7 +17797,7 @@
 				{
 					m_id = 1504268170
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -17829,7 +17829,7 @@
 				{
 					m_id = 1515825202
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "When switching between weapon A to B, weapon B could start with Idle Aim chains enabled. The \"Time in State\" condition check here is a safeguard that prevents this."
 				m_states = 
 				[
@@ -17993,7 +17993,7 @@
 				{
 					m_id = 1517832988
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -18041,7 +18041,7 @@
 				{
 					m_id = 1520206981
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Attack_01_delta"
@@ -18063,7 +18063,7 @@
 				{
 					m_id = 1525416610
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -18118,7 +18118,7 @@
 				{
 					m_id = 1526759943
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -18178,7 +18178,7 @@
 				{
 					m_id = 1527735363
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -18238,7 +18238,7 @@
 				{
 					m_id = 1552600578
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -18275,7 +18275,7 @@
 				{
 					m_id = 1554348337
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -18553,7 +18553,7 @@
 				{
 					m_id = 1562873133
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_NW"
@@ -18575,7 +18575,7 @@
 				{
 					m_id = 1565270570
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Turn off feet IK when it\'s irrelevant. (Needs to be updated to use tags instead of individual states!)"
 				m_states = 
 				[
@@ -18894,7 +18894,7 @@
 				{
 					m_id = 1572962408
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -18957,7 +18957,7 @@
 				{
 					m_id = 1578887494
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -18989,7 +18989,7 @@
 				{
 					m_id = 1587324072
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Eyes_Open"
@@ -19011,7 +19011,7 @@
 				{
 					m_id = 1620315250
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_Moving_01"
 				m_nFrameIndex = 0
@@ -19031,7 +19031,7 @@
 				{
 					m_id = 1622118534
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -19063,7 +19063,7 @@
 				{
 					m_id = 1625671398
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -19111,7 +19111,7 @@
 				{
 					m_id = 1626109909
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -19185,7 +19185,7 @@
 				{
 					m_id = 1634919762
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -19240,7 +19240,7 @@
 				{
 					m_id = 1635521753
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -19260,7 +19260,7 @@
 				{
 					m_id = 1643482175
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Idle"
 				m_child1ID = 
@@ -19300,7 +19300,7 @@
 				{
 					m_id = 1666229981
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -19393,7 +19393,7 @@
 				{
 					m_id = 1674025614
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "In Step 01, we are \"creating\" the Central Poses for each weapon state (as well as no weapon), which is the default, and down here, to the left).\n\nThe weapon branches are handling upper body compositing, but each Pose also affects the lower body! So we need to come down here before we go back up (with our walk/run/etc. cycles)."
 				m_size = [ 448.0, 368.0 ]
@@ -19414,7 +19414,7 @@
 				{
 					m_id = 1675355091
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -19448,7 +19448,7 @@
 				{
 					m_id = 1680023017
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SMG_2H_Draw_01_delta"
@@ -19470,7 +19470,7 @@
 				{
 					m_id = 1680406805
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Attack_01"
@@ -19492,7 +19492,7 @@
 				{
 					m_id = 1680878807
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SMG_2H_Reload_01_delta"
@@ -19514,7 +19514,7 @@
 				{
 					m_id = 1686923816
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "TAG: disable eye look"
 				m_tagSpans = 
 				[
@@ -19547,7 +19547,7 @@
 				{
 					m_id = 1695651840
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -19579,7 +19579,7 @@
 				{
 					m_id = 1709508831
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -19599,7 +19599,7 @@
 				{
 					m_id = 1713553433
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "If tracking is lost on a limb, your gamemode code should set its IK target pos/rot to follow the original animation. You can do this by fetching the pos/rot of the model-space IK targets (the ones that are children of the root_IK bone)"
 				m_commentText = "Very WIP for now. Click on this node to read its note."
 				m_size = [ 547.0, 62.0 ]
@@ -19620,7 +19620,7 @@
 				{
 					m_id = 1714361796
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -19668,7 +19668,7 @@
 				{
 					m_id = 1731656317
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -19700,7 +19700,7 @@
 				{
 					m_id = 1744728130
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Attacking"
 				m_nFrameIndex = 4
@@ -19720,7 +19720,7 @@
 				{
 					m_id = 1744923354
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 3872.0, 28.0 ]
@@ -19741,7 +19741,7 @@
 				{
 					m_id = 1745432347
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "IdleLayer_Breathe_delta"
@@ -19763,7 +19763,7 @@
 				{
 					m_id = 1749786464
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -19783,7 +19783,7 @@
 				{
 					m_id = 1754938290
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -19803,7 +19803,7 @@
 				{
 					m_id = 1756118045
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -19840,7 +19840,7 @@
 				{
 					m_id = 1756322918
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -19872,7 +19872,7 @@
 				{
 					m_id = 1760300339
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -19892,7 +19892,7 @@
 				{
 					m_id = 1773287730
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -19940,7 +19940,7 @@
 				{
 					m_id = 1782851632
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "These poses are used in compositing the upper body (defining how a weapon is held), but also serve as the \"center\" pose of an imaginary 9-way blendspace.\n\nPicture the 8-way directional blendspaces for walking, running, etc. seen below. They don\'t have a center node, but if you think of them as having a constant speed property (which they do), then their center could be expressed as having a Speed of zero.\n\nBy tying these two inputs together, [center pose] -- [8-way blendspace] into a 1D Blendspace, we are creating a pseudo 2D Blendspace, but whose center can be changed on the fly, which is not currently possible with regular 2D Blend nodes.\n\nThe \"single frame\" node is used to feed these poses in; this theoretically offers better performance than a regular sequence, even if it\'s 30 frames of not moving at all."
 				m_size = [ 613.0, 342.0 ]
@@ -19961,7 +19961,7 @@
 				{
 					m_id = 1786656422
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Fetch original whole-body movement in Child1, then the Child2 input applies the hold_* and IKrule bones positions in parent space from the weapon\'s branch."
 				m_weightListName = "Only_Holds_and_IK_hands"
 				m_child1ID = 
@@ -20001,7 +20001,7 @@
 				{
 					m_id = 1797122785
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Expressions_Attacking"
 				m_nFrameIndex = 0
@@ -20021,7 +20021,7 @@
 				{
 					m_id = 1801006949
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_states = 
 				[
@@ -20245,7 +20245,7 @@
 				{
 					m_id = 1801290033
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Idle"
 				m_child1ID = 
@@ -20285,7 +20285,7 @@
 				{
 					m_id = 1811002166
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -20333,7 +20333,7 @@
 				{
 					m_id = 1812049405
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -20381,7 +20381,7 @@
 				{
 					m_id = 1813108649
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -20401,7 +20401,7 @@
 				{
 					m_id = 1814180800
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Full"
 				m_child1ID = 
@@ -20441,7 +20441,7 @@
 				{
 					m_id = 1820654175
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -20475,7 +20475,7 @@
 				{
 					m_id = 1828961545
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Duck isn\'t a binary status anymore, but a float (whose interpolation is mostly handled by the Controller, but the graph also applies additional damping). So, much like the previous SM, Standing/Crouching here is only here for detect & tagging purposes. However this SM also handles an actual transition itself: in and out of sitting."
 				m_states = 
 				[
@@ -20781,7 +20781,7 @@
 				{
 					m_id = 1841099188
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Child2 from the finger blending nodes needs to not be reset. (Otherwise snap when switching handedness. Unlikely case but best to avoid anyway.)"
 				m_childID = 
 				{
@@ -20808,7 +20808,7 @@
 				{
 					m_id = 1851369660
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_LH_Pose_Standing_01"
 				m_nFrameIndex = 0
@@ -20828,7 +20828,7 @@
 				{
 					m_id = 1859360613
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Reload_01_loop"
@@ -20850,7 +20850,7 @@
 				{
 					m_id = 1878449555
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Shotgun_2H_Reload_01_delta"
@@ -20872,7 +20872,7 @@
 				{
 					m_id = 1884965237
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_SE"
@@ -20894,7 +20894,7 @@
 				{
 					m_id = 1885622919
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = 
 				[
@@ -20927,7 +20927,7 @@
 				{
 					m_id = 1900419527
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Use tags to figure out if we\'re reloading, and progressively disable the aim chains using a State Machine if so. The reload animation/state could have been post-aim too... but decoupling it potentially allows more flexibility and nicer transition blends."
 				m_states = 
 				[
@@ -21056,7 +21056,7 @@
 				{
 					m_id = 1902584507
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Shotgun_2H_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -21076,7 +21076,7 @@
 				{
 					m_id = 1908884856
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "All previous movement states to the left involved being grounded and doing stuff with your legs. Now we\'re getting to the movement states that don\'t involve that!"
 				m_states = 
 				[
@@ -21623,7 +21623,7 @@
 				{
 					m_id = 1917836225
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Run_S"
@@ -21645,7 +21645,7 @@
 				{
 					m_id = 1925870048
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Experimental: using the \"time in state\" condition as a way to not have to replicate every single check on one single \"arrow\" going back to \"enabled\""
 				m_states = 
 				[
@@ -21860,7 +21860,7 @@
 				{
 					m_id = 1925973319
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Use tags to figure out if we\'re reloading, and progressively disable the aim chains using a State Machine if so. The reload animation/state could have been post-aim too... but decoupling it potentially allows more flexibility and nicer transition blends."
 				m_states = 
 				[
@@ -21989,7 +21989,7 @@
 				{
 					m_id = 1927937443
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Pistol_2H_Reload_01"
@@ -22011,7 +22011,7 @@
 				{
 					m_id = 1928759506
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "CrouchIdlePose_Default"
 				m_nFrameIndex = 0
@@ -22031,7 +22031,7 @@
 				{
 					m_id = 1930311925
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "SMG_2H_Attack_01_delta"
@@ -22053,7 +22053,7 @@
 				{
 					m_id = 1932990684
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This state machine is responsible for checking if the weapon has been idle for long enough (no actions taken), and if other conditions are also met (must be standing, not crouching, for example)"
 				m_states = 
 				[
@@ -22734,7 +22734,7 @@
 				{
 					m_id = 1940421578
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Used to cancel out most of the incoming upper body animation. I want to keep a bit of the upper spine and torso rotation since it\'s likely the VR player would have the same stance. It\'s a simplistic approach though."
 				m_weightListName = "VR_Override"
 				m_child1ID = 
@@ -22774,7 +22774,7 @@
 				{
 					m_id = 1940731229
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4480.0, 28.0 ]
@@ -22795,7 +22795,7 @@
 				{
 					m_id = 1945611661
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "IdlePose_Default"
 				m_nFrameIndex = 0
@@ -22815,7 +22815,7 @@
 				{
 					m_id = 1946192392
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HoldItem_LH_Throw_Strong_delta"
@@ -22837,7 +22837,7 @@
 				{
 					m_id = 1951096869
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This is a subtle idle layer that plays on top of everything else, which adds very small eye motions. The delta is precomputed in ModelDoc."
 				m_tagSpans = [  ]
 				m_sequenceName = "Eyes_Darts_delta"
@@ -22859,7 +22859,7 @@
 				{
 					m_id = 1955259253
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -22891,7 +22891,7 @@
 				{
 					m_id = 1958486709
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -22939,7 +22939,7 @@
 				{
 					m_id = 1960556800
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "HoldItem_2H_Throw_Normal_delta"
@@ -22961,7 +22961,7 @@
 				{
 					m_id = 1962017945
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -22993,7 +22993,7 @@
 				{
 					m_id = 1971840684
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 1244.0, 28.0 ]
@@ -23014,7 +23014,7 @@
 				{
 					m_id = 1974575761
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Use tags to figure out if we\'re reloading, and progressively disable the aim chains using a State Machine if so. The reload animation/state could have been post-aim too... but decoupling it potentially allows more flexibility and nicer transition blends."
 				m_states = 
 				[
@@ -23143,7 +23143,7 @@
 				{
 					m_id = 1975076730
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -23175,7 +23175,7 @@
 				{
 					m_id = 1976305696
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -23223,7 +23223,7 @@
 				{
 					m_id = 1977110134
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 1184.0, 28.0 ]
@@ -23244,7 +23244,7 @@
 				{
 					m_id = 1977718036
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "\"Land\" is used as an additive animation for the pelvis, but it\'s used \"normally\" by the upper body. This is technically not covering all the bases because the land animation has a fairly \"upright\" torso which is only really fitting if you\'re NOT crouching... this will be covered eventually"
 				m_commentText = " (Click on this node to read its note.)"
 				m_size = [ 332.0, 57.0 ]
@@ -23265,7 +23265,7 @@
 				{
 					m_id = 1979170349
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This right here is playing a transition anim when going into the noclip state. Note the lack of a reset on the \"base child\" property of the Add node... this is so that the idle cycle doesn\'t get a reset signal forwarded to it in case the transition gets interrupted (when e.g. repeatedly going in and out of noclip very fast)"
 				m_commentText = " (Click on this node to read its note.)"
 				m_size = [ 384.0, 63.0 ]
@@ -23286,7 +23286,7 @@
 				{
 					m_id = 1991830034
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -23397,7 +23397,7 @@
 				{
 					m_id = 1994329491
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -23508,7 +23508,7 @@
 				{
 					m_id = 1996263555
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -23556,7 +23556,7 @@
 				{
 					m_id = 2000515554
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -23604,7 +23604,7 @@
 				{
 					m_id = 2003669437
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -23675,7 +23675,7 @@
 				{
 					m_id = 2010597508
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -23723,7 +23723,7 @@
 				{
 					m_id = 2011212923
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "A gun firing needs to be able to arbitrarily repeat as fast as possible, so \"Always Evaluate\" is on here... but that prevents other things from being implemented cleanly, so the attack lives in its own SM."
 				m_states = 
 				[
@@ -23858,7 +23858,7 @@
 				{
 					m_id = 2015901435
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -23890,7 +23890,7 @@
 				{
 					m_id = 2019770409
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Blend between different weightlists for upper body compositing based on whether or not WEAPON IS IDLE (not taking actions such as reloading or attacking), and whether or not you are IDLE (movement, so not walking, running, etc)"
 				m_states = 
 				[
@@ -24180,7 +24180,7 @@
 				{
 					m_id = 2023091224
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_RH_Move"
 				m_child1ID = 
@@ -24220,7 +24220,7 @@
 				{
 					m_id = 2024068581
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_NE"
@@ -24242,7 +24242,7 @@
 				{
 					m_id = 2034980794
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "CrouchWalk_S"
@@ -24264,7 +24264,7 @@
 				{
 					m_id = 2037676333
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = "These 2D Blends hold the directional movement animations in a non-normalized way, that is to say, not limited to a range of -1.0 to 1.0; instead, the values actually match the root speed (as seen in ModelDoc!)\n\nIMPORTANT: all movement anims start with a precise cycle in mind: the starting point of the loop should be right as the left foot passes the planted right foot."
 				m_size = [ 368.0, 352.0 ]
@@ -24285,7 +24285,7 @@
 				{
 					m_id = 2041856836
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "This node feeds the weapon poses to the bottom half (movement) of the graph, because \"no movement\" needs to use the poses (roughly) as-is. Needs \"reset on change\" so that idle timers will get reset upon switch."
 				m_children = 
 				[
@@ -24357,7 +24357,7 @@
 				{
 					m_id = 2048341708
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose"
 				m_nFrameIndex = 0
@@ -24377,7 +24377,7 @@
 				{
 					m_id = 2052441477
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_children = 
 				[
@@ -24432,7 +24432,7 @@
 				{
 					m_id = 2053010314
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "CrouchIdlePose_Default"
 				m_nFrameIndex = 0
@@ -24452,7 +24452,7 @@
 				{
 					m_id = 2065845555
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "When switching between weapon A to B, weapon B could start with Idle Aim chains enabled. The \"Time in State\" condition check here is a safeguard that prevents this."
 				m_states = 
 				[
@@ -24616,7 +24616,7 @@
 				{
 					m_id = 2068460025
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "bindPose_delta"
 				m_nFrameIndex = 0
@@ -24636,7 +24636,7 @@
 				{
 					m_id = 2072560633
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Only_RightHand_Fingers"
 				m_child1ID = 
@@ -24676,7 +24676,7 @@
 				{
 					m_id = 2072824893
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_RH_Pose_Crouching_01"
 				m_nFrameIndex = 0
@@ -24696,7 +24696,7 @@
 				{
 					m_id = 2079514744
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "Fetch original whole-body movement in Child1, then the Child2 input applies the hold_* and IKrule bones positions in parent space from the weapon\'s branch."
 				m_weightListName = "Only_Holds_and_IK_hands"
 				m_child1ID = 
@@ -24736,7 +24736,7 @@
 				{
 					m_id = 2081015734
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_weightListName = "Weapon_2H_Idle"
 				m_child1ID = 
@@ -24776,7 +24776,7 @@
 				{
 					m_id = 2099787488
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_baseChildID = 
 				{
@@ -24808,7 +24808,7 @@
 				{
 					m_id = 2109256476
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = "A gun firing needs to be able to arbitrarily repeat as fast as possible, so \"Always Evaluate\" is on here... but that prevents other things from being implemented cleanly, so the attack lives in its own SM."
 				m_states = 
 				[
@@ -24943,7 +24943,7 @@
 				{
 					m_id = 2113332534
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_childID = 
 				{
@@ -24965,7 +24965,7 @@
 				{
 					m_id = 2116863024
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "HoldItem_2H_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -24985,7 +24985,7 @@
 				{
 					m_id = 2121256441
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_sequenceName = "Pistol_2H_Pose_CrouchingLow_01"
 				m_nFrameIndex = 0
@@ -25005,7 +25005,7 @@
 				{
 					m_id = 2136122796
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "Walk_SW"
@@ -25027,7 +25027,7 @@
 				{
 					m_id = 2143618230
 				}
-				m_networkMode = "ServerAuthoritative"
+				m_networkMode = "ClientSimulate"
 				m_sNote = ""
 				m_commentText = ""
 				m_size = [ 4480.0, 28.0 ]
