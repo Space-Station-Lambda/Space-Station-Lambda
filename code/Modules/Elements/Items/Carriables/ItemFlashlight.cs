@@ -1,5 +1,7 @@
 ﻿using Sandbox;
 using ssl.Modules.Elements.Items.Data;
+using ssl.Modules.Selection;
+using ssl.Player;
 
 namespace ssl.Modules.Elements.Items.Carriables
 {
@@ -31,14 +33,22 @@ namespace ssl.Modules.Elements.Items.Carriables
         }
 
         private static Vector3 LightOffset => Vector3.Forward * 10;
-        [Net, Local, Predicted] private bool LightEnabled { get; set; } = true;
+        [Net, Local, Predicted] private bool LightEnabled { get; set; }
+
+        public override void FrameSimulate(Client cl)
+        {
+            base.FrameSimulate(cl);
+            if (!IsLocalPawn || !viewLight.IsValid()) return;
+            viewLight.Rotation = Local.Pawn.EyeRot;
+            viewLight.Position = Local.Pawn.EyePos + Local.Pawn.EyeRot.Forward * 10f;
+        }
 
         public override void Spawn()
         {
             base.Spawn();
 
             worldLight = CreateLight();
-            worldLight.SetParent(this, SlideAttachementName, new Transform(LightOffset));
+            worldLight.SetParent(this, null, new Transform(LightOffset));
             worldLight.EnableHideInFirstPerson = true;
             worldLight.Enabled = false;
         }
@@ -66,16 +76,13 @@ namespace ssl.Modules.Elements.Items.Carriables
             return light;
         }
 
-        public override void Simulate(Client cl)
+        public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
-            if (cl == null) return;
-
-            base.Simulate(cl);
-
-            bool toggle = Input.Pressed(InputButton.Flashlight) || Input.Pressed(InputButton.Attack1);
-
-            if (timeSinceLightToggled > 0.1f && toggle)
+            base.OnUsePrimary(sslPlayer, target);
+            
+            if (timeSinceLightToggled > 0.1f)
             {
+                
                 LightEnabled = !LightEnabled;
 
                 PlaySound(LightEnabled ? FlashLightSoundSwitchOnName : FlashLightSoundSwitchOffName);
@@ -85,13 +92,18 @@ namespace ssl.Modules.Elements.Items.Carriables
                     worldLight.Enabled = LightEnabled;
                 }
 
-                if (viewLight.IsValid())
+                if (IsLocalPawn)
                 {
+                    if (!viewLight.IsValid())
+                    {
+                        CreateViewLight();
+                    }
                     viewLight.Enabled = LightEnabled;
                 }
-
+                
                 timeSinceLightToggled = 0;
             }
+            
         }
 
         private void Activate()
@@ -117,24 +129,54 @@ namespace ssl.Modules.Elements.Items.Carriables
             if (Host.IsServer)
             {
                 Activate();
+                
+                SetViewLight(To.Single(Owner), LightEnabled);
             }
         }
 
         public override void ActiveEnd(Entity ent, bool dropped)
         {
             base.ActiveEnd(ent, dropped);
-
             if (Host.IsServer)
             {
                 if (dropped)
                 {
                     Activate();
+                    DestroyViewLight(To.Single(Owner));
                 }
                 else
                 {
                     Deactivate();
                 }
+
+                SetViewLight(To.Single(Owner), false);
             }
+        }
+
+        private void CreateViewLight()
+        {
+            Host.AssertClient();
+            viewLight ??= CreateLight();
+            viewLight.SetParent(Local.Pawn, false);
+            viewLight.EnableViewmodelRendering = true;
+            viewLight.Enabled = false;
+        }
+
+        [ClientRpc]
+        private void DestroyViewLight()
+        {
+            viewLight.Delete();
+            viewLight = null;
+        }
+        
+        [ClientRpc]
+        private void SetViewLight(bool state)
+        {
+            if (!viewLight.IsValid())
+            {
+                CreateViewLight();
+            }
+            viewLight.Enabled = state;
         }
     }
 }
