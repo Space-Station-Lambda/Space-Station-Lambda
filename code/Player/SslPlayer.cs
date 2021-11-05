@@ -73,6 +73,15 @@ namespace ssl.Player
             Inventory.ViewModel.SetHoldType(HoldType.None);
         }
 
+        public override void FrameSimulate(Client cl)
+        {
+            base.FrameSimulate(cl);
+            if (Inventory.HoldingItem.IsValid())
+            {
+                Inventory.HoldingItem.FrameSimulate(cl);
+            }
+        }
+
         /// <summary>
         /// Called each tick, clientside and serverside
         /// </summary>
