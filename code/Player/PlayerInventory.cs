@@ -47,8 +47,8 @@ namespace ssl.Player
         public Item DropItem()
         {
             Item droppedItem = HoldingItem;
-            HoldingItem?.OnCarryDrop(SslPlayer);
             HoldingItem?.ActiveEnd(SslPlayer, true);
+            HoldingItem?.OnCarryDrop(SslPlayer);
             HoldingSlot.Clear();
             return droppedItem;
         }
