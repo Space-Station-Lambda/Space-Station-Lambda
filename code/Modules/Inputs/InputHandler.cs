@@ -4,9 +4,19 @@ using ssl.Player;
 
 namespace ssl.Modules.Inputs
 {
-    public class InputHandler : EntityComponent<SslPlayer>
+    public partial class InputHandler : EntityComponent<SslPlayer>
     {
         
+        public InputHandler()
+        {
+            TimeSinceLastUse = Cooldown;
+        }
+        
+        //TODO : Add a way to change the cooldown by the skill of the player
+        [Net] private float Cooldown { get; set; } = 0.5f;
+
+        [Net] private TimeSince TimeSinceLastUse { get; set; }
+
         public void CheckControls()
         {
             if (Input.Pressed(InputButton.Slot1)) Entity.Inventory.ProcessHolding(0);
@@ -33,28 +43,48 @@ namespace ssl.Modules.Inputs
 
         public void CheckServercontrols()
         {
-            if (Input.Pressed(InputButton.Reload)) Entity.Respawn();
+            // Reload 
+            
+            if (Input.Pressed(InputButton.Reload))
+            {
+                Entity.Respawn();
+            }
+            
+            // Drop
+            
             if (Input.Pressed(InputButton.Drop))
             {
                 Item dropped = Entity.Inventory.DropItem();
                 dropped.Velocity += Entity.Velocity;
             }
+            
+            // Use
+            
+            // 
 
-            if (Input.Pressed(InputButton.Use))
+            if (Input.Down(InputButton.Use))
             {
-                Entity.Dragger.UseSelected();
+                if (TimeSinceLastUse >= Cooldown)
+                {
+                    Entity.Dragger.UseSelected();
+                    TimeSinceLastUse = 0;
+                }
             }
-
-            //TODO: Drag Inputs (long hold to drag, etc.)
+            
+            // Attack
+            
             if (Input.Down(InputButton.Attack1))
             {
                 Entity.Dragger.Drag();
-            } 
+            }
+
             else if (Input.Released(InputButton.Attack1))
             {
                 Entity.Dragger.StopDrag();
             }
 
+            // Flashlight
+            
             if (Input.Pressed(InputButton.Flashlight))
             {
                 Entity.RagdollHandler.StartRagdoll();
