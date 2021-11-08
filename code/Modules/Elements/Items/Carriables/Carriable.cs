@@ -1,13 +1,16 @@
-﻿using Sandbox;
+﻿using System.Collections.Generic;
+using Sandbox;
 
 namespace ssl.Modules.Elements.Items.Carriables
 {
     public class Carriable : WorldEntity
     {
+	    private const string DefaultAttachmentOrBone = "hold_R";
+
 	    public Carriable()
 	    {
 	    }
-	    
+
 	    public Carriable(BaseData data) : base(data)
 	    {
 		    SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
@@ -20,19 +23,27 @@ namespace ssl.Modules.Elements.Items.Carriables
 		    EnableShadowInFirstPerson = true;
 	    }
 
-		public override bool CanCarry(Entity carrier)
+	    public override bool CanCarry(Entity carrier)
 		{
 			return true;
 		}
 
-		public override void OnCarryStart(Entity carrier)
+	    public override void OnCarryStart(Entity carrier)
 		{
-			SetParent(carrier, true);
+			if (CanBeBoneMerged(carrier))
+			{
+				SetParent(carrier, true);
+			}
+			else
+			{
+				SetParent(carrier, DefaultAttachmentOrBone, Transform.Zero);
+			}
+			
 			Owner = carrier;
 			MoveType = MoveType.None;
 			EnableDrawing = false;
 		}
-		
+
 		public override void OnCarryDrop(Entity dropper)
 		{
 			SetParent(null);
@@ -67,6 +78,33 @@ namespace ssl.Modules.Elements.Items.Carriables
 			{
 				EnableDrawing = false;
 			}
+		}
+
+		/// <summary>
+		/// Checks if we can bone merge this carriable into parent's model.
+		/// </summary>
+		private bool CanBeBoneMerged(Entity ent)
+		{
+			Model model = GetModel();
+			if (model.IsError || ent is not ModelEntity entity) return false;
+
+			Model entityModel = entity.GetModel();
+			
+			// List all bone names from parent entity
+			List<string> entityBoneNames = new();
+			for (int parentIndex = 0; parentIndex < entityModel.BoneCount; parentIndex++)
+			{
+				entityBoneNames.Add(entityModel.GetBoneName(parentIndex));
+			}
+			
+			// Checks if any bone in carriable entity is also in parent
+			for (int carriableIndex = 0; carriableIndex < model.BoneCount; carriableIndex++)
+			{
+				string boneName = model.GetBoneName(carriableIndex);
+				if (entityBoneNames.Contains(boneName)) return true;
+			}
+
+			return false;
 		}
     }
 }
