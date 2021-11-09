@@ -9,10 +9,6 @@ namespace ssl.Ui.NotificationHandler
         private Panel notification;
         private float remaining;
 
-        public NotificationHandler()
-        {
-        }
-
 
         private void RemoveNotification()
         {

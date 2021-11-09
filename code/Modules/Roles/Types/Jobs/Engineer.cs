@@ -16,8 +16,6 @@ namespace ssl.Modules.Roles.Types.Jobs
             "models/citizen_clothes/hat/hat_hardhat.vmdl"
         };
 
-        public override IEnumerable<string> Items => new List<string>
-        {
-        };
+        public override IEnumerable<string> Items => new List<string>();
     }
 }

@@ -44,10 +44,10 @@ namespace ssl.Ui.InventoryBar
 
         public void RefreshModel()
         {
-            if (Local.Client?.Pawn is not Player.SslPlayer)
+            if (Local.Client?.Pawn is not SslPlayer)
                 return;
 
-            Player.SslPlayer sslPlayer = (Player.SslPlayer)Local.Client.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)Local.Client.Pawn;
 
             sceneWorld ??= new SceneWorld();
 

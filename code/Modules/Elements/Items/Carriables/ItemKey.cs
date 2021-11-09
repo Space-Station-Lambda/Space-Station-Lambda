@@ -25,10 +25,10 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// </summary>
         public string KeyCode { get; set; }
 
-        public override void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
+        public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
             base.OnUsePrimary(sslPlayer, target);
-            if (target is Player.SslPlayer targetPlayer)
+            if (target is SslPlayer targetPlayer)
             {
                 // Find the restrained status
                 Restrained restrained = targetPlayer.StatusHandler.GetStatus<Restrained>();

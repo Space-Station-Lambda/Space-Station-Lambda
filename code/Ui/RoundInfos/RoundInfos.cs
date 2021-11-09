@@ -28,7 +28,7 @@ namespace ssl.Ui.RoundInfos
         /// Add player to the round info
         /// </summary>
         /// <param name="sslPlayer">The player to be added</param>
-        private void AddPlayer(Player.SslPlayer sslPlayer)
+        private void AddPlayer(SslPlayer sslPlayer)
         {
             RoundInfosPlayerLine roudInfosPlayerLine = new(sslPlayer);
             AddChild(roudInfosPlayerLine);
@@ -50,12 +50,12 @@ namespace ssl.Ui.RoundInfos
         {
         }
 
-        private List<Player.SslPlayer> PlayersToAdd()
+        private List<SslPlayer> PlayersToAdd()
         {
-            List<Player.SslPlayer> players = new();
+            List<SslPlayer> players = new();
             foreach (Client client in Client.All)
             {
-                Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
+                SslPlayer sslPlayer = (SslPlayer)client.Pawn;
                 bool founded = false;
                 foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
                 {
@@ -73,11 +73,11 @@ namespace ssl.Ui.RoundInfos
             List<RoundInfosPlayerLine> _roundInfosPlayerLines = new();
             foreach (RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines)
             {
-                Player.SslPlayer sslPlayer = roundInfosPlayerLine.SslPlayer;
+                SslPlayer sslPlayer = roundInfosPlayerLine.SslPlayer;
                 bool founded = false;
                 foreach (Client client in Client.All)
                 {
-                    if (((Player.SslPlayer)client.Pawn).Equals(sslPlayer)) founded = true;
+                    if (((SslPlayer)client.Pawn).Equals(sslPlayer)) founded = true;
                     break;
                 }
 
@@ -89,9 +89,9 @@ namespace ssl.Ui.RoundInfos
 
         private void UpdatePlayers()
         {
-            List<Player.SslPlayer> playersToAdd = PlayersToAdd();
+            List<SslPlayer> playersToAdd = PlayersToAdd();
             List<RoundInfosPlayerLine> roundInfosPlayerLinesToRemove = RoundInfosPlayerLinesToRemove();
-            foreach (Player.SslPlayer mainPlayer in playersToAdd)
+            foreach (SslPlayer mainPlayer in playersToAdd)
             {
                 AddPlayer(mainPlayer);
             }

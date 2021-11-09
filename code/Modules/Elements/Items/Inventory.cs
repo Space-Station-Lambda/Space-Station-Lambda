@@ -72,10 +72,8 @@ namespace ssl.Modules.Elements.Items
                 slotDestination?.Set(item);
                 return slotDestination;
             }
-            else
-            {
-                throw new Exception("Not permission");
-            }
+
+            throw new Exception("Not permission");
         }
 
         /// <summary>

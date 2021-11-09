@@ -1,18 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Sandbox;
 using ssl.Player;
 
 namespace ssl.Modules.Statuses
 {
-    public partial class StatusHandler : EntityComponent<Player.SslPlayer>
+    public partial class StatusHandler : EntityComponent<SslPlayer>
     {
-
-        public StatusHandler()
-        {
-        }
-
         [Net] public List<Status> Statuses { get; private set; }
 
         /// <summary>

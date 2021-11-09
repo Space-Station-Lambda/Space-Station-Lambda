@@ -68,7 +68,7 @@ namespace ssl.Player
             {
                 EnableAllCollisions = false,
                 EnableViewmodelRendering = true,
-                Owner = this.Owner
+                Owner = Owner
             };
             Inventory.ViewModel.SetHoldType(HoldType.None);
         }

@@ -1,11 +1,8 @@
 ﻿using System;
-using Sandbox;
 using ssl.Modules.Elements.Props.Data;
 using ssl.Modules.Elements.Props.Data.Stains;
 using ssl.Modules.Elements.Props.Types;
 using ssl.Modules.Elements.Props.Types.Stains;
-
-using Prop = ssl.Modules.Elements.Props.Types.Prop;
 
 namespace ssl.Modules.Elements.Props
 {

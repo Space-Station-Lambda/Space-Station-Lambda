@@ -15,7 +15,7 @@ namespace ssl.Modules.Selection
         private PhysicsBody holdBody;
         private WeldJoint holdJoint;
         
-        public Dragger() : base()
+        public Dragger()
         {
             Activate();
         }

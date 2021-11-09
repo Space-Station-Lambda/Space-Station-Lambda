@@ -11,15 +11,15 @@ namespace ssl.Modules.Roles
     public class RoleDistributor
     {
         public Role DefaultRole = new Assistant();
-        private IList<Player.SslPlayer> players;
+        private IList<SslPlayer> players;
         public Scenario Scenario;
 
-        public RoleDistributor(Scenario scenario, IList<Player.SslPlayer> players)
+        public RoleDistributor(Scenario scenario, IList<SslPlayer> players)
         {
-            this.Scenario = scenario;
+            Scenario = scenario;
             this.players = players;
             Log.Info("[RoleDistributor] Remove role for " + this.players.Count);
-            foreach (Player.SslPlayer mainPlayer in this.players)
+            foreach (SslPlayer mainPlayer in this.players)
             {
                 mainPlayer.RoleHandler.AssignRole(null);
             }
@@ -47,7 +47,7 @@ namespace ssl.Modules.Roles
 
             Log.Info($"[RoleDistributor] {constraints.Count} Constraints are treated");
             Log.Info($"[RoleDistributor] {GetPlayersWithoutRole().Count} Not have any role");
-            foreach (Player.SslPlayer player in GetPlayersWithoutRole())
+            foreach (SslPlayer player in GetPlayersWithoutRole())
             {
                 Log.Info($"[RoleDistributor] Give a role to {player}..");
                 if (GivePreferredRole(player))
@@ -63,7 +63,7 @@ namespace ssl.Modules.Roles
             //TODO Give roles with their preferences
             if (GetPlayersWithoutRole().Count > 0)
             {
-                Log.Error($"[RoleDistributor] Everyplayer don't have a role");
+                Log.Error("[RoleDistributor] Everyplayer don't have a role");
                 throw new Exception();
             }
         }
@@ -103,10 +103,10 @@ namespace ssl.Modules.Roles
             return returnedPreferences;
         }
 
-        private List<Player.SslPlayer> GetPlayersWithoutRole()
+        private List<SslPlayer> GetPlayersWithoutRole()
         {
-            List<Player.SslPlayer> playersWithoutRoles = new();
-            foreach (Player.SslPlayer mainPlayer in players)
+            List<SslPlayer> playersWithoutRoles = new();
+            foreach (SslPlayer mainPlayer in players)
             {
                 if (mainPlayer.RoleHandler.Role == null) playersWithoutRoles.Add(mainPlayer);
             }
@@ -119,12 +119,12 @@ namespace ssl.Modules.Roles
             return GetPlayersWithRole(role).Count;
         }
 
-        private IEnumerable<Player.SslPlayer> GetPlayersWithRole()
+        private IEnumerable<SslPlayer> GetPlayersWithRole()
         {
             return players.Where(mainPlayer => mainPlayer.RoleHandler.Role != null).ToList();
         }
 
-        private List<Player.SslPlayer> GetPlayersWithRole(Role role)
+        private List<SslPlayer> GetPlayersWithRole(Role role)
         {
             return players.Where(mainPlayer => role.Equals(mainPlayer.RoleHandler.Role)).ToList();
         }
@@ -134,7 +134,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="sslPlayer">The player</param>
         /// <returns>If false, the player have the default assistant role</returns>
-        private bool GivePreferredRole(Player.SslPlayer sslPlayer)
+        private bool GivePreferredRole(SslPlayer sslPlayer)
         {
             Role role = GetPreferedRole(sslPlayer);
             if (role == null)
@@ -152,7 +152,7 @@ namespace ssl.Modules.Roles
         /// </summary>
         /// <param name="sslPlayer">The player</param>
         /// <returns>null if the player can't have his prefered role</returns>
-        public Role GetPreferedRole(Player.SslPlayer sslPlayer)
+        public Role GetPreferedRole(SslPlayer sslPlayer)
         {
             Role roleToAssign = null;
             Dictionary<Role, float> preferences =
@@ -185,7 +185,7 @@ namespace ssl.Modules.Roles
         private bool FulfillConstraint(ScenarioConstraint constraint)
         {
             //Add the preference of the player to the preferencesOfRole for this role
-            Dictionary<Player.SslPlayer, float> preferencesOfRole = GetPlayersWithoutRole()
+            Dictionary<SslPlayer, float> preferencesOfRole = GetPlayersWithoutRole()
                 .ToDictionary(mainPlayer => mainPlayer,
                     mainPlayer => mainPlayer.RoleHandler.GetPreferencesNormalised()[constraint.Role]);
             //Get the total of preferences
@@ -194,7 +194,7 @@ namespace ssl.Modules.Roles
             if (total <= 0f)
             {
                 total = preferencesOfRole.Count;
-                foreach (Player.SslPlayer mainPlayer in preferencesOfRole.Keys)
+                foreach (SslPlayer mainPlayer in preferencesOfRole.Keys)
                 {
                     preferencesOfRole[mainPlayer] = 1;
                 }
@@ -205,7 +205,7 @@ namespace ssl.Modules.Roles
             float res = (float)random.NextDouble() * total;
             //Search the player with the role
             total = 0;
-            foreach ((Player.SslPlayer player, float preference) in preferencesOfRole)
+            foreach ((SslPlayer player, float preference) in preferencesOfRole)
             {
                 total += preference;
                 if (res < total)

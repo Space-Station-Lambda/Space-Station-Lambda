@@ -24,7 +24,7 @@ namespace ssl.Ui.InventoryBar
             }
         }
 
-        private Player.SslPlayer SslPlayer => (Player.SslPlayer)Local.Pawn;
+        private SslPlayer SslPlayer => (SslPlayer)Local.Pawn;
 
         private void OnSlotSelected(int newSelected)
         {

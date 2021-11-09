@@ -42,7 +42,7 @@ namespace ssl.Modules.Roles
         /// <summary>
         /// Trigger when the role is assigned
         /// </summary>
-        public virtual void OnAssigned(Player.SslPlayer sslPlayer)
+        public virtual void OnAssigned(SslPlayer sslPlayer)
         {
         }
 
@@ -50,7 +50,7 @@ namespace ssl.Modules.Roles
         /// Trigger when the player spawn
         /// </summary>
         /// <param name="sslPlayer"></param>
-        public virtual void OnSpawn(Player.SslPlayer sslPlayer)
+        public virtual void OnSpawn(SslPlayer sslPlayer)
         {
             foreach (string itemId in Items)
             {
@@ -72,14 +72,14 @@ namespace ssl.Modules.Roles
         /// <summary>
         /// Trigger when the role is unassigned
         /// </summary>
-        public virtual void OnUnassigned(Player.SslPlayer sslPlayer)
+        public virtual void OnUnassigned(SslPlayer sslPlayer)
         {
         }
 
         /// <summary>
         /// Trigger when a player with the role is killed
         /// </summary>
-        public virtual void OnKilled(Player.SslPlayer sslPlayer)
+        public virtual void OnKilled(SslPlayer sslPlayer)
         {
             sslPlayer.RoleHandler.AssignRole(new Ghost());
             sslPlayer.Respawn(sslPlayer.Position, sslPlayer.Rotation);
@@ -99,7 +99,7 @@ namespace ssl.Modules.Roles
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Role)obj);
         }
 

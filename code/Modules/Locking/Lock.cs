@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Random = System.Random;
+﻿using System;
+using System.Linq;
 
 namespace ssl.Modules.Locking
 {

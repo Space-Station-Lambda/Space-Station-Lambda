@@ -10,7 +10,7 @@ namespace ssl.Modules.Commands
         public static void ApplySickness()
         {
             Client sender = ConsoleSystem.Caller;
-            Player.SslPlayer sslPlayer = (Player.SslPlayer)sender.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)sender.Pawn;
             sslPlayer.StatusHandler.ApplyStatus(new Sickness(6));
         }
     }

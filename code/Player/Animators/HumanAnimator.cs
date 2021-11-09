@@ -1,7 +1,6 @@
 ﻿using System;
 using Sandbox;
 using ssl.Modules.Elements.Items.Carriables;
-using Input = Sandbox.Input;
 
 namespace ssl.Player.Animators
 {

@@ -15,8 +15,6 @@ namespace ssl.Modules.Roles.Types.Jobs
             "models/citizen_clothes/shoes/trainers.vmdl_c"
         };
 
-        public override IEnumerable<string> Items => new List<string>
-        {
-        };
+        public override IEnumerable<string> Items => new List<string>();
     }
 }

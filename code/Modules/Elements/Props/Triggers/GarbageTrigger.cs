@@ -1,11 +1,12 @@
-﻿using Sandbox;
+﻿using Hammer;
+using Sandbox;
 using ssl.Modules.Elements.Items.Carriables;
 
 namespace ssl.Modules.Elements.Props.Triggers
 {
     [Library("ssl_garbage_trigger")]
-    [Hammer.AutoApplyMaterial( "materials/tools/toolstrigger.vmat" )]
-    [Hammer.Solid]
+    [AutoApplyMaterial()]
+    [Solid]
     public partial class GarbageTrigger : BaseTrigger
     {
         public override void OnTouchStart(Entity toucher)

@@ -61,7 +61,7 @@ namespace ssl
         private void SpawnPlayer(Client client)
         {
             //Init the player.
-            Player.SslPlayer sslPlayer = new();
+            SslPlayer sslPlayer = new();
             client.Pawn = sslPlayer;
             RoundManager.CurrentRound.OnPlayerSpawn(sslPlayer);
         }
@@ -70,6 +70,11 @@ namespace ssl
         {
             StartTickTimer();
             StartSecondTimer();
+        }
+
+        public override void OnVoicePlayed(long playerId, float level)
+        {
+            //TODO: Add voice volume to player
         }
 
         /// <summary>

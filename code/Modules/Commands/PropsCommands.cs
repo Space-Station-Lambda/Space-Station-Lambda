@@ -15,7 +15,7 @@ namespace ssl.Modules.Commands
         public static void SpawnProp(string id)
         {
             Client client = ConsoleSystem.Caller;
-            Player.SslPlayer sslPlayer = (Player.SslPlayer)client.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)client.Pawn;
             PropFactory propFactory = new();
             try
             {

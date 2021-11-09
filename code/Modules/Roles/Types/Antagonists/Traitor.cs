@@ -18,13 +18,11 @@ namespace ssl.Modules.Roles.Types.Antagonists
             "models/citizen_clothes/hat/hat_beret.black.vmdl"
         };
 
-        public override IEnumerable<string> Items => new List<string>
-        {
-        };
+        public override IEnumerable<string> Items => new List<string>();
 
         public Role SecondaryRole { get; set; }
 
-        public override void OnAssigned(Player.SslPlayer sslPlayer)
+        public override void OnAssigned(SslPlayer sslPlayer)
         {
             base.OnAssigned(sslPlayer);
             sslPlayer.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
@@ -34,13 +32,13 @@ namespace ssl.Modules.Roles.Types.Antagonists
             SecondaryRole.OnAssigned(sslPlayer);
         }
 
-        public override void OnSpawn(Player.SslPlayer sslPlayer)
+        public override void OnSpawn(SslPlayer sslPlayer)
         {
             base.OnSpawn(sslPlayer);
             SecondaryRole.OnSpawn(sslPlayer);
         }
 
-        public override void OnUnassigned(Player.SslPlayer sslPlayer)
+        public override void OnUnassigned(SslPlayer sslPlayer)
         {
             base.OnUnassigned(sslPlayer);
             SecondaryRole.OnUnassigned(sslPlayer);

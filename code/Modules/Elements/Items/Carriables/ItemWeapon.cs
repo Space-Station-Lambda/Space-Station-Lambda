@@ -22,7 +22,7 @@ namespace ssl.Modules.Elements.Items.Carriables
 
         [Net, Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
 
-        public override void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
+        public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
             base.OnUsePrimary(sslPlayer, target);
 
@@ -88,7 +88,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         public override void SimulateAnimator(HumanAnimator animator)
         {
             base.SimulateAnimator(animator);
-            animator.SetParam(Item.HandednessKey, 0);
+            animator.SetParam(HandednessKey, 0);
         }
 
         protected virtual void ShootBullet(float spread, float force, float bulletSize)
@@ -119,7 +119,7 @@ namespace ssl.Modules.Elements.Items.Carriables
             
             Entity effectEntity;
             
-            if (IsLocalPawn && Local.Pawn is Player.SslPlayer player)
+            if (IsLocalPawn && Local.Pawn is SslPlayer player)
             {
                 effectEntity = player.Inventory.ViewModel.HoldingEntity;
                 _ = new Perlin();

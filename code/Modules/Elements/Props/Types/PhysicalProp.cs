@@ -24,19 +24,19 @@ namespace ssl.Modules.Elements.Props.Types
             MoveType = MoveType.Physics;
         }
 
-        public void OnDragStart(Player.SslPlayer sslPlayer)
+        public void OnDragStart(SslPlayer sslPlayer)
         {
         }
 
-        public void OnDragStop(Player.SslPlayer sslPlayer)
+        public void OnDragStop(SslPlayer sslPlayer)
         {
         }
 
-        public void OnDrag(Player.SslPlayer sslPlayer)
+        public void OnDrag(SslPlayer sslPlayer)
         {
         }
 
-        public bool IsDraggable(Player.SslPlayer sslPlayer)
+        public bool IsDraggable(SslPlayer sslPlayer)
         {
             return true;
         }

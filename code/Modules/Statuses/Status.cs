@@ -8,9 +8,9 @@ namespace ssl.Modules.Statuses
     /// </summary>
     public abstract partial class Status : BaseNetworkable
     {
-        public float InitialTime = 0f;
+        public float InitialTime;
 
-        public float TimeLeft = 0f;
+        public float TimeLeft;
 
         /// <summary>
         /// Create a status with a specific duration
@@ -40,7 +40,7 @@ namespace ssl.Modules.Statuses
         /// When the status is applied to the player.
         /// </summary>
         /// <param name="sslPlayer">The player who receive the status.</param>
-        public virtual void OnApply(Player.SslPlayer sslPlayer)
+        public virtual void OnApply(SslPlayer sslPlayer)
         {
         }
 
@@ -48,7 +48,7 @@ namespace ssl.Modules.Statuses
         /// When the status is removed from the player.
         /// </summary>
         /// <param name="sslPlayer">The player who lost the status.</param>
-        public virtual void OnResolve(Player.SslPlayer sslPlayer)
+        public virtual void OnResolve(SslPlayer sslPlayer)
         {
         }
 
@@ -56,7 +56,7 @@ namespace ssl.Modules.Statuses
         /// When the timer is finished.
         /// </summary>
         /// <param name="sslPlayer">When the status timer is finished.</param>
-        public virtual void OnEnd(Player.SslPlayer sslPlayer)
+        public virtual void OnEnd(SslPlayer sslPlayer)
         {
             OnResolve(sslPlayer);
         }
@@ -65,7 +65,7 @@ namespace ssl.Modules.Statuses
         /// Each tick the status is on the player
         /// </summary>
         /// <param name="sslPlayer">The player who is affected</param>
-        public virtual void OnTick(Player.SslPlayer sslPlayer)
+        public virtual void OnTick(SslPlayer sslPlayer)
         {
             if (!IsInfinite)
             {
@@ -78,7 +78,7 @@ namespace ssl.Modules.Statuses
         /// Check if the status can be removed
         /// </summary>
         /// <param name="sslPlayer"></param>
-        public virtual void CheckResolve(Player.SslPlayer sslPlayer)
+        public virtual void CheckResolve(SslPlayer sslPlayer)
         {
             if (TimeLeft < 0)
             {

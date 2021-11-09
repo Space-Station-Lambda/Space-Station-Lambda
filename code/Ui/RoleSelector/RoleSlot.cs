@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Sandbox;
+﻿using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Modules.Roles;
@@ -31,7 +30,7 @@ namespace ssl.Ui.RoleSelector
         
         public void Refresh()
         {
-            RolePreferenceType newPreferenceType = ((Player.SslPlayer)Local.Pawn).RoleHandler.GetPreference(role);
+            RolePreferenceType newPreferenceType = ((SslPlayer)Local.Pawn).RoleHandler.GetPreference(role);
 
             if (currentSelected == newPreferenceType) return;
             

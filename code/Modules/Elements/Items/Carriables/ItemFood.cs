@@ -20,7 +20,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         /// <summary>
         /// First version, food feeds up the player on use
         /// </summary>
-        public override void OnUsePrimary(Player.SslPlayer sslPlayer, ISelectable target)
+        public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
             OnCarryDrop(this);
             ActiveEnd(sslPlayer, false);

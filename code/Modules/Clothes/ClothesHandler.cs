@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sandbox;
-using ssl.Player;
 
 namespace ssl.Modules.Clothes
 {

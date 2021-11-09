@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Saves;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
 {
-    public partial class RoleHandler : EntityComponent<Player.SslPlayer>
+    public partial class RoleHandler : EntityComponent<SslPlayer>
     {
 
         private static Dictionary<RolePreferenceType, int> rolesFactors = new()
@@ -37,14 +35,14 @@ namespace ssl.Modules.Roles
         [ServerCmd("select_role_preference")]
         public static void SelectPreference(string roleId, RolePreferenceType preferenceType)
         {
-            Player.SslPlayer sslPlayer = (Player.SslPlayer)ConsoleSystem.Caller.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
             sslPlayer.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
         }
 
         [ClientCmd("save_role_preferences")]
         public static void SaveRolePreferences()
         {
-            Player.SslPlayer sslPlayer = (Player.SslPlayer)Local.Pawn;
+            SslPlayer sslPlayer = (SslPlayer)Local.Pawn;
             sslPlayer.RoleHandler.SavePreferences();
         }
 
