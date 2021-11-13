@@ -1,15 +1,13 @@
 ﻿using Sandbox;
 using ssl.Modules.Elements.Props.Data.Stains;
+using ssl.Modules.Selection;
 using ssl.Player;
 
 namespace ssl.Modules.Elements.Props.Types.Stains
 {
-    public class Stain : Prop<StainData>
+    public class Stain : Prop<StainData>, IWorkable
     {
-        /// <summary>
-        /// Health of a basic stain
-        /// </summary>
-        private int health = 10;
+        public int RemainingWork { get; set; } = 10;
         
         public Stain()
         {
@@ -20,19 +18,9 @@ namespace ssl.Modules.Elements.Props.Types.Stains
             CollisionGroup = CollisionGroup.Trigger;
         }
 
-        public void CleanStain(int strength)
+        public void OnWorkDone(SslPlayer player)
         {
-            health -= strength;
-            if (health < 0)
-            {
-                Delete();
-            }
-        }
-        
-        public override void OnInteract(SslPlayer sslPlayer)
-        {
-            //TODO Debug purpose
-            Log.Info(health);
+            Delete();
         }
     }
 }

@@ -84,7 +84,7 @@ namespace ssl.Player
         {
         }
 
-        public void OnInteract(SslPlayer sslPlayer)
+        public void OnInteract(SslPlayer sslPlayer, int strength)
         {
         }
 

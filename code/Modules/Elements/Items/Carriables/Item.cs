@@ -45,7 +45,7 @@ namespace ssl.Modules.Elements.Items.Carriables
             //TODO
         }
 
-        public void OnInteract(SslPlayer sslPlayer)
+        public void OnInteract(SslPlayer sslPlayer, int strength)
         {
             sslPlayer.Inventory.Add(this);
         }

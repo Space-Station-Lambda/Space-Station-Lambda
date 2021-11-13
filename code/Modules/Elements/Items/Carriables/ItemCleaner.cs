@@ -25,11 +25,11 @@ namespace ssl.Modules.Elements.Items.Carriables
         {
             switch (target)
             {
-                case Stain stain:
-                    Clean(stain);
-                    break;
                 case Bucket bucket:
                     Wash(bucket);
+                    break;
+                default:
+                    target.OnInteract(sslPlayer, Data.CleaningValue);
                     break;
             }
         }
@@ -43,14 +43,6 @@ namespace ssl.Modules.Elements.Items.Carriables
             bucket.WasteWater(Dirtyness);
             Dirtyness = 0;
         }
-
-        /// <summary>
-        /// Clean stain with the cleaning value. The cleaning have to be decreased by the current dirtyness.
-        /// </summary>
-        private void Clean(Stain stain)
-        {
-            stain.CleanStain(Data.CleaningValue);
-            Dirtyness++;
-        }
+        
     }
 }

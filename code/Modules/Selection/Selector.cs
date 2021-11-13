@@ -34,7 +34,7 @@ namespace ssl.Modules.Selection
 
         public void UseSelected()
         {
-            Selected?.OnInteract(Entity);
+            Selected?.OnInteract(Entity, 1);
         }
 
         private void StartSelection(ISelectable selectable)
