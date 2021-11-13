@@ -26,6 +26,7 @@ namespace ssl.Modules.Selection
         /// Trigger when the action is requested by the player
         /// </summary>
         /// <param name="sslPlayer">The player who perform the action.</param>
-        public void OnInteract(SslPlayer sslPlayer);
+        /// <param name="strength">The power of the usage. For example if the player is skilled, he use more easily</param>
+        public void OnInteract(SslPlayer sslPlayer, int strength);
     }
 }

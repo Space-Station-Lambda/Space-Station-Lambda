@@ -36,7 +36,7 @@ namespace ssl.Modules.Elements.Props.Types
         {
         }
 
-        public virtual void OnInteract(SslPlayer sslPlayer)
+        public virtual void OnInteract(SslPlayer sslPlayer, int strength)
         {
         }
 
