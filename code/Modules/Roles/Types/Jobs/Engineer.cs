@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ssl.Modules.Skills;
 
 namespace ssl.Modules.Roles.Types.Jobs
 {
@@ -17,5 +18,10 @@ namespace ssl.Modules.Roles.Types.Jobs
         };
 
         public override IEnumerable<string> Items => new List<string>();
+
+        public override SkillSet SkillSet => new SkillSet(
+            ("engineering", 10),
+            ("cooking", 1)
+            );
     }
 }

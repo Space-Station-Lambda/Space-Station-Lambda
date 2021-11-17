@@ -5,6 +5,7 @@ using ssl.Modules.Elements.Items;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Roles.Types.Others;
+using ssl.Modules.Skills;
 using ssl.Player;
 
 namespace ssl.Modules.Roles
@@ -33,6 +34,12 @@ namespace ssl.Modules.Roles
         public virtual string Model => "models/units/simpleterry.vmdl";
         public virtual IEnumerable<string> Clothing => new HashSet<string>();
         public virtual IEnumerable<string> Items => new List<string>();
+        
+        /// <summary>
+        /// The skillset of the Role. For now the role handle skills but we can change that later for let the player
+        /// handle his roles
+        /// </summary>
+        public virtual SkillSet SkillSet => new SkillSet();
 
         /// <summary>
         /// Array of factions of the role. A role can have multiple factions.
