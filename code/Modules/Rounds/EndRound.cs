@@ -20,7 +20,7 @@ namespace ssl.Modules.Rounds
         protected override void OnStart()
         {
             base.OnStart();
-            foreach (MainPlayer mainPlayer in Players)
+            foreach (SslPlayer mainPlayer in Players)
             {
                 mainPlayer.Freeze();
             }
@@ -29,7 +29,7 @@ namespace ssl.Modules.Rounds
         protected override void OnFinish()
         {
             base.OnFinish();
-            foreach (MainPlayer mainPlayer in Players)
+            foreach (SslPlayer mainPlayer in Players)
             {
                 mainPlayer.Unfreeze();
             }
