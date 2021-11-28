@@ -3,9 +3,9 @@ using ssl.Data;
 
 namespace ssl.Dao;
 
-public class ItemDao : AbstractDao<ItemData>
+public class ItemDao : LocalDao<ItemData>
 {
-    protected override Dictionary<string, ItemData> Datas { get; set; }
+    protected override Dictionary<string, ItemData> All { get; set; }
     
     /// <summary>
     /// Load all data from disk files.
