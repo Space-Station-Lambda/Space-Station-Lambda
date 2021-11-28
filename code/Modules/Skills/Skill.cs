@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ssl.Modules.Skills.Types;
 
 namespace ssl.Modules.Skills
 {

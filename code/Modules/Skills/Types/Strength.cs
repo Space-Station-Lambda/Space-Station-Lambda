@@ -1,4 +1,4 @@
-﻿namespace ssl.Modules.Skills
+﻿namespace ssl.Modules.Skills.Types
 {
     public class Strength : Skill
     {
