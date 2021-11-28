@@ -1,10 +1,11 @@
-﻿InventoryBar {
-  //background-color: darkcyan;
+﻿@import '../Constants.scss';
+
+InventoryBar {
   position: absolute;
   bottom: 20px;
   width: 100%;
   justify-content: center;
-  font-family: conthrax-sb;
+  font-family: $primary-font;
 
   &.hidden {
     pointer-events: none;

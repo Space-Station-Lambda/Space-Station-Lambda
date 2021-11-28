@@ -1,5 +1,7 @@
+@import '../Constants.scss';
+
 RoleSelector {
-  font-family: conthrax-sb;
+  font-family: $primary-font;
   background-color: black;
   cursor: default;
   position: absolute;

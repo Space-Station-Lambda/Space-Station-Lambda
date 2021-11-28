@@ -1,4 +1,5 @@
-﻿
+﻿@import '../Constants.scss';
+
 Notification {
   flex-direction: column;
   width: 100%;
@@ -10,7 +11,7 @@ Notification {
   align-items: center;
   justify-content: center;
   font-size: 50px;
-  font-family: conthrax-sb;
+  font-family: $primary-font;
   border-radius: 4px;
   border-width: 1px;
   border-color: lightblue;
