@@ -1,4 +1,6 @@
-﻿RoleSlot {
+﻿@import '../Constants.scss';
+
+RoleSlot {
   background-color: whitesmoke;
   font-size: 30px;
   cursor: pointer;
@@ -11,12 +13,11 @@
   justify-content: center;
 
   &.selected {
-    background-color: lightblue;
+    background-color: $light-blue;
   }
 
   &:hover {
-    background-color: lightblue;
-    border-color: #0a61cb;
-    border: 2px;
+    background-color: $light-blue;
+    border: 2px  $blue;
   }
 }
