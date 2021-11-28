@@ -1,6 +1,6 @@
 ﻿namespace ssl.Dao;
 
-public class IMilestoneDao
+public class MilestoneDao
 {
     
 }

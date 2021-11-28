@@ -10,19 +10,19 @@ namespace ssl.Dao;
 /// We want to load all the data at the start of the server
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
+public abstract class LocalDao<T> : IDao<T> where T : Data.BaseData
 {
     /// <summary>
     /// We store all data in the start of the server locally
     /// </summary>
-    protected abstract Dictionary<string, T> Datas { get; set; }
+    protected abstract Dictionary<string, T> All { get; set; }
     
     /// <summary>
     /// Save the new data to the local storage
     /// </summary>
     public void Save(T data)
     {
-        Datas.Add(data.Id, data);
+        All.Add(data.Id, data);
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
     /// <param name="data"></param>
     public void Update(T data)
     {
-        Datas[data.Id] = data;
+        All[data.Id] = data;
     }
 
     /// <summary>
@@ -40,7 +40,7 @@ public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
     /// <param name="data"></param>
     public void Delete(T data)
     {
-        Datas.Remove(data.Id);
+        All.Remove(data.Id);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
     /// </summary>
     public T FindById(string id)
     {
-        return Datas[id];
+        return All[id];
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
     /// </summary>
     public T[] FindAll()
     {
-        return Datas.Values.ToArray();
+        return All.Values.ToArray();
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public abstract class AbstractDao<T> : IDao<T> where T : Data.BaseData
     /// </summary>
     public int Count()
     {
-        return Datas.Count;
+        return All.Count;
     }
 
     /// <summary>
