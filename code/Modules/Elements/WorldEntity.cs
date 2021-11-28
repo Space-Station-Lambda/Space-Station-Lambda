@@ -1,7 +1,6 @@
 ﻿using Sandbox;
-using ssl.Modules.Elements;
 
-namespace ssl
+namespace ssl.Modules.Elements
 {
     /// <summary>
     /// SSL wrapper for entities that can be spawned in the game.

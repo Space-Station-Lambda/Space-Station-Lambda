@@ -1,8 +1,7 @@
 ﻿using System;
 using Sandbox;
-using ssl.Modules.Elements;
 
-namespace ssl
+namespace ssl.Modules.Elements
 {
     public abstract class InstanceFactory<T1, T2> where T1 : BaseData
     {
