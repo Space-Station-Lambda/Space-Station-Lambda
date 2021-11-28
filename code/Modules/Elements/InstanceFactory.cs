@@ -3,6 +3,7 @@ using Sandbox;
 
 namespace ssl.Modules.Elements
 {
+    [Obsolete("Use Dao instead.")]
     public abstract class InstanceFactory<T1, T2> where T1 : BaseData
     {
         protected abstract string BasePath { get; }

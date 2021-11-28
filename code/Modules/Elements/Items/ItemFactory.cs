@@ -4,6 +4,7 @@ using ssl.Modules.Elements.Items.Data;
 
 namespace ssl.Modules.Elements.Items
 {
+    [Obsolete("Use ItemDao instead.")]
     public class ItemFactory : InstanceFactory<ItemData, Item>
     {
         private const string FoodPrefix = "food";

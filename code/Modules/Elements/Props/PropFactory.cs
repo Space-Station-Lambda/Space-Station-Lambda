@@ -6,6 +6,7 @@ using ssl.Modules.Elements.Props.Types.Stains;
 
 namespace ssl.Modules.Elements.Props
 {
+    [Obsolete("Use PropDao instead.")]
     public class PropFactory : InstanceFactory<PropData, Prop>
     {
         private const string PropPrefix = "prop";
