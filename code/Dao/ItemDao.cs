@@ -12,6 +12,57 @@ public class ItemDao : LocalDao<ItemData>
     /// </summary>
     protected override void LoadAll()
     {
-        throw new System.NotImplementedException();
+        // Items
+        Save(new ItemData("cleaning_spray")
+        {
+            Name="Cleaning Spray", 
+            Description="A spray to clean stuff"
+        });
+        Save(new ItemData("flashlight")
+        {
+            Name="Flashlight", 
+            Description="A flashlight, close your eyes"
+        });
+        Save(new ItemData("mop")
+        {
+            Name="Mop", 
+            Description="A mop ?"
+        });
+        Save(new ItemData("sponge")
+        {
+            Name="Sponge", 
+            Description="A spongebob fake"
+        });
+        Save(new ItemData("trashbag")
+        {
+            Name="Trashbag", 
+            Description="Collect your best trash here!"
+        });
+        
+        // Foods
+        Save(new ItemFoodData("banana")
+        {
+            Name = "Banana",
+            Description = "A Banana",
+            FeedingValue = 10
+        });
+        Save(new ItemFoodData("apple")
+        {
+            FeedingValue = 9
+        });
+        
+        // Weapons
+        Save(new ItemWeaponData("pistol")
+        {
+            Name = "Pistol",
+            Description = "A pistol", 
+            Model = "weapons/rust_pistol/rust_pistol.vmdl",
+            HoldType = 1,
+            PrimaryRate = 5.0f,
+            Damage = 10.0f,
+            Range = 0.0f, // Infinite
+            ShootSound = "rust_pistol.shoot",
+            MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
+        });
     }
 }
