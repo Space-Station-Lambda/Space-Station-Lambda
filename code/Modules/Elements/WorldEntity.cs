@@ -8,16 +8,18 @@ namespace ssl.Modules.Elements
     /// </summary>
     public abstract partial class WorldEntity : AnimEntity
     {
-        protected WorldEntity()
-        {
-        }
+	    private string model;
 
-        public WorldEntity(BaseData data)
+	    protected WorldEntity() => Model = "";
+
+	    private string Model
         {
-            SetModel(data.Model);
-            Data = data;
+	        get => model;
+	        init
+	        {
+		        model = value;
+		        SetModel(model);
+	        }
         }
-        
-        [Net] protected BaseData Data { get; set; }
     }
 }

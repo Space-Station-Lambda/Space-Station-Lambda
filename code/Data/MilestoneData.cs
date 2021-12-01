@@ -2,7 +2,7 @@
 
 public class MilestoneData : BaseData
 {
-    public MilestoneData(string id) : base(id)
+    public MilestoneData(string id) : base("milestone." + id)
     {
     }
 }

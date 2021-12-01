@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ssl.Data;
+using ssl.Modules.Elements.Items.Data;
 
 namespace ssl.Dao;
 
@@ -12,6 +13,8 @@ public class ItemDao : LocalDao<ItemData>
     /// </summary>
     protected override void LoadAll()
     {
+	    Log.Info( "Load items.." );
+	    
         // Items
         Save(new ItemData("cleaning_spray")
         {
@@ -64,5 +67,15 @@ public class ItemDao : LocalDao<ItemData>
             ShootSound = "rust_pistol.shoot",
             MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
         });
+        
+        // Cleaners
+        Save(new ItemCleanerData("sponge")
+        {
+	        Name = "Sponge",
+	        Description = "A sponge",
+	        CleaningValue = 10
+        });
+        
+        Log.Info( $"{All.Count} items charged !" );
     }
 }

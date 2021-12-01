@@ -1,6 +1,18 @@
-﻿namespace ssl.Dao;
+﻿using System.Collections.Generic;
+using ssl.Data;
 
-public class MilestoneDao
+namespace ssl.Dao;
+
+public class MilestoneDao :  LocalDao<MilestoneData>
 {
-    
+	protected override Dictionary<string, MilestoneData> All { get; set; }
+	
+	protected override void LoadAll()
+	{
+		Log.Info("Load milestones..");
+		
+		Save(new MilestoneData( "milestone_1" ));
+		
+		Log.Info($"{All.Count} Charged !");
+	}
 }

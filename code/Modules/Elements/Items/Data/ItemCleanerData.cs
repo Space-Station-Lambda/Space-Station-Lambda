@@ -1,10 +1,15 @@
-﻿using Sandbox;
+namespace ssl.Modules.Elements.Items.Data;
 
-namespace ssl.Modules.Elements.Items.Data
+public class ItemCleanerData : ItemData
 {
-    [Library("cleaner")]
-    public class ItemCleanerData : ItemData
-    {
-        public int CleaningValue { get; set; } = 10;
-    }
+    
+	public ItemCleanerData(string id) : base("cleaner." + id)
+	{
+	}
+    
+	/// <summary>
+	/// Cleaning value of the current cleaner
+	/// <example>10</example>
+	/// </summary>
+	public int CleaningValue { get; set; } = 10;
 }

@@ -1,14 +1,41 @@
-﻿using Sandbox;
+﻿namespace ssl.Modules.Elements.Items.Data;
 
-namespace ssl.Modules.Elements.Items.Data
+public class ItemData : ssl.Data.BaseData
 {
-    /// <summary>
-    /// Stores data to create an Item instance.
-    /// </summary>
-    [Library("item")]
-    public class ItemData : BaseData
+    public ItemData(string id) : base("item." + id)
     {
-        public string Description { get; set; } = "This is my item";
-        public int HoldType { get; set; } = 1;
     }
+
+    /// <summary>
+    /// Name of the item. 
+    /// <example>"Banana"</example>
+    /// </summary>
+    public string Name { get; set; } = "";
+
+    /// <summary>
+    /// Description of the item.
+    /// <example>"Used to eat. Are you a monkey ?"</example>
+    /// </summary>
+    public string Description { get; set; } = "";
+    
+    /// <summary>
+    /// Model of the item.
+    /// <example>"path/model"</example>
+    /// </summary>
+    public string Model { get; set; } = "ERROR";
+    
+    /// <summary>
+    /// Id of wasted item. Idk if and ItemData is better.
+    /// <example>"peau_de_banane"</example>
+    /// </summary>
+    public string WasteId { get; set; } = "";
+
+    /// <summary>
+    /// How the player hold the item
+    /// TODO Add the holdtype enum
+    /// <example>"HoldTypes.Weapon"</example>
+    /// </summary>
+    public int HoldType { get; set; } = 1;
+
+   
 }
