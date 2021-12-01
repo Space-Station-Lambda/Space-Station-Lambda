@@ -1,11 +1,18 @@
-﻿using Sandbox;
+﻿namespace ssl.Modules.Elements.Items.Data;
 
-namespace ssl.Modules.Elements.Items.Data
+/// <summary>
+/// Food in game is used for the player to feeding himself.
+/// </summary>
+public class ItemFoodData : ItemData
 {
-    [Library("food")]
-    public class ItemFoodData : ItemData
+    
+    public ItemFoodData(string id) : base("food." + id)
     {
-        public int FeedingValue { get; set; }
-        public string WasteItem { get; set; }
     }
+    
+    /// <summary>
+    /// Feeding value of the current food
+    /// <example>10</example>
+    /// </summary>
+    public int FeedingValue { get; set; } = 10;
 }

@@ -9,6 +9,8 @@ namespace ssl.Modules.Elements.Items.Carriables
     {
         private const string EatSound = "grunt1";
         
+        
+        
         public ItemFood()
         {
         }
@@ -16,6 +18,8 @@ namespace ssl.Modules.Elements.Items.Carriables
         public ItemFood(ItemFoodData itemData) : base(itemData)
         {
         }
+        
+        private string waste { get; set; }
 
         /// <summary>
         /// First version, food feeds up the player on use

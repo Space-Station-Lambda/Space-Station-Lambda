@@ -20,16 +20,15 @@ namespace ssl.Modules.Elements.Items.Carriables
 
         public Item()
         {
-        }
-
-        public Item(ItemData data) : base(data)
-        {
             Tags.Add(Tag);
             GlowColor = Color.Blue;
         }
-
-        public new ItemData Data => (ItemData)base.Data;
         
+        public string Description { get; set; }
+        public string Model { get; set; }
+        public string WasteId { get; set; }
+        public HoldType HoldType { get; set; }
+
         public void OnSelectStart(SslPlayer sslPlayer)
         {
             if (Host.IsClient) GlowActive = true;
@@ -84,7 +83,7 @@ namespace ssl.Modules.Elements.Items.Carriables
 
             if (!Host.IsClient || ent is not SslPlayer player || !player.Inventory.ViewModel.IsValid()) return;
             player.Inventory.ViewModel.SetHoldingEntity(this);
-            player.Inventory.ViewModel.SetHoldType((HoldType)Data.HoldType);
+            player.Inventory.ViewModel.SetHoldType(HoldType);
         }
 
         public override void ActiveEnd(Entity ent, bool dropped)
@@ -99,18 +98,8 @@ namespace ssl.Modules.Elements.Items.Carriables
 
         public virtual void SimulateAnimator(HumanAnimator animator)
         {
-            animator.SetParam(HoldTypeKey, Data.HoldType);
+            animator.SetParam(HoldTypeKey, (int)HoldType);
             animator.SetParam(HandednessKey, 1);
-        }
-
-        public override string ToString()
-        {
-            return Data.ToString();
-        }
-
-        public override int GetHashCode()
-        {
-            return (Data.Id != null ? Data.Id.GetHashCode() : 0);
         }
     }
 
@@ -119,11 +108,5 @@ namespace ssl.Modules.Elements.Items.Carriables
         public Item()
         {
         }
-
-        public Item(T itemData) : base(itemData)
-        {
-        }
-
-        public new T Data => (T)base.Data;
     }
 }

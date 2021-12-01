@@ -8,19 +8,12 @@ namespace ssl.Modules.Elements.Items.Carriables
 {
     public partial class ItemCleaner : Item<ItemCleanerData>
     {
-        public ItemCleaner()
-        {
-        }
 
-        public ItemCleaner(ItemCleanerData itemData) : base(itemData)
-        {
-        }
-        
-        /// <summary>
+	    /// <summary>
         /// The dirtyness is the level of sanity of the cleaner. 0 Is perfect and the max is to be defined.
         /// </summary>
         public int Dirtyness { get; private set; }
-        
+        public int CleaningValue { get; set; }
         public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {
             switch (target)
@@ -29,7 +22,7 @@ namespace ssl.Modules.Elements.Items.Carriables
                     Wash(bucket);
                     break;
                 default:
-                    target.OnInteract(sslPlayer, Data.CleaningValue);
+                    target.OnInteract(sslPlayer, CleaningValue);
                     break;
             }
         }

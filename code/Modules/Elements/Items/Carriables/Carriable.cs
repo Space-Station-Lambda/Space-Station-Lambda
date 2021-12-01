@@ -7,11 +7,7 @@ namespace ssl.Modules.Elements.Items.Carriables
     {
 	    private const string DefaultAttachmentOrBone = "hold_R";
 
-	    public Carriable()
-	    {
-	    }
-
-	    public Carriable(BaseData data) : base(data)
+	    protected Carriable()
 	    {
 		    SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
 		    MoveType = MoveType.Physics;
