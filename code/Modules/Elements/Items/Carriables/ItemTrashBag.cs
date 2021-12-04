@@ -11,13 +11,9 @@ namespace ssl.Modules.Elements.Items.Carriables
         
         public ItemTrashBag()
         {
-        }
-
-        public ItemTrashBag(ItemData data) : base(data)
-        {
             if (!Host.IsServer) return;
             ItemFilter filter = new();
-            filter.AddToBlacklist(data);
+            filter.AddToBlacklist(Id);
             
             Content = new Inventory(InventorySize, filter)
             {
