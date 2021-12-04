@@ -9,11 +9,8 @@ namespace ssl.Modules.Elements.Items.Carriables
 {
     public class ItemRestrain : Item
     {
-        public ItemRestrain()
-        {
-        }
 
-        public ItemRestrain(ItemData itemData) : base(itemData)
+	    public ItemRestrain()
         {
             //For now , create a basic lock
             Lock = new Lock();

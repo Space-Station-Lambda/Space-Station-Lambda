@@ -11,19 +11,11 @@ namespace ssl.Modules.Elements.Items.Carriables
     /// </summary>
     public class ItemKey : Item
     {
-        public ItemKey()
-        {
-        }
 
-        public ItemKey(ItemData itemData) : base(itemData)
-        {
-            KeyCode = "";
-        }
-
-        /// <summary>
-        /// The key is the code used to open things. The key can be set by the procedural generator.
-        /// </summary>
-        public string KeyCode { get; set; }
+	    /// <summary>
+	    /// The key is the code used to open things. The key can be set by the procedural generator.
+	    /// </summary>
+	    public string KeyCode { get; set; } = "";
 
         public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
         {

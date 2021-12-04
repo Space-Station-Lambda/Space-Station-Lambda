@@ -5,21 +5,14 @@ using ssl.Player;
 
 namespace ssl.Modules.Elements.Items.Carriables
 {
-    public partial class ItemFood : Item<ItemFoodData>
+    public partial class ItemFood : Item
     {
         private const string EatSound = "grunt1";
         
         
+        public int FeedingValue { get; set; }
         
-        public ItemFood()
-        {
-        }
-
-        public ItemFood(ItemFoodData itemData) : base(itemData)
-        {
-        }
-        
-        private string waste { get; set; }
+        public string Waste { get; set; }
 
         /// <summary>
         /// First version, food feeds up the player on use
@@ -30,10 +23,10 @@ namespace ssl.Modules.Elements.Items.Carriables
             ActiveEnd(sslPlayer, false);
             sslPlayer.Inventory.RemoveItem(this);
             
-            if (!string.IsNullOrWhiteSpace(Data.WasteItem))
+            if (!string.IsNullOrWhiteSpace(Waste))
             {
                 ItemFactory factory = new();
-                Item waste = factory.Create(Data.WasteItem);
+                Item waste = factory.Create(Waste);
                 sslPlayer.Inventory.Add(waste);
             }
             
@@ -42,7 +35,7 @@ namespace ssl.Modules.Elements.Items.Carriables
         }
 
         [ClientRpc]
-        protected void PlayEatSound(Entity entity)
+        private void PlayEatSound(Entity entity)
         {
             Sound.FromEntity(EatSound, entity);
         }

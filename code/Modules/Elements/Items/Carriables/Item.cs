@@ -23,6 +23,7 @@ namespace ssl.Modules.Elements.Items.Carriables
             Tags.Add(Tag);
             GlowColor = Color.Blue;
         }
+        public string Id { get; set; }
         
         public string Description { get; set; }
         public string Model { get; set; }

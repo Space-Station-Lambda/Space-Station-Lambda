@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
@@ -14,52 +15,52 @@ namespace ssl.Modules.Elements.Items
         public ItemFilter()
         {
             if (!Host.IsServer) return;
-            Blacklist = new List<ItemData>();
-            Whitelist = new List<ItemData>();
+            Blacklist = new List<string>();
+            Whitelist = new List<string>();
         }
         
         /// <summary>
         /// Not authorized items
         /// </summary>
-        [Net] protected List<ItemData> Blacklist { get; private set; }
+        [Net] protected List<string> Blacklist { get; private set; }
 
         /// <summary>
         /// Authorized items
         /// </summary>
-        [Net] protected List<ItemData> Whitelist { get; private set; }
+        [Net] protected List<string> Whitelist { get; private set; }
 
-        public bool IsAuthorized(ItemData item)
+        public bool IsAuthorized(string id)
         {
-            if (Whitelist.Contains(item)) return true;
-            if (Blacklist.Contains(item)) return false;
+            if (Whitelist.Contains(id)) return true;
+            if (Blacklist.Contains(id)) return false;
             return !(Whitelist.Count > 0);
         }
 
         public bool IsAuthorized(Item item)
         {
-            if (Whitelist.Any(data => data.Id == item.Data.Id)) return true;
-            if (Blacklist.Any(data => data.Id == item.Data.Id)) return false;
+            if (Whitelist.Any(id => id == item.Id)) return true;
+            if (Blacklist.Any(id => id == item.Id)) return false;
             return !(Whitelist.Count > 0);
         }
 
-        public void AddToWhitelist(ItemData item)
+        public void AddToWhitelist(string id)
         {
-            Whitelist.Add(item);
+            Whitelist.Add(id);
         }
 
-        public void RemoveFromWhitelist(ItemData item)
+        public void RemoveFromWhitelist(string id)
         {
-            Whitelist.Remove(item);
+            Whitelist.Remove(id);
         }
 
-        public void AddToBlacklist(ItemData item)
+        public void AddToBlacklist(string id)
         {
-            Blacklist.Add(item);
+            Blacklist.Add(id);
         }
 
-        public void RemoveFromBlacklist(ItemData item)
+        public void RemoveFromBlacklist(string id)
         {
-            Blacklist.Remove(item);
+            Blacklist.Remove(id);
         }
     }
 }

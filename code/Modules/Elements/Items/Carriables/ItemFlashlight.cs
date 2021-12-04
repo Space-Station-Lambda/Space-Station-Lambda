@@ -24,14 +24,6 @@ namespace ssl.Modules.Elements.Items.Carriables
         private SpotLightEntity viewLight;
         private SpotLightEntity worldLight;
 
-        public ItemFlashlight()
-        {
-        }
-
-        public ItemFlashlight(ItemData itemData) : base(itemData)
-        {
-        }
-
         private static Vector3 LightOffset => Vector3.Forward * 10;
         [Net, Local, Predicted] private bool LightEnabled { get; set; }
 
