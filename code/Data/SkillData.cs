@@ -2,7 +2,7 @@
 
 public class SkillData : BaseData
 {
-	public SkillData( string id ) : base(id)
+	public SkillData( string id ) : base("skill." + id)
 	{
 	}
 }
