@@ -2,7 +2,7 @@
 
 public class ScenarioData : BaseData
 {
-	public ScenarioData( string id ) : base(id)
+	public ScenarioData( string id ) : base("scenario" + id)
 	{
 	}
 }
