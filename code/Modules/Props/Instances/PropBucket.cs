@@ -2,7 +2,7 @@
 
 namespace ssl.Modules.Props.Instances;
 
-public class Bucket : Prop
+public class PropBucket : Prop
 {
 	public int Capacity { get; set; }
 

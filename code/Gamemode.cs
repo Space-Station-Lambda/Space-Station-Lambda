@@ -98,6 +98,7 @@ public partial class Gamemode : Game
 			catch ( Exception e )
 			{
 				// If we close the server we don't care about the Task
+				Log.Error(e);
 			}
 		}
 	}
@@ -117,6 +118,7 @@ public partial class Gamemode : Game
 			catch ( Exception e )
 			{
 				// If we close the server we don't care about the Task
+				Log.Error(e);
 			}
 		}
 	}

@@ -15,7 +15,6 @@ public abstract class Status : BaseNetworkable
 	/// <summary>
 	///     Create a status with a specific duration
 	/// </summary>
-	/// <param name="duration">Set the duration of the status.</param>
 	protected Status()
 	{
 	}

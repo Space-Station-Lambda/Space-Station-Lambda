@@ -13,6 +13,6 @@ public class RoundInfosPlayerLine : Panel
 		SslPlayer = sslPlayer;
 		Log.Info("Création d'un player");
 		StyleSheet.Load("Ui/RoundInfos/RoudInfosPlayerLine.scss");
-		Add.Label(sslPlayer.GetClientOwner().Name);
+		Add.Label(sslPlayer.Client.Name);
 	}
 }

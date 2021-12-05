@@ -25,7 +25,7 @@ public partial class PlayerCorpse : ModelEntity, IDraggable
 		SslPlayer = sslPlayer;
 	}
 
-	[Net] public SslPlayer SslPlayer { get; }
+	[Net] public SslPlayer SslPlayer { get; set; }
 
 	public void OnSelectStart( SslPlayer sslPlayer )
 	{

@@ -1,4 +1,5 @@
 using ssl.Data;
+using ssl.Modules.Items.Data;
 using ssl.Modules.Props.Instances;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -18,7 +19,7 @@ public class ItemCleaner : Item<ItemCleanerData>
 	{
 		switch ( target )
 		{
-			case Bucket bucket:
+			case PropBucket bucket:
 				Wash(bucket);
 				break;
 			default:
@@ -30,10 +31,10 @@ public class ItemCleaner : Item<ItemCleanerData>
 	/// <summary>
 	///     wash the cleaner in a bucket for set the dirty level to 0.
 	/// </summary>
-	/// <param name="bucket"></param>
-	private void Wash( Bucket bucket )
+	/// <param name="propBucket"></param>
+	private void Wash( PropBucket propBucket )
 	{
-		bucket.WasteWater(Dirtyness);
+		propBucket.WasteWater(Dirtyness);
 		Dirtyness = 0;
 	}
 }

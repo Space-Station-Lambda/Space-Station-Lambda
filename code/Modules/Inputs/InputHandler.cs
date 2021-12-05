@@ -14,7 +14,7 @@ public partial class InputHandler : EntityComponent<SslPlayer>
 	}
 
 	//TODO : Add a way to change the cooldown by the skill of the player
-	[Net] private float Cooldown { get; } = 0.5f;
+	[Net] private float Cooldown { get; set; } = 0.5f;
 
 	[Net] private TimeSince TimeSinceLastUse { get; set; }
 

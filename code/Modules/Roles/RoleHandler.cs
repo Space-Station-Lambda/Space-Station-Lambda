@@ -28,7 +28,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		}
 	}
 
-	[Net] private List<RolePreference> RolePreferences { get; set; }
+	[Net] private IList<RolePreference> RolePreferences { get; set; }
 	public Role Role { get; private set; }
 
 	[ServerCmd("select_role_preference")]

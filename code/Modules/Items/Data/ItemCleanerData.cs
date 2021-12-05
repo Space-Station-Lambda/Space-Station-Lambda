@@ -1,4 +1,4 @@
-namespace ssl.Data;
+namespace ssl.Modules.Items.Data;
 
 public class ItemCleanerData : ItemData
 {

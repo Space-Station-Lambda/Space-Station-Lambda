@@ -38,10 +38,8 @@ public class ClothesHandler : EntityComponent
 	}
 
 	/// <summary>
-	///     Attach a piece of clothes to the entity
+	/// Attach a piece of clothes to the entity
 	/// </summary>
-	/// <param name="clothes">Concerned clothes</param>
-	/// <param name="slot">Slot concerned</param>
 	public void AttachClothes( Clothes pieceOfClothes )
 	{
 		pieceOfClothes.SetParent(Entity, true);

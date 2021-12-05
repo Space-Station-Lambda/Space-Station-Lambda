@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sandbox;
 using ssl.Factories;
+using ssl.Modules.Items;
 using ssl.Modules.Roles.Types.Antagonists;
 using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Roles.Types.Others;

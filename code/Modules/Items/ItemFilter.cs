@@ -25,13 +25,13 @@ public partial class ItemFilter : BaseNetworkable
 	///     Not authorized items
 	/// </summary>
 	[Net]
-	protected List<string> Blacklist { get; }
+	protected IList<string> Blacklist { get; set; }
 
 	/// <summary>
 	///     Authorized items
 	/// </summary>
 	[Net]
-	protected List<string> Whitelist { get; }
+	protected IList<string> Whitelist { get; set; }
 
 	public bool IsAuthorized( string id )
 	{
