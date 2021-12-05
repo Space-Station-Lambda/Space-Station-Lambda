@@ -1,47 +1,46 @@
 using System.Collections.Generic;
 using ssl.Player;
 
-namespace ssl.Modules.Roles.Types.Antagonists
+namespace ssl.Modules.Roles.Types.Antagonists;
+
+public class Traitor : Antagonist
 {
-    public class Traitor : Antagonist
-    {
-        public override string Id => "traitor";
-        public override string Name => "Traitor";
-        public override string Description => "Traitor";
-        public override Faction[] Faction => new[] { Roles.Faction.Traitors };
+	public override string Id => "traitor";
+	public override string Name => "Traitor";
+	public override string Description => "Traitor";
+	public override Faction[] Faction => new[] {Roles.Faction.Traitors};
 
-        public override IEnumerable<string> Clothing => new HashSet<string>
-        {
-            "models/citizen_clothes/trousers/trousers.smart.vmdl",
-            "models/citizen_clothes/shoes/shoes.police.vmdl",
-            "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-            "models/citizen_clothes/hat/hat_beret.black.vmdl"
-        };
+	public override IEnumerable<string> Clothing => new HashSet<string>
+	{
+		"models/citizen_clothes/trousers/trousers.smart.vmdl",
+		"models/citizen_clothes/shoes/shoes.police.vmdl",
+		"models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
+		"models/citizen_clothes/hat/hat_beret.black.vmdl"
+	};
 
-        public override IEnumerable<string> Items => new List<string>();
+	public override IEnumerable<string> Items => new List<string>();
 
-        public Role SecondaryRole { get; set; }
+	public Role SecondaryRole { get; set; }
 
-        public override void OnAssigned(SslPlayer sslPlayer)
-        {
-            base.OnAssigned(sslPlayer);
-            sslPlayer.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
-            Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
-            SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer) ??
-                            defaultRole;
-            SecondaryRole.OnAssigned(sslPlayer);
-        }
+	public override void OnAssigned( SslPlayer sslPlayer )
+	{
+		base.OnAssigned(sslPlayer);
+		sslPlayer.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
+		Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
+		SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer) ??
+		                defaultRole;
+		SecondaryRole.OnAssigned(sslPlayer);
+	}
 
-        public override void OnSpawn(SslPlayer sslPlayer)
-        {
-            base.OnSpawn(sslPlayer);
-            SecondaryRole.OnSpawn(sslPlayer);
-        }
+	public override void OnSpawn( SslPlayer sslPlayer )
+	{
+		base.OnSpawn(sslPlayer);
+		SecondaryRole.OnSpawn(sslPlayer);
+	}
 
-        public override void OnUnassigned(SslPlayer sslPlayer)
-        {
-            base.OnUnassigned(sslPlayer);
-            SecondaryRole.OnUnassigned(sslPlayer);
-        }
-    }
+	public override void OnUnassigned( SslPlayer sslPlayer )
+	{
+		base.OnUnassigned(sslPlayer);
+		SecondaryRole.OnUnassigned(sslPlayer);
+	}
 }

@@ -8,153 +8,141 @@ using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Scenarios;
 using ssl.Player;
 
-namespace ssl.Modules.Rounds
+namespace ssl.Modules.Rounds;
+
+public abstract partial class BaseRound : BaseNetworkable
 {
-    public abstract partial class BaseRound : BaseNetworkable
-    {
-        protected BaseRound()
-        {
-            Scenario scenario = new(
-                new Dictionary<int, List<ScenarioConstraint>>
-                {
-                    {
-                        2, new List<ScenarioConstraint>
-                        {
-                            new(new Guard(), 1, 1)
-                        }
-                    },
-                    {
-                        3, new List<ScenarioConstraint>
-                        {
-                            new(new Traitor(), 1, 1),
-                            new(new Guard(), 2, 3)
-                        }
-                    }
-                });
-            RoleDistributor = new RoleDistributor(scenario, Players);
-            MilestonesHandler = new MilestonesHandler();
-        }
-        
-        [Net] public List<SslPlayer> Players { get; private set; } = new();
-        public virtual int RoundDuration => 0;
-        public virtual string RoundName => "";
-        public float RoundEndTime { get; set; }
-        public float TimeLeft => RoundEndTime - Time.Now;
-        public MilestonesHandler MilestonesHandler { get; private set; }
-        public RoleDistributor RoleDistributor { get; }
-        public event Action<BaseRound> RoundEndedEvent;
+	protected BaseRound()
+	{
+		Scenario scenario = new(
+			new Dictionary<int, List<ScenarioConstraint>>
+			{
+				{2, new List<ScenarioConstraint> {new(new Guard(), 1, 1)}},
+				{3, new List<ScenarioConstraint> {new(new Traitor(), 1, 1), new(new Guard(), 2, 3)}}
+			});
+		RoleDistributor = new RoleDistributor(scenario, Players);
+		MilestonesHandler = new MilestonesHandler();
+	}
 
-        public void Start()
-        {
-            if (Host.IsServer && RoundDuration > 0)
-            {
-                RoundEndTime = Time.Now + RoundDuration;
-                InitPlayers();
-            }
+	[Net] public List<SslPlayer> Players { get; } = new();
+	public virtual int RoundDuration => 0;
+	public virtual string RoundName => "";
+	public float RoundEndTime { get; set; }
+	public float TimeLeft => RoundEndTime - Time.Now;
+	public MilestonesHandler MilestonesHandler { get; }
+	public RoleDistributor RoleDistributor { get; }
+	public event Action<BaseRound> RoundEndedEvent;
 
-            OnStart();
-        }
+	public void Start()
+	{
+		if ( Host.IsServer && RoundDuration > 0 )
+		{
+			RoundEndTime = Time.Now + RoundDuration;
+			InitPlayers();
+		}
 
-        public void Stop()
-        {
-            Log.Info($"[Round] Round {this} stopped");
-            if (Host.IsServer)
-            {
-                RoundEndTime = 0f;
-                Players.Clear();
-            }
-        }
+		OnStart();
+	}
 
-        /// <summary>
-        /// When the round is finish
-        /// </summary>
-        public void Finish()
-        {
-            Log.Info($"[Round] Round {this} finished");
-            OnFinish();
-            RoundEndedEvent?.Invoke(this);
-        }
+	public void Stop()
+	{
+		Log.Info($"[Round] Round {this} stopped");
+		if ( Host.IsServer )
+		{
+			RoundEndTime = 0f;
+			Players.Clear();
+		}
+	}
 
-        public void AddPlayer(SslPlayer sslPlayer)
-        {
-            Log.Info($"[Round] Add player {sslPlayer} to the round");
-            Host.AssertServer();
-            Players.Add(sslPlayer);
-        }
+	/// <summary>
+	///     When the round is finish
+	/// </summary>
+	public void Finish()
+	{
+		Log.Info($"[Round] Round {this} finished");
+		OnFinish();
+		RoundEndedEvent?.Invoke(this);
+	}
 
-        public void RemovePlayer(SslPlayer sslPlayer)
-        {
-            Log.Info($"[Round] Remove player {sslPlayer} to the round");
-            Host.AssertServer();
-            Players.Remove(sslPlayer);
-        }
+	public void AddPlayer( SslPlayer sslPlayer )
+	{
+		Log.Info($"[Round] Add player {sslPlayer} to the round");
+		Host.AssertServer();
+		Players.Add(sslPlayer);
+	}
 
-        public abstract BaseRound Next();
+	public void RemovePlayer( SslPlayer sslPlayer )
+	{
+		Log.Info($"[Round] Remove player {sslPlayer} to the round");
+		Host.AssertServer();
+		Players.Remove(sslPlayer);
+	}
 
-        public virtual void OnPlayerSpawn(SslPlayer sslPlayer)
-        {
-            AddPlayer(sslPlayer);
-        }
+	public abstract BaseRound Next();
 
-        public virtual void OnPlayerKilled(SslPlayer sslPlayer)
-        {
-            RemovePlayer(sslPlayer);
-        }
+	public virtual void OnPlayerSpawn( SslPlayer sslPlayer )
+	{
+		AddPlayer(sslPlayer);
+	}
 
-        public virtual void OnPlayerLeave(SslPlayer sslPlayer)
-        {
-        }
+	public virtual void OnPlayerKilled( SslPlayer sslPlayer )
+	{
+		RemovePlayer(sslPlayer);
+	}
 
-        public virtual void OnTick()
-        {
-        }
+	public virtual void OnPlayerLeave( SslPlayer sslPlayer )
+	{
+	}
 
-        public virtual void OnSecond()
-        {
-            if (Host.IsServer)
-            {
-                if (RoundEndTime > 0 && Time.Now >= RoundEndTime)
-                {
-                    RoundEndTime = 0f;
-                    OnTimeUp();
-                }
-            }
-        }
+	public virtual void OnTick()
+	{
+	}
 
-        protected virtual void OnStart()
-        {
-        }
+	public virtual void OnSecond()
+	{
+		if ( Host.IsServer )
+		{
+			if ( RoundEndTime > 0 && Time.Now >= RoundEndTime )
+			{
+				RoundEndTime = 0f;
+				OnTimeUp();
+			}
+		}
+	}
 
-        /// <summary>
-        /// Default event when the round is finished.
-        /// </summary>
-        protected virtual void OnFinish()
-        {
-        }
+	protected virtual void OnStart()
+	{
+	}
 
-        /// <summary>
-        /// Default event when times is up.
-        /// </summary>
-        protected virtual void OnTimeUp()
-        {
-            Finish();
-        }
+	/// <summary>
+	///     Default event when the round is finished.
+	/// </summary>
+	protected virtual void OnFinish()
+	{
+	}
 
-        /// <summary>
-        /// Set players to the list
-        /// </summary>
-        private void InitPlayers()
-        {
-            foreach (Client client in Client.All)
-            {
-                Players.Add((SslPlayer)client.Pawn);
-            }
-        }
+	/// <summary>
+	///     Default event when times is up.
+	/// </summary>
+	protected virtual void OnTimeUp()
+	{
+		Finish();
+	}
 
-        public override string ToString()
-        {
-            return $"Round Name: {RoundName}\n" +
-                   $"Round Duration: {RoundDuration}\n";
-        }
-    }
+	/// <summary>
+	///     Set players to the list
+	/// </summary>
+	private void InitPlayers()
+	{
+		foreach ( Client client in Client.All )
+		{
+			Players.Add((SslPlayer)client.Pawn);
+		}
+	}
+
+	public override string ToString()
+	{
+		return $"Round Name: {RoundName}\n" +
+		       $"Round Duration: {RoundDuration}\n";
+	}
 }

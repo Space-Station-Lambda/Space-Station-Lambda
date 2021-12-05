@@ -1,7 +1,6 @@
-﻿namespace ssl.Modules.Roles.Types.Antagonists
+﻿namespace ssl.Modules.Roles.Types.Antagonists;
+
+public abstract class Antagonist : Role
 {
-    public abstract class Antagonist : Role
-    {
-        public override string Category => "antagonist";
-    }
+	public override string Category => "antagonist";
 }

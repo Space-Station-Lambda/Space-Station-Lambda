@@ -1,15 +1,14 @@
 ﻿using Sandbox.UI;
 
-namespace ssl.Ui.Crosshair
-{
-    public class Crosshair : Panel
-    {
-        private CrosshairSelectionCircle crosshairSelectionCircle;
+namespace ssl.Ui.Crosshair;
 
-        public Crosshair()
-        {
-            StyleSheet.Load("Ui/Crosshair/crosshair.scss");
-            crosshairSelectionCircle = AddChild<CrosshairSelectionCircle>();
-        }
-    }
+public class Crosshair : Panel
+{
+	private CrosshairSelectionCircle crosshairSelectionCircle;
+
+	public Crosshair()
+	{
+		StyleSheet.Load("Ui/Crosshair/crosshair.scss");
+		crosshairSelectionCircle = AddChild<CrosshairSelectionCircle>();
+	}
 }

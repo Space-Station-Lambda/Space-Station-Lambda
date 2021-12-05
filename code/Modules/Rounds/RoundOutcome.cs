@@ -1,9 +1,8 @@
-﻿namespace ssl.Modules.Rounds
+﻿namespace ssl.Modules.Rounds;
+
+public enum RoundOutcome
 {
-    public enum RoundOutcome
-    {
-        Tie,
-        ProtagonistsWin,
-        TraitorsWin
-    }
+	Tie,
+	ProtagonistsWin,
+	TraitorsWin
 }

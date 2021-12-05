@@ -1,50 +1,38 @@
 using System;
 using ssl.Dao;
-using ssl.Modules.Elements.Items.Carriables;
-using ssl.Modules.Elements.Items.Data;
+using ssl.Data;
+using ssl.Modules.Items.Instances;
 
 namespace ssl.Factories;
 
-public sealed class ItemFactory
+public sealed class ItemFactory : IFactory<Item>
 {
-	private ItemDao itemDao = new ItemDao();
-	
+	private static ItemFactory instance;
+	private readonly ItemDao itemDao = new();
+
 	private ItemFactory()
-	{ }  
-	
-	private static ItemFactory instance;  
-	
-	public static ItemFactory Instance {  
-		get
-		{
-			return instance ??= new ItemFactory();
-		}  
+	{
 	}
-	
-	public Item Create(string id)
+
+	public static ItemFactory Instance => instance ??= new ItemFactory();
+
+	public Item Create( string id )
 	{
 		ItemData itemData = itemDao.FindById(id);
-		
+
 		Item item = itemData switch
 		{
-			ItemFoodData itemFoodData => new ItemFood
-			{
-				FeedingValue = itemFoodData.FeedingValue
-			},
+			ItemFoodData itemFoodData => new ItemFood {FeedingValue = itemFoodData.FeedingValue},
 			ItemWeaponData itemWeaponData => new ItemWeapon
 			{
 				Damage = itemWeaponData.Damage,
 				Range = itemWeaponData.Range,
 				PrimaryRate = itemWeaponData.PrimaryRate,
 				ShootSound = itemWeaponData.ShootSound,
-				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle,
-				
+				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
 			},
-			ItemCleanerData itemCleanerData => new ItemCleaner
-			{
-				CleaningValue = itemCleanerData.CleaningValue
-			},
-			
+			ItemCleanerData itemCleanerData => new ItemCleaner {CleaningValue = itemCleanerData.CleaningValue},
+
 			_ => throw new ArgumentException("Item type not supported")
 		};
 

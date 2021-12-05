@@ -1,11 +1,10 @@
-﻿namespace ssl.Modules.Roles
+﻿namespace ssl.Modules.Roles;
+
+public enum RolePreferenceType
 {
-    public enum RolePreferenceType
-    {
-        Never,
-        Low,
-        Medium,
-        High,
-        Always
-    }
+	Never,
+	Low,
+	Medium,
+	High,
+	Always
 }
