@@ -1,5 +1,7 @@
 ﻿using System;
 using Sandbox;
+using ssl.Modules.Items;
+using ssl.Modules.Props;
 using ssl.Modules.Rounds;
 using ssl.Player;
 using ssl.Ui;
@@ -50,8 +52,17 @@ public partial class Gamemode : Game
 		RoundManager = new RoundManager();
 		Log.Info("Create HUD...");
 		_ = new Hud();
+		LoadDatabase();
 	}
 
+	private void LoadDatabase()
+	{
+		Log.Info("Load database...");
+		// Factories create the dao when they appear.
+		// Maybe the databse create have to be outside dao; i don't know :(
+		_ = ItemFactory.Instance;
+		_ = PropFactory.Instance;
+	}
 	/// <summary>
 	///     Stat client and init classes
 	/// </summary>

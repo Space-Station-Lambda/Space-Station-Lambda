@@ -5,9 +5,14 @@ using ssl.Player;
 
 namespace ssl.Modules.Items;
 
-public class ItemDao : LocalDao<ItemData>
+public sealed class ItemDao : LocalDao<ItemData>
 {
-	protected override Dictionary<string, ItemData> All { get; set; }
+	public ItemDao()
+	{
+		LoadAll();
+	}
+
+	protected override Dictionary<string, ItemData> All { get; set; } = new();
 
 	/// <summary>
 	///     Load all data from disk files.
