@@ -43,25 +43,4 @@ public sealed class ItemFactory : IFactory<Item>
 		item.WasteId = itemData.WasteId;
 		return item;
 	}
-	// Weird way to create an item. I let this here for future reference.
-	/*
-	public Item Create2(string id)
-	{
-		ItemData itemData = itemDao.FindById(id);
-		Item item = new()
-		{
-			Id = itemData.Id,
-			Name = itemData.Name,
-			Model = itemData.Model,
-			HoldType = itemData.HoldType,
-			WasteId = itemData.WasteId
-		};
-		((ItemFood)item).FeedingValue = itemData switch
-		{
-			ItemFoodData itemFoodData => itemFoodData.FeedingValue,
-			_ => throw new ArgumentException("Item type not supported")
-		};
-		return item;
-	}
-	*/
 }
