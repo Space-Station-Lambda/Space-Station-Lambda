@@ -8,9 +8,12 @@ namespace ssl.Factories;
 public sealed class ItemFactory
 {
 	private ItemDao itemDao = new ItemDao();
+	
 	private ItemFactory()
 	{ }  
+	
 	private static ItemFactory instance;  
+	
 	public static ItemFactory Instance {  
 		get
 		{
@@ -21,9 +24,27 @@ public sealed class ItemFactory
 	public Item Create(string id)
 	{
 		ItemData itemData = itemDao.FindById(id);
+		
 		Item item = itemData switch
 		{
-			ItemFoodData itemFoodData => new ItemFood {FeedingValue = itemFoodData.FeedingValue},
+			ItemFoodData itemFoodData => new ItemFood
+			{
+				FeedingValue = itemFoodData.FeedingValue
+			},
+			ItemWeaponData itemWeaponData => new ItemWeapon
+			{
+				Damage = itemWeaponData.Damage,
+				Range = itemWeaponData.Range,
+				PrimaryRate = itemWeaponData.PrimaryRate,
+				ShootSound = itemWeaponData.ShootSound,
+				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle,
+				
+			},
+			ItemCleanerData itemCleanerData => new ItemCleaner
+			{
+				CleaningValue = itemCleanerData.CleaningValue
+			},
+			
 			_ => throw new ArgumentException("Item type not supported")
 		};
 
@@ -34,7 +55,8 @@ public sealed class ItemFactory
 		item.WasteId = itemData.WasteId;
 		return item;
 	}
-	
+	// Weird way to create an item. I let this here for future reference.
+	/*
 	public Item Create2(string id)
 	{
 		ItemData itemData = itemDao.FindById(id);
@@ -53,4 +75,5 @@ public sealed class ItemFactory
 		};
 		return item;
 	}
+	*/
 }

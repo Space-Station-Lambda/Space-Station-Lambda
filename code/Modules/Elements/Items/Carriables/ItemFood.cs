@@ -1,4 +1,5 @@
 using Sandbox;
+using ssl.Factories;
 using ssl.Modules.Elements.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -25,7 +26,7 @@ namespace ssl.Modules.Elements.Items.Carriables
             
             if (!string.IsNullOrWhiteSpace(Waste))
             {
-                ItemFactory factory = new();
+                ItemFactory factory = ItemFactory.Instance;
                 Item waste = factory.Create(Waste);
                 sslPlayer.Inventory.Add(waste);
             }
