@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
+using ssl.Factories;
 using ssl.Modules.Elements.Items.Carriables;
 using ssl.Modules.Elements.Items.Data;
 
@@ -86,23 +87,9 @@ namespace ssl.Modules.Elements.Items
         /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
         public Slot Add(string itemId, int position = 0)
         {
-            ItemFactory itemFactory = new();
+            ItemFactory itemFactory = ItemFactory.Instance;
             Item item = itemFactory.Create(itemId);
             return Add(item, position);
-        }
-
-        /// <summary>
-        /// Adds an Item to a preferred position in the inventory from an ItemData.
-        /// </summary>
-        /// The Item will be merged if the preferred position is the same Item.
-        /// If the preferred position is not the same Item, it will add the stack to the next available slot.
-        /// <param name="data"></param>
-        /// <param name="position">The preferred position</param>
-        /// <exception cref="IndexOutOfRangeException">If the specified position is out of bounds.</exception>
-        public Slot Add(ItemData data, int position = 0)
-        {
-            ItemFactory itemFactory = new();
-            return Add(itemFactory.Create(data), position);
         }
 
         /// <summary>
@@ -149,12 +136,12 @@ namespace ssl.Modules.Elements.Items
 
         public Item Get(string itemId)
         {
-            return (from slot in Slots where itemId.Equals(slot.Item.Data.Id) select slot.Item).FirstOrDefault();
+            return (from slot in Slots where itemId.Equals(slot.Item.Id) select slot.Item).FirstOrDefault();
         }
 
         public List<Item> GetItems(ItemData item)
         {
-            return (from slot in Slots where item.Id.Equals(slot.Item.Data.Id) select slot.Item).ToList();
+            return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
         }
 
         /// <summary>
