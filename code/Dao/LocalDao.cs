@@ -10,6 +10,7 @@ namespace ssl.Dao;
 /// <typeparam name="T"></typeparam>
 public abstract class LocalDao<T> : IDao<T> where T : BaseData
 {
+
 	/// <summary>
 	///     We store all data in the start of the server locally
 	/// </summary>
@@ -21,6 +22,7 @@ public abstract class LocalDao<T> : IDao<T> where T : BaseData
 	public void Save( T data )
 	{
 		All.Add(data.Id, data);
+		Log.Info($"{data.Id} preloaded");
 	}
 
 	/// <summary>
