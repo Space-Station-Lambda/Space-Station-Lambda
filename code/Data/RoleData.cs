@@ -2,7 +2,7 @@
 
 public class RoleData : BaseData
 {
-    public RoleData(string id) : base(id)
-    {
-    }
+	public RoleData( string id ) : base(id)
+	{
+	}
 }

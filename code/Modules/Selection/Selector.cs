@@ -1,73 +1,72 @@
 ﻿using Sandbox;
 using ssl.Player;
 
-namespace ssl.Modules.Selection
+namespace ssl.Modules.Selection;
+
+public class Selector : EntityComponent<SslPlayer>
 {
-    public class Selector : EntityComponent<SslPlayer>
-    {
-        protected const float Range = 150f;
-        
-        protected TraceResult traceResult;
+	protected const float Range = 150f;
 
-        public ISelectable Selected { get; private set; }
-        public bool IsSelecting => Selected != null;
-        
-        public virtual void UpdateTarget()
-        {
-            traceResult = GetTraceResult();
-                
-            if (traceResult.Entity is ISelectable selectable)
-            {
-                if (!ReferenceEquals(selectable, Selected))
-                {
-                    StopSelection();
-                    StartSelection(selectable);
-                }
+	protected TraceResult traceResult;
 
-                Selected.OnSelect(Entity);
-            }
-            else if (Selected != null)
-            {
-                StopSelection();
-            }
-        }
+	public ISelectable Selected { get; private set; }
+	public bool IsSelecting => Selected != null;
 
-        public void UseSelected()
-        {
-            Selected?.OnInteract(Entity, 1);
-        }
+	public virtual void UpdateTarget()
+	{
+		traceResult = GetTraceResult();
 
-        private void StartSelection(ISelectable selectable)
-        {
-            Selected = selectable;
-            Selected.OnSelectStart(Entity);
-        }
+		if ( traceResult.Entity is ISelectable selectable )
+		{
+			if ( !ReferenceEquals(selectable, Selected) )
+			{
+				StopSelection();
+				StartSelection(selectable);
+			}
 
-        private void StopSelection()
-        {
-            Selected?.OnSelectStop(Entity);
-            Selected = null;
-        }
+			Selected.OnSelect(Entity);
+		}
+		else if ( Selected != null )
+		{
+			StopSelection();
+		}
+	}
+
+	public void UseSelected()
+	{
+		Selected?.OnInteract(Entity, 1);
+	}
+
+	private void StartSelection( ISelectable selectable )
+	{
+		Selected = selectable;
+		Selected.OnSelectStart(Entity);
+	}
+
+	private void StopSelection()
+	{
+		Selected?.OnSelectStop(Entity);
+		Selected = null;
+	}
 
 
-        protected virtual TraceResult GetTraceResult()
-        {
-            Vector3 forward = Entity.EyeRot.Forward;
-            TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * Range);
-            return tr;
-        }
+	protected virtual TraceResult GetTraceResult()
+	{
+		Vector3 forward = Entity.EyeRot.Forward;
+		TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * Range);
+		return tr;
+	}
 
-        protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
-        {
-            bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);
+	protected virtual TraceResult TraceSelector( Vector3 start, Vector3 end )
+	{
+		bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);
 
-            TraceResult tr = Trace.Ray(start, end)
-                .UseHitboxes()
-                .HitLayer(CollisionLayer.Water, !inWater)
-                .Ignore(Entity)
-                .Run();
+		TraceResult tr = Trace.Ray(start, end)
+			.UseHitboxes()
+			.HitLayer(CollisionLayer.Water, !inWater)
+			.Ignore(Entity)
+			.Run();
 
-            return tr;
-        }
-    }
+		return tr;
+	}
 }

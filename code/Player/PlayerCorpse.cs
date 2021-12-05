@@ -1,108 +1,109 @@
 ﻿using Sandbox;
 using ssl.Modules.Selection;
 
-namespace ssl.Player
+namespace ssl.Player;
+
+public partial class PlayerCorpse : ModelEntity, IDraggable
 {
-    public partial class PlayerCorpse : ModelEntity, IDraggable
-    {
-        private const float ForceMultiplier = 1000F;
-        private const string ClothesModelIndicator = "clothes";
+	private const float ForceMultiplier = 1000F;
+	private const string ClothesModelIndicator = "clothes";
 
-        public PlayerCorpse()
-        {
-            MoveType = MoveType.Physics;
-            UsePhysicsCollision = true;
-            EnableHideInFirstPerson = true;
-            EnableShadowInFirstPerson = true;
-            
-            SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
-            SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
-            SetInteractsExclude(CollisionLayer.Player);
-        }
-        
-        public PlayerCorpse(SslPlayer sslPlayer) : this()
-        {
-            SslPlayer = sslPlayer;
-        }
+	public PlayerCorpse()
+	{
+		MoveType = MoveType.Physics;
+		UsePhysicsCollision = true;
+		EnableHideInFirstPerson = true;
+		EnableShadowInFirstPerson = true;
 
-        [Net] public SslPlayer SslPlayer { get; private set; }
+		SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
+		SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
+		SetInteractsExclude(CollisionLayer.Player);
+	}
 
-        public void CopyFrom(SslPlayer sslPlayer)
-        {
-            SetModel(sslPlayer.GetModelName());
-            TakeDecalsFrom(sslPlayer);
+	public PlayerCorpse( SslPlayer sslPlayer ) : this()
+	{
+		SslPlayer = sslPlayer;
+	}
 
-            // We have to use `this` to refer to the extension methods.
-            this.CopyBonesFrom(sslPlayer);
-            this.SetRagdollVelocityFrom(sslPlayer);
+	[Net] public SslPlayer SslPlayer { get; }
 
-            foreach (Entity child in sslPlayer.Children)
-            {
-                if (child is ModelEntity e)
-                {
-                    string model = e.GetModelName();
+	public void OnSelectStart( SslPlayer sslPlayer )
+	{
+	}
 
-                    if (model != null && !model.Contains(ClothesModelIndicator))
-                        continue;
+	public void OnSelectStop( SslPlayer sslPlayer )
+	{
+	}
 
-                    ModelEntity clothing = new();
-                    clothing.SetModel(model);
-                    clothing.SetParent(this, true);
-                    clothing.EnableHideInFirstPerson = true;
-                }
-            }
-        }
+	public void OnSelect( SslPlayer sslPlayer )
+	{
+	}
 
-        public void ApplyForceToBone(Vector3 force, int forceBone)
-        {
-            PhysicsGroup.AddVelocity(force);
+	public void OnInteract( SslPlayer sslPlayer, int strength )
+	{
+	}
 
-            if (forceBone >= 0)
-            {
-                PhysicsBody body = GetBonePhysicsBody(forceBone);
+	public void OnDragStart( SslPlayer sslPlayer )
+	{
+	}
 
-                if (body != null)
-                {
-                    body.ApplyForce(force * ForceMultiplier);
-                }
-                else
-                {
-                    PhysicsGroup.AddVelocity(force);
-                }
-            }
-        }
+	public void OnDragStop( SslPlayer sslPlayer )
+	{
+	}
 
-        public void OnSelectStart(SslPlayer sslPlayer)
-        {
-        }
+	public void OnDrag( SslPlayer sslPlayer )
+	{
+	}
 
-        public void OnSelectStop(SslPlayer sslPlayer)
-        {
-        }
+	public bool IsDraggable( SslPlayer sslPlayer )
+	{
+		return true;
+	}
 
-        public void OnSelect(SslPlayer sslPlayer)
-        {
-        }
+	public void CopyFrom( SslPlayer sslPlayer )
+	{
+		SetModel(sslPlayer.GetModelName());
+		TakeDecalsFrom(sslPlayer);
 
-        public void OnInteract(SslPlayer sslPlayer, int strength)
-        {
-        }
+		// We have to use `this` to refer to the extension methods.
+		this.CopyBonesFrom(sslPlayer);
+		this.SetRagdollVelocityFrom(sslPlayer);
 
-        public void OnDragStart(SslPlayer sslPlayer)
-        {
-        }
+		foreach ( Entity child in sslPlayer.Children )
+		{
+			if ( child is ModelEntity e )
+			{
+				string model = e.GetModelName();
 
-        public void OnDragStop(SslPlayer sslPlayer)
-        {
-        }
+				if ( model != null && !model.Contains(ClothesModelIndicator) )
+				{
+					continue;
+				}
 
-        public void OnDrag(SslPlayer sslPlayer)
-        {
-        }
+				ModelEntity clothing = new();
+				clothing.SetModel(model);
+				clothing.SetParent(this, true);
+				clothing.EnableHideInFirstPerson = true;
+			}
+		}
+	}
 
-        public bool IsDraggable(SslPlayer sslPlayer)
-        {
-            return true;
-        }
-    }
+	public void ApplyForceToBone( Vector3 force, int forceBone )
+	{
+		PhysicsGroup.AddVelocity(force);
+
+		if ( forceBone >= 0 )
+		{
+			PhysicsBody body = GetBonePhysicsBody(forceBone);
+
+			if ( body != null )
+			{
+				body.ApplyForce(force * ForceMultiplier);
+			}
+			else
+			{
+				PhysicsGroup.AddVelocity(force);
+			}
+		}
+	}
 }

@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace ssl.Modules.Milestones
+namespace ssl.Modules.Milestones;
+
+public class MilestonesHandler
 {
-    public class MilestonesHandler
-    {
-        /// <summary>
-        /// Dictionary of milestones; bool represents if the milestone is completed
-        /// </summary>
-        public List<MilestoneCompletion> Milestones { get; set; }
-    }
+	/// <summary>
+	///     Dictionary of milestones; bool represents if the milestone is completed
+	/// </summary>
+	public List<MilestoneCompletion> Milestones { get; set; }
 }

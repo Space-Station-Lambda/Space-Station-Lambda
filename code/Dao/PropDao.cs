@@ -1,6 +1,5 @@
 ﻿namespace ssl.Dao;
 
-public interface IPropDao
+public class PropDao
 {
-    
 }

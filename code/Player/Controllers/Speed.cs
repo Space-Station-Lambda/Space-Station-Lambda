@@ -1,8 +1,7 @@
-﻿namespace ssl.Player.Controllers
+﻿namespace ssl.Player.Controllers;
+
+public struct Speed
 {
-    public struct Speed
-    {
-        public float Acceleration;
-        public float MaxSpeed;
-    }
+	public float Acceleration;
+	public float MaxSpeed;
 }

@@ -1,11 +1,13 @@
-﻿namespace ssl.Dao;
+﻿using ssl.Data;
 
-public interface IDao<T> where T: Data.BaseData
+namespace ssl.Dao;
+
+public interface IDao<T> where T : BaseData
 {
-    void Save(T data);
-    void Update(T t);
-    void Delete(T t);
-    T FindById(string id);
-    T[] FindAll();
-    int Count();
+	void Save( T data );
+	void Update( T t );
+	void Delete( T t );
+	T FindById( string id );
+	T[] FindAll();
+	int Count();
 }
