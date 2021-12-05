@@ -57,7 +57,7 @@ public partial class HumanController : BasePlayerController
 	}
 
 
-	[Net] private SslPlayer SslPlayer { get; }
+	[Net] private SslPlayer SslPlayer { get; set;  }
 	public Vector3 GravityVector { get; set; } = Vector3.Down * 981F;
 	public float CurrentSpeed => Velocity.Length;
 

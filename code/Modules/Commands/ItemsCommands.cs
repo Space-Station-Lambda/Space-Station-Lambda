@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using ssl.Factories;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Instances;
 using ssl.Player;
 

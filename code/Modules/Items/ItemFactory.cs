@@ -1,9 +1,9 @@
 using System;
-using ssl.Dao;
-using ssl.Data;
+using ssl.Factories;
+using ssl.Modules.Items.Data;
 using ssl.Modules.Items.Instances;
 
-namespace ssl.Factories;
+namespace ssl.Modules.Items;
 
 public sealed class ItemFactory : IFactory<Item>
 {

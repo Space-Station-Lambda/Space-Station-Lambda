@@ -1,4 +1,4 @@
-﻿namespace ssl.Data;
+﻿namespace ssl.Modules.Items.Data;
 
 /// <summary>
 ///     Food in game is used for the player to feeding himself.

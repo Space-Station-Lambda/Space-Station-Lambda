@@ -21,9 +21,9 @@ public partial class AttachedCamera : Camera
 		lastPos = startPos;
 	}
 
-	[Net] public ModelEntity Target { get; }
-	[Net] public string Attachment { get; }
-	[Net] public Rotation RotationOffset { get; }
+	[Net] public ModelEntity Target { get; set; }
+	[Net] public string Attachment { get; set; }
+	[Net] public Rotation RotationOffset { get; set; }
 
 	public override void Activated()
 	{

@@ -1,6 +1,7 @@
-﻿using ssl.Player;
+﻿using ssl.Data;
+using ssl.Player;
 
-namespace ssl.Data;
+namespace ssl.Modules.Items.Data;
 
 public class ItemData : BaseData
 {

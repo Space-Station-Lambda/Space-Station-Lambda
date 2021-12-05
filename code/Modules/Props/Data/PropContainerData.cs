@@ -1,4 +1,4 @@
-﻿namespace ssl.Data;
+﻿namespace ssl.Modules.Props.Data;
 
 public class PropContainerData : PropData
 {

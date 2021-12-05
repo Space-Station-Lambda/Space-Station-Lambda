@@ -5,9 +5,8 @@
 ///     mecanic.
 ///     It's not instanciable because a machine have to had a purpose.
 /// </summary>
-public abstract class Machine : Prop
+public class PropMachine : Prop
 {
-	public int Durability { get; set; }
 
 	/// <summary>
 	///     When the machine get hits
@@ -21,6 +20,9 @@ public abstract class Machine : Prop
 			Destroy();
 		}
 	}
+	
+	public int Durability { get; set; }
+	public int Complexity { get; set; }
 
 	/// <summary>
 	///     When the machine get hits

@@ -4,6 +4,7 @@ using System.Linq;
 using Sandbox;
 using ssl.Data;
 using ssl.Factories;
+using ssl.Modules.Items.Data;
 using ssl.Modules.Items.Instances;
 
 namespace ssl.Modules.Items;
@@ -27,9 +28,9 @@ public partial class Inventory : EntityComponent
 		}
 	}
 
-	[Net] public ItemFilter Filter { get; }
+	[Net] public ItemFilter Filter { get; set; }
 
-	[Net] public List<Slot> Slots { get; private set; }
+	[Net] public IList<Slot> Slots { get; private set; }
 
 	public int SlotsCount => Slots.Count;
 

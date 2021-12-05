@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using ssl.Factories;
+using ssl.Modules.Props;
 using ssl.Player;
 using Prop = ssl.Modules.Props.Instances.Prop;
 

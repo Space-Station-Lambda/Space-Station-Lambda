@@ -7,7 +7,7 @@ namespace ssl.Modules.Statuses;
 
 public partial class StatusHandler : EntityComponent<SslPlayer>
 {
-	[Net] public List<Status> Statuses { get; private set; }
+	[Net] public IList<Status> Statuses { get; private set; }
 
 	/// <summary>
 	///     Add status. Create a new one if he is not affected by the status
