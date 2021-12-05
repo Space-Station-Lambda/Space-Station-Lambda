@@ -8,7 +8,7 @@ namespace ssl.Modules.Props;
 public class PropFactory : IFactory<Prop>
 {
 	private static PropFactory instance;
-	private PropDao propDao = new();
+	private readonly PropDao propDao = new();
 
 	private PropFactory()
 	{
@@ -19,9 +19,7 @@ public class PropFactory : IFactory<Prop>
 	public Prop Create( string id )
 	{
 		PropData propData = propDao.FindById(id);
-
 		Prop prop;
-
 		string type = propData.GetTypeId();
 		
 		switch ( type )
@@ -41,7 +39,8 @@ public class PropFactory : IFactory<Prop>
 				prop = new PropTrashBin();
 				break;
 			default:
-				throw new ArgumentException("Item type not supported"); 
+				prop = new Prop();
+				break;
 		}
 
 		prop.Id = propData.Id;

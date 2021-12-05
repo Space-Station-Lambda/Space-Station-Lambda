@@ -20,7 +20,7 @@ public class BaseData
 	/// <returns></returns>
 	public string GetBaseTypeId()
 	{
-		string [] split = Id.Split( '.' );
+		string [] split = Id.Split( Identifiers.Separator );
 		return split[0];
 	}
 	
@@ -31,7 +31,7 @@ public class BaseData
 	/// <returns></returns>
 	public string GetTypeId()
 	{
-		string [] split = Id.Split( '.' );
+		string [] split = Id.Split( Identifiers.Separator );
 		return split[1];
 	}
 }
