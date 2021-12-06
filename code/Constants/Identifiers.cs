@@ -16,4 +16,8 @@ public static class Identifiers
 	public const string Weapon = "weapon";
 	public const string Cleaner = "cleaner";
 	#endregion
+	
+	#region Status
+	public const string Status = "status";
+	#endregion
 }
