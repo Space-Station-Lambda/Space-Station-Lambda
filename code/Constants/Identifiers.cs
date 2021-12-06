@@ -12,8 +12,8 @@ public static class Identifiers
 	#endregion
 	
 	#region Item
-	public const string Food = "Food";
-	public const string Weapon = "Weapon";
-	public const string Cleaner = "Cleaner";
+	public const string Food = "food";
+	public const string Weapon = "weapon";
+	public const string Cleaner = "cleaner";
 	#endregion
 }
