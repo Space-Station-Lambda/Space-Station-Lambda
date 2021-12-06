@@ -22,6 +22,6 @@ public static class Identifiers
 	#endregion
 	
 	#region Skill
-	public const string Skill = "Skill";
+	public const string Skill = "skill";
 	#endregion
 }
