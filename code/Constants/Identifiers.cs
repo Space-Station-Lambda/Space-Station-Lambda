@@ -20,4 +20,8 @@ public static class Identifiers
 	#region Status
 	public const string Status = "status";
 	#endregion
+	
+	#region Skill
+	public const string Skill = "Skill";
+	#endregion
 }
