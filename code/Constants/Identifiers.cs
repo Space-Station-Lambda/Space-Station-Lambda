@@ -24,4 +24,15 @@ public static class Identifiers
 	#region Skill
 	public const string Skill = "skill";
 	#endregion
+	
+	#region Scenario
+	public const string Scenario = "scenario";
+	public const string Basic = "basic";
+	#endregion
+	
+	#region Role
+	public const string Role = "role";
+	public const string Traitor = "traitor";
+	public const string Guard = "guard";
+	#endregion
 }
