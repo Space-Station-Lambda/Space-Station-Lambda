@@ -72,21 +72,21 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		}
 	}
 
-	public Dictionary<Role, float> GetPreferencesNormalised()
+	public Dictionary<string, float> GetPreferencesNormalised()
 	{
 		int total = RolePreferences.Sum(rolePreference => rolesFactors[rolePreference.Preference]);
 
-		Dictionary<Role, float> normalisedPreferences = new();
+		Dictionary<string, float> normalisedPreferences = new();
 
 		foreach ( RolePreference preference in RolePreferences )
 		{
 			if ( total == 0 )
 			{
-				normalisedPreferences[preference.Role] = 0f;
+				normalisedPreferences[preference.Role.Id] = 0f;
 			}
 			else
 			{
-				normalisedPreferences[preference.Role] = (float)rolesFactors[preference.Preference] / total;
+				normalisedPreferences[preference.Role.Id] = (float)rolesFactors[preference.Preference] / total;
 			}
 		}
 
@@ -98,6 +98,17 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		Role?.OnUnassigned(Entity);
 		Role = role;
 		Role?.OnAssigned(Entity);
+	}
+	
+	public void AssignRole( string roleId )
+	{
+		AssignRole(RoleFactory.Instance.Create(roleId));
+	}
+	
+	public void ClearRole()
+	{
+		Role?.OnUnassigned(Entity);
+		Role = null;
 	}
 
 	public void SetPreference( Role role, RolePreferenceType preferenceType )

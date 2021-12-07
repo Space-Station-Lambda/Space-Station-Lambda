@@ -2,11 +2,11 @@
 
 namespace ssl.Modules.Scenarios;
 
-public class ScenarioConstraint
+public readonly struct ScenarioConstraint
 {
-	public ScenarioConstraint( Role role, int min = -1, int max = -1 )
+	public ScenarioConstraint( string roleId, int min = -1, int max = -1 )
 	{
-		Role = role;
+		RoleId = roleId;
 		Min = min;
 		Max = max;
 	}
@@ -14,7 +14,7 @@ public class ScenarioConstraint
 	/// <summary>
 	///     Role to constraint
 	/// </summary>
-	public Role Role { get; }
+	public string RoleId { get; }
 
 	/// <summary>
 	///     Minimum amount of this role, -1 means infinite.
@@ -28,6 +28,6 @@ public class ScenarioConstraint
 
 	public override string ToString()
 	{
-		return $"[{Role}]{Min}|{Max}";
+		return $"[{RoleId}]{Min}|{Max}";
 	}
 }

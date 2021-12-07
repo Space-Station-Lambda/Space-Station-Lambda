@@ -26,9 +26,9 @@ public class Traitor : Antagonist
 	{
 		base.OnAssigned(sslPlayer);
 		sslPlayer.RoleHandler.SetPreference(new Traitor(), RolePreferenceType.Never);
-		Role defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
-		SecondaryRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer) ??
-		                defaultRole;
+		string defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
+		string secondaryRoleId = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer).Equals("") ? defaultRole : Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer);
+		SecondaryRole = RoleFactory.Instance.Create(secondaryRoleId);
 		SecondaryRole.OnAssigned(sslPlayer);
 	}
 

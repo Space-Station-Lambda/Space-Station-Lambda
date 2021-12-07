@@ -6,17 +6,18 @@ namespace ssl.Modules.Scenarios;
 
 public class Scenario
 {
-	private readonly Dictionary<int, List<ScenarioConstraint>> constraintsLists;
 
-	public Scenario( Dictionary<int, List<ScenarioConstraint>> constraintsLists )
-	{
-		this.constraintsLists = constraintsLists;
-	}
+	public string Id { get; set; }
+	
+	/// <summary>
+	/// List of constraints per players palliers.
+	/// </summary>
+	public Dictionary<int, List<ScenarioConstraint>> Constraints { get; set; }
 
 	public List<ScenarioConstraint> GetScenarioConstraint( int count )
 	{
 		List<ScenarioConstraint> constraintToReturn = new();
-		foreach ( (int numberOfPlayers, var currentConstraintsList) in constraintsLists )
+		foreach ( (int numberOfPlayers, var currentConstraintsList) in Constraints )
 		{
 			if ( numberOfPlayers > count )
 			{
@@ -29,10 +30,10 @@ public class Scenario
 		return constraintToReturn;
 	}
 
-	public int MinRole( int playerCount, Role role )
+	public int MinRole( int playerCount, string role )
 	{
 		foreach ( ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
-			         .Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)) )
+			         .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)) )
 		{
 			return scenarioConstraint.Min;
 		}
@@ -40,10 +41,10 @@ public class Scenario
 		return -1;
 	}
 
-	public int MaxRole( int playerCount, Role role )
+	public int MaxRole( int playerCount, string role )
 	{
 		foreach ( ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
-			         .Where(scenarioConstraint => scenarioConstraint.Role.Equals(role)) )
+			         .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)) )
 		{
 			return scenarioConstraint.Max;
 		}

@@ -14,12 +14,7 @@ public abstract partial class BaseRound : BaseNetworkable
 {
 	protected BaseRound()
 	{
-		Scenario scenario = new(
-			new Dictionary<int, List<ScenarioConstraint>>
-			{
-				{2, new List<ScenarioConstraint> {new(new Guard(), 1, 1)}},
-				{3, new List<ScenarioConstraint> {new(new Traitor(), 1, 1), new(new Guard(), 2, 3)}}
-			});
+		Scenario scenario = ScenarioFactory.Instance.Create($"{Identifiers.Role}{Identifiers.Separator}{Identifiers.Basic}");
 		RoleDistributor = new RoleDistributor(scenario, Players);
 		MilestonesHandler = new MilestonesHandler();
 	}
