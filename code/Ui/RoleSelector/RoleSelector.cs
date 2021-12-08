@@ -27,9 +27,9 @@ public class RoleSelector : Panel
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
 		SetClass("active", true);
-		foreach ( (string id, Role role) in Role.All )
+		foreach ( string id in RoleFactory.Instance.GetAllIds() )
 		{
-			RoleSlot slot = new(role, this);
+			RoleSlot slot = new(id, this);
 			roleSlots.Add(slot);
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
+using ssl.Dao;
 using ssl.Modules.Saves;
 using ssl.Player;
 
@@ -8,7 +9,7 @@ namespace ssl.Modules.Roles;
 
 public partial class RoleHandler : EntityComponent<SslPlayer>
 {
-	private static readonly Dictionary<RolePreferenceType, int> rolesFactors = new()
+	private static readonly Dictionary<RolePreferenceType, int> RolesFactors = new()
 	{
 		{RolePreferenceType.Never, 0},
 		{RolePreferenceType.Low, 1},
@@ -27,15 +28,16 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 			LoadPreferences();
 		}
 	}
-
-	[Net] private IList<RolePreference> RolePreferences { get; set; }
+	
+	[Net] private Dictionary<string, RolePreferenceType> RolePreferences { get; set; }
+	
 	public Role Role { get; private set; }
 
 	[ServerCmd("select_role_preference")]
 	public static void SelectPreference( string roleId, RolePreferenceType preferenceType )
 	{
 		SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
-		sslPlayer.RoleHandler?.SetPreference(Role.All[roleId], preferenceType);
+		sslPlayer.RoleHandler?.SetPreference(roleId, preferenceType);
 	}
 
 	[ClientCmd("save_role_preferences")]
@@ -45,17 +47,16 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		sslPlayer.RoleHandler.SavePreferences();
 	}
 
-	public RolePreferenceType GetPreference( Role role )
+	public RolePreferenceType GetPreference( string roleId )
 	{
-		return RolePreferences.Where(rolePreference => rolePreference.Role.Equals(role))
-			.Select(rolePreference => rolePreference.Preference).FirstOrDefault();
+		return RolePreferences[roleId];
 	}
 
 	private void InitRolePreferences()
 	{
-		foreach ( Role role in Role.All.Values )
+		foreach ( string roleId in RoleFactory.Instance.GetAllIds() )
 		{
-			RolePreferences.Add(new RolePreference(role, RolePreferenceType.Never));
+			RolePreferences[roleId] = RolePreferenceType.Never;
 		}
 	}
 
@@ -74,19 +75,19 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 
 	public Dictionary<string, float> GetPreferencesNormalised()
 	{
-		int total = RolePreferences.Sum(rolePreference => rolesFactors[rolePreference.Preference]);
+		int total = RolePreferences.Sum(rolePreference => RolesFactors[rolePreference.Value]);
 
 		Dictionary<string, float> normalisedPreferences = new();
 
-		foreach ( RolePreference preference in RolePreferences )
+		foreach ( string roleId in RolePreferences.Keys )
 		{
 			if ( total == 0 )
 			{
-				normalisedPreferences[preference.Role.Id] = 0f;
+				normalisedPreferences[roleId] = 0f;
 			}
 			else
 			{
-				normalisedPreferences[preference.Role.Id] = (float)rolesFactors[preference.Preference] / total;
+				normalisedPreferences[roleId] = (float)RolesFactors[RolePreferences[roleId]] / total;
 			}
 		}
 
@@ -111,23 +112,10 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		Role = null;
 	}
 
-	public void SetPreference( Role role, RolePreferenceType preferenceType )
+	public void SetPreference( string roleId, RolePreferenceType preferenceType )
 	{
 		Host.AssertServer();
-		RolePreference rolePreference = null;
-		foreach ( RolePreference preference in RolePreferences.Where(preference => role.Equals(preference.Role)) )
-		{
-			rolePreference = preference;
-		}
-
-		if ( null == rolePreference )
-		{
-			RolePreferences.Add(new RolePreference(role, preferenceType));
-		}
-		else
-		{
-			rolePreference.Preference = preferenceType;
-		}
+		RolePreferences[roleId] = preferenceType;
 	}
 
 	/// <summary>

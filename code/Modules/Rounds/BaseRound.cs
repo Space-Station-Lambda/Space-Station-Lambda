@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using Sandbox;
 using ssl.Modules.Milestones;
 using ssl.Modules.Roles;
-using ssl.Modules.Roles.Types.Antagonists;
-using ssl.Modules.Roles.Types.Jobs;
 using ssl.Modules.Scenarios;
 using ssl.Player;
 

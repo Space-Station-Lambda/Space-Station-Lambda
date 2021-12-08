@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ssl.Dao;
-using ssl.Modules.Roles.Types.Jobs;
 
 namespace ssl.Modules.Scenarios;
 
