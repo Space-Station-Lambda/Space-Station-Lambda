@@ -59,6 +59,11 @@ public abstract class LocalDao<T> : IDao<T> where T : BaseData
 		return All.Values.ToArray();
 	}
 
+	public string[] FindAllIds()
+	{
+		return All.Keys.ToArray();
+	}
+
 	/// <summary>
 	///     Count all data
 	/// </summary>

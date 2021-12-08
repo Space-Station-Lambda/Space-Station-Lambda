@@ -12,15 +12,9 @@ public class RolesPrefencesSaver : Saver<Dictionary<string, RolePreferenceType>>
 	{
 	}
 
-	public void Save( IEnumerable<RolePreference> toSave )
-	{
-		var toSaveStringified = toSave.ToDictionary(r => r.Role.Id, r => r.Preference);
-		base.Save(toSaveStringified);
-	}
-
 	public new List<(string, RolePreferenceType)> Load()
 	{
-		var stringPreferences = base.Load();
+		Dictionary<string, RolePreferenceType> stringPreferences = base.Load();
 		List<(string, RolePreferenceType)> rolePreferences = new();
 		foreach ( (string roleString, RolePreferenceType preference) in stringPreferences )
 		{

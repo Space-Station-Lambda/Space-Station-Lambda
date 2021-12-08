@@ -32,7 +32,19 @@ public static class Identifiers
 	
 	#region Role
 	public const string Role = "role";
-	public const string Traitor = "traitor";
+	public const string Protagonist = "protagonist";
+	public const string Antagonist = "antagonist";
+	public const string Other = "other";
+	
+	public const string Assistant = "assistant";
+	public const string Captain = "captain";
+	public const string Engineer = "engineer";
 	public const string Guard = "guard";
+	public const string Janitor = "janitor";
+	public const string Scientist = "scientist";
+	
+	public const string Traitor = "traitor";
+	
+	public const string Ghost = "ghost";
 	#endregion
 }

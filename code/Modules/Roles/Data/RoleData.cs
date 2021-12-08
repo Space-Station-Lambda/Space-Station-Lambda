@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ssl.Data;
 
@@ -18,18 +19,27 @@ public class RoleData : BaseData
 	/// <example>The assistant is the couteau suisse of the station</example>
 	/// </summary>
 	public string Description { get; set; }
+
+	public string Type { get; set; } = Identifiers.Protagonist;
+	
+	/// <summary>
+	/// Model of the role
+	/// </summary>
+	public string Model { get; set; } = "models/units/simpleterry.vmdl";
 	
 	/// <summary>
 	/// List of clothing
 	/// TODO create "skin" system with a SkinData class
 	/// </summary>
-	public IEnumerable<string> Clothing { get; set; }
+	public IEnumerable<string> Clothing { get; set; }= new HashSet<string>();
+
 	
+
 	/// <summary>
 	/// List of starting items
 	/// </summary>
-	public IEnumerable<string> StartingItems { get; set; }
-	
-	//TODO Skill system
+	public IEnumerable<string> StartingItems { get; set; } = new HashSet<string>();
+
+	public Dictionary<string, int> Skills { get; set; } = new();
 
 }

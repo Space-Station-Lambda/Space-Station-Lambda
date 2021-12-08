@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sandbox;
-using ssl.Factories;
 using ssl.Modules.Items;
-using ssl.Modules.Roles.Types.Antagonists;
-using ssl.Modules.Roles.Types.Jobs;
-using ssl.Modules.Roles.Types.Others;
 using ssl.Modules.Skills;
 using ssl.Player;
 
@@ -14,33 +10,23 @@ namespace ssl.Modules.Roles;
 /// <summary>
 ///     Player's role
 /// </summary>
-public abstract class Role : BaseNetworkable
+public class Role : BaseNetworkable
 {
-	public static Dictionary<string, Role> All = new()
-	{
-		{"assistant", new Assistant()},
-		{"captain", new Captain()},
-		{"engineer", new Engineer()},
-		{"ghost", new Ghost()},
-		{"guard", new Guard()},
-		{"janitor", new Janitor()},
-		{"scientist", new Scientist()},
-		{"traitor", new Traitor()}
-	};
 
-	public abstract string Id { get; }
-	public abstract string Name { get; }
-	public abstract string Description { get; }
-	public virtual string Category => "";
-	public virtual string Model => "models/units/simpleterry.vmdl";
-	public virtual IEnumerable<string> Clothing => new HashSet<string>();
-	public virtual IEnumerable<string> Items => new List<string>();
+	public string Id { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+	public string Type { get; set; }
+	public string Model { get; set; }
+
+	public IEnumerable<string> Clothing { get; set; }
+	public IEnumerable<string> StartingItems { get; set; }
 
 	/// <summary>
 	///     The skillset of the Role. For now the role handle skills but we can change that later for let the player
 	///     handle his roles
 	/// </summary>
-	public virtual SkillSet SkillSet => new();
+	public SkillSet SkillSet { get; set; }
 
 	/// <summary>
 	///     Array of factions of the role. A role can have multiple factions.
@@ -60,7 +46,7 @@ public abstract class Role : BaseNetworkable
 	/// <param name="sslPlayer"></param>
 	public virtual void OnSpawn( SslPlayer sslPlayer )
 	{
-		foreach ( string itemId in Items )
+		foreach ( string itemId in StartingItems )
 		{
 			ItemFactory itemFactory = ItemFactory.Instance;
 			try
@@ -88,7 +74,7 @@ public abstract class Role : BaseNetworkable
 	/// </summary>
 	public virtual void OnKilled( SslPlayer sslPlayer )
 	{
-		sslPlayer.RoleHandler.AssignRole(new Ghost());
+		sslPlayer.RoleHandler.AssignRole(RoleFactory.Instance.Create($"{Identifiers.Role}{Identifiers.Separator}{Identifiers.Ghost}"));
 		sslPlayer.Respawn(sslPlayer.Position, sslPlayer.Rotation);
 	}
 

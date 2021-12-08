@@ -9,5 +9,6 @@ public interface IDao<T> where T : BaseData
 	void Delete( T t );
 	T FindById( string id );
 	T[] FindAll();
+	string[] FindAllIds();
 	int Count();
 }

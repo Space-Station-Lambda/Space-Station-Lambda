@@ -11,26 +11,27 @@ namespace ssl.Ui.RoleSelector;
 /// </summary>
 public class RoleSlot : Panel
 {
-	private readonly Role role;
+	private readonly string roleId;
 	private RolePreferenceType currentSelected;
 
-	public RoleSlot( Role role, Panel parent ) : this(role)
+	public RoleSlot( string roleId, Panel parent ) : this(roleId)
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
 		Parent = parent;
 		AddEventListener("onclick", Select);
 	}
 
-	public RoleSlot( Role role )
+	public RoleSlot( string roleId )
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
-		this.role = role;
+		this.roleId = roleId;
+		Role role = RoleFactory.Instance.Create(roleId);
 		Add.Label(role.Name, "role-name");
 	}
 
 	public void Refresh()
 	{
-		RolePreferenceType newPreferenceType = ((SslPlayer)Local.Pawn).RoleHandler.GetPreference(role);
+		RolePreferenceType newPreferenceType = ((SslPlayer)Local.Pawn).RoleHandler.GetPreference(roleId);
 
 		if ( currentSelected == newPreferenceType )
 		{
@@ -46,7 +47,7 @@ public class RoleSlot : Panel
 	/// </summary>
 	public void Select()
 	{
-		ConsoleSystem.Run("select_role_preference", role.Id,
+		ConsoleSystem.Run("select_role_preference", roleId,
 			currentSelected == RolePreferenceType.Medium ? RolePreferenceType.Never : RolePreferenceType.Medium);
 		ConsoleSystem.Run("save_role_preferences");
 	}
