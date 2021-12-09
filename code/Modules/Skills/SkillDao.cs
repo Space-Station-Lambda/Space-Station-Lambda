@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using ssl.Data;
+using ssl.Commons;
 
-namespace ssl.Dao;
+namespace ssl.Modules.Skills;
 
 public class SkillDao : LocalDao<SkillData>
 {

@@ -3,6 +3,7 @@ using System.Linq;
 using Hammer;
 using Sandbox;
 using ssl.Modules.Roles;
+using ssl.Modules.Roles.Instances;
 
 namespace ssl.Modules.Rounds;
 

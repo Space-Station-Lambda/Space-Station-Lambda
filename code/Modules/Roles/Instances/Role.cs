@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Sandbox;
+using ssl.Constants;
 using ssl.Modules.Items;
 using ssl.Modules.Skills;
 using ssl.Player;
 
-namespace ssl.Modules.Roles;
+namespace ssl.Modules.Roles.Instances;
 
 /// <summary>
 ///     Player's role

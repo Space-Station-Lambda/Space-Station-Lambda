@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Dao;
+using ssl.Modules.Roles.Instances;
 using ssl.Modules.Saves;
 using ssl.Player;
 

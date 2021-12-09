@@ -1,4 +1,6 @@
-﻿namespace ssl.Data;
+﻿using ssl.Commons;
+
+namespace ssl.Modules.Statuses;
 
 /// <summary>
 /// Represents data of a status

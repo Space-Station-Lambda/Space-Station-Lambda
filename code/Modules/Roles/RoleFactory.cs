@@ -1,8 +1,8 @@
 using System;
-using ssl.Dao;
-using ssl.Data;
-using ssl.Factories;
-using ssl.Modules.Roles.Types.Antagonists;
+using ssl.Commons;
+using ssl.Constants;
+using ssl.Modules.Roles.Data;
+using ssl.Modules.Roles.Instances;
 using ssl.Modules.Scenarios;
 
 namespace ssl.Modules.Roles;

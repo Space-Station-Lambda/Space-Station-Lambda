@@ -1,4 +1,4 @@
-namespace ssl.Factories;
+namespace ssl.Commons;
 
 public interface IFactory<out T>
 {

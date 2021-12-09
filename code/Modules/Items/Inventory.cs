@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Sandbox;
-using ssl.Data;
-using ssl.Factories;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Items.Instances;
 

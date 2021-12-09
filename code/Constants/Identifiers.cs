@@ -1,4 +1,4 @@
-namespace ssl;
+namespace ssl.Constants;
 
 public static class Identifiers
 {

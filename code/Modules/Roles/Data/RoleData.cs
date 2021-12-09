@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using ssl.Commons;
+using ssl.Constants;
 
-namespace ssl.Data;
+namespace ssl.Modules.Roles.Data;
 
 public class RoleData : BaseData
 {

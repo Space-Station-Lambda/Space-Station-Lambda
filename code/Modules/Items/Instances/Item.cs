@@ -1,5 +1,4 @@
 ﻿using Sandbox;
-using ssl.Data;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;

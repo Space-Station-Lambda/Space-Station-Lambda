@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ssl.Data;
 
-namespace ssl.Dao;
+namespace ssl.Commons;
 
 /// <summary>
 ///     We want to load all the data at the start of the server

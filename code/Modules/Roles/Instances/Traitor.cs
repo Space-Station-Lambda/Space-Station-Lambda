@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+using ssl.Constants;
 using ssl.Player;
 
-namespace ssl.Modules.Roles.Types.Antagonists;
+namespace ssl.Modules.Roles.Instances;
 
 public class Traitor : Role
 {

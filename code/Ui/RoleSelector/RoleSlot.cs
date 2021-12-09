@@ -2,6 +2,7 @@
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Modules.Roles;
+using ssl.Modules.Roles.Instances;
 using ssl.Player;
 
 namespace ssl.Ui.RoleSelector;

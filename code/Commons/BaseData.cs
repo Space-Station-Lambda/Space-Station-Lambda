@@ -1,4 +1,6 @@
-﻿namespace ssl.Data;
+﻿using ssl.Constants;
+
+namespace ssl.Commons;
 
 public class BaseData
 {

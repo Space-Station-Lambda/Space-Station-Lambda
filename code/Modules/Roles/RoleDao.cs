@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
-using ssl.Data;
+using ssl.Commons;
+using ssl.Constants;
+using ssl.Modules.Roles.Data;
 
-namespace ssl.Dao;
+namespace ssl.Modules.Roles;
 
 public class RoleDao : LocalDao<RoleData>
 {

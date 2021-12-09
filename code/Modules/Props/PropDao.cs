@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ssl.Dao;
+using ssl.Commons;
 using ssl.Modules.Props.Data;
 
 namespace ssl.Modules.Props;

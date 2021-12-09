@@ -1,6 +1,4 @@
-﻿using ssl.Data;
-
-namespace ssl.Dao;
+﻿namespace ssl.Commons;
 
 public interface IDao<T> where T : BaseData
 {

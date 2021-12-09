@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Sandbox;
+using ssl.Constants;
 using ssl.Modules.Milestones;
 using ssl.Modules.Roles;
 using ssl.Modules.Scenarios;

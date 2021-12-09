@@ -1,5 +1,5 @@
 ﻿using Sandbox;
-using ssl.Modules.Roles.Types.Antagonists;
+using ssl.Modules.Roles.Instances;
 using ssl.Player;
 
 namespace ssl.Modules.Rounds;

@@ -1,6 +1,5 @@
 ﻿using Sandbox;
 using Sandbox.ScreenShake;
-using ssl.Data;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;

@@ -1,9 +1,7 @@
-using System;
-using System.Collections.Generic;
 using Sandbox;
 using ssl.Player;
 
-namespace ssl.Modules.Roles.Types.Others;
+namespace ssl.Modules.Roles.Instances;
 
 public class Ghost : Role
 {
