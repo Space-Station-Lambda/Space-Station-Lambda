@@ -3,6 +3,7 @@ using ssl.Commons;
 using ssl.Modules.Items;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Items.Instances;
+using ssl.Modules.Skills.Types;
 
 namespace ssl.Modules.Skills;
 
@@ -26,10 +27,13 @@ public sealed class SkillFactory : IFactory<Skill>
 
         switch (type)
         {
-            
+            case "fighting":
+	            skill = new Strength();
+	            break;
             default:
                 throw new ArgumentException($"[Skills] No skill data found for {id}");
         }
-        //TODO return skill
+
+        return skill;
     }
 }
