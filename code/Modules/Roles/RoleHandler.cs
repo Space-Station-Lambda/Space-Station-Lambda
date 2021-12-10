@@ -9,7 +9,7 @@ namespace ssl.Modules.Roles;
 
 public partial class RoleHandler : EntityComponent<SslPlayer>
 {
-	private static readonly Dictionary<RolePreferenceType, int> RolesFactors = new()
+	private static readonly IDictionary<RolePreferenceType, int> RolesFactors = new Dictionary<RolePreferenceType, int>
 	{
 		{RolePreferenceType.Never, 0},
 		{RolePreferenceType.Low, 1},
@@ -22,14 +22,16 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 
 	public RoleHandler()
 	{
-		if ( Host.IsClient )
+		if ( Host.IsServer )
 		{
-			saver = new RolesPrefencesSaver();
-			LoadPreferences();
+			return;
 		}
+
+		saver = new RolesPrefencesSaver();
+		LoadPreferences();
 	}
 	
-	[Net] private Dictionary<string, RolePreferenceType> RolePreferences { get; set; }
+	[Net] private IDictionary<string, RolePreferenceType> RolePreferences { get; set; }
 	
 	public Role Role { get; private set; }
 
@@ -126,7 +128,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 		Role?.OnSpawn(Entity);
 	}
 
-	public void SavePreferences()
+	private void SavePreferences()
 	{
 		Host.AssertClient();
 		saver.Save(RolePreferences);

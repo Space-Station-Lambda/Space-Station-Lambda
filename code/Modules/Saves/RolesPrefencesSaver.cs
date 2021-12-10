@@ -4,7 +4,7 @@ using ssl.Modules.Roles;
 
 namespace ssl.Modules.Saves;
 
-public class RolesPrefencesSaver : Saver<Dictionary<string, RolePreferenceType>>
+public class RolesPrefencesSaver : Saver<IDictionary<string, RolePreferenceType>>
 {
 	private const string RolePreferences = "RolePreferences";
 
@@ -14,7 +14,7 @@ public class RolesPrefencesSaver : Saver<Dictionary<string, RolePreferenceType>>
 
 	public new List<(string, RolePreferenceType)> Load()
 	{
-		Dictionary<string, RolePreferenceType> stringPreferences = base.Load();
+		IDictionary<string, RolePreferenceType> stringPreferences = base.Load();
 		List<(string, RolePreferenceType)> rolePreferences = new();
 		foreach ( (string roleString, RolePreferenceType preference) in stringPreferences )
 		{

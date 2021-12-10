@@ -30,7 +30,6 @@ public sealed class SkillFactory : IFactory<Skill>
             default:
                 throw new ArgumentException($"[Skills] No skill data found for {id}");
         }
-
-        return skill;
+        //TODO return skill
     }
 }
