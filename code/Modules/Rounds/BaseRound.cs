@@ -13,12 +13,13 @@ public abstract partial class BaseRound : BaseNetworkable
 {
 	protected BaseRound()
 	{
+		Players = new List<SslPlayer>();
 		Scenario scenario = ScenarioFactory.Instance.Create($"{Identifiers.Role}{Identifiers.Separator}{Identifiers.Basic}");
 		RoleDistributor = new RoleDistributor(scenario, Players);
 		MilestonesHandler = new MilestonesHandler();
 	}
 
-	[Net] public List<SslPlayer> Players { get; set; } = new();
+	[Net] public IList<SslPlayer> Players { get; set; }
 	public virtual int RoundDuration => 0;
 	public virtual string RoundName => "";
 	public float RoundEndTime { get; set; }
