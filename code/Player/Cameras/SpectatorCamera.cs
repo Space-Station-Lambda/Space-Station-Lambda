@@ -49,8 +49,8 @@ public class SpectatorCamera : Camera
 
 	private void TargetCamMove()
 	{
-		Pos = Target.Position + Input.Rotation.Backward * FocusDistance;
-		Rot = Input.Rotation;
+		Position = Target.Position + Input.Rotation.Backward * FocusDistance;
+		Rotation = Input.Rotation;
 
 		if ( Input.Pressed(InputButton.Jump) )
 		{
@@ -84,8 +84,8 @@ public class SpectatorCamera : Camera
 		Vector3 wishDir = new Vector3(Input.Forward, Input.Left, 0).Normal * Rot;
 		wishDir += Vector3.Up * up;
 
-		Pos += wishDir * MoveSpeed;
-		Rot = Input.Rotation;
+		Position += wishDir * MoveSpeed;
+		Rotation = Input.Rotation;
 	}
 
 	private void UpdateMoveSpeed()
