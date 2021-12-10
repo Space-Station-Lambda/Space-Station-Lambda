@@ -5,9 +5,8 @@ namespace ssl.Modules.Skills;
 
 public class SkillDao : LocalDao<SkillData>
 {
-    protected override Dictionary<string, SkillData> All { get; set; }
-    
-    /// <summary>
+
+	/// <summary>
     ///     Load all skills data from disk files.
     /// </summary>
     protected override void LoadAll()

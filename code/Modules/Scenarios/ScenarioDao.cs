@@ -6,8 +6,6 @@ namespace ssl.Modules.Scenarios;
 
 public class ScenarioDao : LocalDao<ScenarioData>
 {
-	protected override Dictionary<string, ScenarioData> All { get; set; }
-	
 	protected override void LoadAll()
 	{
 		Log.Info("Loading scenarios...");

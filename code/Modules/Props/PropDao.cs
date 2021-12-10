@@ -4,13 +4,9 @@ using ssl.Modules.Props.Data;
 
 namespace ssl.Modules.Props;
 
-public sealed class PropDao : LocalDao<PropData>
+public class PropDao : LocalDao<PropData>
 {
-	public PropDao()
-	{
-		LoadAll();
-	}
-	protected override Dictionary<string, PropData> All { get; set; } = new();
+
 	protected override void LoadAll()
 	{
 		Log.Info("Load props..");

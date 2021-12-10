@@ -7,8 +7,7 @@ namespace ssl.Modules.Roles;
 
 public class RoleDao : LocalDao<RoleData>
 {
-	protected override Dictionary<string, RoleData> All { get; set; }
-	
+
 	protected override void LoadAll()
 	{
 		Log.Info("Load roles...");
@@ -90,18 +89,6 @@ public class RoleDao : LocalDao<RoleData>
 			}
 		});
 		
-		Save(new RoleData(Identifiers.Guard)
-		{
-			Name = "Guard",
-			Description = "Guard",
-			Clothing = new HashSet<string>
-			{
-				"models/citizen_clothes/hat/hat_uniform.police.vmdl",
-				"models/citizen_clothes/shirt/shirt_longsleeve.police.vmdl",
-				"models/citizen_clothes/shoes/shoes.police.vmdl",
-				"models/citizen_clothes/trousers/trousers.police.vmdl"
-			},
-		});
 		
 		Save(new RoleData(Identifiers.Scientist)
 		{
