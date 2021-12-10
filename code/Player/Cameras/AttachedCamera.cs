@@ -42,16 +42,16 @@ public partial class AttachedCamera : Camera
 
 		if ( targetTransform.Position.Distance(lastPos) < 300 )
 		{
-			Pos = Vector3.Lerp(lastPos, targetTransform.Position, 20.0f * Time.Delta);
+			Position = Vector3.Lerp(lastPos, targetTransform.Position, 20.0f * Time.Delta);
 		}
 		else
 		{
-			Pos = targetTransform.Position;
+			Position = targetTransform.Position;
 		}
 
-		Rot = targetTransform.Rotation + targetTransform.RotationToWorld(RotationOffset);
+		Rotation = targetTransform.Rotation + targetTransform.RotationToWorld(RotationOffset);
 
 		Viewer = Target;
-		lastPos = Pos;
+		lastPos = Position;
 	}
 }
