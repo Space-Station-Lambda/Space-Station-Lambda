@@ -13,7 +13,9 @@ public class Ghost : Role
 		base.OnSpawn(sslPlayer);
 
 		sslPlayer.Transmit = TransmitType.Owner;
-		sslPlayer.RenderAlpha = RenderingAlpha;
+		Color color = sslPlayer.RenderColor;
+		color.a = RenderingAlpha;
+		sslPlayer.RenderColor = color;
 		sslPlayer.RemoveCollisionLayer(CollisionLayer.PhysicsProp);
 		sslPlayer.RemoveCollisionLayer(CollisionLayer.Player);
 	}
@@ -22,6 +24,8 @@ public class Ghost : Role
 	{
 		base.OnUnassigned(sslPlayer);
 
-		sslPlayer.RenderAlpha = BasicAlpha;
+		Color color = sslPlayer.RenderColor;
+		color.a = BasicAlpha;
+		sslPlayer.RenderColor = color;
 	}
 }
