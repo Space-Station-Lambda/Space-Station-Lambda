@@ -2,7 +2,10 @@
 using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Props;
+using ssl.Modules.Roles;
 using ssl.Modules.Rounds;
+using ssl.Modules.Scenarios;
+using ssl.Modules.Skills;
 using ssl.Player;
 using ssl.Ui;
 
@@ -60,8 +63,11 @@ public partial class Gamemode : Game
 		Log.Info("Load database...");
 		// Factories create the dao when they appear.
 		// Maybe the databse create have to be outside dao; i don't know :(
-		_ = ItemFactory.Instance;
-		_ = PropFactory.Instance;
+		_ = ItemDao.Instance;
+		_ = PropDao.Instance;
+		_ = RoleDao.Instance;
+		_ = ScenarioDao.Instance;
+		_ = SkillDao.Instance;
 	}
 	/// <summary>
 	///     Stat client and init classes

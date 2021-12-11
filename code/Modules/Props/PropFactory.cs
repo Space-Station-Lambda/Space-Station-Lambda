@@ -9,7 +9,6 @@ namespace ssl.Modules.Props;
 public class PropFactory : IFactory<Prop>
 {
 	private static PropFactory instance;
-	private readonly PropDao propDao = new();
 
 	private PropFactory()
 	{
@@ -19,7 +18,7 @@ public class PropFactory : IFactory<Prop>
 
 	public Prop Create( string id )
 	{
-		PropData propData = propDao.FindById(id);
+		PropData propData = PropDao.Instance.FindById(id);
 		Prop prop;
 		string type = propData.GetTypeId();
 		

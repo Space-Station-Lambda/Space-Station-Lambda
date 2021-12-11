@@ -7,6 +7,13 @@ namespace ssl.Modules.Items;
 
 public class ItemDao : LocalDao<ItemData>
 {
+	private static ItemDao instance;
+
+	private ItemDao()
+	{
+	}
+	
+	public static ItemDao Instance => instance ??= new ItemDao();
 
 	/// <summary>
 	///     Load all data from disk files.

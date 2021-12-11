@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ssl.Constants;
 using ssl.Modules.Scenarios;
 using ssl.Player;
 
@@ -8,7 +9,7 @@ namespace ssl.Modules.Roles;
 
 public class RoleDistributor
 {
-	public string DefaultRole = "role.assistant";
+	public string DefaultRole = $"{Identifiers.Role}{Identifiers.Separator}{Identifiers.Assistant}";
 	private readonly IList<SslPlayer> players;
 	public Scenario Scenario;
 

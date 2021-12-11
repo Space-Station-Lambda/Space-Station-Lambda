@@ -7,6 +7,14 @@ namespace ssl.Modules.Props;
 public class PropDao : LocalDao<PropData>
 {
 
+	private static PropDao instance;
+
+	private PropDao()
+	{
+	}
+	
+	public static PropDao Instance => instance ??= new PropDao();
+	
 	protected override void LoadAll()
 	{
 		Log.Info("Load props..");

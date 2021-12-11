@@ -56,7 +56,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 
 	private void InitRolePreferences()
 	{
-		foreach ( string roleId in RoleFactory.Instance.GetAllIds() )
+		foreach ( string roleId in RoleDao.Instance.FindAllIds() )
 		{
 			RolePreferences[roleId] = RolePreferenceType.Never;
 		}

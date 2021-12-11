@@ -6,6 +6,14 @@ namespace ssl.Modules.Scenarios;
 
 public class ScenarioDao : LocalDao<ScenarioData>
 {
+	private static ScenarioDao instance;
+
+	private ScenarioDao()
+	{
+	}
+	
+	public static ScenarioDao Instance => instance ??= new ScenarioDao();
+	
 	protected override void LoadAll()
 	{
 		Log.Info("Loading scenarios...");

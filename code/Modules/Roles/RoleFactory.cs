@@ -10,25 +10,15 @@ namespace ssl.Modules.Roles;
 public class RoleFactory : IFactory<Role>
 {
 	private static RoleFactory instance;
-	private readonly RoleDao roleDao = new();
 
 	private RoleFactory()
 	{
-	}
-
-	//TODO Remove this, we use this because he handle the dao who handle the data.
-	//TODO In a perfect worl the data is separated from the dao.
-	//TODO Makes the dao a singleton OR (preferably) don't store data in dao.
-	[Obsolete]
-	public string[] GetAllIds()
-	{
-		return roleDao.FindAllIds();
 	}
 	
 	public static RoleFactory Instance => instance ??= new RoleFactory();
 	public Role Create( string id )
 	{
-		RoleData roleData = roleDao.FindById(id);
+		RoleData roleData = RoleDao.Instance.FindById(id);
 		string roleName = roleData.GetBaseTypeId();
 		Role role;
 		switch ( roleName )

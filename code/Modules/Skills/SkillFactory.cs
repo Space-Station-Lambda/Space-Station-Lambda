@@ -10,7 +10,6 @@ namespace ssl.Modules.Skills;
 public sealed class SkillFactory : IFactory<Skill>
 {
     private static SkillFactory instance;
-    private readonly SkillDao skillDao = new();
 
     private SkillFactory()
     {
@@ -20,7 +19,7 @@ public sealed class SkillFactory : IFactory<Skill>
 
     public Skill Create( string id )
     {
-        SkillData skillData = skillDao.FindById(id);
+        SkillData skillData = SkillDao.Instance.FindById(id);
 		
         Skill skill;
         string type = skillData.GetTypeId();

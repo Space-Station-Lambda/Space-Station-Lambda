@@ -7,6 +7,13 @@ namespace ssl.Modules.Roles;
 
 public class RoleDao : LocalDao<RoleData>
 {
+	private static RoleDao instance;
+
+	private RoleDao()
+	{
+	}
+	
+	public static RoleDao Instance => instance ??= new RoleDao();
 
 	protected override void LoadAll()
 	{

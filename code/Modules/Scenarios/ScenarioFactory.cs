@@ -6,7 +6,6 @@ namespace ssl.Modules.Scenarios;
 public sealed class ScenarioFactory : IFactory<Scenario>
 {
 	private static ScenarioFactory instance;
-	private readonly ScenarioDao scenarioDao = new();
 
 	private ScenarioFactory()
 	{
@@ -16,7 +15,7 @@ public sealed class ScenarioFactory : IFactory<Scenario>
 
 	public Scenario Create(string id)
 	{
-		ScenarioData scenarioData = scenarioDao.FindById(id);
+		ScenarioData scenarioData = ScenarioDao.Instance.FindById(id);
 		string scenarioType = scenarioData.GetTypeId();
 			
 		Scenario scenario;

@@ -9,7 +9,6 @@ namespace ssl.Modules.Items;
 public sealed class ItemFactory : IFactory<Item>
 {
 	private static ItemFactory instance;
-	private readonly ItemDao itemDao = new();
 
 	private ItemFactory()
 	{
@@ -19,7 +18,7 @@ public sealed class ItemFactory : IFactory<Item>
 
 	public Item Create( string id )
 	{
-		ItemData itemData = itemDao.FindById(id);
+		ItemData itemData = ItemDao.Instance.FindById(id);
 		
 		Item item;
 		string type = itemData.GetTypeId();
