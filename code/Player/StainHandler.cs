@@ -8,7 +8,7 @@ namespace ssl.Player;
 public class StainHandler : EntityComponent
 {
 	private const float StainChance = 0.002f;
-	private const string StainId = "stain.step";
+	private const string StainId = "prop.stain";
 
 
 	/// <summary>
