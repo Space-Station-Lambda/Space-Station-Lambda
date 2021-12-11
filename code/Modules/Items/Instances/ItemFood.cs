@@ -6,7 +6,7 @@ namespace ssl.Modules.Items.Instances;
 
 public partial class ItemFood : Item
 {
-	private const string EatSound = "grunt1";
+	private const string EAT_SOUND = "grunt1";
 
 
 	public int FeedingValue { get; set; }
@@ -39,6 +39,6 @@ public partial class ItemFood : Item
 	[ClientRpc]
 	private void PlayEatSound( Entity entity )
 	{
-		Sound.FromEntity(EatSound, entity);
+		Sound.FromEntity(EAT_SOUND, entity);
 	}
 }

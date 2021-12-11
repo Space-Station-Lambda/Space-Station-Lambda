@@ -14,7 +14,7 @@ public abstract partial class BaseRound : BaseNetworkable
 	protected BaseRound()
 	{
 		Players = new List<SslPlayer>();
-		Scenario scenario = ScenarioFactory.Instance.Create($"{Identifiers.Scenario}{Identifiers.Separator}{Identifiers.Basic}");
+		Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.BASE_SCENARIO_ID);
 		RoleDistributor = new RoleDistributor(scenario, Players);
 		MilestonesHandler = new MilestonesHandler();
 	}

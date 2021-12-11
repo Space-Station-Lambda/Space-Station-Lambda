@@ -5,7 +5,7 @@ namespace ssl.Player;
 
 public class RagdollHandler : EntityComponent<SslPlayer>
 {
-	private const float DefaultTime = 6F;
+	private const float DEFAULT_TIME = 6F;
 
 	public RagdollHandler()
 	{
@@ -20,7 +20,7 @@ public class RagdollHandler : EntityComponent<SslPlayer>
 	/// <summary>
 	///     Activates the ragdoll mode of the player.
 	/// </summary>
-	public void StartRagdoll( float downTime = DefaultTime )
+	public void StartRagdoll( float downTime = DEFAULT_TIME )
 	{
 		Ragdoll ??= SpawnRagdoll(Entity.Velocity, -1);
 		Entity.SetParent(Ragdoll);

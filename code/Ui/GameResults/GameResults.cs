@@ -7,9 +7,9 @@ namespace ssl.Ui.GameResults;
 
 public class GameResults : Panel
 {
-	private const string TieText = "Tie";
-	private const string ProtagonistsText = "The Lambda Company wins !";
-	private const string TraitorsText = "The Traitors wins !";
+	private const string TIE_TEXT = "Tie";
+	private const string PROTAGONISTS_TEXT = "The Lambda Company wins !";
+	private const string TRAITORS_TEXT = "The Traitors wins !";
 
 	private readonly Label roundOutcome;
 
@@ -40,13 +40,13 @@ public class GameResults : Panel
 		switch ( currentRound.RoundOutcome )
 		{
 			case RoundOutcome.Tie:
-				roundOutcome.SetText(TieText);
+				roundOutcome.SetText(TIE_TEXT);
 				break;
 			case RoundOutcome.ProtagonistsWin:
-				roundOutcome.SetText(ProtagonistsText);
+				roundOutcome.SetText(PROTAGONISTS_TEXT);
 				break;
 			case RoundOutcome.TraitorsWin:
-				roundOutcome.SetText(TraitorsText);
+				roundOutcome.SetText(TRAITORS_TEXT);
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();

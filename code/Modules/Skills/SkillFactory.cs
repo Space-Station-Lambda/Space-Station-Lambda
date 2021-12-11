@@ -1,9 +1,4 @@
-﻿using System;
-using ssl.Commons;
-using ssl.Modules.Items;
-using ssl.Modules.Items.Data;
-using ssl.Modules.Items.Instances;
-using ssl.Modules.Skills.Types;
+﻿using ssl.Commons;
 
 namespace ssl.Modules.Skills;
 
@@ -20,18 +15,11 @@ public sealed class SkillFactory : IFactory<Skill>
     public Skill Create( string id )
     {
         SkillData skillData = SkillDao.Instance.FindById(id);
-		
-        Skill skill;
-        string type = skillData.GetTypeId();
 
-        switch (type)
+        Skill skill = skillData switch
         {
-            case "fighting":
-	            skill = new Strength();
-	            break;
-            default:
-                throw new ArgumentException($"[Skills] No skill data found for {id}");
-        }
+	        _ => new Skill()
+        };
 
         return skill;
     }

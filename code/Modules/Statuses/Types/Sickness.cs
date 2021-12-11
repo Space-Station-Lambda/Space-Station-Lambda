@@ -4,9 +4,9 @@ namespace ssl.Modules.Statuses.Types;
 
 public class Sickness : Status
 {
-	private const byte TargetRColor = 140;
-	private const byte TargetGColor = 207;
-	private const byte TargetBColor = 100;
+	private const byte TARGET_R_COLOR = 140;
+	private const byte TARGET_G_COLOR = 207;
+	private const byte TARGET_B_COLOR = 100;
 
 
 	public Sickness( int duration ) : base(duration)
@@ -22,9 +22,9 @@ public class Sickness : Status
 	{
 		base.OnTick(sslPlayer);
 		float sicknessRatio = (InitialTime - TimeLeft) / InitialTime;
-		byte r = (byte)(255 - (sicknessRatio * 255 - TargetRColor));
-		byte g = (byte)(255 - (sicknessRatio * 255 - TargetGColor));
-		byte b = (byte)(255 - (sicknessRatio * 255 - TargetBColor));
+		byte r = (byte)(255 - (sicknessRatio * 255 - TARGET_R_COLOR));
+		byte g = (byte)(255 - (sicknessRatio * 255 - TARGET_G_COLOR));
+		byte b = (byte)(255 - (sicknessRatio * 255 - TARGET_B_COLOR));
 		sslPlayer.RenderColor = new Color(r, g, b);
 	}
 

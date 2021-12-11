@@ -6,7 +6,7 @@ namespace ssl.Modules.Roles.Data;
 
 public class RoleData : BaseData
 {
-	public RoleData( string id ) : base($"{Identifiers.Skill}{Identifiers.Separator}{id}")
+	public RoleData( string id ) : base(id)
 	{ }
 	
 	/// <summary>
@@ -21,7 +21,7 @@ public class RoleData : BaseData
 	/// </summary>
 	public string Description { get; set; }
 
-	public string Type { get; set; } = Identifiers.Protagonist;
+	public string Type { get; set; } = Identifiers.PROTAGONIST_TYPE;
 	
 	/// <summary>
 	/// Model of the role

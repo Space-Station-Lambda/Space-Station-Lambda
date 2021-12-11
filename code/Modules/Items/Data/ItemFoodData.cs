@@ -5,7 +5,7 @@
 /// </summary>
 public class ItemFoodData : ItemData
 {
-	public ItemFoodData( string id ) : base("food." + id)
+	public ItemFoodData( string id ) : base(id)
 	{
 	}
 

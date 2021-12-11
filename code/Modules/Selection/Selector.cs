@@ -5,18 +5,18 @@ namespace ssl.Modules.Selection;
 
 public class Selector : EntityComponent<SslPlayer>
 {
-	protected const float Range = 150f;
+	protected const float RANGE = 150f;
 
-	protected TraceResult traceResult;
+	protected TraceResult TraceResult;
 
 	public ISelectable Selected { get; private set; }
 	public bool IsSelecting => Selected != null;
 
 	public virtual void UpdateTarget()
 	{
-		traceResult = GetTraceResult();
+		TraceResult = GetTraceResult();
 
-		if ( traceResult.Entity is ISelectable selectable )
+		if ( TraceResult.Entity is ISelectable selectable )
 		{
 			if ( !ReferenceEquals(selectable, Selected) )
 			{
@@ -53,7 +53,7 @@ public class Selector : EntityComponent<SslPlayer>
 	protected virtual TraceResult GetTraceResult()
 	{
 		Vector3 forward = Entity.EyeRot.Forward;
-		TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * Range);
+		TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * RANGE);
 		return tr;
 	}
 

@@ -6,18 +6,18 @@ namespace ssl.Modules.Items.Instances;
 
 public partial class ItemFlashlight : Item
 {
-	private const int Range = 512;
-	private const float Falloff = 1.0f;
-	private const float LinearAttenuation = 0.0f;
-	private const float QuadraticAttenuation = 1.0f;
-	private const int Brightness = 2;
-	private const int InnerConeAngle = 20;
-	private const int OuterConeAngle = 40;
-	private const float FogStength = 1.0f;
-	private const string SlideAttachementName = "slide";
-	private const string LightAttachementName = "light";
-	private const string FlashLightSoundSwitchOnName = "flashlight-on";
-	private const string FlashLightSoundSwitchOffName = "flashlight-off";
+	private const int RANGE = 512;
+	private const float FALLOFF = 1.0f;
+	private const float LINEAR_ATTENUATION = 0.0f;
+	private const float QUADRATIC_ATTENUATION = 1.0f;
+	private const int BRIGHTNESS = 2;
+	private const int INNER_CONE_ANGLE = 20;
+	private const int OUTER_CONE_ANGLE = 40;
+	private const float FOG_STENGTH = 1.0f;
+	private const string SLIDE_ATTACHEMENT_NAME = "slide";
+	private const string LIGHT_ATTACHEMENT_NAME = "light";
+	private const string FLASH_LIGHT_SOUND_SWITCH_ON_NAME = "flashlight-on";
+	private const string FLASH_LIGHT_SOUND_SWITCH_OFF_NAME = "flashlight-off";
 
 	private TimeSince timeSinceLightToggled;
 	private SpotLightEntity viewLight;
@@ -54,15 +54,15 @@ public partial class ItemFlashlight : Item
 		{
 			Enabled = true,
 			DynamicShadows = true,
-			Range = Range,
-			Falloff = Falloff,
-			LinearAttenuation = LinearAttenuation,
-			QuadraticAttenuation = QuadraticAttenuation,
-			Brightness = Brightness,
+			Range = RANGE,
+			Falloff = FALLOFF,
+			LinearAttenuation = LINEAR_ATTENUATION,
+			QuadraticAttenuation = QUADRATIC_ATTENUATION,
+			Brightness = BRIGHTNESS,
 			Color = Color.White,
-			InnerConeAngle = InnerConeAngle,
-			OuterConeAngle = OuterConeAngle,
-			FogStength = FogStength,
+			InnerConeAngle = INNER_CONE_ANGLE,
+			OuterConeAngle = OUTER_CONE_ANGLE,
+			FogStength = FOG_STENGTH,
 			Owner = Owner
 		};
 
@@ -79,7 +79,7 @@ public partial class ItemFlashlight : Item
 		{
 			LightEnabled = !LightEnabled;
 
-			PlaySound(LightEnabled ? FlashLightSoundSwitchOnName : FlashLightSoundSwitchOffName);
+			PlaySound(LightEnabled ? FLASH_LIGHT_SOUND_SWITCH_ON_NAME : FLASH_LIGHT_SOUND_SWITCH_OFF_NAME);
 
 			if ( worldLight.IsValid() )
 			{

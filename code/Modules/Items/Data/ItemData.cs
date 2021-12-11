@@ -5,7 +5,7 @@ namespace ssl.Modules.Items.Data;
 
 public class ItemData : BaseData
 {
-	public ItemData( string id ) : base("item." + id)
+	public ItemData( string id ) : base(id)
 	{
 	}
 

@@ -6,7 +6,7 @@ namespace ssl.Ui.InventoryBar;
 
 public class InventoryBar : Panel
 {
-	private const int DefaultSlot = 0;
+	private const int DEFAULT_SLOT = 0;
 
 
 	private readonly InventoryBarSlot[] icons = new InventoryBarSlot[10];

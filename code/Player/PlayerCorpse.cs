@@ -5,8 +5,8 @@ namespace ssl.Player;
 
 public partial class PlayerCorpse : ModelEntity, IDraggable
 {
-	private const float ForceMultiplier = 1000F;
-	private const string ClothesModelIndicator = "clothes";
+	private const float FORCE_MULTIPLIER = 1000F;
+	private const string CLOTHES_MODEL_INDICATOR = "clothes";
 
 	public PlayerCorpse()
 	{
@@ -75,7 +75,7 @@ public partial class PlayerCorpse : ModelEntity, IDraggable
 			{
 				string model = e.GetModelName();
 
-				if ( model != null && !model.Contains(ClothesModelIndicator) )
+				if ( model != null && !model.Contains(CLOTHES_MODEL_INDICATOR) )
 				{
 					continue;
 				}
@@ -98,7 +98,7 @@ public partial class PlayerCorpse : ModelEntity, IDraggable
 
 			if ( body != null )
 			{
-				body.ApplyForce(force * ForceMultiplier);
+				body.ApplyForce(force * FORCE_MULTIPLIER);
 			}
 			else
 			{

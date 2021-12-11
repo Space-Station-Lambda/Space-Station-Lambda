@@ -5,7 +5,7 @@ namespace ssl.Ui.NotificationHandler;
 
 public class NotificationHandler : Panel
 {
-	private const float DefaultDuration = 5F;
+	private const float DEFAULT_DURATION = 5F;
 	private Panel notification;
 	private float remaining;
 

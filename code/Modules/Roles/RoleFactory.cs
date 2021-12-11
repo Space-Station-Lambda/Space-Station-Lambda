@@ -19,17 +19,11 @@ public class RoleFactory : IFactory<Role>
 	public Role Create( string id )
 	{
 		RoleData roleData = RoleDao.Instance.FindById(id);
-		string roleName = roleData.GetBaseTypeId();
-		Role role;
-		switch ( roleName )
+		Role role = roleData switch
 		{
-			case Identifiers.Traitor:
-				role = new Traitor();
-				break;
-			default:
-				role = new Role();
-				break;
-		}
+			RoleTraitorData roleTraitorData => new Traitor(),
+			_ => new Role()
+		};
 
 		role.Id = roleData.Id;
 		role.Name = roleData.Name;

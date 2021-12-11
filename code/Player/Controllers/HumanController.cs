@@ -6,28 +6,28 @@ namespace ssl.Player.Controllers;
 
 public partial class HumanController : BasePlayerController
 {
-	private const float TopGroundDetect = 0.1F;
-	private const float BottomGroundDetect = 2F;
+	private const float TOP_GROUND_DETECT = 0.1F;
+	private const float BOTTOM_GROUND_DETECT = 2F;
 
-	private const float BodyHeight = 72F;
-	private const float EyeHeight = 64F;
-	private const float BodyGirth = 16F;
+	private const float BODY_HEIGHT = 72F;
+	private const float EYE_HEIGHT = 64F;
+	private const float BODY_GIRTH = 16F;
 
-	private const float StopSpeed = 100F;
+	private const float STOP_SPEED = 100F;
 
-	private const float StepSize = 20F;
+	private const float STEP_SIZE = 20F;
 
-	private const float MaxNonJumpVelocity = 200F;
-	private const float JumpForce = 300F;
-	private const float AirSpeed = 30F;
-	private const float AirAcceleration = 500F;
+	private const float MAX_NON_JUMP_VELOCITY = 200F;
+	private const float JUMP_FORCE = 300F;
+	private const float AIR_SPEED = 30F;
+	private const float AIR_ACCELERATION = 500F;
 
-	private const float MinSpeed = 1F;
+	private const float MIN_SPEED = 1F;
 
-	private const float GroundAngle = 46F;
-	private const float StickGroundStartMultiplier = 2F;
+	private const float GROUND_ANGLE = 46F;
+	private const float STICK_GROUND_START_MULTIPLIER = 2F;
 
-	private const string JumpEventName = "jump";
+	private const string JUMP_EVENT_NAME = "jump";
 
 	private readonly Dictionary<MovementState, Speed> speeds = new()
 	{
@@ -74,7 +74,7 @@ public partial class HumanController : BasePlayerController
 		{
 			UpdateBBox();
 
-			EyePosLocal = Vector3.Up * (EyeHeight * Pawn.Scale);
+			EyePosLocal = Vector3.Up * (EYE_HEIGHT * Pawn.Scale);
 			EyeRot = Input.Rotation;
 
 			//If the player is stuck, fix and stop
@@ -134,7 +134,7 @@ public partial class HumanController : BasePlayerController
 	/// </summary>
 	protected virtual void TryPlayerMove()
 	{
-		if ( Velocity.Length <= MinSpeed )
+		if ( Velocity.Length <= MIN_SPEED )
 		{
 			Velocity = Vector3.Zero;
 			return;
@@ -153,7 +153,7 @@ public partial class HumanController : BasePlayerController
 	/// </summary>
 	protected virtual void TryPlayerMoveWithStep()
 	{
-		if ( Velocity.Length <= MinSpeed )
+		if ( Velocity.Length <= MIN_SPEED )
 		{
 			Velocity = Vector3.Zero;
 			return;
@@ -161,7 +161,7 @@ public partial class HumanController : BasePlayerController
 
 		MoveHelper mover = GetMoveHelper();
 
-		mover.TryMoveWithStep(Time.Delta, StepSize);
+		mover.TryMoveWithStep(Time.Delta, STEP_SIZE);
 
 		Position = mover.Position;
 		Velocity = mover.Velocity;
@@ -172,15 +172,15 @@ public partial class HumanController : BasePlayerController
 	/// </summary>
 	protected virtual void UpdateBBox()
 	{
-		mins = new Vector3(-BodyGirth, -BodyGirth, 0) * Pawn.Scale;
-		maxs = new Vector3(+BodyGirth, +BodyGirth, BodyHeight) * Pawn.Scale;
+		mins = new Vector3(-BODY_GIRTH, -BODY_GIRTH, 0) * Pawn.Scale;
+		maxs = new Vector3(+BODY_GIRTH, +BODY_GIRTH, BODY_HEIGHT) * Pawn.Scale;
 	}
 
 	private MoveHelper GetMoveHelper()
 	{
 		MoveHelper mover = new(Position, Velocity);
 		mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
-		mover.MaxStandableAngle = GroundAngle;
+		mover.MaxStandableAngle = GROUND_ANGLE;
 
 		return mover;
 	}
@@ -241,14 +241,14 @@ public partial class HumanController : BasePlayerController
 		}
 
 		ClearGroundEntity();
-		Velocity += Vector3.Up * JumpForce;
-		AddEvent(JumpEventName);
+		Velocity += Vector3.Up * JUMP_FORCE;
+		AddEvent(JUMP_EVENT_NAME);
 	}
 
 	private void Air()
 	{
-		WishVelocity *= AirAcceleration;
-		Accelerate(WishVelocity, AirSpeed);
+		WishVelocity *= AIR_ACCELERATION;
+		Accelerate(WishVelocity, AIR_SPEED);
 	}
 
 	/// <summary>
@@ -256,8 +256,8 @@ public partial class HumanController : BasePlayerController
 	/// </summary>
 	private void StickToGround()
 	{
-		Vector3 start = Position + Vector3.Up * StickGroundStartMultiplier;
-		Vector3 end = Position + Vector3.Down * StepSize;
+		Vector3 start = Position + Vector3.Up * STICK_GROUND_START_MULTIPLIER;
+		Vector3 end = Position + Vector3.Down * STEP_SIZE;
 
 		// See how far up we can go without getting stuck
 		TraceResult trace = TraceBBox(Position, start);
@@ -281,7 +281,7 @@ public partial class HumanController : BasePlayerController
 			return;
 		}
 
-		if ( Vector3.GetAngle(Vector3.Up, trace.Normal) > GroundAngle )
+		if ( Vector3.GetAngle(Vector3.Up, trace.Normal) > GROUND_ANGLE )
 		{
 			return;
 		}
@@ -315,7 +315,7 @@ public partial class HumanController : BasePlayerController
 			return;
 		}
 
-		float usedSpeed = CurrentSpeed < StopSpeed ? StopSpeed : CurrentSpeed;
+		float usedSpeed = CurrentSpeed < STOP_SPEED ? STOP_SPEED : CurrentSpeed;
 		float droppedSpeed = usedSpeed * Time.Delta * frictionAmount;
 		float newSpeed = CurrentSpeed - droppedSpeed;
 
@@ -333,12 +333,12 @@ public partial class HumanController : BasePlayerController
 	/// </summary>
 	private void UpdateGroundEntity()
 	{
-		Vector3 startPos = Position + Vector3.Up * TopGroundDetect;
-		Vector3 endPos = Position - Vector3.Up * BottomGroundDetect;
+		Vector3 startPos = Position + Vector3.Up * TOP_GROUND_DETECT;
+		Vector3 endPos = Position - Vector3.Up * BOTTOM_GROUND_DETECT;
 
 		TraceResult trace = TraceBBox(startPos, endPos, mins, maxs, 4.0F);
 
-		if ( trace.Hit && Velocity.z <= MaxNonJumpVelocity )
+		if ( trace.Hit && Velocity.z <= MAX_NON_JUMP_VELOCITY )
 		{
 			GroundNormal = trace.Normal;
 			GroundEntity = trace.Entity;

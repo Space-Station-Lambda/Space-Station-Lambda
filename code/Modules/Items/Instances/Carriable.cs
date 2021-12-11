@@ -5,7 +5,7 @@ namespace ssl.Modules.Items.Instances;
 
 public class Carriable : WorldEntity
 {
-	private const string DefaultAttachmentOrBone = "hold_R";
+	private const string DEFAULT_ATTACHMENT_OR_BONE = "hold_R";
 
 	protected Carriable()
 	{
@@ -32,7 +32,7 @@ public class Carriable : WorldEntity
 		}
 		else
 		{
-			SetParent(carrier, DefaultAttachmentOrBone, Transform.Zero);
+			SetParent(carrier, DEFAULT_ATTACHMENT_OR_BONE, Transform.Zero);
 		}
 
 		Owner = carrier;

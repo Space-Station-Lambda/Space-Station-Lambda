@@ -16,20 +16,16 @@ public sealed class ScenarioFactory : IFactory<Scenario>
 	public Scenario Create(string id)
 	{
 		ScenarioData scenarioData = ScenarioDao.Instance.FindById(id);
-		string scenarioType = scenarioData.GetTypeId();
-			
-		Scenario scenario;
-		switch (scenarioType)
+
+		Scenario scenario = scenarioData switch
 		{
-			default:
-				scenario = new Scenario
-				{
-					Id = scenarioData.Id,
-					Constraints = scenarioData.Constraints
-				};
-				break;
-		}
-		
+			_ => new Scenario
+			{
+				Id = scenarioData.Id,
+				Constraints = scenarioData.Constraints
+			}
+		};
+
 		return scenario;
 	}
 }

@@ -2,7 +2,7 @@
 
 public class PropContainerData : PropData
 {
-	public PropContainerData( string id ) : base("prop." + id)
+	public PropContainerData( string id ) : base(id)
 	{
 	}
 

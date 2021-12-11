@@ -19,29 +19,18 @@ public class PropFactory : IFactory<Prop>
 	public Prop Create( string id )
 	{
 		PropData propData = PropDao.Instance.FindById(id);
-		Prop prop;
-		string type = propData.GetTypeId();
-		
-		switch ( type )
+
+		Prop prop = propData switch
 		{
-			case Identifiers.Machine:
-				PropMachineData propMachineData = (PropMachineData)propData;
-				prop = new PropMachine
-				{
-					Complexity = propMachineData.Complexity,
-					Durability = propMachineData.Durability,
-				};
-				break;
-			case Identifiers.Bucket:
-				prop = new PropBucket();
-				break;
-			case Identifiers.TrashBin:
-				prop = new PropTrashBin();
-				break;
-			default:
-				prop = new Prop();
-				break;
-		}
+			PropMachineData propMachineData => new PropMachine
+			{
+				Complexity = propMachineData.Complexity,
+				Durability = propMachineData.Durability,
+			},
+			PropBucketData propBucketData => new PropBucket(),
+			PropTrashBinData propTrashBinData => new PropTrashBin(),
+			_ => new Prop()
+		};
 
 		prop.Id = propData.Id;
 		prop.Name = propData.Name;

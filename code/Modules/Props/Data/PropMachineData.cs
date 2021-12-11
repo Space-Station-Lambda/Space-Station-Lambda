@@ -2,7 +2,7 @@
 
 public class PropMachineData : PropData
 {
-	public PropMachineData( string id ) : base("machine." + id)
+	public PropMachineData( string id ) : base(id)
 	{
 	}
 

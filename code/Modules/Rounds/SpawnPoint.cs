@@ -14,14 +14,14 @@ namespace ssl.Modules.Rounds;
 	"Defines a point where the player can spawn. Roles can be specified if a spawnpoint is role exclusive")]
 public class SpawnPoint : Entity
 {
-	public const string SpawnPointTag = "spawnpoint";
+	public const string SPAWN_POINT_TAG = "spawnpoint";
 
 	[Property(Title = "Role filter")] public string RoleFilter { get; set; } = "";
 
 	public override void OnActive()
 	{
 		base.OnActive();
-		Tags.Add(SpawnPointTag);
+		Tags.Add(SPAWN_POINT_TAG);
 	}
 
 	/// <summary>
@@ -34,6 +34,6 @@ public class SpawnPoint : Entity
 
 	public static List<SpawnPoint> GetAllSpawnPoints()
 	{
-		return (from entity in All where entity.Tags.Has(SpawnPointTag) select entity as SpawnPoint).ToList();
+		return (from entity in All where entity.Tags.Has(SPAWN_POINT_TAG) select entity as SpawnPoint).ToList();
 	}
 }

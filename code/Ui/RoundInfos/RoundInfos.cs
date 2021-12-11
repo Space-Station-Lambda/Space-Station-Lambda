@@ -79,8 +79,8 @@ public class RoundInfos : Panel
 
 	private List<RoundInfosPlayerLine> RoundInfosPlayerLinesToRemove()
 	{
-		List<RoundInfosPlayerLine> _roundInfosPlayerLines = new();
-		foreach ( RoundInfosPlayerLine roundInfosPlayerLine in roundInfosPlayerLines )
+		List<RoundInfosPlayerLine> roundInfosPlayerLines = new();
+		foreach ( RoundInfosPlayerLine roundInfosPlayerLine in this.roundInfosPlayerLines )
 		{
 			SslPlayer sslPlayer = roundInfosPlayerLine.SslPlayer;
 			bool founded = false;
@@ -96,11 +96,11 @@ public class RoundInfos : Panel
 
 			if ( !founded )
 			{
-				_roundInfosPlayerLines.Add(roundInfosPlayerLine);
+				roundInfosPlayerLines.Add(roundInfosPlayerLine);
 			}
 		}
 
-		return _roundInfosPlayerLines;
+		return roundInfosPlayerLines;
 	}
 
 	private void UpdatePlayers()

@@ -2,7 +2,7 @@ namespace ssl.Modules.Props.Data;
 
 public class PropStainData : PropData
 {
-	public PropStainData( string id ) : base("stain." + id)
+	public PropStainData( string id ) : base(id)
 	{
 	}
 

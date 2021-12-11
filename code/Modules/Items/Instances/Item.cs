@@ -13,14 +13,14 @@ namespace ssl.Modules.Items.Instances;
 /// </summary>
 public class Item : Carriable, IDraggable
 {
-	public const string Tag = "Item";
+	public const string TAG = "Item";
 
-	protected const string HoldTypeKey = "holdtype";
-	protected const string HandednessKey = "holdtype_handedness";
+	protected const string HOLD_TYPE_KEY = "holdtype";
+	protected const string HANDEDNESS_KEY = "holdtype_handedness";
 
 	public Item()
 	{
-		Tags.Add(Tag);
+		Tags.Add(TAG);
 		GlowColor = Color.Blue;
 	}
 
@@ -114,8 +114,8 @@ public class Item : Carriable, IDraggable
 
 	public virtual void SimulateAnimator( HumanAnimator animator )
 	{
-		animator.SetParam(HoldTypeKey, (int)HoldType);
-		animator.SetParam(HandednessKey, 1);
+		animator.SetParam(HOLD_TYPE_KEY, (int)HoldType);
+		animator.SetParam(HANDEDNESS_KEY, 1);
 	}
 }
 

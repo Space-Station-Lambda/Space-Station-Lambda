@@ -1,19 +1,14 @@
 ﻿using System.Collections.Generic;
-using ssl.Modules.Skills.Types;
 
 namespace ssl.Modules.Skills;
 
 /// <summary>
 ///     A specific skill value. We don't use the experience system for this because wed don't really want to exp.
 /// </summary>
-public abstract class Skill
+public class Skill
 {
-	public static Dictionary<string, Skill> All = new()
-	{
-		{"strength", new Strength()}, {"cooking", new Cooking()}, {"engineering", new Engineering()}
-	};
-
-	public abstract string Id { get; }
-	public abstract string Name { get; }
-	public abstract string Description { get; }
+	public string Id { get; }
+	public string Name { get; }
+	public string Description { get; }
+	public int Level { get; set; } = 0;
 }

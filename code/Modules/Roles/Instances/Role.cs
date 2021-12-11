@@ -27,7 +27,8 @@ public class Role : BaseNetworkable
 	///     The skillset of the Role. For now the role handle skills but we can change that later for let the player
 	///     handle his roles
 	/// </summary>
-	public SkillSet SkillSet { get; set; }
+	/// TODO: create skillset
+	/// public SkillSet SkillSet { get; set; }
 
 	/// <summary>
 	///     Array of factions of the role. A role can have multiple factions.
@@ -75,7 +76,7 @@ public class Role : BaseNetworkable
 	/// </summary>
 	public virtual void OnKilled( SslPlayer sslPlayer )
 	{
-		sslPlayer.RoleHandler.AssignRole(RoleFactory.Instance.Create($"{Identifiers.Role}{Identifiers.Separator}{Identifiers.Ghost}"));
+		sslPlayer.RoleHandler.AssignRole(RoleFactory.Instance.Create(Identifiers.GHOST_ID));
 		sslPlayer.Respawn(sslPlayer.Position, sslPlayer.Rotation);
 	}
 

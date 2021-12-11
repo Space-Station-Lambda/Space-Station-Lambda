@@ -8,8 +8,8 @@ namespace ssl.Modules.Locking;
 /// </summary>
 public class Lock
 {
-	private const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	private const int BaseComplexity = 10;
+	private const string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	private const int BASE_COMPLEXITY = 10;
 
 	/// <summary>
 	///     Create a lock with a specific key to open it
@@ -29,7 +29,7 @@ public class Lock
 	{
 	}
 
-	public Lock() : this(BaseComplexity)
+	public Lock() : this(BASE_COMPLEXITY)
 	{
 	}
 
@@ -115,8 +115,8 @@ public class Lock
 		string key = "";
 		for ( int i = 0; i < complexity; i++ )
 		{
-			int characterIndex = random.Next(Characters.Length);
-			char character = Characters[characterIndex];
+			int characterIndex = random.Next(CHARACTERS.Length);
+			char character = CHARACTERS[characterIndex];
 			key += character;
 		}
 

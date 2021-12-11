@@ -20,6 +20,6 @@ public class GarbageTrigger : BaseTrigger
 
 	public override bool PassesTriggerFilters( Entity other )
 	{
-		return other.Tags.Has(Item.Tag);
+		return other.Tags.Has(Item.TAG);
 	}
 }

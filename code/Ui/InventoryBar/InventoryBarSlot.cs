@@ -8,9 +8,9 @@ namespace ssl.Ui.InventoryBar;
 
 public class InventoryBarSlot : Panel
 {
-	private const float FieldOfView = 55;
+	private const float FIELD_OF_VIEW = 55;
 
-	private const float LightRadius = 2000F;
+	private const float LIGHT_RADIUS = 2000F;
 	private static readonly Angles CamAngles = new(30, 180 + 45, 0);
 	private static readonly Vector3 CamPos = new(10, 10, 8);
 	private static readonly Vector3 FocusSize = new(9, 9, 9);
@@ -75,12 +75,12 @@ public class InventoryBarSlot : Panel
 				ApplyItem(item);
 			}
 
-			redLight ??= Light.Point(RedLightPos, LightRadius, RedLightColor);
-			blueLight ??= Light.Point(BlueLightPos, LightRadius, BlueLightColor);
-			mainLight ??= Light.Point(MainLightPos, LightRadius, MainLightColor);
+			redLight ??= Light.Point(RedLightPos, LIGHT_RADIUS, RedLightColor);
+			blueLight ??= Light.Point(BlueLightPos, LIGHT_RADIUS, BlueLightColor);
+			mainLight ??= Light.Point(MainLightPos, LIGHT_RADIUS, MainLightColor);
 		}
 
-		scene ??= Add.ScenePanel(sceneWorld, CamPos, CamAngles.ToRotation(), FieldOfView, "itemslot-model");
+		scene ??= Add.ScenePanel(sceneWorld, CamPos, CamAngles.ToRotation(), FIELD_OF_VIEW, "itemslot-model");
 	}
 
 	private void ApplyItem( Item item )

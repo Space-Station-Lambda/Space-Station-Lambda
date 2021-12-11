@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ssl.Commons;
+using ssl.Constants;
 using ssl.Modules.Items.Data;
 using ssl.Player;
 
@@ -23,46 +24,37 @@ public class ItemDao : LocalDao<ItemData>
 		Log.Info("Load items..");
 
 		// Items
-		Save(new ItemData("cleaning_spray")
+		Save(new ItemData(Identifiers.CLEANING_SPRAY_ID)
 		{
 			Name = "Cleaning Spray",
 			Description = "A spray to clean stuff"
 		});
-		Save(new ItemData("flashlight")
+		Save(new ItemData(Identifiers.FLASHLIGHT_ID)
 		{
 			Name = "Flashlight",
 			Description = "A flashlight, close your eyes"
 		});
-		Save(new ItemData("mop")
+		
+		Save(new ItemData(Identifiers.BIN_BAG_ID)
 		{
-			Name = "Mop",
-			Description = "A mop ?"
-		});
-		Save(new ItemData("sponge")
-		{
-			Name = "Sponge",
-			Description = "A spongebob fake"
-		});
-		Save(new ItemData("trashbag")
-		{
-			Name = "Trashbag",
+			Name = "Bin Bag",
 			Description = "Collect your best trash here!"
 		});
 
 		// Foods
-		Save(new ItemFoodData("banana")
+		Save(new ItemFoodData(Identifiers.BANANA_ID)
 		{
 			Name = "Banana",
 			Description = "A Banana",
 			FeedingValue = 10
 		});
-		Save(new ItemFoodData("apple")
+		Save(new ItemFoodData(Identifiers.APPLE_ID)
 		{
 			FeedingValue = 9
 		});
 
 		// Weapons
-		Save(new ItemWeaponData("pistol")
+		Save(new ItemWeaponData(Identifiers.PISTOL_ID)
 		{
 			Name = "Pistol",
 			Description = "A pistol",
@@ -76,12 +68,20 @@ public class ItemDao : LocalDao<ItemData>
 		});
 
 		// Cleaners
-		Save(new ItemCleanerData("sponge")
+		Save(new ItemCleanerData(Identifiers.SPONGE_ID)
 		{
 			Name = "Sponge",
 			Description = "A sponge",
 			CleaningValue = 10
 		});
+		
+		Save(new ItemCleanerData(Identifiers.MOP_ID)
+		{
+			Name = "Mop",
+			Description = "A mop ?",
+			CleaningValue = 15
+		});
+
 
 		Log.Info($"{All.Count} items charged !");
 	}

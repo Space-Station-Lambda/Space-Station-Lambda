@@ -4,12 +4,12 @@ namespace ssl.Modules.Saves;
 
 public class Saver<T>
 {
-	private const string Extention = ".json";
+	private const string EXTENTION = ".json";
 	private readonly string path;
 
 	public Saver( string name )
 	{
-		path = name + Extention;
+		path = name + EXTENTION;
 	}
 
 	public bool IsSaved => FileSystem.Data.FileExists(path);

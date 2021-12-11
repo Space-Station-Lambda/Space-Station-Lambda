@@ -7,9 +7,9 @@ namespace ssl.Player;
 
 public partial class PlayerInventory : Inventory
 {
-	private const int MaxInventoryCapacity = 10;
+	private const int MAX_INVENTORY_CAPACITY = 10;
 
-	public PlayerInventory() : base(MaxInventoryCapacity, new ItemFilter())
+	public PlayerInventory() : base(MAX_INVENTORY_CAPACITY, new ItemFilter())
 	{
 	}
 

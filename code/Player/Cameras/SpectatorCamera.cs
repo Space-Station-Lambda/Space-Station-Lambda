@@ -5,10 +5,10 @@ namespace ssl.Player.Cameras;
 
 public class SpectatorCamera : Camera
 {
-	private const float SpectatorFieldOfView = 80F;
-	private const float FocusDistance = 100F;
-	private const float MaxSpeed = 75F;
-	private const float SpeedChangeFactor = 3F;
+	private const float SPECTATOR_FIELD_OF_VIEW = 80F;
+	private const float FOCUS_DISTANCE = 100F;
+	private const float MAX_SPEED = 75F;
+	private const float SPEED_CHANGE_FACTOR = 3F;
 
 	private bool isClearTargetPress;
 	private int playerIndex;
@@ -23,7 +23,7 @@ public class SpectatorCamera : Camera
 		base.Activated();
 
 		Target = null;
-		FieldOfView = SpectatorFieldOfView;
+		FieldOfView = SPECTATOR_FIELD_OF_VIEW;
 	}
 
 	public override void Update()
@@ -49,7 +49,7 @@ public class SpectatorCamera : Camera
 
 	private void TargetCamMove()
 	{
-		Position = Target.Position + Input.Rotation.Backward * FocusDistance;
+		Position = Target.Position + Input.Rotation.Backward * FOCUS_DISTANCE;
 		Rotation = Input.Rotation;
 
 		if ( Input.Pressed(InputButton.Jump) )
@@ -90,8 +90,8 @@ public class SpectatorCamera : Camera
 
 	private void UpdateMoveSpeed()
 	{
-		MoveSpeed += Input.MouseWheel * SpeedChangeFactor;
-		MoveSpeed = MoveSpeed.Clamp(0, MaxSpeed);
+		MoveSpeed += Input.MouseWheel * SPEED_CHANGE_FACTOR;
+		MoveSpeed = MoveSpeed.Clamp(0, MAX_SPEED);
 	}
 
 	private void NextTarget()

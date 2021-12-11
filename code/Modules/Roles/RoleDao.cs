@@ -19,7 +19,7 @@ public class RoleDao : LocalDao<RoleData>
 	{
 		Log.Info("Load roles...");
 		
-		Save(new RoleData(Identifiers.Assistant)
+		Save(new RoleData(Identifiers.ASSISTANT_ID)
 		{
 			Name = "Assistant",
 			Description = "An assistant is a role who assists other roles in tasks.",
@@ -31,7 +31,7 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
-		Save(new RoleData(Identifiers.Captain)
+		Save(new RoleData(Identifiers.CAPTAIN_ID)
 		{
 			Name = "Captain",
 			Description = "The Captain is a role who leads the station.",
@@ -44,7 +44,7 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
-		Save(new RoleData(Identifiers.Engineer)
+		Save(new RoleData(Identifiers.ENGINEER_ID)
 		{
 			Name = "Engineer",
 			Description = "The engineer is a role who repairs the station.",
@@ -63,7 +63,7 @@ public class RoleDao : LocalDao<RoleData>
 			}
 		});
 		
-		Save(new RoleData(Identifiers.Guard)
+		Save(new RoleData(Identifiers.GUARD_ID)
 		{
 			Name = "Guard",
 			Description = "Guard",
@@ -76,7 +76,7 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
-		Save(new RoleData(Identifiers.Janitor)
+		Save(new RoleData(Identifiers.JANITOR_ID)
 		{
 			Name = "Janitor",
 			Description = "Janitor",
@@ -97,7 +97,7 @@ public class RoleDao : LocalDao<RoleData>
 		});
 		
 		
-		Save(new RoleData(Identifiers.Scientist)
+		Save(new RoleData(Identifiers.SCIENTIST_ID)
 		{
 			Name = "Scientist",
 			Description = "Scientist",
@@ -110,11 +110,11 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
-		Save(new RoleData(Identifiers.Traitor)
+		Save(new RoleData(Identifiers.TRAITOR_ID)
 		{
 			Name = "Traitor",
 			Description = "Traitor",
-			Type = Identifiers.Antagonist,
+			Type = Identifiers.ANTAGONIST_TYPE,
 			Clothing = new HashSet<string>
 			{
 				"models/citizen_clothes/trousers/trousers.smart.vmdl",
@@ -124,11 +124,11 @@ public class RoleDao : LocalDao<RoleData>
 			}
 		});
 		
-		Save(new RoleData(Identifiers.Ghost)
+		Save(new RoleData(Identifiers.GHOST_ID)
 		{
 			Name = "Ghost",
 			Description = "Ghost",
-			Type = Identifiers.Other,
+			Type = Identifiers.OTHER_TYPE,
 			Clothing = new HashSet<string>
 			{
 				"models/citizen_clothes/trousers/trousers.smart.vmdl",

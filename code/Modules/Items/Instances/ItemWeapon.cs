@@ -9,8 +9,8 @@ namespace ssl.Modules.Items.Instances;
 
 public partial class ItemWeapon : Item<ItemWeaponData>
 {
-	private const string MuzzleAttachmentName = "muzzle";
-	private const float MaxRange = 5000;
+	private const string MUZZLE_ATTACHMENT_NAME = "muzzle";
+	private const float MAX_RANGE = 5000;
 
 	public float PrimaryRate { get; set; }
 	public float Range { get; set; }
@@ -93,7 +93,7 @@ public partial class ItemWeapon : Item<ItemWeaponData>
 	public override void SimulateAnimator( HumanAnimator animator )
 	{
 		base.SimulateAnimator(animator);
-		animator.SetParam(HandednessKey, 0);
+		animator.SetParam(HANDEDNESS_KEY, 0);
 	}
 
 	protected virtual void ShootBullet( float spread, float force, float bulletSize )
@@ -103,7 +103,7 @@ public partial class ItemWeapon : Item<ItemWeaponData>
 		forward = forward.Normal;
 
 		//If the range is 0, the range is max.
-		float range = Range == 0 ? MaxRange : Range;
+		float range = Range == 0 ? MAX_RANGE : Range;
 		TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
 
 		if ( !IsServer || !tr.Entity.IsValid() )
@@ -142,6 +142,6 @@ public partial class ItemWeapon : Item<ItemWeaponData>
 		}
 
 		Sound.FromEntity(ShootSound, effectEntity);
-		Particles.Create(MuzzleFlashParticle, effectEntity, MuzzleAttachmentName);
+		Particles.Create(MuzzleFlashParticle, effectEntity, MUZZLE_ATTACHMENT_NAME);
 	}
 }

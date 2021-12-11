@@ -2,7 +2,7 @@ namespace ssl.Modules.Items.Data;
 
 public class ItemCleanerData : ItemData
 {
-	public ItemCleanerData( string id ) : base("cleaner." + id)
+	public ItemCleanerData( string id ) : base(id)
 	{
 	}
 

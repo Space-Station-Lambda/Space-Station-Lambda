@@ -6,9 +6,9 @@ namespace ssl.Modules.Saves;
 
 public class RolesPrefencesSaver : Saver<IDictionary<string, RolePreferenceType>>
 {
-	private const string RolePreferences = "RolePreferences";
+	private const string ROLE_PREFERENCES = "RolePreferences";
 
-	public RolesPrefencesSaver() : base(RolePreferences)
+	public RolesPrefencesSaver() : base(ROLE_PREFERENCES)
 	{
 	}
 

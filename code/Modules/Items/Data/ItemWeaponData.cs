@@ -2,7 +2,7 @@
 
 public class ItemWeaponData : ItemData
 {
-	public ItemWeaponData( string id ) : base("weapon." + id)
+	public ItemWeaponData( string id ) : base(id)
 	{
 	}
 

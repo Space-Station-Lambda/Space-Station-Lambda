@@ -5,9 +5,8 @@ namespace ssl.Modules.Props.Data;
 
 public class PropData : BaseData
 {
-	public PropData( string id ) : base($"{Identifiers.Prop}{Identifiers.Separator}{id}")
-	{
-	}
+	public PropData( string id ) : base(id)
+	{ }
 	
 	/// <summary>
 	/// Name of the prop.

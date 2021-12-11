@@ -19,36 +19,27 @@ public sealed class ItemFactory : IFactory<Item>
 	public Item Create( string id )
 	{
 		ItemData itemData = ItemDao.Instance.FindById(id);
-		
-		Item item;
-		string type = itemData.GetTypeId();
 
-		switch (type)
+		Item item = itemData switch
 		{
-			case Identifiers.Food:
-				ItemFoodData itemFoodData = (ItemFoodData)itemData; 
-				item = new ItemFood { FeedingValue = itemFoodData.FeedingValue };
-				break;
-			case Identifiers.Weapon:
-				ItemWeaponData itemWeaponData = (ItemWeaponData)itemData; 
-				item = new ItemWeapon
-				{
-					Damage = itemWeaponData.Damage,
-					Range = itemWeaponData.Range,
-					PrimaryRate = itemWeaponData.PrimaryRate,
-					ShootSound = itemWeaponData.ShootSound,
-					MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
-				};
-				break;
-			case Identifiers.Cleaner:
-				ItemCleanerData itemCleanerData = (ItemCleanerData)itemData;
-				item = new ItemCleaner { CleaningValue = itemCleanerData.CleaningValue };
-				break;
-			default:
-				item = new Item();
-				break;
-				
-		}
+			ItemFoodData itemFoodData => new ItemFood
+			{
+				FeedingValue = itemFoodData.FeedingValue
+			},
+			ItemWeaponData itemWeaponData => new ItemWeapon
+			{
+				Damage = itemWeaponData.Damage,
+				Range = itemWeaponData.Range,
+				PrimaryRate = itemWeaponData.PrimaryRate,
+				ShootSound = itemWeaponData.ShootSound,
+				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
+			},
+			ItemCleanerData itemCleanerData => new ItemCleaner
+			{
+				CleaningValue = itemCleanerData.CleaningValue
+			},
+			_ => new Item()
+		};
 
 		item.Id = itemData.Id;
 		item.Name = itemData.Name;

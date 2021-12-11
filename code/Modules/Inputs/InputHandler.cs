@@ -6,7 +6,7 @@ namespace ssl.Modules.Inputs;
 
 public partial class InputHandler : EntityComponent<SslPlayer>
 {
-	private const int DefaultStrength = 1;
+	private const int DEFAULT_STRENGTH = 1;
 
 	public InputHandler()
 	{

@@ -6,7 +6,7 @@ namespace ssl.Modules.Rounds;
 
 public class InProgressRound : BaseRound
 {
-	private const string TraitorId = "traitor";
+	private const string TRAITOR_ID = "traitor";
 
 	public override string RoundName => "Preround";
 	public override int RoundDuration => 600;
@@ -17,7 +17,7 @@ public class InProgressRound : BaseRound
 		int numberOfProtagonists = 0;
 		foreach ( SslPlayer mainPlayer in Players )
 		{
-			if ( mainPlayer.RoleHandler.Role.Id == TraitorId )
+			if ( mainPlayer.RoleHandler.Role.Id == TRAITOR_ID )
 			{
 				numberOfTraitors++;
 			}

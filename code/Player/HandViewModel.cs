@@ -8,12 +8,12 @@ namespace ssl.Player;
 /// </summary>
 public class HandViewModel : AnimEntity
 {
-	private const string ViewModelPath = "models/players/citizen/v_citizen.vmdl";
-	private const string AnimKeyHoldType = "holdtype";
-	private const string AnimKeyBodyWeight = "aim_body_weight";
-	private const string BodyGroupHead = "head";
-	private const string BodyGroupLegs = "legs";
-	private const string BodyGroupFeet = "feet";
+	private const string VIEW_MODEL_PATH = "models/players/citizen/v_citizen.vmdl";
+	private const string ANIM_KEY_HOLD_TYPE = "holdtype";
+	private const string ANIM_KEY_BODY_WEIGHT = "aim_body_weight";
+	private const string BODY_GROUP_HEAD = "head";
+	private const string BODY_GROUP_LEGS = "legs";
+	private const string BODY_GROUP_FEET = "feet";
 
 	private Vector3 offset;
 
@@ -21,11 +21,11 @@ public class HandViewModel : AnimEntity
 	{
 		Host.AssertClient();
 
-		SetModel(ViewModelPath);
-		SetBodyGroup(BodyGroupHead, 1);
-		SetBodyGroup(BodyGroupLegs, 1);
-		SetBodyGroup(BodyGroupFeet, 1);
-		SetAnimFloat(AnimKeyBodyWeight, 0f);
+		SetModel(VIEW_MODEL_PATH);
+		SetBodyGroup(BODY_GROUP_HEAD, 1);
+		SetBodyGroup(BODY_GROUP_LEGS, 1);
+		SetBodyGroup(BODY_GROUP_FEET, 1);
+		SetAnimFloat(ANIM_KEY_BODY_WEIGHT, 0f);
 		RemoveHoldingEntity();
 	}
 
@@ -40,7 +40,7 @@ public class HandViewModel : AnimEntity
 	/// <exception cref="ArgumentOutOfRangeException"></exception>
 	public void SetHoldType( HoldType holdType )
 	{
-		SetAnimInt(AnimKeyHoldType, (int)holdType);
+		SetAnimInt(ANIM_KEY_HOLD_TYPE, (int)holdType);
 		offset = holdType switch
 		{
 			HoldType.None => offset,

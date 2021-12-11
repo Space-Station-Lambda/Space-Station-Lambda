@@ -15,12 +15,12 @@ namespace ssl.Player;
 
 public partial class SslPlayer : Sandbox.Player, ISelectable
 {
-	private const string Model = "models/citizen/citizen.vmdl";
-	private const float MaxHealth = 100f;
+	private const string MODEL = "models/citizen/citizen.vmdl";
+	private const float MAX_HEALTH = 100f;
 
 	public SslPlayer()
 	{
-		Health = MaxHealth;
+		Health = MAX_HEALTH;
 
 		if ( Host.IsServer )
 		{
@@ -111,7 +111,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 	/// </summary>
 	public override void Respawn()
 	{
-		SetModel(Model);
+		SetModel(MODEL);
 
 		Controller = new HumanController(this);
 		Animator = new HumanAnimator();

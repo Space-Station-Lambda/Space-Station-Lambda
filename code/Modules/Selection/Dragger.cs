@@ -5,12 +5,12 @@ namespace ssl.Modules.Selection;
 
 public class Dragger : Selector
 {
-	private const float HoldDistance = 50F;
-	private const float LinearFrequency = 10F;
-	private const float LinearDampingRatio = 1F;
-	private const float AngularFrequency = 10F;
-	private const float AngularDampingRatio = 1F;
-	private const float BreakLinearForce = 2000F;
+	private const float HOLD_DISTANCE = 50F;
+	private const float LINEAR_FREQUENCY = 10F;
+	private const float LINEAR_DAMPING_RATIO = 1F;
+	private const float ANGULAR_FREQUENCY = 10F;
+	private const float ANGULAR_DAMPING_RATIO = 1F;
+	private const float BREAK_LINEAR_FORCE = 2000F;
 
 	private PhysicsBody holdBody;
 	private WeldJoint holdJoint;
@@ -62,7 +62,7 @@ public class Dragger : Selector
 
 		Dragged = (IDraggable)Selected;
 
-		HeldBody = traceResult.Body;
+		HeldBody = TraceResult.Body;
 		HeldBody.Wake();
 		HeldBody.EnableAutoSleeping = false;
 
@@ -74,9 +74,9 @@ public class Dragger : Selector
 		holdJoint = PhysicsJoint.Weld
 			.From(holdBody)
 			.To(HeldBody, HeldBody.LocalMassCenter)
-			.WithLinearSpring(LinearFrequency, LinearDampingRatio, 0.0f)
-			.WithAngularSpring(AngularFrequency, AngularDampingRatio, 0.0f)
-			.Breakable(HeldBody.Mass * BreakLinearForce, 0)
+			.WithLinearSpring(LINEAR_FREQUENCY, LINEAR_DAMPING_RATIO, 0.0f)
+			.WithAngularSpring(ANGULAR_FREQUENCY, ANGULAR_DAMPING_RATIO, 0.0f)
+			.Breakable(HeldBody.Mass * BREAK_LINEAR_FORCE, 0)
 			.Create();
 
 		Dragged.OnDragStart(Entity);
@@ -110,12 +110,12 @@ public class Dragger : Selector
 			return false;
 		}
 
-		if ( !traceResult.Body.IsValid() )
+		if ( !TraceResult.Body.IsValid() )
 		{
 			return false;
 		}
 
-		if ( traceResult.Body.PhysicsGroup == null )
+		if ( TraceResult.Body.PhysicsGroup == null )
 		{
 			return false;
 		}
@@ -127,7 +127,7 @@ public class Dragger : Selector
 	{
 		if ( ((IDraggable)Selected).IsDraggable(Entity) )
 		{
-			StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HoldDistance, Entity.EyeRot);
+			StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HOLD_DISTANCE, Entity.EyeRot);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class Dragger : Selector
 
 		Dragged.OnDrag(Entity);
 
-		holdBody.Position = startPos + dir * HoldDistance;
+		holdBody.Position = startPos + dir * HOLD_DISTANCE;
 		holdBody.Rotation = rot * HeldRot;
 	}
 

@@ -6,7 +6,7 @@ namespace ssl.Modules.Items.Instances;
 
 public class ItemTrashBag : Item
 {
-	private const int InventorySize = 6;
+	private const int INVENTORY_SIZE = 6;
 
 	public ItemTrashBag()
 	{
@@ -18,7 +18,7 @@ public class ItemTrashBag : Item
 		ItemFilter filter = new();
 		filter.AddToBlacklist(Id);
 
-		Content = new Inventory(InventorySize, filter) {Enabled = true};
+		Content = new Inventory(INVENTORY_SIZE, filter) {Enabled = true};
 		Components.Add(Content);
 	}
 
