@@ -29,11 +29,11 @@ public abstract class Status : BaseNetworkable
 		InitialTime = duration;
 	}
 
-	public abstract string Id { get; }
-	public abstract string Name { get; }
-	public abstract string Description { get; }
-	public virtual string IconPath => "";
-	public abstract bool IsInfinite { get; }
+	public string Id { get; set; }
+	public string Name { get; set; }
+	public string Description { get; set; }
+	public string IconPath => "";
+	public bool IsInfinite { get; } = false;
 
 	/// <summary>
 	///     When the status is applied to the player.

@@ -16,9 +16,4 @@ public class Restrained : Status
 	///     Restrain item used
 	/// </summary>
 	public ItemRestrain Restrain { get; }
-
-	public override string Id => "status.restrained";
-	public override string Name => "Restrained";
-	public override string Description => "Restrained";
-	public override bool IsInfinite => true;
 }
