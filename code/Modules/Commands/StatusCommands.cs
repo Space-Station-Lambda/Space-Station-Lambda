@@ -1,4 +1,6 @@
 ﻿using Sandbox;
+using ssl.Constants;
+using ssl.Modules.Statuses;
 using ssl.Modules.Statuses.Types;
 using ssl.Player;
 
@@ -11,6 +13,6 @@ public class StatusCommands
 	{
 		Client sender = ConsoleSystem.Caller;
 		SslPlayer sslPlayer = (SslPlayer)sender.Pawn;
-		sslPlayer.StatusHandler.ApplyStatus(new Sickness(6));
+		sslPlayer.StatusHandler.ApplyStatus(StatusFactory.Instance.Create(Identifiers.SICKNESS_ID));
 	}
 }
