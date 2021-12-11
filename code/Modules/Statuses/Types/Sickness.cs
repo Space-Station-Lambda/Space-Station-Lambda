@@ -12,12 +12,7 @@ public class Sickness : Status
 	public Sickness( int duration ) : base(duration)
 	{
 	}
-
-	public override string Id => "status.sickness";
-	public override string Name => "Sickness";
-	public override string Description => "Sickness";
-	public override bool IsInfinite => false;
-
+	
 	public override void OnTick( SslPlayer sslPlayer )
 	{
 		base.OnTick(sslPlayer);
