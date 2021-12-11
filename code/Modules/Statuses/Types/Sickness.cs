@@ -9,7 +9,7 @@ public class Sickness : Status
 	private const byte TARGET_B_COLOR = 100;
 
 
-	public Sickness( int duration ) : base(duration)
+	public Sickness( float duration ) : base(duration)
 	{
 	}
 	

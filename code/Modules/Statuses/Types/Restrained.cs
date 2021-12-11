@@ -7,13 +7,8 @@ namespace ssl.Modules.Statuses.Types;
 /// </summary>
 public class Restrained : Status
 {
-	public Restrained( ItemRestrain restrain )
-	{
-		Restrain = restrain;
-	}
-
 	/// <summary>
 	///     Restrain item used
 	/// </summary>
-	public ItemRestrain Restrain { get; }
+	public ItemRestrain Restrain { get; set; }
 }

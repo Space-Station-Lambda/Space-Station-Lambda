@@ -29,8 +29,9 @@ public static class Identifiers
 	#endregion
 	
 	#region Status
-	
-	// TODO : When status dao created
+
+	public const string SICKNESS_ID = "sickness";
+	public const string RESTRAINED_ID = "restrained";
 	
 	#endregion
 

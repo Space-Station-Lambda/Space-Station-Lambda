@@ -22,7 +22,10 @@ public class ItemRestrain : Item
 		// Get the player selected and restrain him
 		if ( target is SslPlayer targetPlayer )
 		{
-			Status handcuffedStatus = new Restrained(this);
+			Status handcuffedStatus = new Restrained
+			{
+				Restrain = this
+			};
 			targetPlayer.StatusHandler.ApplyStatus(handcuffedStatus);
 		}
 	}
