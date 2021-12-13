@@ -31,6 +31,67 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
+		Save(new RoleData(Identifiers.JANITOR_ID)
+		{
+			Name = "Janitor",
+			Description = "Janitor",
+			Clothing = new HashSet<string>
+			{
+				"models/citizen_clothes/gloves/gloves_workgloves.vmdl",
+				"models/citizen_clothes/shirt/shirt_longsleeve.plain.vmdl",
+				"models/citizen_clothes/trousers/trousers.jeans.vmdl",
+				"models/citizen_clothes/shoes/shoes.workboots.vmdl",
+				"models/citizen_clothes/hat/hat_service.vmdl"
+			},
+			StartingItems = new HashSet<string>
+			{
+				"item.mop", 
+				"item.sponge", 
+				"item.cleaning_spray"
+			}
+		});
+
+		Save(new RoleData(Identifiers.GUARD_ID)
+		{
+			Name = "Guard",
+			Description = "Guard",
+			Clothing = new HashSet<string>
+			{
+				"models/citizen_clothes/hat/hat_uniform.police.vmdl",
+				"models/citizen_clothes/shirt/shirt_longsleeve.police.vmdl",
+				"models/citizen_clothes/shoes/shoes.police.vmdl",
+				"models/citizen_clothes/trousers/trousers.police.vmdl"
+			},
+		});
+		
+		Save(new RoleData(Identifiers.TRAITOR_ID)
+		{
+			Name = "Traitor",
+			Description = "Traitor",
+			Type = Identifiers.ANTAGONIST_TYPE,
+			Clothing = new HashSet<string>
+			{
+				"models/citizen_clothes/trousers/trousers.smart.vmdl",
+				"models/citizen_clothes/shoes/shoes.police.vmdl",
+				"models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
+				"models/citizen_clothes/hat/hat_beret.black.vmdl"
+			}
+		});
+		
+		Save(new RoleData(Identifiers.GHOST_ID)
+		{
+			Name = "Ghost",
+			Description = "Ghost",
+			Type = Identifiers.OTHER_TYPE,
+			Clothing = new HashSet<string>
+			{
+				"models/citizen_clothes/trousers/trousers.smart.vmdl",
+				"models/citizen_clothes/shoes/shoes.police.vmdl",
+				"models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
+				"models/citizen_clothes/hat/hat_beret.black.vmdl"
+			}
+		});
+		/*
 		Save(new RoleData(Identifiers.CAPTAIN_ID)
 		{
 			Name = "Captain",
@@ -62,41 +123,8 @@ public class RoleDao : LocalDao<RoleData>
 				}
 			}
 		});
-		
-		Save(new RoleData(Identifiers.GUARD_ID)
-		{
-			Name = "Guard",
-			Description = "Guard",
-			Clothing = new HashSet<string>
-			{
-				"models/citizen_clothes/hat/hat_uniform.police.vmdl",
-				"models/citizen_clothes/shirt/shirt_longsleeve.police.vmdl",
-				"models/citizen_clothes/shoes/shoes.police.vmdl",
-				"models/citizen_clothes/trousers/trousers.police.vmdl"
-			},
-		});
-		
-		Save(new RoleData(Identifiers.JANITOR_ID)
-		{
-			Name = "Janitor",
-			Description = "Janitor",
-			Clothing = new HashSet<string>
-			{
-				"models/citizen_clothes/gloves/gloves_workgloves.vmdl",
-				"models/citizen_clothes/shirt/shirt_longsleeve.plain.vmdl",
-				"models/citizen_clothes/trousers/trousers.jeans.vmdl",
-				"models/citizen_clothes/shoes/shoes.workboots.vmdl",
-				"models/citizen_clothes/hat/hat_service.vmdl"
-			},
-			StartingItems = new HashSet<string>
-			{
-				"item.mop", 
-				"item.sponge", 
-				"item.cleaning_spray"
-			}
-		});
-		
-		
+
+
 		Save(new RoleData(Identifiers.SCIENTIST_ID)
 		{
 			Name = "Scientist",
@@ -110,32 +138,6 @@ public class RoleDao : LocalDao<RoleData>
 			},
 		});
 		
-		Save(new RoleData(Identifiers.TRAITOR_ID)
-		{
-			Name = "Traitor",
-			Description = "Traitor",
-			Type = Identifiers.ANTAGONIST_TYPE,
-			Clothing = new HashSet<string>
-			{
-				"models/citizen_clothes/trousers/trousers.smart.vmdl",
-				"models/citizen_clothes/shoes/shoes.police.vmdl",
-				"models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-				"models/citizen_clothes/hat/hat_beret.black.vmdl"
-			}
-		});
-		
-		Save(new RoleData(Identifiers.GHOST_ID)
-		{
-			Name = "Ghost",
-			Description = "Ghost",
-			Type = Identifiers.OTHER_TYPE,
-			Clothing = new HashSet<string>
-			{
-				"models/citizen_clothes/trousers/trousers.smart.vmdl",
-				"models/citizen_clothes/shoes/shoes.police.vmdl",
-				"models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-				"models/citizen_clothes/hat/hat_beret.black.vmdl"
-			}
-		});
+		*/
 	}
 }
