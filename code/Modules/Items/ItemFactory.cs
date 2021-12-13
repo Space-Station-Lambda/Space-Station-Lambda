@@ -43,7 +43,8 @@ public sealed class ItemFactory : IFactory<Item>
 
 		item.Id = itemData.Id;
 		item.Name = itemData.Name;
-		item.Model = itemData.Model;
+		item.Description = itemData.Description;
+		item.SetModel(itemData.Model);
 		item.HoldType = itemData.HoldType;
 		item.WasteId = itemData.WasteId;
 		return item;

@@ -85,7 +85,8 @@ public class InventoryBarSlot : Panel
 
 	private void ApplyItem( Item item )
 	{
-		Model model = Model.Load(item.Model);
+		Log.Info("MODEL " + item.GetModel().Name);
+		Model model = Model.Load(item.GetModel().Name);
 		if ( !model.IsError )
 		{
 			float scaleFactor = FocusSize.Length / model.RenderBounds.Size.Length;

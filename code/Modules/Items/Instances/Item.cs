@@ -27,7 +27,6 @@ public class Item : Carriable, IDraggable
 	public string Id { get; set; }
 
 	public string Description { get; set; }
-	public string Model { get; set; }
 	public string WasteId { get; set; }
 	public HoldType HoldType { get; set; }
 
