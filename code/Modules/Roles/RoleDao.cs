@@ -27,7 +27,7 @@ public class RoleDao : LocalDao<RoleData>
 			{
 				"models/citizen_clothes/hair/hair_femalebun.blonde.vmdl",
 				"models/citizen_clothes/dress/dress.kneelength.vmdl",
-				"models/citizen_clothes/shoes/trainers.vmdl_c"
+				"models/citizen_clothes/shoes/trainers.vmdl"
 			},
 			StartingItems = new HashSet<string>
 			{

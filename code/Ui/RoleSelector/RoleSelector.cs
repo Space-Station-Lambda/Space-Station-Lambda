@@ -13,16 +13,6 @@ public class RoleSelector : Panel
 {
 	private readonly List<RoleSlot> roleSlots = new();
 
-	/// <summary>
-	///     Checks if the preround menu is open.
-	/// </summary>
-	private bool isOpen = true;
-
-	/// <summary>
-	///     True if we are in preround. Created for close the roundselector after round started.
-	/// </summary>
-	private bool isPreround;
-
 	public RoleSelector()
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
@@ -39,24 +29,16 @@ public class RoleSelector : Panel
 		base.Tick();
 		RefreshSlots();
 		BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
-		if ( null == currentRound )
+		switch (currentRound)
 		{
-			return;
-		}
-
-		if ( currentRound is PreRound )
-		{
-			isPreround = true;
-			SetClass("active", isOpen);
-		}
-		else
-		{
-			// Close the menu if the preround stops
-			if ( isPreround )
-			{
-				isPreround = false;
-			}
-			SetClass("active", isOpen);
+			case null:
+				return;
+			case PreRound:
+				SetClass("active", true);
+				break;
+			default:
+				SetClass("active", false);
+				break;
 		}
 	}
 
