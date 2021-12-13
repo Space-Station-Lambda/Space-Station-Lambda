@@ -39,34 +39,24 @@ public class RoleSelector : Panel
 		base.Tick();
 		RefreshSlots();
 		BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
-		if ( null != currentRound )
+		if ( null == currentRound )
 		{
-			if ( currentRound is PreRound )
-			{
-				isPreround = true;
-				isOpen = true;
-				SetClass("active", isOpen);
-			}
-			else
-			{
-				// Close the menu if the preround stops
-				if ( isPreround )
-				{
-					isPreround = false;
-					isOpen = false;
-				}
-
-				SetClass("active", isOpen);
-			}
+			return;
 		}
-	}
 
-	[Event("buildinput")]
-	public void ProcessClientInput( InputBuilder input )
-	{
-		if ( !isPreround && input.Pressed(InputButton.Menu) )
+		if ( currentRound is PreRound )
 		{
-			isOpen = !isOpen;
+			isPreround = true;
+			SetClass("active", isOpen);
+		}
+		else
+		{
+			// Close the menu if the preround stops
+			if ( isPreround )
+			{
+				isPreround = false;
+			}
+			SetClass("active", isOpen);
 		}
 	}
 
