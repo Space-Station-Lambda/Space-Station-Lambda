@@ -29,6 +29,10 @@ public class RoleDao : LocalDao<RoleData>
 				"models/citizen_clothes/dress/dress.kneelength.vmdl",
 				"models/citizen_clothes/shoes/trainers.vmdl_c"
 			},
+			StartingItems = new HashSet<string>
+			{
+				Identifiers.APPLE_ID
+			}
 		});
 		
 		Save(new RoleData(Identifiers.JANITOR_ID)
@@ -45,9 +49,9 @@ public class RoleDao : LocalDao<RoleData>
 			},
 			StartingItems = new HashSet<string>
 			{
-				"item.mop", 
-				"item.sponge", 
-				"item.cleaning_spray"
+				Identifiers.MOP_ID, 
+				Identifiers.SPONGE_ID, 
+				Identifiers.CLEANING_SPRAY_ID
 			}
 		});
 
@@ -62,6 +66,10 @@ public class RoleDao : LocalDao<RoleData>
 				"models/citizen_clothes/shoes/shoes.police.vmdl",
 				"models/citizen_clothes/trousers/trousers.police.vmdl"
 			},
+			StartingItems = new HashSet<string>
+			{
+				Identifiers.PISTOL_ID,
+			}
 		});
 		
 		Save(new RoleData(Identifiers.TRAITOR_ID)

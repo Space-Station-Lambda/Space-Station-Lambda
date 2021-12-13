@@ -1,5 +1,6 @@
 ﻿using System;
 using Sandbox;
+using ssl.Constants;
 using ssl.Modules.Props;
 using Prop = ssl.Modules.Props.Instances.Prop;
 
@@ -8,8 +9,6 @@ namespace ssl.Player;
 public class StainHandler : EntityComponent
 {
 	private const float STAIN_CHANCE = 0.002f;
-	private const string STAIN_ID = "prop.stain";
-
 
 	/// <summary>
 	///     Spawn a stain with a specific probability
@@ -27,7 +26,7 @@ public class StainHandler : EntityComponent
 	private void GenerateStain()
 	{
 		PropFactory factory = PropFactory.Instance;
-		Prop stain = factory.Create(STAIN_ID);
+		Prop stain = factory.Create(Identifiers.STAIN_ID);
 		stain.Position = Entity.Position;
 	}
 }
