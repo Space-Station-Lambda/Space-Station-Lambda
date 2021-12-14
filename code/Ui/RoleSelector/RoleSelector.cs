@@ -2,6 +2,7 @@
 using Sandbox;
 using Sandbox.UI;
 using ssl.Modules.Roles;
+using ssl.Modules.Roles.Instances;
 using ssl.Modules.Rounds;
 
 namespace ssl.Ui.RoleSelector;
@@ -17,10 +18,20 @@ public class RoleSelector : Panel
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSelector.scss");
 		SetClass("active", true);
+		LoadBaseRoleSelection();
+	}
+
+	private void LoadBaseRoleSelection()
+	{
 		foreach ( string id in RoleDao.Instance.FindAllIds() )
 		{
-			RoleSlot slot = new(id, this);
-			roleSlots.Add(slot);
+			Role role = RoleFactory.Instance.Create(id);
+			// If the role is availible to the player.
+			if ( role.Available )
+			{
+				RoleSlot slot = new(role, this);
+				roleSlots.Add(slot);
+			}
 		}
 	}
 

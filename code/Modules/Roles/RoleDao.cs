@@ -21,6 +21,7 @@ public class RoleDao : LocalDao<RoleData>
 		
 		Save(new RoleData(Identifiers.ASSISTANT_ID)
 		{
+			Available = true,
 			Name = "Assistant",
 			Description = "An assistant is a role who assists other roles in tasks.",
 			Clothing = new HashSet<string>
@@ -37,6 +38,7 @@ public class RoleDao : LocalDao<RoleData>
 		
 		Save(new RoleData(Identifiers.JANITOR_ID)
 		{
+			Available = true,
 			Name = "Janitor",
 			Description = "Janitor",
 			Clothing = new HashSet<string>
@@ -57,6 +59,7 @@ public class RoleDao : LocalDao<RoleData>
 
 		Save(new RoleData(Identifiers.GUARD_ID)
 		{
+			Available = true,
 			Name = "Guard",
 			Description = "Guard",
 			Clothing = new HashSet<string>

@@ -15,18 +15,17 @@ public class RoleSlot : Panel
 	private readonly string roleId;
 	private RolePreferenceType currentSelected;
 
-	public RoleSlot( string roleId, Panel parent ) : this(roleId)
+	public RoleSlot( Role role, Panel parent ) : this(role)
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
 		Parent = parent;
 		AddEventListener("onclick", Select);
 	}
 
-	public RoleSlot( string roleId )
+	public RoleSlot( Role role )
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
-		this.roleId = roleId;
-		Role role = RoleFactory.Instance.Create(roleId);
+		this.roleId = role.Id;
 		Add.Label(role.Name, "role-name");
 	}
 

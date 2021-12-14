@@ -20,6 +20,8 @@ public class Role : BaseNetworkable
 	public string Type { get; set; }
 	public string Model { get; set; }
 
+	public bool Available { get; set; } = false;
+
 	public IEnumerable<string> Clothing { get; set; }
 	public IEnumerable<string> StartingItems { get; set; }
 

@@ -29,6 +29,11 @@ public class RoleData : BaseData
 	public string Model { get; set; } = "models/units/simpleterry.vmdl";
 	
 	/// <summary>
+	/// If the role is available to pick
+	/// </summary>
+	public bool Available { get; set; }
+	
+	/// <summary>
 	/// List of clothing
 	/// TODO create "skin" system with a SkinData class
 	/// </summary>

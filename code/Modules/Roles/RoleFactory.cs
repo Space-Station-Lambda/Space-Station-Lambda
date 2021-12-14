@@ -32,6 +32,7 @@ public class RoleFactory : IFactory<Role>
 		role.Model = roleData.Model;
 		role.Clothing = roleData.Clothing;
 		role.StartingItems = roleData.StartingItems;
+		role.Available = roleData.Available;
 		//TODO SkillSet
 		//TODO Faction
 		return role;
