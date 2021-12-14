@@ -85,7 +85,6 @@ public class InventoryBarSlot : Panel
 
 	private void ApplyItem( Item item )
 	{
-		Log.Info("MODEL " + item.GetModel().Name);
 		Model model = Model.Load(item.GetModel().Name);
 		if ( !model.IsError )
 		{

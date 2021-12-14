@@ -6,11 +6,9 @@ namespace ssl.Ui.InventoryBar;
 
 public class InventoryBar : Panel
 {
-	private const int DEFAULT_SLOT = 0;
-
 
 	private readonly InventoryBarSlot[] icons = new InventoryBarSlot[10];
-	private int selected;
+	private int selected = -1;
 
 	public InventoryBar()
 	{

@@ -13,7 +13,7 @@ public partial class PlayerInventory : Inventory
 	{
 	}
 
-	[Net] [Predicted] public int HoldingSlotNumber { get; private set; }
+	[Net] [Predicted] public int HoldingSlotNumber { get; private set; } = -1;
 	public Item HoldingItem => HoldingSlot?.Item;
 	public Slot HoldingSlot { get; private set; }
 	private SslPlayer SslPlayer => (SslPlayer)Entity;
