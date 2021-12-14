@@ -27,7 +27,6 @@ public class Saver<T>
 		}
 
 		Log.Info($"[SAVE]{toSave} saved at {path}");
-		FileSystem.Data.WriteAllText("player.txt", "hello world");
 		FileSystem.Data.WriteJson(path, toSave);
 	}
 

@@ -65,13 +65,15 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 	private void LoadPreferences()
 	{
 		Host.AssertClient();
-		if ( saver.IsSaved )
+		if ( !saver.IsSaved )
 		{
-			var rolePreferences = saver.Load();
-			foreach ( (string roleId, RolePreferenceType preference) in rolePreferences )
-			{
-				ConsoleSystem.Run("select_preference_role", roleId, preference);
-			}
+			return;
+		}
+
+		List<(string, RolePreferenceType)> rolePreferences = saver.Load();
+		foreach ( (string roleId, RolePreferenceType preference) in rolePreferences )
+		{
+			ConsoleSystem.Run("select_role_preference", roleId, preference);
 		}
 	}
 
