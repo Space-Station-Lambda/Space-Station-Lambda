@@ -3,6 +3,9 @@ using Sandbox.Joints;
 
 namespace ssl.Modules.Selection;
 
+/// <summary>
+/// Dragger allow the user to select draggable object to move when hold click.
+/// </summary>
 public class Dragger : Selector
 {
 	private const float HOLD_DISTANCE = 50F;
@@ -20,8 +23,19 @@ public class Dragger : Selector
 		Activate();
 	}
 
+	/// <summary>
+	/// Entity dragged (item, prop, player etc ...)
+	/// </summary>
 	public IDraggable Dragged { get; private set; }
+	
+	/// <summary>
+	/// TODO doc
+	/// </summary>
 	public PhysicsBody HeldBody { get; private set; }
+	
+	/// <summary>
+	/// Rotation of the current drag.
+	/// </summary>
 	public Rotation HeldRot { get; private set; }
 
 	/// <summary>
@@ -53,11 +67,6 @@ public class Dragger : Selector
 	/// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
 	private void StartDrag( Vector3 grabPos, Rotation grabRot )
 	{
-		if ( !IsSelectedDraggable() )
-		{
-			return;
-		}
-
 		StopDrag();
 
 		Dragged = (IDraggable)Selected;
@@ -103,9 +112,14 @@ public class Dragger : Selector
 		HeldRot = Rotation.Identity;
 	}
 
+	/// <summary>
+	/// Detect if the selected object is draggable.
+	/// </summary>
+	/// <returns></returns>
 	private bool IsSelectedDraggable()
 	{
-		if ( Selected is not IDraggable draggable )
+		// Check 
+		if ( Selected is not IDraggable)
 		{
 			return false;
 		}
@@ -115,14 +129,12 @@ public class Dragger : Selector
 			return false;
 		}
 
-		if ( TraceResult.Body.PhysicsGroup == null )
-		{
-			return false;
-		}
-
-		return true;
+		return TraceResult.Body.PhysicsGroup != null;
 	}
 
+	/// <summary>
+	/// Try to drag an entity.
+	/// </summary>
 	private void TryDrag()
 	{
 		if ( ((IDraggable)Selected).IsDraggable(Entity) )
