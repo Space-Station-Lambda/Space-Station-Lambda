@@ -26,7 +26,14 @@ public class RoleSlot : Panel
 	{
 		StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
 		this.roleId = role.Id;
-		Add.Label(role.Name, "role-name");
+
+		Panel inside = Add.Panel( "inside");
+		{
+			Panel roleLabel = inside.Add.Panel( "roleLabel" );
+			{
+				roleLabel.Add.Label( role.Name, "role-name" );
+			}
+		}
 	}
 
 	public void Refresh()

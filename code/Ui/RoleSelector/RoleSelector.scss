@@ -2,12 +2,10 @@
 
 RoleSelector {
   font-family: $primary-font;
-  background-color: black;
+  background-color: $dark-gray;
   cursor: default;
-  position: absolute;
-  flex-direction: column;
-  flex-wrap: wrap;
-
+  padding: 50px;
+  
   &.active {
     pointer-events: all;
     height: 100%;
