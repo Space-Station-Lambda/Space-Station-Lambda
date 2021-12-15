@@ -1,23 +1,43 @@
 ﻿@import '../Constants.scss';
 
 RoleSlot {
-  background-color: whitesmoke;
-  font-size: 30px;
-  cursor: pointer;
-  height: 100px;
-  width: 500px;
-  padding: 4px;
-  margin: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  height: 150px;
+  width: 150px;
+  border: 2px solid white;
+  margin: 20px;
+  align-content: center;
+  transition-property: transform;
+  transition-duration: 5s;
+  
+  .inside {
+    height: 93%;
+    width: 93%;
+    border: 2px solid white;
+    margin: auto;
+    
+    .roleLabel {
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      text-align: center;
+      color: white;
+      font-size: 24px;
+    }
+    
+    &:hover {
+      border: 10px;
+    }
+  }
+  
   &.selected {
-    background-color: $light-blue;
+    border-color: $light-blue;
   }
 
   &:hover {
-    background-color: $light-blue;
-    border: 2px  $blue;
+    transform: scale(1.3);
   }
+  
+ 
 }
