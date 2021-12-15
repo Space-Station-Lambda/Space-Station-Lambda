@@ -4,7 +4,7 @@ using Sandbox.Joints;
 namespace ssl.Modules.Selection;
 
 /// <summary>
-/// Dragger allow the user to select draggable object to move when hold click.
+/// Dragger allows the user to select draggable object to move when holding click.
 /// </summary>
 public class Dragger : Selector
 {
@@ -29,7 +29,7 @@ public class Dragger : Selector
 	public IDraggable Dragged { get; private set; }
 	
 	/// <summary>
-	/// TODO doc
+	/// PhysicsBody of the Draggable currently moved by the Dragger
 	/// </summary>
 	public PhysicsBody HeldBody { get; private set; }
 	
