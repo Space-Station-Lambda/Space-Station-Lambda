@@ -20,7 +20,7 @@ public class SkillsCommands
 	}
 	
 	/// <summary>
-	///     Clear the inventory
+	///     Displays all the skill levels of the calling player
 	/// </summary>
 	[AdminCmd("scu")]
 	public static void SkillCheck()
