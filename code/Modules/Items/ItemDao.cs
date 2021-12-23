@@ -59,7 +59,7 @@ public class ItemDao : LocalDao<ItemData>
 			Name = "Pistol",
 			Description = "A pistol",
 			Model = "weapons/rust_pistol/rust_pistol.vmdl",
-			HoldType = HoldType.Hand,
+			HoldType = HoldType.Pistol,
 			PrimaryRate = 5.0f,
 			Damage = 10.0f,
 			Range = 0.0f, // Infinite

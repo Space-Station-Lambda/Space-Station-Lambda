@@ -11,7 +11,7 @@ namespace ssl.Modules.Items.Instances;
 ///     It is both the item in inventory and the world entity.
 ///     This class is used clientside and server side so properties useful clientside should be [Net].
 /// </summary>
-public class Item : Carriable, IDraggable
+public partial class Item : Carriable, IDraggable
 {
 	public const string TAG = "Item";
 
@@ -24,11 +24,10 @@ public class Item : Carriable, IDraggable
 		GlowColor = Color.Blue;
 	}
 
-	public string Id { get; set; }
-
-	public string Description { get; set; }
-	public string WasteId { get; set; }
-	public HoldType HoldType { get; set; }
+	[Net] public string Id { get; set; }
+	[Net] public string Description { get; set; }
+	[Net] public string WasteId { get; set; }
+	[Net] public HoldType HoldType { get; set; }
 
 	public void OnSelectStart( SslPlayer sslPlayer )
 	{
