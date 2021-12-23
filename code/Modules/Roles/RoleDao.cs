@@ -33,6 +33,17 @@ public class RoleDao : LocalDao<RoleData>
 			StartingItems = new HashSet<string>
 			{
 				Identifiers.APPLE_ID
+			},
+			Skills = new Dictionary<string, int>()
+			{
+				{
+					Identifiers.CLEANING_ID,
+					30
+				},
+				{
+					Identifiers.SPEED_ID,
+					60
+				}
 			}
 		});
 		
@@ -54,6 +65,17 @@ public class RoleDao : LocalDao<RoleData>
 				Identifiers.MOP_ID, 
 				Identifiers.SPONGE_ID, 
 				Identifiers.CLEANING_SPRAY_ID
+			},
+			Skills = new Dictionary<string, int>()
+			{
+				{
+					Identifiers.CLEANING_ID,
+					99
+				},
+				{
+					Identifiers.SPEED_ID,
+					50
+				}
 			}
 		});
 
@@ -72,6 +94,17 @@ public class RoleDao : LocalDao<RoleData>
 			StartingItems = new HashSet<string>
 			{
 				Identifiers.PISTOL_ID,
+			},
+			Skills = new Dictionary<string, int>()
+			{
+				{
+					Identifiers.STRENGTH_ID,
+					50
+				},
+				{
+					Identifiers.SPEED_ID,
+					40
+				}
 			}
 		});
 		

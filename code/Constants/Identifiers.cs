@@ -37,8 +37,11 @@ public static class Identifiers
 
 	#region Skill
 	
-	// TODO : When Skill dao created
-	
+	public const string AIM_ID = "aim";
+	public const string STRENGTH_ID = "strength";
+	public const string CLEANING_ID = "cleaning";
+	public const string SPEED_ID = "speed";
+
 	#endregion
 	
 	#region Scenario

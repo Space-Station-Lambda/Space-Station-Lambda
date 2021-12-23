@@ -20,7 +20,13 @@ public class Role : BaseNetworkable
 	public string Type { get; set; }
 	public string Model { get; set; }
 
+	/// <summary>
+	/// Skills of the role
+	/// </summary>
+	public Dictionary<string, Skill> Skills { get; set; } = new Dictionary<string, Skill>();
+
 	public bool Available { get; set; } = false;
+	
 
 	public IEnumerable<string> Clothing { get; set; }
 	public IEnumerable<string> StartingItems { get; set; }
