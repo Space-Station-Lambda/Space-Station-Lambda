@@ -9,7 +9,7 @@ namespace ssl.Modules.Commands;
 public class SkillsCommands
 {
 	/// <summary>
-	///     Clear the inventory
+	///     Checks if the calling player is enough talented in the skill
 	/// </summary>
 	[AdminCmd("scheck")]
 	public static void SkillCheck(string id, int complexity = 50)
