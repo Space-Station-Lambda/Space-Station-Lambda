@@ -5,6 +5,7 @@ using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Roles;
 using ssl.Modules.Selection;
+using ssl.Modules.Skills;
 using ssl.Modules.Statuses;
 using ssl.Player.Animators;
 using ssl.Player.Cameras;
@@ -31,7 +32,8 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 			Components.Create<RoleHandler>();
 			Components.Create<ClothesHandler>();
 			Components.Create<StatusHandler>();
-			Components.Create<StainHandler>();
+			Components.Create<StainHandler>();	
+			Components.Create<SkillHandler>();	
 		}
 	}
 
@@ -42,6 +44,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 	[BindComponent] public StainHandler StainHandler { get; }
 	[BindComponent] public InputHandler InputHandler { get; }
 	[BindComponent] public RagdollHandler RagdollHandler { get; }
+	[BindComponent] public SkillHandler SkillHandler { get; }
 	[BindComponent] public Dragger Dragger { get; }
 
 	public new HumanController Controller

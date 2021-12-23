@@ -4,6 +4,7 @@ using ssl.Constants;
 using ssl.Modules.Roles.Data;
 using ssl.Modules.Roles.Instances;
 using ssl.Modules.Scenarios;
+using ssl.Modules.Skills;
 
 namespace ssl.Modules.Roles;
 
@@ -33,6 +34,12 @@ public class RoleFactory : IFactory<Role>
 		role.Clothing = roleData.Clothing;
 		role.StartingItems = roleData.StartingItems;
 		role.Available = roleData.Available;
+		foreach ((string skillId, int level) in roleData.Skills)
+		{
+			Skill skill = SkillFactory.Instance.Create(skillId);
+			skill.Level = level;
+			role.Skills.Add(skillId, skill);
+		}
 		//TODO SkillSet
 		//TODO Faction
 		return role;
