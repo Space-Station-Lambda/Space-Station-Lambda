@@ -155,7 +155,6 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 	{
 		Log.Trace("[Player] Freeze");
 		Controller.IsFrozen = true;
-		// TODO Cancel all allowed actions
 	}
 
 	public void Unfreeze()

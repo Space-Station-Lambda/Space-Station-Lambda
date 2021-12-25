@@ -63,7 +63,7 @@ public partial class ItemWeapon : Item
 			ShootEffects();
 		}
 
-		//TODO: Bullet to class
+		//TODO SSL-382: Bullet to class
 		ShootBullet(0.05f, 1.5f, 3.0f);
 	}
 

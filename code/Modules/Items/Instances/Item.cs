@@ -46,9 +46,7 @@ public partial class Item : Carriable, IDraggable
 	}
 
 	public void OnSelect( SslPlayer sslPlayer )
-	{
-		//TODO
-	}
+	{ }
 
 	public void OnInteract( SslPlayer sslPlayer, int strength )
 	{

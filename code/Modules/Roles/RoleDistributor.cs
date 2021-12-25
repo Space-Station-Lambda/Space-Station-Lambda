@@ -58,8 +58,7 @@ public class RoleDistributor
 				Log.Warning($"[RoleDistributor] Constraint {player} get the default role.");
 			}
 		}
-
-		//TODO Give roles with their preferences
+		
 		if ( GetPlayersWithoutRole().Count > 0 )
 		{
 			Log.Error("[RoleDistributor] Everyplayer don't have a role");

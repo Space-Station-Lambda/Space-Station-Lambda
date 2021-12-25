@@ -27,16 +27,8 @@ public class Role : BaseNetworkable
 
 	public bool Available { get; set; } = false;
 	
-
 	public IEnumerable<string> Clothing { get; set; }
 	public IEnumerable<string> StartingItems { get; set; }
-
-	/// <summary>
-	///     The skillset of the Role. For now the role handle skills but we can change that later for let the player
-	///     handle his roles
-	/// </summary>
-	/// TODO: create skillset
-	/// public SkillSet SkillSet { get; set; }
 
 	/// <summary>
 	///     Array of factions of the role. A role can have multiple factions.

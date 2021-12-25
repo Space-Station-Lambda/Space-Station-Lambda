@@ -35,7 +35,7 @@ public class RoleData : BaseData
 	
 	/// <summary>
 	/// List of clothing
-	/// TODO create "skin" system with a SkinData class
+	/// TODO SSL-386: create "skin" system with a SkinData class
 	/// </summary>
 	public IEnumerable<string> Clothing { get; set; }= new HashSet<string>();
 

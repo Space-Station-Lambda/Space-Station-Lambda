@@ -81,7 +81,7 @@ public abstract class Status : BaseNetworkable
 	{
 		if ( TimeLeft < 0 )
 		{
-			//TODO Resolve ??
+			//TODO SSL-387:Resolve ??
 		}
 	}
 }

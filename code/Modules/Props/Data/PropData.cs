@@ -20,7 +20,7 @@ public class PropData : BaseData
 	public string Model { get; set; }
 	
 	/// <summary>
-	/// TODO: documentation
+	/// If the prop is a physical he can be moved
 	/// </summary>
 	public bool IsPhysical { get; set; }
 }

@@ -42,6 +42,6 @@ public class PropMachine : Prop
 	/// </summary>
 	public void Destroy()
 	{
-		//TODO In first time a machine can't be destroyed because we don't handle the build options
+		//TODO SSL-385: In first time a machine can't be destroyed because we don't handle the build options
 	}
 }
