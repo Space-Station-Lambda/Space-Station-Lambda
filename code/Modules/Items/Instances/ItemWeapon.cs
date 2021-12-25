@@ -7,7 +7,7 @@ using ssl.Player.Animators;
 
 namespace ssl.Modules.Items.Instances;
 
-public partial class ItemWeapon : Item<ItemWeaponData>
+public partial class ItemWeapon : Item
 {
 	private const string MUZZLE_ATTACHMENT_NAME = "muzzle";
 	private const float MAX_RANGE = 5000;

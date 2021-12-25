@@ -5,7 +5,7 @@ using ssl.Player;
 
 namespace ssl.Modules.Items.Instances;
 
-public class ItemCleaner : Item<ItemCleanerData>
+public class ItemCleaner : Item
 {
 	/// <summary>
 	///     The dirtyness is the level of sanity of the cleaner. 0 Is perfect and the max is to be defined.

@@ -138,11 +138,6 @@ public partial class Inventory : EntityComponent
 		return (from slot in Slots where itemId.Equals(slot.Item.Id) select slot.Item).FirstOrDefault();
 	}
 
-	public List<Item> GetItems( ItemData item )
-	{
-		return (from slot in Slots where item.Id.Equals(slot.Item.Id) select slot.Item).ToList();
-	}
-
 	/// <summary>
 	///     Removes each ItemStack of all slots of the inventory.
 	/// </summary>

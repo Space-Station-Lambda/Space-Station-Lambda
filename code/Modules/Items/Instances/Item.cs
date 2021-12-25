@@ -116,7 +116,3 @@ public partial class Item : Carriable, IDraggable
 		animator.SetParam(HANDEDNESS_KEY, 1);
 	}
 }
-
-public class Item<T> : Item where T : ItemData
-{
-}
