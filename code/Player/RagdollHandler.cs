@@ -27,7 +27,8 @@ public class RagdollHandler : EntityComponent<SslPlayer>
 		Entity.EnableAllCollisions = false;
 		Entity.EnableShadowInFirstPerson = false;
 		Entity.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), Entity.EyePos);
-
+		Entity.EnableDrawing = false;
+		
 		TimeExitRagdoll = Time.Now + downTime;
 	}
 
@@ -51,7 +52,7 @@ public class RagdollHandler : EntityComponent<SslPlayer>
 
 		Entity.EnableAllCollisions = true;
 		Entity.EnableShadowInFirstPerson = true;
-
+		Entity.EnableDrawing = true;
 		Entity.Camera = new FirstPersonCamera();
 	}
 

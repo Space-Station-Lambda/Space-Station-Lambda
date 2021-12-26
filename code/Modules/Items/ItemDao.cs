@@ -70,7 +70,19 @@ public class ItemDao : LocalDao<ItemData>
 			ReloadSound = "pistol.reload",
 			MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
 		});
-
+		Save(new ItemWeaponData(Identifiers.TASER_ID)
+		{
+			Name = "Taser",
+			Description = "Can be used to take down people. Hey you up there, come back here !",
+			Model = "models/citizen_props/crowbar01.vmdl",
+			HoldType = HoldType.Hand,
+			PrimaryRate = 0.5f,
+			Damage = 0.0f,
+			Range = 100f,
+			ShootSound = "sounds/physics/breaking/break_wood_plank.sound",
+			MuzzleFlashParticle = ""
+		});
+		
 		// Cleaners
 		Save(new ItemCleanerData(Identifiers.SPONGE_ID)
 		{

@@ -26,6 +26,7 @@ public static class Identifiers
 	public const string APPLE_ID = "apple";
 	
 	public const string PISTOL_ID = "pistol";
+	public const string TASER_ID = "taser";
 	#endregion
 	
 	#region Status

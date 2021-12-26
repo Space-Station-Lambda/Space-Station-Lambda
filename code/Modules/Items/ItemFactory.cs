@@ -26,25 +26,40 @@ public sealed class ItemFactory : IFactory<Item>
 			{
 				FeedingValue = itemFoodData.FeedingValue
 			},
-			ItemWeaponData itemWeaponData => new ItemWeapon
+			ItemWeaponData itemWeaponData => itemData.Id switch
 			{
-				Damage = itemWeaponData.Damage,
-				Range = itemWeaponData.Range,
-				PrimaryRate = itemWeaponData.PrimaryRate,
-				MaxAmmo = itemWeaponData.MaxAmmo,
-				ReloadTime = itemWeaponData.ReloadTime,
-				ShootSound = itemWeaponData.ShootSound,
-				DryFireSound = itemWeaponData.DryFireSound,
-				ReloadSound = itemWeaponData.ReloadSound,
-				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
-			},
+				Identifiers.TASER_ID => new ItemTaser
+				{
+					Damage = itemWeaponData.Damage,
+					Range = itemWeaponData.Range,
+					PrimaryRate = itemWeaponData.PrimaryRate,
+					MaxAmmo = itemWeaponData.MaxAmmo,
+					ReloadTime = itemWeaponData.ReloadTime,
+					ShootSound = itemWeaponData.ShootSound,
+					DryFireSound = itemWeaponData.DryFireSound,
+					ReloadSound = itemWeaponData.ReloadSound,
+					MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
+
+				},
+				_ =>  new ItemWeapon
+				{
+					Damage = itemWeaponData.Damage,
+					Range = itemWeaponData.Range,
+					PrimaryRate = itemWeaponData.PrimaryRate,
+					MaxAmmo = itemWeaponData.MaxAmmo,
+					ReloadTime = itemWeaponData.ReloadTime,
+					ShootSound = itemWeaponData.ShootSound,
+					DryFireSound = itemWeaponData.DryFireSound,
+					ReloadSound = itemWeaponData.ReloadSound,
+					MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
+				}},
 			ItemCleanerData itemCleanerData => new ItemCleaner
 			{
 				CleaningValue = itemCleanerData.CleaningValue
 			},
 			_ => new Item()
 		};
-
+		
 		item.Id = itemData.Id;
 		item.Name = itemData.Name;
 		item.Description = itemData.Description;
