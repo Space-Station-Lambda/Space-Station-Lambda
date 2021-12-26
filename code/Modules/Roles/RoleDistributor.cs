@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Sandbox;
 using ssl.Constants;
 using ssl.Modules.Scenarios;
 using ssl.Player;
@@ -127,7 +128,7 @@ public class RoleDistributor
 
 	private List<SslPlayer> GetPlayersWithRole( string role )
 	{
-		return players.Where(mainPlayer => role.Equals(mainPlayer.RoleHandler.Role.Id)).ToList();
+		return players.Where(mainPlayer => role.Equals(mainPlayer.RoleHandler.Role?.Id)).ToList();
 	}
 
 	/// <summary>
