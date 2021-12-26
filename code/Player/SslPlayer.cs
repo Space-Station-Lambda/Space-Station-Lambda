@@ -115,7 +115,9 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 	public override void Respawn()
 	{
 		SetModel(MODEL);
-
+		
+		LifeState = LifeState.Alive;
+		
 		Controller = new HumanController(this);
 		Animator = new HumanAnimator();
 		Camera = new FirstPersonCamera();
@@ -167,8 +169,8 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 	{
 		LifeState = LifeState.Dead;
 		StopUsing();
-		RoleHandler.Role?.OnKilled(this);
 		RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
+		RoleHandler.Role?.OnKilled(this);
 		Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
 	}
 

@@ -22,7 +22,10 @@ public partial class ItemWeapon : Item
 	[Net] public string ReloadSound { get; set; }
 	[Net] public string MuzzleFlashParticle { get; set; }
 
-
+	protected virtual float BulletSpread { get; set; } = 0.05F;
+	protected virtual float BulletForce { get; set; } = 1.5F;
+	protected virtual float BulletSize { get; set; } = 3F;
+	
 	/// <summary>
 	/// Maximum amount of ammo in one magazine (or equivalent).
 	/// -1 means that the weapon doesn't have any magazine (melee weapon).
@@ -43,6 +46,11 @@ public partial class ItemWeapon : Item
 	[Net] protected bool IsReloading { get; set; }
 	[Net] protected TimeSince TimeSinceStartReload { get; set; }
 
+	[Net] public TimeSince TimeSincePrimaryAttack { get; set; }
+
+	protected TraceResult Hit { get; private set; }
+	protected Entity HitEntity => Hit.Entity;
+	
 	public override void OnUsePrimary( SslPlayer sslPlayer, ISelectable target )
 	{
 		base.OnUsePrimary(sslPlayer, target);
@@ -103,18 +111,18 @@ public partial class ItemWeapon : Item
 		return TimeSincePrimaryAttack > 1 / PrimaryRate;
 	}
 
-	protected void AttackPrimary()
+	protected virtual void AttackPrimary()
 	{
 		TimeSincePrimaryAttack = 0;
-
+		
+		//TODO SSL-382: Bullet to class
+		ShootBullet(0.05f, 1.5f, 3.0f);
+		ConsumeAmmo();
+		
 		using (Prediction.Off())
 		{
 			FireEffects();
 		}
-
-		//TODO SSL-382: Bullet to class
-		ShootBullet(0.05f, 1.5f, 3.0f);
-		ConsumeAmmo();
 	}
 
 	/// <summary>
@@ -149,21 +157,20 @@ public partial class ItemWeapon : Item
 	protected virtual void ShootBullet( float spread, float force, float bulletSize )
 	{
 		Vector3 forward = Owner.EyeRot.Forward;
-		forward += (Vector3.Random + Vector3.Random + Vector3.Random + Vector3.Random) * spread * 0.25f;
+		forward += Vector3.Random * spread;
 		forward = forward.Normal;
 
 		//If the range is 0, the range is max.
 		float range = Range == 0 ? MAX_RANGE : Range;
 		TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
-
-		if ( !IsServer || !tr.Entity.IsValid() )
-		{
-			return;
-		}
-
+		
+		Hit = tr;
+		
+		if ( !IsServer || !tr.Entity.IsValid() ) return;
+		
 		tr.Surface.DoBulletImpact(tr);
-
-		DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * 100 * force, Damage)
+        
+		DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * force, Damage)
 			.UsingTraceResult(tr)
 			.WithAttacker(Owner)
 			.WithWeapon(this);

@@ -38,6 +38,7 @@ public class Carriable : WorldEntity
 		Owner = carrier;
 		MoveType = MoveType.None;
 		EnableDrawing = false;
+		EnableAllCollisions = false;
 	}
 
 	public override void OnCarryDrop( Entity dropper )
@@ -46,6 +47,7 @@ public class Carriable : WorldEntity
 		Owner = null;
 		MoveType = MoveType.Physics;
 		EnableDrawing = true;
+		EnableAllCollisions = true;
 	}
 
 	/// <summary>
