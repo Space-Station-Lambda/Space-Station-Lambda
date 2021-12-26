@@ -129,7 +129,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 
 		RoleHandler.SpawnRole();
 
-		SendTextNotification("You are " + RoleHandler.Role.Name);
+		SendTextNotification(To.Single(Client), "You are " + RoleHandler.Role.Name);
 
 		base.Respawn();
 	}
