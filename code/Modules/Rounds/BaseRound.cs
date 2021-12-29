@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Sandbox;
 using ssl.Constants;
-using ssl.Modules.Milestones;
 using ssl.Modules.Roles;
 using ssl.Modules.Scenarios;
 using ssl.Player;
@@ -15,7 +14,6 @@ public abstract partial class BaseRound : BaseNetworkable
 	{
 		Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.BASE_SCENARIO_ID);
 		RoleDistributor = new RoleDistributor(scenario, Players);
-		MilestonesHandler = new MilestonesHandler();
 	}
 
 	[Net] public IList<SslPlayer> Players { get; set; }
@@ -23,7 +21,6 @@ public abstract partial class BaseRound : BaseNetworkable
 	public virtual string RoundName => "";
 	public float RoundEndTime { get; set; }
 	public float TimeLeft => RoundEndTime - Time.Now;
-	public MilestonesHandler MilestonesHandler { get; }
 	public RoleDistributor RoleDistributor { get; }
 	public event Action<BaseRound> RoundEndedEvent;
 
