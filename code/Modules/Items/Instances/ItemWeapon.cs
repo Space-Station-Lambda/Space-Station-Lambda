@@ -12,29 +12,36 @@ public partial class ItemWeapon : Item
 	private const string MUZZLE_ATTACHMENT_NAME = "muzzle";
 	private const float MAX_RANGE = 5000;
 
+	
+	
 	public float PrimaryRate { get; set; }
 	public float Range { get; set; }
 	public float Damage { get; set; }
-	public string ShootSound { get; set; }
-	public string MuzzleFlashParticle { get; set; }
-	
+	[Net] public string ShootSound { get; set; }
+	[Net] public string DryFireSound { get; set; }
+	[Net] public string ReloadSound { get; set; }
+	[Net] public string MuzzleFlashParticle { get; set; }
+
+
 	/// <summary>
 	/// Maximum amount of ammo in one magazine (or equivalent).
 	/// -1 means that the weapon doesn't have any magazine (melee weapon).
 	/// </summary>
 	[Net] public int MaxAmmo { get; set; }
-	
+
 	/// <summary>
 	/// Current amount of ammo in the current magazine.
 	/// </summary>
 	[Net] public int CurrentAmmo { get; set; }
-	
+
 	/// <summary>
 	/// Time that the weapon will take to reload.
 	/// </summary>
 	[Net] public float ReloadTime { get; set; }
-	
-	[Net] [Predicted] protected TimeSince TimeSincePrimaryAttack { get; set; }
+
+	[Net] protected TimeSince TimeSincePrimaryAttack { get; set; }
+	[Net] protected bool IsReloading { get; set; }
+	[Net] protected TimeSince TimeSinceStartReload { get; set; }
 
 	public override void OnUsePrimary( SslPlayer sslPlayer, ISelectable target )
 	{
@@ -44,28 +51,54 @@ public partial class ItemWeapon : Item
 		{
 			AttackPrimary();
 		}
+		else if (CurrentAmmo == 0 && MaxAmmo > 0)
+		{
+			using (Prediction.Off())
+			{
+				DryFireEffects();
+			}
+		}
+	}
+
+	public override void Simulate(Client cl)
+	{
+		if (Input.Pressed(InputButton.Reload))
+		{
+			IsReloading = true;
+			TimeSinceStartReload = 0F;
+			
+			using (Prediction.Off())
+			{
+				ReloadEffects();
+			}
+		}
+		else if (CanReload())
+		{
+			Reload();
+		}
 	}
 
 	protected bool CanReload()
 	{
-		return Owner.IsValid() && Input.Down(InputButton.Reload);
+		return Owner.IsValid() && IsReloading && TimeSinceStartReload >= ReloadTime;
 	}
 
 	protected void Reload()
 	{
+		CurrentAmmo = MaxAmmo;
+		IsReloading = false;
 	}
 
 	private bool CanPrimaryAttack()
 	{
 		if ( !Owner.IsValid() )
-		{
 			return false;
-		}
 
+		if (CurrentAmmo <= 0 && MaxAmmo >= 0 || IsReloading)
+			return false;
+		
 		if ( PrimaryRate <= 0 )
-		{
 			return true;
-		}
 
 		return TimeSincePrimaryAttack > 1 / PrimaryRate;
 	}
@@ -74,13 +107,14 @@ public partial class ItemWeapon : Item
 	{
 		TimeSincePrimaryAttack = 0;
 
-		using ( Prediction.Off() )
+		using (Prediction.Off())
 		{
-			ShootEffects();
+			FireEffects();
 		}
 
 		//TODO SSL-382: Bullet to class
 		ShootBullet(0.05f, 1.5f, 3.0f);
+		ConsumeAmmo();
 	}
 
 	/// <summary>
@@ -137,27 +171,54 @@ public partial class ItemWeapon : Item
 		tr.Entity.TakeDamage(damageInfo);
 	}
 
-	[ClientRpc]
-	private void ShootEffects()
+	protected void ConsumeAmmo()
 	{
-		if ( !Host.IsClient )
+		if (CurrentAmmo > 0) CurrentAmmo--;
+	}
+
+	[ClientRpc]
+	private void FireEffects()
+	{
+		Entity effectEntity = GetEffectEntity();
+
+		if (IsLocalPawn)
 		{
-			return;
+			_ = new Perlin();
 		}
 
+		Sound.FromEntity(ShootSound, effectEntity);
+		Particles.Create(MuzzleFlashParticle, effectEntity, MUZZLE_ATTACHMENT_NAME);
+	}
+
+	[ClientRpc]
+	private void DryFireEffects()
+	{
+		Entity effectEntity = GetEffectEntity();
+		Sound.FromEntity(DryFireSound, effectEntity);
+	}
+	
+	[ClientRpc]
+	private void ReloadEffects()
+	{
+		Entity effectEntity = GetEffectEntity();
+		Sound.FromEntity(ReloadSound, effectEntity);
+	}
+
+	protected Entity GetEffectEntity()
+	{
+		Host.AssertClient();
+		
 		Entity effectEntity;
 
-		if ( IsLocalPawn && Local.Pawn is SslPlayer player )
+		if (IsLocalPawn && Local.Pawn is SslPlayer player)
 		{
 			effectEntity = player.Inventory.ViewModel.HoldingEntity;
-			_ = new Perlin();
 		}
 		else
 		{
 			effectEntity = this;
 		}
 
-		Sound.FromEntity(ShootSound, effectEntity);
-		Particles.Create(MuzzleFlashParticle, effectEntity, MUZZLE_ATTACHMENT_NAME);
+		return effectEntity;
 	}
 }

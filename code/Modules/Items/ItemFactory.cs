@@ -34,6 +34,8 @@ public sealed class ItemFactory : IFactory<Item>
 				MaxAmmo = itemWeaponData.MaxAmmo,
 				ReloadTime = itemWeaponData.ReloadTime,
 				ShootSound = itemWeaponData.ShootSound,
+				DryFireSound = itemWeaponData.DryFireSound,
+				ReloadSound = itemWeaponData.ReloadSound,
 				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
 			},
 			ItemCleanerData itemCleanerData => new ItemCleaner

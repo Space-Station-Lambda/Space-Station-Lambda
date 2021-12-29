@@ -12,6 +12,7 @@ public class ItemWeaponData : ItemData
 	public int MaxAmmo { get; set; } = -1;
 	public float ReloadTime { get; set; } = 0F;
 	public string ShootSound { get; set; } = "";
+	public string DryFireSound { get; set; } = "";
+	public string ReloadSound { get; set; } = "";
 	public string MuzzleFlashParticle { get; set; } = "";
-	
 }
