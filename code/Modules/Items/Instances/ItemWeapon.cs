@@ -17,8 +17,24 @@ public partial class ItemWeapon : Item
 	public float Damage { get; set; }
 	public string ShootSound { get; set; }
 	public string MuzzleFlashParticle { get; set; }
-
-	[Net] [Predicted] public TimeSince TimeSincePrimaryAttack { get; set; }
+	
+	/// <summary>
+	/// Maximum amount of ammo in one magazine (or equivalent).
+	/// -1 means that the weapon doesn't have any magazine (melee weapon).
+	/// </summary>
+	[Net] public int MaxAmmo { get; set; }
+	
+	/// <summary>
+	/// Current amount of ammo in the current magazine.
+	/// </summary>
+	[Net] public int CurrentAmmo { get; set; }
+	
+	/// <summary>
+	/// Time that the weapon will take to reload.
+	/// </summary>
+	[Net] public float ReloadTime { get; set; }
+	
+	[Net] [Predicted] protected TimeSince TimeSincePrimaryAttack { get; set; }
 
 	public override void OnUsePrimary( SslPlayer sslPlayer, ISelectable target )
 	{
