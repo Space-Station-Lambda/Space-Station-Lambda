@@ -91,13 +91,6 @@ public partial class InputHandler : EntityComponent<SslPlayer>
 
 	private void CheckServercontrols()
 	{
-		// Reload 
-
-		if ( Input.Pressed(InputButton.Reload) )
-		{
-			Entity.Respawn();
-		}
-
 		// Drop
 
 		if ( Input.Pressed(InputButton.Drop) )

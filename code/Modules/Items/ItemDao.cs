@@ -63,7 +63,11 @@ public class ItemDao : LocalDao<ItemData>
 			PrimaryRate = 5.0f,
 			Damage = 10.0f,
 			Range = 0.0f, // Infinite
+			MaxAmmo = 6,
+			ReloadTime = 2F,
 			ShootSound = "rust_pistol.shoot",
+			DryFireSound = "pistol.dryfire",
+			ReloadSound = "pistol.reload",
 			MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
 		});
 
