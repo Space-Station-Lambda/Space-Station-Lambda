@@ -31,6 +31,8 @@ public sealed class ItemFactory : IFactory<Item>
 				Damage = itemWeaponData.Damage,
 				Range = itemWeaponData.Range,
 				PrimaryRate = itemWeaponData.PrimaryRate,
+				MaxAmmo = itemWeaponData.MaxAmmo,
+				ReloadTime = itemWeaponData.ReloadTime,
 				ShootSound = itemWeaponData.ShootSound,
 				MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
 			},
