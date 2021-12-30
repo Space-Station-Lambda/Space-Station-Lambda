@@ -26,33 +26,7 @@ public sealed class ItemFactory : IFactory<Item>
 			{
 				FeedingValue = itemFoodData.FeedingValue
 			},
-			ItemWeaponData itemWeaponData => itemData.Id switch
-			{
-				Identifiers.TASER_ID => new ItemTaser
-				{
-					Damage = itemWeaponData.Damage,
-					Range = itemWeaponData.Range,
-					PrimaryRate = itemWeaponData.PrimaryRate,
-					MaxAmmo = itemWeaponData.MaxAmmo,
-					ReloadTime = itemWeaponData.ReloadTime,
-					ShootSound = itemWeaponData.ShootSound,
-					DryFireSound = itemWeaponData.DryFireSound,
-					ReloadSound = itemWeaponData.ReloadSound,
-					MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
-
-				},
-				_ =>  new ItemWeapon
-				{
-					Damage = itemWeaponData.Damage,
-					Range = itemWeaponData.Range,
-					PrimaryRate = itemWeaponData.PrimaryRate,
-					MaxAmmo = itemWeaponData.MaxAmmo,
-					ReloadTime = itemWeaponData.ReloadTime,
-					ShootSound = itemWeaponData.ShootSound,
-					DryFireSound = itemWeaponData.DryFireSound,
-					ReloadSound = itemWeaponData.ReloadSound,
-					MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle
-				}},
+			ItemWeaponData itemWeaponData => CreateWeapon(itemWeaponData),
 			ItemCleanerData itemCleanerData => new ItemCleaner
 			{
 				CleaningValue = itemCleanerData.CleaningValue
@@ -67,5 +41,26 @@ public sealed class ItemFactory : IFactory<Item>
 		item.HoldType = itemData.HoldType;
 		item.WasteId = itemData.WasteId;
 		return item;
+	}
+
+	private static ItemWeapon CreateWeapon(ItemWeaponData itemWeaponData)
+	{
+		ItemWeapon itemWeapon = itemWeaponData.Id switch
+		{
+			Identifiers.TASER_ID => new ItemTaser(),
+			_ => new ItemWeapon()
+		};
+
+		itemWeapon.Damage = itemWeaponData.Damage;
+		itemWeapon.Range = itemWeaponData.Range;
+		itemWeapon.PrimaryRate = itemWeaponData.PrimaryRate;
+		itemWeapon.MaxAmmo = itemWeaponData.MaxAmmo;
+		itemWeapon.ReloadTime = itemWeaponData.ReloadTime;
+		itemWeapon.ShootSound = itemWeaponData.ShootSound;
+		itemWeapon.DryFireSound = itemWeaponData.DryFireSound;
+		itemWeapon.ReloadSound = itemWeaponData.ReloadSound;
+		itemWeapon.MuzzleFlashParticle = itemWeaponData.MuzzleFlashParticle;
+
+		return itemWeapon;
 	}
 }
