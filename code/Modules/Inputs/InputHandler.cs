@@ -6,17 +6,7 @@ namespace ssl.Modules.Inputs;
 
 public partial class InputHandler : EntityComponent<SslPlayer>
 {
-	private const int DEFAULT_STRENGTH = 1;
-
-	public InputHandler()
-	{
-		TimeSinceLastUse = Cooldown;
-	}
-
 	//TODO SSL-381: Add a way to change the cooldown by the skill of the player
-	[Net] private float Cooldown { get; set; } = 0.5f;
-
-	[Net] private TimeSince TimeSinceLastUse { get; set; }
 
 	public void CheckControls()
 	{
@@ -81,7 +71,7 @@ public partial class InputHandler : EntityComponent<SslPlayer>
 
 		if ( Entity.IsServer )
 		{
-			CheckServercontrols();
+			CheckServerControls();
 		}
 	}
 
@@ -89,7 +79,7 @@ public partial class InputHandler : EntityComponent<SslPlayer>
 	{
 	}
 
-	private void CheckServercontrols()
+	private void CheckServerControls()
 	{
 		// Drop
 
@@ -99,39 +89,32 @@ public partial class InputHandler : EntityComponent<SslPlayer>
 			dropped.Velocity += Entity.Velocity;
 		}
 
-		// Usage system
-		if ( TimeSinceLastUse >= Cooldown )
+		// Default usage with the use button
+		if ( Input.Down(InputButton.Use) )
 		{
-			// Default usage with the use button
-			if ( Input.Down(InputButton.Use) )
-			{
-				Entity.Dragger.UseSelected();
-			}
-
-			// Primary Action
-			if ( Input.Down(InputButton.Attack1) )
-			{
-				Entity.Inventory.UsePrimary();
-			}
-
-			// Secondary Action and drag
-			if ( Input.Down(InputButton.Attack2) )
-			{
-				// Drag only if empty hand
-				if ( null == Entity.Inventory.HoldingItem )
-				{
-					Entity.Dragger.Drag();
-				}
-				else
-				{
-					Entity.Inventory.UseSecondary();
-				}
-			}
-
-			TimeSinceLastUse = 0;
+			Entity.Dragger.UseSelected();
 		}
 
-		;
+		// Primary Action
+		if ( Input.Down(InputButton.Attack1) )
+		{
+			Entity.Inventory.UsePrimary();
+		}
+
+		// Secondary Action and drag
+		if ( Input.Down(InputButton.Attack2) )
+		{
+			// Drag only if empty hand
+			if ( null == Entity.Inventory.HoldingItem )
+			{
+				Entity.Dragger.Drag();
+			}
+			else
+			{
+				Entity.Inventory.UseSecondary();
+			}
+		}
+		
 		if ( Input.Released(InputButton.Attack2) )
 		{
 			Entity.Dragger.StopDrag();
