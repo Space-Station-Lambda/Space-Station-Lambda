@@ -21,7 +21,7 @@ public partial class ItemTaser : ItemWeapon
     }
     
     [ClientRpc]
-    protected override void ShootEffects()
+    protected override void FireEffects()
     {
         if (!Host.IsClient)
         {

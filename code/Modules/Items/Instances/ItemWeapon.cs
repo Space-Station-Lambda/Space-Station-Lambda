@@ -45,9 +45,7 @@ public partial class ItemWeapon : Item
 	[Net] protected TimeSince TimeSincePrimaryAttack { get; set; }
 	[Net] protected bool IsReloading { get; set; }
 	[Net] protected TimeSince TimeSinceStartReload { get; set; }
-
-	[Net] public TimeSince TimeSincePrimaryAttack { get; set; }
-
+	
 	protected TraceResult Hit { get; private set; }
 	protected Entity HitEntity => Hit.Entity;
 	
@@ -156,13 +154,13 @@ public partial class ItemWeapon : Item
 
 	protected virtual void ShootBullet( float spread, float force, float bulletSize )
 	{
-		Vector3 forward = Owner.EyeRot.Forward;
-		forward += Vector3.Random * spread;
-		forward = forward.Normal;
+		Vector3 bulletDirection = Owner.EyeRot.Forward;
+		bulletDirection += Vector3.Random * spread;
+		bulletDirection = bulletDirection.Normal;
 
 		//If the range is 0, the range is max.
 		float range = Range == 0 ? MAX_RANGE : Range;
-		TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + forward * range, bulletSize);
+		TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + bulletDirection * range, bulletSize);
 		
 		Hit = tr;
 		
@@ -170,7 +168,7 @@ public partial class ItemWeapon : Item
 		
 		tr.Surface.DoBulletImpact(tr);
         
-		DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, forward * force, Damage)
+		DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, bulletDirection * force, Damage)
 			.UsingTraceResult(tr)
 			.WithAttacker(Owner)
 			.WithWeapon(this);
@@ -184,7 +182,7 @@ public partial class ItemWeapon : Item
 	}
 
 	[ClientRpc]
-	private void FireEffects()
+	protected virtual void FireEffects()
 	{
 		Entity effectEntity = GetEffectEntity();
 
@@ -198,20 +196,20 @@ public partial class ItemWeapon : Item
 	}
 
 	[ClientRpc]
-	private void DryFireEffects()
+	protected virtual void DryFireEffects()
 	{
 		Entity effectEntity = GetEffectEntity();
 		Sound.FromEntity(DryFireSound, effectEntity);
 	}
 	
 	[ClientRpc]
-	private void ReloadEffects()
+	protected virtual void ReloadEffects()
 	{
 		Entity effectEntity = GetEffectEntity();
 		Sound.FromEntity(ReloadSound, effectEntity);
 	}
 
-	protected Entity GetEffectEntity()
+	protected virtual Entity GetEffectEntity()
 	{
 		Host.AssertClient();
 		
