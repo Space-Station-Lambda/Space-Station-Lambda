@@ -16,14 +16,11 @@ public interface IWorkable : ISelectable
 	/// <summary>
 	///     Triggered when the work is done and the RemainingWork is 0.
 	/// </summary>
-	public void OnWorkDone( SslPlayer player );
+	public void OnWorkDone(SslPlayer player);
 
-	public new void OnInteract( SslPlayer player, int strength )
-	{
-		RemainingWork -= strength;
-		if ( RemainingWork <= 0 )
-		{
-			OnWorkDone(player);
-		}
-	}
+    public new void OnInteract(SslPlayer player, int strength)
+    {
+        RemainingWork -= strength;
+        if (RemainingWork <= 0) OnWorkDone(player);
+    }
 }

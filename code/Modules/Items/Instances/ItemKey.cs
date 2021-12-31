@@ -15,24 +15,21 @@ public class ItemKey : Item
 	/// </summary>
 	public string KeyCode { get; set; } = "";
 
-	public override void OnUsePrimary( SslPlayer sslPlayer, ISelectable target )
-	{
-		base.OnUsePrimary(sslPlayer, target);
-		if ( target is SslPlayer targetPlayer )
-		{
-			// Find the restrained status
-			Restrained restrained = targetPlayer.StatusHandler.GetStatus<Restrained>();
-			if ( null != restrained )
-			{
-				// Check if a restrain is here and try his lock
-				if ( null != restrained.Restrain && !restrained.Restrain.Lock.Open(KeyCode) )
-				{
-					return;
-				}
+    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    {
+        base.OnUsePrimary(sslPlayer, target);
+        if (target is SslPlayer targetPlayer)
+        {
+            // Find the restrained status
+            Restrained restrained = targetPlayer.StatusHandler.GetStatus<Restrained>();
+            if (null != restrained)
+            {
+                // Check if a restrain is here and try his lock
+                if (null != restrained.Restrain && !restrained.Restrain.Lock.Open(KeyCode)) return;
 
-				// Resolve the restrain
-				targetPlayer.StatusHandler.ResolveStatus<Restrained>();
-			}
-		}
-	}
+                // Resolve the restrain
+                targetPlayer.StatusHandler.ResolveStatus<Restrained>();
+            }
+        }
+    }
 }

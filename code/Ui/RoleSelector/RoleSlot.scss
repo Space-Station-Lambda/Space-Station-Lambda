@@ -8,13 +8,13 @@ RoleSlot {
   align-content: center;
   transition-property: transform;
   transition-duration: 5s;
-  
+
   .inside {
     height: 93%;
     width: 93%;
     border: 2px solid white;
     margin: auto;
-    
+
     .roleLabel {
       height: 100%;
       width: 100%;
@@ -25,12 +25,12 @@ RoleSlot {
       color: white;
       font-size: 24px;
     }
-    
+
     &:hover {
       border: 10px;
     }
   }
-  
+
   &.selected {
     border-color: $light-blue;
   }
@@ -38,6 +38,6 @@ RoleSlot {
   &:hover {
     transform: scale(1.3);
   }
-  
- 
+
+
 }

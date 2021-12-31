@@ -1,54 +1,49 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ssl.Modules.Roles;
 
 namespace ssl.Modules.Scenarios;
 
 public class Scenario
 {
+    public string Id { get; set; }
 
-	public string Id { get; set; }
-	
-	/// <summary>
-	/// List of constraints per players palliers.
-	/// </summary>
-	public Dictionary<int, List<ScenarioConstraint>> Constraints { get; set; }
+    /// <summary>
+    ///     List of constraints per players palliers.
+    /// </summary>
+    public Dictionary<int, List<ScenarioConstraint>> Constraints { get; set; }
 
-	public List<ScenarioConstraint> GetScenarioConstraint( int count )
-	{
-		List<ScenarioConstraint> constraintToReturn = new();
-		foreach ( (int numberOfPlayers, var currentConstraintsList) in Constraints )
-		{
-			if ( numberOfPlayers > count )
-			{
-				return constraintToReturn;
-			}
+    public List<ScenarioConstraint> GetScenarioConstraint(int count)
+    {
+        List<ScenarioConstraint> constraintToReturn = new();
+        foreach ((int numberOfPlayers, List<ScenarioConstraint> currentConstraintsList) in Constraints)
+        {
+            if (numberOfPlayers > count) return constraintToReturn;
 
-			constraintToReturn = currentConstraintsList;
-		}
+            constraintToReturn = currentConstraintsList;
+        }
 
-		return constraintToReturn;
-	}
+        return constraintToReturn;
+    }
 
-	public int MinRole( int playerCount, string role )
-	{
-		foreach ( ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
-			         .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)) )
-		{
-			return scenarioConstraint.Min;
-		}
+    public int MinRole(int playerCount, string role)
+    {
+        foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
+                     .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)))
+        {
+            return scenarioConstraint.Min;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 
-	public int MaxRole( int playerCount, string role )
-	{
-		foreach ( ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
-			         .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)) )
-		{
-			return scenarioConstraint.Max;
-		}
+    public int MaxRole(int playerCount, string role)
+    {
+        foreach (ScenarioConstraint scenarioConstraint in GetScenarioConstraint(playerCount)
+                     .Where(scenarioConstraint => scenarioConstraint.RoleId.Equals(role)))
+        {
+            return scenarioConstraint.Max;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 }

@@ -6,36 +6,34 @@ namespace ssl.Modules.Statuses;
 
 public class StatusDao : LocalDao<StatusData>
 {
-	private static StatusDao instance;
+    private static StatusDao instance;
 
-	private StatusDao()
-	{
-	}
-	
-	public static StatusDao Instance => instance ??= new StatusDao();
+    private StatusDao() { }
 
-	/// <summary>
-	///     Load all data from disk files.
-	/// </summary>
-	protected override void LoadAll()
-	{
-		Log.Info("Load items..");
+    public static StatusDao Instance => instance ??= new StatusDao();
 
-		// Statuses
-		Save(new SicknessData(Identifiers.SICKNESS_ID)
-		{
-			Name = "Sickness",
-			Description = "I'm not feeling... well",
-			Duration = 60
-		});
+    /// <summary>
+    ///     Load all data from disk files.
+    /// </summary>
+    protected override void LoadAll()
+    {
+        Log.Info("Load items..");
 
-		Save(new RestrainedData(Identifiers.RESTRAINED_ID)
-		{
-			Name = "Restrained",
-			Description = "I'm an innocent, I swear !",
-			Duration = 0
-		});
-		
-		Log.Info($"{All.Count} items charged !");
-	}
+        // Statuses
+        Save(new SicknessData(Identifiers.SICKNESS_ID)
+        {
+            Name = "Sickness",
+            Description = "I'm not feeling... well",
+            Duration = 60
+        });
+
+        Save(new RestrainedData(Identifiers.RESTRAINED_ID)
+        {
+            Name = "Restrained",
+            Description = "I'm an innocent, I swear !",
+            Duration = 0
+        });
+
+        Log.Info($"{All.Count} items charged !");
+    }
 }

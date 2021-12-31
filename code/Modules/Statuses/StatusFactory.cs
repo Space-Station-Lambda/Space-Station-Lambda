@@ -9,9 +9,7 @@ public sealed class StatusFactory : IFactory<Status>
 {
     private static StatusFactory instance;
 
-    private StatusFactory()
-    {
-    }
+    private StatusFactory() { }
 
     public static StatusFactory Instance => instance ??= new StatusFactory();
 

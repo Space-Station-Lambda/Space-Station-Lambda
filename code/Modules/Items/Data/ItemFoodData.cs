@@ -5,13 +5,11 @@
 /// </summary>
 public class ItemFoodData : ItemData
 {
-	public ItemFoodData( string id ) : base(id)
-	{
-	}
+    public ItemFoodData(string id) : base(id) { }
 
-	/// <summary>
-	///     Feeding value of the current food
-	///     <example>10</example>
-	/// </summary>
-	public int FeedingValue { get; set; } = 10;
+    /// <summary>
+    ///     Feeding value of the current food
+    ///     <example>10</example>
+    /// </summary>
+    public int FeedingValue { get; set; } = 10;
 }

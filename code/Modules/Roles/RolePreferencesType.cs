@@ -2,9 +2,9 @@
 
 public enum RolePreferenceType
 {
-	Never,
-	Low,
-	Medium,
-	High,
-	Always
+    Never,
+    Low,
+    Medium,
+    High,
+    Always
 }

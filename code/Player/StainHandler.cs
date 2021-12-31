@@ -8,25 +8,22 @@ namespace ssl.Player;
 
 public class StainHandler : EntityComponent
 {
-	private const float STAIN_CHANCE = 0.002f;
+    private const float STAIN_CHANCE = 0.002f;
 
-	/// <summary>
-	///     Spawn a stain with a specific probability
-	/// </summary>
-	public void TryGenerateStain()
-	{
-		float prob = Time.Delta * STAIN_CHANCE;
-		double r = new Random().NextDouble();
-		if ( prob > r )
-		{
-			GenerateStain();
-		}
-	}
+    /// <summary>
+    ///     Spawn a stain with a specific probability
+    /// </summary>
+    public void TryGenerateStain()
+    {
+        float prob = Time.Delta * STAIN_CHANCE;
+        double r = new Random().NextDouble();
+        if (prob > r) GenerateStain();
+    }
 
-	private void GenerateStain()
-	{
-		PropFactory factory = PropFactory.Instance;
-		Prop stain = factory.Create(Identifiers.STAIN_ID);
-		stain.Position = Entity.Position;
-	}
+    private void GenerateStain()
+    {
+        PropFactory factory = PropFactory.Instance;
+        Prop stain = factory.Create(Identifiers.STAIN_ID);
+        stain.Position = Entity.Position;
+    }
 }

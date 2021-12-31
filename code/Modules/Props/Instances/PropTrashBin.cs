@@ -2,5 +2,5 @@
 
 public class PropTrashBin : Prop
 {
-	private const int MAX_TRASH = 50;
+    private const int MAX_TRASH = 50;
 }
