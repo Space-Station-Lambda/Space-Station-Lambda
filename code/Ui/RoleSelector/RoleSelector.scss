@@ -5,7 +5,7 @@ RoleSelector {
   background-color: $dark-gray;
   cursor: default;
   padding: 50px;
-  
+
   &.active {
     pointer-events: all;
     height: 100%;

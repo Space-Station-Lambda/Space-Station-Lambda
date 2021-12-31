@@ -10,34 +10,25 @@ namespace ssl.Modules.Props.Instances;
 /// </summary>
 public class Prop : WorldEntity, ISelectable
 {
-	
-	public string Id { get; set; }
-	public string Model { get; set; }
-	
-	public virtual void OnSelectStart( SslPlayer sslPlayer )
-	{
-	}
+    public string Id { get; set; }
+    public string Model { get; set; }
 
-	public virtual void OnSelectStop( SslPlayer sslPlayer )
-	{
-	}
+    public virtual void OnSelectStart(SslPlayer sslPlayer) { }
 
-	public virtual void OnSelect( SslPlayer sslPlayer )
-	{
-	}
+    public virtual void OnSelectStop(SslPlayer sslPlayer) { }
 
-	public virtual void OnInteract( SslPlayer sslPlayer, int strength )
-	{
-	}
+    public virtual void OnSelect(SslPlayer sslPlayer) { }
 
-	public override void Spawn()
-	{
-		base.Spawn();
+    public virtual void OnInteract(SslPlayer sslPlayer, int strength) { }
 
-		SetupPhysicsFromModel(PhysicsMotionType.Static);
-		PhysicsEnabled = false;
-		CollisionGroup = CollisionGroup.Interactive;
-		EnableHideInFirstPerson = true;
-		EnableShadowInFirstPerson = true;
-	}
+    public override void Spawn()
+    {
+        base.Spawn();
+
+        SetupPhysicsFromModel(PhysicsMotionType.Static);
+        PhysicsEnabled = false;
+        CollisionGroup = CollisionGroup.Interactive;
+        EnableHideInFirstPerson = true;
+        EnableShadowInFirstPerson = true;
+    }
 }

@@ -5,88 +5,81 @@ namespace ssl.Player;
 
 public class RagdollHandler : EntityComponent<SslPlayer>
 {
-	private const float DEFAULT_TIME = 6F;
+    private const float DEFAULT_TIME = 6F;
 
-	public RagdollHandler()
-	{
-		TimeExitRagdoll = Time.Now;
-	}
+    public RagdollHandler()
+    {
+        TimeExitRagdoll = Time.Now;
+    }
 
-	public bool IsRagdoll => Ragdoll != null;
-	public bool CanStand => ((TimeSince)TimeExitRagdoll).Absolute >= 0;
-	private PlayerCorpse Ragdoll { get; set; }
-	public float TimeExitRagdoll { get; set; }
+    public bool IsRagdoll => Ragdoll != null;
+    public bool CanStand => ((TimeSince) TimeExitRagdoll).Absolute >= 0;
+    private PlayerCorpse Ragdoll { get; set; }
+    public float TimeExitRagdoll { get; set; }
 
-	/// <summary>
-	///     Activates the ragdoll mode of the player.
-	/// </summary>
-	public void StartRagdoll( float downTime = DEFAULT_TIME )
-	{
-		Ragdoll ??= SpawnRagdoll(Entity.Velocity, -1);
-		Entity.SetParent(Ragdoll);
-		Entity.EnableAllCollisions = false;
-		Entity.EnableShadowInFirstPerson = false;
-		Entity.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), Entity.EyePos);
-		Entity.EnableDrawing = false;
-		
-		TimeExitRagdoll = Time.Now + downTime;
-	}
+    /// <summary>
+    ///     Activates the ragdoll mode of the player.
+    /// </summary>
+    public void StartRagdoll(float downTime = DEFAULT_TIME)
+    {
+        Ragdoll ??= SpawnRagdoll(Entity.Velocity, -1);
+        Entity.SetParent(Ragdoll);
+        Entity.EnableAllCollisions = false;
+        Entity.EnableShadowInFirstPerson = false;
+        Entity.Camera = new AttachedCamera(Ragdoll, "eyes", Rotation.From(-90, 90, 180), Entity.EyePos);
+        Entity.EnableDrawing = false;
 
-	/// <summary>
-	///     Stop the ragdoll mode of the player.
-	/// </summary>
-	public void StopRagdoll()
-	{
-		if ( !Ragdoll.IsValid )
-		{
-			return;
-		}
+        TimeExitRagdoll = Time.Now + downTime;
+    }
 
-		Entity.Position = Ragdoll.Position;
-		Entity.Velocity = Vector3.Zero;
+    /// <summary>
+    ///     Stop the ragdoll mode of the player.
+    /// </summary>
+    public void StopRagdoll()
+    {
+        if (!Ragdoll.IsValid) return;
 
-		Entity.SetParent(null);
+        Entity.Position = Ragdoll.Position;
+        Entity.Velocity = Vector3.Zero;
 
-		Ragdoll.Delete();
-		Ragdoll = null;
+        Entity.SetParent(null);
 
-		Entity.EnableAllCollisions = true;
-		Entity.EnableShadowInFirstPerson = true;
-		Entity.EnableDrawing = true;
-		Entity.Camera = new FirstPersonCamera();
-	}
+        Ragdoll.Delete();
+        Ragdoll = null;
 
-	/// <summary>
-	///     Spawns a ragdoll looking like the player.
-	/// </summary>
-	public PlayerCorpse SpawnRagdoll( Vector3 force, int forceBone )
-	{
-		PlayerCorpse ragdoll = new(Entity) {Position = Entity.Position, Rotation = Entity.Rotation};
+        Entity.EnableAllCollisions = true;
+        Entity.EnableShadowInFirstPerson = true;
+        Entity.EnableDrawing = true;
+        Entity.Camera = new FirstPersonCamera();
+    }
 
-		ragdoll.CopyFrom(Entity);
-		ragdoll.ApplyForceToBone(force, forceBone);
+    /// <summary>
+    ///     Spawns a ragdoll looking like the player.
+    /// </summary>
+    public PlayerCorpse SpawnRagdoll(Vector3 force, int forceBone)
+    {
+        PlayerCorpse ragdoll = new(Entity) { Position = Entity.Position, Rotation = Entity.Rotation };
 
-		return ragdoll;
-	}
+        ragdoll.CopyFrom(Entity);
+        ragdoll.ApplyForceToBone(force, forceBone);
 
-	[ServerCmd("ragdoll")]
-	private static void SetRagdoll( bool state )
-	{
-		SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
-		if ( state )
-		{
-			sslPlayer.RagdollHandler.StartRagdoll();
-		}
-		else
-		{
-			sslPlayer.RagdollHandler.StopRagdoll();
-		}
-	}
+        return ragdoll;
+    }
 
-	[AdminCmd("spawn_ragdoll")]
-	private static void SpawnRagdoll()
-	{
-		SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
-		sslPlayer.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
-	}
+    [ServerCmd("ragdoll")]
+    private static void SetRagdoll(bool state)
+    {
+        SslPlayer sslPlayer = (SslPlayer) ConsoleSystem.Caller.Pawn;
+        if (state)
+            sslPlayer.RagdollHandler.StartRagdoll();
+        else
+            sslPlayer.RagdollHandler.StopRagdoll();
+    }
+
+    [AdminCmd("spawn_ragdoll")]
+    private static void SpawnRagdoll()
+    {
+        SslPlayer sslPlayer = (SslPlayer) ConsoleSystem.Caller.Pawn;
+        sslPlayer.RagdollHandler.SpawnRagdoll(Vector3.Zero, -1);
+    }
 }

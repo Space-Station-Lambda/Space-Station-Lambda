@@ -2,7 +2,7 @@
 
 public enum RoundOutcome
 {
-	Tie,
-	ProtagonistsWin,
-	TraitorsWin
+    Tie,
+    ProtagonistsWin,
+    TraitorsWin
 }

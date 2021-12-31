@@ -16,188 +16,174 @@ namespace ssl.Player;
 
 public partial class SslPlayer : Sandbox.Player, ISelectable
 {
-	private const string MODEL = "models/citizen/citizen.vmdl";
-	private const float MAX_HEALTH = 100f;
+    private const string MODEL = "models/citizen/citizen.vmdl";
+    private const float MAX_HEALTH = 100f;
 
-	public SslPlayer()
-	{
-		Health = MAX_HEALTH;
+    public SslPlayer()
+    {
+        Health = MAX_HEALTH;
 
-		if ( Host.IsServer )
-		{
-			Components.Create<InputHandler>();
-			Components.Create<Dragger>();
-			Components.Create<RagdollHandler>();
-			Components.Create<PlayerInventory>();
-			Components.Create<RoleHandler>();
-			Components.Create<ClothesHandler>();
-			Components.Create<StatusHandler>();
-			Components.Create<StainHandler>();	
-			Components.Create<SkillHandler>();	
-		}
-	}
+        if (Host.IsServer)
+        {
+            Components.Create<InputHandler>();
+            Components.Create<Dragger>();
+            Components.Create<RagdollHandler>();
+            Components.Create<PlayerInventory>();
+            Components.Create<RoleHandler>();
+            Components.Create<ClothesHandler>();
+            Components.Create<StatusHandler>();
+            Components.Create<StainHandler>();
+            Components.Create<SkillHandler>();
+        }
+    }
 
-	[BindComponent] public new PlayerInventory Inventory { get; }
-	[BindComponent] public RoleHandler RoleHandler { get; }
-	[BindComponent] public ClothesHandler ClothesHandler { get; }
-	[BindComponent] public StatusHandler StatusHandler { get; }
-	[BindComponent] public StainHandler StainHandler { get; }
-	[BindComponent] public InputHandler InputHandler { get; }
-	[BindComponent] public RagdollHandler RagdollHandler { get; }
-	[BindComponent] public SkillHandler SkillHandler { get; }
-	[BindComponent] public Dragger Dragger { get; }
+    [BindComponent] public new PlayerInventory Inventory { get; }
+    [BindComponent] public RoleHandler RoleHandler { get; }
+    [BindComponent] public ClothesHandler ClothesHandler { get; }
+    [BindComponent] public StatusHandler StatusHandler { get; }
+    [BindComponent] public StainHandler StainHandler { get; }
+    [BindComponent] public InputHandler InputHandler { get; }
+    [BindComponent] public RagdollHandler RagdollHandler { get; }
+    [BindComponent] public SkillHandler SkillHandler { get; }
+    [BindComponent] public Dragger Dragger { get; }
 
-	public new HumanController Controller
-	{
-		get => (HumanController)base.Controller;
-		private set => base.Controller = value;
-	}
+    public new HumanController Controller
+    {
+        get => (HumanController) base.Controller;
+        private set => base.Controller = value;
+    }
 
-	public void OnSelectStart( SslPlayer sslPlayer )
-	{
-	}
+    public void OnSelectStart(SslPlayer sslPlayer) { }
 
-	public void OnSelectStop( SslPlayer sslPlayer )
-	{
-	}
+    public void OnSelectStop(SslPlayer sslPlayer) { }
 
-	public void OnSelect( SslPlayer sslPlayer )
-	{
-	}
+    public void OnSelect(SslPlayer sslPlayer) { }
 
-	public void OnInteract( SslPlayer sslPlayer, int strength )
-	{
-	}
+    public void OnInteract(SslPlayer sslPlayer, int strength) { }
 
-	public override void ClientSpawn()
-	{
-		base.ClientSpawn();
+    public override void ClientSpawn()
+    {
+        base.ClientSpawn();
 
-		if ( Inventory.ViewModel != null || !IsLocalPawn )
-		{
-			return;
-		}
+        if (Inventory.ViewModel != null || !IsLocalPawn) return;
 
-		Inventory.ViewModel = new HandViewModel
-		{
-			EnableAllCollisions = false, EnableViewmodelRendering = true, Owner = Owner
-		};
-		Inventory.ViewModel.SetHoldType(HoldType.None);
-	}
+        Inventory.ViewModel = new HandViewModel
+        {
+            EnableAllCollisions = false, EnableViewmodelRendering = true, Owner = Owner
+        };
+        Inventory.ViewModel.SetHoldType(HoldType.None);
+    }
 
-	public override void FrameSimulate( Client cl )
-	{
-		base.FrameSimulate(cl);
-		if ( Inventory.HoldingItem.IsValid() )
-		{
-			Inventory.HoldingItem.FrameSimulate(cl);
-		}
-	}
+    public override void FrameSimulate(Client cl)
+    {
+        base.FrameSimulate(cl);
+        if (Inventory.HoldingItem.IsValid()) Inventory.HoldingItem.FrameSimulate(cl);
+    }
 
-	/// <summary>
-	///     Called each tick, clientside and serverside
-	/// </summary>
-	/// <param name="client"></param>
-	public override void Simulate( Client client )
-	{
-		PawnController controller = GetActiveController();
-		controller?.Simulate(client, this, GetActiveAnimator());
-		StatusHandler.Tick();
-		SimulateActiveChild(client, ActiveChild);
-		InputHandler.CheckControls();
-		Dragger?.UpdateTarget();
-		StainHandler.TryGenerateStain();
-	}
+    /// <summary>
+    ///     Called each tick, clientside and serverside
+    /// </summary>
+    /// <param name="client"></param>
+    public override void Simulate(Client client)
+    {
+        PawnController controller = GetActiveController();
+        controller?.Simulate(client, this, GetActiveAnimator());
+        StatusHandler.Tick();
+        SimulateActiveChild(client, ActiveChild);
+        InputHandler.CheckControls();
+        Dragger?.UpdateTarget();
+        StainHandler.TryGenerateStain();
+    }
 
-	/// <summary>
-	///     Called on respawn
-	/// </summary>
-	public override void Respawn()
-	{
-		SetModel(MODEL);
-		
-		LifeState = LifeState.Alive;
-		
-		Controller = new HumanController(this);
-		Animator = new HumanAnimator();
-		Camera = new FirstPersonCamera();
+    /// <summary>
+    ///     Called on respawn
+    /// </summary>
+    public override void Respawn()
+    {
+        SetModel(MODEL);
 
-		EnableAllCollisions = true;
-		EnableDrawing = true;
-		EnableHideInFirstPerson = true;
-		EnableShadowInFirstPerson = true;
+        LifeState = LifeState.Alive;
 
-		Inventory.Clear();
+        Controller = new HumanController(this);
+        Animator = new HumanAnimator();
+        Camera = new FirstPersonCamera();
 
-		RoleHandler.SpawnRole();
+        EnableAllCollisions = true;
+        EnableDrawing = true;
+        EnableHideInFirstPerson = true;
+        EnableShadowInFirstPerson = true;
 
-		SendTextNotification(To.Single(Client), "You are " + RoleHandler.Role.Name);
+        Inventory.Clear();
 
-		base.Respawn();
-	}
+        RoleHandler.SpawnRole();
 
-	public void Respawn( Vector3 position, Rotation rotation )
-	{
-		Respawn();
+        SendTextNotification(To.Single(Client), "You are " + RoleHandler.Role.Name);
 
-		Position = position;
-		Rotation = rotation;
-	}
+        base.Respawn();
+    }
 
-	public void Respawn( SpawnPoint spawnPoint )
-	{
-		Respawn(spawnPoint.Position, spawnPoint.Rotation);
-	}
+    public void Respawn(Vector3 position, Rotation rotation)
+    {
+        Respawn();
 
-	/// <summary>
-	///     Freeze the player in place
-	///     A player freezed can't do anything
-	/// </summary>
-	public void Freeze()
-	{
-		Log.Trace("[Player] Freeze");
-		Controller.IsFrozen = true;
-	}
+        Position = position;
+        Rotation = rotation;
+    }
 
-	public void Unfreeze()
-	{
-		Log.Trace("[Player] Unfreeze");
-		Controller.IsFrozen = false;
-	}
+    public void Respawn(SpawnPoint spawnPoint)
+    {
+        Respawn(spawnPoint.Position, spawnPoint.Rotation);
+    }
 
-	public override void OnKilled()
-	{
-		LifeState = LifeState.Dead;
-		StopUsing();
-		RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
-		RoleHandler.Role?.OnKilled(this);
-		Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
-	}
+    /// <summary>
+    ///     Freeze the player in place
+    ///     A player freezed can't do anything
+    /// </summary>
+    public void Freeze()
+    {
+        Log.Trace("[Player] Freeze");
+        Controller.IsFrozen = true;
+    }
 
-	public override void PostCameraSetup( ref CameraSetup setup )
-	{
-		base.PostCameraSetup(ref setup);
-		Inventory.ViewModel?.PostCameraSetup(ref setup);
-	}
+    public void Unfreeze()
+    {
+        Log.Trace("[Player] Unfreeze");
+        Controller.IsFrozen = false;
+    }
 
-	public void EnableSpectator()
-	{
-		Host.AssertServer();
+    public override void OnKilled()
+    {
+        LifeState = LifeState.Dead;
+        StopUsing();
+        RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
+        RoleHandler.Role?.OnKilled(this);
+        Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
+    }
 
-		Controller = null;
-		Animator = null;
+    public override void PostCameraSetup(ref CameraSetup setup)
+    {
+        base.PostCameraSetup(ref setup);
+        Inventory.ViewModel?.PostCameraSetup(ref setup);
+    }
 
-		SpectatorCamera specCam = new();
-		Camera = specCam;
+    public void EnableSpectator()
+    {
+        Host.AssertServer();
 
-		EnableAllCollisions = false;
-		EnableDrawing = false;
-	}
+        Controller = null;
+        Animator = null;
 
-	[ClientRpc]
-	private void SendTextNotification( string txt )
-	{
-		Log.Info("Trying to start event");
-		Event.Run("ssl.notification", txt);
-	}
+        SpectatorCamera specCam = new();
+        Camera = specCam;
+
+        EnableAllCollisions = false;
+        EnableDrawing = false;
+    }
+
+    [ClientRpc]
+    private void SendTextNotification(string txt)
+    {
+        Log.Info("Trying to start event");
+        Event.Run("ssl.notification", txt);
+    }
 }

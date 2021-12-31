@@ -9,138 +9,125 @@ namespace ssl.Modules.Roles;
 
 public partial class RoleHandler : EntityComponent<SslPlayer>
 {
-	private static readonly IDictionary<RolePreferenceType, int> RolesFactors = new Dictionary<RolePreferenceType, int>
-	{
-		{RolePreferenceType.Never, 0},
-		{RolePreferenceType.Low, 1},
-		{RolePreferenceType.Medium, 5},
-		{RolePreferenceType.High, 25},
-		{RolePreferenceType.Always, 125}
-	};
+    private static readonly IDictionary<RolePreferenceType, int> RolesFactors = new Dictionary<RolePreferenceType, int>
+    {
+        { RolePreferenceType.Never, 0 },
+        { RolePreferenceType.Low, 1 },
+        { RolePreferenceType.Medium, 5 },
+        { RolePreferenceType.High, 25 },
+        { RolePreferenceType.Always, 125 }
+    };
 
-	private readonly RolesPrefencesSaver saver;
+    private readonly RolesPrefencesSaver saver;
 
-	public RoleHandler()
-	{
-		if ( Host.IsServer )
-		{
-			return;
-		}
+    public RoleHandler()
+    {
+        if (Host.IsServer) return;
 
-		saver = new RolesPrefencesSaver();
-		LoadPreferences();
-	}
-	
-	[Net] private IDictionary<string, RolePreferenceType> RolePreferences { get; set; }
-	
-	public Role Role { get; private set; }
+        saver = new RolesPrefencesSaver();
+        LoadPreferences();
+    }
 
-	[ServerCmd("select_role_preference")]
-	public static void SelectPreference( string roleId, RolePreferenceType preferenceType )
-	{
-		SslPlayer sslPlayer = (SslPlayer)ConsoleSystem.Caller.Pawn;
-		sslPlayer.RoleHandler?.SetPreference(roleId, preferenceType);
-	}
+    [Net] private IDictionary<string, RolePreferenceType> RolePreferences { get; set; }
 
-	[ClientCmd("save_role_preferences")]
-	public static void SaveRolePreferences()
-	{
-		SslPlayer sslPlayer = (SslPlayer)Local.Pawn;
-		sslPlayer.RoleHandler.SavePreferences();
-	}
+    public Role Role { get; private set; }
 
-	public RolePreferenceType GetPreference( string roleId )
-	{
-		return RolePreferences[roleId];
-	}
+    [ServerCmd("select_role_preference")]
+    public static void SelectPreference(string roleId, RolePreferenceType preferenceType)
+    {
+        SslPlayer sslPlayer = (SslPlayer) ConsoleSystem.Caller.Pawn;
+        sslPlayer.RoleHandler?.SetPreference(roleId, preferenceType);
+    }
 
-	private void InitRolePreferences()
-	{
-		foreach ( string roleId in RoleDao.Instance.FindAllIds() )
-		{
-			RolePreferences[roleId] = RolePreferenceType.Never;
-		}
-	}
+    [ClientCmd("save_role_preferences")]
+    public static void SaveRolePreferences()
+    {
+        SslPlayer sslPlayer = (SslPlayer) Local.Pawn;
+        sslPlayer.RoleHandler.SavePreferences();
+    }
 
-	private void LoadPreferences()
-	{
-		Host.AssertClient();
-		if ( !saver.IsSaved )
-		{
-			return;
-		}
+    public RolePreferenceType GetPreference(string roleId)
+    {
+        return RolePreferences[roleId];
+    }
 
-		List<(string, RolePreferenceType)> rolePreferences = saver.Load();
-		foreach ( (string roleId, RolePreferenceType preference) in rolePreferences )
-		{
-			ConsoleSystem.Run("select_role_preference", roleId, preference);
-		}
-	}
+    private void InitRolePreferences()
+    {
+        foreach (string roleId in RoleDao.Instance.FindAllIds())
+        {
+            RolePreferences[roleId] = RolePreferenceType.Never;
+        }
+    }
 
-	public Dictionary<string, float> GetPreferencesNormalised()
-	{
-		int total = RolePreferences.Sum(rolePreference => RolesFactors[rolePreference.Value]);
+    private void LoadPreferences()
+    {
+        Host.AssertClient();
+        if (!saver.IsSaved) return;
 
-		Dictionary<string, float> normalisedPreferences = new();
+        List<(string, RolePreferenceType)> rolePreferences = saver.Load();
+        foreach ((string roleId, RolePreferenceType preference) in rolePreferences)
+        {
+            ConsoleSystem.Run("select_role_preference", roleId, preference);
+        }
+    }
 
-		foreach ( string roleId in RolePreferences.Keys )
-		{
-			if ( total == 0 )
-			{
-				normalisedPreferences[roleId] = 0f;
-			}
-			else
-			{
-				normalisedPreferences[roleId] = (float)RolesFactors[RolePreferences[roleId]] / total;
-			}
-		}
+    public Dictionary<string, float> GetPreferencesNormalised()
+    {
+        int total = RolePreferences.Sum(rolePreference => RolesFactors[rolePreference.Value]);
 
-		return normalisedPreferences;
-	}
+        Dictionary<string, float> normalisedPreferences = new();
 
-	public void AssignRole( Role role )
-	{
-		Role?.OnUnassigned(Entity);
-		Role = role;
-		Role?.OnAssigned(Entity);
-	}
-	
-	public void AssignRole( string roleId )
-	{
-		AssignRole(RoleFactory.Instance.Create(roleId));
-	}
-	
-	public void ClearRole()
-	{
-		Role?.OnUnassigned(Entity);
-		Role = null;
-	}
+        foreach (string roleId in RolePreferences.Keys)
+        {
+            if (total == 0)
+                normalisedPreferences[roleId] = 0f;
+            else
+                normalisedPreferences[roleId] = (float) RolesFactors[RolePreferences[roleId]] / total;
+        }
 
-	public void SetPreference( string roleId, RolePreferenceType preferenceType )
-	{
-		Host.AssertServer();
-		RolePreferences[roleId] = preferenceType;
-	}
+        return normalisedPreferences;
+    }
 
-	/// <summary>
-	///     When player spawn with role
-	/// </summary>
-	public void SpawnRole()
-	{
-		Role?.OnSpawn(Entity);
-	}
+    public void AssignRole(Role role)
+    {
+        Role?.OnUnassigned(Entity);
+        Role = role;
+        Role?.OnAssigned(Entity);
+    }
 
-	private void SavePreferences()
-	{
-		Host.AssertClient();
-		saver.Save(RolePreferences);
-	}
+    public void AssignRole(string roleId)
+    {
+        AssignRole(RoleFactory.Instance.Create(roleId));
+    }
 
-	protected override void OnActivate()
-	{
-		if ( Host.IsServer )
-		{
-			InitRolePreferences();
-		}
-	}
+    public void ClearRole()
+    {
+        Role?.OnUnassigned(Entity);
+        Role = null;
+    }
+
+    public void SetPreference(string roleId, RolePreferenceType preferenceType)
+    {
+        Host.AssertServer();
+        RolePreferences[roleId] = preferenceType;
+    }
+
+    /// <summary>
+    ///     When player spawn with role
+    /// </summary>
+    public void SpawnRole()
+    {
+        Role?.OnSpawn(Entity);
+    }
+
+    private void SavePreferences()
+    {
+        Host.AssertClient();
+        saver.Save(RolePreferences);
+    }
+
+    protected override void OnActivate()
+    {
+        if (Host.IsServer) InitRolePreferences();
+    }
 }

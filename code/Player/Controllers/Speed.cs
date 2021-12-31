@@ -2,6 +2,6 @@
 
 public struct Speed
 {
-	public float Acceleration;
-	public float MaxSpeed;
+    public float Acceleration;
+    public float MaxSpeed;
 }

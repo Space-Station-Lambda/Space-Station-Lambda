@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ssl.Modules.Skills;
 
@@ -8,34 +7,29 @@ namespace ssl.Modules.Skills;
 /// </summary>
 public class Skill
 {
-	/// <summary>
-	/// Id of the skill
-	/// </summary>
-	public string Id { get; }
-	
-	/// <summary>
-	/// The name of the skill. Commonly used in UI or in console.
-	/// </summary>
-	public string Name { get; }
-	
-	/// <summary>
-	/// Description of the skill. Commonly used in UI or in console.
-	/// </summary>
-	public string Description { get; }
+    private int level;
 
-	/// <summary>
-	/// Level of the skill. Minimum is 0 and maximum is 100.
-	/// </summary>
-	public int Level {
-		get
-		{
-			return level;
-		}
-		set
-		{
-			level = (Math.Clamp(value, 0, 100));
-		}
-	}
+    /// <summary>
+    ///     Id of the skill
+    /// </summary>
+    public string Id { get; }
 
-	private int level;
+    /// <summary>
+    ///     The name of the skill. Commonly used in UI or in console.
+    /// </summary>
+    public string Name { get; }
+
+    /// <summary>
+    ///     Description of the skill. Commonly used in UI or in console.
+    /// </summary>
+    public string Description { get; }
+
+    /// <summary>
+    ///     Level of the skill. Minimum is 0 and maximum is 100.
+    /// </summary>
+    public int Level
+    {
+        get => level;
+        set => level = Math.Clamp(value, 0, 100);
+    }
 }

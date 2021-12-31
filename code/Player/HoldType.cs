@@ -5,7 +5,7 @@
 /// </summary>
 public enum HoldType
 {
-	None = 0,
-	Pistol = 1,
-	Hand = 4
+    None = 0,
+    Pistol = 1,
+    Hand = 4
 }

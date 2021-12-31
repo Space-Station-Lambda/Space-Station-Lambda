@@ -11,59 +11,56 @@ public class ItemsCommands
 	///     Clear the inventory
 	/// </summary>
 	[AdminCmd("inv_clear")]
-	public static void ClearInventory()
-	{
-		Client client = ConsoleSystem.Caller;
-		SslPlayer sslPlayer = (SslPlayer)client.Pawn;
-		sslPlayer.Inventory.Clear();
-		Log.Info("Your inventory is now clear.");
-	}
+    public static void ClearInventory()
+    {
+        Client client = ConsoleSystem.Caller;
+        SslPlayer sslPlayer = (SslPlayer) client.Pawn;
+        sslPlayer.Inventory.Clear();
+        Log.Info("Your inventory is now clear.");
+    }
 
 	/// <summary>
 	///     give an item
 	/// </summary>
 	[AdminCmd("inv_give")]
-	public static void GiveItem( string id )
-	{
-		Client client = ConsoleSystem.Caller;
-		SslPlayer sslPlayer = (SslPlayer)client.Pawn;
-		ItemFactory itemFactory = ItemFactory.Instance;
-		try
-		{
-			Item item = itemFactory.Create(id);
-			if ( null != sslPlayer.Inventory.Add(item) )
-			{
-				return;
-			}
+    public static void GiveItem(string id)
+    {
+        Client client = ConsoleSystem.Caller;
+        SslPlayer sslPlayer = (SslPlayer) client.Pawn;
+        ItemFactory itemFactory = ItemFactory.Instance;
+        try
+        {
+            Item item = itemFactory.Create(id);
+            if (null != sslPlayer.Inventory.Add(item)) return;
 
-			Log.Info($"Cannot give {id}, inventory full.");
-			item.Delete();
-		}
-		catch
-		{
-			Log.Info($"{id} not found.");
-		}
-	}
+            Log.Info($"Cannot give {id}, inventory full.");
+            item.Delete();
+        }
+        catch
+        {
+            Log.Info($"{id} not found.");
+        }
+    }
 
 	/// <summary> Create item with its id </summary>
 	/// <param name="id"> The id of the item </param>
 	[AdminCmd("item")]
-	public static void SpawnItem( string id )
-	{
-		Client client = ConsoleSystem.Caller;
-		SslPlayer sslPlayer = (SslPlayer)client.Pawn;
-		ItemFactory itemFactory = ItemFactory.Instance;
-		try
-		{
-			Item item = itemFactory.Create(id);
-			item.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
-			item.Rotation = sslPlayer.EyeRot;
+    public static void SpawnItem(string id)
+    {
+        Client client = ConsoleSystem.Caller;
+        SslPlayer sslPlayer = (SslPlayer) client.Pawn;
+        ItemFactory itemFactory = ItemFactory.Instance;
+        try
+        {
+            Item item = itemFactory.Create(id);
+            item.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
+            item.Rotation = sslPlayer.EyeRot;
 
-			Log.Info($"{item} has been spawned.");
-		}
-		catch
-		{
-			Log.Info($"{id} not found.");
-		}
-	}
+            Log.Info($"{item} has been spawned.");
+        }
+        catch
+        {
+            Log.Info($"{id} not found.");
+        }
+    }
 }

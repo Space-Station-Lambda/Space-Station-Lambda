@@ -2,7 +2,5 @@
 
 public class SicknessData : StatusData
 {
-    public SicknessData(string id) : base(id)
-    {
-    }
+    public SicknessData(string id) : base(id) { }
 }

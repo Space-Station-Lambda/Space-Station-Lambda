@@ -4,169 +4,149 @@ using Sandbox.Joints;
 namespace ssl.Modules.Selection;
 
 /// <summary>
-/// Dragger allows the user to select draggable object to move when holding click.
+///     Dragger allows the user to select draggable object to move when holding click.
 /// </summary>
 public class Dragger : Selector
 {
-	private const float HOLD_DISTANCE = 50F;
-	private const float LINEAR_FREQUENCY = 10F;
-	private const float LINEAR_DAMPING_RATIO = 1F;
-	private const float ANGULAR_FREQUENCY = 10F;
-	private const float ANGULAR_DAMPING_RATIO = 1F;
-	private const float BREAK_LINEAR_FORCE = 2000F;
+    private const float HOLD_DISTANCE = 50F;
+    private const float LINEAR_FREQUENCY = 10F;
+    private const float LINEAR_DAMPING_RATIO = 1F;
+    private const float ANGULAR_FREQUENCY = 10F;
+    private const float ANGULAR_DAMPING_RATIO = 1F;
+    private const float BREAK_LINEAR_FORCE = 2000F;
 
-	private PhysicsBody holdBody;
-	private WeldJoint holdJoint;
+    private PhysicsBody holdBody;
+    private WeldJoint holdJoint;
 
-	public Dragger()
-	{
-		Activate();
-	}
+    public Dragger()
+    {
+        Activate();
+    }
 
-	/// <summary>
-	/// Entity dragged (item, prop, player etc ...)
-	/// </summary>
-	public IDraggable Dragged { get; private set; }
-	
-	/// <summary>
-	/// PhysicsBody of the Draggable currently moved by the Dragger
-	/// </summary>
-	public PhysicsBody HeldBody { get; private set; }
-	
-	/// <summary>
-	/// Rotation of the current drag.
-	/// </summary>
-	public Rotation HeldRot { get; private set; }
+    /// <summary>
+    ///     Entity dragged (item, prop, player etc ...)
+    /// </summary>
+    public IDraggable Dragged { get; private set; }
 
-	/// <summary>
-	///     Updates the Dragger system.
-	///     Will start dragging item if there's not one already or will just update the position of the "hand".
-	/// </summary>
-	public void Drag()
-	{
-		if ( Dragged == null )
-		{
-			//Try to start dragging the entity currently targeted.
-			if ( IsSelectedDraggable() )
-			{
-				TryDrag();
-			}
-		}
-		else
-		{
-			// Updates the position of the "hand" of dragger. 
-			GrabMove(Entity.EyePos, Entity.EyeRot.Forward, Entity.EyeRot);
-		}
-	}
+    /// <summary>
+    ///     PhysicsBody of the Draggable currently moved by the Dragger
+    /// </summary>
+    public PhysicsBody HeldBody { get; private set; }
 
-	/// <summary>
-	///     Start dragging an Entity if it is a draggable.
-	///     Will stop dragging the previous one if there's any.
-	/// </summary>
-	/// <param name="grabPos">Destination of the dragged entity. (Relative to World)</param>
-	/// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
-	private void StartDrag( Vector3 grabPos, Rotation grabRot )
-	{
-		StopDrag();
+    /// <summary>
+    ///     Rotation of the current drag.
+    /// </summary>
+    public Rotation HeldRot { get; private set; }
 
-		Dragged = (IDraggable)Selected;
+    /// <summary>
+    ///     Updates the Dragger system.
+    ///     Will start dragging item if there's not one already or will just update the position of the "hand".
+    /// </summary>
+    public void Drag()
+    {
+        if (Dragged == null)
+        {
+            //Try to start dragging the entity currently targeted.
+            if (IsSelectedDraggable()) TryDrag();
+        }
+        else
+        {
+            // Updates the position of the "hand" of dragger. 
+            GrabMove(Entity.EyePos, Entity.EyeRot.Forward, Entity.EyeRot);
+        }
+    }
 
-		HeldBody = TraceResult.Body;
-		HeldBody.Wake();
-		HeldBody.EnableAutoSleeping = false;
+    /// <summary>
+    ///     Start dragging an Entity if it is a draggable.
+    ///     Will stop dragging the previous one if there's any.
+    /// </summary>
+    /// <param name="grabPos">Destination of the dragged entity. (Relative to World)</param>
+    /// <param name="grabRot">Ideal Rotation of the dragged entity. (Relative to World)</param>
+    private void StartDrag(Vector3 grabPos, Rotation grabRot)
+    {
+        StopDrag();
 
-		HeldRot = grabRot.Inverse * HeldBody.Rotation;
+        Dragged = (IDraggable) Selected;
 
-		holdBody.Position = grabPos;
-		holdBody.Rotation = HeldBody.Rotation;
+        HeldBody = TraceResult.Body;
+        HeldBody.Wake();
+        HeldBody.EnableAutoSleeping = false;
 
-		holdJoint = PhysicsJoint.Weld
-			.From(holdBody)
-			.To(HeldBody, HeldBody.LocalMassCenter)
-			.WithLinearSpring(LINEAR_FREQUENCY, LINEAR_DAMPING_RATIO, 0.0f)
-			.WithAngularSpring(ANGULAR_FREQUENCY, ANGULAR_DAMPING_RATIO, 0.0f)
-			.Breakable(HeldBody.Mass * BREAK_LINEAR_FORCE, 0)
-			.Create();
+        HeldRot = grabRot.Inverse * HeldBody.Rotation;
 
-		Dragged.OnDragStart(Entity);
-	}
+        holdBody.Position = grabPos;
+        holdBody.Rotation = HeldBody.Rotation;
 
-	/// <summary>
-	///     Releases the Draggable currently being dragged, if there's one.
-	/// </summary>
-	public void StopDrag()
-	{
-		if ( holdJoint.IsValid )
-		{
-			holdJoint.Remove();
-		}
+        holdJoint = PhysicsJoint.Weld
+            .From(holdBody)
+            .To(HeldBody, HeldBody.LocalMassCenter)
+            .WithLinearSpring(LINEAR_FREQUENCY, LINEAR_DAMPING_RATIO, 0.0f)
+            .WithAngularSpring(ANGULAR_FREQUENCY, ANGULAR_DAMPING_RATIO, 0.0f)
+            .Breakable(HeldBody.Mass * BREAK_LINEAR_FORCE, 0)
+            .Create();
 
-		if ( Dragged != null )
-		{
-			HeldBody.EnableAutoSleeping = true;
-			Dragged.OnDragStop(Entity);
-		}
+        Dragged.OnDragStart(Entity);
+    }
 
-		HeldBody = null;
-		Dragged = null;
-		HeldRot = Rotation.Identity;
-	}
+    /// <summary>
+    ///     Releases the Draggable currently being dragged, if there's one.
+    /// </summary>
+    public void StopDrag()
+    {
+        if (holdJoint.IsValid) holdJoint.Remove();
 
-	/// <summary>
-	/// Detect if the selected object is draggable.
-	/// </summary>
-	/// <returns></returns>
-	private bool IsSelectedDraggable()
-	{
-		// Check 
-		if ( Selected is not IDraggable)
-		{
-			return false;
-		}
+        if (Dragged != null)
+        {
+            HeldBody.EnableAutoSleeping = true;
+            Dragged.OnDragStop(Entity);
+        }
 
-		if ( !TraceResult.Body.IsValid() )
-		{
-			return false;
-		}
+        HeldBody = null;
+        Dragged = null;
+        HeldRot = Rotation.Identity;
+    }
 
-		return TraceResult.Body.PhysicsGroup != null;
-	}
+    /// <summary>
+    ///     Detect if the selected object is draggable.
+    /// </summary>
+    /// <returns></returns>
+    private bool IsSelectedDraggable()
+    {
+        // Check 
+        if (Selected is not IDraggable) return false;
 
-	/// <summary>
-	/// Try to drag an entity.
-	/// </summary>
-	private void TryDrag()
-	{
-		if ( ((IDraggable)Selected).IsDraggable(Entity) )
-		{
-			StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HOLD_DISTANCE, Entity.EyeRot);
-		}
-	}
+        if (!TraceResult.Body.IsValid()) return false;
 
-	private void GrabMove( Vector3 startPos, Vector3 dir, Rotation rot )
-	{
-		if ( !HeldBody.IsValid() )
-		{
-			return;
-		}
+        return TraceResult.Body.PhysicsGroup != null;
+    }
 
-		Dragged.OnDrag(Entity);
+    /// <summary>
+    ///     Try to drag an entity.
+    /// </summary>
+    private void TryDrag()
+    {
+        if (((IDraggable) Selected).IsDraggable(Entity))
+            StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HOLD_DISTANCE, Entity.EyeRot);
+    }
 
-		holdBody.Position = startPos + dir * HOLD_DISTANCE;
-		holdBody.Rotation = rot * HeldRot;
-	}
+    private void GrabMove(Vector3 startPos, Vector3 dir, Rotation rot)
+    {
+        if (!HeldBody.IsValid()) return;
 
-	private void Activate()
-	{
-		if ( !holdBody.IsValid() )
-		{
-			holdBody = new PhysicsBody {BodyType = PhysicsBodyType.Keyframed};
-		}
-	}
+        Dragged.OnDrag(Entity);
 
-	private void Deactivate()
-	{
-		holdBody?.Remove();
-		holdBody = null;
-	}
+        holdBody.Position = startPos + dir * HOLD_DISTANCE;
+        holdBody.Rotation = rot * HeldRot;
+    }
+
+    private void Activate()
+    {
+        if (!holdBody.IsValid()) holdBody = new PhysicsBody { BodyType = PhysicsBodyType.Keyframed };
+    }
+
+    private void Deactivate()
+    {
+        holdBody?.Remove();
+        holdBody = null;
+    }
 }

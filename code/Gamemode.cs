@@ -20,145 +20,135 @@ public partial class Gamemode : Game
 	///     Create a gamemode
 	/// </summary>
 	public Gamemode()
-	{
-		Instance = this; //Singleton DP
-		if ( IsServer )
-		{
-			StartServer();
-		}
-		else if ( IsClient )
-		{
-			StartClient();
-		}
-	}
+    {
+        Instance = this; //Singleton DP
+        if (IsServer)
+            StartServer();
+        else if (IsClient) StartClient();
+    }
 
-	public static Gamemode Instance { get; private set; }
+    public static Gamemode Instance { get; private set; }
 
-	[Net] public RoundManager RoundManager { get; private set; }
+    [Net] public RoundManager RoundManager { get; private set; }
 
-	/// <summary>
-	///     A client has joined the server. Make them a pawn to play with
-	/// </summary>
-	public override void ClientJoined( Client client )
-	{
-		base.ClientJoined(client);
-		SpawnPlayer(client);
-	}
+    /// <summary>
+    ///     A client has joined the server. Make them a pawn to play with
+    /// </summary>
+    public override void ClientJoined(Client client)
+    {
+        base.ClientJoined(client);
+        SpawnPlayer(client);
+    }
 
-	/// <summary>
-	///     Start server and init classes.
-	/// </summary>
-	private void StartServer()
-	{
-		Log.Info("Launching ssl Server...");
-		Log.Info("Create Round Manager...");
-		RoundManager = new RoundManager();
-		Log.Info("Create HUD...");
-		_ = new Hud();
-		LoadDatabase();
-	}
+    /// <summary>
+    ///     Start server and init classes.
+    /// </summary>
+    private void StartServer()
+    {
+        Log.Info("Launching ssl Server...");
+        Log.Info("Create Round Manager...");
+        RoundManager = new RoundManager();
+        Log.Info("Create HUD...");
+        _ = new Hud();
+        LoadDatabase();
+    }
 
-	private void LoadDatabase()
-	{
-		Log.Info("Load database...");
-		// Factories create the dao when they appear.
-		// Maybe the databse create have to be outside dao; i don't know :(
-		_ = ItemDao.Instance;
-		_ = PropDao.Instance;
-		_ = RoleDao.Instance;
-		_ = ScenarioDao.Instance;
-		_ = SkillDao.Instance;
-	}
-	/// <summary>
-	///     Stat client and init classes
-	/// </summary>
-	private void StartClient()
-	{
-		Log.Info("Launching ssl Client...");
-	}
+    private void LoadDatabase()
+    {
+        Log.Info("Load database...");
+        // Factories create the dao when they appear.
+        // Maybe the databse create have to be outside dao; i don't know :(
+        _ = ItemDao.Instance;
+        _ = PropDao.Instance;
+        _ = RoleDao.Instance;
+        _ = ScenarioDao.Instance;
+        _ = SkillDao.Instance;
+    }
 
-	/// <summary>
-	///     Spawn the client and create the player class.
-	/// </summary>
-	/// <param name="client"></param>
-	private void SpawnPlayer( Client client )
-	{
-		//Init the player.
-		SslPlayer sslPlayer = new();
-		client.Pawn = sslPlayer;
-		RoundManager.CurrentRound.OnPlayerSpawn(sslPlayer);
-	}
+    /// <summary>
+    ///     Stat client and init classes
+    /// </summary>
+    private void StartClient()
+    {
+        Log.Info("Launching ssl Client...");
+    }
 
-	public override void PostLevelLoaded()
-	{
-		StartTickTimer();
-		StartSecondTimer();
-	}
+    /// <summary>
+    ///     Spawn the client and create the player class.
+    /// </summary>
+    /// <param name="client"></param>
+    private void SpawnPlayer(Client client)
+    {
+        //Init the player.
+        SslPlayer sslPlayer = new();
+        client.Pawn = sslPlayer;
+        RoundManager.CurrentRound.OnPlayerSpawn(sslPlayer);
+    }
 
-	public override void OnVoicePlayed( long playerId, float level )
-	{
-		//TODO SSL-380: Add voice volume to player
-	}
+    public override void PostLevelLoaded()
+    {
+        StartTickTimer();
+        StartSecondTimer();
+    }
 
-	/// <summary>
-	///     Loop trigger OnSecond() each seconds.
-	/// </summary>
-	private async void StartSecondTimer()
-	{
-		while ( true )
-		{
-			try
-			{
-				await Task.DelaySeconds(1);
-				OnSecond();
-			}
-			catch ( Exception e )
-			{
-				// If we close the server we don't care about the Task
-				Log.Error(e);
-			}
-		}
-	}
+    public override void OnVoicePlayed(long playerId, float level)
+    {
+        //TODO SSL-380: Add voice volume to player
+    }
 
-	/// <summary>
-	///     Loop trigger OnTick() each tick.
-	/// </summary>
-	private async void StartTickTimer()
-	{
-		while ( true )
-		{
-			try
-			{
-				await Task.NextPhysicsFrame();
-				OnTick();
-			}
-			catch ( Exception e )
-			{
-				// If we close the server we don't care about the Task
-				Log.Error(e);
-			}
-		}
-	}
+    /// <summary>
+    ///     Loop trigger OnSecond() each seconds.
+    /// </summary>
+    private async void StartSecondTimer()
+    {
+        while (true)
+        {
+            try
+            {
+                await Task.DelaySeconds(1);
+                OnSecond();
+            }
+            catch (Exception e)
+            {
+                // If we close the server we don't care about the Task
+                Log.Error(e);
+            }
+        }
+    }
 
-	/// <summary>
-	///     Called each seconds
-	/// </summary>
-	private void OnSecond()
-	{
-		if ( IsServer )
-		{
-			RoundManager.CurrentRound?.OnSecond();
-		}
-	}
+    /// <summary>
+    ///     Loop trigger OnTick() each tick.
+    /// </summary>
+    private async void StartTickTimer()
+    {
+        while (true)
+        {
+            try
+            {
+                await Task.NextPhysicsFrame();
+                OnTick();
+            }
+            catch (Exception e)
+            {
+                // If we close the server we don't care about the Task
+                Log.Error(e);
+            }
+        }
+    }
 
-	/// <summary>
-	///     Called each ticks
-	/// </summary>
-	private void OnTick()
-	{
-		if ( IsServer )
-		{
-			RoundManager.CurrentRound?.OnTick();
-		}
-	}
+    /// <summary>
+    ///     Called each seconds
+    /// </summary>
+    private void OnSecond()
+    {
+        if (IsServer) RoundManager.CurrentRound?.OnSecond();
+    }
+
+    /// <summary>
+    ///     Called each ticks
+    /// </summary>
+    private void OnTick()
+    {
+        if (IsServer) RoundManager.CurrentRound?.OnTick();
+    }
 }

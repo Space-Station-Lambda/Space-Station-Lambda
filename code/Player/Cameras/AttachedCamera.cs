@@ -7,51 +7,44 @@ namespace ssl.Player.Cameras;
 /// </summary>
 public partial class AttachedCamera : Camera
 {
-	private Vector3 lastPos;
+    private Vector3 lastPos;
 
-	public AttachedCamera()
-	{
-	}
+    public AttachedCamera() { }
 
-	public AttachedCamera( ModelEntity target, string attachment, Rotation offset, Vector3 startPos )
-	{
-		Target = target;
-		Attachment = attachment;
-		RotationOffset = offset;
-		lastPos = startPos;
-	}
+    public AttachedCamera(ModelEntity target, string attachment, Rotation offset, Vector3 startPos)
+    {
+        Target = target;
+        Attachment = attachment;
+        RotationOffset = offset;
+        lastPos = startPos;
+    }
 
-	[Net] public ModelEntity Target { get; set; }
-	[Net] public string Attachment { get; set; }
-	[Net] public Rotation RotationOffset { get; set; }
+    [Net] public ModelEntity Target { get; set; }
+    [Net] public string Attachment { get; set; }
+    [Net] public Rotation RotationOffset { get; set; }
 
-	public override void Activated()
-	{
-		base.Activated();
-		ZNear = 0.01f;
-	}
+    public override void Activated()
+    {
+        base.Activated();
+        ZNear = 0.01f;
+    }
 
-	public override void Update()
-	{
-		if ( !Target.IsValid() )
-		{
-			return;
-		}
+    public override void Update()
+    {
+        if (!Target.IsValid()) return;
 
-		Transform targetTransform = Target.GetAttachment(Attachment).GetValueOrDefault(Target.Transform);
+        Transform targetTransform = Target.GetAttachment(Attachment).GetValueOrDefault(Target.Transform);
 
-		if ( targetTransform.Position.Distance(lastPos) < 300 )
-		{
-			Position = Vector3.Lerp(lastPos, targetTransform.Position, 20.0f * Time.Delta);
-		}
-		else
-		{
-			Position = targetTransform.Position;
-		}
+        Position = targetTransform.Position.Distance(lastPos) < 300
+            ? Vector3.Lerp(
+                lastPos,
+                targetTransform.Position,
+                20.0f * Time.Delta)
+            : targetTransform.Position;
 
-		Rotation = targetTransform.Rotation + targetTransform.RotationToWorld(RotationOffset);
+        Rotation = targetTransform.Rotation + targetTransform.RotationToWorld(RotationOffset);
 
-		Viewer = Target;
-		lastPos = Position;
-	}
+        Viewer = Target;
+        lastPos = Position;
+    }
 }

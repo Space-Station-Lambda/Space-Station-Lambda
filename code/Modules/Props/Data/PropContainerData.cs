@@ -2,9 +2,7 @@
 
 public class PropContainerData : PropData
 {
-	public PropContainerData( string id ) : base(id)
-	{
-	}
+    public PropContainerData(string id) : base(id) { }
 
-	public int Capacity { get; set; }
+    public int Capacity { get; set; }
 }

@@ -8,118 +8,114 @@ namespace ssl.Modules.Locking;
 /// </summary>
 public class Lock
 {
-	private const string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	private const int BASE_COMPLEXITY = 10;
+    private const string CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private const int BASE_COMPLEXITY = 10;
 
-	/// <summary>
-	///     Create a lock with a specific key to open it
-	/// </summary>
-	/// <param name="key">The key used to lock</param>
-	public Lock( string key )
-	{
-		Key = key;
-		IsLocked = true;
-	}
+    /// <summary>
+    ///     Create a lock with a specific key to open it
+    /// </summary>
+    /// <param name="key">The key used to lock</param>
+    public Lock(string key)
+    {
+        Key = key;
+        IsLocked = true;
+    }
 
-	/// <summary>
-	///     Create a lock with a specific complexity
-	/// </summary>
-	/// <param name="complexity">Length of the key</param>
-	public Lock( int complexity ) : this(GenerateKey(complexity))
-	{
-	}
+    /// <summary>
+    ///     Create a lock with a specific complexity
+    /// </summary>
+    /// <param name="complexity">Length of the key</param>
+    public Lock(int complexity) : this(GenerateKey(complexity)) { }
 
-	public Lock() : this(BASE_COMPLEXITY)
-	{
-	}
+    public Lock() : this(BASE_COMPLEXITY) { }
 
-	/// <summary>
-	///     Key to unlock
-	/// </summary>
-	public string Key { get; }
+    /// <summary>
+    ///     Key to unlock
+    /// </summary>
+    public string Key { get; }
 
-	/// <summary>
-	///     Status of the lock
-	/// </summary>
-	public bool IsLocked { get; private set; }
+    /// <summary>
+    ///     Status of the lock
+    /// </summary>
+    public bool IsLocked { get; private set; }
 
-	/// <summary>
-	///     Open the lock without a key
-	/// </summary>
-	public void Open()
-	{
-		IsLocked = false;
-	}
+    /// <summary>
+    ///     Open the lock without a key
+    /// </summary>
+    public void Open()
+    {
+        IsLocked = false;
+    }
 
-	/// <summary>
-	///     Open the lock with a specific key
-	/// </summary>
-	/// <param name="key">The key used to open</param>
-	/// <returns>Returns true if the lock is openned</returns>
-	public bool Open( string key )
-	{
-		if ( Key.Equals(key) )
-		{
-			IsLocked = false;
-			return true;
-		}
+    /// <summary>
+    ///     Open the lock with a specific key
+    /// </summary>
+    /// <param name="key">The key used to open</param>
+    /// <returns>Returns true if the lock is openned</returns>
+    public bool Open(string key)
+    {
+        if (Key.Equals(key))
+        {
+            IsLocked = false;
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/// <summary>
-	///     Close the lock
-	/// </summary>
-	public void Close()
-	{
-		IsLocked = true;
-	}
+    /// <summary>
+    ///     Close the lock
+    /// </summary>
+    public void Close()
+    {
+        IsLocked = true;
+    }
 
-	/// <summary>
-	///     Close the lock with the key
-	/// </summary>
-	/// <param name="key">The key used to close</param>
-	/// <returns>Returns true if the lock is closed</returns>
-	public bool Close( string key )
-	{
-		if ( Key.Equals(key) )
-		{
-			IsLocked = true;
-			return false;
-		}
+    /// <summary>
+    ///     Close the lock with the key
+    /// </summary>
+    /// <param name="key">The key used to close</param>
+    /// <returns>Returns true if the lock is closed</returns>
+    public bool Close(string key)
+    {
+        if (Key.Equals(key))
+        {
+            IsLocked = true;
+            return false;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/// <summary>
-	///     Compare the lock with a key
-	/// </summary>
-	/// <param name="key"></param>
-	/// <returns>Returns the ratio of good character</returns>
-	public float CompareKey( string key )
-	{
-		//Compare each character and calculate the number of same chars
-		int goodCharacters = Key.TakeWhile(( t, i ) => i < key.Length).Where(( t, i ) => t.Equals(key[i])).Count();
+    /// <summary>
+    ///     Compare the lock with a key
+    /// </summary>
+    /// <param name="key"></param>
+    /// <returns>Returns the ratio of good character</returns>
+    public float CompareKey(string key)
+    {
+        //Compare each character and calculate the number of same chars
+        int goodCharacters = Key.TakeWhile((t, i) => i < key.Length).Where((t, i) => t.Equals(key[i])).Count();
 
-		return (float)goodCharacters / Key.Length;
-	}
+        return (float) goodCharacters / Key.Length;
+    }
 
-	/// <summary>
-	///     Create a random code with a specific complexity
-	/// </summary>
-	/// <param name="complexity">Length of the code</param>
-	/// <returns>The key</returns>
-	public static string GenerateKey( int complexity )
-	{
-		Random random = new();
-		string key = "";
-		for ( int i = 0; i < complexity; i++ )
-		{
-			int characterIndex = random.Next(CHARACTERS.Length);
-			char character = CHARACTERS[characterIndex];
-			key += character;
-		}
+    /// <summary>
+    ///     Create a random code with a specific complexity
+    /// </summary>
+    /// <param name="complexity">Length of the code</param>
+    /// <returns>The key</returns>
+    public static string GenerateKey(int complexity)
+    {
+        Random random = new();
+        string key = "";
+        for (int i = 0; i < complexity; i++)
+        {
+            int characterIndex = random.Next(CHARACTERS.Length);
+            char character = CHARACTERS[characterIndex];
+            key += character;
+        }
 
-		return key;
-	}
+        return key;
+    }
 }
