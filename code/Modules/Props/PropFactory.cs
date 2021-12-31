@@ -23,10 +23,9 @@ public class PropFactory : IFactory<Prop>
                 Complexity = propMachineData.Complexity,
                 Durability = propMachineData.Durability
             },
-            PropBucketData propBucketData => new PropBucket(),
             PropTrashBinData propTrashBinData => new PropTrashBin(),
-            _ => new Prop()
-        };
+			_ => new Prop()
+		};
 
         prop.Id = propData.Id;
         prop.Name = propData.Name;

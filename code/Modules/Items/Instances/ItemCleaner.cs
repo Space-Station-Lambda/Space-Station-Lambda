@@ -1,4 +1,6 @@
 using ssl.Modules.Props.Instances;
+using ssl.Constants;
+using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
 
@@ -13,27 +15,23 @@ public class ItemCleaner : Item
 
     public int CleaningValue { get; set; }
 
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
-    {
-        switch (target)
-        {
-            case PropBucket bucket:
-                Wash(bucket);
-                break;
+	public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+	{
+		if (target is Prop { Id: Identifiers.BUCKET_ID })
+		{
+			Wash();
+		}
+		else
+		{
+			target.OnInteract(sslPlayer, CleaningValue);
+		}
+	}
 
-            default:
-                target.OnInteract(sslPlayer, CleaningValue);
-                break;
-        }
-    }
-
-    /// <summary>
-    ///     wash the cleaner in a bucket for set the dirty level to 0.
-    /// </summary>
-    /// <param name="propBucket"></param>
-    private void Wash(PropBucket propBucket)
-    {
-        propBucket.WasteWater(Dirtyness);
-        Dirtyness = 0;
-    }
+	/// <summary>
+	///     wash the cleaner in a bucket for set the dirty level to 0.
+	/// </summary>
+	private void Wash()
+	{
+		Dirtyness = 0;
+	}
 }
