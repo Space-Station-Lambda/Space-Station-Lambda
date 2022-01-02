@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Constants;
 using ssl.Modules.Items.Instances;
 using ssl.Player;
 
@@ -11,7 +12,7 @@ public class InputHandler : EntityComponent<SslPlayer>
     public void CheckControls()
     {
         // If the player don't drag anything
-        if (null == Entity.Dragger.Dragged)
+        if (null == Entity.Dragger.Dragged || Entity.StatusHandler.GetStatus(Identifiers.RESTRAINED_ID) != null)
         {
             if (Input.Pressed(InputButton.Slot1)) Entity.Inventory.ProcessHolding(0);
 
@@ -51,26 +52,30 @@ public class InputHandler : EntityComponent<SslPlayer>
             dropped.Velocity += Entity.Velocity;
         }
 
-        // Default usage with the use button
-        if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
-
-        // Primary Action
-        if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary();
-
-        // Secondary Action and drag
-        if (Input.Down(InputButton.Attack2))
-        {
-            // Drag only if empty hand
-            if (null == Entity.Inventory.HoldingItem)
-                Entity.Dragger.Drag();
-            else
-                Entity.Inventory.UseSecondary();
-        }
-
-        if (Input.Released(InputButton.Attack2)) Entity.Dragger.StopDrag();
-
         // Flashlight
 
         if (Input.Pressed(InputButton.Flashlight)) Entity.RagdollHandler.StartRagdoll();
+
+
+        if (Entity.StatusHandler.GetStatus(Identifiers.RESTRAINED_ID) == null)
+        {
+            // Default usage with the use button
+            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
+
+            // Primary Action
+            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary();
+
+            // Secondary Action and drag
+            if (Input.Down(InputButton.Attack2))
+            {
+                // Drag only if empty hand
+                if (null == Entity.Inventory.HoldingItem)
+                    Entity.Dragger.Drag();
+                else
+                    Entity.Inventory.UseSecondary();
+            }
+
+            if (Input.Released(InputButton.Attack2)) Entity.Dragger.StopDrag();
+        }
     }
 }

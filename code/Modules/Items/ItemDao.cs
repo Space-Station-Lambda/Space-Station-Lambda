@@ -95,6 +95,18 @@ public class ItemDao : LocalDao<ItemData>
             CleaningValue = 15
         });
 
+        Save(new ItemData(Identifiers.HANDCUFFS_ID)
+        {
+            Name = "Handcuffs",
+            Description = "Don't be a bad boy next time",
+            Model = "models/citizen_props/foamhand.vmdl"
+        });
+        
+        Save(new ItemData(Identifiers.HANDCUFFS_KEY_ID)
+        {
+            Name = "Handcuffs key",
+            Model = "models/citizen_props/hotdog01.vmdl"
+        });
 
         Log.Info($"{All.Count} items charged !");
     }
