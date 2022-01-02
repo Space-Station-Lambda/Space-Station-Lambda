@@ -11,7 +11,6 @@ namespace ssl.Modules.Props.Instances;
 public class Prop : WorldEntity, ISelectable
 {
     public string Id { get; set; }
-    public string Model { get; set; }
 
     public virtual void OnSelectStart(SslPlayer sslPlayer) { }
 
