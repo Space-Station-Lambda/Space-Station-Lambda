@@ -27,14 +27,22 @@ public class ItemRestrain : Item
         // Get the player selected and restrain him
         if (target is SslPlayer targetPlayer)
         {
-            Restrained handcuffedStatus = (Restrained) StatusFactory.Instance.Create(Identifiers.RESTRAINED_ID);
-            handcuffedStatus.Restrain = this;
+            AttachToPlayer(targetPlayer);
             
-            targetPlayer.StatusHandler.ApplyStatus(handcuffedStatus);
-
             ItemKey key = (ItemKey) ItemFactory.Instance.Create(Identifiers.HANDCUFFS_KEY_ID);
             key.KeyCode = Lock.Key;
             sslPlayer.Inventory.Add(key);
         }
+    }
+
+    public void AttachToPlayer(SslPlayer target)
+    {
+        ActiveEnd(target, false);
+        OnCarryStart(target);
+        
+        Restrained handcuffedStatus = (Restrained) StatusFactory.Instance.Create(Identifiers.RESTRAINED_ID);
+        handcuffedStatus.Restrain = this;
+        
+        target.StatusHandler.ApplyStatus(handcuffedStatus);
     }
 }
