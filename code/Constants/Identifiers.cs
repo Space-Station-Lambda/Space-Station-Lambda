@@ -31,6 +31,9 @@ public static class Identifiers
 
         public const string PISTOL_ID = "pistol";
         public const string TASER_ID = "taser";
+        
+        public const string HANDCUFFS_ID = "handcuffs";
+        public const string HANDCUFFS_KEY_ID = "handcuffs_key";
     }
 
     public class Statuses

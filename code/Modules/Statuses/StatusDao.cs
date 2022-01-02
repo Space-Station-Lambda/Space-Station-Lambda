@@ -30,7 +30,7 @@ public class StatusDao : LocalDao<StatusData>
         Save(new RestrainedData(Identifiers.Statuses.RESTRAINED_ID)
         {
             Name = "Restrained",
-            Description = "I'm an innocent, I swear !",
+            Description = "I'm innocent, I swear !",
             Duration = 0
         });
 

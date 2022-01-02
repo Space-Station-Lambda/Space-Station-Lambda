@@ -28,7 +28,7 @@ public sealed class ItemFactory : IFactory<Item>
             {
                 CleaningValue = itemCleanerData.CleaningValue
             },
-            _ => new Item()
+            _ => CreateItem(itemData)
         };
 
         item.Id = itemData.Id;
@@ -37,6 +37,18 @@ public sealed class ItemFactory : IFactory<Item>
         item.SetModel(itemData.Model);
         item.HoldType = itemData.HoldType;
         item.WasteId = itemData.WasteId;
+        return item;
+    }
+
+    private static Item CreateItem(ItemData itemData)
+    {
+        Item item = itemData.Id switch
+        {
+            Identifiers.HANDCUFFS_ID => new ItemRestrain(),
+            Identifiers.HANDCUFFS_KEY_ID => new ItemKey(),
+            _ => new Item()
+        };
+
         return item;
     }
 
