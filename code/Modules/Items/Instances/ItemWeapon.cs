@@ -28,20 +28,17 @@ public partial class ItemWeapon : Item
     ///     Maximum amount of ammo in one magazine (or equivalent).
     ///     -1 means that the weapon doesn't have any magazine (melee weapon).
     /// </summary>
-    [Net]
-    public int MaxAmmo { get; set; }
+    [Net] public int MaxAmmo { get; set; }
 
     /// <summary>
     ///     Current amount of ammo in the current magazine.
     /// </summary>
-    [Net]
-    public int CurrentAmmo { get; set; }
+    [Net] public int CurrentAmmo { get; set; }
 
     /// <summary>
     ///     Time that the weapon will take to reload.
     /// </summary>
-    [Net]
-    public float ReloadTime { get; set; }
+    [Net] public float ReloadTime { get; set; }
 
     [Net] protected TimeSince TimeSincePrimaryAttack { get; set; }
     [Net] protected bool IsReloading { get; set; }
@@ -54,13 +51,7 @@ public partial class ItemWeapon : Item
     {
         base.OnUsePrimary(sslPlayer, target);
 
-        if (CanPrimaryAttack())
-            AttackPrimary();
-        else if (CurrentAmmo == 0 && MaxAmmo > 0)
-            using (Prediction.Off())
-            {
-                DryFireEffects();
-            }
+        if (CanPrimaryAttack()) AttackPrimary();
     }
 
     public override void Simulate(Client cl)
@@ -97,9 +88,6 @@ public partial class ItemWeapon : Item
         if (!Owner.IsValid())
             return false;
 
-        if (CurrentAmmo <= 0 && MaxAmmo >= 0 || IsReloading)
-            return false;
-
         if (PrimaryRate <= 0)
             return true;
 
@@ -111,12 +99,23 @@ public partial class ItemWeapon : Item
         TimeSincePrimaryAttack = 0;
 
         //TODO SSL-382: Bullet to class
-        ShootBullet(0.05f, 1.5f, 3.0f);
-        ConsumeAmmo();
 
-        using (Prediction.Off())
+        if (CurrentAmmo == 0 && MaxAmmo > 0)
         {
-            FireEffects();
+            using (Prediction.Off())
+            {
+                DryFireEffects();
+            }
+        }
+        else
+        {
+            ShootBullet(BulletSpread, BulletForce, BulletSize);
+            ConsumeAmmo();
+
+            using (Prediction.Off())
+            {
+                FireEffects();
+            }
         }
     }
 

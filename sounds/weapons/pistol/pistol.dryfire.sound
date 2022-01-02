@@ -10,7 +10,7 @@
 		distancemax = 2000.0
 		sounds = 
 		[
-			"weapons/pistol-dryfire.vsnd",
+			"weapons/rust_pistol/sound/revolver-dryfire.vsnd",
 		]
 		selectionmode = "3"
 	}
