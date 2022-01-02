@@ -27,6 +27,9 @@ public class ItemKey : Item
                 // Check if a restrain is here and try his lock
                 if (null != restrained.Restrain && !restrained.Restrain.Lock.Open(KeyCode)) return;
 
+                ItemRestrain itemRestrain = restrained.Restrain;
+                sslPlayer.Inventory.Add(itemRestrain);
+                
                 // Resolve the restrain
                 targetPlayer.StatusHandler.ResolveStatus<Restrained>();
             }
