@@ -8,20 +8,4 @@ namespace ssl.Modules;
 /// </summary>
 public abstract class WorldEntity : AnimEntity
 {
-    private string model;
-
-    protected WorldEntity()
-    {
-        Model = "";
-    }
-
-    public string Model
-    {
-        get => model;
-        set
-        {
-            model = value;
-            SetModel(model);
-        }
-    }
 }

@@ -1,6 +1,8 @@
+using Sandbox;
 using ssl.Commons;
 using ssl.Modules.Props.Data;
 using ssl.Modules.Props.Instances;
+using Prop = ssl.Modules.Props.Instances.Prop;
 
 namespace ssl.Modules.Props;
 
@@ -29,7 +31,7 @@ public class PropFactory : IFactory<Prop>
 
         prop.Id = propData.Id;
         prop.Name = propData.Name;
-        prop.Model = propData.Model;
+        prop.Model = Model.Load(propData.Model);
         return prop;
     }
 }

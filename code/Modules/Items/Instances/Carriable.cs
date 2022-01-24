@@ -76,10 +76,10 @@ public class Carriable : WorldEntity
     /// </summary>
     private bool CanBeBoneMerged(Entity ent)
     {
-        Model model = GetModel();
+        Model model = Model;
         if (model.IsError || ent is not ModelEntity entity) return false;
 
-        Model entityModel = entity.GetModel();
+        Model entityModel = entity.Model;
 
         // List all bone names from parent entity
         List<string> entityBoneNames = new();

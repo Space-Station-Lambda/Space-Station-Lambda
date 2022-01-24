@@ -65,7 +65,7 @@ public class HandViewModel : AnimEntity
         Host.AssertClient();
         HoldingEntity?.Delete();
         HoldingEntity = new AnimEntity { UsePhysicsCollision = false, EnableViewmodelRendering = true, Owner = this };
-        HoldingEntity.SetModel(entity.GetModel());
+        HoldingEntity.Model = entity.Model;
         HoldingEntity.SetParent(this, true);
     }
 
