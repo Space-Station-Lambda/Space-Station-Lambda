@@ -51,6 +51,17 @@ public partial class PlayerInventory : Inventory
         return droppedItem;
     }
 
+    public override void RemoveItem(Item item)
+    {
+        if (HoldingItem == item)
+        {
+            HoldingItem.OnCarryDrop(SslPlayer);
+            HoldingItem.ActiveEnd(SslPlayer, false);
+        }
+        base.RemoveItem(item);
+    }
+
+
     /// <summary>
     ///     Adds an ItemStack to a preferred position in the inventory.
     /// </summary>
@@ -70,9 +81,12 @@ public partial class PlayerInventory : Inventory
         return destinationSlot;
     }
 
-    public void UsePrimary()
+    public void UsePrimary(bool pressed)
     {
-        HoldingItem?.OnUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
+        if (pressed)
+            HoldingItem?.OnPressedUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
+        else
+            HoldingItem?.OnDownUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
     }
 
     public void UseSecondary()

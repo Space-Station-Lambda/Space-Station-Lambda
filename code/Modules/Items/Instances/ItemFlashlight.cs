@@ -68,9 +68,9 @@ public partial class ItemFlashlight : Item
         return light;
     }
 
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
-        base.OnUsePrimary(sslPlayer, target);
+        base.OnDownUsePrimary(sslPlayer, target);
 
         if (timeSinceLightToggled > 0.1f)
         {

@@ -47,9 +47,9 @@ public partial class ItemWeapon : Item
     protected TraceResult Hit { get; private set; }
     protected Entity HitEntity => Hit.Entity;
 
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
-        base.OnUsePrimary(sslPlayer, target);
+        base.OnDownUsePrimary(sslPlayer, target);
 
         if (CanPrimaryAttack()) AttackPrimary();
     }

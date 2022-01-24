@@ -30,17 +30,17 @@ public partial class Item : Carriable, IDraggable
 
     public void OnSelectStart(SslPlayer sslPlayer)
     {
-        if (Host.IsClient) GlowActive = true;
+        if (Host.IsClient && IsValid) GlowActive = true;
     }
 
     public void OnSelectStop(SslPlayer sslPlayer)
     {
-        if (Host.IsClient) GlowActive = false;
+        if (Host.IsClient && IsValid) GlowActive = false;
     }
 
     public void OnSelect(SslPlayer sslPlayer) { }
 
-    public void OnInteract(SslPlayer sslPlayer, int strength)
+    public virtual void OnInteract(SslPlayer sslPlayer, int strength)
     {
         sslPlayer.Inventory.Add(this);
     }
@@ -59,7 +59,8 @@ public partial class Item : Carriable, IDraggable
     /// <summary>
     ///     Called when a player use an Item.
     /// </summary>
-    public virtual void OnUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
+    public virtual void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
+    public virtual void OnPressedUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
 
     public virtual void OnUseSecondary(SslPlayer sslPlayer, ISelectable target) { }
 

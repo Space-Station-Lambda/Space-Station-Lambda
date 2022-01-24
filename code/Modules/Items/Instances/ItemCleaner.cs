@@ -15,7 +15,7 @@ public class ItemCleaner : Item
 
     public int CleaningValue { get; set; }
 
-	public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+	public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
 	{
 		if (target is Prop { Id: Identifiers.Props.BUCKET_ID })
 		{
