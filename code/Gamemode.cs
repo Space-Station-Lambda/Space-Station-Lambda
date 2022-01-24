@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Props;
@@ -87,8 +87,8 @@ public partial class Gamemode : Game
 
     public override void PostLevelLoaded()
     {
-        StartTickTimer();
-        StartSecondTimer();
+        _ = StartTickTimer();
+        _ = StartSecondTimer();
     }
 
     public override void OnVoicePlayed(long playerId, float level)
@@ -99,40 +99,24 @@ public partial class Gamemode : Game
     /// <summary>
     ///     Loop trigger OnSecond() each seconds.
     /// </summary>
-    private async void StartSecondTimer()
+    private async Task StartSecondTimer()
     {
         while (true)
         {
-            try
-            {
-                await Task.DelaySeconds(1);
-                OnSecond();
-            }
-            catch (Exception e)
-            {
-                // If we close the server we don't care about the Task
-                Log.Error(e);
-            }
+            await Task.DelaySeconds(1);
+            OnSecond();
         }
     }
 
     /// <summary>
     ///     Loop trigger OnTick() each tick.
     /// </summary>
-    private async void StartTickTimer()
+    private async Task StartTickTimer()
     {
         while (true)
         {
-            try
-            {
-                await Task.NextPhysicsFrame();
-                OnTick();
-            }
-            catch (Exception e)
-            {
-                // If we close the server we don't care about the Task
-                Log.Error(e);
-            }
+            await Task.NextPhysicsFrame();
+            OnTick();
         }
     }
 

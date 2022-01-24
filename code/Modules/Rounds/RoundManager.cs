@@ -27,7 +27,6 @@ public partial class RoundManager : BaseNetworkable
         CurrentRound = round;
         CurrentRound.Start();
         CurrentRound.RoundEndedEvent += OnRoundEnd;
-        //RoundStarted?.Invoke();
         Log.Info("Round " + CurrentRound.RoundName + " started");
     }
 
