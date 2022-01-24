@@ -82,6 +82,7 @@ public class InventoryBarSlot : Panel
         Model model = Model.Load(item.Model.Name);
         if (!model.IsError)
         {
+            sceneObject?.Delete();
             float scaleFactor = FocusSize.Length / model.RenderBounds.Size.Length;
             Transform modelTransform = new Transform()
                 .WithPosition(-model.PhysicsBounds.Center * scaleFactor)

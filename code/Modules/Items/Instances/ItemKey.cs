@@ -1,4 +1,5 @@
-﻿using ssl.Modules.Selection;
+﻿using System;
+using ssl.Modules.Selection;
 using ssl.Modules.Statuses.Types;
 using ssl.Player;
 
@@ -15,24 +16,43 @@ public class ItemKey : Item
 	/// </summary>
 	public string KeyCode { get; set; } = "";
 
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
-    {
-        base.OnUsePrimary(sslPlayer, target);
-        if (target is SslPlayer targetPlayer)
-        {
-            // Find the restrained status
-            Restrained restrained = targetPlayer.StatusHandler.GetStatus<Restrained>();
-            if (null != restrained)
-            {
-                // Check if a restrain is here and try his lock
-                if (null != restrained.Restrain && !restrained.Restrain.Lock.Open(KeyCode)) return;
+	public override void OnInteract(SslPlayer sslPlayer, int strength)
+	{
+		Restrained restrained = sslPlayer.StatusHandler.GetStatus<Restrained>();
+		if (restrained != null)
+		{
+			ItemRestrain itemRestrain = restrained.Restrain;
+			if (itemRestrain?.Lock.Open(KeyCode) != true) return;
+			
+			sslPlayer.StatusHandler.ResolveStatus<Restrained>();
+			sslPlayer.Inventory.Add(itemRestrain);
+			
+			Delete();
+		}
+		else
+		{
+			base.OnInteract(sslPlayer, strength);
+		}
+	}
 
-                ItemRestrain itemRestrain = restrained.Restrain;
-                sslPlayer.Inventory.Add(itemRestrain);
-                
-                // Resolve the restrain
-                targetPlayer.StatusHandler.ResolveStatus<Restrained>();
-            }
-        }
+	public override void OnPressedUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    {
+        base.OnDownUsePrimary(sslPlayer, target);
+        
+        if (target is not SslPlayer targetPlayer) return;
+
+        // Find the restrained status
+        Restrained restrained = targetPlayer.StatusHandler.GetStatus<Restrained>();
+        
+        // Check if a restrain is here and try his lock
+        ItemRestrain itemRestrain = restrained?.Restrain;
+        if (itemRestrain?.Lock.Open(KeyCode) != true) return;
+        
+        sslPlayer.Inventory.Add(itemRestrain);
+        itemRestrain.Key = null;
+        // Resolve the restrain
+        targetPlayer.StatusHandler.ResolveStatus<Restrained>();
+
+        Delete();
     }
 }

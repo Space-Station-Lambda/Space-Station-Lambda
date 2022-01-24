@@ -101,7 +101,7 @@ public partial class Inventory : EntityComponent
         return removedItem;
     }
 
-    public void RemoveItem(Item item)
+    public virtual void RemoveItem(Item item)
     {
         foreach (Slot slot in Slots.Where(slot => slot.Item == item))
         {

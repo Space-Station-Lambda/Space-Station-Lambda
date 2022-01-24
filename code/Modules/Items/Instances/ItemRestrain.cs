@@ -17,29 +17,29 @@ public class ItemRestrain : Item
     }
 
     public Lock Lock { get; }
+    public ItemKey Key { get; set; }
 
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    public override void OnPressedUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
-        base.OnUsePrimary(sslPlayer, target);
-        
+        base.OnPressedUsePrimary(sslPlayer, target); 
         Host.AssertServer();
-        
+                                                            
         // Get the player selected and restrain him
-        if (target is SslPlayer targetPlayer)
-        {
-            AttachToPlayer(targetPlayer);
-            
-            ItemKey key = (ItemKey) ItemFactory.Instance.Create(Identifiers.HANDCUFFS_KEY_ID);
-            key.KeyCode = Lock.Key;
-            sslPlayer.Inventory.Add(key);
-        }
+        if (target is not SslPlayer targetPlayer || Key.IsValid()) return;
+        
+        AttachToPlayer(sslPlayer, targetPlayer);
+
+        Key = (ItemKey) ItemFactory.Instance.Create(Identifiers.HANDCUFFS_KEY_ID);
+        Key.KeyCode = Lock.Key;
+        sslPlayer.Inventory.Add(Key);
     }
 
-    public void AttachToPlayer(SslPlayer target)
-    {
-        ActiveEnd(target, false);
+    public void AttachToPlayer(SslPlayer holder, SslPlayer target)
+    {        
+        holder.Inventory.RemoveItem(this);
         OnCarryStart(target);
-        
+        EnableDrawing = true;
+
         Restrained handcuffedStatus = (Restrained) StatusFactory.Instance.Create(Identifiers.RESTRAINED_ID);
         handcuffedStatus.Restrain = this;
         

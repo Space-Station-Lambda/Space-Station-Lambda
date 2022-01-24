@@ -24,9 +24,9 @@ public class ItemTrashBag : Item
     /// <summary>
     ///     Using the trash bag on an item on ground will add it to the trash bag
     /// </summary>
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
-        base.OnUsePrimary(sslPlayer, target);
+        base.OnDownUsePrimary(sslPlayer, target);
         if (sslPlayer.Dragger.Selected is Item item) AddToTrashBag(item);
     }
 

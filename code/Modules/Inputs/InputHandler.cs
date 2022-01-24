@@ -63,7 +63,8 @@ public class InputHandler : EntityComponent<SslPlayer>
             if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
 
             // Primary Action
-            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary();
+            if (Input.Pressed(InputButton.Attack1)) Entity.Inventory.UsePrimary(true);
+            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary(false);
 
             // Secondary Action and drag
             if (Input.Down(InputButton.Attack2))
@@ -76,6 +77,11 @@ public class InputHandler : EntityComponent<SslPlayer>
             }
 
             if (Input.Released(InputButton.Attack2)) Entity.Dragger.StopDrag();
+        }
+        else if (Entity.Dragger.Selected is ItemKey)
+        {
+            // Default usage with the use button
+            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
         }
     }
 }

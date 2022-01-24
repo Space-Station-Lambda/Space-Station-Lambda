@@ -16,7 +16,7 @@ public partial class ItemFood : Item
     /// <summary>
     ///     First version, food feeds up the player on use
     /// </summary>
-    public override void OnUsePrimary(SslPlayer sslPlayer, ISelectable target)
+    public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
         OnCarryDrop(this);
         ActiveEnd(sslPlayer, false);
