@@ -91,7 +91,8 @@ public class RoleDao : LocalDao<RoleData>
             },
             StartingItems = new HashSet<string>
             {
-                Identifiers.Items.PISTOL_ID
+                Identifiers.Items.PISTOL_ID,
+                Identifiers.Items.HANDCUFFS_ID
             },
             Skills = new Dictionary<string, int>
             {
