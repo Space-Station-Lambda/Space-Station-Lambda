@@ -71,7 +71,7 @@ public class Role : BaseNetworkable
     /// </summary>
     public virtual void OnKilled(SslPlayer sslPlayer)
     {
-        sslPlayer.RoleHandler.AssignRole(RoleFactory.Instance.Create(Identifiers.GHOST_ID));
+        sslPlayer.RoleHandler.AssignRole(RoleFactory.Instance.Create(Identifiers.Roles.GHOST_ID));
         sslPlayer.Respawn(sslPlayer.Position, sslPlayer.Rotation);
     }
 

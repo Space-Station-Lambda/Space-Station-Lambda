@@ -21,37 +21,37 @@ public class ItemDao : LocalDao<ItemData>
         Log.Info("Load items..");
 
         // Items
-        Save(new ItemData(Identifiers.CLEANING_SPRAY_ID)
+        Save(new ItemData(Identifiers.Items.CLEANING_SPRAY_ID)
         {
             Name = "Cleaning Spray",
             Description = "A spray to clean stuff"
         });
-        Save(new ItemData(Identifiers.FLASHLIGHT_ID)
+        Save(new ItemData(Identifiers.Items.FLASHLIGHT_ID)
         {
             Name = "Flashlight",
             Description = "A flashlight, close your eyes"
         });
 
-        Save(new ItemData(Identifiers.BIN_BAG_ID)
+        Save(new ItemData(Identifiers.Items.BIN_BAG_ID)
         {
             Name = "Bin Bag",
             Description = "Collect your best trash here!"
         });
 
         // Foods
-        Save(new ItemFoodData(Identifiers.BANANA_ID)
+        Save(new ItemFoodData(Identifiers.Items.BANANA_ID)
         {
             Name = "Banana",
             Description = "A Banana",
             FeedingValue = 10
         });
-        Save(new ItemFoodData(Identifiers.APPLE_ID)
+        Save(new ItemFoodData(Identifiers.Items.APPLE_ID)
         {
             FeedingValue = 9
         });
 
         // Weapons
-        Save(new ItemWeaponData(Identifiers.PISTOL_ID)
+        Save(new ItemWeaponData(Identifiers.Items.PISTOL_ID)
         {
             Name = "Pistol",
             Description = "A pistol",
@@ -67,7 +67,7 @@ public class ItemDao : LocalDao<ItemData>
             ReloadSound = "pistol.reload",
             MuzzleFlashParticle = "particles/pistol_muzzleflash.vpcf"
         });
-        Save(new ItemWeaponData(Identifiers.TASER_ID)
+        Save(new ItemWeaponData(Identifiers.Items.TASER_ID)
         {
             Name = "Taser",
             Description = "Can be used to take down people. Hey you up there, come back here !",
@@ -81,14 +81,14 @@ public class ItemDao : LocalDao<ItemData>
         });
 
         // Cleaners
-        Save(new ItemCleanerData(Identifiers.SPONGE_ID)
+        Save(new ItemCleanerData(Identifiers.Items.SPONGE_ID)
         {
             Name = "Sponge",
             Description = "A sponge",
             CleaningValue = 10
         });
 
-        Save(new ItemCleanerData(Identifiers.MOP_ID)
+        Save(new ItemCleanerData(Identifiers.Items.MOP_ID)
         {
             Name = "Mop",
             Description = "A mop ?",

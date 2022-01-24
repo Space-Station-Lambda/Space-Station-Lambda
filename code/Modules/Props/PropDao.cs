@@ -17,25 +17,25 @@ public class PropDao : LocalDao<PropData>
         Log.Info("Load props..");
 
         // Items
-        Save(new PropData(Identifiers.BALLOON_ID)
+        Save(new PropData(Identifiers.Props.BALLOON_ID)
         {
             Name = "Ballon",
             Model = "models/citizen_props/balloonheart01.vmdl_c"
         });
 
-        Save(new PropData(Identifiers.BUCKET_ID)
+        Save(new PropData(Identifiers.Props.BUCKET_ID)
         {
             Name = "Bucket",
             Model = "models/props/bucket/bucket.vmdl"
         });
 
-        Save(new PropData(Identifiers.STAIN_ID)
+        Save(new PropData(Identifiers.Props.STAIN_ID)
         {
             Name = "Stain",
             Model = ""
         });
 
-        Save(new PropData(Identifiers.WET_FLOOR_SIGN_ID)
+        Save(new PropData(Identifiers.Props.WET_FLOOR_SIGN_ID)
         {
             Name = "Wet Floor sign",
             Model = "models/props/wet_floor_sign/wet_floor_sign.vmdl",

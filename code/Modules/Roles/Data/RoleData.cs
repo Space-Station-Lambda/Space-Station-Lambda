@@ -20,7 +20,7 @@ public class RoleData : BaseData
     /// </summary>
     public string Description { get; set; }
 
-    public string Type { get; set; } = Identifiers.PROTAGONIST_TYPE;
+    public string Type { get; set; } = Identifiers.Roles.PROTAGONIST_TYPE;
 
     /// <summary>
     ///     Model of the role

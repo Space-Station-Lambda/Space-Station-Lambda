@@ -17,7 +17,7 @@ public class RoleDao : LocalDao<RoleData>
     {
         Log.Info("Load roles...");
 
-        Save(new RoleData(Identifiers.ASSISTANT_ID)
+        Save(new RoleData(Identifiers.Roles.ASSISTANT_ID)
         {
             Available = true,
             Name = "Assistant",
@@ -30,22 +30,22 @@ public class RoleDao : LocalDao<RoleData>
             },
             StartingItems = new HashSet<string>
             {
-                Identifiers.APPLE_ID
+                Identifiers.Items.APPLE_ID
             },
             Skills = new Dictionary<string, int>
             {
                 {
-                    Identifiers.CLEANING_ID,
+                    Identifiers.Skills.CLEANING_ID,
                     30
                 },
                 {
-                    Identifiers.SPEED_ID,
+                    Identifiers.Skills.SPEED_ID,
                     60
                 }
             }
         });
 
-        Save(new RoleData(Identifiers.JANITOR_ID)
+        Save(new RoleData(Identifiers.Roles.JANITOR_ID)
         {
             Available = true,
             Name = "Janitor",
@@ -60,24 +60,24 @@ public class RoleDao : LocalDao<RoleData>
             },
             StartingItems = new HashSet<string>
             {
-                Identifiers.MOP_ID,
-                Identifiers.SPONGE_ID,
-                Identifiers.CLEANING_SPRAY_ID
+                Identifiers.Items.MOP_ID,
+                Identifiers.Items.SPONGE_ID,
+                Identifiers.Items.CLEANING_SPRAY_ID
             },
             Skills = new Dictionary<string, int>
             {
                 {
-                    Identifiers.CLEANING_ID,
+                    Identifiers.Skills.CLEANING_ID,
                     99
                 },
                 {
-                    Identifiers.SPEED_ID,
+                    Identifiers.Skills.SPEED_ID,
                     50
                 }
             }
         });
 
-        Save(new RoleData(Identifiers.GUARD_ID)
+        Save(new RoleData(Identifiers.Roles.GUARD_ID)
         {
             Available = true,
             Name = "Guard",
@@ -91,26 +91,26 @@ public class RoleDao : LocalDao<RoleData>
             },
             StartingItems = new HashSet<string>
             {
-                Identifiers.PISTOL_ID
+                Identifiers.Items.PISTOL_ID
             },
             Skills = new Dictionary<string, int>
             {
                 {
-                    Identifiers.STRENGTH_ID,
+                    Identifiers.Skills.STRENGTH_ID,
                     50
                 },
                 {
-                    Identifiers.SPEED_ID,
+                    Identifiers.Skills.SPEED_ID,
                     40
                 }
             }
         });
 
-        Save(new RoleData(Identifiers.TRAITOR_ID)
+        Save(new RoleData(Identifiers.Roles.TRAITOR_ID)
         {
             Name = "Traitor",
             Description = "Traitor",
-            Type = Identifiers.ANTAGONIST_TYPE,
+            Type = Identifiers.Roles.ANTAGONIST_TYPE,
             Clothing = new HashSet<string>
             {
                 "models/citizen_clothes/trousers/trousers.smart.vmdl",
@@ -120,11 +120,11 @@ public class RoleDao : LocalDao<RoleData>
             }
         });
 
-        Save(new RoleData(Identifiers.GHOST_ID)
+        Save(new RoleData(Identifiers.Roles.GHOST_ID)
         {
             Name = "Ghost",
             Description = "Ghost",
-            Type = Identifiers.OTHER_TYPE,
+            Type = Identifiers.Roles.OTHER_TYPE,
             Clothing = new HashSet<string>
             {
                 "models/citizen_clothes/trousers/trousers.smart.vmdl",

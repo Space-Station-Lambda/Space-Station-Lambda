@@ -23,7 +23,7 @@ public class StainHandler : EntityComponent
     private void GenerateStain()
     {
         PropFactory factory = PropFactory.Instance;
-        Prop stain = factory.Create(Identifiers.STAIN_ID);
+        Prop stain = factory.Create(Identifiers.Props.STAIN_ID);
         stain.Position = Entity.Position;
     }
 }

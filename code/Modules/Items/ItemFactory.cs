@@ -44,7 +44,7 @@ public sealed class ItemFactory : IFactory<Item>
     {
         ItemWeapon itemWeapon = itemWeaponData.Id switch
         {
-            Identifiers.TASER_ID => new ItemTaser(),
+            Identifiers.Items.TASER_ID => new ItemTaser(),
             _ => new ItemWeapon()
         };
 

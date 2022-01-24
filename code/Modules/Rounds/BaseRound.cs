@@ -12,7 +12,7 @@ public abstract partial class BaseRound : BaseNetworkable
 {
     protected BaseRound()
     {
-        Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.BASE_SCENARIO_ID);
+        Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.Scenarios.BASE_SCENARIO_ID);
         RoleDistributor = new RoleDistributor(scenario, Players);
     }
 

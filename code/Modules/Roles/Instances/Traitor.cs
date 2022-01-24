@@ -10,7 +10,7 @@ public class Traitor : Role
     public override void OnAssigned(SslPlayer sslPlayer)
     {
         base.OnAssigned(sslPlayer);
-        sslPlayer.RoleHandler.SetPreference(Identifiers.TRAITOR_ID, RolePreferenceType.Never);
+        sslPlayer.RoleHandler.SetPreference(Identifiers.Roles.TRAITOR_ID, RolePreferenceType.Never);
         string defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
         string secondaryRoleId =
             Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer).Equals("")

@@ -16,7 +16,7 @@ public class ScenarioDao : LocalDao<ScenarioData>
     {
         Log.Info("Loading scenarios...");
 
-        Save(new ScenarioData(Identifiers.BASE_SCENARIO_ID)
+        Save(new ScenarioData(Identifiers.Scenarios.BASE_SCENARIO_ID)
         {
             Constraints = new Dictionary<int, List<ScenarioConstraint>>
             {
@@ -24,15 +24,15 @@ public class ScenarioDao : LocalDao<ScenarioData>
                     2,
                     new List<ScenarioConstraint>
                     {
-                        new(Identifiers.GUARD_ID, 1, 1)
+                        new(Identifiers.Roles.GUARD_ID, 1, 1)
                     }
                 },
                 {
                     3,
                     new List<ScenarioConstraint>
                     {
-                        new(Identifiers.TRAITOR_ID, 1, 1),
-                        new(Identifiers.GUARD_ID, 2, 3)
+                        new(Identifiers.Roles.TRAITOR_ID, 1, 1),
+                        new(Identifiers.Roles.GUARD_ID, 2, 3)
                     }
                 }
             }

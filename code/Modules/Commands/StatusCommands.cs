@@ -12,6 +12,6 @@ public class StatusCommands
     {
         Client sender = ConsoleSystem.Caller;
         SslPlayer sslPlayer = (SslPlayer) sender.Pawn;
-        sslPlayer.StatusHandler.ApplyStatus(StatusFactory.Instance.Create(Identifiers.SICKNESS_ID));
+        sslPlayer.StatusHandler.ApplyStatus(StatusFactory.Instance.Create(Identifiers.Statuses.SICKNESS_ID));
     }
 }

@@ -10,7 +10,7 @@ namespace ssl.Modules.Roles;
 public class RoleDistributor
 {
     private readonly IList<SslPlayer> players;
-    public string DefaultRole = Identifiers.ASSISTANT_ID;
+    public string DefaultRole = Identifiers.Roles.ASSISTANT_ID;
     public Scenario Scenario;
 
     public RoleDistributor(Scenario scenario, IList<SslPlayer> players)

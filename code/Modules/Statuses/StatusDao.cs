@@ -20,14 +20,14 @@ public class StatusDao : LocalDao<StatusData>
         Log.Info("Load items..");
 
         // Statuses
-        Save(new SicknessData(Identifiers.SICKNESS_ID)
+        Save(new SicknessData(Identifiers.Statuses.SICKNESS_ID)
         {
             Name = "Sickness",
             Description = "I'm not feeling... well",
             Duration = 60
         });
 
-        Save(new RestrainedData(Identifiers.RESTRAINED_ID)
+        Save(new RestrainedData(Identifiers.Statuses.RESTRAINED_ID)
         {
             Name = "Restrained",
             Description = "I'm an innocent, I swear !",
