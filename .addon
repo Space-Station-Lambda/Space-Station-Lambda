@@ -1,3 +1,13 @@
 {
-	"sharedassets": "*.*"
+  "SharedAssets": "*.*",
+  "Title": "Space Station Lambda",
+  "Type": "game",
+  "Org": "local",
+  "Ident": "ssl",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "HasCode": true,
+  "CodePath": "code",
+  "RootNamespace": "Sandbox"
 }
