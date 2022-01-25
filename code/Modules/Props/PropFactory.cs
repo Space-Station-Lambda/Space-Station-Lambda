@@ -26,6 +26,14 @@ public class PropFactory : IFactory<Prop>
                 Durability = propMachineData.Durability
             },
             PropTrashBinData propTrashBinData => new PropTrashBin(),
+            PropLightData propLightData => new PropLight
+            {
+                Color = propLightData.Color,
+                Brightness = propLightData.Brightness,
+                Range = propLightData.Range,
+                InnerConeAngle = propLightData.InnerConeAngle,
+                OuterConeAngle = propLightData.OuterConeAngle
+            },
 			_ => new Prop()
 		};
 
