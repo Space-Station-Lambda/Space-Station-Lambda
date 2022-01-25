@@ -12,7 +12,7 @@ public class InputHandler : EntityComponent<SslPlayer>
     public void CheckControls()
     {
         // If the player don't drag anything
-        if (null == Entity.Dragger.Dragged || Entity.StatusHandler.GetStatus(Identifiers.RESTRAINED_ID) != null)
+        if (null == Entity.Dragger.Dragged || Entity.StatusHandler.GetStatus(Identifiers.Statuses.RESTRAINED_ID) != null)
         {
             if (Input.Pressed(InputButton.Slot1)) Entity.Inventory.ProcessHolding(0);
 
@@ -57,7 +57,7 @@ public class InputHandler : EntityComponent<SslPlayer>
         if (Input.Pressed(InputButton.Flashlight)) Entity.RagdollHandler.StartRagdoll();
 
 
-        if (Entity.StatusHandler.GetStatus(Identifiers.RESTRAINED_ID) == null)
+        if (Entity.StatusHandler.GetStatus(Identifiers.Statuses.RESTRAINED_ID) == null)
         {
             // Default usage with the use button
             if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();

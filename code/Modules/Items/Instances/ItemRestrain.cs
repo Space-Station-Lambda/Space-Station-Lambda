@@ -29,7 +29,7 @@ public class ItemRestrain : Item
         
         AttachToPlayer(sslPlayer, targetPlayer);
 
-        Key = (ItemKey) ItemFactory.Instance.Create(Identifiers.HANDCUFFS_KEY_ID);
+        Key = (ItemKey) ItemFactory.Instance.Create(Identifiers.Items.HANDCUFFS_KEY_ID);
         Key.KeyCode = Lock.Key;
         sslPlayer.Inventory.Add(Key);
     }
@@ -40,7 +40,7 @@ public class ItemRestrain : Item
         OnCarryStart(target);
         EnableDrawing = true;
 
-        Restrained handcuffedStatus = (Restrained) StatusFactory.Instance.Create(Identifiers.RESTRAINED_ID);
+        Restrained handcuffedStatus = (Restrained) StatusFactory.Instance.Create(Identifiers.Statuses.RESTRAINED_ID);
         handcuffedStatus.Restrain = this;
         
         target.StatusHandler.ApplyStatus(handcuffedStatus);
