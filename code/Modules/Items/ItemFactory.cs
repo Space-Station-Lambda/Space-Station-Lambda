@@ -44,8 +44,8 @@ public sealed class ItemFactory : IFactory<Item>
     {
         Item item = itemData.Id switch
         {
-            Identifiers.HANDCUFFS_ID => new ItemRestrain(),
-            Identifiers.HANDCUFFS_KEY_ID => new ItemKey(),
+            Identifiers.Items.HANDCUFFS_ID => new ItemRestrain(),
+            Identifiers.Items.HANDCUFFS_KEY_ID => new ItemKey(),
             _ => new Item()
         };
 
