@@ -16,7 +16,7 @@ public class PropDao : LocalDao<PropData>
     {
         Log.Info("Load props..");
 
-        // Items
+        // Props
         Save(new PropData(Identifiers.Props.BALLOON_ID)
         {
             Name = "Ballon",

@@ -15,6 +15,7 @@ public static class Identifiers
         public const string BUCKET_ID = "bucket";
         public const string STAIN_ID = "strain";
         public const string WET_FLOOR_SIGN_ID = "wet_floor_sign";
+        public const string LIGHT_ID = "light";
     }
 
     public class Items
