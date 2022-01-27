@@ -82,6 +82,16 @@ public abstract class LocalDao<T> : IDao<T> where T : BaseData
     }
 
     /// <summary>
+    /// Returns the presence of an id in the DAO.
+    /// </summary>
+    /// <param name="id">The id to search in the storage.</param>
+    /// <returns>true if the id is registered, false otherwise.</returns>
+    public bool ContainsId(string id)
+    {
+        return All.ContainsKey(id);
+    }
+
+    /// <summary>
     ///     Load data and create the local storage
     /// </summary>
     protected abstract void LoadAll();

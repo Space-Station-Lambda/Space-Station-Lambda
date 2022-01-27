@@ -8,5 +8,6 @@ public interface IDao<T> where T : BaseData
     T FindById(string id);
     T[] FindAll();
     string[] FindAllIds();
+    bool ContainsId(string id);
     int Count { get; }
 }

@@ -1,6 +1,7 @@
 using System.Runtime.CompilerServices;
 using Sandbox;
 using Sandbox.UI;
+using ssl.Modules.Props.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
 
@@ -108,5 +109,23 @@ public partial class PropLight : Prop, IElectrical
         }
 
         return null;
+    }
+
+    private protected override void SaveToDao()
+    {        
+        if (!CanSaveToDao(PropDao.Instance, this)) return;
+
+        PropLightData lightData = new(Id)
+        {
+            Name = Name,
+            Model = Model.Name,
+            Brightness = Brightness,
+            Color = Color,
+            Range = Range,
+            InnerConeAngle = InnerConeAngle,
+            OuterConeAngle = OuterConeAngle
+        };
+        
+        PropDao.Instance.Save(lightData);
     }
 }

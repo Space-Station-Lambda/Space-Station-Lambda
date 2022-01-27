@@ -97,8 +97,10 @@ public partial class Item : Carriable, IDraggable
         animator.SetParam(HANDEDNESS_KEY, 1);
     }
 
-    protected override void RegisterDao()
+    private protected override void SaveToDao()
     {
+        if (!CanSaveToDao(ItemDao.Instance, this)) return;
+
         ItemData itemData = new(Id)
         {
             Name = Name,
