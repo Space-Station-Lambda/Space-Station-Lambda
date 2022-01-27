@@ -9,6 +9,7 @@ using ssl.Modules.Skills;
 using ssl.Modules.Statuses;
 using ssl.Player;
 using ssl.Ui;
+using WorldEntity = ssl.Modules.WorldEntity;
 
 namespace ssl;
 
@@ -54,6 +55,20 @@ public partial class Gamemode : Game
         LoadDatabase();
     }
 
+    
+    
+    private void RegisterWorldEntities()
+    {
+        Log.Info("Registering all world entities in DAOs...");
+        foreach (Entity entity in All)
+        {
+            if (entity is WorldEntity worldEntity)
+            {
+                worldEntity.RegisterDao();
+            }
+        }
+    }
+
     private void LoadDatabase()
     {
         Log.Info("Load database...");
@@ -89,6 +104,7 @@ public partial class Gamemode : Game
 
     public override void PostLevelLoaded()
     {
+        RegisterWorldEntities();
         _ = StartTickTimer();
         _ = StartSecondTimer();
     }

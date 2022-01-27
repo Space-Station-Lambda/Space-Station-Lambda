@@ -9,8 +9,6 @@ public abstract class Carriable : WorldEntity
 
     public override void Spawn()
     {
-        base.Spawn();
-        
         SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
         MoveType = MoveType.Physics;
         CollisionGroup = CollisionGroup.Weapon;

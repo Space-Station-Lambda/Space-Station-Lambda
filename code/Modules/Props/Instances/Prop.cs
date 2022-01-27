@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Modules.Props.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
 
@@ -10,8 +11,6 @@ namespace ssl.Modules.Props.Instances;
 /// </summary>
 public class Prop : WorldEntity, ISelectable
 {
-    public string Id { get; set; }
-
     public virtual void OnSelectStart(SslPlayer sslPlayer) { }
 
     public virtual void OnSelectStop(SslPlayer sslPlayer) { }
@@ -22,12 +21,24 @@ public class Prop : WorldEntity, ISelectable
 
     public override void Spawn()
     {
-        base.Spawn();
-
         SetupPhysicsFromModel(PhysicsMotionType.Static);
         PhysicsEnabled = false;
         CollisionGroup = CollisionGroup.Interactive;
         EnableHideInFirstPerson = true;
         EnableShadowInFirstPerson = true;
+    }
+
+    private protected override void SaveToDao()
+    {
+        if (!CanSaveToDao(PropDao.Instance, this)) return;
+            
+        PropData propData = new(Id)
+        {
+            Name = Name,
+            IsPhysical = false,
+            Model = Model.Name
+        };
+        
+        PropDao.Instance.Save(propData);
     }
 }
