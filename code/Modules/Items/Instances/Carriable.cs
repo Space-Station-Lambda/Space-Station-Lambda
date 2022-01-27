@@ -3,12 +3,14 @@ using Sandbox;
 
 namespace ssl.Modules.Items.Instances;
 
-public class Carriable : WorldEntity
+public abstract class Carriable : WorldEntity
 {
     private const string DEFAULT_ATTACHMENT_OR_BONE = "hold_R";
 
-    protected Carriable()
+    public override void Spawn()
     {
+        base.Spawn();
+        
         SetupPhysicsFromModel(PhysicsMotionType.Dynamic);
         MoveType = MoveType.Physics;
         CollisionGroup = CollisionGroup.Weapon;

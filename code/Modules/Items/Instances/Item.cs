@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
 using ssl.Player.Animators;
@@ -10,6 +11,7 @@ namespace ssl.Modules.Items.Instances;
 ///     It is both the item in inventory and the world entity.
 ///     This class is used clientside and server side so properties useful clientside should be [Net].
 /// </summary>
+[Library("ssl_item")]
 public partial class Item : Carriable, IDraggable
 {
     public const string TAG = "Item";
@@ -17,16 +19,19 @@ public partial class Item : Carriable, IDraggable
     protected const string HOLD_TYPE_KEY = "holdtype";
     protected const string HANDEDNESS_KEY = "holdtype_handedness";
 
-    public Item()
+    public override void Spawn()
     {
+        base.Spawn();
+        
         Tags.Add(TAG);
         GlowColor = Color.Blue;
     }
 
-    [Net] public string Id { get; set; }
-    [Net] public string Description { get; set; }
-    [Net] public string WasteId { get; set; }
-    [Net] public HoldType HoldType { get; set; }
+    [Net, Property] public string Description { get; set; }
+
+    [Net, Property] public string WasteId { get; set; }
+
+    [Net, Property] public HoldType HoldType { get; set; }
 
     public void OnSelectStart(SslPlayer sslPlayer)
     {
@@ -60,6 +65,7 @@ public partial class Item : Carriable, IDraggable
     ///     Called when a player use an Item.
     /// </summary>
     public virtual void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
+
     public virtual void OnPressedUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
 
     public virtual void OnUseSecondary(SslPlayer sslPlayer, ISelectable target) { }
@@ -89,5 +95,19 @@ public partial class Item : Carriable, IDraggable
     {
         animator.SetParam(HOLD_TYPE_KEY, (int) HoldType);
         animator.SetParam(HANDEDNESS_KEY, 1);
+    }
+
+    protected override void RegisterDao()
+    {
+        ItemData itemData = new(Id)
+        {
+            Name = Name,
+            Description = Description,
+            HoldType = HoldType,
+            Model = Model.Name,
+            WasteId = WasteId
+        };
+        
+        ItemDao.Instance.Save(itemData);
     }
 }
