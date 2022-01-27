@@ -6,6 +6,7 @@ using ssl.Modules.Roles;
 using ssl.Modules.Rounds;
 using ssl.Modules.Scenarios;
 using ssl.Modules.Skills;
+using ssl.Modules.Statuses;
 using ssl.Player;
 using ssl.Ui;
 
@@ -61,6 +62,7 @@ public partial class Gamemode : Game
         _ = ItemDao.Instance;
         _ = PropDao.Instance;
         _ = RoleDao.Instance;
+        _ = StatusDao.Instance;
         _ = ScenarioDao.Instance;
         _ = SkillDao.Instance;
     }

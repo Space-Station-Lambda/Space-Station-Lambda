@@ -20,6 +20,11 @@ public abstract class LocalDao<T> : IDao<T> where T : BaseData
     protected Dictionary<string, T> All { get; set; } = new();
 
     /// <summary>
+    ///     Count all data
+    /// </summary>
+    public int Count => All.Count;
+
+    /// <summary>
     ///     Save the new data to the local storage
     /// </summary>
     public void Save(T data)
@@ -74,14 +79,6 @@ public abstract class LocalDao<T> : IDao<T> where T : BaseData
     public string[] FindAllIds()
     {
         return All.Keys.ToArray();
-    }
-
-    /// <summary>
-    ///     Count all data
-    /// </summary>
-    public int Count()
-    {
-        return All.Count;
     }
 
     /// <summary>
