@@ -1,6 +1,0 @@
-@include "data.asset"
-
-@BaseClass base(data) = prop : "A prop"
-[
-  IsPhysical(bool): "Is physical" : "false"
-]

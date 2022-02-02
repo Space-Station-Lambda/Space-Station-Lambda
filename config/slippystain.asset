@@ -1,6 +1,0 @@
-@include "stain.asset"
-
-@BaseClass base(stain) = slippystain : "A Stain where players can slip"
-[
-  SlipProbability(float): "Slip Probability" : "0.5"
-]
