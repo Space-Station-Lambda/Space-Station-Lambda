@@ -1,7 +1,0 @@
-@include "item.asset"
-
-@BaseClass base(item) = food : "A Food"
-[
-  FeedingValue(int) : "Feeding Value" : "10"
-  WasteItem(string) : "Waste Item" : ""
-]

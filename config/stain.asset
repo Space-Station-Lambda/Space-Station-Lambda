@@ -1,6 +1,0 @@
-@include "prop.asset"
-
-@BaseClass base(prop) = stain : "A Stain"
-[
-  StainStrength(int): "Stain Strength" : "10"
-]
