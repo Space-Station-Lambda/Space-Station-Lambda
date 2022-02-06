@@ -45,7 +45,7 @@ public partial class Item : Carriable, IDraggable
 
     public void OnSelect(SslPlayer sslPlayer) { }
 
-    public virtual void OnInteract(SslPlayer sslPlayer, int strength)
+    public virtual void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit)
     {
         sslPlayer.Inventory.Add(this);
     }

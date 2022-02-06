@@ -34,7 +34,7 @@ public class Selector : EntityComponent<SslPlayer>
 
     public void UseSelected()
     {
-        Selected?.OnInteract(Entity, 1);
+        Selected?.OnInteract(Entity, 1, TraceResult);
     }
 
     private void StartSelection(ISelectable selectable)

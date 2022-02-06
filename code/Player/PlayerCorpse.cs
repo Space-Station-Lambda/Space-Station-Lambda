@@ -33,7 +33,7 @@ public partial class PlayerCorpse : ModelEntity, IDraggable
 
     public void OnSelect(SslPlayer sslPlayer) { }
 
-    public void OnInteract(SslPlayer sslPlayer, int strength) { }
+    public void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit) { }
 
     public void OnDragStart(SslPlayer sslPlayer) { }
 

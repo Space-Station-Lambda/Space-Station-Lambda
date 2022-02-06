@@ -1,8 +1,9 @@
-using ssl.Modules.Props.Instances;
+using Sandbox;
 using ssl.Constants;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
+using Prop = ssl.Modules.Props.Instances.Prop;
 
 namespace ssl.Modules.Items.Instances;
 
@@ -23,7 +24,8 @@ public class ItemCleaner : Item
 		}
 		else
 		{
-			target.OnInteract(sslPlayer, CleaningValue);
+			// TODO: Missing TraceResult
+			target.OnInteract(sslPlayer, CleaningValue, new TraceResult());
 		}
 	}
 

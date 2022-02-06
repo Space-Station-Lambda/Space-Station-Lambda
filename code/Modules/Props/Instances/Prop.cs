@@ -17,6 +17,11 @@ public class Prop : WorldEntity, ISelectable
 
     public virtual void OnSelect(SslPlayer sslPlayer) { }
 
+    public virtual void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit)
+    {
+        OnInteract(sslPlayer, strength);
+    }
+    
     public virtual void OnInteract(SslPlayer sslPlayer, int strength) { }
 
     public override void Spawn()
