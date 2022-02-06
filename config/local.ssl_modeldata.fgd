@@ -1,0 +1,16 @@
+//
+// ssl.Modules.Props.Instances.KeypadButton
+//
+@ModelGameData game_data_list( keypad_button_list ) 
+box
+{
+	"min_key" = "button_min"
+	"max_key" = "button_max"
+}
+= keypad_button : "Represents a button on a keypad via a box in the model and the string value that it represents."
+[
+	key_value(string) : "Key Value" :  : ""
+	button_min(vector) : "Box Min" :  : ""
+	button_max(vector) : "Box Max" :  : ""
+]
+
