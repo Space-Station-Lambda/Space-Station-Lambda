@@ -1,4 +1,5 @@
-﻿using ssl.Player;
+﻿using Sandbox;
+using ssl.Player;
 
 namespace ssl.Modules.Selection;
 
@@ -27,5 +28,6 @@ public interface ISelectable
 	/// </summary>
 	/// <param name="sslPlayer">The player who perform the action.</param>
 	/// <param name="strength">The power of the usage. For example if the player is skilled, he use more easily</param>
-	public void OnInteract(SslPlayer sslPlayer, int strength);
+	/// <param name="hit"></param>
+	public void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit);
 }

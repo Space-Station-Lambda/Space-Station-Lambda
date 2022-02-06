@@ -37,9 +37,9 @@ public class PropKeypad : Prop
         Buttons = Model.GetData<KeypadButton[]>();
     }
 
-    public override void OnInteract(SslPlayer sslPlayer, int strength)
+    public override void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit)
     {
-        base.OnInteract(sslPlayer, strength);
+        base.OnInteract(sslPlayer, strength, hit);
         Log.Info(Buttons.Length);
     }
 }

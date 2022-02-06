@@ -1,4 +1,5 @@
 ﻿using System;
+using Sandbox;
 using ssl.Modules.Selection;
 using ssl.Modules.Statuses.Types;
 using ssl.Player;
@@ -16,7 +17,7 @@ public class ItemKey : Item
 	/// </summary>
 	public string KeyCode { get; set; } = "";
 
-	public override void OnInteract(SslPlayer sslPlayer, int strength)
+	public override void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit)
 	{
 		Restrained restrained = sslPlayer.StatusHandler.GetStatus<Restrained>();
 		if (restrained != null)
@@ -31,7 +32,7 @@ public class ItemKey : Item
 		}
 		else
 		{
-			base.OnInteract(sslPlayer, strength);
+			base.OnInteract(sslPlayer, strength, hit);
 		}
 	}
 

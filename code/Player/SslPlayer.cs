@@ -59,7 +59,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 
     public void OnSelect(SslPlayer sslPlayer) { }
 
-    public void OnInteract(SslPlayer sslPlayer, int strength) { }
+    public void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit) { }
 
     public override void ClientSpawn()
     {
