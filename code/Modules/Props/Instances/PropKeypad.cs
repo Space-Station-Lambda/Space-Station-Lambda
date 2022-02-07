@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using System.Text.Json.Serialization;
 using Sandbox;
 using ssl.Player;
@@ -101,6 +101,19 @@ public partial class PropKeypad : Prop
     private KeypadButton GetButtonFromLocalPos(Vector3 localPos)
     {
         BBox hitBox = new(localPos);
-        return Buttons.FirstOrDefault(button => (button.BoundingBox * Transform.Scale).Contains(hitBox));
+        
+        foreach (KeypadButton button in Buttons)
+        {
+            Vector3 min = button.BoxMin * Transform.Rotation * Transform.Scale;
+            Vector3 max = button.BoxMax * Transform.Rotation * Transform.Scale;
+            
+            Vector3 adjMin = new(MathF.Min(min.x, max.x), MathF.Min(min.y, max.y), MathF.Min(min.z, max.z));
+            Vector3 adjMax = new(MathF.Max(min.x, max.x), MathF.Max(min.y, max.y), MathF.Max(min.z, max.z));
+            
+            BBox adjustedBBox = new(adjMin, adjMax);
+            if (adjustedBBox.Contains(hitBox)) return button;
+        }
+
+        return null;
     }
 }
