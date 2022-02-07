@@ -75,7 +75,7 @@
 							},
 							{
 								from = "displayscreen.vmat"
-								to = "materials/dev/gray_25.vmat"
+								to = "materials/glass/glass_b.vmat"
 							},
 							{
 								from = "emissive_detail.vmat"
@@ -130,7 +130,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "2"
 							button_min = [ 1.16258, -6.83193, -0.476295 ]
 							button_max = [ 15.0, 6.39093, 12.6343 ]
 						}
@@ -141,7 +141,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "3"
 							button_min = [ 1.16258, 8.1422, -0.476295 ]
 							button_max = [ 15.0, 20.8971, 12.6343 ]
 						}
@@ -152,7 +152,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "4"
 							button_min = [ 1.16258, -21.2211, -15.4581 ]
 							button_max = [ 15.0, -7.99801, -2.14119 ]
 						}
@@ -163,7 +163,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "5"
 							button_min = [ 1.16258, -6.83193, -15.0825 ]
 							button_max = [ 15.0, 6.39093, -2.43087 ]
 						}
@@ -174,7 +174,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "6"
 							button_min = [ 1.16258, 8.1422, -14.7344 ]
 							button_max = [ 15.0, 20.8971, -2.16181 ]
 						}
@@ -185,7 +185,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "7"
 							button_min = [ 1.16258, -21.2211, -29.9812 ]
 							button_max = [ 15.0, -7.99801, -16.8448 ]
 						}
@@ -196,7 +196,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "8"
 							button_min = [ 1.16258, -6.83193, -29.7141 ]
 							button_max = [ 15.0, 6.39093, -16.7319 ]
 						}
@@ -207,20 +207,9 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "9"
 							button_min = [ 1.16258, 8.1422, -29.668 ]
 							button_max = [ 15.0, 20.8971, -16.6539 ]
-						}
-					},
-					{
-						_class = "GenericGameData"
-						name = "key_enter"
-						game_class = "keypad_button"
-						game_keys = 
-						{
-							key_value = "1"
-							button_min = [ 1.16258, -21.2211, -44.2635 ]
-							button_max = [ 15.0, -7.99801, -31.4277 ]
 						}
 					},
 					{
@@ -229,9 +218,20 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "0"
 							button_min = [ 1.16258, -6.83193, -43.9962 ]
 							button_max = [ 15.0, 6.39093, -31.465 ]
+						}
+					},
+					{
+						_class = "GenericGameData"
+						name = "key_enter"
+						game_class = "keypad_button"
+						game_keys = 
+						{
+							key_value = "enter"
+							button_min = [ 1.16258, -21.2211, -44.2635 ]
+							button_max = [ 15.0, -7.99801, -31.4277 ]
 						}
 					},
 					{
@@ -240,7 +240,7 @@
 						game_class = "keypad_button"
 						game_keys = 
 						{
-							key_value = "1"
+							key_value = "clear"
 							button_min = [ 1.16258, 8.1422, -43.9503 ]
 							button_max = [ 15.0, 20.8971, -31.6877 ]
 						}
