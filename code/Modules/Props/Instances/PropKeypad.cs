@@ -1,7 +1,6 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json.Serialization;
 using Sandbox;
-using ssl.Modules.Selection;
 using ssl.Player;
 
 namespace ssl.Modules.Props.Instances;
@@ -16,19 +15,36 @@ public class KeypadButton
     [JsonPropertyName("key_value")]
     public string KeyValue { get; set; }
 
+    public BBox BoundingBox => new(BoxMin, BoxMax);
+
     [JsonPropertyName("button_min")]
-    private Vector3 BoxMin { get; set; }
-    
+    public Vector3 BoxMin { get; set; }
+
     [JsonPropertyName("button_max")]
-    private Vector3 BoxMax { get; set; }
+    public Vector3 BoxMax { get; set; }
 }
 
 /// <summary>
-/// Class for all machines that the user can use to type something.
+/// Entity for all keypad like machines.
 /// </summary>
 [Library("ssl_prop_keypad")]
-public class PropKeypad : Prop
+public partial class PropKeypad : Prop
 {
+    public int MaxLength => Code.Length;
+    public string Input { get; set; } = "";
+    [Property] public string Code { get; set; }
+    
+    /// <summary>
+    ///     Fired when a button is pressed.
+    /// </summary>
+    protected Output<string> OnKeyPressed { get; set; }
+
+    /// <summary>
+    ///     Fired when the enter button is pressed with the Input.
+    /// </summary>
+    protected Output<string> OnEnterPressed { get; set; }
+    protected Output OnCorrectCode { get; set; }
+
     private KeypadButton[] Buttons { get; set; }
     
     public override void Spawn()
@@ -40,6 +56,51 @@ public class PropKeypad : Prop
     public override void OnInteract(SslPlayer sslPlayer, int strength, TraceResult hit)
     {
         base.OnInteract(sslPlayer, strength, hit);
-        Log.Info(Buttons.Length);
+
+        Vector3 localHitPos = hit.EndPos - Transform.Position;
+        KeypadButton button = GetButtonFromLocalPos(localHitPos);
+        KeyPressed(sslPlayer, button?.KeyValue);
+    }
+
+    protected virtual void KeyPressed(Entity presser, string key)
+    {
+        OnKeyPressed.Fire(presser, key);
+        
+        // TODO: Show input in the world
+
+        switch (key)
+        {
+            case "enter":
+                EnterPressed(presser, Input);
+                break;
+            
+            case "clear":
+                Input = string.Empty;
+                break;
+            
+            default:
+                if (Input.Length < MaxLength) Input += key;
+                break;
+        }
+
+        Log.Info($"{key} pressed - Keypad current input: {Input}");
+    }
+
+    protected virtual void EnterPressed(Entity presser, string value)
+    {
+        OnEnterPressed.Fire(presser, value);
+        if (Input.Equals(Code)) CorrectInput(presser);
+        Input = string.Empty;
+    }
+
+    protected virtual void CorrectInput(Entity presser)
+    {
+        OnCorrectCode.Fire(presser);
+    }
+
+    private KeypadButton GetButtonFromLocalPos(Vector3 localPos)
+    {
+        BBox hitBox = new(localPos);
+        return Buttons.FirstOrDefault(button => (button.BoundingBox * Transform.Scale).Contains(hitBox));
     }
 }
