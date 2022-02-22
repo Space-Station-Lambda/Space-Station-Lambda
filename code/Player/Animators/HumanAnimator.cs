@@ -39,9 +39,10 @@ public class HumanAnimator : PawnAnimator
     private const string WISH_Z_KEY = "wish_z";
 
     private TimeSince timeSinceFootShuffle = 60F;
+    
+    private Vector3 AimPos => Pawn.EyePosition + Input.Rotation.Forward * 200F;
 
-    private Vector3 AimPos => Pawn.EyePos + Input.Rotation.Forward * 200F;
-
+    private new Sandbox.Player Pawn => base.Pawn as Sandbox.Player;
     public override void Simulate()
     {
         Rotation idealRotation = Rotation.LookAt(Input.Rotation.Forward.WithZ(0), Vector3.Up);
@@ -53,8 +54,8 @@ public class HumanAnimator : PawnAnimator
         bool isNoClip = HasTag(NO_CLIP_TAG);
         bool isGrounded = GroundEntity != null || isNoClip;
 
-        SetParam(GROUNDED_KEY, isGrounded);
-        SetParam(NO_CLIP_KEY, isNoClip);
+        SetAnimParameter(GROUNDED_KEY, isGrounded);
+        SetAnimParameter(NO_CLIP_KEY, isNoClip);
 
         // Look in the direction what the player's input is facing
         SetLookAt();
@@ -65,8 +66,8 @@ public class HumanAnimator : PawnAnimator
         }
         else
         {
-            SetParam(HOLD_TYPE_KEY, (int) HoldType.None);
-            SetParam(AIM_BODY_WEIGHT_KEY, 0.5f);
+            SetAnimParameter(HOLD_TYPE_KEY, (int) HoldType.None);
+            SetAnimParameter(AIM_BODY_WEIGHT_KEY, 0.5f);
         }
     }
 
@@ -84,7 +85,7 @@ public class HumanAnimator : PawnAnimator
         // If we did restrict, and are standing still, add a foot shuffle
         if (change > 1 && WishVelocity.Length <= 1) timeSinceFootShuffle = 0;
 
-        SetParam(SHUFFLE_KEY, timeSinceFootShuffle < MAX_TIME_SINCE_FOOT_SHUFFLE);
+        SetAnimParameter(SHUFFLE_KEY, timeSinceFootShuffle < MAX_TIME_SINCE_FOOT_SHUFFLE);
     }
 
     private void SetLookAt()
@@ -104,12 +105,12 @@ public class HumanAnimator : PawnAnimator
 
             float angle = MathF.Atan2(sideward, forward).RadianToDegree().NormalizeDegrees();
 
-            SetParam(MOVE_DIRECTION_KEY, angle);
-            SetParam(MOVE_SPEED_KEY, Velocity.Length);
-            SetParam(MOVE_GROUND_SPEED_KEY, Velocity.WithZ(0).Length);
-            SetParam(MOVE_X_KEY, forward);
-            SetParam(MOVE_Y_KEY, sideward);
-            SetParam(MOVE_Z_KEY, Velocity.z);
+            SetAnimParameter(MOVE_DIRECTION_KEY, angle);
+            SetAnimParameter(MOVE_SPEED_KEY, Velocity.Length);
+            SetAnimParameter(MOVE_GROUND_SPEED_KEY, Velocity.WithZ(0).Length);
+            SetAnimParameter(MOVE_X_KEY, forward);
+            SetAnimParameter(MOVE_Y_KEY, sideward);
+            SetAnimParameter(MOVE_Z_KEY, Velocity.z);
         }
 
         // Wish Speed
@@ -120,12 +121,12 @@ public class HumanAnimator : PawnAnimator
 
             float angle = MathF.Atan2(sideward, forward).RadianToDegree().NormalizeDegrees();
 
-            SetParam(WISH_DIRECTION_KEY, angle);
-            SetParam(WISH_SPEED_KEY, WishVelocity.Length);
-            SetParam(WISH_GROUND_SPEED_KEY, WishVelocity.WithZ(0).Length);
-            SetParam(WISH_X_KEY, forward);
-            SetParam(WISH_Y_KEY, sideward);
-            SetParam(WISH_Z_KEY, WishVelocity.z);
+            SetAnimParameter(WISH_DIRECTION_KEY, angle);
+            SetAnimParameter(WISH_SPEED_KEY, WishVelocity.Length);
+            SetAnimParameter(WISH_GROUND_SPEED_KEY, WishVelocity.WithZ(0).Length);
+            SetAnimParameter(WISH_X_KEY, forward);
+            SetAnimParameter(WISH_Y_KEY, sideward);
+            SetAnimParameter(WISH_Z_KEY, WishVelocity.z);
         }
     }
 

@@ -25,7 +25,7 @@ public class HandViewModel : AnimEntity
         SetBodyGroup(BODY_GROUP_HEAD, 1);
         SetBodyGroup(BODY_GROUP_LEGS, 1);
         SetBodyGroup(BODY_GROUP_FEET, 1);
-        SetAnimFloat(ANIM_KEY_BODY_WEIGHT, 0f);
+        SetAnimParameter(ANIM_KEY_BODY_WEIGHT, 0f);
         RemoveHoldingEntity();
     }
 
@@ -40,7 +40,7 @@ public class HandViewModel : AnimEntity
     /// <exception cref="ArgumentOutOfRangeException"></exception>
     public void SetHoldType(HoldType holdType)
     {
-        SetAnimInt(ANIM_KEY_HOLD_TYPE, (int) holdType);
+        SetAnimParameter(ANIM_KEY_HOLD_TYPE, (int) holdType);
         offset = holdType switch
         {
             HoldType.None => offset,

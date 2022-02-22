@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using Sandbox.Component;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -19,12 +20,14 @@ public partial class Item : Carriable, IDraggable
     protected const string HOLD_TYPE_KEY = "holdtype";
     protected const string HANDEDNESS_KEY = "holdtype_handedness";
 
+    [BindComponent] private Glow Glow { get; set; }
+    
     public override void Spawn()
     {
         base.Spawn();
         
         Tags.Add(TAG);
-        GlowColor = Color.Blue;
+        Glow.Color = Color.Blue;
     }
 
     [Net, Property] public string Description { get; set; }
@@ -35,12 +38,12 @@ public partial class Item : Carriable, IDraggable
 
     public void OnSelectStart(SslPlayer sslPlayer)
     {
-        if (Host.IsClient && IsValid) GlowActive = true;
+        if (Host.IsClient && IsValid) Glow.Active = true;
     }
 
     public void OnSelectStop(SslPlayer sslPlayer)
     {
-        if (Host.IsClient && IsValid) GlowActive = false;
+        if (Host.IsClient && IsValid) Glow.Active = false;
     }
 
     public void OnSelect(SslPlayer sslPlayer) { }
@@ -93,8 +96,8 @@ public partial class Item : Carriable, IDraggable
 
     public virtual void SimulateAnimator(HumanAnimator animator)
     {
-        animator.SetParam(HOLD_TYPE_KEY, (int) HoldType);
-        animator.SetParam(HANDEDNESS_KEY, 1);
+        animator.SetAnimParameter(HOLD_TYPE_KEY, (int) HoldType);
+        animator.SetAnimParameter(HANDEDNESS_KEY, 1);
     }
 
     private protected override void SaveToDao()

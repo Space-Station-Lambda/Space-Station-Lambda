@@ -53,8 +53,8 @@ public class ItemsCommands
         try
         {
             Item item = itemFactory.Create(id);
-            item.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
-            item.Rotation = sslPlayer.EyeRot;
+            item.Position = sslPlayer.EyePosition + sslPlayer.EyeRotation.Forward * 50;
+            item.Rotation = sslPlayer.EyeRotation;
 
             Log.Info($"{item} has been spawned.");
         }

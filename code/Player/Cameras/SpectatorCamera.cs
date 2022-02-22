@@ -3,7 +3,7 @@ using Sandbox;
 
 namespace ssl.Player.Cameras;
 
-public class SpectatorCamera : Camera
+public class SpectatorCamera : CameraMode
 {
     private const float SPECTATOR_FIELD_OF_VIEW = 80F;
     private const float FOCUS_DISTANCE = 100F;

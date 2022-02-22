@@ -19,12 +19,14 @@ public abstract class Carriable : WorldEntity
         EnableShadowInFirstPerson = true;
     }
 
-    public override bool CanCarry(Entity carrier)
+    
+    
+    public virtual bool CanCarry(Entity carrier)
     {
         return true;
     }
 
-    public override void OnCarryStart(Entity carrier)
+    public virtual void OnCarryStart(Entity carrier)
     {
         if (CanBeBoneMerged(carrier))
             SetParent(carrier, true);
@@ -37,7 +39,7 @@ public abstract class Carriable : WorldEntity
         EnableAllCollisions = false;
     }
 
-    public override void OnCarryDrop(Entity dropper)
+    public virtual void OnCarryDrop(Entity dropper)
     {
         SetParent(null);
         Owner = null;
@@ -51,10 +53,8 @@ public abstract class Carriable : WorldEntity
     ///     means a player was carrying it in their inventory and now
     ///     has it in their hands.
     /// </summary>
-    public override void ActiveStart(Entity ent)
+    public virtual void ActiveStart(Entity ent)
     {
-        base.ActiveStart(ent);
-
         EnableDrawing = true;
     }
 
@@ -63,10 +63,8 @@ public abstract class Carriable : WorldEntity
     ///     likely means a player was holding it but has switched away
     ///     or dropped it (in which case dropped = true)
     /// </summary>
-    public override void ActiveEnd(Entity ent, bool dropped)
+    public virtual void ActiveEnd(Entity ent, bool dropped)
     {
-        base.ActiveEnd(ent, dropped);
-
         // If we're just holstering, then hide us
         if (!dropped) EnableDrawing = false;
     }

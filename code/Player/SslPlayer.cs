@@ -106,7 +106,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 
         Controller = new HumanController(this);
         Animator = new HumanAnimator();
-        Camera = new FirstPersonCamera();
+        CameraMode = new FirstPersonCamera();
 
         EnableAllCollisions = true;
         EnableDrawing = true;
@@ -174,7 +174,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
         Animator = null;
 
         SpectatorCamera specCam = new();
-        Camera = specCam;
+        CameraMode = specCam;
 
         EnableAllCollisions = false;
         EnableDrawing = false;

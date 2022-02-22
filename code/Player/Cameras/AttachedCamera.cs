@@ -5,7 +5,7 @@ namespace ssl.Player.Cameras;
 /// <summary>
 ///     Camera that can be attached to an entity's attachment.
 /// </summary>
-public partial class AttachedCamera : Camera
+public partial class AttachedCamera : CameraMode
 {
     private Vector3 lastPos;
 

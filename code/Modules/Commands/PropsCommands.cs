@@ -20,8 +20,8 @@ public class PropsCommands
         try
         {
             Prop prop = propFactory.Create(id);
-            prop.Position = sslPlayer.EyePos + sslPlayer.EyeRot.Forward * 50;
-            prop.Rotation = sslPlayer.EyeRot;
+            prop.Position = sslPlayer.EyePosition + sslPlayer.EyeRotation.Forward * 50;
+            prop.Rotation = sslPlayer.EyeRotation;
         }
         catch
         {

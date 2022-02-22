@@ -52,14 +52,14 @@ public class Selector : EntityComponent<SslPlayer>
 
     protected virtual TraceResult GetTraceResult()
     {
-        Vector3 forward = Entity.EyeRot.Forward;
-        TraceResult tr = TraceSelector(Entity.EyePos, Entity.EyePos + forward * RANGE);
+        Vector3 forward = Entity.EyeRotation.Forward;
+        TraceResult tr = TraceSelector(Entity.EyePosition, Entity.EyePosition + forward * RANGE);
         return tr;
     }
 
     protected virtual TraceResult TraceSelector(Vector3 start, Vector3 end)
     {
-        bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);
+        bool inWater = Map.Physics.IsPointWater(start);
 
         TraceResult tr = Trace.Ray(start, end)
             .UseHitboxes()

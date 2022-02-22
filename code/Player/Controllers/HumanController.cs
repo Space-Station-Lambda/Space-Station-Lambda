@@ -72,8 +72,8 @@ public partial class HumanController : BasePlayerController
         {
             UpdateBBox();
 
-            EyePosLocal = Vector3.Up * (EYE_HEIGHT * Pawn.Scale);
-            EyeRot = Input.Rotation;
+            EyeLocalPosition = Vector3.Up * (EYE_HEIGHT * Pawn.Scale);
+            EyeRotation = Input.Rotation;
 
             //If the player is stuck, fix and stop
             if (unstuck.TestAndFix()) return;
@@ -188,7 +188,7 @@ public partial class HumanController : BasePlayerController
         }
         else
         {
-            WishVelocity = EyeRot * WishVelocity.ClampLength(1);
+            WishVelocity = EyeRotation * WishVelocity.ClampLength(1);
         }
 
         if (Input.Down(InputButton.Run))
@@ -241,7 +241,7 @@ public partial class HumanController : BasePlayerController
 
         // See how far up we can go without getting stuck
         TraceResult trace = TraceBBox(Position, start);
-        start = trace.EndPos;
+        start = trace.EndPosition;
 
         // Now trace down from a known safe position
         trace = TraceBBox(start, end);
@@ -254,7 +254,7 @@ public partial class HumanController : BasePlayerController
 
         if (Vector3.GetAngle(Vector3.Up, trace.Normal) > GROUND_ANGLE) return;
 
-        Position = trace.EndPos;
+        Position = trace.EndPosition;
     }
 
     /// <summary>

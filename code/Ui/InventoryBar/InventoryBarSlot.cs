@@ -22,11 +22,11 @@ public class InventoryBarSlot : Panel
 
     private static readonly Vector3 MainLightPos = CamPos;
     private static readonly Color MainLightColor = Color.White;
-    private Light blueLight;
+    private SceneLight blueLight;
 
     private Item lastItem;
-    private Light mainLight;
-    private Light redLight;
+    private SceneLight mainLight;
+    private SceneLight redLight;
     private ScenePanel scene;
     private SceneObject sceneObject;
     private SceneWorld sceneWorld;
@@ -52,27 +52,26 @@ public class InventoryBarSlot : Panel
 
         Item item = sslPlayer.Inventory.Get(SlotNumber);
 
-        using (SceneWorld.SetCurrent(sceneWorld))
+        
+        if (null == item)
         {
-            if (null == item)
-            {
-                sceneObject?.Delete();
-                sceneObject = null;
-                lastItem = null;
-            }
-            else if (null != lastItem)
-            {
-                if (lastItem.Id != item.Id) ApplyItem(item);
-            }
-            else
-            {
-                ApplyItem(item);
-            }
-
-            redLight ??= Light.Point(RedLightPos, LIGHT_RADIUS, RedLightColor);
-            blueLight ??= Light.Point(BlueLightPos, LIGHT_RADIUS, BlueLightColor);
-            mainLight ??= Light.Point(MainLightPos, LIGHT_RADIUS, MainLightColor);
+            sceneObject?.Delete();
+            sceneObject = null;
+            lastItem = null;
         }
+        else if (null != lastItem)
+        {
+            if (lastItem.Id != item.Id) ApplyItem(item);
+        }
+        else
+        {
+            ApplyItem(item);
+        }
+
+        redLight ??= new SceneLight(sceneWorld, RedLightPos, LIGHT_RADIUS, RedLightColor);
+        blueLight ??= new SceneLight(sceneWorld, BlueLightPos, LIGHT_RADIUS, BlueLightColor);
+        mainLight ??= new SceneLight(sceneWorld, MainLightPos, LIGHT_RADIUS, MainLightColor);
+        
 
         scene ??= Add.ScenePanel(sceneWorld, CamPos, CamAngles.ToRotation(), FIELD_OF_VIEW, "itemslot-model");
     }
@@ -88,7 +87,7 @@ public class InventoryBarSlot : Panel
                 .WithPosition(-model.PhysicsBounds.Center * scaleFactor)
                 .WithScale(scaleFactor)
                 .WithRotation(Rotation.Identity);
-            sceneObject = new SceneObject(model, modelTransform);
+            sceneObject = new SceneObject(sceneWorld, model, modelTransform);
         }
 
         lastItem = item;

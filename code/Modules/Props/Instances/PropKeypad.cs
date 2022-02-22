@@ -57,7 +57,7 @@ public partial class PropKeypad : Prop
     {
         base.OnInteract(sslPlayer, strength, hit);
 
-        Vector3 localHitPos = hit.EndPos - Transform.Position;
+        Vector3 localHitPos = hit.EndPosition - Transform.Position;
         KeypadButton button = GetButtonFromLocalPos(localHitPos);
         KeyPressed(sslPlayer, button?.KeyValue);
     }

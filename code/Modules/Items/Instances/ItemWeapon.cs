@@ -125,7 +125,7 @@ public partial class ItemWeapon : Item
     /// </summary>
     protected virtual TraceResult TraceBullet(Vector3 start, Vector3 end, float radius = 2.0f)
     {
-        bool inWater = Physics.TestPointContents(start, CollisionLayer.Water);
+        bool inWater = Map.Physics.IsPointWater(start);
 
         TraceResult tr = Trace.Ray(start, end)
             .UseHitboxes()
@@ -145,18 +145,18 @@ public partial class ItemWeapon : Item
     public override void SimulateAnimator(HumanAnimator animator)
     {
         base.SimulateAnimator(animator);
-        animator.SetParam(HANDEDNESS_KEY, 0);
+        animator.SetAnimParameter(HANDEDNESS_KEY, 0);
     }
 
     protected virtual void ShootBullet(float spread, float force, float bulletSize)
     {
-        Vector3 bulletDirection = Owner.EyeRot.Forward;
+        Vector3 bulletDirection = Owner.EyeRotation.Forward;
         bulletDirection += Vector3.Random * spread;
         bulletDirection = bulletDirection.Normal;
 
         //If the range is 0, the range is max.
         float range = Range == 0 ? MAX_RANGE : Range;
-        TraceResult tr = TraceBullet(Owner.EyePos, Owner.EyePos + bulletDirection * range, bulletSize);
+        TraceResult tr = TraceBullet(Owner.EyePosition, Owner.EyePosition + bulletDirection * range, bulletSize);
 
         Hit = tr;
 
@@ -164,7 +164,7 @@ public partial class ItemWeapon : Item
 
         tr.Surface.DoBulletImpact(tr);
 
-        DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPos, bulletDirection * force, Damage)
+        DamageInfo damageInfo = DamageInfo.FromBullet(tr.EndPosition, bulletDirection * force, Damage)
             .UsingTraceResult(tr)
             .WithAttacker(Owner)
             .WithWeapon(this);

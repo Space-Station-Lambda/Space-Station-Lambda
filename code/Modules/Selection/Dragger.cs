@@ -1,5 +1,4 @@
 ﻿using Sandbox;
-using Sandbox.Joints;
 
 namespace ssl.Modules.Selection;
 
@@ -16,7 +15,7 @@ public class Dragger : Selector
     private const float BREAK_LINEAR_FORCE = 2000F;
 
     private PhysicsBody holdBody;
-    private WeldJoint holdJoint;
+    private FixedJoint holdJoint;
 
     public Dragger()
     {
@@ -52,7 +51,7 @@ public class Dragger : Selector
         else
         {
             // Updates the position of the "hand" of dragger. 
-            GrabMove(Entity.EyePos, Entity.EyeRot.Forward, Entity.EyeRot);
+            GrabMove(Entity.EyePosition, Entity.EyeRotation.Forward, Entity.EyeRotation);
         }
     }
 
@@ -69,21 +68,17 @@ public class Dragger : Selector
         Dragged = (IDraggable) Selected;
 
         HeldBody = TraceResult.Body;
-        HeldBody.Wake();
-        HeldBody.EnableAutoSleeping = false;
-
+        HeldBody.AutoSleep = false;
+        
         HeldRot = grabRot.Inverse * HeldBody.Rotation;
 
         holdBody.Position = grabPos;
         holdBody.Rotation = HeldBody.Rotation;
 
-        holdJoint = PhysicsJoint.Weld
-            .From(holdBody)
-            .To(HeldBody, HeldBody.LocalMassCenter)
-            .WithLinearSpring(LINEAR_FREQUENCY, LINEAR_DAMPING_RATIO, 0.0f)
-            .WithAngularSpring(ANGULAR_FREQUENCY, ANGULAR_DAMPING_RATIO, 0.0f)
-            .Breakable(HeldBody.Mass * BREAK_LINEAR_FORCE, 0)
-            .Create();
+        holdJoint = PhysicsJoint.CreateFixed(holdBody.LocalPoint(Vector3.Zero), HeldBody.MassCenterPoint());
+        holdJoint.SpringLinear = new PhysicsSpring(LINEAR_FREQUENCY, LINEAR_DAMPING_RATIO);
+        holdJoint.SpringAngular = new PhysicsSpring(ANGULAR_FREQUENCY, ANGULAR_DAMPING_RATIO);
+        holdJoint.Strength = HeldBody.Mass * BREAK_LINEAR_FORCE;
 
         Dragged.OnDragStart(Entity);
     }
@@ -93,11 +88,11 @@ public class Dragger : Selector
     /// </summary>
     public void StopDrag()
     {
-        if (holdJoint.IsValid) holdJoint.Remove();
+        if (holdJoint.IsValid()) holdJoint.Remove();
 
         if (Dragged != null)
         {
-            HeldBody.EnableAutoSleeping = true;
+            HeldBody.AutoSleep = true;
             Dragged.OnDragStop(Entity);
         }
 
@@ -126,7 +121,7 @@ public class Dragger : Selector
     private void TryDrag()
     {
         if (((IDraggable) Selected).IsDraggable(Entity))
-            StartDrag(Entity.EyePos + Entity.EyeRot.Forward * HOLD_DISTANCE, Entity.EyeRot);
+            StartDrag(Entity.EyePosition + Entity.EyeRotation.Forward * HOLD_DISTANCE, Entity.EyeRotation);
     }
 
     private void GrabMove(Vector3 startPos, Vector3 dir, Rotation rot)
@@ -141,7 +136,7 @@ public class Dragger : Selector
 
     private void Activate()
     {
-        if (!holdBody.IsValid()) holdBody = new PhysicsBody { BodyType = PhysicsBodyType.Keyframed };
+        if (!holdBody.IsValid()) holdBody = new PhysicsBody(Map.Physics) { BodyType = PhysicsBodyType.Keyframed };
     }
 
     private void Deactivate()

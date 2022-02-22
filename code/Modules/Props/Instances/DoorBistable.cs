@@ -35,14 +35,14 @@ public class DoorBistable : Prop
     [Input]
     private void Open()
     {
-        SetAnimBool("opened", true);
+        SetAnimParameter("opened", true);
         Opened = true;
     }
 
     [Input]
     private void Close()
     {
-        SetAnimBool("opened", false);
+        SetAnimParameter("opened", false);
         Opened = false;
     }
 }

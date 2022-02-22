@@ -31,8 +31,8 @@ public partial class ItemFlashlight : Item
         base.FrameSimulate(cl);
         if (!IsLocalPawn || !viewLight.IsValid()) return;
 
-        viewLight.Rotation = Local.Pawn.EyeRot;
-        viewLight.Position = Local.Pawn.EyePos + Local.Pawn.EyeRot.Forward * 10f;
+        viewLight.Rotation = Local.Pawn.EyeRotation;
+        viewLight.Position = Local.Pawn.EyePosition + Local.Pawn.EyeRotation.Forward * 10f;
     }
 
     public override void Spawn()
