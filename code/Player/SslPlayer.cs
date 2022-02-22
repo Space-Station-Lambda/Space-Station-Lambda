@@ -19,24 +19,6 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
     private const string MODEL = "models/citizen/citizen.vmdl";
     private const float MAX_HEALTH = 100f;
 
-    public SslPlayer()
-    {
-        Health = MAX_HEALTH;
-
-        if (Host.IsServer)
-        {
-            Components.Create<InputHandler>();
-            Components.Create<Dragger>();
-            Components.Create<RagdollHandler>();
-            Components.Create<PlayerInventory>();
-            Components.Create<RoleHandler>();
-            Components.Create<ClothesHandler>();
-            Components.Create<StatusHandler>();
-            Components.Create<StainHandler>();
-            Components.Create<SkillHandler>();
-        }
-    }
-
     [BindComponent] public new PlayerInventory Inventory { get; }
     [BindComponent] public RoleHandler RoleHandler { get; }
     [BindComponent] public ClothesHandler ClothesHandler { get; }
@@ -72,6 +54,23 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
             EnableAllCollisions = false, EnableViewmodelRendering = true, Owner = Owner
         };
         Inventory.ViewModel.SetHoldType(HoldType.None);
+    }
+
+    public override void Spawn()
+    {
+        base.Spawn();
+        
+        Health = MAX_HEALTH;
+        
+        Components.Create<InputHandler>();
+        Components.Create<Dragger>();
+        Components.Create<RagdollHandler>();
+        Components.Create<PlayerInventory>();
+        Components.Create<RoleHandler>();
+        Components.Create<ClothesHandler>();
+        Components.Create<StatusHandler>();
+        Components.Create<StainHandler>();
+        Components.Create<SkillHandler>();
     }
 
     public override void FrameSimulate(Client cl)

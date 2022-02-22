@@ -20,13 +20,13 @@ public partial class Item : Carriable, IDraggable
     protected const string HOLD_TYPE_KEY = "holdtype";
     protected const string HANDEDNESS_KEY = "holdtype_handedness";
 
-    [BindComponent] private Glow Glow { get; }
-    
+    [BindComponent] public Glow Glow { get; }
+
     public override void Spawn()
     {
         base.Spawn();
-        
         Tags.Add(TAG);
+        Components.Create<Glow>();
         Glow.Color = Color.Blue;
     }
 
