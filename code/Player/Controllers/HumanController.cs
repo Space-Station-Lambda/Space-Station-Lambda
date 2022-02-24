@@ -171,7 +171,7 @@ public partial class HumanController : BasePlayerController
     private MoveHelper GetMoveHelper()
     {
         MoveHelper mover = new(Position, Velocity);
-        mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn);
+        mover.Trace = mover.Trace.Size(mins, maxs).Ignore(Pawn).HitLayer(CollisionLayer.WINDOW);
         mover.MaxStandableAngle = GROUND_ANGLE;
 
         return mover;
