@@ -31,8 +31,6 @@ public class PropFactory : IFactory<Prop>
                 Color = propLightData.Color,
                 Brightness = propLightData.Brightness,
                 Range = propLightData.Range,
-                InnerConeAngle = propLightData.InnerConeAngle,
-                OuterConeAngle = propLightData.OuterConeAngle
             },
 			_ => new Prop()
 		};

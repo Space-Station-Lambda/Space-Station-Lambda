@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Sandbox;
 using Sandbox.UI;
@@ -10,7 +11,7 @@ namespace ssl.Modules.Props.Instances;
 [Library("ssl_prop_light")]
 public partial class PropLight : Prop, IElectrical
 {
-    private SpotLightEntity worldLightEntity;
+    private PointLightEntity[] worldLightEntities;
     
     public PropLight() { }
 
@@ -39,30 +40,40 @@ public partial class PropLight : Prop, IElectrical
     [Input]
     public virtual void TurnOn()
     {
-        if (!worldLightEntity.IsValid())
+        if (worldLightEntities == null)
         {
-            if (Children.Count > 0)
+            worldLightEntities = GetSpotsInChildren();
+            if (worldLightEntities.Length == 0)
             {
-                worldLightEntity = GetSpotInChildren();
-                Enabled = worldLightEntity.Enabled;
+                worldLightEntities = new[] { CreateLight() };
+                worldLightEntities[0].SetParent(this);
             }
             else
             {
-                worldLightEntity = CreateLight();
-                worldLightEntity.SetParent(this);
+                foreach (PointLightEntity spotLightEntity in worldLightEntities)
+                {
+                    Enabled = spotLightEntity.Enabled | Enabled;
+                }
             }
         }
+        
 
         if (Enabled) return;
-        worldLightEntity.TurnOn();
+        foreach (PointLightEntity spotLightEntity in worldLightEntities)
+        {
+            spotLightEntity.TurnOn();
+        }
         Enabled = true;
     }
 
     [Input]
     public virtual void TurnOff()
     {
-        if (!worldLightEntity.IsValid() || !Enabled) return;
-        worldLightEntity.TurnOff();
+        if (!Enabled) return;
+        foreach (PointLightEntity spotLightEntity in worldLightEntities)
+        {
+            if(spotLightEntity.IsValid()) spotLightEntity.TurnOff();
+        }
         Enabled = false;
     }
 
@@ -79,17 +90,20 @@ public partial class PropLight : Prop, IElectrical
         }
     }
 
-    protected virtual SpotLightEntity CreateLight()
+    public override void OnInteract(SslPlayer sslPlayer, int strength)
     {
-        SpotLightEntity light = new()
+        Switch();
+    }
+
+    protected virtual PointLightEntity CreateLight()
+    {
+        PointLightEntity light = new()
         {
             Enabled = true,
             DynamicShadows = true,
             Range = Range,
             Brightness = Brightness,
             Color = Color,
-            InnerConeAngle = InnerConeAngle,
-            OuterConeAngle = OuterConeAngle,
             Owner = Owner
         };
 
@@ -98,17 +112,19 @@ public partial class PropLight : Prop, IElectrical
         return light;
     }
 
-    private SpotLightEntity GetSpotInChildren()
+    private PointLightEntity[] GetSpotsInChildren()
     {
+        List<PointLightEntity> spotChildren = new();
+        
         foreach (Entity child in Children)
         {
-            if (child is SpotLightEntity spotLight)
+            if (child is PointLightEntity spotLight)
             {
-                return spotLight;
+                spotChildren.Add(spotLight);
             }
         }
 
-        return null;
+        return spotChildren.ToArray();
     }
 
     private protected override void SaveToDao()
@@ -121,9 +137,7 @@ public partial class PropLight : Prop, IElectrical
             Model = Model.Name,
             Brightness = Brightness,
             Color = Color,
-            Range = Range,
-            InnerConeAngle = InnerConeAngle,
-            OuterConeAngle = OuterConeAngle
+            Range = Range
         };
         
         PropDao.Instance.Save(lightData);
