@@ -1,0 +1,175 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:modeldoc29:version{3cec427c-1b0e-4d48-a90a-0436f33a6041} -->
+{
+	rootNode = 
+	{
+		_class = "RootNode"
+		children = 
+		[
+			{
+				_class = "MaterialGroupList"
+				children = 
+				[
+					{
+						_class = "DefaultMaterialGroup"
+						remaps = 
+						[
+							{
+								from = "leather01.vmat"
+								to = "materials/leather.vmat"
+							},
+							{
+								from = "metal01.vmat"
+								to = "materials/metal.vmat"
+							},
+							{
+								from = "metal01_darkened.vmat"
+								to = "models/sbox_props/street_lamp/street_lamp_metal_pole.vmat"
+							},
+						]
+						use_global_default = false
+						global_default_material = ""
+					},
+				]
+			},
+			{
+				_class = "PhysicsShapeList"
+				children = 
+				[
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -0.13588, 0.0, 15.2393 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 19.538992, 17.977516, 3.162825 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -8.731241, -6.646849, 24.700747 ]
+						angles = [ -0.0, 0.0, 7.186654 ]
+						dimensions = [ 2.655495, 6.467986, 18.996998 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -9.491187, -7.181057, 36.712791 ]
+						angles = [ -9.8649, 0.0, -23.807301 ]
+						dimensions = [ 2.759027, 4.488855, 8.922728 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -0.29557, -0.039125, 0.667436 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 19.561234, 17.932682, 1.437653 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ 8.403109, -0.025002, 8.094174 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 2.827309, 17.824127, 16.294493 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -8.827175, 0.081958, 24.651226 ]
+						angles = [ 0.0, 0.0, 0.0 ]
+						dimensions = [ 2.646195, 17.785698, 18.1576 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -8.731241, 6.528953, 24.700747 ]
+						angles = [ -0.0, 0.0, -7.18665 ]
+						dimensions = [ 2.655495, 6.467986, 18.996998 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -9.491187, 7.092181, 36.712791 ]
+						angles = [ -9.8649, 0.0, 23.807301 ]
+						dimensions = [ 2.759027, 4.488855, 8.922728 ]
+					},
+					{
+						_class = "PhysicsShapeBox"
+						parent_bone = ""
+						surface_prop = "default"
+						collision_group = ""
+						collision_interact_as = ""
+						collision_interact_with = ""
+						collision_interact_exclude = ""
+						origin = [ -9.69967, 0.0, 37.735199 ]
+						angles = [ -7.707985, 0.0, 0.0 ]
+						dimensions = [ 2.513212, 15.078645, 7.883945 ]
+					},
+				]
+			},
+			{
+				_class = "RenderMeshList"
+				children = 
+				[
+					{
+						_class = "RenderMeshFile"
+						filename = "models/props/chairs/cafeteria_chairs/chair_caf2.fbx"
+						import_translation = [ 0.0, 0.0, 0.0 ]
+						import_rotation = [ 0.0, 0.0, 0.0 ]
+						import_scale = 1.0
+						align_origin_x_type = "None"
+						align_origin_y_type = "None"
+						align_origin_z_type = "None"
+						parent_bone = ""
+						import_filter = 
+						{
+							exclude_by_default = false
+							exception_list = [  ]
+						}
+					},
+				]
+			},
+		]
+		model_archetype = ""
+		primary_associated_entity = ""
+		anim_graph_name = ""
+	}
+}

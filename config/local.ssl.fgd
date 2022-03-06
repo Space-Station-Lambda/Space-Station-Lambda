@@ -1,0 +1,159 @@
+
+@BaseClass = BaseProperties_local_ssl
+[
+	parentname(target_destination) [ group="Hierarchy" ] : "Parent" : : "The name of this entity's parent in the movement hierarchy. Entities with parents move with their parent."
+	parentAttachmentName(parentAttachment) [ group="Hierarchy" ] : "Parent Model Bone/Attachment Name" : : "The name of the bone or attachment to attach to on the entity's parent in the movement hierarchy. Use !bonemerge to use bone-merge style attachment."
+
+	useLocalOffset(boolean) [ group="Hierarchy" ] : "Use Model Attachment offsets" : 0 : "Whether to respect the specified local offset when doing the initial hierarchical attachment to its parent."
+	local.origin(vector) [ group="Hierarchy" ] : "Model Attachment position offset" : : "Offset in the local space of the parent model's attachment/bone to use in hierarchy. Not used if you are not using parent attachment."
+	local.angles(angle) [ group="Hierarchy" ] : "Model Attachment angular offset" : : "Angular offset in the local space of the parent model's attachment/bone to use in hierarchy. Not used if you are not using parent attachment."
+	local.scales(vector) [ group="Hierarchy" ] : "Model Attachment scale" : : "Scale in the local space of the parent model's attachment/bone to use in hierarchy. Not used if you are not using parent attachment."
+
+	targetname(target_source) : "Name" : : "The name that other entities refer to this entity by."
+	tags(tags) : "Tags" : "" : "A list of general purpose tags for this entity, for interactions with other entities such as triggers."
+]
+
+//
+// ssl.Modules.Rounds.SpawnPoint
+//
+@PointClass base(BaseProperties_local_ssl) editormodel( "models/citizen/citizen.vmdl" ) 
+metadata
+{
+	entity_tool_name = "SSL Player Spawnpoint"
+	entity_tool_group = "Space Station Lambda"
+	entity_tool_tip = "Defines a point where the player can spawn. Roles can be specified if a spawnpoint is role exclusive"
+}
+= ssl_player_spawn : ""
+[
+	rolefilter(string) : "Role filter" : "" : ""
+]
+
+//
+// ssl.Modules.Props.Triggers.GarbageTrigger
+//
+@SolidClass base(BaseProperties_local_ssl) tags( Trigger ) 
+metadata
+{
+	auto_apply_material = "materials/tools/toolstrigger.vmat"
+}
+= ssl_garbage_trigger : ""
+[
+	startdisabled(boolean) : "Start Disabled" : 0 : "Should this entity start disabled?"
+	actvationtags(tags) : "Actvation Tags" :  : "Entities with these tags can activate this trigger."
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+	spawnflags(flags) = [
+		1 : "Clients" : 1
+		2 : "Npcs" : 0
+		4 : "Pushables" : 0
+		8 : "Physics Objects" : 0
+		16 : "Allied Npcs" : 0
+		32 : "Client In Vehicle" : 0
+		64 : "Everything" : 0
+		512 : "Client Not In Vehicle" : 0
+		1024 : "Physics Debris" : 0
+	]
+
+	input Enable(void) : "Enables this trigger"
+	input Disable(void) : "Disables this trigger"
+	input Toggle(void) : "Toggles this trigger between enabled and disabled states"
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+
+	output OnStartTouch(void) : "Fired when an entity starts touching this trigger. The touching entity must pass this trigger's filters to cause this output to fire."
+	output OnEndTouch(void) : "Fired when an entity stops touching this trigger. Only entities that passed this trigger's filters will cause this output to fire."
+	output OnStartTouchAll(void) : "Fired when an entity starts touching this trigger while no other passing entities are touching it."
+	output OnEndTouchAll(void) : "Fired when all entities touching this trigger have stopped touching it."
+]
+
+//
+// ssl.Modules.Props.Instances.DoorBistable
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_door_bistable : "Simple bistable door that can can switch between two states (Open and Closed).   The AnimGraph of the model needs to have a boolean parameter \"opened\" that represents in which state the door should be in."
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	id(string) : "Id" :  : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input Open(void) : ""
+	input Close(void) : ""
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+]
+
+//
+// ssl.Modules.Props.Instances.Prop
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_prop : "A prop is an object not in inventory Inspired by sandbox Props"
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	id(string) : "Id" :  : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+]
+
+//
+// ssl.Modules.Props.Instances.PropKeypad
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_prop_keypad : "Entity for all keypad like machines."
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	code(string) : "Code" :  : ""
+	id(string) : "Id" :  : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+
+	output OnKeyPressed(string) : "Fired when a button is pressed."
+	output OnEnterPressed(string) : "Fired when the enter button is pressed with the Input."
+	output OnCorrectCode(void) : ""
+]
+
+//
+// ssl.Modules.Props.Instances.PropLight
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_prop_light : ""
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	inner_cone_angle(float) : "Inner Cone Angle" : "50" : "Defines the inner cone angle property in case there's no spot light as child."
+	outer_cone_angle(float) : "Outer Cone Angle" : "80" : "Defines the outer cone angle property in case there's no spot light as child."
+	range(float) : "Range" : "100" : "Defines the range property in case there's no spot light as child."
+	color(color255) : "Color" :  : "Defines the inner cone angle property in case there's no spot light as child."
+	brightness(float) : "Brightness" : "100" : "Defines the brightness property in case there's no spot light as child."
+	id(string) : "Id" :  : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input TurnOn(void) : ""
+	input TurnOff(void) : ""
+	input Switch(void) : ""
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+]
+
+//
+// ssl.Modules.Items.Instances.Item
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_item : "Base class of any Item entity. It is both the item in inventory and the world entity. This class is used clientside and server side so properties useful clientside should be [Net]."
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	description(string) : "Description" :  : ""
+	wasteid(string) : "Waste Id" :  : ""
+	holdtype(choices) : "Hold Type" : 0 : "" =
+	[
+		0 : "None"
+		1 : "Pistol"
+		4 : "Hand"
+	]
+	id(string) : "Id" :  : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+]
+

@@ -26,7 +26,7 @@ Layer0
 	TextureNormal "textures/props/doors/airlock/airlock_normal.png"
 
 	//---- Roughness ----
-	TextureRoughness "textures/props/doors/airlock/airlock_roughness.png"
+	TextureRoughness "[0.303000 0.303000 0.303000 0.000000]"
 
 	//---- Texture Coordinates ----
 	g_nScaleTexCoordUByModelScaleAxis "0"
