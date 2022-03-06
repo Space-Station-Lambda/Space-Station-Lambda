@@ -9,6 +9,7 @@ namespace ssl.Modules.Props.Instances;
 ///     A prop is an object not in inventory
 ///     Inspired by sandbox Props
 /// </summary>
+[Library("ssl_prop")]
 public class Prop : WorldEntity, ISelectable
 {
     public virtual void OnSelectStart(SslPlayer sslPlayer) { }
