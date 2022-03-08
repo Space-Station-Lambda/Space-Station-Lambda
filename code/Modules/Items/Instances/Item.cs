@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Runtime.CompilerServices;
+using Sandbox;
 using Sandbox.Component;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Selection;
@@ -77,14 +78,14 @@ public partial class Item : Carriable, IDraggable
     {
         base.ActiveStart(ent);
         if (ent is not SslPlayer) return;
-        UpdateHandViewModel(To.Single(ent.Client), HoldType);        
+        UpdateHandViewModel(HoldType);      
     }
 
     public override void ActiveEnd(Entity ent, bool dropped)
     {
         base.ActiveEnd(ent, dropped);
         if (ent is not SslPlayer) return;
-        UpdateHandViewModel(To.Single(ent.Client), HoldType.None);
+        UpdateHandViewModel(HoldType.None);
     }
 
     public virtual void SimulateAnimator(HumanAnimator animator)
@@ -113,6 +114,7 @@ public partial class Item : Carriable, IDraggable
     private void UpdateHandViewModel(HoldType holdType)
     {
         if (Local.Pawn is not SslPlayer player) return;
+        if (Local.Client != Client) return;
         if (!this.IsValid() || holdType == HoldType.None)
         {
             player.Inventory.ViewModel.RemoveHoldingEntity();
