@@ -76,23 +76,16 @@ public partial class Item : Carriable, IDraggable
     public override void ActiveStart(Entity ent)
     {
         base.ActiveStart(ent);
-
-        if (!Host.IsClient || ent is not SslPlayer player || !player.Inventory.ViewModel.IsValid()) return;
-
-        player.Inventory.ViewModel.SetHoldingEntity(this);
-        player.Inventory.ViewModel.SetHoldType(HoldType);
+        if (ent is not SslPlayer) return;
+        UpdateHandViewModel(To.Single(ent.Client), HoldType);        
     }
 
     public override void ActiveEnd(Entity ent, bool dropped)
     {
         base.ActiveEnd(ent, dropped);
-
-        if (!Host.IsClient || ent is not SslPlayer player || !player.Inventory.ViewModel.IsValid()) return;
-
-        player.Inventory.ViewModel.RemoveHoldingEntity();
-        player.Inventory.ViewModel.SetHoldType(HoldType.None);
+        if (ent is not SslPlayer) return;
+        UpdateHandViewModel(To.Single(ent.Client), HoldType.None);
     }
-
 
     public virtual void SimulateAnimator(HumanAnimator animator)
     {
@@ -114,5 +107,21 @@ public partial class Item : Carriable, IDraggable
         };
         
         ItemDao.Instance.Save(itemData);
+    }
+
+    [ClientRpc]
+    private void UpdateHandViewModel(HoldType holdType)
+    {
+        if (Local.Pawn is not SslPlayer player) return;
+        if (!this.IsValid() || holdType == HoldType.None)
+        {
+            player.Inventory.ViewModel.RemoveHoldingEntity();
+            player.Inventory.ViewModel.SetHoldType(HoldType.None);
+        }
+        else
+        {
+            player.Inventory.ViewModel.SetHoldingEntity(this);
+            player.Inventory.ViewModel.SetHoldType(holdType);
+        }
     }
 }
