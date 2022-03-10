@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Sandbox;
 using ssl.Modules.Items;
 using ssl.Modules.Props;
@@ -18,20 +19,28 @@ namespace ssl;
 /// </summary>
 public partial class Gamemode : Game
 {
+    public event Action<SslPlayer> PlayerSpawned;
+    public event Action PlayerDisconnected;
+    
 	/// <summary>
 	///     Create a gamemode
 	/// </summary>
 	public Gamemode()
     {
         Game.Current = this; //Singleton DP
-        if (IsServer)
-            StartServer();
+        if (IsServer) StartServer();
         else if (IsClient) StartClient();
     }
 
     public new static Gamemode Current => (Gamemode) Game.Current;
 
     [Net] public RoundManager RoundManager { get; private set; }
+
+    public override void PostLevelLoaded()
+    {
+        RegisterWorldEntities();
+        _ = StartSecondTimer();
+    }
 
     /// <summary>
     ///     A client has joined the server. Make them a pawn to play with
@@ -40,6 +49,12 @@ public partial class Gamemode : Game
     {
         base.ClientJoined(client);
         SpawnPlayer(client);
+    }
+
+    public override void ClientDisconnect(Client cl, NetworkDisconnectionReason reason)
+    {
+        base.ClientDisconnect(cl, reason);
+        PlayerDisconnected?.Invoke();
     }
 
     /// <summary>
@@ -53,33 +68,6 @@ public partial class Gamemode : Game
         Log.Info("Create HUD...");
         _ = new Hud();
         LoadDatabase();
-    }
-
-    
-    
-    private void RegisterWorldEntities()
-    {
-        Log.Info("Registering all world entities in DAOs...");
-        foreach (Entity entity in All)
-        {
-            if (entity is WorldEntity worldEntity)
-            {
-                worldEntity.RegisterDao();
-            }
-        }
-    }
-
-    private void LoadDatabase()
-    {
-        Log.Info("Load database...");
-        // Factories create the dao when they appear.
-        // Maybe the databse create have to be outside dao; i don't know :(
-        _ = ItemDao.Instance;
-        _ = PropDao.Instance;
-        _ = RoleDao.Instance;
-        _ = StatusDao.Instance;
-        _ = ScenarioDao.Instance;
-        _ = SkillDao.Instance;
     }
 
     /// <summary>
@@ -99,19 +87,32 @@ public partial class Gamemode : Game
         //Init the player.
         SslPlayer sslPlayer = new();
         client.Pawn = sslPlayer;
-        RoundManager.CurrentRound.OnPlayerSpawn(sslPlayer);
+        PlayerSpawned?.Invoke(sslPlayer);
     }
 
-    public override void PostLevelLoaded()
+    private void LoadDatabase()
     {
-        RegisterWorldEntities();
-        _ = StartTickTimer();
-        _ = StartSecondTimer();
+        Log.Info("Load database...");
+        // Factories create the dao when they appear.
+        // Maybe the databse create have to be outside dao; i don't know :(
+        _ = ItemDao.Instance;
+        _ = PropDao.Instance;
+        _ = RoleDao.Instance;
+        _ = StatusDao.Instance;
+        _ = ScenarioDao.Instance;
+        _ = SkillDao.Instance;
     }
 
-    public override void OnVoicePlayed(long playerId, float level)
+    private void RegisterWorldEntities()
     {
-        //TODO SSL-380: Add voice volume to player
+        Log.Info("Registering all world entities in DAOs...");
+        foreach (Entity entity in All)
+        {
+            if (entity is WorldEntity worldEntity)
+            {
+                worldEntity.RegisterDao();
+            }
+        }
     }
 
     /// <summary>
@@ -127,18 +128,6 @@ public partial class Gamemode : Game
     }
 
     /// <summary>
-    ///     Loop trigger OnTick() each tick.
-    /// </summary>
-    private async Task StartTickTimer()
-    {
-        while (true)
-        {
-            await Task.NextPhysicsFrame();
-            OnTick();
-        }
-    }
-
-    /// <summary>
     ///     Called each seconds
     /// </summary>
     private void OnSecond()
@@ -149,6 +138,7 @@ public partial class Gamemode : Game
     /// <summary>
     ///     Called each ticks
     /// </summary>
+    [Event.Tick]
     private void OnTick()
     {
         if (IsServer) RoundManager.CurrentRound?.OnTick();

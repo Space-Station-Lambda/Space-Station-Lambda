@@ -17,6 +17,7 @@ public abstract partial class BaseRound : BaseNetworkable
         Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.Scenarios.BASE_SCENARIO_ID);
         RoleDistributor = new RoleDistributor(scenario, Players);
         Requirements = new List<BaseRequirement>();
+        Gamemode.Current.PlayerSpawned += OnPlayerSpawn;
     }
 
     public IList<BaseRequirement> Requirements { get; }
@@ -56,6 +57,7 @@ public abstract partial class BaseRound : BaseNetworkable
     {
         Log.Info($"[Round] Round {this} finished");
         OnFinish();
+        Gamemode.Current.PlayerSpawned -= OnPlayerSpawn;
         RoundEndedEvent?.Invoke(this);
     }
 
@@ -79,11 +81,6 @@ public abstract partial class BaseRound : BaseNetworkable
     }
     
     public abstract BaseRound Next();
-
-    public virtual void OnPlayerSpawn(SslPlayer sslPlayer)
-    {
-        AddPlayer(sslPlayer);
-    }
 
     public virtual void OnPlayerKilled(SslPlayer sslPlayer)
     {
@@ -128,6 +125,11 @@ public abstract partial class BaseRound : BaseNetworkable
         {
             Players.Add((SslPlayer) client.Pawn);
         }
+    }
+
+    private void OnPlayerSpawn(SslPlayer sslPlayer)
+    {
+        AddPlayer(sslPlayer);
     }
 
     public override string ToString()
