@@ -21,6 +21,7 @@ public partial class Gamemode : Game
 {
     public event Action<SslPlayer> PlayerSpawned;
     public event Action PlayerDisconnected;
+    public event Action<SslPlayer> PlayerKilled;
     
 	/// <summary>
 	///     Create a gamemode
@@ -57,6 +58,11 @@ public partial class Gamemode : Game
         PlayerDisconnected?.Invoke();
     }
 
+    private void OnPlayerKilled(SslPlayer player)
+    {
+        PlayerKilled?.Invoke(player);
+    }
+
     /// <summary>
     ///     Start server and init classes.
     /// </summary>
@@ -86,6 +92,7 @@ public partial class Gamemode : Game
     {
         //Init the player.
         SslPlayer sslPlayer = new();
+        sslPlayer.PlayerKilled += OnPlayerKilled;
         client.Pawn = sslPlayer;
         PlayerSpawned?.Invoke(sslPlayer);
     }

@@ -1,5 +1,6 @@
 ﻿// ReSharper disable UnassignedGetOnlyAutoProperty
 
+using System;
 using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
@@ -18,6 +19,8 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
 {
     private const string MODEL = "models/citizen/citizen.vmdl";
     private const float MAX_HEALTH = 100f;
+
+    public event Action<SslPlayer> PlayerKilled;
 
     [BindComponent] public new PlayerInventory Inventory { get; }
     [BindComponent] public RoleHandler RoleHandler { get; }
@@ -155,8 +158,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
         LifeState = LifeState.Dead;
         StopUsing();
         RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
-        RoleHandler.Role?.OnKilled(this);
-        Gamemode.Current.RoundManager.CurrentRound.OnPlayerKilled(this);
+        PlayerKilled?.Invoke(this);
     }
 
     public override void PostCameraSetup(ref CameraSetup setup)

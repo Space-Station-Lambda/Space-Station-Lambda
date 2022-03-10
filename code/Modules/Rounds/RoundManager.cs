@@ -19,12 +19,14 @@ public partial class RoundManager : BaseNetworkable
         {
             CurrentRound.Stop();
             CurrentRound.RoundEndedEvent -= OnRoundEnd;
+            Gamemode.Current.PlayerKilled -= CurrentRound.OnPlayerKilled;
             Log.Info("Round " + CurrentRound.RoundName + " ended");
         }
 
         CurrentRound = round;
         CurrentRound.Start();
         CurrentRound.RoundEndedEvent += OnRoundEnd;
+        Gamemode.Current.PlayerKilled += CurrentRound.OnPlayerKilled;
         Log.Info("Round " + CurrentRound.RoundName + " started");
     }
 

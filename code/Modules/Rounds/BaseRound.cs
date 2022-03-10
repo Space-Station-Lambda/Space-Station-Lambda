@@ -87,8 +87,6 @@ public abstract partial class BaseRound : BaseNetworkable
         RemovePlayer(sslPlayer);
     }
 
-    public virtual void OnPlayerLeave(SslPlayer sslPlayer) { }
-
     public virtual void OnTick() { }
 
     public virtual void OnSecond()

@@ -92,6 +92,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
     {
         Role?.OnUnassigned(Entity);
         Role = role;
+        Entity.PlayerKilled += Role.OnKilled;
         Role?.OnAssigned(Entity);
     }
 
@@ -103,6 +104,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
     public void ClearRole()
     {
         Role?.OnUnassigned(Entity);
+        if (Role != null) Entity.PlayerKilled -= Role.OnKilled;
         Role = null;
     }
 
