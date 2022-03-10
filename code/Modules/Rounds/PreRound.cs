@@ -1,9 +1,17 @@
-﻿namespace ssl.Modules.Rounds;
+﻿using ssl.Modules.Rounds.Requirements;
+
+namespace ssl.Modules.Rounds;
 
 public class PreRound : BaseRound
 {
     public override string RoundName => "Preround";
     public override int RoundDuration => 10;
+
+    public PreRound(int requiredPlayerCount)
+    {
+        Requirements.Add(new PlayerCountRequirement(2));
+        RegisterRequirementsListeners();
+    }
 
     public override BaseRound Next()
     {

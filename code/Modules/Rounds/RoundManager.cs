@@ -6,7 +6,7 @@ public partial class RoundManager : BaseNetworkable
 {
     public RoundManager()
     {
-        if (Host.IsServer) ChangeRound(new PreRound());
+        if (Host.IsServer) ChangeRound(new PreRound(2));
     }
 
     [Net] public BaseRound CurrentRound { get; private set; }
@@ -15,19 +15,22 @@ public partial class RoundManager : BaseNetworkable
     {
         Host.AssertServer();
 
-        if (CurrentRound != null)
+        if (round.CanStart())
         {
-            CurrentRound.Stop();
-            CurrentRound.RoundEndedEvent -= OnRoundEnd;
-            Gamemode.Current.PlayerKilled -= CurrentRound.OnPlayerKilled;
-            Log.Info("Round " + CurrentRound.RoundName + " ended");
+            if (CurrentRound != null)
+            {
+                CurrentRound.Stop();
+                CurrentRound.RoundEndedEvent -= OnRoundEnd;
+                Gamemode.Current.PlayerKilled -= CurrentRound.OnPlayerKilled;
+                Log.Info("Round " + CurrentRound.RoundName + " ended");
+            }
+    
+            CurrentRound = round;
+            CurrentRound.Start();
+            CurrentRound.RoundEndedEvent += OnRoundEnd;
+            Gamemode.Current.PlayerKilled += CurrentRound.OnPlayerKilled;
+            Log.Info("Round " + CurrentRound.RoundName + " started");
         }
-
-        CurrentRound = round;
-        CurrentRound.Start();
-        CurrentRound.RoundEndedEvent += OnRoundEnd;
-        Gamemode.Current.PlayerKilled += CurrentRound.OnPlayerKilled;
-        Log.Info("Round " + CurrentRound.RoundName + " started");
     }
 
     private void OnRoundEnd(BaseRound round)

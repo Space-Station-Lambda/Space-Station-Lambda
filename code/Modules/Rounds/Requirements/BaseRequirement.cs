@@ -1,3 +1,5 @@
+using System;
+
 namespace ssl.Modules.Rounds.Requirements;
 
 /// <summary>
@@ -5,8 +7,20 @@ namespace ssl.Modules.Rounds.Requirements;
 /// </summary>
 public abstract class BaseRequirement
 {
+    public event Action RequirementFulfilled;
+
     /// <summary>
     ///     Returns true when the requirement is fulfilled. (i.e The amount of player is reached)
     /// </summary>
-    public abstract bool IsFulfilled { get; }
+    public bool IsFulfilled => CheckIfFulfilled();
+
+    public abstract void RegisterListeners();
+    public abstract void UnregisterListeners();
+    
+    protected abstract bool CheckIfFulfilled();
+
+    protected void TriggerFulfillmentEvent()
+    {
+        if (CheckIfFulfilled()) RequirementFulfilled?.Invoke();
+    }
 }

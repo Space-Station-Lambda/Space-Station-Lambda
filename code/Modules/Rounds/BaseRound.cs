@@ -17,20 +17,24 @@ public abstract partial class BaseRound : BaseNetworkable
         Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.Scenarios.BASE_SCENARIO_ID);
         RoleDistributor = new RoleDistributor(scenario, Players);
         Requirements = new List<BaseRequirement>();
-        Gamemode.Current.PlayerSpawned += OnPlayerSpawn;
     }
 
-    public IList<BaseRequirement> Requirements { get; }
+    public event Action<BaseRound> RoundEndedEvent;
+    public event Action AllRequirementFulfilled;
+
     [Net] public IList<SslPlayer> Players { get; set; }
+    
+    public IList<BaseRequirement> Requirements { get; }
     public virtual int RoundDuration => 0;
     public virtual string RoundName => "";
     public float RoundEndTime { get; set; }
     public float TimeLeft => RoundEndTime - Time.Now;
     public RoleDistributor RoleDistributor { get; }
-    public event Action<BaseRound> RoundEndedEvent;
 
     public void Start()
     {
+        UnregisterRequirementsListeners();
+        Gamemode.Current.PlayerSpawned += OnPlayerSpawn;
         if (Host.IsServer && RoundDuration > 0)
         {
             RoundEndTime = Time.Now + RoundDuration;
@@ -130,6 +134,29 @@ public abstract partial class BaseRound : BaseNetworkable
         AddPlayer(sslPlayer);
     }
 
+    protected void RegisterRequirementsListeners()
+    {
+        foreach (BaseRequirement requirement in Requirements)
+        {
+            requirement.RegisterListeners();
+            requirement.RequirementFulfilled += OnRequirementFulfilled;
+        }
+    }
+    
+    protected void UnregisterRequirementsListeners()
+    {
+        foreach (BaseRequirement requirement in Requirements)
+        {
+            requirement.UnregisterListeners();
+            requirement.RequirementFulfilled -= OnRequirementFulfilled;
+        }
+    }
+
+    private void OnRequirementFulfilled()
+    {
+        if (CanStart()) AllRequirementFulfilled?.Invoke();
+    }
+    
     public override string ToString()
     {
         return $"Round Name: {RoundName}\n" +
