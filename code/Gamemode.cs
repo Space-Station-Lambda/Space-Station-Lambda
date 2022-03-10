@@ -23,13 +23,13 @@ public partial class Gamemode : Game
 	/// </summary>
 	public Gamemode()
     {
-        Instance = this; //Singleton DP
+        Game.Current = this; //Singleton DP
         if (IsServer)
             StartServer();
         else if (IsClient) StartClient();
     }
 
-    public static Gamemode Instance { get; private set; }
+    public new static Gamemode Current => (Gamemode) Game.Current;
 
     [Net] public RoundManager RoundManager { get; private set; }
 

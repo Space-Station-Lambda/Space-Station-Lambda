@@ -9,8 +9,6 @@ public partial class RoundManager : BaseNetworkable
         if (Host.IsServer) ChangeRound(new PreRound());
     }
 
-    //public event Action RoundStarted;
-
     [Net] public BaseRound CurrentRound { get; private set; }
 
     public void ChangeRound(BaseRound round)

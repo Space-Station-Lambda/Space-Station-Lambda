@@ -38,7 +38,7 @@ public class RoleSelector : Panel
     {
         base.Tick();
         RefreshSlots();
-        BaseRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound;
+        BaseRound currentRound = Gamemode.Current.RoundManager?.CurrentRound;
         switch (currentRound)
         {
             case null:

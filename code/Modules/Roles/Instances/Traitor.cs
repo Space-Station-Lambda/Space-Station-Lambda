@@ -11,11 +11,11 @@ public class Traitor : Role
     {
         base.OnAssigned(sslPlayer);
         sslPlayer.RoleHandler.SetPreference(Identifiers.Roles.TRAITOR_ID, RolePreferenceType.Never);
-        string defaultRole = Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
+        string defaultRole = Gamemode.Current.RoundManager.CurrentRound.RoleDistributor.DefaultRole;
         string secondaryRoleId =
-            Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer).Equals("")
+            Gamemode.Current.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer).Equals("")
                 ? defaultRole
-                : Gamemode.Instance.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer);
+                : Gamemode.Current.RoundManager.CurrentRound.RoleDistributor.GetPreferedRole(sslPlayer);
         SecondaryRole = RoleFactory.Instance.Create(secondaryRoleId);
         SecondaryRole.OnAssigned(sslPlayer);
     }

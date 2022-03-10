@@ -27,7 +27,7 @@ public class GameResults : Panel
     {
         base.Tick();
 
-        EndRound currentRound = Gamemode.Instance.RoundManager?.CurrentRound as EndRound;
+        EndRound currentRound = Gamemode.Current.RoundManager?.CurrentRound as EndRound;
 
         SetClass("active", null != currentRound);
         SetClass("hidden", null == currentRound);

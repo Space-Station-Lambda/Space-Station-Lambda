@@ -13,7 +13,7 @@ public class SpectatorCamera : CameraMode
     private bool isClearTargetPress;
     private int playerIndex;
 
-    private IList<SslPlayer> Players => Gamemode.Instance.RoundManager.CurrentRound.Players;
+    private IList<SslPlayer> Players => Gamemode.Current.RoundManager.CurrentRound.Players;
     public float MoveSpeed { get; private set; } = 50F;
     public Entity Target { get; private set; }
 

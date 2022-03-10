@@ -156,7 +156,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
         StopUsing();
         RagdollHandler.SpawnRagdoll(Vector3.Zero, 0);
         RoleHandler.Role?.OnKilled(this);
-        Gamemode.Instance.RoundManager.CurrentRound.OnPlayerKilled(this);
+        Gamemode.Current.RoundManager.CurrentRound.OnPlayerKilled(this);
     }
 
     public override void PostCameraSetup(ref CameraSetup setup)
