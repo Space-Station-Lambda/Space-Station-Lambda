@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Constants;
 using ssl.Modules.Roles;
+using ssl.Modules.Rounds.Requirements;
 using ssl.Modules.Scenarios;
 using ssl.Player;
 
@@ -14,8 +16,10 @@ public abstract partial class BaseRound : BaseNetworkable
     {
         Scenario scenario = ScenarioFactory.Instance.Create(Identifiers.Scenarios.BASE_SCENARIO_ID);
         RoleDistributor = new RoleDistributor(scenario, Players);
+        Requirements = new List<BaseRequirement>();
     }
 
+    public IList<BaseRequirement> Requirements { get; }
     [Net] public IList<SslPlayer> Players { get; set; }
     public virtual int RoundDuration => 0;
     public virtual string RoundName => "";
@@ -69,6 +73,11 @@ public abstract partial class BaseRound : BaseNetworkable
         Players.Remove(sslPlayer);
     }
 
+    public virtual bool CanStart()
+    {
+        return Requirements.All(requirement => requirement.IsFulfilled);
+    }
+    
     public abstract BaseRound Next();
 
     public virtual void OnPlayerSpawn(SslPlayer sslPlayer)
