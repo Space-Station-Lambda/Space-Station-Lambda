@@ -30,22 +30,12 @@ public class KeypadButton
 [Library("ssl_prop_keypad")]
 public partial class PropKeypad : Prop
 {
-    public int MaxLength => Code.Length;
-    public string Input { get; set; } = "";
-    [Property] public string Code { get; set; }
-    
     /// <summary>
     ///     Fired when a button is pressed.
     /// </summary>
     protected Output<string> OnKeyPressed { get; set; }
 
-    /// <summary>
-    ///     Fired when the enter button is pressed with the Input.
-    /// </summary>
-    protected Output<string> OnEnterPressed { get; set; }
-    protected Output OnCorrectCode { get; set; }
-
-    private KeypadButton[] Buttons { get; set; }
+    protected KeypadButton[] Buttons { get; set; }
     
     public override void Spawn()
     {
@@ -64,41 +54,7 @@ public partial class PropKeypad : Prop
         KeyPressed(sslPlayer, button?.KeyValue);
     }
 
-    protected virtual void KeyPressed(Entity presser, string key)
-    {
-        OnKeyPressed.Fire(presser, key);
-        
-        // TODO: Show input in the world
-
-        switch (key)
-        {
-            case "enter":
-                EnterPressed(presser, Input);
-                break;
-            
-            case "clear":
-                Input = string.Empty;
-                break;
-            
-            default:
-                if (Input.Length < MaxLength) Input += key;
-                break;
-        }
-
-        Log.Info($"{key} pressed - Keypad current input: {Input}");
-    }
-
-    protected virtual void EnterPressed(Entity presser, string value)
-    {
-        OnEnterPressed.Fire(presser, value);
-        if (Input.Equals(Code)) CorrectInput(presser);
-        Input = string.Empty;
-    }
-
-    protected virtual void CorrectInput(Entity presser)
-    {
-        OnCorrectCode.Fire(presser);
-    }
+    protected virtual void KeyPressed(Entity presser, string key) { }
 
     private KeypadButton GetButtonFromLocalPos(Vector3 localPos)
     {
