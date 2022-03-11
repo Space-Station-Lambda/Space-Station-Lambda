@@ -12,12 +12,19 @@ public abstract partial class WorldEntity : AnimEntity
 {
     [Net, Property] public string Id { get; set; }
 
+    [Net, Property] public bool DeleteOnKill { get; set; }
+    
     internal void RegisterDao()
     {
         if (IsFromMap)
         {
             SaveToDao();
         }
+    }
+
+    public override void OnKilled()
+    {
+        if (DeleteOnKill) Delete();
     }
 
     /// <summary>
