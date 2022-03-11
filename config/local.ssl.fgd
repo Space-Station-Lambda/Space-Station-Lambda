@@ -14,7 +14,7 @@
 ]
 
 //
-// ssl.Modules.Rounds.SpawnPoint
+// ssl.Modules.Rounds.RoleSpawnPoint
 //
 @PointClass base(BaseProperties_local_ssl) editormodel( "models/citizen/citizen.vmdl" ) 
 metadata
@@ -146,6 +146,7 @@ metadata
 	range(float) : "Range" : "100" : "Defines the range property in case there's no spot light as child."
 	color(color255) : "Color" :  : "Defines the inner cone angle property in case there's no spot light as child."
 	brightness(float) : "Brightness" : "100" : "Defines the brightness property in case there's no spot light as child."
+	enabled(boolean) : "Enabled" : 0 : ""
 	id(string) : "Id" :  : ""
 	destroyable(boolean) : "Destroyable" : 0 : ""
 	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"

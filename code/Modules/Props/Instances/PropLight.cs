@@ -35,7 +35,7 @@ public partial class PropLight : Prop, IElectrical
         "Defines the brightness property in case there's no spot light as child.")] 
     public float Brightness { get; set; } = 100F;
 
-    private bool Enabled { get; set; }
+    [Property] public bool Enabled { get; set; }
 
     [Input]
     public virtual void TurnOn()
