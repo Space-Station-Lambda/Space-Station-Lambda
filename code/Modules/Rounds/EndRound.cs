@@ -4,8 +4,6 @@ namespace ssl.Modules.Rounds;
 
 public class EndRound : BaseRound
 {
-    public EndRound() { }
-
     public EndRound(RoundOutcome outcome)
     {
         RoundOutcome = outcome;
@@ -35,6 +33,6 @@ public class EndRound : BaseRound
 
     public override BaseRound Next()
     {
-        return new PreRound();
+        return new PreRound(1);
     }
 }

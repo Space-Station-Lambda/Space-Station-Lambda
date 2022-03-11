@@ -7,9 +7,11 @@ public class PreRound : BaseRound
     public override string RoundName => "Preround";
     public override int RoundDuration => 10;
 
+    public PreRound() {}
+
     public PreRound(int requiredPlayerCount)
     {
-        Requirements.Add(new PlayerCountRequirement(2));
+        Requirements.Add(new PlayerCountRequirement(requiredPlayerCount));
         RegisterRequirementsListeners();
     }
 

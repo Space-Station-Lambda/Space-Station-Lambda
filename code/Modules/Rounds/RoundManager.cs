@@ -4,6 +4,8 @@ namespace ssl.Modules.Rounds;
 
 public partial class RoundManager : BaseNetworkable
 {
+    private BaseRound pendingRound;
+    
     public RoundManager()
     {
         if (Host.IsServer) ChangeRound(new PreRound(2));
@@ -15,22 +17,37 @@ public partial class RoundManager : BaseNetworkable
     {
         Host.AssertServer();
 
+        Log.Info($"Change round {round.RoundName}");
+        
         if (round.CanStart())
         {
-            if (CurrentRound != null)
-            {
-                CurrentRound.Stop();
-                CurrentRound.RoundEndedEvent -= OnRoundEnd;
-                Gamemode.Current.PlayerKilled -= CurrentRound.OnPlayerKilled;
-                Log.Info("Round " + CurrentRound.RoundName + " ended");
-            }
-    
-            CurrentRound = round;
-            CurrentRound.Start();
-            CurrentRound.RoundEndedEvent += OnRoundEnd;
-            Gamemode.Current.PlayerKilled += CurrentRound.OnPlayerKilled;
-            Log.Info("Round " + CurrentRound.RoundName + " started");
+            Log.Info("Round can start");
+            if (pendingRound != null) pendingRound.AllRequirementFulfilled -= ModifyRound;
+            ModifyRound(round);
         }
+        else if(pendingRound == null)
+        {
+            Log.Info($"Round {round.RoundName} cannot start now, waiting for requirements...");
+            round.AllRequirementFulfilled += ModifyRound;
+            pendingRound = round;
+        }
+    }
+
+    private void ModifyRound(BaseRound round)
+    {
+        if (CurrentRound != null)
+        {
+            CurrentRound.Stop();
+            CurrentRound.RoundEndedEvent -= OnRoundEnd;
+            Gamemode.Current.PlayerKilled -= CurrentRound.OnPlayerKilled;
+            Log.Info($"Round {CurrentRound.RoundName}  ended");
+        }
+    
+        CurrentRound = round;
+        CurrentRound.Start();
+        CurrentRound.RoundEndedEvent += OnRoundEnd;
+        Gamemode.Current.PlayerKilled += CurrentRound.OnPlayerKilled;
+        Log.Info($"Round {CurrentRound.RoundName} started");
     }
 
     private void OnRoundEnd(BaseRound round)

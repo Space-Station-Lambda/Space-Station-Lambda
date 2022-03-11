@@ -20,7 +20,7 @@ public abstract partial class BaseRound : BaseNetworkable
     }
 
     public event Action<BaseRound> RoundEndedEvent;
-    public event Action AllRequirementFulfilled;
+    public event Action<BaseRound> AllRequirementFulfilled;
 
     [Net] public IList<SslPlayer> Players { get; set; }
     
@@ -154,7 +154,7 @@ public abstract partial class BaseRound : BaseNetworkable
 
     private void OnRequirementFulfilled()
     {
-        if (CanStart()) AllRequirementFulfilled?.Invoke();
+        if (CanStart()) AllRequirementFulfilled?.Invoke(this);
     }
     
     public override string ToString()
