@@ -1,4 +1,5 @@
 ﻿using Sandbox;
+using ssl.Modules.Items;
 using ssl.Player;
 
 namespace ssl.Modules.Selection;
@@ -32,9 +33,9 @@ public class Selector : EntityComponent<SslPlayer>
         }
     }
 
-    public void UseSelected()
+    public void UseSelected(InputType input)
     {
-        Selected?.OnInteract(Entity, 1, TraceResult);
+        if(input == InputType.Pressed) Selected?.OnInteract(Entity, 1, TraceResult);
     }
 
     private void StartSelection(ISelectable selectable)

@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using ssl.Constants;
+using ssl.Modules.Items;
 using ssl.Modules.Items.Instances;
 using ssl.Player;
 
@@ -36,12 +37,16 @@ public class InputHandler : EntityComponent<SslPlayer>
         if (Entity.StatusHandler.GetStatus(Identifiers.Statuses.RESTRAINED_ID) == null)
         {
             // Default usage with the use button
-            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
-
+            if (Input.Pressed(InputButton.Use)) Entity.Dragger.UseSelected(InputType.Pressed);
+            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected(InputType.Down);
+            if (Input.Released(InputButton.Use)) Entity.Dragger.UseSelected(InputType.Released);
+            
+            
             // Primary Action
-            if (Input.Pressed(InputButton.Attack1)) Entity.Inventory.UsePrimary(true);
-            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary(false);
-
+            if (Input.Pressed(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Pressed);
+            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Down);
+            if (Input.Released(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Released);
+            
             // Secondary Action and drag
             if (Input.Down(InputButton.Attack2))
             {
@@ -57,7 +62,7 @@ public class InputHandler : EntityComponent<SslPlayer>
         else if (Entity.Dragger.Selected is ItemKey)
         {
             // Default usage with the use button
-            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
+            if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected(InputType.Down);
         }
         
         if (Entity.IsClient) CheckClientControls();

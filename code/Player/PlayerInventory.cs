@@ -81,12 +81,20 @@ public partial class PlayerInventory : Inventory
         return destinationSlot;
     }
 
-    public void UsePrimary(bool pressed)
+    public void UsePrimary(InputType inputType)
     {
-        if (pressed)
-            HoldingItem?.OnPressedUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
-        else
-            HoldingItem?.OnDownUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
+        switch (inputType)
+        {
+            case InputType.Pressed:
+                HoldingItem?.OnPressedUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
+                break;
+            case InputType.Down:
+                HoldingItem?.OnDownUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
+                break;
+            case InputType.Released:
+            default:
+                break;
+        }
     }
 
     public void UseSecondary()
