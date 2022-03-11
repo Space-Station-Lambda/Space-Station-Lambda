@@ -38,14 +38,14 @@ public class InProgressRound : BaseRound
 
         if (Host.IsServer)
         {
-            List<SpawnPoint> spawnPoints = SpawnPoint.GetAllSpawnPoints();
+            List<RoleSpawnPoint> spawnPoints = RoleSpawnPoint.GetAllSpawnPoints();
 
             foreach (Client client in Client.All)
             {
                 if (client.Pawn is SslPlayer player)
                 {
                     if (spawnPoints.Count > 0)
-                        foreach (SpawnPoint point in spawnPoints)
+                        foreach (RoleSpawnPoint point in spawnPoints)
                         {
                             if (point.CanRoleSpawn(player.RoleHandler.Role)) player.Respawn(point);
 

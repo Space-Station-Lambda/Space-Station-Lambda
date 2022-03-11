@@ -5,13 +5,13 @@ using Sandbox;
 using ssl.Modules.Clothes;
 using ssl.Modules.Inputs;
 using ssl.Modules.Roles;
+using ssl.Modules.Rounds;
 using ssl.Modules.Selection;
 using ssl.Modules.Skills;
 using ssl.Modules.Statuses;
 using ssl.Player.Animators;
 using ssl.Player.Cameras;
 using ssl.Player.Controllers;
-using SpawnPoint = ssl.Modules.Rounds.SpawnPoint;
 
 namespace ssl.Player;
 
@@ -132,7 +132,7 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
         Rotation = rotation;
     }
 
-    public void Respawn(SpawnPoint spawnPoint)
+    public void Respawn(RoleSpawnPoint spawnPoint)
     {
         Respawn(spawnPoint.Position, spawnPoint.Rotation);
     }

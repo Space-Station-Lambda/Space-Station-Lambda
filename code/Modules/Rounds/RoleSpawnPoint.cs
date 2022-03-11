@@ -9,7 +9,7 @@ namespace ssl.Modules.Rounds;
 [Library("ssl_player_spawn"), EditorModel("models/citizen/citizen.vmdl"), EntityTool("SSL Player Spawnpoint",
      "Space Station Lambda",
      "Defines a point where the player can spawn. Roles can be specified if a spawnpoint is role exclusive")]
-public class SpawnPoint : Entity
+public class RoleSpawnPoint : SpawnPoint
 {
     public const string SPAWN_POINT_TAG = "spawnpoint";
 
@@ -29,8 +29,8 @@ public class SpawnPoint : Entity
         return role.Id == RoleFilter || RoleFilter == "";
     }
 
-    public static List<SpawnPoint> GetAllSpawnPoints()
+    public static List<RoleSpawnPoint> GetAllSpawnPoints()
     {
-        return (from entity in All where entity.Tags.Has(SPAWN_POINT_TAG) select entity as SpawnPoint).ToList();
+        return (from entity in All where entity.Tags.Has(SPAWN_POINT_TAG) select entity as RoleSpawnPoint).ToList();
     }
 }
