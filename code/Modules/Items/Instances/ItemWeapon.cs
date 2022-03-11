@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Runtime.CompilerServices;
+using Sandbox;
 using Sandbox.ScreenShake;
 using ssl.Modules.Selection;
 using ssl.Player;
@@ -12,9 +13,9 @@ public partial class ItemWeapon : Item
     private const float MAX_RANGE = 5000;
 
 
-    public float PrimaryRate { get; set; }
-    public float Range { get; set; }
-    public float Damage { get; set; }
+    [Net] public float PrimaryRate { get; set; }
+    [Net] public float Range { get; set; }
+    [Net] public float Damage { get; set; }
     [Net] public string ShootSound { get; set; }
     [Net] public string DryFireSound { get; set; }
     [Net] public string ReloadSound { get; set; }
@@ -33,16 +34,16 @@ public partial class ItemWeapon : Item
     /// <summary>
     ///     Current amount of ammo in the current magazine.
     /// </summary>
-    [Net] public int CurrentAmmo { get; set; }
+    [Net, Predicted] public int CurrentAmmo { get; set; }
 
     /// <summary>
     ///     Time that the weapon will take to reload.
     /// </summary>
     [Net] public float ReloadTime { get; set; }
 
-    [Net] protected TimeSince TimeSincePrimaryAttack { get; set; }
-    [Net] protected bool IsReloading { get; set; }
-    [Net] protected TimeSince TimeSinceStartReload { get; set; }
+    [Net, Predicted] protected TimeSince TimeSincePrimaryAttack { get; set; }
+    [Net, Predicted] protected bool IsReloading { get; set; }
+    [Net, Predicted] protected TimeSince TimeSinceStartReload { get; set; }
 
     protected TraceResult Hit { get; private set; }
     protected Entity HitEntity => Hit.Entity;
