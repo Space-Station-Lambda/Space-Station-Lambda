@@ -15,28 +15,18 @@ public class InputHandler : EntityComponent<SslPlayer>
         if (null == Entity.Dragger.Dragged || Entity.StatusHandler.GetStatus(Identifiers.Statuses.RESTRAINED_ID) != null)
         {
             if (Input.Pressed(InputButton.Slot1)) Entity.Inventory.ProcessHolding(0);
-
             if (Input.Pressed(InputButton.Slot2)) Entity.Inventory.ProcessHolding(1);
-
             if (Input.Pressed(InputButton.Slot3)) Entity.Inventory.ProcessHolding(2);
-
             if (Input.Pressed(InputButton.Slot4)) Entity.Inventory.ProcessHolding(3);
-
             if (Input.Pressed(InputButton.Slot5)) Entity.Inventory.ProcessHolding(4);
-
             if (Input.Pressed(InputButton.Slot6)) Entity.Inventory.ProcessHolding(5);
-
             if (Input.Pressed(InputButton.Slot7)) Entity.Inventory.ProcessHolding(6);
-
             if (Input.Pressed(InputButton.Slot8)) Entity.Inventory.ProcessHolding(7);
-
             if (Input.Pressed(InputButton.Slot9)) Entity.Inventory.ProcessHolding(8);
-
             if (Input.Pressed(InputButton.Slot0)) Entity.Inventory.ProcessHolding(9);
         }
 
         if (Entity.IsClient) CheckClientControls();
-
         if (Entity.IsServer) CheckServerControls();
     }
 
