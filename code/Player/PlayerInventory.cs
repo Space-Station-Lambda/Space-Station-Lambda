@@ -92,7 +92,8 @@ public partial class PlayerInventory : Inventory
                 HoldingItem?.OnDownUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
                 break;
             case InputType.Released:
-            default:
+            case InputType.Hold:
+                HoldingItem?.OnHoldUsePrimary(SslPlayer, SslPlayer.Dragger.Selected);
                 break;
         }
     }

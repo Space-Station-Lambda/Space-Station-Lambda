@@ -71,6 +71,8 @@ public partial class Item : Carriable, IDraggable
     public virtual void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
 
     public virtual void OnPressedUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
+    
+    public virtual void OnHoldUsePrimary(SslPlayer sslPlayer, ISelectable target) { }
 
     public virtual void OnUseSecondary(SslPlayer sslPlayer, ISelectable target) { }
 

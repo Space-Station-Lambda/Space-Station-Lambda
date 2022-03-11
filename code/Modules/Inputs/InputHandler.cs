@@ -6,10 +6,12 @@ using ssl.Player;
 
 namespace ssl.Modules.Inputs;
 
-public class InputHandler : EntityComponent<SslPlayer>
+public partial class InputHandler : EntityComponent<SslPlayer>
 {
-    //TODO SSL-381: Add a way to change the cooldown by the skill of the player
-
+    private const float LONG_HOLD_THRESHOLD = 1F;
+    
+    [Net, Predicted] private TimeSince PrimaryActionStart { get; set; }
+    
     public void CheckControls()
     {
         // If the player don't drag anything
@@ -43,9 +45,23 @@ public class InputHandler : EntityComponent<SslPlayer>
             
             
             // Primary Action
-            if (Input.Pressed(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Pressed);
-            if (Input.Down(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Down);
-            if (Input.Released(InputButton.Attack1)) Entity.Inventory.UsePrimary(InputType.Released);
+            if (Input.Pressed(InputButton.Attack1))
+            {
+                PrimaryActionStart = 0;
+                Entity.Inventory.UsePrimary(InputType.Pressed);
+            }
+
+            if (Input.Down(InputButton.Attack1))
+            {
+                Entity.Inventory.UsePrimary(PrimaryActionStart >= LONG_HOLD_THRESHOLD
+                    ? InputType.Hold
+                    : InputType.Down);
+            }
+
+            if (Input.Released(InputButton.Attack1))
+            {
+                Entity.Inventory.UsePrimary(InputType.Released);
+            }
             
             // Secondary Action and drag
             if (Input.Down(InputButton.Attack2))

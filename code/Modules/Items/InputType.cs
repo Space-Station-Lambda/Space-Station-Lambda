@@ -16,5 +16,9 @@ public enum InputType
     /// <summary>
     ///     The input is not pressed although it was before.
     /// </summary>
-    Released
+    Released,
+    /// <summary>
+    ///     The input has been hold for a small time and is now considered as a long input.
+    /// </summary>
+    Hold
 }
