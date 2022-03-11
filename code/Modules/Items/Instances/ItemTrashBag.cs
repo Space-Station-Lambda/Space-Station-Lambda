@@ -27,6 +27,7 @@ public class ItemTrashBag : Item
     public override void OnDownUsePrimary(SslPlayer sslPlayer, ISelectable target)
     {
         base.OnDownUsePrimary(sslPlayer, target);
+        if (!Host.IsServer) return;
         if (sslPlayer.Dragger.Selected is Item item) AddToTrashBag(item);
     }
 

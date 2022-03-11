@@ -95,7 +95,6 @@ public abstract partial class BaseRound : BaseNetworkable
 
     public virtual void OnSecond()
     {
-        if (!Host.IsServer) return;
         if (RoundEndTime > 0 && Time.Now >= RoundEndTime)
         {
             RoundEndTime = 0f;

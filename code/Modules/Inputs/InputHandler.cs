@@ -26,26 +26,12 @@ public class InputHandler : EntityComponent<SslPlayer>
             if (Input.Pressed(InputButton.Slot0)) Entity.Inventory.ProcessHolding(9);
         }
 
-        if (Entity.IsClient) CheckClientControls();
-        if (Entity.IsServer) CheckServerControls();
-    }
-
-    private void CheckClientControls() { }
-
-    private void CheckServerControls()
-    {
         // Drop
-
         if (Input.Pressed(InputButton.Drop))
         {
             Item dropped = Entity.Inventory.DropItem();
             dropped.Velocity += Entity.Velocity;
         }
-
-        // Flashlight
-
-        if (Input.Pressed(InputButton.Flashlight)) Entity.RagdollHandler.StartRagdoll();
-
 
         if (Entity.StatusHandler.GetStatus(Identifiers.Statuses.RESTRAINED_ID) == null)
         {
@@ -73,5 +59,16 @@ public class InputHandler : EntityComponent<SslPlayer>
             // Default usage with the use button
             if (Input.Down(InputButton.Use)) Entity.Dragger.UseSelected();
         }
+        
+        if (Entity.IsClient) CheckClientControls();
+        if (Entity.IsServer) CheckServerControls();
+    }
+
+    private void CheckClientControls() { }
+
+    private void CheckServerControls()
+    {
+        // Flashlight
+        if (Input.Pressed(InputButton.Flashlight)) Entity.RagdollHandler.StartRagdoll();
     }
 }
