@@ -54,7 +54,10 @@ public partial class PropKeypad : Prop
         KeyPressed(sslPlayer, button?.KeyValue);
     }
 
-    protected virtual void KeyPressed(Entity presser, string key) { }
+    protected virtual void KeyPressed(Entity presser, string key)
+    {
+        OnKeyPressed.Fire(presser, key);
+    }
 
     private KeypadButton GetButtonFromLocalPos(Vector3 localPos)
     {

@@ -17,7 +17,7 @@ public partial class PropKeypadCode : PropKeypad
     
     protected override void KeyPressed(Entity presser, string key)
     {
-        OnKeyPressed.Fire(presser, key);
+        base.KeyPressed(presser, key);
         
         // TODO: Show input in the world
 

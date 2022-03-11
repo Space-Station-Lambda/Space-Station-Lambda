@@ -104,7 +104,6 @@ metadata
 	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
 	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
 	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
-	code(string) : "Code" :  : ""
 	id(string) : "Id" :  : ""
 	destroyable(boolean) : "Destroyable" : 0 : ""
 	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
@@ -112,8 +111,26 @@ metadata
 	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
 
 	output OnKeyPressed(string) : "Fired when a button is pressed."
+]
+
+//
+// ssl.Modules.Props.Instances.PropKeypadCode
+//
+@PointClass base(BaseProperties_local_ssl) model() = ssl_prop_keypad_code : ""
+[
+	model(resource:vmdl) { report = true hide_when_solid = true }: "World Model" : "" : "The model this entity should use."
+	skin(materialgroup) { group = "Rendering" hide_when_solid = true } : "Skin" : "default" : "Some models have multiple versions of their textures, called skins." 
+	bodygroups(bodygroupchoices) { group = "Rendering" hide_when_solid = true } : "Body Groups" : "" : "Some models have multiple variations of certain items, such as characters having different hair styles, etc."
+	code(string) : "Code" :  : ""
+	id(string) : "Id" :  : ""
+	destroyable(boolean) : "Destroyable" : 0 : ""
+	enable_shadows(boolean) { group = "Rendering" } : "Shadow Casting" : 1 : "Whether this entity should cast shadows or not"
+
+	input SetColor(string) : "Sets the color of this entity. Format is '255 255 255 255'."
+
 	output OnEnterPressed(string) : "Fired when the enter button is pressed with the Input."
 	output OnCorrectCode(void) : ""
+	output OnKeyPressed(string) : "Fired when a button is pressed."
 ]
 
 //
