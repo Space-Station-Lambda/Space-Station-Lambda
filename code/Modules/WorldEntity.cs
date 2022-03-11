@@ -16,7 +16,6 @@ public abstract partial class WorldEntity : AnimEntity
     {
         if (IsFromMap)
         {
-            Log.Info($"Map entity {Id} registered");
             SaveToDao();
         }
     }

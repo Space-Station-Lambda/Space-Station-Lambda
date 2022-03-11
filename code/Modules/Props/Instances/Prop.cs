@@ -37,7 +37,7 @@ public class Prop : WorldEntity, ISelectable
     private protected override void SaveToDao()
     {
         if (!CanSaveToDao(PropDao.Instance, this)) return;
-            
+
         PropData propData = new(Id)
         {
             Name = Name,
