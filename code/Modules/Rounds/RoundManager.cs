@@ -8,7 +8,7 @@ public partial class RoundManager : BaseNetworkable
     
     public RoundManager()
     {
-        if (Host.IsServer) ChangeRound(new PreRound(2));
+        if (Host.IsServer) ChangeRound(new PreRound(1));
     }
 
     [Net] public BaseRound CurrentRound { get; private set; }
@@ -21,8 +21,8 @@ public partial class RoundManager : BaseNetworkable
         
         if (round.CanStart())
         {
-            Log.Info("Round can start");
             if (pendingRound != null) pendingRound.AllRequirementFulfilled -= ModifyRound;
+            pendingRound = null;
             ModifyRound(round);
         }
         else if(pendingRound == null)
