@@ -60,9 +60,6 @@ public class RoleDao : LocalDao<RoleData>
             },
             StartingItems = new HashSet<string>
             {
-                Identifiers.Items.MOP_ID,
-                Identifiers.Items.SPONGE_ID,
-                Identifiers.Items.CLEANING_SPRAY_ID
             },
             Skills = new Dictionary<string, int>
             {

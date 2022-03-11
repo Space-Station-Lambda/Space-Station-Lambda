@@ -21,11 +21,6 @@ public class ItemDao : LocalDao<ItemData>
         Log.Info("Load items..");
 
         // Items
-        Save(new ItemData(Identifiers.Items.CLEANING_SPRAY_ID)
-        {
-            Name = "Cleaning Spray",
-            Description = "A spray to clean stuff"
-        });
         Save(new ItemData(Identifiers.Items.FLASHLIGHT_ID)
         {
             Name = "Flashlight",
@@ -81,20 +76,6 @@ public class ItemDao : LocalDao<ItemData>
         });
 
         // Cleaners
-        Save(new ItemCleanerData(Identifiers.Items.SPONGE_ID)
-        {
-            Name = "Sponge",
-            Description = "A sponge",
-            CleaningValue = 10
-        });
-
-        Save(new ItemCleanerData(Identifiers.Items.MOP_ID)
-        {
-            Name = "Mop",
-            Description = "A mop ?",
-            CleaningValue = 15
-        });
-
         Save(new ItemData(Identifiers.Items.HANDCUFFS_ID)
         {
             Name = "Handcuffs",
