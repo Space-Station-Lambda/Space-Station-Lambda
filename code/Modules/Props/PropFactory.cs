@@ -38,6 +38,8 @@ public class PropFactory : IFactory<Prop>
         prop.Id = propData.Id;
         prop.Name = propData.Name;
         prop.Model = Model.Load(propData.Model);
+        prop.Health = propData.Health;
+        prop.Destroyable = propData.Destroyable;
         return prop;
     }
 }

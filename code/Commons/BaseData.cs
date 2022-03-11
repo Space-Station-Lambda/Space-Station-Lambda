@@ -12,4 +12,14 @@ public class BaseData
     ///     <example>"item.banana"</example>
     /// </summary>
     public string Id { get; set; }
+
+    /// <summary>
+    ///     Health of the entity (its durability).
+    /// </summary>
+    public int Health { get; set; } = 100;
+
+    /// <summary>
+    ///     Destroyed when enough damage has been dealt.
+    /// </summary>
+    public bool Destroyable { get; set; } = false;
 }

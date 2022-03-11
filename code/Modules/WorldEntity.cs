@@ -12,7 +12,7 @@ public abstract partial class WorldEntity : AnimEntity
 {
     [Net, Property] public string Id { get; set; }
 
-    [Net, Property] public bool DeleteOnKill { get; set; }
+    [Net, Property] public bool Destroyable { get; set; }
     
     internal void RegisterDao()
     {
@@ -24,7 +24,7 @@ public abstract partial class WorldEntity : AnimEntity
 
     public override void OnKilled()
     {
-        if (DeleteOnKill) Delete();
+        if (Destroyable) Delete();
     }
 
     /// <summary>

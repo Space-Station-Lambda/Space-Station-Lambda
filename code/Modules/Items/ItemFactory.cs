@@ -37,6 +37,8 @@ public sealed class ItemFactory : IFactory<Item>
         item.SetModel(itemData.Model);
         item.HoldType = itemData.HoldType;
         item.WasteId = itemData.WasteId;
+        item.Health = itemData.Health;
+        item.Destroyable = itemData.Destroyable;
         return item;
     }
 
