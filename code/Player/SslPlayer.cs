@@ -90,11 +90,14 @@ public partial class SslPlayer : Sandbox.Player, ISelectable
     {
         PawnController controller = GetActiveController();
         controller?.Simulate(client, this, GetActiveAnimator());
-        StatusHandler.Tick();
+        if (Host.IsServer)
+        {
+            StatusHandler.Tick();
+            StainHandler.TryGenerateStain();
+        }
         SimulateActiveChild(client, ActiveChild);
         InputHandler.CheckControls();
         Dragger?.UpdateTarget();
-        StainHandler.TryGenerateStain();
     }
 
     /// <summary>
