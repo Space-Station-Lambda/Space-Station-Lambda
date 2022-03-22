@@ -18,7 +18,7 @@
 				m_bUseMostRecentValue = false
 				m_bAutoReset = false
 				m_bPredicted = false
-				m_bDefaultValue = false
+				m_bDefaultValue = true
 			},
 		]
 	}
@@ -67,10 +67,32 @@
 	}
 	m_previewModels = 
 	[
-		"models/airlock.vmdl",
+		"models/props/doors/airlock/airlock.vmdl",
 	]
 	m_nodes = 
 	[
+		{
+			key = 
+			{
+				m_id = 133070966
+			}
+			value = 
+			{
+				_class = "CSequenceAnimNode"
+				m_sName = "Unnamed"
+				m_vecPosition = [ -288.0, 96.0 ]
+				m_nNodeID = 
+				{
+					m_id = 133070966
+				}
+				m_networkMode = "ServerAuthoritative"
+				m_sNote = ""
+				m_tagSpans = [  ]
+				m_sequenceName = "close"
+				m_playbackSpeed = 1.0
+				m_bLoop = false
+			}
+		},
 		{
 			key = 
 			{
@@ -85,7 +107,7 @@
 				{
 					m_id = 1536123780
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ServerAuthoritative"
 				m_sNote = ""
 				m_tagSpans = [  ]
 				m_sequenceName = "open"
@@ -107,7 +129,7 @@
 				{
 					m_id = 1564247674
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ServerAuthoritative"
 				m_sNote = ""
 				m_states = 
 				[
@@ -144,7 +166,7 @@
 								{
 									m_id = 399613281
 								}
-								m_bReset = true
+								m_bReset = false
 								m_resetCycleOption = "Beginning"
 								m_flFixedCycleValue = 0.0
 								m_blendCurve = 
@@ -212,7 +234,7 @@
 								{
 									m_id = 1376291387
 								}
-								m_bReset = true
+								m_bReset = false
 								m_resetCycleOption = "Beginning"
 								m_flFixedCycleValue = 0.0
 								m_blendCurve = 
@@ -234,13 +256,13 @@
 						m_name = "Closed"
 						m_childNodeID = 
 						{
-							m_id = 1757975631
+							m_id = 133070966
 						}
 						m_stateID = 
 						{
 							m_id = 399613281
 						}
-						m_position = [ 112.0, -64.0 ]
+						m_position = [ 80.0, -48.0 ]
 						m_bIsStartState = false
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -274,7 +296,7 @@
 								{
 									m_id = 1376291387
 								}
-								m_bReset = true
+								m_bReset = false
 								m_resetCycleOption = "Beginning"
 								m_flFixedCycleValue = 0.0
 								m_blendCurve = 
@@ -308,7 +330,7 @@
 								{
 									m_id = 399613281
 								}
-								m_bReset = true
+								m_bReset = false
 								m_resetCycleOption = "Beginning"
 								m_flFixedCycleValue = 0.0
 								m_blendCurve = 
@@ -325,13 +347,13 @@
 						m_name = "Start"
 						m_childNodeID = 
 						{
-							m_id = 4294967295
+							m_id = 1912606497
 						}
 						m_stateID = 
 						{
 							m_id = 1613169725
 						}
-						m_position = [ -64.0, -240.0 ]
+						m_position = [ -80.0, -272.0 ]
 						m_bIsStartState = true
 						m_bIsEndtState = false
 						m_bIsPassthrough = false
@@ -346,21 +368,21 @@
 		{
 			key = 
 			{
-				m_id = 1757975631
+				m_id = 1912606497
 			}
 			value = 
 			{
 				_class = "CSequenceAnimNode"
-				m_sName = "close"
-				m_vecPosition = [ -288.0, 96.0 ]
+				m_sName = "Unnamed"
+				m_vecPosition = [ -288.0, 144.0 ]
 				m_nNodeID = 
 				{
-					m_id = 1757975631
+					m_id = 1912606497
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ServerAuthoritative"
 				m_sNote = ""
 				m_tagSpans = [  ]
-				m_sequenceName = "close"
+				m_sequenceName = "base"
 				m_playbackSpeed = 1.0
 				m_bLoop = false
 			}
@@ -379,7 +401,7 @@
 				{
 					m_id = 2144624410
 				}
-				m_networkMode = "ClientPredicted"
+				m_networkMode = "ServerAuthoritative"
 				m_sNote = ""
 				m_childID = 
 				{
