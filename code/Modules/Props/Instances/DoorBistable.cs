@@ -13,8 +13,7 @@ public class DoorBistable : Prop
 {
     private const float INTERACTION_DELAY = 1F;
     private TimeSince lastUsed;
-    
-    public bool Opened { get; set; }
+    public bool Opened => GetAnimParameterBool("opened");
 
     public override void OnInteract(SslPlayer sslPlayer, int strength)
     {
@@ -36,13 +35,11 @@ public class DoorBistable : Prop
     private void Open()
     {
         SetAnimParameter("opened", true);
-        Opened = true;
     }
 
     [Input]
     private void Close()
     {
         SetAnimParameter("opened", false);
-        Opened = false;
     }
 }
