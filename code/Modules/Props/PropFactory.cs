@@ -20,11 +20,7 @@ public class PropFactory : IFactory<Prop>
 
         Prop prop = propData switch
         {
-            PropMachineData propMachineData => new PropMachine
-            {
-                Complexity = propMachineData.Complexity,
-                Durability = propMachineData.Durability
-            },
+            PropMachineData propMachineData => new PropMachine(),
             PropTrashBinData propTrashBinData => new PropTrashBin(),
             PropLightData propLightData => new PropLight
             {
