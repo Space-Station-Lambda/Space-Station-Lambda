@@ -1,0 +1,13 @@
+RoleIndicator {
+  position: absolute;
+
+  Label {
+    font-size: 50px;
+    color: white;
+  }
+
+  &.hidden {
+    pointer-events: none;
+    display: none;
+  }
+}
