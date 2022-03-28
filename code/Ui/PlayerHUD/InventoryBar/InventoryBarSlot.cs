@@ -33,7 +33,7 @@ public class InventoryBarSlot : Panel
 
     public InventoryBarSlot(int slotNumber, string name, Panel parent)
     {
-        StyleSheet.Load("Ui/InventoryBar/InventoryBarSlot.scss");
+        StyleSheet.Load("Ui/PlayerHUD/InventoryBar/InventoryBarSlot.scss");
         SlotNumber = slotNumber;
         Parent = parent;
         Add.Label($"{name}");

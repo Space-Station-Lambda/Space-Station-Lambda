@@ -11,7 +11,7 @@ public class InventoryBar : Panel
 
     public InventoryBar()
     {
-        StyleSheet.Load("Ui/InventoryBar/InventoryBar.scss");
+        StyleSheet.Load("Ui/PlayerHUD/InventoryBar/InventoryBar.scss");
 
         for (int i = 0; i < 10; i++)
         {

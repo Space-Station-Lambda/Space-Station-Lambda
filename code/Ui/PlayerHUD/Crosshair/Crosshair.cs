@@ -8,7 +8,7 @@ public class Crosshair : Panel
 
     public Crosshair()
     {
-        StyleSheet.Load("Ui/Crosshair/crosshair.scss");
+        StyleSheet.Load("Ui/PlayerHUD/Crosshair/crosshair.scss");
         crosshairSelectionCircle = AddChild<CrosshairSelectionCircle>();
     }
 }

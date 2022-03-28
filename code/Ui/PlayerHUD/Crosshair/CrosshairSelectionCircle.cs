@@ -8,7 +8,7 @@ public class CrosshairSelectionCircle : Panel
 {
     public CrosshairSelectionCircle()
     {
-        StyleSheet.Load("Ui/Crosshair/CrosshairSelectionCircle.scss");
+        StyleSheet.Load("Ui/PlayerHUD/Crosshair/CrosshairSelectionCircle.scss");
         SetClass("selected", false);
     }
 
