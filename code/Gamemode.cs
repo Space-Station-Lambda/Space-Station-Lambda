@@ -74,6 +74,8 @@ public partial class Gamemode : Game
         Log.Info("Create HUD...");
         _ = new Hud();
         LoadDatabase();
+        
+        Map.Physics.Gravity = Vector3.Zero;
     }
 
     /// <summary>
