@@ -11,13 +11,13 @@ namespace ssl.Modules.Roles.Instances;
 /// <summary>
 ///     Player's role
 /// </summary>
-public class Role : BaseNetworkable
+public partial class Role : BaseNetworkable
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string Type { get; set; }
-    public string Model { get; set; }
+    [Net] public string Id { get; set; }
+    [Net] public string Name { get; set; }
+    [Net] public string Description { get; set; }
+    [Net] public string Type { get; set; }
+    [Net] public string Model { get; set; }
 
     /// <summary>
     ///     Skills of the role

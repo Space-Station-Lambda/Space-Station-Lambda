@@ -2,6 +2,7 @@
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 using ssl.Modules.Roles;
+using ssl.Modules.Roles.Data;
 using ssl.Modules.Roles.Instances;
 using ssl.Player;
 
@@ -15,23 +16,23 @@ public class RoleSlot : Panel
     private readonly string roleId;
     private RolePreferenceType currentSelected;
 
-    public RoleSlot(Role role, Panel parent) : this(role)
+    public RoleSlot(RoleData roleData, Panel parent) : this(roleData)
     {
         StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
         Parent = parent;
         AddEventListener("onclick", Select);
     }
 
-    public RoleSlot(Role role)
+    public RoleSlot(RoleData roleData)
     {
         StyleSheet.Load("Ui/RoleSelector/RoleSlot.scss");
-        roleId = role.Id;
+        this.roleId = roleData.Id;
 
         Panel inside = Add.Panel("inside");
         {
             Panel roleLabel = inside.Add.Panel("roleLabel");
             {
-                roleLabel.Add.Label(role.Name, "role-name");
+                roleLabel.Add.Label(roleData.Name, "role-name");
             }
         }
     }

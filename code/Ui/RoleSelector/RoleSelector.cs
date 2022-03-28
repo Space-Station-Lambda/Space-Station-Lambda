@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using Sandbox;
 using Sandbox.UI;
 using ssl.Modules.Roles;
+using ssl.Modules.Roles.Data;
 using ssl.Modules.Roles.Instances;
 using ssl.Modules.Rounds;
 
@@ -22,13 +24,12 @@ public class RoleSelector : Panel
 
     private void LoadBaseRoleSelection()
     {
-        foreach (string id in RoleDao.Instance.FindAllIds())
+        foreach (RoleData roleData in RoleDao.Instance.FindAll())
         {
-            Role role = RoleFactory.Instance.Create(id);
             // If the role is availible to the player.
-            if (role.Available)
+            if (roleData.Available)
             {
-                RoleSlot slot = new(role, this);
+                RoleSlot slot = new(roleData, this);
                 roleSlots.Add(slot);
             }
         }

@@ -30,7 +30,7 @@ public partial class RoleHandler : EntityComponent<SslPlayer>
 
     [Net] private IDictionary<string, RolePreferenceType> RolePreferences { get; set; }
 
-    public Role Role { get; private set; }
+    [Net] public Role Role { get; private set; }
 
     [ServerCmd("select_role_preference")]
     public static void SelectPreference(string roleId, RolePreferenceType preferenceType)
