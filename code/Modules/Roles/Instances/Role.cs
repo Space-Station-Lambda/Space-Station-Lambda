@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sandbox;
 using ssl.Constants;
+using ssl.Modules.Clothes;
 using ssl.Modules.Items;
 using ssl.Modules.Skills;
 using ssl.Player;
@@ -45,9 +46,9 @@ public partial class Role : BaseNetworkable
     /// <param name="sslPlayer"></param>
     public virtual void OnSpawn(SslPlayer sslPlayer)
     {
+        ItemFactory itemFactory = ItemFactory.Instance;
         foreach (string itemId in StartingItems)
         {
-            ItemFactory itemFactory = ItemFactory.Instance;
             try
             {
                 sslPlayer.Inventory.Add(itemFactory.Create(itemId));
@@ -58,7 +59,10 @@ public partial class Role : BaseNetworkable
             }
         }
 
-        sslPlayer.ClothesHandler.AttachClothes(Clothing);
+        foreach (string clothingId in Clothing)
+        {
+            sslPlayer.ClothesHandler.AttachClothes((ItemClothes) itemFactory.Create(clothingId));
+        }
     }
 
     /// <summary>

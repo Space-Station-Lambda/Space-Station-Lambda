@@ -1,5 +1,6 @@
 ﻿using ssl.Commons;
 using ssl.Constants;
+using ssl.Modules.Clothes;
 using ssl.Modules.Items.Data;
 using ssl.Player;
 
@@ -89,6 +90,65 @@ public class ItemDao : LocalDao<ItemData>
             Model = "models/citizen_props/hotdog01.vmdl"
         });
 
+        // Clothes
+        #region Janitor
+        Save(new ItemClothesData(Identifiers.Items.WORKGLOVES_ID)
+        {
+            Model = "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
+            Slot = ClothesSlot.Gloves
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.JEANS_ID)
+        {
+            Model = "models/citizen_clothes/trousers/trousers.jeans.vmdl",
+            Slot = ClothesSlot.Trousers
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.RED_LONGSLEEVE_ID)
+        {
+            Model = "models/citizen_clothes/shirt/shirt_longsleeve.plain.vmdl",
+            Slot = ClothesSlot.Shirt
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.WORKBOOTS_ID)
+        {
+            Model = "models/citizen_clothes/shoes/shoes.workboots.vmdl",
+            Slot = ClothesSlot.Shoes
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.SERVICE_HAT_ID)
+        {
+            Model = "models/citizen_clothes/hat/hat_service.vmdl",
+            Slot = ClothesSlot.Hat
+        });
+        #endregion
+        #region Guard
+        Save(new ItemClothesData(Identifiers.Items.GUARD_TROUSERS_ID)
+        {
+            Model = "models/citizen_clothes/trousers/trousers.police.vmdl",
+            Slot = ClothesSlot.Trousers
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.GUARD_SLEEVE_ID)
+        {
+            Model = "models/citizen_clothes/shirt/shirt_longsleeve.police.vmdl",
+            Slot = ClothesSlot.Shirt
+        });
+
+        Save(new ItemClothesData(Identifiers.Items.GUARD_SHOES_ID)
+        {
+            Model = "models/citizen_clothes/shoes/shoes.police.vmdl",
+            Slot = ClothesSlot.Shoes
+        });
+        
+        Save(new ItemClothesData(Identifiers.Items.GUARD_HAT_ID)
+        {
+            Model = "models/citizen_clothes/hat/hat_uniform.police.vmdl",
+            Slot = ClothesSlot.Hat
+        });
+        #endregion
+        
+        
         Log.Info($"{All.Count} items charged !");
     }
 }

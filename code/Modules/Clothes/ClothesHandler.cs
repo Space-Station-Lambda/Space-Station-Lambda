@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using ssl.Player;
 
@@ -12,14 +13,23 @@ public class ClothesHandler : EntityComponent<SslPlayer>
 {
     private readonly Dictionary<ClothesSlot, ItemClothes> clothes = new();
 
+    protected override void OnActivate()
+    {
+        base.OnActivate();
+        clothes.TryAdd(ClothesSlot.Hat, null);
+        clothes.TryAdd(ClothesSlot.Shirt, null);
+        clothes.TryAdd(ClothesSlot.Trousers, null);
+        clothes.TryAdd(ClothesSlot.Shoes, null);
+    }
+
     /// <summary>
     ///     Attach a piece of clothes to the entity
     /// </summary>
     public void AttachClothes(ItemClothes clothing)
     {
+        if (clothes[clothing.Slot] != null) return;
         clothing.SetParent(Entity, true);
-
-        throw new NotImplementedException();
+        clothes[clothing.Slot] = clothing;
     }
 
     /// <summary>

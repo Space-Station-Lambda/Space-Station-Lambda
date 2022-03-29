@@ -13,6 +13,7 @@ public enum ClothesSlot
     /// <summary>
     ///     Clothes on the legs of the player.
     /// </summary>
-    Pants,
-    Shoes
+    Trousers,
+    Shoes,
+    Gloves
 }

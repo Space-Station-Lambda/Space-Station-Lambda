@@ -22,12 +22,7 @@ public class RoleDao : LocalDao<RoleData>
             Available = true,
             Name = "Assistant",
             Description = "An assistant is a role who assists other roles in tasks.",
-            Clothing = new HashSet<string>
-            {
-                "models/citizen_clothes/hair/hair_femalebun.blonde.vmdl",
-                "models/citizen_clothes/dress/dress.kneelength.vmdl",
-                "models/citizen_clothes/shoes/trainers.vmdl"
-            },
+            Clothing = new HashSet<string>(),
             StartingItems = new HashSet<string>
             {
                 Identifiers.Items.APPLE_ID
@@ -52,11 +47,11 @@ public class RoleDao : LocalDao<RoleData>
             Description = "Janitor",
             Clothing = new HashSet<string>
             {
-                "models/citizen_clothes/gloves/gloves_workgloves.vmdl",
-                "models/citizen_clothes/shirt/shirt_longsleeve.plain.vmdl",
-                "models/citizen_clothes/trousers/trousers.jeans.vmdl",
-                "models/citizen_clothes/shoes/shoes.workboots.vmdl",
-                "models/citizen_clothes/hat/hat_service.vmdl"
+                Identifiers.Items.WORKGLOVES_ID,
+                Identifiers.Items.RED_LONGSLEEVE_ID,
+                Identifiers.Items.JEANS_ID,
+                Identifiers.Items.WORKBOOTS_ID,
+                Identifiers.Items.SERVICE_HAT_ID
             },
             StartingItems = new HashSet<string>
             {
@@ -81,10 +76,10 @@ public class RoleDao : LocalDao<RoleData>
             Description = "Guard",
             Clothing = new HashSet<string>
             {
-                "models/citizen_clothes/hat/hat_uniform.police.vmdl",
-                "models/citizen_clothes/shirt/shirt_longsleeve.police.vmdl",
-                "models/citizen_clothes/shoes/shoes.police.vmdl",
-                "models/citizen_clothes/trousers/trousers.police.vmdl"
+                Identifiers.Items.GUARD_HAT_ID,
+                Identifiers.Items.GUARD_SLEEVE_ID,
+                Identifiers.Items.GUARD_TROUSERS_ID,
+                Identifiers.Items.GUARD_SHOES_ID
             },
             StartingItems = new HashSet<string>
             {
@@ -104,32 +99,26 @@ public class RoleDao : LocalDao<RoleData>
             }
         });
 
-        Save(new RoleData(Identifiers.Roles.TRAITOR_ID)
-        {
-            Name = "Traitor",
-            Description = "Traitor",
-            Type = Identifiers.Roles.ANTAGONIST_TYPE,
-            Clothing = new HashSet<string>
-            {
-                "models/citizen_clothes/trousers/trousers.smart.vmdl",
-                "models/citizen_clothes/shoes/shoes.police.vmdl",
-                "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-                "models/citizen_clothes/hat/hat_beret.black.vmdl"
-            }
-        });
+        //Save(new RoleData(Identifiers.Roles.TRAITOR_ID)
+        //{
+        //    Name = "Traitor",
+        //    Description = "Traitor",
+        //    Type = Identifiers.Roles.ANTAGONIST_TYPE,
+        //    Clothing = new HashSet<string>
+        //    {
+        //        "models/citizen_clothes/trousers/trousers.smart.vmdl",
+        //        "models/citizen_clothes/shoes/shoes.police.vmdl",
+        //        "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
+        //        "models/citizen_clothes/hat/hat_beret.black.vmdl"
+        //    }
+        //});
 
         Save(new RoleData(Identifiers.Roles.GHOST_ID)
         {
             Name = "Ghost",
             Description = "Ghost",
             Type = Identifiers.Roles.OTHER_TYPE,
-            Clothing = new HashSet<string>
-            {
-                "models/citizen_clothes/trousers/trousers.smart.vmdl",
-                "models/citizen_clothes/shoes/shoes.police.vmdl",
-                "models/citizen_clothes/jacket/jacket.tuxedo.vmdl",
-                "models/citizen_clothes/hat/hat_beret.black.vmdl"
-            }
+            Clothing = new HashSet<string>()
         });
         /*
         Save(new RoleData(Identifiers.CAPTAIN_ID)

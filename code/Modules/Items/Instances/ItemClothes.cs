@@ -5,8 +5,6 @@ namespace ssl.Modules.Clothes;
 
 public class ItemClothes : Item
 {
+    public ClothesSlot Slot { get; set; }
     
-    public ItemClothes()
-    {
-    }
 }

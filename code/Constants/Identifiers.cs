@@ -35,6 +35,17 @@ public static class Identifiers
         
         public const string HANDCUFFS_ID = "handcuffs";
         public const string HANDCUFFS_KEY_ID = "handcuffs_key";
+        
+        public const string WORKGLOVES_ID = "gloves_work";
+        public const string JEANS_ID = "trousers_jeans";
+        public const string RED_LONGSLEEVE_ID = "sleeve_red";
+        public const string WORKBOOTS_ID = "workboots";
+        public const string SERVICE_HAT_ID = "hat_service";
+        
+        public const string GUARD_TROUSERS_ID = "trousers_guard";
+        public const string GUARD_SLEEVE_ID = "sleeve_guard";
+        public const string GUARD_SHOES_ID = "shoes_guard";
+        public const string GUARD_HAT_ID = "hat_guard";
     }
 
     public class Statuses

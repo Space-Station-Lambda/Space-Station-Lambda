@@ -31,7 +31,7 @@ public sealed class ItemFactory : IFactory<Item>
             },
             ItemClothesData itemClothesData => new ItemClothes
             {
-                
+                Slot = itemClothesData.Slot
             },
             _ => CreateItem(itemData)
         };
