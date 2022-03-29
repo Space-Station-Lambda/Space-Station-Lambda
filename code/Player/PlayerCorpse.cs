@@ -15,9 +15,7 @@ public partial class PlayerCorpse : ModelEntity, IDraggable
         EnableHideInFirstPerson = true;
         EnableShadowInFirstPerson = true;
 
-        SetInteractsAs(CollisionLayer.Hitbox | CollisionLayer.Debris);
-        SetInteractsWith(CollisionLayer.WORLD_GEOMETRY);
-        SetInteractsExclude(CollisionLayer.Player);
+        CollisionGroup = CollisionGroup.Player;
     }
 
     public PlayerCorpse(SslPlayer sslPlayer) : this()
