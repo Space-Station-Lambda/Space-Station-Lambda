@@ -1,46 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sandbox;
+using ssl.Player;
 
 namespace ssl.Modules.Clothes;
 
 /// <summary>
 ///     Manage the clothing system for an entity
 /// </summary>
-public class ClothesHandler : EntityComponent
+public class ClothesHandler : EntityComponent<SslPlayer>
 {
-    private readonly List<Clothes> clothes = new();
-
-    /// <summary>
-    ///     Attach a set of clothes to the entity
-    /// </summary>
-    /// <param name="clothesSet">Set of string clothes.</param>
-    /// <param name="strip">If true, strip the entity before add clothes.</param>
-    public void AttachClothes(IEnumerable<string> clothesSet, bool strip = true)
-    {
-        if (strip) Strip();
-
-        foreach (string c in clothesSet)
-        {
-            AttachClothes(c);
-        }
-    }
+    private readonly Dictionary<ClothesSlot, ItemClothes> clothes = new();
 
     /// <summary>
     ///     Attach a piece of clothes to the entity
     /// </summary>
-    /// <param name="clothesModel">Model of the clothes</param>
-    public void AttachClothes(string clothesModel)
+    public void AttachClothes(ItemClothes clothing)
     {
-        AttachClothes(new Clothes(clothesModel));
-    }
+        clothing.SetParent(Entity, true);
 
-    /// <summary>
-    ///     Attach a piece of clothes to the entity
-    /// </summary>
-    public void AttachClothes(Clothes pieceOfClothes)
-    {
-        pieceOfClothes.SetParent(Entity, true);
-        clothes.Add(pieceOfClothes);
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -48,9 +27,9 @@ public class ClothesHandler : EntityComponent
     /// </summary>
     public void Strip()
     {
-        foreach (Clothes pieceOfClothes in clothes)
+        foreach ((ClothesSlot _, ItemClothes clothing) in clothes)
         {
-            pieceOfClothes.Delete();
+            clothing.Parent = null;
         }
 
         clothes.Clear();

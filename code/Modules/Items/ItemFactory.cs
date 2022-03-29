@@ -1,5 +1,6 @@
 using ssl.Commons;
 using ssl.Constants;
+using ssl.Modules.Clothes;
 using ssl.Modules.Items.Data;
 using ssl.Modules.Items.Instances;
 
@@ -27,6 +28,10 @@ public sealed class ItemFactory : IFactory<Item>
             ItemCleanerData itemCleanerData => new ItemCleaner
             {
                 CleaningValue = itemCleanerData.CleaningValue
+            },
+            ItemClothesData itemClothesData => new ItemClothes
+            {
+                
             },
             _ => CreateItem(itemData)
         };

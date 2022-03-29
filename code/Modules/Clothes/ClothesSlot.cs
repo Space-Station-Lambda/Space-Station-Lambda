@@ -3,7 +3,7 @@ namespace ssl.Modules.Clothes;
 /// <summary>
 ///     Different places where a player can wear a piece of cloth.
 /// </summary>
-public enum ClothSlot
+public enum ClothesSlot
 {
     Hat,
     /// <summary>
