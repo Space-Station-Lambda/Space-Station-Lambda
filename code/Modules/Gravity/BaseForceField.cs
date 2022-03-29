@@ -68,20 +68,24 @@ public abstract class BaseForceField : ModelEntity
     }
 
     /// <summary>
-    ///     Gets the force from the field at the global position.
+    ///     Gets the force from the field for a given entity
     /// </summary>
-    /// <param name="pos">The position in global coordinates</param>
-    /// <returns>The force vector at the position</returns>
-    protected abstract Vector3 ForceFromGlobalPosition(Vector3 pos);
+    /// <param name="ent">The entity that will receive the force</param>
+    /// <returns>The force vector for the entity</returns>
+    protected abstract Vector3 ForceFromEntity(Entity ent);
 
+    /// <summary>
+    ///     Default implementation for applying the force to all the entities.
+    ///     This can be overriden to change the behaviour if the force field is special.
+    /// </summary>
     [Event.Physics.PreStep]
-    protected virtual void ApplyGravity()
+    protected virtual void ApplyForce()
     {
         foreach (Entity entity in Entities)
         {
             foreach (PhysicsBody body in entity.PhysicsGroup.Bodies)
             {
-                body.ApplyForce(ForceFromGlobalPosition(body.Position) * body.Mass);
+                body.ApplyForce(ForceFromEntity(entity) * body.Mass);
             }
         }
     }
